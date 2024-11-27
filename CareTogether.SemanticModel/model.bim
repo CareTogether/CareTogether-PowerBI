@@ -22904,10 +22904,53 @@
             "expression": [
               "",
               "// An engaged family is one who was assigned to a function in an arrangement where that arrangement was active in the given timeframe.",
-              ""
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start] ",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN",
+              "",
+              "IF(",
+              "    CurrentStartDate > Today, ",
+              "    BLANK(), ",
+              "    CALCULATE(",
+              "        DISTINCTCOUNT(Family[Id]),",
+              "            USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]),",
+              "            'Family Function Assignment'[Function] = \"Host Family\",",
+              "                NOT ISBLANK(Arrangement[Started]),",
+              "                Arrangement[Started] <= CurrentEndDate,",
+              "                    IF(",
+              "                        ISBLANK('Arrangement'[Ended]),",
+              "                        TRUE(),",
+              "                        'Arrangement'[Ended] >= CurrentStartDate",
+              ")))"
             ],
             "formatString": "0",
             "lineageTag": "539b8aae-7c1c-4189-9843-ac7f621f3ea5"
+          },
+          {
+            "name": "# of Approved Families",
+            "expression": [
+              "",
+              "VAR FamilyDirectApproval = CALCULATETABLE(",
+              "    VALUES('Family'[Id]),",
+              "    'Family Role Approval',",
+              "    'Family Role Approval'[RoleName] = \"Host Family\",",
+              "    USERELATIONSHIP('Family Role Approval'[FamilyId], 'Family'[Id])",
+              ")",
+              "VAR FamilyIndirectApproval = CALCULATETABLE(",
+              "    VALUES('Family'[Id]),",
+              "    'Individual Role Approval',",
+              "    'Individual Role Approval'[RoleName] = \"Host Family\",",
+              "    USERELATIONSHIP('Individual Role Approval'[FamilyId], 'Family'[Id])",
+              ")",
+              "VAR CombinedFamilies = DISTINCT(UNION(FamilyDirectApproval, FamilyIndirectApproval))",
+              "RETURN",
+              "COUNTROWS(CombinedFamilies)"
+            ],
+            "formatString": "0",
+            "lineageTag": "94acd933-d074-45e7-955e-e2c833e1a88c"
           }
         ],
         "partitions": [
