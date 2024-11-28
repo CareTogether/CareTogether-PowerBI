@@ -10226,6 +10226,27 @@
                   }
                 ]
               },
+              "family.family_engagement_level": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Family",
+                    "ConceptualProperty": "Family Engagement Level"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Assignments": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
               "family.family_name": {
                 "Definition": {
                   "Binding": {
@@ -10929,7 +10950,9 @@
                 "SemanticType": "Location",
                 "State": "Generated",
                 "Terms": [
-                  {},
+                  {
+                    "": {}
+                  },
                   {
                     "state or province": {
                       "State": "Generated",
@@ -21786,6 +21809,7 @@
       },
       {
         "name": "26f687f1-e7f6-46d0-8cab-841aa84845ca",
+        "crossFilteringBehavior": "bothDirections",
         "fromColumn": "ArrangementId",
         "fromTable": "Family Function Assignment",
         "toColumn": "Id",
@@ -22951,6 +22975,60 @@
             ],
             "formatString": "0",
             "lineageTag": "94acd933-d074-45e7-955e-e2c833e1a88c"
+          },
+          {
+            "name": "Family Engagement Level",
+            "expression": [
+              "",
+              "//This is basically counting the # of assignments that the family has, as opposed to just seeing if they have any assignments in the given timeframe or not.",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN",
+              "IF(",
+              "    CurrentStartDate > Today,",
+              "    BLANK(),",
+              "    CALCULATE(",
+              "        COUNTROWS('Family Function Assignment'),",
+              "        USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]),",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "322c885f-90ad-42a0-a7af-7b2528041085"
+          },
+          {
+            "name": "Most Recent Engagement",
+            "expression": [
+              "",
+              "//most recent end date of all of the arrangements that they were assigned to during the given timeframe. If an arrangement is still open, treat that as TODAY()",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN CALCULATE(",
+              "    MAX(Arrangement[Ended]),",
+              "    USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]),",
+              "        NOT ISBLANK('Arrangement'[Started]),",
+              "        'Arrangement'[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        ))"
+            ],
+            "formatString": "General Date",
+            "lineageTag": "eae07ccd-3ec3-4250-b80d-a7f5672261d5"
           }
         ],
         "partitions": [
