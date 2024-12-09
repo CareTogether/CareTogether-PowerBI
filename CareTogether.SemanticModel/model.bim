@@ -22024,22 +22024,6 @@
         "isActive": false,
         "toColumn": "Id",
         "toTable": "Family"
-      },
-      {
-        "name": "7e6d4eed-158f-4f41-9ebc-eacac572911a",
-        "fromColumn": "ArrangementStartDate",
-        "fromTable": "Family Function Assignment",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_cacd13e0-3c20-44df-a26e-7d2360d2670f"
-      },
-      {
-        "name": "0c4fad4a-be97-4705-aeca-93255b2e0872",
-        "fromColumn": "ArrangementEndDate",
-        "fromTable": "Family Function Assignment",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_ac577211-e435-4fcb-8525-ac5d3b0e8b4e"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -22391,23 +22375,25 @@
             "name": "# of Engaged People",
             "expression": [
               "",
+              "// An engaged person is one who was assigned to a function in an arrangement where that arrangement was active in the given timeframe.",
+              "",
               "VAR Today = TODAY()",
-              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentStartDate = [Selected Timeframe Start] ",
               "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
               "",
               "RETURN IF(",
-              "    CurrentStartDate > Today,",
-              "    BLANK(),",
+              "    CurrentStartDate > Today, ",
+              "    BLANK(), ",
               "    CALCULATE(",
               "        DISTINCTCOUNT(Person[Id]),",
-              "            NOT ISBLANK(Arrangement[Started]),",
-              "            Arrangement[Started] <= CurrentEndDate,",
-              "            IF(",
-              "                ISBLANK('Arrangement'[Ended]),",
-              "                TRUE(),",
-              "                'Arrangement'[Ended] >= CurrentStartDate",
-              "            )))",
-              ""
+              "            USERELATIONSHIP(Person[Id], Arrangement[PersonId]),",
+              "                NOT ISBLANK(Arrangement[Started]),",
+              "                Arrangement[Started] <= CurrentEndDate,",
+              "                    IF(",
+              "                        ISBLANK('Arrangement'[Ended]),",
+              "                        TRUE(),",
+              "                        'Arrangement'[Ended] >= CurrentStartDate",
+              ")))"
             ],
             "formatString": "0",
             "lineageTag": "643c10aa-e40f-4535-881d-84cbceedcbbb"
@@ -22451,23 +22437,25 @@
               "VAR CurrentStartDate = [Selected Timeframe Start]",
               "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
               "",
-              "RETURN",
+              "RETURN ",
               "IF(",
               "    CurrentStartDate > Today,",
               "    BLANK(),",
               "    CALCULATE(",
               "        MAXX(",
               "            ADDCOLUMNS(",
-              "                FILTER(",
-              "                    'Arrangement',",
-              "                    NOT ISBLANK(Arrangement[Started]) &&",
-              "                    Arrangement[Started] <= CurrentEndDate &&",
-              "                    Arrangement[Started] >= CurrentStartDate",
-              "                ),",
-              "                \"AdjustedEnded\",",
-              "                IF(ISBLANK(Arrangement[Ended]), Today, Arrangement[Ended])",
+              "                'Arrangement',",
+              "                \"EffectiveEnded\", IF(ISBLANK('Arrangement'[Ended]), Today, 'Arrangement'[Ended])",
               "            ),",
-              "            [AdjustedEnded]",
+              "            [EffectiveEnded]",
+              "        ),",
+              "        USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]),",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
               "        )",
               "    )",
               ")"
@@ -22738,6 +22726,7 @@
             ],
             "dataType": "string",
             "displayFolder": "_Columns",
+            "isHidden": true,
             "isKey": true,
             "lineageTag": "b963afdd-1e73-463b-89e3-02a1fb0a9172",
             "sourceColumn": "Id",
@@ -23110,27 +23099,40 @@
             "lineageTag": "322c885f-90ad-42a0-a7af-7b2528041085"
           },
           {
-            "name": "Family Last Arrangement End Date",
+            "name": "Family Last Arrangement",
             "expression": [
               "",
               "",
-              "VAR Today = TODAY()  -- Data de hoje",
+              "VAR Today = TODAY()",
               "VAR CurrentStartDate = [Selected Timeframe Start]",
               "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "//",
               "",
-              "RETURN IF(",
-              "     CurrentStartDate > Today,",
-              "     BLANK(),",
-              "     CALCULATE(",
-              "        MAX('Family Function Assignment'[ArrangementEndDate]),",
+              "RETURN ",
+              "IF(",
+              "    CurrentStartDate > Today,",
+              "    BLANK(),",
+              "    CALCULATE(",
+              "        MAXX(",
+              "            ADDCOLUMNS(",
+              "                'Arrangement',",
+              "                \"EffectiveEnded\", IF(ISBLANK('Arrangement'[Ended]), Today, 'Arrangement'[Ended])",
+              "            ),",
+              "            [EffectiveEnded]",
+              "        ),",
               "        USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]),",
-              "        NOT ISBLANK('Family Function Assignment'[ArrangementStartDate]),",
-              "        'Family Function Assignment'[ArrangementStartDate] <= CurrentEndDate,",
-              "        'Family Function Assignment'[ArrangementEndDate] >= CurrentStartDate",
-              "     ))"
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
             ],
             "formatString": "General Date",
-            "lineageTag": "eae07ccd-3ec3-4250-b80d-a7f5672261d5"
+            "lineageTag": "89f23896-4485-4e8d-9bac-9fa03620c451"
           }
         ],
         "partitions": [
@@ -26514,60 +26516,6 @@
             "lineageTag": "06a3ca2c-c72c-477e-af69-9188988b70c7",
             "sourceColumn": "Function",
             "summarizeBy": "none"
-          },
-          {
-            "name": "ArrangementStartDate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "dateTime",
-            "expression": "RELATED(Arrangement[Started])",
-            "formatString": "General Date",
-            "isDataTypeInferred": true,
-            "lineageTag": "4ff32014-12a9-47b6-8fe2-b0fef4046a82",
-            "summarizeBy": "none",
-            "type": "calculated",
-            "variations": [
-              {
-                "name": "Variation",
-                "defaultHierarchy": {
-                  "hierarchy": "Date Hierarchy",
-                  "table": "LocalDateTable_cacd13e0-3c20-44df-a26e-7d2360d2670f"
-                },
-                "isDefault": true,
-                "relationship": "7e6d4eed-158f-4f41-9ebc-eacac572911a"
-              }
-            ]
-          },
-          {
-            "name": "ArrangementEndDate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "dateTime",
-            "expression": "IF(ISBLANK(RELATED(Arrangement[Ended])),TODAY(),RELATED(Arrangement[Ended]))",
-            "formatString": "General Date",
-            "isDataTypeInferred": true,
-            "lineageTag": "d76d6b63-0990-44f8-b73b-f410d39cd002",
-            "summarizeBy": "none",
-            "type": "calculated",
-            "variations": [
-              {
-                "name": "Variation",
-                "defaultHierarchy": {
-                  "hierarchy": "Date Hierarchy",
-                  "table": "LocalDateTable_ac577211-e435-4fcb-8525-ac5d3b0e8b4e"
-                },
-                "isDefault": true,
-                "relationship": "0c4fad4a-be97-4705-aeca-93255b2e0872"
-              }
-            ]
           }
         ],
         "isHidden": true,
@@ -28146,408 +28094,6 @@
             }
           }
         ]
-      },
-      {
-        "name": "LocalDateTable_cacd13e0-3c20-44df-a26e-7d2360d2670f",
-        "annotations": [
-          {
-            "name": "__PBI_LocalDateTable",
-            "value": "true"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Date",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              }
-            ],
-            "dataCategory": "PaddedDateTableDates",
-            "dataType": "dateTime",
-            "isHidden": true,
-            "isNameInferred": true,
-            "lineageTag": "f4f8314a-e510-4928-8701-afc685b4d6ed",
-            "sourceColumn": "[Date]",
-            "summarizeBy": "none",
-            "type": "calculatedTableColumn"
-          },
-          {
-            "name": "Year",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Year"
-              }
-            ],
-            "dataCategory": "Years",
-            "dataType": "int64",
-            "expression": "YEAR([Date])",
-            "isHidden": true,
-            "lineageTag": "c9b49ac4-e903-4636-aab6-6554e099f3d3",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "MonthNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "MonthNumber"
-              }
-            ],
-            "dataCategory": "MonthOfYear",
-            "dataType": "int64",
-            "expression": "MONTH([Date])",
-            "isHidden": true,
-            "lineageTag": "50f76328-edbb-49d2-866e-59195bfca272",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Month",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Month"
-              }
-            ],
-            "dataCategory": "Months",
-            "dataType": "string",
-            "expression": "FORMAT([Date], \"MMMM\")",
-            "isHidden": true,
-            "lineageTag": "d3a7a299-1355-4474-9749-492c6fc5b272",
-            "sortByColumn": "MonthNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "QuarterNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "QuarterNumber"
-              }
-            ],
-            "dataCategory": "QuarterOfYear",
-            "dataType": "int64",
-            "expression": "INT(([MonthNo] + 2) / 3)",
-            "isHidden": true,
-            "lineageTag": "305632f7-3383-43f2-97d1-fdec4546227d",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Quarter",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Quarter"
-              }
-            ],
-            "dataCategory": "Quarters",
-            "dataType": "string",
-            "expression": "\"Qtr \" & [QuarterNo]",
-            "isHidden": true,
-            "lineageTag": "f003d325-9258-4b46-90b6-410101bfefa6",
-            "sortByColumn": "QuarterNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Day",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Day"
-              }
-            ],
-            "dataCategory": "DayOfMonth",
-            "dataType": "int64",
-            "expression": "DAY([Date])",
-            "isHidden": true,
-            "lineageTag": "237abe4a-b39a-44e0-a84a-bf336305d547",
-            "summarizeBy": "none",
-            "type": "calculated"
-          }
-        ],
-        "hierarchies": [
-          {
-            "name": "Date Hierarchy",
-            "annotations": [
-              {
-                "name": "TemplateId",
-                "value": "DateHierarchy"
-              }
-            ],
-            "levels": [
-              {
-                "name": "Year",
-                "column": "Year",
-                "lineageTag": "25d30fc7-9ff5-4d73-89a4-b1776b59fef6",
-                "ordinal": 0
-              },
-              {
-                "name": "Quarter",
-                "column": "Quarter",
-                "lineageTag": "a5507a0e-24a6-4c86-ad75-619242d54611",
-                "ordinal": 1
-              },
-              {
-                "name": "Month",
-                "column": "Month",
-                "lineageTag": "f6d2c384-8d51-4d23-ab36-3853e55a5971",
-                "ordinal": 2
-              },
-              {
-                "name": "Day",
-                "column": "Day",
-                "lineageTag": "4faae383-8163-49fd-bad6-87c6fece9f06",
-                "ordinal": 3
-              }
-            ],
-            "lineageTag": "80825a40-4057-4c6d-946b-d00ccd91a896"
-          }
-        ],
-        "isHidden": true,
-        "lineageTag": "7d15219e-a430-4cd8-83b1-5cad8cb003e7",
-        "partitions": [
-          {
-            "name": "LocalDateTable_cacd13e0-3c20-44df-a26e-7d2360d2670f",
-            "mode": "import",
-            "source": {
-              "expression": "Calendar(Date(Year(MIN('Family Function Assignment'[ArrangementStartDate])), 1, 1), Date(Year(MAX('Family Function Assignment'[ArrangementStartDate])), 12, 31))",
-              "type": "calculated"
-            }
-          }
-        ],
-        "showAsVariationsOnly": true
-      },
-      {
-        "name": "LocalDateTable_ac577211-e435-4fcb-8525-ac5d3b0e8b4e",
-        "annotations": [
-          {
-            "name": "__PBI_LocalDateTable",
-            "value": "true"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Date",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              }
-            ],
-            "dataCategory": "PaddedDateTableDates",
-            "dataType": "dateTime",
-            "isHidden": true,
-            "isNameInferred": true,
-            "lineageTag": "0cc7ae9e-813f-4ad6-a24f-6825d3d02df7",
-            "sourceColumn": "[Date]",
-            "summarizeBy": "none",
-            "type": "calculatedTableColumn"
-          },
-          {
-            "name": "Year",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Year"
-              }
-            ],
-            "dataCategory": "Years",
-            "dataType": "int64",
-            "expression": "YEAR([Date])",
-            "isHidden": true,
-            "lineageTag": "e82b862f-44b8-485d-ba66-bf8b114208c5",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "MonthNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "MonthNumber"
-              }
-            ],
-            "dataCategory": "MonthOfYear",
-            "dataType": "int64",
-            "expression": "MONTH([Date])",
-            "isHidden": true,
-            "lineageTag": "1086bb54-0717-43fe-9ed4-669a54e4a9ee",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Month",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Month"
-              }
-            ],
-            "dataCategory": "Months",
-            "dataType": "string",
-            "expression": "FORMAT([Date], \"MMMM\")",
-            "isHidden": true,
-            "lineageTag": "0c7b8b2b-2266-4ff2-922b-20e2fee26ecb",
-            "sortByColumn": "MonthNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "QuarterNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "QuarterNumber"
-              }
-            ],
-            "dataCategory": "QuarterOfYear",
-            "dataType": "int64",
-            "expression": "INT(([MonthNo] + 2) / 3)",
-            "isHidden": true,
-            "lineageTag": "4c4818fa-e607-4a1b-813c-236a0c987b01",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Quarter",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Quarter"
-              }
-            ],
-            "dataCategory": "Quarters",
-            "dataType": "string",
-            "expression": "\"Qtr \" & [QuarterNo]",
-            "isHidden": true,
-            "lineageTag": "3a9dd11a-261a-4451-899c-1a84f1136e27",
-            "sortByColumn": "QuarterNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Day",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Day"
-              }
-            ],
-            "dataCategory": "DayOfMonth",
-            "dataType": "int64",
-            "expression": "DAY([Date])",
-            "isHidden": true,
-            "lineageTag": "3d079165-4312-4a88-bc56-6ce2db94c94a",
-            "summarizeBy": "none",
-            "type": "calculated"
-          }
-        ],
-        "hierarchies": [
-          {
-            "name": "Date Hierarchy",
-            "annotations": [
-              {
-                "name": "TemplateId",
-                "value": "DateHierarchy"
-              }
-            ],
-            "levels": [
-              {
-                "name": "Year",
-                "column": "Year",
-                "lineageTag": "2f5cd576-b04b-49ba-89d3-4641a9ec09d3",
-                "ordinal": 0
-              },
-              {
-                "name": "Quarter",
-                "column": "Quarter",
-                "lineageTag": "9efef40e-2a96-47c2-8daf-122a5b121210",
-                "ordinal": 1
-              },
-              {
-                "name": "Month",
-                "column": "Month",
-                "lineageTag": "e8396909-2e77-4e67-913c-ca860735505f",
-                "ordinal": 2
-              },
-              {
-                "name": "Day",
-                "column": "Day",
-                "lineageTag": "8e36949e-b4fb-4bbc-9053-e12089d3ef74",
-                "ordinal": 3
-              }
-            ],
-            "lineageTag": "5568617c-2d85-4db7-b1e4-e76923685181"
-          }
-        ],
-        "isHidden": true,
-        "lineageTag": "c8f4dda4-4727-4120-a28d-5032dff15e34",
-        "partitions": [
-          {
-            "name": "LocalDateTable_ac577211-e435-4fcb-8525-ac5d3b0e8b4e",
-            "mode": "import",
-            "source": {
-              "expression": "Calendar(Date(Year(MIN('Family Function Assignment'[ArrangementEndDate])), 1, 1), Date(Year(MAX('Family Function Assignment'[ArrangementEndDate])), 12, 31))",
-              "type": "calculated"
-            }
-          }
-        ],
-        "showAsVariationsOnly": true
       }
     ]
   }
