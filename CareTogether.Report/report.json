@@ -979,6 +979,27 @@
       "width": 1280.00
     },
     {
+      "config": "{}",
+      "displayName": "Página 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "be9ca097374b00a581be",
+      "ordinal": 18,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"ad80381f04d1798a886d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":49.6048632218845,\"y\":105.04559270516718,\"z\":0,\"width\":818.9665653495441,\"height\":508.69300911854106,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Family.Family Name\"},{\"queryRef\":\"Family.Family Last Arrangement\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Family\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Family Name\"},\"Name\":\"Family.Family Name\",\"NativeReferenceName\":\"Family Name\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Family Last Arrangement\"},\"Name\":\"Family.Family Last Arrangement\",\"NativeReferenceName\":\"Family Last Arrangement\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 508.69,
+          "width": 818.97,
+          "x": 49.60,
+          "y": 105.05,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
       "config": "{\"relationships\":[{\"source\":\"c2361a47716d5d04ced3\",\"target\":\"725ace4407800be117bc\",\"type\":3},{\"source\":\"725ace4407800be117bc\",\"target\":\"c2361a47716d5d04ced3\",\"type\":1}]}",
       "displayName": "Family Churches Audit",
       "displayOption": 1,
