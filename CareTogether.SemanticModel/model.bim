@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.138.1004.0 (24.11)"
+        "value": "2.138.1452.0 (24.11)"
       },
       {
         "name": "PBI_ProTooling",
@@ -21838,6 +21838,7 @@
       },
       {
         "name": "4f0b5f6e-01da-464c-a5c2-d90343b1b6f8",
+        "crossFilteringBehavior": "bothDirections",
         "fromColumn": "PersonId",
         "fromTable": "Individual Function Assignment",
         "isActive": false,
@@ -22386,14 +22387,16 @@
               "    BLANK(), ",
               "    CALCULATE(",
               "        DISTINCTCOUNT(Person[Id]),",
-              "            USERELATIONSHIP(Person[Id], Arrangement[PersonId]),",
-              "                NOT ISBLANK(Arrangement[Started]),",
-              "                Arrangement[Started] <= CurrentEndDate,",
-              "                    IF(",
-              "                        ISBLANK('Arrangement'[Ended]),",
-              "                        TRUE(),",
-              "                        'Arrangement'[Ended] >= CurrentStartDate",
-              ")))"
+              "        USERELATIONSHIP(Person[Id], 'Individual Function Assignment'[PersonId]),",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
             ],
             "formatString": "0",
             "lineageTag": "643c10aa-e40f-4535-881d-84cbceedcbbb"
@@ -23032,15 +23035,16 @@
               "    BLANK(), ",
               "    CALCULATE(",
               "        DISTINCTCOUNT(Family[Id]),",
-              "            USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]),",
-              "            'Family Function Assignment'[Function] = \"Host Family\",",
-              "                NOT ISBLANK(Arrangement[Started]),",
-              "                Arrangement[Started] <= CurrentEndDate,",
-              "                    IF(",
-              "                        ISBLANK('Arrangement'[Ended]),",
-              "                        TRUE(),",
-              "                        'Arrangement'[Ended] >= CurrentStartDate",
-              ")))"
+              "        USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]),",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
             ],
             "formatString": "0",
             "lineageTag": "539b8aae-7c1c-4189-9843-ac7f621f3ea5"
