@@ -10607,6 +10607,27 @@
                   "Value": "Hidden"
                 }
               },
+              "family.of_approved_families": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Family",
+                    "ConceptualProperty": "# of Approved Families"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Approved/Onboarded Families": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
               "family.of_families": {
                 "Definition": {
                   "Binding": {
@@ -22417,7 +22438,7 @@
               "    BLANK(),",
               "    CALCULATE(",
               "        COUNTROWS('Individual Function Assignment'),",
-              "        USERELATIONSHIP(Person[Id], 'Individual Function Assignment'[PersonId]),",
+              "        USERELATIONSHIP(Person[Id], 'Individual Function Assignment'[PersonId]), // This needs to be active to associate to the correct person for use in visuals.",
               "        NOT ISBLANK(Arrangement[Started]),",
               "        Arrangement[Started] <= CurrentEndDate,",
               "        IF(",
@@ -22447,12 +22468,12 @@
               "    CALCULATE(",
               "        MAXX(",
               "            ADDCOLUMNS(",
-              "                'Arrangement',",
-              "                \"EffectiveEnded\", IF(ISBLANK('Arrangement'[Ended]), Today, 'Arrangement'[Ended])",
+              "                'Individual Function Assignment',",
+              "                \"EffectiveEnded\", IF(ISBLANK(RELATED('Arrangement'[Ended])), Today, RELATED('Arrangement'[Ended]))",
               "            ),",
               "            [EffectiveEnded]",
               "        ),",
-              "        USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]),",
+              "        USERELATIONSHIP(Person[Id], 'Individual Function Assignment'[PersonId]),",
               "        NOT ISBLANK(Arrangement[Started]),",
               "        Arrangement[Started] <= CurrentEndDate,",
               "        IF(",
@@ -22463,7 +22484,7 @@
               "    )",
               ")"
             ],
-            "formatString": "General Date",
+            "formatString": "Short Date",
             "lineageTag": "3454c588-fe53-4488-8cf4-d7d203a545a1"
           }
         ],
@@ -23088,7 +23109,7 @@
               "    BLANK(),",
               "    CALCULATE(",
               "        COUNTROWS('Family Function Assignment'),",
-              "        USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]),",
+              "        USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]), // This needs to be active to associate to the correct family for use in visuals.",
               "        NOT ISBLANK(Arrangement[Started]),",
               "        Arrangement[Started] <= CurrentEndDate,",
               "        IF(",
@@ -23103,7 +23124,7 @@
             "lineageTag": "322c885f-90ad-42a0-a7af-7b2528041085"
           },
           {
-            "name": "Family Last Arrangement",
+            "name": "Family Last Arrangement End Date",
             "expression": [
               "",
               "",
@@ -23119,8 +23140,8 @@
               "    CALCULATE(",
               "        MAXX(",
               "            ADDCOLUMNS(",
-              "                'Arrangement',",
-              "                \"EffectiveEnded\", IF(ISBLANK('Arrangement'[Ended]), Today, 'Arrangement'[Ended])",
+              "                'Family Function Assignment',",
+              "                \"EffectiveEnded\", IF(ISBLANK(RELATED('Arrangement'[Ended])), Today, RELATED('Arrangement'[Ended]))",
               "            ),",
               "            [EffectiveEnded]",
               "        ),",
@@ -23135,7 +23156,7 @@
               "    )",
               ")"
             ],
-            "formatString": "General Date",
+            "formatString": "Short Date",
             "lineageTag": "89f23896-4485-4e8d-9bac-9fa03620c451"
           }
         ],
