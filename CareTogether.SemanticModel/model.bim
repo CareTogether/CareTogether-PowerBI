@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.138.1452.0 (24.11)"
+        "value": "2.138.1004.0 (24.11)"
       },
       {
         "name": "PBI_ProTooling",
@@ -14446,6 +14446,27 @@
                   "Value": "Hidden"
                 }
               },
+              "person.individual_engagement_level": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Person",
+                    "ConceptualProperty": "Individual Engagement Level"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Assignments": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
               "person.last_name": {
                 "Definition": {
                   "Binding": {
@@ -14558,6 +14579,27 @@
                       "State": "Suggested",
                       "Type": "Noun",
                       "Weight": 0.582
+                    }
+                  }
+                ]
+              },
+              "person.of_approved_people": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Person",
+                    "ConceptualProperty": "# of Approved People"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Approved/Onboard People": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
                     }
                   }
                 ]
@@ -22486,6 +22528,12 @@
             ],
             "formatString": "Short Date",
             "lineageTag": "3454c588-fe53-4488-8cf4-d7d203a545a1"
+          },
+          {
+            "name": "# of Approved People",
+            "expression": "DISTINCTCOUNT('Individual Role Approval'[PersonId])",
+            "formatString": "0",
+            "lineageTag": "eec25c1e-2162-4627-91b0-3263cedfe9d6"
           }
         ],
         "partitions": [
