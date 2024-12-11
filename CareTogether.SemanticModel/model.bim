@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.138.1004.0 (24.11)"
+        "value": "2.138.1452.0 (24.11)"
       },
       {
         "name": "PBI_ProTooling",
@@ -10226,6 +10226,27 @@
                   }
                 ]
               },
+              "family.family_engagement_level": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Family",
+                    "ConceptualProperty": "Family Engagement Level"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Assignments": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
               "family.family_name": {
                 "Definition": {
                   "Binding": {
@@ -10586,6 +10607,27 @@
                   "Value": "Hidden"
                 }
               },
+              "family.of_approved_families": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Family",
+                    "ConceptualProperty": "# of Approved Families"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Approved/Onboarded Families": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
               "family.of_families": {
                 "Definition": {
                   "Binding": {
@@ -10929,7 +10971,9 @@
                 "SemanticType": "Location",
                 "State": "Generated",
                 "Terms": [
-                  {},
+                  {
+                    "": {}
+                  },
                   {
                     "state or province": {
                       "State": "Generated",
@@ -21735,6 +21779,7 @@
       },
       {
         "name": "70f8815a-d4b6-47b2-a7a7-945362d008da",
+        "crossFilteringBehavior": "bothDirections",
         "fromColumn": "PersonId",
         "fromTable": "Arrangement",
         "toColumn": "Id",
@@ -21813,16 +21858,8 @@
         "toTable": "Childcare Plan"
       },
       {
-        "name": "851ab7d1-2dd7-4927-978a-ebe5861237c3",
-        "crossFilteringBehavior": "bothDirections",
-        "fromColumn": "FamilyId",
-        "fromTable": "Family Function Assignment",
-        "isActive": false,
-        "toColumn": "Id",
-        "toTable": "Family"
-      },
-      {
         "name": "4f0b5f6e-01da-464c-a5c2-d90343b1b6f8",
+        "crossFilteringBehavior": "bothDirections",
         "fromColumn": "PersonId",
         "fromTable": "Individual Function Assignment",
         "isActive": false,
@@ -22000,6 +22037,15 @@
         "fromTable": "ChildLocationExpanded",
         "toColumn": "Date",
         "toTable": "Date"
+      },
+      {
+        "name": "c03e27fd-f484-8727-fbd7-5b38714020db",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "FamilyId",
+        "fromTable": "Family Function Assignment",
+        "isActive": false,
+        "toColumn": "Id",
+        "toTable": "Family"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -22346,6 +22392,100 @@
             ],
             "formatString": "0",
             "lineageTag": "d7acf581-d9f2-48bc-a530-bdae724341be"
+          },
+          {
+            "name": "# of Engaged People",
+            "expression": [
+              "",
+              "// An engaged person is one who was assigned to a function in an arrangement where that arrangement was active in the given timeframe.",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start] ",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN IF(",
+              "    CurrentStartDate > Today, ",
+              "    BLANK(), ",
+              "    CALCULATE(",
+              "        DISTINCTCOUNT(Person[Id]),",
+              "        USERELATIONSHIP(Person[Id], 'Individual Function Assignment'[PersonId]),",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "643c10aa-e40f-4535-881d-84cbceedcbbb"
+          },
+          {
+            "name": "Individual Engagement Level",
+            "expression": [
+              "",
+              "//This is basically counting the # of assignments that the person has, as opposed to just seeing if they have any assignments in the given timeframe or not.",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN",
+              "IF(",
+              "    CurrentStartDate > Today,",
+              "    BLANK(),",
+              "    CALCULATE(",
+              "        COUNTROWS('Individual Function Assignment'),",
+              "        USERELATIONSHIP(Person[Id], 'Individual Function Assignment'[PersonId]), // This needs to be active to associate to the correct person for use in visuals.",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "331f98ea-b075-4d1e-b53c-18b7c2c0782c"
+          },
+          {
+            "name": "Individual Last Arrangement End Date",
+            "expression": [
+              "",
+              "",
+              "VAR Today = TODAY()  -- Data de hoje",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN ",
+              "IF(",
+              "    CurrentStartDate > Today,",
+              "    BLANK(),",
+              "    CALCULATE(",
+              "        MAXX(",
+              "            ADDCOLUMNS(",
+              "                'Individual Function Assignment',",
+              "                \"EffectiveEnded\", IF(ISBLANK(RELATED('Arrangement'[Ended])), Today, RELATED('Arrangement'[Ended]))",
+              "            ),",
+              "            [EffectiveEnded]",
+              "        ),",
+              "        USERELATIONSHIP(Person[Id], 'Individual Function Assignment'[PersonId]),",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "Short Date",
+            "lineageTag": "3454c588-fe53-4488-8cf4-d7d203a545a1"
           }
         ],
         "partitions": [
@@ -22916,15 +23056,16 @@
               "    BLANK(), ",
               "    CALCULATE(",
               "        DISTINCTCOUNT(Family[Id]),",
-              "            USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]),",
-              "            'Family Function Assignment'[Function] = \"Host Family\",",
-              "                NOT ISBLANK(Arrangement[Started]),",
-              "                Arrangement[Started] <= CurrentEndDate,",
-              "                    IF(",
-              "                        ISBLANK('Arrangement'[Ended]),",
-              "                        TRUE(),",
-              "                        'Arrangement'[Ended] >= CurrentStartDate",
-              ")))"
+              "        USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]),",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
             ],
             "formatString": "0",
             "lineageTag": "539b8aae-7c1c-4189-9843-ac7f621f3ea5"
@@ -22951,6 +23092,72 @@
             ],
             "formatString": "0",
             "lineageTag": "94acd933-d074-45e7-955e-e2c833e1a88c"
+          },
+          {
+            "name": "Family Engagement Level",
+            "expression": [
+              "",
+              "//This is basically counting the # of assignments that the family has, as opposed to just seeing if they have any assignments in the given timeframe or not.",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN",
+              "IF(",
+              "    CurrentStartDate > Today,",
+              "    BLANK(),",
+              "    CALCULATE(",
+              "        COUNTROWS('Family Function Assignment'),",
+              "        USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]), // This needs to be active to associate to the correct family for use in visuals.",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "322c885f-90ad-42a0-a7af-7b2528041085"
+          },
+          {
+            "name": "Family Last Arrangement End Date",
+            "expression": [
+              "",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "//",
+              "",
+              "RETURN ",
+              "IF(",
+              "    CurrentStartDate > Today,",
+              "    BLANK(),",
+              "    CALCULATE(",
+              "        MAXX(",
+              "            ADDCOLUMNS(",
+              "                'Family Function Assignment',",
+              "                \"EffectiveEnded\", IF(ISBLANK(RELATED('Arrangement'[Ended])), Today, RELATED('Arrangement'[Ended]))",
+              "            ),",
+              "            [EffectiveEnded]",
+              "        ),",
+              "        USERELATIONSHIP(Family[Id], 'Family Function Assignment'[FamilyId]),",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "Short Date",
+            "lineageTag": "89f23896-4485-4e8d-9bac-9fa03620c451"
           }
         ],
         "partitions": [
@@ -23654,7 +23861,6 @@
             ],
             "dataType": "string",
             "displayFolder": "_Columns",
-            "isHidden": true,
             "isKey": true,
             "lineageTag": "f2b5e1bb-5f70-4a51-ae2d-224a87725b61",
             "sourceColumn": "Id",
@@ -23695,7 +23901,6 @@
             ],
             "dataType": "string",
             "displayFolder": "_Columns",
-            "isHidden": true,
             "lineageTag": "ef5bf3c2-4ea1-459b-9d35-1f632e10e5ad",
             "sourceColumn": "PersonId",
             "summarizeBy": "none"
