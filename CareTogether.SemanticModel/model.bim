@@ -23158,6 +23158,7 @@
             ],
             "formatString": "Short Date",
             "lineageTag": "89f23896-4485-4e8d-9bac-9fa03620c451"
+          },
           {
             "name": "# Adults Impacted",
             "expression": [
