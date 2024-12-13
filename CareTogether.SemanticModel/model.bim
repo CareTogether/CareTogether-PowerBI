@@ -14446,6 +14446,27 @@
                   "Value": "Hidden"
                 }
               },
+              "person.individual_engagement_level": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Person",
+                    "ConceptualProperty": "Individual Engagement Level"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Assignments": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
               "person.last_name": {
                 "Definition": {
                   "Binding": {
@@ -14558,6 +14579,27 @@
                       "State": "Suggested",
                       "Type": "Noun",
                       "Weight": 0.582
+                    }
+                  }
+                ]
+              },
+              "person.of_approved_people": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Person",
+                    "ConceptualProperty": "# of Approved People"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Approved/Onboard People": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
                     }
                   }
                 ]
@@ -21657,6 +21699,7 @@
             "value": "FS"
           }
         ],
+        "crossFilteringBehavior": "bothDirections",
         "fromColumn": "FamilyId",
         "fromTable": "Person",
         "toColumn": "Id",
@@ -21779,7 +21822,6 @@
       },
       {
         "name": "70f8815a-d4b6-47b2-a7a7-945362d008da",
-        "crossFilteringBehavior": "bothDirections",
         "fromColumn": "PersonId",
         "fromTable": "Arrangement",
         "toColumn": "Id",
@@ -22486,6 +22528,82 @@
             ],
             "formatString": "Short Date",
             "lineageTag": "3454c588-fe53-4488-8cf4-d7d203a545a1"
+          },
+          {
+            "name": "# of Approved People",
+            "expression": "DISTINCTCOUNT('Individual Role Approval'[PersonId])",
+            "formatString": "0",
+            "lineageTag": "eec25c1e-2162-4627-91b0-3263cedfe9d6"
+          },
+          {
+            "name": "# Impacted Adults",
+            "expression": [
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN",
+              "IF(",
+              "    CurrentStartDate > Today, ",
+              "    BLANK(),",
+              "    CALCULATE(",
+              "        DISTINCTCOUNT(Person[Id]),",
+              "        FILTER(",
+              "            Family,",
+              "            COUNTROWS(",
+              "                FILTER(",
+              "                    RELATEDTABLE('Arrangement'), // Added the related table to ensure that the formula correctly filters the arrangement table.",
+              "                    NOT(ISBLANK('Arrangement'[Started])) &&",
+              "                    'Arrangement'[Started] <= CurrentEndDate &&",
+              "                    (",
+              "                        ISBLANK('Arrangement'[Ended]) || ",
+              "                        'Arrangement'[Ended] >= CurrentStartDate",
+              "                    )",
+              "                )",
+              "            ) > 0",
+              "        ),",
+              "        Person[Adult or Child] = \"Adult\"",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "aa34d1ee-173f-463d-b798-25422a49d851"
+          },
+          {
+            "name": "# Impacted Children",
+            "expression": [
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN",
+              "IF(",
+              "    CurrentStartDate > Today,",
+              "    BLANK(),",
+              "    CALCULATE(",
+              "        DISTINCTCOUNT(Person[Id]),",
+              "        FILTER(",
+              "            Family,",
+              "            COUNTROWS(",
+              "                FILTER(",
+              "                    RELATEDTABLE('Arrangement'), // Added the related table to ensure that the formula correctly filters the arrangement table.",
+              "                    NOT(ISBLANK('Arrangement'[Started])) &&",
+              "                    'Arrangement'[Started] <= CurrentEndDate &&",
+              "                    (",
+              "                        ISBLANK('Arrangement'[Ended]) || ",
+              "                        'Arrangement'[Ended] >= CurrentStartDate",
+              "                    )",
+              "                )",
+              "            ) > 0",
+              "        ),",
+              "        Person[Adult or Child] = \"Child\" ",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "179e37b7-68c8-4ccb-ad13-387c117b1493"
           }
         ],
         "partitions": [
@@ -24022,7 +24140,6 @@
             ],
             "dataType": "string",
             "displayFolder": "_Columns",
-            "isHidden": true,
             "lineageTag": "7b953b76-e099-42ba-a699-324bd31c0a51",
             "sourceColumn": "TypeName",
             "summarizeBy": "none"
@@ -26537,13 +26654,11 @@
               }
             ],
             "dataType": "string",
-            "isHidden": true,
             "lineageTag": "06a3ca2c-c72c-477e-af69-9188988b70c7",
             "sourceColumn": "Function",
             "summarizeBy": "none"
           }
         ],
-        "isHidden": true,
         "lineageTag": "f8b85112-42b9-4f79-a202-7452035eae02",
         "partitions": [
           {
@@ -26634,13 +26749,11 @@
               }
             ],
             "dataType": "string",
-            "isHidden": true,
             "lineageTag": "424f984d-ae87-44ad-92bc-5e91932c0910",
             "sourceColumn": "Function",
             "summarizeBy": "none"
           }
         ],
-        "isHidden": true,
         "lineageTag": "a1452b7c-df56-4db9-9eb0-35a6f73cdd10",
         "partitions": [
           {
