@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.138.1004.0 (24.11)"
+        "value": "2.138.1452.0 (24.11)"
       },
       {
         "name": "PBI_ProTooling",
@@ -26654,13 +26654,11 @@
               }
             ],
             "dataType": "string",
-            "isHidden": true,
             "lineageTag": "06a3ca2c-c72c-477e-af69-9188988b70c7",
             "sourceColumn": "Function",
             "summarizeBy": "none"
           }
         ],
-        "isHidden": true,
         "lineageTag": "f8b85112-42b9-4f79-a202-7452035eae02",
         "partitions": [
           {
@@ -26751,13 +26749,11 @@
               }
             ],
             "dataType": "string",
-            "isHidden": true,
             "lineageTag": "424f984d-ae87-44ad-92bc-5e91932c0910",
             "sourceColumn": "Function",
             "summarizeBy": "none"
           }
         ],
-        "isHidden": true,
         "lineageTag": "a1452b7c-df56-4db9-9eb0-35a6f73cdd10",
         "partitions": [
           {
