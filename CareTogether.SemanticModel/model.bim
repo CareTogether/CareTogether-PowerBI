@@ -2409,6 +2409,27 @@
                   }
                 ]
               },
+              "arrangement.total_arrangement_duration": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Arrangement",
+                    "ConceptualProperty": "Total Arrangement Duration"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Arrangement Duration in Days": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
               "arrangement.type_name": {
                 "Definition": {
                   "Binding": {
@@ -24386,6 +24407,64 @@
             "expression": "COUNTROWS(Arrangement)",
             "formatString": "0",
             "lineageTag": "381d4567-b699-4dbf-b701-ef0c6febcd07"
+          },
+          {
+            "name": "Total Arrangement Duration",
+            "expression": [
+              "",
+              "// Mean length of arrangement in days, based on arrangement start/end date",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN IF(",
+              "    CurrentStartDate > Today, ",
+              "    BLANK(),",
+              "    SUMX(",
+              "        FILTER(",
+              "            Arrangement,",
+              "            NOT ISBLANK(Arrangement[Started]) &&",
+              "            Arrangement[Started] <= CurrentEndDate &&",
+              "            COALESCE(Arrangement[Ended], Today) >= CurrentStartDate // If an arrangement is still ongoing, we consider today's date to maintain consistency with other metrics.",
+              "        ),",
+              "        DATEDIFF(",
+              "            Arrangement[Started], COALESCE(Arrangement[Ended], Today), DAY",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "f9a31601-b76f-4852-b47d-5e05f23f4131"
+          },
+          {
+            "name": "Mean Arrangement Duration",
+            "expression": [
+              "",
+              "// Total duration of arrangements in days, based on arrangement start/end date",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN IF(",
+              "    CurrentStartDate > Today, ",
+              "    BLANK(),",
+              "    AVERAGEX(",
+              "        FILTER(",
+              "            Arrangement,",
+              "            NOT ISBLANK(Arrangement[Started]) &&",
+              "            Arrangement[Started] <= CurrentEndDate &&",
+              "            COALESCE(Arrangement[Ended], Today) >= CurrentStartDate // If an arrangement is still ongoing, we consider today's date to maintain consistency with other metrics.",
+              "        ),",
+              "        DATEDIFF(",
+              "            Arrangement[Started], Arrangement[Ended], DAY",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "81bee6c3-a2f4-4f86-ae58-d85cfd49bc5e"
           }
         ],
         "partitions": [
