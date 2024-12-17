@@ -24469,7 +24469,7 @@
               "    )",
               ")"
             ],
-            "formatString": "0",
+            "formatString": "#,0",
             "lineageTag": "f9a31601-b76f-4852-b47d-5e05f23f4131"
           },
           {
