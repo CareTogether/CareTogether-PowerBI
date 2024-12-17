@@ -4,6 +4,20 @@
   "layoutOptimization": 1,
   "pods": [
     {
+      "boundSection": "e3e436ecd75be754ee24",
+      "config": "{}",
+      "name": "6034b4b8420572829b42",
+      "parameters": "[{\"name\":\"f7713532416d2c419e99\",\"boundFilter\":\"f36cebace608478795bc\",\"fieldExpr\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Arrangement\"}},\"Property\":\"Total Arrangements Duration\"}}}]",
+      "type": 1
+    },
+    {
+      "boundSection": "6201089a04510dd00d23",
+      "config": "{}",
+      "name": "768686f837c012c24445",
+      "parameters": "[{\"name\":\"d8963143658aa161c630\",\"boundFilter\":\"7b226fd666bc2064b90b\",\"fieldExpr\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Arrangement\"}},\"Property\":\"Total Arrangements Duration\"}}}]",
+      "type": 1
+    },
+    {
       "boundSection": "ReportSectionf65b125fb75cc96b5fae",
       "config": "{}",
       "name": "Pod",
@@ -215,6 +229,36 @@
           "width": 317.17,
           "x": 0.00,
           "y": 90.37,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Arrangement Details (Drill Trough)",
+      "displayOption": 1,
+      "filters": "[{\"name\":\"7b226fd666bc2064b90b\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Arrangement\"}},\"Property\":\"Total Arrangements Duration\"}},\"type\":\"Categorical\",\"howCreated\":5}]",
+      "height": 720.00,
+      "name": "6201089a04510dd00d23",
+      "ordinal": 20,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"3eb5497363910612a631\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"width\":100,\"height\":40,\"z\":0,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"icon\":[{\"properties\":{\"shapeType\":{\"expr\":{\"Literal\":{\"Value\":\"'back'\"}}}},\"selector\":{\"id\":\"default\"}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"type\":{\"expr\":{\"Literal\":{\"Value\":\"'Back'\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 40.00,
+          "width": 100.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"9848a269906cedea0b50\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":39.90147783251231,\"z\":1000,\"width\":1280.3940886699509,\"height\":680.0985221674877,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Arrangement.Id\"},{\"queryRef\":\"Arrangement.Started\"},{\"queryRef\":\"Arrangement.Ended\"},{\"queryRef\":\"Arrangement.PersonId\"},{\"queryRef\":\"Arrangement.TypeName\"},{\"queryRef\":\"Arrangement.Total Arrangement Duration\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Arrangement\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Id\"},\"Name\":\"Arrangement.Id\",\"NativeReferenceName\":\"Id\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Started\"},\"Name\":\"Arrangement.Started\",\"NativeReferenceName\":\"Started\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Ended\"},\"Name\":\"Arrangement.Ended\",\"NativeReferenceName\":\"Ended\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"PersonId\"},\"Name\":\"Arrangement.PersonId\",\"NativeReferenceName\":\"PersonId\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"TypeName\"},\"Name\":\"Arrangement.TypeName\",\"NativeReferenceName\":\"TypeName\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Arrangements Duration\"},\"Name\":\"Arrangement.Total Arrangement Duration\",\"NativeReferenceName\":\"Arrangement Duration\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Started\"}}}]},\"columnProperties\":{\"Arrangement.Total Arrangement Duration\":{\"displayName\":\"Arrangement Duration\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"161.42552589503467D\"}}}},\"selector\":{\"metadata\":\"Arrangement.Ended\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"281.53495440729483D\"}}}},\"selector\":{\"metadata\":\"Arrangement.PersonId\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"173.98784813785875D\"}}}},\"selector\":{\"metadata\":\"Arrangement.TypeName\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"222.60487003071222D\"}}}},\"selector\":{\"metadata\":\"Arrangement.Total Arrangement Duration\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"265D\"}}}},\"selector\":{\"metadata\":\"Arrangement.Id\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"157D\"}}}},\"selector\":{\"metadata\":\"Arrangement.Started\"}}],\"columnHeaders\":[{\"properties\":{\"autoSizeColumnWidth\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 680.10,
+          "width": 1280.39,
+          "x": 0.00,
+          "y": 39.90,
           "z": 1000.00
         }
       ],
@@ -1067,21 +1111,57 @@
     },
     {
       "config": "{}",
-      "displayName": "Página 1",
+      "displayName": "Arrangement Duration",
       "displayOption": 1,
-      "filters": "[{\"name\":\"cf3985e2bde1e25811c0\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Date\"}},\"Property\":\"Date\"}},\"type\":\"RelativeDate\",\"howCreated\":1}]",
+      "filters": "[{\"name\":\"cf3985e2bde1e25811c0\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Date\"}},\"Property\":\"Date\"}},\"type\":\"RelativeDate\",\"howCreated\":1},{\"name\":\"f36cebace608478795bc\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Arrangement\"}},\"Property\":\"Total Arrangements Duration\"}},\"type\":\"Categorical\",\"howCreated\":5}]",
       "height": 720.00,
       "name": "e3e436ecd75be754ee24",
       "ordinal": 19,
       "visualContainers": [
         {
-          "config": "{\"name\":\"4e2341a857e9da337370\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":315.6650246305419,\"z\":1000,\"width\":970.935960591133,\"height\":404.3349753694581,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Arrangement.Id\"},{\"queryRef\":\"Arrangement.Started\"},{\"queryRef\":\"Arrangement.Ended\"},{\"queryRef\":\"Arrangement.Total Arrangement Duration\"},{\"queryRef\":\"Arrangement.Mean Arrangement Duration\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Arrangement\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Id\"},\"Name\":\"Arrangement.Id\",\"NativeReferenceName\":\"Id\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Arrangement Duration\"},\"Name\":\"Arrangement.Total Arrangement Duration\",\"NativeReferenceName\":\"Total Arrangement Duration\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Mean Arrangement Duration\"},\"Name\":\"Arrangement.Mean Arrangement Duration\",\"NativeReferenceName\":\"Mean Arrangement Duration\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Started\"},\"Name\":\"Arrangement.Started\",\"NativeReferenceName\":\"Started\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Ended\"},\"Name\":\"Arrangement.Ended\",\"NativeReferenceName\":\"Ended\"}]},\"drillFilterOtherVisuals\":true}}",
+          "config": "{\"name\":\"39c7019c3964ad96b2eb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":640,\"y\":0,\"z\":1000,\"width\":320,\"height\":133.25227963525836,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Child Location Record.Days of Care\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Child Location Record\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Days of Care\"},\"Name\":\"Child Location Record.Days of Care\",\"NativeReferenceName\":\"Days of Care\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Days of Care\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
           "filters": "[]",
-          "height": 404.33,
-          "width": 970.94,
-          "x": 0.00,
-          "y": 315.67,
+          "height": 133.25,
+          "width": 320.00,
+          "x": 640.00,
+          "y": 0.00,
           "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"5c93a7d12c48300d37ba\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":3000,\"width\":320,\"height\":133.25227963525836,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Arrangement.Total Arrangement Duration\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Arrangement\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Arrangements Duration\"},\"Name\":\"Arrangement.Total Arrangement Duration\",\"NativeReferenceName\":\"Total Arrangements Duration (days)\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Arrangements Duration\"}}}]},\"columnProperties\":{\"Arrangement.Total Arrangement Duration\":{\"displayName\":\"Total Arrangements Duration (days)\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 133.25,
+          "width": 320.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"7f06a782a84c34eb06ed\",\"layouts\":[{\"id\":0,\"position\":{\"x\":960,\"y\":0,\"z\":0,\"width\":320,\"height\":133.25227963525836,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Child Location Record.Nights of Care\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Child Location Record\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Nights of Care\"},\"Name\":\"Child Location Record.Nights of Care\",\"NativeReferenceName\":\"Nights of Care\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Nights of Care\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 133.25,
+          "width": 320.00,
+          "x": 960.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"dfadc8622ed69eb9d508\",\"layouts\":[{\"id\":0,\"position\":{\"x\":320,\"y\":0,\"z\":2000,\"width\":320,\"height\":133.25227963525836,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Arrangement.Average Arrangement Duration\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Arrangement\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Average Arrangements Duration\"},\"Name\":\"Arrangement.Average Arrangement Duration\",\"NativeReferenceName\":\"Average Arrangement Duration (days)\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Average Arrangements Duration\"}}}]},\"columnProperties\":{\"Arrangement.Average Arrangement Duration\":{\"displayName\":\"Average Arrangement Duration (days)\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 133.25,
+          "width": 320.00,
+          "x": 320.00,
+          "y": 0.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"f65bc58f36a37cc2c796\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":133.25227963525836,\"z\":4000,\"width\":1280,\"height\":586.5045592705168,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"lineClusteredColumnComboChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Arrangement.Total Arrangement Duration\"}],\"Y2\":[{\"queryRef\":\"Arrangement.Average Arrangement Duration\"}],\"Category\":[{\"queryRef\":\"Date.Year\",\"active\":true},{\"queryRef\":\"Date.Month Name Short\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Arrangement\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Arrangements Duration\"},\"Name\":\"Arrangement.Total Arrangement Duration\",\"NativeReferenceName\":\"Total Arrangements Duration\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Average Arrangements Duration\"},\"Name\":\"Arrangement.Average Arrangement Duration\",\"NativeReferenceName\":\"Average Arrangements Duration\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Year\"},\"Name\":\"Date.Year\",\"NativeReferenceName\":\"Year\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Month Name Short\"},\"Name\":\"Date.Month Name Short\",\"NativeReferenceName\":\"Month Name Short\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"innerPadding\":{\"expr\":{\"Literal\":{\"Value\":\"25L\"}}},\"maxMarginFactor\":{\"expr\":{\"Literal\":{\"Value\":\"20L\"}}}}}],\"valueAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"enableDetailDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"enableValueDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"labelPosition\":{\"expr\":{\"Literal\":{\"Value\":\"'Auto'\"}}},\"optimizeLabelDisplay\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"labelOrientation\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"enableBackground\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}},{\"properties\":{\"enableValueDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"enableDetailDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"enableTitleDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"titleContentType\":{\"expr\":{\"Literal\":{\"Value\":\"'Series name'\"}}},\"labelPosition\":{\"expr\":{\"Literal\":{\"Value\":\"'OutsideEnd'\"}}},\"enableBackground\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"optimizeLabelDisplay\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"showSeries\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}},\"selector\":{\"metadata\":\"Arrangement.Total Arrangement Duration\"}},{\"properties\":{\"dynamicLabelDetail\":{\"expr\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Arrangement\"}},\"Property\":\"Average Arrangements Duration\"}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}],\"metadata\":\"Arrangement.Total Arrangement Duration\",\"highlightMatching\":1}},{\"properties\":{\"enableTitleDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"titleContentType\":{\"expr\":{\"Literal\":{\"Value\":\"'Custom'\"}}},\"showSeries\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}},\"selector\":{\"metadata\":\"Arrangement.Average Arrangement Duration\"}},{\"properties\":{\"dynamicLabelDetail\":{\"expr\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Arrangement\"}},\"Property\":\"Average Arrangements Duration\"}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}],\"highlightMatching\":1}}],\"seriesLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"lineStyles\":[{\"properties\":{\"lineChartType\":{\"expr\":{\"Literal\":{\"Value\":\"'smooth'\"}}},\"areaShow\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"interpolationSmooth\":{\"expr\":{\"Literal\":{\"Value\":\"'monotoneX'\"}}}}}],\"zoom\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"legend\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"dataPoint\":[{\"properties\":{\"borderShow\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Total and Average Arrangement Duration Over Time (Year-Month)'\"}}}}}],\"padding\":[{\"properties\":{\"left\":{\"expr\":{\"Literal\":{\"Value\":\"20D\"}}},\"right\":{\"expr\":{\"Literal\":{\"Value\":\"20D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 586.50,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 133.25,
+          "z": 4000.00
         }
       ],
       "width": 1280.00
