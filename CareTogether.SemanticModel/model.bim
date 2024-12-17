@@ -643,6 +643,27 @@
                   }
                 ]
               },
+              "arrangement.average_arrangement_duration": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Arrangement",
+                    "ConceptualProperty": "Average Arrangements Duration"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Average Arrangement Duration (days)": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
               "arrangement.day_in_setup": {
                 "Definition": {
                   "Binding": {
@@ -2405,6 +2426,37 @@
                       "State": "Suggested",
                       "Type": "Noun",
                       "Weight": 0.736
+                    }
+                  }
+                ]
+              },
+              "arrangement.total_arrangement_duration": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Arrangement",
+                    "ConceptualProperty": "Total Arrangements Duration"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Total Arrangements Duration (days)": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  },
+                  {
+                    "Arrangement Duration": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
                     }
                   }
                 ]
@@ -24386,6 +24438,72 @@
             "expression": "COUNTROWS(Arrangement)",
             "formatString": "0",
             "lineageTag": "381d4567-b699-4dbf-b701-ef0c6febcd07"
+          },
+          {
+            "name": "Total Arrangements Duration",
+            "expression": [
+              "",
+              "// Mean length of arrangement in days, based on arrangement start/end date",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN IF(",
+              "    CurrentStartDate > Today, ",
+              "    BLANK(),",
+              "    SUMX(",
+              "        FILTER(",
+              "            Arrangement,",
+              "            NOT ISBLANK(Arrangement[Started]) &&",
+              "            Arrangement[Started] <= CurrentEndDate &&",
+              "            IF(",
+              "                ISBLANK('Arrangement'[Ended]),",
+              "                TRUE(),",
+              "                'Arrangement'[Ended] >= CurrentStartDate",
+              "            )",
+              "        ),",
+              "        DATEDIFF(",
+              "            Arrangement[Started], Arrangement[Ended], DAY",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "#,0",
+            "lineageTag": "f9a31601-b76f-4852-b47d-5e05f23f4131"
+          },
+          {
+            "name": "Average Arrangements Duration",
+            "expression": [
+              "",
+              "// Average duration of arrangements in days, based on arrangement start/end date",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN IF(",
+              "    CurrentStartDate > Today, ",
+              "    BLANK(),",
+              "    AVERAGEX(",
+              "        FILTER(",
+              "            Arrangement,",
+              "            NOT ISBLANK(Arrangement[Started]) &&",
+              "            Arrangement[Started] <= CurrentEndDate &&",
+              "            IF(",
+              "                ISBLANK('Arrangement'[Ended]),",
+              "                TRUE(),",
+              "                'Arrangement'[Ended] >= CurrentStartDate",
+              "            )",
+              "        ),",
+              "        DATEDIFF(",
+              "            Arrangement[Started], Arrangement[Ended], DAY",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "81bee6c3-a2f4-4f86-ae58-d85cfd49bc5e"
           }
         ],
         "partitions": [
