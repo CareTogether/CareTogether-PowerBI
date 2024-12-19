@@ -2587,6 +2587,16 @@
                       "Type": "Noun",
                       "Weight": 0.714
                     }
+                  },
+                  {
+                    "Arrangement Type": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
                   }
                 ],
                 "Visibility": {
