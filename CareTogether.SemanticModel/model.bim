@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.138.1452.0 (24.11)"
+        "value": "2.138.1004.0 (24.11)"
       },
       {
         "name": "PBI_ProTooling",
@@ -10299,6 +10299,27 @@
                   }
                 ]
               },
+              "family.family_last_arrangement_end_date": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Family",
+                    "ConceptualProperty": "Family Last Arrangement End Date"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Last Engagement": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
               "family.family_name": {
                 "Definition": {
                   "Binding": {
@@ -14509,6 +14530,27 @@
                 "Terms": [
                   {
                     "# of Assignments": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "person.individual_last_arrangement_end_date": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Person",
+                    "ConceptualProperty": "Individual Last Arrangement End Date"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Last Engagement": {
                       "Source": {
                         "Agent": "PowerBI.VisualColumnRename",
                         "Type": "External"
@@ -23451,6 +23493,11 @@
             "value": "Navigation"
           }
         ],
+        "changedProperties": [
+          {
+            "property": "IsHidden"
+          }
+        ],
         "columns": [
           {
             "name": "FamilyId",
@@ -23534,6 +23581,7 @@
             "summarizeBy": "none"
           }
         ],
+        "isHidden": true,
         "lineageTag": "810a3cd6-49b2-4879-89d1-6179d6238543",
         "partitions": [
           {
