@@ -21786,20 +21786,6 @@
     ],
     "relationships": [
       {
-        "name": "b8c62c84-671a-4a90-85ac-e95142f4c511",
-        "annotations": [
-          {
-            "name": "PBI_IsFromSource",
-            "value": "FS"
-          }
-        ],
-        "crossFilteringBehavior": "bothDirections",
-        "fromColumn": "FamilyId",
-        "fromTable": "Person",
-        "toColumn": "Id",
-        "toTable": "Family"
-      },
-      {
         "name": "a135767c-4356-4dbd-81a4-225cfaea4d46",
         "annotations": [
           {
@@ -21913,13 +21899,6 @@
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_73d01070-72e6-4583-b4ff-d5fa05eb2eee"
-      },
-      {
-        "name": "70f8815a-d4b6-47b2-a7a7-945362d008da",
-        "fromColumn": "PersonId",
-        "fromTable": "Arrangement",
-        "toColumn": "Id",
-        "toTable": "Person"
       },
       {
         "name": "ec5dbbe4-02b1-478f-82d2-44a97e815b19",
@@ -22182,6 +22161,27 @@
         "isActive": false,
         "toColumn": "Id",
         "toTable": "Family"
+      },
+      {
+        "name": "b8c62c84-671a-4a90-85ac-e95142f4c511",
+        "annotations": [
+          {
+            "name": "PBI_IsFromSource",
+            "value": "FS"
+          }
+        ],
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "FamilyId",
+        "fromTable": "Person",
+        "toColumn": "Id",
+        "toTable": "Family"
+      },
+      {
+        "name": "70f8815a-d4b6-47b2-a7a7-945362d008da",
+        "fromColumn": "PersonId",
+        "fromTable": "Arrangement",
+        "toColumn": "Id",
+        "toTable": "Person"
       }
     ],
     "sourceQueryCulture": "en-US",
