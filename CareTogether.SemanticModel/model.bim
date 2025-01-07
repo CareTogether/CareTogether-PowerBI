@@ -2587,6 +2587,16 @@
                       "Type": "Noun",
                       "Weight": 0.714
                     }
+                  },
+                  {
+                    "Arrangement Type": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
                   }
                 ],
                 "Visibility": {
@@ -10691,6 +10701,27 @@
                 "Terms": [
                   {
                     "# of Approved/Onboarded Families": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "family.of_engaged_families": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Family",
+                    "ConceptualProperty": "# of Engaged Families"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Assignments": {
                       "Source": {
                         "Agent": "PowerBI.VisualColumnRename",
                         "Type": "External"
