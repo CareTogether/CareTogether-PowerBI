@@ -17,6 +17,10 @@
       {
         "name": "PBI_ProTooling",
         "value": "[\"CalcGroup\",\"DevMode\"]"
+      },
+      {
+        "name": "PBI_RemovedChildren",
+        "value": "[{\"remoteItemId\":{\"foreignKeyRelationship\":{\"fromTableLocalLineageTag\":\"810a3cd6-49b2-4879-89d1-6179d6238543\",\"fromColumnLocalLineageTag\":\"a2f3661a-4b72-411e-a045-260ea84fe785\",\"toTableLocalLineageTag\":\"960f9fe2-c3cc-4543-9ef9-5a2b70f1f590\",\"toColumnLocalLineageTag\":\"d704ebe8-0cbc-4d24-a566-eadb44b16f45\"}},\"objectType\":\"Relationship\"},{\"remoteItemId\":{\"foreignKeyRelationship\":{\"fromTableLocalLineageTag\":\"a8b96c21-f14f-4510-95cb-843cfdaeae1f\",\"fromColumnLocalLineageTag\":\"a9797bef-469d-4043-9f4a-791a3264d457\",\"toTableLocalLineageTag\":\"960f9fe2-c3cc-4543-9ef9-5a2b70f1f590\",\"toColumnLocalLineageTag\":\"d704ebe8-0cbc-4d24-a566-eadb44b16f45\"}},\"objectType\":\"Relationship\"},{\"remoteItemId\":{\"foreignKeyRelationship\":{\"fromTableLocalLineageTag\":\"f72b36b6-9cb4-49d6-bc35-f1cbfc9ae633\",\"fromColumnLocalLineageTag\":\"aedaaf92-c15a-4285-8a99-79f549980e39\",\"toTableLocalLineageTag\":\"7c32809c-da26-49a5-a2c3-9161d2e34431\",\"toColumnLocalLineageTag\":\"b963afdd-1e73-463b-89e3-02a1fb0a9172\"}},\"objectType\":\"Relationship\"},{\"remoteItemId\":{\"foreignKeyRelationship\":{\"fromTableLocalLineageTag\":\"5d48d610-1f9d-4a9e-bae4-ef9ac4fec4a1\",\"fromColumnLocalLineageTag\":\"d67b77c7-3c6e-41ae-8a71-5071b169804f\",\"toTableLocalLineageTag\":\"f72b36b6-9cb4-49d6-bc35-f1cbfc9ae633\",\"toColumnLocalLineageTag\":\"4180b775-8ef2-453e-93f7-b2a0dd858aea\"}},\"objectType\":\"Relationship\"}]"
       }
     ],
     "culture": "en-US",
@@ -21827,59 +21831,6 @@
     ],
     "relationships": [
       {
-        "name": "a135767c-4356-4dbd-81a4-225cfaea4d46",
-        "annotations": [
-          {
-            "name": "PBI_IsFromSource",
-            "value": "FS"
-          }
-        ],
-        "fromColumn": "LocationId",
-        "fromTable": "Family",
-        "toColumn": "Id",
-        "toTable": "Location"
-      },
-      {
-        "name": "8fcc1078-b65b-4df8-b883-a81d76be752e",
-        "annotations": [
-          {
-            "name": "PBI_IsFromSource",
-            "value": "FS"
-          }
-        ],
-        "fromColumn": "RoleName",
-        "fromTable": "Family Role Approval",
-        "toColumn": "Role Name",
-        "toTable": "Role"
-      },
-      {
-        "name": "c096ba86-fe90-4191-bb5d-309447ac1478",
-        "annotations": [
-          {
-            "name": "PBI_IsFromSource",
-            "value": "FS"
-          }
-        ],
-        "fromColumn": "RoleName",
-        "fromTable": "Individual Role Approval",
-        "toColumn": "Role Name",
-        "toTable": "Role"
-      },
-      {
-        "name": "1efbd6c7-ca73-4666-858c-2d2fb493951a",
-        "fromColumn": "PersonId",
-        "fromTable": "Individual Role Approval",
-        "toColumn": "Id",
-        "toTable": "Person"
-      },
-      {
-        "name": "bc2486d5-5b95-40f1-89f3-d13e1e7454a7",
-        "fromColumn": "FamilyId",
-        "fromTable": "Family Role Approval",
-        "toColumn": "Id",
-        "toTable": "Family"
-      },
-      {
         "name": "bb43cb93-5366-4c83-85f8-417eb76a0ee4",
         "fromColumn": "Started",
         "fromTable": "Arrangement",
@@ -21894,20 +21845,6 @@
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_f42c1403-e66d-4045-8af6-5c3c28e884e6"
-      },
-      {
-        "name": "f65f23e4-4531-4302-8daf-36f7a3525920",
-        "annotations": [
-          {
-            "name": "PBI_IsFromSource",
-            "value": "FS"
-          }
-        ],
-        "fromColumn": "ReferralId",
-        "fromTable": "Arrangement",
-        "isActive": false,
-        "toColumn": "Id",
-        "toTable": "Referral"
       },
       {
         "name": "ac5f7851-934b-483f-a0c5-53789755a1b9",
@@ -21942,13 +21879,6 @@
         "toTable": "LocalDateTable_73d01070-72e6-4583-b4ff-d5fa05eb2eee"
       },
       {
-        "name": "ec5dbbe4-02b1-478f-82d2-44a97e815b19",
-        "fromColumn": "FamilyId",
-        "fromTable": "Referral",
-        "toColumn": "Id",
-        "toTable": "Family"
-      },
-      {
         "name": "8629abc0-5a97-4810-966e-8aa32eb61866",
         "fromColumn": "Started",
         "fromTable": "Child Location Record",
@@ -21965,153 +21895,165 @@
         "toTable": "LocalDateTable_c6f5f2bf-94ad-49eb-b2ac-502d51b89614"
       },
       {
-        "name": "b5a6b075-dc3a-4e99-9752-f4a75cdf308e",
-        "fromColumn": "Close Reason",
-        "fromTable": "Referral",
-        "toColumn": "ReferralCloseReason",
-        "toTable": "Close Reason"
+        "name": "c9cb6432-a25a-4d8b-beed-d28284facdcf",
+        "fromColumn": "Date",
+        "fromTable": "Individual Role Approval",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_365e3c39-843a-4f3f-8b0a-c25778f7b0f2"
       },
       {
-        "name": "2fc36f88-a3e6-49d5-b781-25c931535152",
-        "fromColumn": "ChildInvolvement",
-        "fromTable": "Arrangement Type",
-        "toColumn": "ChildInvolvement",
-        "toTable": "Childcare"
+        "name": "aa504477-b521-495d-8863-464b7539ee5c",
+        "fromColumn": "Date",
+        "fromTable": "Family Role Approval",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_0f79d234-ad7e-49df-b519-b15840222160"
       },
       {
-        "name": "aa3e8fd1-cd5f-47c0-a534-9108eff3e3b5",
+        "name": "71ac8e0d-3125-269f-5a12-6282bcc5e89f",
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "fromColumn": "Id",
+        "fromTable": "Person",
+        "toColumn": "EntityId",
+        "toTable": "Entity"
+      },
+      {
+        "name": "8e5e2952-eef1-f7c7-5592-fe6043071dc8",
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "fromColumn": "Id",
+        "fromTable": "Family",
+        "toColumn": "EntityId",
+        "toTable": "Entity"
+      },
+      {
+        "name": "76bb833e-8bf5-161d-49db-4e42e8e38587",
+        "fromColumn": "EntityId",
+        "fromTable": "Function Assignments",
+        "toColumn": "EntityId",
+        "toTable": "Entity"
+      },
+      {
+        "name": "04192eca-094d-2b3e-646e-8df74a7a5c17",
+        "fromColumn": "ArrangementId",
+        "fromTable": "Function Assignments",
+        "toColumn": "Id",
+        "toTable": "Arrangement"
+      },
+      {
+        "name": "859d7c26-92ed-fe6c-354f-83ca37fa2737",
         "fromColumn": "Phase",
         "fromTable": "Arrangement",
         "toColumn": "ArrangementPhase",
         "toTable": "Arrangement Phase"
       },
       {
-        "name": "26f687f1-e7f6-46d0-8cab-841aa84845ca",
-        "fromColumn": "ArrangementId",
-        "fromTable": "Family Function Assignment",
-        "toColumn": "Id",
-        "toTable": "Arrangement"
-      },
-      {
-        "name": "e8432312-76fd-484c-8a7c-0f759bb81049",
-        "fromColumn": "ArrangementId",
-        "fromTable": "Individual Function Assignment",
-        "toColumn": "Id",
-        "toTable": "Arrangement"
-      },
-      {
-        "name": "1bb2f37b-36ca-452d-830c-dea2be494619",
-        "fromColumn": "ArrangementId",
-        "fromTable": "Child Location Record",
-        "toColumn": "Id",
-        "toTable": "Arrangement"
-      },
-      {
-        "name": "c0ee4c92-d4c1-4ce2-bfce-a9a2eea442bd",
-        "fromColumn": "ChildcarePlan",
-        "fromTable": "Child Location Record",
-        "toColumn": "ChildLocationPlan",
-        "toTable": "Childcare Plan"
-      },
-      {
-        "name": "4f0b5f6e-01da-464c-a5c2-d90343b1b6f8",
-        "crossFilteringBehavior": "bothDirections",
-        "fromColumn": "PersonId",
-        "fromTable": "Individual Function Assignment",
-        "isActive": false,
-        "toColumn": "Id",
-        "toTable": "Person"
-      },
-      {
-        "name": "6487dcee-ecec-413f-989a-0c355f272fd3",
-        "fromColumn": "ChildPersonId",
-        "fromTable": "Child Location Record",
-        "isActive": false,
-        "toColumn": "Id",
-        "toTable": "Person"
-      },
-      {
-        "name": "d07ec352-100e-43be-a5e2-16034cae497c",
-        "fromColumn": "FamilyId",
-        "fromTable": "Child Location Record",
-        "isActive": false,
-        "toColumn": "Id",
-        "toTable": "Family"
-      },
-      {
-        "name": "dae0c6c1-e427-42ca-86e7-ae3530eadaae",
+        "name": "bb4fb0f8-a5bd-3b0a-5929-c1bbd675342a",
         "fromColumn": "TypeName",
         "fromTable": "Arrangement",
         "toColumn": "Arrangement Type",
         "toTable": "Arrangement Type"
       },
       {
-        "name": "e0d37ea0-1397-4ba2-9460-7d6ddd2c47b5",
-        "fromColumn": "Status",
-        "fromTable": "Individual Role Approval",
-        "toColumn": "Status",
-        "toTable": "Approval Status"
+        "name": "bc8bfff2-0ede-1071-06fb-514f746018d6",
+        "fromColumn": "ChildInvolvement",
+        "fromTable": "Arrangement Type",
+        "toColumn": "ChildInvolvement",
+        "toTable": "Childcare"
       },
       {
-        "name": "bec5f24c-c1fe-4e0b-b3b7-532adf922e4e",
-        "fromColumn": "FamilyId",
-        "fromTable": "Individual Role Approval",
-        "isActive": false,
-        "toColumn": "Id",
-        "toTable": "Family"
+        "name": "8237410c-c89e-20c3-f025-3c7c55fadd39",
+        "fromColumn": "EntityId",
+        "fromTable": "Role Approvals",
+        "toColumn": "EntityId",
+        "toTable": "Entity"
       },
       {
-        "name": "56543095-0cb4-499b-b753-fc5868bd56b6",
-        "fromColumn": "Status",
-        "fromTable": "Family Role Approval",
-        "toColumn": "Status",
-        "toTable": "Approval Status"
-      },
-      {
-        "name": "5227c1fb-82d3-4e38-adae-9d82aeea23ff",
-        "fromColumn": "Date",
-        "fromTable": "Individual Role Approval",
-        "toColumn": "Date",
-        "toTable": "Date"
-      },
-      {
-        "name": "130b40f4-e26d-4291-9844-c457ae0f4800",
-        "fromColumn": "Date",
-        "fromTable": "Family Role Approval",
-        "toColumn": "Date",
-        "toTable": "Date"
-      },
-      {
-        "name": "71d30312-f5bb-4ba4-a148-8c8e46417c9b",
-        "fromColumn": "Date",
-        "fromTable": "Family Role Removed Individual",
-        "toColumn": "Date",
-        "toTable": "Date"
-      },
-      {
-        "name": "b01b4951-3015-4b77-b025-d96a11642ade",
+        "name": "1ca7ce00-998a-0575-23b7-76389bc545a6",
         "fromColumn": "RoleName",
-        "fromTable": "Family Role Removed Individual",
+        "fromTable": "Role Approvals",
         "toColumn": "Role Name",
         "toTable": "Role"
       },
       {
-        "name": "15c3b324-3e90-43e2-8007-d2b15e5f8038",
-        "fromColumn": "PersonId",
-        "fromTable": "Family Role Removed Individual",
-        "toColumn": "Id",
-        "toTable": "Person"
+        "name": "b9abae31-8f1f-6773-59cb-e0b04037af70",
+        "fromColumn": "Status",
+        "fromTable": "Role Approvals",
+        "toColumn": "Status",
+        "toTable": "Approval Status"
       },
       {
-        "name": "70c44f59-5ec0-417b-9f09-e22d47b53867",
+        "name": "d220757d-62d0-cb71-d46a-9c7c4b8a5b90",
         "fromColumn": "FamilyId",
-        "fromTable": "Family Role Removed Individual",
+        "fromTable": "Referral",
+        "toColumn": "EntityId",
+        "toTable": "Entity"
+      },
+      {
+        "name": "bf6b8e37-1681-9c0a-bb39-66a8946cd273",
+        "annotations": [
+          {
+            "name": "PBI_IsFromSource",
+            "value": "FS"
+          }
+        ],
+        "fromColumn": "ReferralId",
+        "fromTable": "Arrangement",
         "isActive": false,
+        "toColumn": "Id",
+        "toTable": "Referral"
+      },
+      {
+        "name": "71507ea7-77f1-0848-0b46-173bdaeadc25",
+        "fromColumn": "Close Reason",
+        "fromTable": "Referral",
+        "toColumn": "ReferralCloseReason",
+        "toTable": "Close Reason"
+      },
+      {
+        "name": "bac28183-624e-eb58-a3bb-1dbd6188f14b",
+        "annotations": [
+          {
+            "name": "PBI_IsFromSource",
+            "value": "FS"
+          }
+        ],
+        "fromColumn": "LocationId",
+        "fromTable": "Family",
+        "toColumn": "Id",
+        "toTable": "Location"
+      },
+      {
+        "name": "132c5918-5242-0056-47d5-98dd96cdda51",
+        "annotations": [
+          {
+            "name": "PBI_IsFromSource",
+            "value": "FS"
+          }
+        ],
+        "fromColumn": "FamilyId",
+        "fromTable": "Community Member Families",
         "toColumn": "Id",
         "toTable": "Family"
       },
       {
-        "name": "1b6892e0-816c-46bf-9654-d871f0cec0f8",
+        "name": "6427dd76-82a5-9408-95eb-a430aed785c5",
+        "annotations": [
+          {
+            "name": "PBI_IsFromSource",
+            "value": "FS"
+          }
+        ],
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "CommunityId",
+        "fromTable": "Community Member Families",
+        "toColumn": "Id",
+        "toTable": "Community"
+      },
+      {
+        "name": "aa5c4027-a1ab-868b-9d5b-8c74464762eb",
         "annotations": [
           {
             "name": "PBI_IsFromSource",
@@ -22125,34 +22067,7 @@
         "toTable": "Location"
       },
       {
-        "name": "ae029c50-c2db-4ebe-a669-579d1e91cac1",
-        "annotations": [
-          {
-            "name": "PBI_IsFromSource",
-            "value": "FS"
-          }
-        ],
-        "crossFilteringBehavior": "bothDirections",
-        "fromColumn": "CommunityId",
-        "fromTable": "Community Member Families",
-        "toColumn": "Id",
-        "toTable": "Community"
-      },
-      {
-        "name": "e5f5c8fc-7125-4abf-8133-073f19020789",
-        "annotations": [
-          {
-            "name": "PBI_IsFromSource",
-            "value": "FS"
-          }
-        ],
-        "fromColumn": "FamilyId",
-        "fromTable": "Community Member Families",
-        "toColumn": "Id",
-        "toTable": "Family"
-      },
-      {
-        "name": "1a2bf024-f94c-40ab-87e2-00cfd1af8076",
+        "name": "a7fecbb0-0b71-8c50-33b7-a106640ad69e",
         "annotations": [
           {
             "name": "PBI_IsFromSource",
@@ -22165,72 +22080,71 @@
         "toTable": "Community"
       },
       {
-        "name": "8cb9ea9c-d0f7-425b-8525-a6ddd56ffb85",
-        "annotations": [
-          {
-            "name": "PBI_IsFromSource",
-            "value": "FS"
-          }
-        ],
+        "name": "5e61a3f8-cafb-4c76-0316-b88ab1935ac8",
         "crossFilteringBehavior": "bothDirections",
         "fromCardinality": "one",
         "fromColumn": "PersonId",
         "fromTable": "Community Role Assignments",
         "isActive": false,
-        "toColumn": "Id",
-        "toTable": "Person"
+        "toColumn": "EntityId",
+        "toTable": "Entity"
       },
       {
-        "name": "8428af0b-56f3-4161-bee4-3227ffa34078",
+        "name": "088cb42c-50c3-abc1-bdad-520d9be52b28",
+        "fromColumn": "ArrangementId",
+        "fromTable": "Child Location Record",
+        "toColumn": "Id",
+        "toTable": "Arrangement"
+      },
+      {
+        "name": "a02bc278-db23-0faa-5eb2-7484a2a5334d",
+        "fromColumn": "PersonId",
+        "fromTable": "Arrangement",
+        "isActive": false,
+        "toColumn": "EntityId",
+        "toTable": "Entity"
+      },
+      {
+        "name": "82f5c449-2ae6-e420-74ff-42914bc8335b",
         "fromColumn": "Index",
         "fromTable": "ChildLocationExpanded",
         "toColumn": "Index",
         "toTable": "Child Location Record"
       },
       {
-        "name": "65d1f45f-7a04-4c85-a27b-96edb9c8989e",
+        "name": "82d0f709-39dc-0829-9020-1702b1faeaf8",
+        "fromColumn": "ChildcarePlan",
+        "fromTable": "Child Location Record",
+        "toColumn": "ChildLocationPlan",
+        "toTable": "Childcare Plan"
+      },
+      {
+        "name": "d91df772-a111-4947-423a-c8a71621a652",
+        "fromColumn": "RoleName",
+        "fromTable": "Family Role Removed Individual",
+        "toColumn": "Role Name",
+        "toTable": "Role"
+      },
+      {
+        "name": "587a7334-6ba6-4639-9f58-d3309842fc02",
         "fromColumn": "Date",
-        "fromTable": "ChildLocationExpanded",
+        "fromTable": "Family Role Removed Individual",
         "toColumn": "Date",
         "toTable": "Date"
       },
       {
-        "name": "c03e27fd-f484-8727-fbd7-5b38714020db",
-        "crossFilteringBehavior": "bothDirections",
-        "fromColumn": "FamilyId",
-        "fromTable": "Family Function Assignment",
-        "isActive": false,
-        "toColumn": "Id",
-        "toTable": "Family"
-      },
-      {
-        "name": "b8c62c84-671a-4a90-85ac-e95142f4c511",
-        "annotations": [
-          {
-            "name": "PBI_IsFromSource",
-            "value": "FS"
-          }
-        ],
-        "crossFilteringBehavior": "bothDirections",
-        "fromColumn": "FamilyId",
-        "fromTable": "Person",
-        "toColumn": "Id",
-        "toTable": "Family"
-      },
-      {
-        "name": "70f8815a-d4b6-47b2-a7a7-945362d008da",
-        "fromColumn": "PersonId",
-        "fromTable": "Arrangement",
-        "toColumn": "Id",
-        "toTable": "Person"
-      },
-      {
-        "name": "b04782f7-066c-47ea-a025-b2f901fe21d8",
+        "name": "228ae1f9-53ee-7920-9c21-33b8ab391544",
         "fromColumn": "Date",
         "fromTable": "Role Approvals",
-        "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
-        "toTable": "LocalDateTable_5a45fa6c-fb2a-447c-842d-24cfe8749bb0"
+        "toTable": "Date"
+      },
+      {
+        "name": "1796a65b-e3d1-a7bb-8b76-65918b3908f8",
+        "fromColumn": "Date",
+        "fromTable": "ChildLocationExpanded",
+        "toColumn": "Date",
+        "toTable": "Date"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -23627,7 +23541,18 @@
             "isHidden": true,
             "lineageTag": "ae0dd36f-bf83-4149-a814-cb97bdf87225",
             "sourceColumn": "Date",
-            "summarizeBy": "none"
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_0f79d234-ad7e-49df-b519-b15840222160"
+                },
+                "isDefault": true,
+                "relationship": "aa504477-b521-495d-8863-464b7539ee5c"
+              }
+            ]
           }
         ],
         "isHidden": true,
@@ -23777,7 +23702,18 @@
             "isHidden": true,
             "lineageTag": "37483c7d-dbb5-4826-9ac2-64be898dafc0",
             "sourceColumn": "Date",
-            "summarizeBy": "none"
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_365e3c39-843a-4f3f-8b0a-c25778f7b0f2"
+                },
+                "isDefault": true,
+                "relationship": "c9cb6432-a25a-4d8b-beed-d28284facdcf"
+              }
+            ]
           }
         ],
         "isHidden": true,
@@ -24364,16 +24300,14 @@
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "User"
+                "value": "Automatic"
               }
             ],
-            "dataType": "int64",
             "displayFolder": "_Columns",
             "expression": "DATEDIFF(RELATED(Person[DateOfBirth]), Arrangement[Started], YEAR)",
             "formatString": "0",
-            "isDataTypeInferred": true,
             "lineageTag": "9b8d247f-6a51-4d0f-9e31-b96930045f38",
-            "summarizeBy": "average",
+            "summarizeBy": "none",
             "type": "calculated"
           },
           {
@@ -28470,6 +28404,7 @@
               }
             ],
             "dataType": "string",
+            "displayFolder": "_columns",
             "lineageTag": "3acc1fd6-cdb8-4b92-921b-a2064cbabd45",
             "sourceColumn": "EntityId",
             "summarizeBy": "none"
@@ -28483,12 +28418,41 @@
               }
             ],
             "dataType": "string",
+            "displayFolder": "_columns",
             "lineageTag": "c868f81e-9dfc-490d-92b1-cbb30baee3ea",
             "sourceColumn": "EntityType",
             "summarizeBy": "none"
           }
         ],
         "lineageTag": "58ee43d1-605d-4b51-85b9-d1731af9b8d4",
+        "measures": [
+          {
+            "name": "# of children Served (NEW)",
+            "expression": [
+              "",
+              "VAR CurrentDate = TODAY()",
+              "VAR StartDate = [Selected Timeframe Start]",
+              "VAR EndDate = [Selected Timeframe End]",
+              "VAR Result = ",
+              "    CALCULATE(",
+              "        DISTINCTCOUNTNOBLANK(Entity[EntityId]),",
+              "        Person[Adult or Child] = \"Child\"",
+              "    )",
+              "RETURN ",
+              "    IF(",
+              "        CurrentDate < StartDate,",
+              "        BLANK(),",
+              "        IF(",
+              "            Result = 0,",
+              "            0,",
+              "            Result",
+              "        )",
+              "    )"
+            ],
+            "formatString": "0",
+            "lineageTag": "136975a8-2b87-405d-bcec-91689f91126c"
+          }
+        ],
         "partitions": [
           {
             "name": "Entity",
@@ -28507,9 +28471,9 @@
                 "",
                 "    // Person Table:",
                 "    PersonTable = Source{[Name=\"Person\",Signature=\"table\"]}[Data],",
-                "    PersonColumns = Table.SelectColumns(FamilyTable, {\"Id\"}),",
-                "    PersonRenamed = Table.RenameColumns(FamilyColumns, {{\"Id\", \"EntityId\"}}),",
-                "    PersonType = Table.AddColumn(FamilyRenamed, \"EntityType\", each \"Person\", type text),",
+                "    PersonColumns = Table.SelectColumns(PersonTable, {\"Id\"}),",
+                "    PersonRenamed = Table.RenameColumns(PersonColumns, {{\"Id\", \"EntityId\"}}),",
+                "    PersonType = Table.AddColumn(PersonRenamed, \"EntityType\", each \"Person\", type text),",
                 "",
                 "    //Combined Tables:",
                 "    CombinedTables = Table.Combine({FamilyType, PersonType})",
@@ -28675,18 +28639,7 @@
             "formatString": "Long Date",
             "lineageTag": "56b85150-1dc1-4439-b5d0-c0f14d14a966",
             "sourceColumn": "Date",
-            "summarizeBy": "none",
-            "variations": [
-              {
-                "name": "Variation",
-                "defaultHierarchy": {
-                  "hierarchy": "Date Hierarchy",
-                  "table": "LocalDateTable_5a45fa6c-fb2a-447c-842d-24cfe8749bb0"
-                },
-                "isDefault": true,
-                "relationship": "b04782f7-066c-47ea-a025-b2f901fe21d8"
-              }
-            ]
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "edb05ec6-8b47-4373-a0e9-8a90513cecd9",
@@ -28742,7 +28695,7 @@
         ]
       },
       {
-        "name": "LocalDateTable_5a45fa6c-fb2a-447c-842d-24cfe8749bb0",
+        "name": "LocalDateTable_365e3c39-843a-4f3f-8b0a-c25778f7b0f2",
         "annotations": [
           {
             "name": "__PBI_LocalDateTable",
@@ -28762,7 +28715,7 @@
             "dataType": "dateTime",
             "isHidden": true,
             "isNameInferred": true,
-            "lineageTag": "bb6e14cf-bd87-4181-b925-434c5d4fa5aa",
+            "lineageTag": "9b119d43-ddf2-416f-820f-350d937bd9c3",
             "sourceColumn": "[Date]",
             "summarizeBy": "none",
             "type": "calculatedTableColumn"
@@ -28783,7 +28736,7 @@
             "dataType": "int64",
             "expression": "YEAR([Date])",
             "isHidden": true,
-            "lineageTag": "4b4b9d5e-bc3b-4200-95c5-b9e32930e52a",
+            "lineageTag": "d51b2af7-f648-4a6f-ba90-8e7cabb35958",
             "summarizeBy": "none",
             "type": "calculated"
           },
@@ -28803,7 +28756,7 @@
             "dataType": "int64",
             "expression": "MONTH([Date])",
             "isHidden": true,
-            "lineageTag": "fea0cb29-7cc3-4900-9fbc-da4127fe8fb6",
+            "lineageTag": "e30db5b6-9c50-4e01-8ebb-ea01aba56db7",
             "summarizeBy": "none",
             "type": "calculated"
           },
@@ -28823,7 +28776,7 @@
             "dataType": "string",
             "expression": "FORMAT([Date], \"MMMM\")",
             "isHidden": true,
-            "lineageTag": "9e95aba3-33a3-49ea-884e-204e7979323e",
+            "lineageTag": "52fd4117-71ae-4b8d-86c0-4089f5a26a72",
             "sortByColumn": "MonthNo",
             "summarizeBy": "none",
             "type": "calculated"
@@ -28844,7 +28797,7 @@
             "dataType": "int64",
             "expression": "INT(([MonthNo] + 2) / 3)",
             "isHidden": true,
-            "lineageTag": "caba3923-a331-4bb4-88fd-6b4def5a263d",
+            "lineageTag": "bcc0c204-e0c1-4fe8-ac1a-caf363445e0e",
             "summarizeBy": "none",
             "type": "calculated"
           },
@@ -28864,7 +28817,7 @@
             "dataType": "string",
             "expression": "\"Qtr \" & [QuarterNo]",
             "isHidden": true,
-            "lineageTag": "3bf2d0fd-a2bf-4b8c-8847-e2b9c0b01c81",
+            "lineageTag": "e23d2745-21f0-4e68-9852-7a9fc39e1fae",
             "sortByColumn": "QuarterNo",
             "summarizeBy": "none",
             "type": "calculated"
@@ -28885,7 +28838,7 @@
             "dataType": "int64",
             "expression": "DAY([Date])",
             "isHidden": true,
-            "lineageTag": "2531652d-53ca-4fcb-a44f-86d9aec01495",
+            "lineageTag": "d3cb77c1-354b-4d56-a35b-c90bcbb24a07",
             "summarizeBy": "none",
             "type": "calculated"
           }
@@ -28903,39 +28856,240 @@
               {
                 "name": "Year",
                 "column": "Year",
-                "lineageTag": "481bd78c-9208-4f74-b9ef-90a2ec436626",
+                "lineageTag": "e470815e-e889-40ea-9a52-35151a6ae319",
                 "ordinal": 0
               },
               {
                 "name": "Quarter",
                 "column": "Quarter",
-                "lineageTag": "38a75931-f381-4b59-b7d4-ca5d3edc28f1",
+                "lineageTag": "3ad15364-bd12-48ee-a010-aced9cdffa5f",
                 "ordinal": 1
               },
               {
                 "name": "Month",
                 "column": "Month",
-                "lineageTag": "50a4d099-cbb3-4176-a2da-35d759b35103",
+                "lineageTag": "8141d878-fed4-45f9-b850-5883b279c616",
                 "ordinal": 2
               },
               {
                 "name": "Day",
                 "column": "Day",
-                "lineageTag": "79d6af6e-ccaa-43e9-a66a-1ba5e32dd7fe",
+                "lineageTag": "24248d9b-013d-4597-a45f-f73a982beebc",
                 "ordinal": 3
               }
             ],
-            "lineageTag": "50dbfd28-1668-4681-a7bb-6ed8379e30b1"
+            "lineageTag": "2b9956e4-6413-47f7-bb2a-a9363cbfcde9"
           }
         ],
         "isHidden": true,
-        "lineageTag": "8d25407e-ab38-4b24-b634-d9f110eed8c0",
+        "lineageTag": "516a6dfa-79f5-4438-af4c-5cda142bd511",
         "partitions": [
           {
-            "name": "LocalDateTable_5a45fa6c-fb2a-447c-842d-24cfe8749bb0",
+            "name": "LocalDateTable_365e3c39-843a-4f3f-8b0a-c25778f7b0f2",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Role Approvals'[Date])), 1, 1), Date(Year(MAX('Role Approvals'[Date])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Individual Role Approval'[Date])), 1, 1), Date(Year(MAX('Individual Role Approval'[Date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "LocalDateTable_0f79d234-ad7e-49df-b519-b15840222160",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "0fb1d7aa-ffda-4f6d-b2e9-ab1598dadabf",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "46c0f507-1d38-494e-9463-a17fe58cf4ff",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "19541769-22b9-4c7d-95ad-3cd00ce69831",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "9249f8f7-2508-4f2c-9f79-0581a3b36366",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "0a04d8e8-3d06-4fa2-b861-466592e454cd",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "8012f218-fd7a-45d3-81aa-ccb352ec87b2",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "2f82c051-4a12-4b66-a612-28a120710509",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "dafc45a6-9c7e-4c41-9ee6-073ace0952a4",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "f45423d3-cad1-4472-9217-fdd1231465be",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "35df67f2-17c0-40f7-b35d-b98c8f79f3d5",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "a28ac75b-771d-4373-8378-a29171622452",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "2dbfb689-8c68-4828-a59d-ea262cc454d4"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "78e19dc6-4e9d-4c02-9793-c8b6b4f70bb9",
+        "partitions": [
+          {
+            "name": "LocalDateTable_0f79d234-ad7e-49df-b519-b15840222160",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('Family Role Approval'[Date])), 1, 1), Date(Year(MAX('Family Role Approval'[Date])), 12, 31))",
               "type": "calculated"
             }
           }
