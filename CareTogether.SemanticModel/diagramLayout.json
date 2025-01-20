@@ -11,7 +11,7 @@
         {
           "location": {
             "x": 1136.3668942342961,
-            "y": 874.74247990259028
+            "y": 999.85956174128773
           },
           "nodeIndex": "Person",
           "nodeLineageTag": "f72b36b6-9cb4-49d6-bc35-f1cbfc9ae633",
@@ -24,7 +24,7 @@
         {
           "location": {
             "x": 612.80619866954555,
-            "y": 889.54899646219792
+            "y": 1014.6660783008954
           },
           "nodeIndex": "Family",
           "nodeLineageTag": "7c32809c-da26-49a5-a2c3-9161d2e34431",
@@ -37,7 +37,7 @@
         {
           "location": {
             "x": 266.4691339240959,
-            "y": 998.18816334465885
+            "y": 1123.3052451833564
           },
           "nodeIndex": "Location",
           "nodeLineageTag": "16a053ed-84f9-4826-879d-c70341fcdfb9",
@@ -50,7 +50,7 @@
         {
           "location": {
             "x": 536.07239163857719,
-            "y": 250.23416367739497
+            "y": 375.35124551609243
           },
           "nodeIndex": "Role",
           "nodeLineageTag": "960f9fe2-c3cc-4543-9ef9-5a2b70f1f590",
@@ -63,7 +63,7 @@
         {
           "location": {
             "x": 1032.355830672811,
-            "y": 1768.9142168685703
+            "y": 1894.0312987072678
           },
           "nodeIndex": "Arrangement",
           "nodeLineageTag": "46d5bd4a-a507-4eb7-941d-b7680ccdeaa3",
@@ -76,7 +76,7 @@
         {
           "location": {
             "x": 466.59279489231545,
-            "y": 1446.7734067015285
+            "y": 1571.890488540226
           },
           "nodeIndex": "Referral",
           "nodeLineageTag": "d767a338-d9a5-4e00-8b61-2f6469d3aa63",
@@ -89,7 +89,7 @@
         {
           "location": {
             "x": 513.50091315505745,
-            "y": 1787.6739376599817
+            "y": 1912.7910194986791
           },
           "nodeIndex": "Arrangement Type",
           "nodeLineageTag": "c7cb613d-9d95-4212-99b0-afeb17ed7411",
@@ -102,7 +102,7 @@
         {
           "location": {
             "x": 539.49856149511891,
-            "y": 570.20609447843219
+            "y": 695.32317631712965
           },
           "nodeIndex": "Approval Status",
           "nodeLineageTag": "5d13b768-cd22-4e23-8052-f51c41e023ce",
@@ -115,7 +115,7 @@
         {
           "location": {
             "x": 512.85036348574044,
-            "y": 2035.3630667364896
+            "y": 2160.4801485751868
           },
           "nodeIndex": "Arrangement Phase",
           "nodeLineageTag": "8a45b6de-6ddf-451f-885a-53d149374a7d",
@@ -128,7 +128,7 @@
         {
           "location": {
             "x": 145.51974561120389,
-            "y": 1763.8048398275687
+            "y": 1888.9219216662661
           },
           "nodeIndex": "Childcare",
           "nodeLineageTag": "ca6cccb8-8c47-4b47-a6a3-3730e2269767",
@@ -141,7 +141,7 @@
         {
           "location": {
             "x": 1766.5911164547488,
-            "y": 1101.7780421737564
+            "y": 1226.8951240124538
           },
           "nodeIndex": "Childcare Plan",
           "nodeLineageTag": "e454f50c-d108-4cc7-b49d-4585c9ad868e",
@@ -154,7 +154,7 @@
         {
           "location": {
             "x": 154.27454540477368,
-            "y": 1390.5664272686854
+            "y": 1515.6835091073829
           },
           "nodeIndex": "Close Reason",
           "nodeLineageTag": "bbdc1bb2-de24-4f53-a35b-5004cd067f7e",
@@ -167,7 +167,7 @@
         {
           "location": {
             "x": 223.63246600573063,
-            "y": 492.22823349386852
+            "y": 617.345315332566
           },
           "nodeIndex": "Family Role Approval",
           "nodeLineageTag": "810a3cd6-49b2-4879-89d1-6179d6238543",
@@ -180,7 +180,7 @@
         {
           "location": {
             "x": 1153.5711276831396,
-            "y": 430.00664581349696
+            "y": 555.12372765219448
           },
           "nodeIndex": "Individual Role Approval",
           "nodeLineageTag": "a8b96c21-f14f-4510-95cb-843cfdaeae1f",
@@ -193,7 +193,7 @@
         {
           "location": {
             "x": 788.5515093949781,
-            "y": 1432.8234490957454
+            "y": 1557.9405309344429
           },
           "nodeIndex": "Family Function Assignment",
           "nodeLineageTag": "f8b85112-42b9-4f79-a202-7452035eae02",
@@ -206,7 +206,7 @@
         {
           "location": {
             "x": 1722.4326857520346,
-            "y": 1424.1302941832623
+            "y": 1549.2473760219598
           },
           "nodeIndex": "Child Location Record",
           "nodeLineageTag": "97d0ba37-acfb-4f78-bc62-fb59df0fb93e",
@@ -219,7 +219,7 @@
         {
           "location": {
             "x": 1275.7883216332498,
-            "y": 1459.2557746634329
+            "y": 1584.3728565021304
           },
           "nodeIndex": "Individual Function Assignment",
           "nodeLineageTag": "a1452b7c-df56-4db9-9eb0-35a6f73cdd10",
@@ -232,7 +232,7 @@
         {
           "location": {
             "x": 1681.5933522591781,
-            "y": 394.83566049098022
+            "y": 519.95274232967768
           },
           "nodeIndex": "Date",
           "nodeLineageTag": "c3cfcb9b-c6b2-48e0-8d00-9fe6ec85a978",
@@ -245,7 +245,7 @@
         {
           "location": {
             "x": 1483.4536139629272,
-            "y": 1128.7679847056838
+            "y": 1253.8850665443813
           },
           "nodeIndex": "ChildLocationExpanded",
           "nodeLineageTag": "1ad7d14d-cbb6-433b-85ee-5fc54cf0046c",
@@ -258,7 +258,7 @@
         {
           "location": {
             "x": 837.6423373612007,
-            "y": 288.09919344072239
+            "y": 413.21627527941985
           },
           "nodeIndex": "Family Role Removed Individual",
           "nodeLineageTag": "f3700a33-e10d-4eb2-b253-7d6172702a76",
@@ -271,7 +271,7 @@
         {
           "location": {
             "x": 0,
-            "y": 976.16589333913657
+            "y": 1101.282975177834
           },
           "nodeIndex": "Community",
           "nodeLineageTag": "f38961a2-f1d1-478b-87f7-d848cfbf0304",
@@ -284,7 +284,7 @@
         {
           "location": {
             "x": 0,
-            "y": 1240.5512268283244
+            "y": 1365.6683086670218
           },
           "nodeIndex": "Community Member Families",
           "nodeLineageTag": "614cb360-e6aa-4352-801e-f51065f1076b",
@@ -297,7 +297,7 @@
         {
           "location": {
             "x": 5.6843418860808015E-14,
-            "y": 743.33213614117108
+            "y": 868.44921797986854
           },
           "nodeIndex": "Community Role Assignments",
           "nodeLineageTag": "5d48d610-1f9d-4a9e-bae4-ef9ac4fec4a1",
@@ -310,7 +310,7 @@
         {
           "location": {
             "x": 2020.431438715158,
-            "y": 399.55495402401738
+            "y": 524.67203586271489
           },
           "nodeIndex": "Calculation group",
           "nodeLineageTag": "e8575b46-42f2-4cdf-9ae7-faa632c5fecb",
@@ -323,7 +323,7 @@
         {
           "location": {
             "x": 2588.431438715158,
-            "y": 1060.6427440064494
+            "y": 1185.7598258451469
           },
           "nodeIndex": "Function Assignments",
           "nodeLineageTag": "37dbfcb3-ae81-4dbe-b5b6-66fa9cff03bd",
@@ -336,7 +336,7 @@
         {
           "location": {
             "x": 2872.431438715158,
-            "y": 1048.6427440064494
+            "y": 1173.7598258451469
           },
           "nodeIndex": "Role Approvals",
           "nodeLineageTag": "edb05ec6-8b47-4373-a0e9-8a90513cecd9",
@@ -347,7 +347,10 @@
           "zIndex": 0
         },
         {
-          "location": {},
+          "location": {
+            "x": 3156.431438715158,
+            "y": 1028.3484379526819
+          },
           "nodeIndex": "Entity",
           "nodeLineageTag": "18ba4465-a9c2-415f-8e79-fd884584fded",
           "size": {
@@ -368,26 +371,26 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 75.4509220006239
+        "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 800.74971059552286,
-            "y": 655.86238688844287
+            "x": 793.494814249309,
+            "y": 475.94095750233964
           },
           "nodeIndex": "Entity",
           "nodeLineageTag": "18ba4465-a9c2-415f-8e79-fd884584fded",
           "size": {
-            "height": 300,
+            "height": 477.01947084761764,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 19
         },
         {
           "location": {
-            "x": 799.49268985243543,
-            "y": 1074.5772831730055
+            "x": 621.02223973557511,
+            "y": 1054.2635734036069
           },
           "nodeIndex": "Function Assignments",
           "nodeLineageTag": "37dbfcb3-ae81-4dbe-b5b6-66fa9cff03bd",
@@ -395,25 +398,25 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 9
         },
         {
           "location": {
-            "x": 796.64469576826207,
-            "y": 1334.5113383226865
+            "x": 799.54665430674766,
+            "y": 1337.4132968611721
           },
           "nodeIndex": "Arrangement",
           "nodeLineageTag": "46d5bd4a-a507-4eb7-941d-b7680ccdeaa3",
           "size": {
-            "height": 336.45360154953573,
+            "height": 558.45342974367918,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 10
         },
         {
           "location": {
-            "x": 444.678887703778,
-            "y": 1331.9972968365116
+            "x": 312.63977420268606,
+            "y": 1757.1342227246423
           },
           "nodeIndex": "Arrangement Phase",
           "nodeLineageTag": "8a45b6de-6ddf-451f-885a-53d149374a7d",
@@ -421,47 +424,46 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 11
         },
         {
           "location": {
-            "x": 445.93590844686548,
-            "y": 1545.690823161377
+            "x": 309.54385713804527,
+            "y": 1522.4751548534925
           },
           "nodeIndex": "Arrangement Type",
           "nodeLineageTag": "c7cb613d-9d95-4212-99b0-afeb17ed7411",
           "size": {
-            "height": 145,
+            "height": 168.21566830788424,
             "width": 234
           },
-          "zIndex": 5
+          "zIndex": 12
         },
         {
           "location": {
-            "x": 117.52932080866412,
-            "y": 1530.6065742443272
+            "x": 0,
+            "y": 1516.0967815518995
           },
           "nodeIndex": "Childcare",
           "nodeLineageTag": "ca6cccb8-8c47-4b47-a6a3-3730e2269767",
           "size": {
-            "height": 152,
+            "height": 170.86273050015598,
             "width": 234
           },
-          "zIndex": 6
+          "zIndex": 13
         },
         {
           "location": {
-            "x": 136.10148999353459,
-            "y": 1204.9587155800104
+            "x": 329.37229411810819,
+            "y": 1058.4098093864909
           },
           "nodeIndex": "Referral",
           "nodeLineageTag": "d767a338-d9a5-4e00-8b61-2f6469d3aa63",
           "size": {
-            "height": 176,
+            "height": 149.45109380648046,
             "width": 234
           },
-          "zIndex": 11,
-          "expandedHeight": 296
+          "zIndex": 18
         },
         {
           "location": {
@@ -471,16 +473,15 @@
           "nodeIndex": "Close Reason",
           "nodeLineageTag": "bbdc1bb2-de24-4f53-a35b-5004cd067f7e",
           "size": {
-            "height": 104,
+            "height": 152,
             "width": 234
           },
-          "zIndex": 7,
-          "expandedHeight": 152
+          "zIndex": 14
         },
         {
           "location": {
-            "x": 413.05835527423403,
-            "y": 604.37200777501391
+            "x": 340.50939181209554,
+            "y": 605.82298704425671
           },
           "nodeIndex": "Location",
           "nodeLineageTag": "16a053ed-84f9-4826-879d-c70341fcdfb9",
@@ -488,7 +489,7 @@
             "height": 208.58819150046793,
             "width": 234
           },
-          "zIndex": 8
+          "zIndex": 15
         },
         {
           "location": {
@@ -501,7 +502,7 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 9
+          "zIndex": 16
         },
         {
           "location": {
@@ -514,7 +515,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 10
+          "zIndex": 17
         },
         {
           "location": {
@@ -527,7 +528,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
@@ -540,11 +541,11 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
         },
         {
           "location": {
-            "x": 1118.2342801262189,
+            "x": 1081.9597983951496,
             "y": 257.58796242599249
           },
           "nodeIndex": "Approval Status",
@@ -553,7 +554,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 3
         },
         {
           "location": {
@@ -566,7 +567,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 4
         },
         {
           "location": {
@@ -579,7 +580,7 @@
             "height": 342.07839880804045,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 20
         },
         {
           "location": {
@@ -592,7 +593,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 5
         },
         {
           "location": {
@@ -605,7 +606,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 6
         },
         {
           "location": {
@@ -615,10 +616,10 @@
           "nodeIndex": "Date",
           "nodeLineageTag": "c3cfcb9b-c6b2-48e0-8d00-9fe6ec85a978",
           "size": {
-            "height": 788.98001373481247,
+            "height": 600.35270873325248,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 7
         },
         {
           "location": {
@@ -631,7 +632,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 8
         }
       ],
       "name": "Data Model",
@@ -642,6 +643,6 @@
       "tablesLocked": false
     }
   ],
-  "selectedDiagram": "Data Model",
+  "selectedDiagram": "All tables",
   "defaultDiagram": "All tables"
 }
