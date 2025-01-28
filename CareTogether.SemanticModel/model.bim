@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Location\",\"Family\",\"Person\",\"Community\",\"Role\",\"OData Live\",\"Family Role Approval\",\"Individual Role Approval\",\"Family Role Removed Individual\",\"Production\",\"Referral\",\"Arrangement\",\"Arrangement Type\",\"Child Location Record\",\"Family Function Assignment\",\"Individual Function Assignment\",\"Approval Status\",\"Close Reason\",\"Arrangement Phase\",\"Childcare\",\"Childcare Plan\",\"Date\",\"_Measures\",\"Community Member Families\",\"Community Role Assignments\",\"Function Assignments\",\"Role Approvals\",\"Entity\"]"
+        "value": "[\"Location\",\"Family\",\"Person\",\"Community\",\"Role\",\"OData Live\",\"Family Role Approval\",\"Individual Role Approval\",\"Family Role Removed Individual\",\"Production\",\"Referral\",\"Arrangement\",\"Arrangement Type\",\"Child Location Record\",\"Family Function Assignment\",\"Individual Function Assignment\",\"Approval Status\",\"Close Reason\",\"Arrangement Phase\",\"Childcare\",\"Childcare Plan\",\"Date\",\"_Measures\",\"Community Member Families\",\"Community Role Assignments\",\"Function Assignments\",\"Entity\",\"Role Approval\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -22062,26 +22062,40 @@
         "toTable": "Date"
       },
       {
-        "name": "5cac5eb5-051b-69bb-1752-8f68d9e87a98",
-        "fromColumn": "RoleName",
-        "fromTable": "Family Role Removed Individual",
+        "name": "5b538d37-616c-607d-6acb-5fab90ff6f91",
+        "fromColumn": "Role Name",
+        "fromTable": "Role Approval",
         "toColumn": "Role Name",
         "toTable": "Role"
       },
       {
-        "name": "4f89a090-e082-036e-9a47-9c456078b461",
+        "name": "2a7630fd-4cd7-efbf-8398-75504fd08fd8",
+        "fromColumn": "Entity Id",
+        "fromTable": "Role Approval",
+        "toColumn": "PersonId",
+        "toTable": "Entity"
+      },
+      {
+        "name": "42a24b6c-c7ed-4c52-a7d4-c08690aeadf8",
         "fromColumn": "Date",
         "fromTable": "Family Role Removed Individual",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_87333226-1275-455e-94c2-efde175b676a"
+      },
+      {
+        "name": "9e5393bc-47e7-f5f4-76fd-a20413fae28a",
+        "fromColumn": "Date",
+        "fromTable": "Role Approval",
         "toColumn": "Date",
         "toTable": "Date"
       },
       {
-        "name": "12bef3a7-eee3-4201-8298-b625cb6af3cf",
-        "fromColumn": "Date",
-        "fromTable": "Role Approvals",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_1ead5fa6-8bb8-4641-a38d-e6be1f1d092a"
+        "name": "e3710347-d15e-a334-ca7a-624fdd681132",
+        "fromColumn": "Status",
+        "fromTable": "Role Approval",
+        "toColumn": "Status",
+        "toTable": "Approval Status"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -23298,7 +23312,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Table"
+            "value": "Exception"
           },
           {
             "name": "PBI_NavigationStepName",
@@ -27963,7 +27977,18 @@
             "isHidden": true,
             "lineageTag": "5ce4ca2e-0ea9-4560-a9f2-13dce054f863",
             "sourceColumn": "Date",
-            "summarizeBy": "none"
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_87333226-1275-455e-94c2-efde175b676a"
+                },
+                "isDefault": true,
+                "relationship": "42a24b6c-c7ed-4c52-a7d4-c08690aeadf8"
+              }
+            ]
           }
         ],
         "isHidden": true,
@@ -28398,198 +28423,6 @@
                 "    //Combined Tables:",
                 "    CombinedTables = Table.Combine({FamilyRenamed, PersonRenamed})",
                 "in",
-                "    CombinedTables"
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "Role Approvals",
-        "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "columns": [
-          {
-            "name": "RoleName",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "1675d324-16b6-46e5-a51a-d94760bc7052",
-            "sourceColumn": "RoleName",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Status",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "3e2c583f-ed04-41c8-af59-a18cad82f29c",
-            "sourceColumn": "Status",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Entity Type",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "0f080ed7-0c9a-47ce-a88e-07e4620f77dc",
-            "sourceColumn": "Entity Type",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Date",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "UnderlyingDateTimeDataType",
-                "value": "Date"
-              }
-            ],
-            "dataType": "dateTime",
-            "formatString": "Long Date",
-            "lineageTag": "74e11dab-2ece-44ed-8621-924b757c5a09",
-            "sourceColumn": "Date",
-            "summarizeBy": "none",
-            "variations": [
-              {
-                "name": "Variation",
-                "defaultHierarchy": {
-                  "hierarchy": "Date Hierarchy",
-                  "table": "LocalDateTable_1ead5fa6-8bb8-4641-a38d-e6be1f1d092a"
-                },
-                "isDefault": true,
-                "relationship": "12bef3a7-eee3-4201-8298-b625cb6af3cf"
-              }
-            ]
-          },
-          {
-            "name": "Approval Type",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "9b01e312-9ce8-45af-93aa-3cf24e5fe30e",
-            "sourceColumn": "Approval Type",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "EntityId",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "89354163-072a-4be6-abff-17ab73da7ec0",
-            "sourceColumn": "EntityId",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "edb05ec6-8b47-4373-a0e9-8a90513cecd9",
-        "partitions": [
-          {
-            "name": "Role Approvals",
-            "mode": "import",
-            "queryGroup": "Consolidated Entities",
-            "source": {
-              "expression": [
-                "let ",
-                "    Source = #\"OData Live\" ,",
-                "",
-                "    //Commom Variables:",
-                "    CurrentDate = DateTime.LocalNow(),",
-                "    CurrentYear = Date.Year(CurrentDate),",
-                "    EndOfNextYearCalendar = #date (CurrentYear + 1, 12, 31),",
-                "",
-                "    //Families - Direct Approval: ",
-                "    FamilyTable = Source{[Name=\"FamilyRoleApprovals\",Signature=\"table\"]}[Data],",
-                "    FamilyAddType = Table.AddColumn(FamilyTable, \"Entity Type\", each \"Family\"),",
-                "    FamilyColumns = Table.RemoveColumns(FamilyAddType, {\"Family\", \"Role\"}),",
-                "    FamilyAddColumns = Table.AddColumn(FamilyColumns, \"Date\", each",
-                "        if [Start] > EndOfNextYearCalendar then {}",
-                "        else List.Dates([Start], Duration.Days(List.Min({[End], EndOfNextYearCalendar}) - [Start]) + 1, #duration(1,0,0,0))),",
-                "    FamilyExpandDate = Table.ExpandListColumn(FamilyAddColumns, \"Date\"),",
-                "    FamilyFiltered = Table.SelectRows(FamilyExpandDate, each [Date] <> null and [Date] <> \"\"),",
-                "    FamilyDateType = Table.TransformColumnTypes(FamilyFiltered,{{\"Date\", type date}}),",
-                "    FamilyAdjusted = Table.RemoveColumns(FamilyDateType,{\"Start\", \"End\"}),",
-                "    FamilyApprovalType = Table.AddColumn(FamilyAdjusted, \"Approval Type\", each \"Direct\"),",
-                "    FamilyFinal = Table.RenameColumns(FamilyApprovalType, {{\"FamilyId\", \"EntityId\"}}),",
-                "",
-                "    //Person - Direct Approval: ",
-                "    PersonTable = Source{[Name=\"IndividualRoleApprovals\",Signature=\"table\"]}[Data],",
-                "    PersonAddType = Table.AddColumn(PersonTable, \"Entity Type\", each \"Person\"),",
-                "    PersonColumns = Table.RemoveColumns(PersonAddType,{\"Person\", \"Role\", \"Family\", \"FamilyId\"}),",
-                "    PersonAddColumns = Table.AddColumn(PersonColumns, \"Date\", each",
-                "        if [Start] > EndOfNextYearCalendar then {}",
-                "        else List.Dates([Start], Duration.Days(List.Min({[End], EndOfNextYearCalendar}) - [Start]) + 1, #duration(1,0,0,0))),",
-                "    PersonExpandDate = Table.ExpandListColumn(PersonAddColumns, \"Date\"),",
-                "    PersonFiltered = Table.SelectRows(PersonExpandDate, each [Date] <> null and [Date] <> \"\"),",
-                "    PersonDateType = Table.TransformColumnTypes(PersonFiltered,{{\"Date\", type date}}),",
-                "    PersonAdjusted = Table.RemoveColumns(PersonDateType,{\"Start\", \"End\"}),",
-                "    PersonApprovalType = Table.AddColumn(PersonAdjusted, \"Approval Type\", each \"Direct\"),",
-                "    PersonFinal = Table.RenameColumns(PersonApprovalType, {{\"PersonId\", \"EntityId\"}}),",
-                "",
-                "    // Families - Indirect Approval: ",
-                "    DirectApprovedFamilies = Table.SelectColumns(FamilyTable, {\"FamilyId\"}),",
-                "    DirectApprovedFamiliesUnique = Table.Distinct(DirectApprovedFamilies), // List of Directly approved families",
-                "",
-                "    f_IndirectApprovedFamilies = Source{[Name=\"IndividualRoleApprovals\",Signature=\"table\"]}[Data],",
-                "    f_IndirectApprovedAddType = Table.AddColumn(f_IndirectApprovedFamilies, \"Entity Type\", each \"Family\"),",
-                "    f_IndirectApprovedColumns = Table.RemoveColumns(f_IndirectApprovedAddType,{\"Person\", \"Role\", \"Family\", \"PersonId\"}),",
-                "    f_IndirectApprovedAddColumns = Table.AddColumn(f_IndirectApprovedColumns, \"Date\", each",
-                "        if [Start] > EndOfNextYearCalendar then {}",
-                "        else List.Dates([Start], Duration.Days(List.Min({[End], EndOfNextYearCalendar}) - [Start]) + 1, #duration(1,0,0,0))),",
-                "    f_IndirectApprovedExpandDate = Table.ExpandListColumn(f_IndirectApprovedAddColumns, \"Date\"),",
-                "    f_IndirectApprovedFiltered = Table.SelectRows(f_IndirectApprovedExpandDate, each [Date] <> null and [Date] <> \"\"),",
-                "    f_IndirectApprovedDateType = Table.TransformColumnTypes(f_IndirectApprovedFiltered,{{\"Date\", type date}}),",
-                "    f_IndirectApprovedAdjusted = Table.RemoveColumns(f_IndirectApprovedDateType,{\"Start\", \"End\"}),",
-                "    f_IndirectApprovedApprovalType = Table.AddColumn(f_IndirectApprovedAdjusted, \"Approval Type\", each \"Indirect\"),",
-                "    f_IndirectApprovedFinal = Table.RenameColumns(f_IndirectApprovedApprovalType, {{\"FamilyId\", \"EntityId\"}}),",
-                "",
-                "    f_IndirectApprovedFilteredFinal = Table.NestedJoin(",
-                "        f_IndirectApprovedFinal, ",
-                "        {\"EntityId\"}, ",
-                "        DirectApprovedFamiliesUnique, ",
-                "        {\"FamilyId\"}, ",
-                "        \"MatchedFamilies\", ",
-                "        JoinKind.LeftAnti",
-                "    ),",
-                "",
-                "    f_IndirectApprovedFilteredFinalColumns = Table.RemoveColumns(f_IndirectApprovedFilteredFinal,{\"MatchedFamilies\"}),",
-                "",
-                "    // Combined Data:",
-                "    CombinedTables = Table.Combine({FamilyFinal, PersonFinal, f_IndirectApprovedFilteredFinalColumns})",
-                "",
-                "in",
-                "",
                 "    CombinedTables"
               ],
               "type": "m"
@@ -29770,7 +29603,254 @@
         "showAsVariationsOnly": true
       },
       {
-        "name": "LocalDateTable_1ead5fa6-8bb8-4641-a38d-e6be1f1d092a",
+        "name": "Role Approval",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Entity Id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ab24ee6d-5b2b-46b8-8b01-a0ee11cd3ffc",
+            "sourceColumn": "Entity Id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Entity Type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0fb1b97a-9aca-43be-aaaf-64c2d919515c",
+            "sourceColumn": "Entity Type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Role Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "bad7fced-4b9f-4a94-95e4-f967843aca17",
+            "sourceColumn": "Role Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Status",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f18f85eb-7629-4b74-a64b-e1de51f329b2",
+            "sourceColumn": "Status",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Approval Type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "bab34ac0-c8ed-48a5-9e32-144a53b8afb1",
+            "sourceColumn": "Approval Type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Short Date",
+            "lineageTag": "f8c87c7a-295b-4765-8dd9-23c751cb422e",
+            "sourceColumn": "Date",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "46da9e14-7769-40f8-9645-fc47e5f2407b",
+        "partitions": [
+          {
+            "name": "Role Approval",
+            "mode": "import",
+            "queryGroup": "Consolidated Entities",
+            "source": {
+              "expression": [
+                "let ",
+                "    Source = #\"OData Live\" ,",
+                "",
+                "    //Commom Variables:",
+                "    CurrentDate = DateTime.LocalNow(),",
+                "    CurrentYear = Date.Year(CurrentDate),",
+                "    EndOfNextYearCalendar = #date (CurrentYear + 1, 12, 31),",
+                "",
+                "    //Families - Direct Approval: ",
+                "    FamilyTable = Source{[Name=\"FamilyRoleApprovals\",Signature=\"table\"]}[Data],",
+                "    FamilyAddType = Table.AddColumn(FamilyTable, \"Entity Type\", each \"Family\"),",
+                "    FamilyColumns = Table.RemoveColumns(FamilyAddType, {\"Family\", \"Role\"}),",
+                "    FamilyAddColumns = Table.AddColumn(FamilyColumns, \"Date\", each",
+                "        if [Start] > EndOfNextYearCalendar then {}",
+                "        else List.Dates([Start], Duration.Days(List.Min({[End], EndOfNextYearCalendar}) - [Start]) + 1, #duration(1,0,0,0))),",
+                "    FamilyExpandDate = Table.ExpandListColumn(FamilyAddColumns, \"Date\"),",
+                "    FamilyFiltered = Table.SelectRows(FamilyExpandDate, each [Date] <> null and [Date] <> \"\"),",
+                "    FamilyDateType = Table.TransformColumnTypes(FamilyFiltered,{{\"Date\", type date}}),",
+                "    FamilyAdjusted = Table.RemoveColumns(FamilyDateType,{\"Start\", \"End\"}),",
+                "    FamilyApprovalType = Table.AddColumn(FamilyAdjusted, \"Approval Type\", each \"Direct\"),",
+                "    FamilyFinal = Table.RenameColumns(FamilyApprovalType, {{\"FamilyId\", \"EntityId\"}}),",
+                "",
+                "    //Person - Direct Approval: ",
+                "    PersonTable = Source{[Name=\"IndividualRoleApprovals\",Signature=\"table\"]}[Data],",
+                "    PersonAddType = Table.AddColumn(PersonTable, \"Entity Type\", each \"Person\"),",
+                "    PersonColumns = Table.RemoveColumns(PersonAddType,{\"Person\", \"Role\", \"Family\", \"FamilyId\"}),",
+                "    PersonAddColumns = Table.AddColumn(PersonColumns, \"Date\", each",
+                "        if [Start] > EndOfNextYearCalendar then {}",
+                "        else List.Dates([Start], Duration.Days(List.Min({[End], EndOfNextYearCalendar}) - [Start]) + 1, #duration(1,0,0,0))),",
+                "    PersonExpandDate = Table.ExpandListColumn(PersonAddColumns, \"Date\"),",
+                "    PersonFiltered = Table.SelectRows(PersonExpandDate, each [Date] <> null and [Date] <> \"\"),",
+                "    PersonDateType = Table.TransformColumnTypes(PersonFiltered,{{\"Date\", type date}}),",
+                "    PersonAdjusted = Table.RemoveColumns(PersonDateType,{\"Start\", \"End\"}),",
+                "    PersonApprovalType = Table.AddColumn(PersonAdjusted, \"Approval Type\", each \"Direct\"),",
+                "    PersonFinal = Table.RenameColumns(PersonApprovalType, {{\"PersonId\", \"EntityId\"}}),",
+                "",
+                "    // Families - Indirect Approval: ",
+                "    DirectApprovedFamilies = Table.SelectColumns(FamilyTable, {\"FamilyId\"}),",
+                "    DirectApprovedFamiliesUnique = Table.Distinct(DirectApprovedFamilies), // List of Directly approved families",
+                "",
+                "    f_IndirectApprovedFamilies = Source{[Name=\"IndividualRoleApprovals\",Signature=\"table\"]}[Data],",
+                "    f_IndirectApprovedAddType = Table.AddColumn(f_IndirectApprovedFamilies, \"Entity Type\", each \"Family\"),",
+                "    f_IndirectApprovedColumns = Table.RemoveColumns(f_IndirectApprovedAddType,{\"Person\", \"Role\", \"Family\", \"PersonId\"}),",
+                "    f_IndirectApprovedAddColumns = Table.AddColumn(f_IndirectApprovedColumns, \"Date\", each",
+                "        if [Start] > EndOfNextYearCalendar then {}",
+                "        else List.Dates([Start], Duration.Days(List.Min({[End], EndOfNextYearCalendar}) - [Start]) + 1, #duration(1,0,0,0))),",
+                "    f_IndirectApprovedExpandDate = Table.ExpandListColumn(f_IndirectApprovedAddColumns, \"Date\"),",
+                "    f_IndirectApprovedFiltered = Table.SelectRows(f_IndirectApprovedExpandDate, each [Date] <> null and [Date] <> \"\"),",
+                "    f_IndirectApprovedDateType = Table.TransformColumnTypes(f_IndirectApprovedFiltered,{{\"Date\", type date}}),",
+                "    f_IndirectApprovedAdjusted = Table.RemoveColumns(f_IndirectApprovedDateType,{\"Start\", \"End\"}),",
+                "    f_IndirectApprovedApprovalType = Table.AddColumn(f_IndirectApprovedAdjusted, \"Approval Type\", each \"Indirect\"),",
+                "    f_IndirectApprovedFinal = Table.RenameColumns(f_IndirectApprovedApprovalType, {{\"FamilyId\", \"EntityId\"}}),",
+                "    f_IndirectApprovedFilteredFinal = Table.NestedJoin(",
+                "        f_IndirectApprovedFinal, ",
+                "        {\"EntityId\"}, ",
+                "        DirectApprovedFamiliesUnique, ",
+                "        {\"FamilyId\"}, ",
+                "        \"MatchedFamilies\", ",
+                "        JoinKind.LeftAnti",
+                "    ),",
+                "    f_IndirectApprovedFilteredFinalColumns = Table.RemoveColumns(f_IndirectApprovedFilteredFinal,{\"MatchedFamilies\"}),",
+                "",
+                "    // Person - Indirect Approval: ",
+                "    DirectApprovedPerson = Table.SelectColumns(PersonTable, {\"PersonId\"}),",
+                "    DirectApprovedPersonUnique = Table.Distinct(DirectApprovedPerson), // List of Directly approved person",
+                "",
+                "    // Creating a list of indirect Approved person: ",
+                "    allPerson = Source{[Name=\"Person\", Signature=\"table\"]}[Data],",
+                "    allPersonId = Table.SelectColumns(allPerson, {\"Id\", \"FamilyId\"}),",
+                "    allPersonRenamed = Table.RenameColumns(allPersonId, {\"Id\", \"EntityId\"}),",
+                "    ",
+                "    // Removing people with direct approval.",
+                "    allPersonWithoutDirectApproval = Table.NestedJoin(",
+                "        allPersonRenamed, ",
+                "        {\"EntityId\"}, ",
+                "        DirectApprovedPersonUnique, ",
+                "        {\"PersonId\"}, ",
+                "        \"MatchedFamilies\", ",
+                "        JoinKind.LeftAnti",
+                "    ),",
+                "",
+                "    // Filtering people whose family has direct approval.",
+                "    allPersonWithApprovedFamily = Table.Join(",
+                "        allPersonWithoutDirectApproval, ",
+                "        \"FamilyId\", ",
+                "        DirectApprovedFamiliesUnique, ",
+                "        \"FamilyId\", ",
+                "        JoinKind.Inner",
+                "    ),",
+                "",
+                "    // Creating the Individual Removal table",
+                "    removedIndividualTable = Source{[Name=\"FamilyRoleRemovedIndividuals\",Signature=\"table\"]}[Data],",
+                "    removedIndividualRemoveColumns = Table.RemoveColumns(removedIndividualTable,{\"Person\", \"Role\", \"Family\"}),",
+                "    removedIndividualGeneratedDates = Table.AddColumn(removedIndividualRemoveColumns, \"Date\", each",
+                "        if [Start] > EndOfNextYearCalendar then {}",
+                "        else List.Dates([Start], Duration.Days(List.Min({[End], EndOfNextYearCalendar}) - [Start]) + 1, #duration(1,0,0,0))),",
+                "    removedIndividualExpandedDates = Table.ExpandListColumn(removedIndividualGeneratedDates, \"Date\"),",
+                "    removedIndividualFiltered = Table.SelectRows(removedIndividualExpandedDates, each [Date] <> null and [Date] <> \"\"),",
+                "    removedIndividualFinal = Table.RemoveColumns(removedIndividualFiltered,{\"Start\", \"End\"}),",
+                "",
+                "    // Removing people who have had their role explicitly removed.",
+                "    removedIndividualsFamilies = Table.SelectColumns(removedIndividualFinal, {\"PersonId\", \"FamilyId\"}),",
+                "    removedIndividualsFamiliesUnique = Table.Distinct(removedIndividualsFamilies),",
+                "    PersonIndirectApproval = Table.NestedJoin(",
+                "        allPersonWithApprovedFamily, ",
+                "        {\"EntityId\", \"FamilyId\"}, ",
+                "        removedIndividualsFamiliesUnique, ",
+                "        {\"PersonId\", \"FamilyId\"}, ",
+                "        \"MatchedFamilies2\", ",
+                "        JoinKind.LeftAnti",
+                "    ),",
+                "",
+                "    // Adding the family approval details to prepare the merge:",
+                "    PersonIndirectApprovalColumns = Table.SelectColumns(PersonIndirectApproval, {\"EntityId\", \"FamilyId\"}),",
+                "    PersonIndirectApprovalRenamed = Table.RenameColumns(PersonIndirectApprovalColumns, {{\"EntityId\", \"EntityId_person\"}}),",
+                "    PersonIndirectApprovalData = Table.Join(",
+                "        PersonIndirectApprovalRenamed, ",
+                "        \"FamilyId\", ",
+                "        FamilyFinal, ",
+                "        \"EntityId\", ",
+                "        JoinKind.Inner",
+                "    ),",
+                "    PersonIndirectApprovalSelectedColumns = Table.SelectColumns(PersonIndirectApprovalData, {\"EntityId_person\", \"RoleName\", \"Status\", \"Date\"}),",
+                "    PersonIndirectApprovalType = Table.AddColumn(PersonIndirectApprovalSelectedColumns, \"Entity Type\", each \"Person\"),",
+                "    PersonIndirectApprovalRenamingEntity = Table.RenameColumns(PersonIndirectApprovalType, {{\"EntityId_person\", \"EntityId\"}}),",
+                "    PersonIndirectApprovalFinal = Table.AddColumn(PersonIndirectApprovalRenamingEntity, \"Approval Type\", each \"Indirect\"),",
+                "",
+                "",
+                "    // Combined Data:",
+                "    CombinedTables = Table.Combine({FamilyFinal, PersonFinal, f_IndirectApprovedFilteredFinalColumns, PersonIndirectApprovalFinal}),",
+                "    #\"Reordered Columns\" = Table.ReorderColumns(CombinedTables,{\"EntityId\", \"Entity Type\", \"RoleName\", \"Status\", \"Approval Type\", \"Date\"}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Reordered Columns\",{{\"EntityId\", \"Entity Id\"}, {\"RoleName\", \"Role Name\"}})",
+                "",
+                "in",
+                "",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_87333226-1275-455e-94c2-efde175b676a",
         "annotations": [
           {
             "name": "__PBI_LocalDateTable",
@@ -29790,7 +29870,7 @@
             "dataType": "dateTime",
             "isHidden": true,
             "isNameInferred": true,
-            "lineageTag": "e888bc68-beb3-4b2b-aed6-8a6e964893d5",
+            "lineageTag": "47f100e1-efca-4afa-9930-23e48a96bfc7",
             "sourceColumn": "[Date]",
             "summarizeBy": "none",
             "type": "calculatedTableColumn"
@@ -29811,7 +29891,7 @@
             "dataType": "int64",
             "expression": "YEAR([Date])",
             "isHidden": true,
-            "lineageTag": "155e0b2d-3665-422b-88e4-3166140ffc77",
+            "lineageTag": "6a6e2d47-c24f-4ebc-b555-7f6541306edd",
             "summarizeBy": "none",
             "type": "calculated"
           },
@@ -29831,7 +29911,7 @@
             "dataType": "int64",
             "expression": "MONTH([Date])",
             "isHidden": true,
-            "lineageTag": "29063e1b-030c-46d3-9933-880e0751f36c",
+            "lineageTag": "8b34644c-423b-4683-a19b-25d4d3a67fe6",
             "summarizeBy": "none",
             "type": "calculated"
           },
@@ -29851,7 +29931,7 @@
             "dataType": "string",
             "expression": "FORMAT([Date], \"MMMM\")",
             "isHidden": true,
-            "lineageTag": "233f57cc-ffbe-4341-8b84-b0698f7d9d99",
+            "lineageTag": "361403fa-ec17-424b-875b-d15be5d1b569",
             "sortByColumn": "MonthNo",
             "summarizeBy": "none",
             "type": "calculated"
@@ -29872,7 +29952,7 @@
             "dataType": "int64",
             "expression": "INT(([MonthNo] + 2) / 3)",
             "isHidden": true,
-            "lineageTag": "21ef9f7c-2710-43ae-b77b-db0bc43ed668",
+            "lineageTag": "20ceff59-e921-45c0-a19f-ab761d359c7d",
             "summarizeBy": "none",
             "type": "calculated"
           },
@@ -29892,7 +29972,7 @@
             "dataType": "string",
             "expression": "\"Qtr \" & [QuarterNo]",
             "isHidden": true,
-            "lineageTag": "50ed9280-f5d4-49da-bab2-3f199fa717a4",
+            "lineageTag": "405ca6cc-fdf5-450f-b5b0-c947c69736bd",
             "sortByColumn": "QuarterNo",
             "summarizeBy": "none",
             "type": "calculated"
@@ -29913,7 +29993,7 @@
             "dataType": "int64",
             "expression": "DAY([Date])",
             "isHidden": true,
-            "lineageTag": "f1f0a0cc-53d0-40ee-9ddc-87316517b73e",
+            "lineageTag": "64d673ff-0954-465a-8494-e690e4351002",
             "summarizeBy": "none",
             "type": "calculated"
           }
@@ -29931,39 +30011,39 @@
               {
                 "name": "Year",
                 "column": "Year",
-                "lineageTag": "2e47617d-bccf-409a-ab64-7c1e0dbede9c",
+                "lineageTag": "8f77430d-23cb-4be2-8d1b-9eaf40a59a1e",
                 "ordinal": 0
               },
               {
                 "name": "Quarter",
                 "column": "Quarter",
-                "lineageTag": "6d0a03fa-bafd-4c76-8db2-15d253614918",
+                "lineageTag": "a50d9258-affd-4d94-8767-51392cc28248",
                 "ordinal": 1
               },
               {
                 "name": "Month",
                 "column": "Month",
-                "lineageTag": "e6744508-80ad-45b8-aa9b-832ee0c2ee17",
+                "lineageTag": "eee57dcf-dfc0-4f5a-97a3-2757a9973a1d",
                 "ordinal": 2
               },
               {
                 "name": "Day",
                 "column": "Day",
-                "lineageTag": "ee98ad42-4b1e-49b7-a02c-778e51841d7a",
+                "lineageTag": "65bb35ee-635c-4bca-adfc-fb727c2487dd",
                 "ordinal": 3
               }
             ],
-            "lineageTag": "9d6a3912-8df7-4bb7-9545-269ce0fb5f4c"
+            "lineageTag": "94ff64ff-8459-4810-ba25-15350092d5ff"
           }
         ],
         "isHidden": true,
-        "lineageTag": "c6ac2ef4-3697-424b-9f2a-ab04d3c25aeb",
+        "lineageTag": "8932ed07-927d-4606-b35f-966f075c460b",
         "partitions": [
           {
-            "name": "LocalDateTable_1ead5fa6-8bb8-4641-a38d-e6be1f1d092a",
+            "name": "LocalDateTable_87333226-1275-455e-94c2-efde175b676a",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Role Approvals'[Date])), 1, 1), Date(Year(MAX('Role Approvals'[Date])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Family Role Removed Individual'[Date])), 1, 1), Date(Year(MAX('Family Role Removed Individual'[Date])), 12, 31))",
               "type": "calculated"
             }
           }

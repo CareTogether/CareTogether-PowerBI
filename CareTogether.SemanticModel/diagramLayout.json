@@ -335,19 +335,6 @@
         },
         {
           "location": {
-            "x": 2872.431438715158,
-            "y": 1173.7598258451469
-          },
-          "nodeIndex": "Role Approvals",
-          "nodeLineageTag": "edb05ec6-8b47-4373-a0e9-8a90513cecd9",
-          "size": {
-            "height": 176,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
             "x": 3156.431438715158,
             "y": 1028.3484379526819
           },
@@ -355,6 +342,15 @@
           "nodeLineageTag": "18ba4465-a9c2-415f-8e79-fd884584fded",
           "size": {
             "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Role Approval",
+          "size": {
+            "height": 224,
             "width": 234
           },
           "zIndex": 0
@@ -371,7 +367,7 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 53.060805924316163
+        "y": 0
       },
       "nodes": [
         {
@@ -532,26 +528,13 @@
         },
         {
           "location": {
-            "x": 796.11688235432473,
-            "y": 221.31348069492333
-          },
-          "nodeIndex": "Role Approvals",
-          "nodeLineageTag": "edb05ec6-8b47-4373-a0e9-8a90513cecd9",
-          "size": {
-            "height": 176,
-            "width": 234
-          },
-          "zIndex": 2
-        },
-        {
-          "location": {
-            "x": 1157.4107203957738,
-            "y": 224.21543923340886
+            "x": 475.38523936858792,
+            "y": 209.97961325371429
           },
           "nodeIndex": "Approval Status",
           "nodeLineageTag": "5d13b768-cd22-4e23-8052-f51c41e023ce",
           "size": {
-            "height": 176,
+            "height": 223.88414193169996,
             "width": 234
           },
           "zIndex": 3
@@ -623,20 +606,20 @@
         },
         {
           "location": {
-            "x": 1372.1556522437031,
-            "y": 0
+            "x": 796.7428225896964,
+            "y": 207.83484356804837
           },
-          "nodeIndex": "Family Role Removed Individual",
-          "nodeLineageTag": "f3700a33-e10d-4eb2-b253-7d6172702a76",
+          "nodeIndex": "Role Approval",
+          "nodeLineageTag": "46da9e14-7769-40f8-9645-fc47e5f2407b",
           "size": {
-            "height": 176,
+            "height": 224,
             "width": 234
           },
-          "zIndex": 8
+          "zIndex": 0
         }
       ],
       "name": "Data Model",
-      "zoomValue": 77.269840300731161,
+      "zoomValue": 54.827235456793787,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
