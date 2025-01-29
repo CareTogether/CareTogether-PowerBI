@@ -22069,13 +22069,6 @@
         "toTable": "Role"
       },
       {
-        "name": "2a7630fd-4cd7-efbf-8398-75504fd08fd8",
-        "fromColumn": "Entity Id",
-        "fromTable": "Role Approval",
-        "toColumn": "PersonId",
-        "toTable": "Entity"
-      },
-      {
         "name": "42a24b6c-c7ed-4c52-a7d4-c08690aeadf8",
         "fromColumn": "Date",
         "fromTable": "Family Role Removed Individual",
@@ -22084,18 +22077,35 @@
         "toTable": "LocalDateTable_87333226-1275-455e-94c2-efde175b676a"
       },
       {
-        "name": "9e5393bc-47e7-f5f4-76fd-a20413fae28a",
+        "name": "e3710347-d15e-a334-ca7a-624fdd681132",
+        "fromColumn": "Status",
+        "fromTable": "Role Approval",
+        "toColumn": "Status",
+        "toTable": "Approval Status"
+      },
+      {
+        "name": "901490b3-6c94-f5f5-307f-b5b7046ddf8e",
         "fromColumn": "Date",
         "fromTable": "Role Approval",
         "toColumn": "Date",
         "toTable": "Date"
       },
       {
-        "name": "e3710347-d15e-a334-ca7a-624fdd681132",
-        "fromColumn": "Status",
+        "name": "6ad08d7a-284d-2a4c-453b-1e546f936a02",
+        "fromColumn": "Entity Id",
         "fromTable": "Role Approval",
-        "toColumn": "Status",
-        "toTable": "Approval Status"
+        "toColumn": "PersonId",
+        "toTable": "Entity"
+      },
+      {
+        "name": "f3614f7a-afcf-8956-4b5f-8d449017f6cb",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "FamilyId",
+        "fromTable": "Entity",
+        "isActive": false,
+        "toCardinality": "many",
+        "toColumn": "Entity Id",
+        "toTable": "Role Approval"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -29348,21 +29358,31 @@
             "name": "# of Families in Role (NEW)",
             "expression": [
               "",
-              "VAR FamilyDirectApproval = CALCULATETABLE(",
-              "    VALUES('Family'[Id]),",
-              "    'Family Role Approval',",
-              "    USERELATIONSHIP('Family Role Approval'[FamilyId], 'Family'[Id])",
+              "VAR FamilyDirectApproval = CALCULATE(",
+              "    DISTINCTCOUNT('Role Approval'[Entity Id]),",
+              "    'Role Approval'[Entity Type] = \"Family\",",
+              "    USERELATIONSHIP(Entity[FamilyId], 'Role Approval'[Entity Id]),",
+              "    CROSSFILTER(Entity[PersonId], 'Role Approval'[Entity Id], None)",
               ")",
-              "VAR FamilyIndirectApproval = CALCULATETABLE(",
-              "    VALUES('Family'[Id]),",
-              "    'Individual Role Approval',",
-              "    USERELATIONSHIP('Individual Role Approval'[FamilyId], 'Family'[Id])",
-              ")",
-              "VAR CombinedFamilies = DISTINCT(UNION(FamilyDirectApproval, FamilyIndirectApproval))",
-              "RETURN",
-              "COUNTROWS(CombinedFamilies)"
+              "",
+              "RETURN FamilyDirectApproval",
+              ""
             ],
+            "formatString": "0",
             "lineageTag": "a9874b87-0de5-4fa1-b5ac-a8ee7e646abd"
+          },
+          {
+            "name": "# of People in Role (NEW)",
+            "expression": [
+              "",
+              "VAR PeopleApprovals = CALCULATE(",
+              "    DISTINCTCOUNT('Role Approval'[Entity Id]),",
+              "    'Role Approval'[Entity Type] = \"Person\"",
+              ")",
+              "RETURN PeopleApprovals"
+            ],
+            "formatString": "0",
+            "lineageTag": "d7b95e5a-edc1-4688-8c75-5e3d08118b20"
           }
         ],
         "partitions": [
@@ -29616,19 +29636,6 @@
         ],
         "columns": [
           {
-            "name": "Entity Id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "ab24ee6d-5b2b-46b8-8b01-a0ee11cd3ffc",
-            "sourceColumn": "Entity Id",
-            "summarizeBy": "none"
-          },
-          {
             "name": "Entity Type",
             "annotations": [
               {
@@ -29697,6 +29704,19 @@
             "lineageTag": "f8c87c7a-295b-4765-8dd9-23c751cb422e",
             "sourceColumn": "Date",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Entity Id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f06ea792-753b-41e0-9fb6-8628d604dd93",
+            "sourceColumn": "Entity Id",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "46da9e14-7769-40f8-9645-fc47e5f2407b",
@@ -29744,9 +29764,6 @@
                 "    PersonFinal = Table.RenameColumns(PersonApprovalType, {{\"PersonId\", \"EntityId\"}}),",
                 "",
                 "    // Families - Indirect Approval: ",
-                "    DirectApprovedFamilies = Table.SelectColumns(FamilyTable, {\"FamilyId\"}),",
-                "    DirectApprovedFamiliesUnique = Table.Distinct(DirectApprovedFamilies), // List of Directly approved families",
-                "",
                 "    f_IndirectApprovedFamilies = Source{[Name=\"IndividualRoleApprovals\",Signature=\"table\"]}[Data],",
                 "    f_IndirectApprovedAddType = Table.AddColumn(f_IndirectApprovedFamilies, \"Entity Type\", each \"Family\"),",
                 "    f_IndirectApprovedColumns = Table.RemoveColumns(f_IndirectApprovedAddType,{\"Person\", \"Role\", \"Family\", \"PersonId\"}),",
@@ -29759,45 +29776,20 @@
                 "    f_IndirectApprovedAdjusted = Table.RemoveColumns(f_IndirectApprovedDateType,{\"Start\", \"End\"}),",
                 "    f_IndirectApprovedApprovalType = Table.AddColumn(f_IndirectApprovedAdjusted, \"Approval Type\", each \"Indirect\"),",
                 "    f_IndirectApprovedFinal = Table.RenameColumns(f_IndirectApprovedApprovalType, {{\"FamilyId\", \"EntityId\"}}),",
-                "    f_IndirectApprovedFilteredFinal = Table.NestedJoin(",
-                "        f_IndirectApprovedFinal, ",
-                "        {\"EntityId\"}, ",
-                "        DirectApprovedFamiliesUnique, ",
-                "        {\"FamilyId\"}, ",
-                "        \"MatchedFamilies\", ",
-                "        JoinKind.LeftAnti",
-                "    ),",
-                "    f_IndirectApprovedFilteredFinalColumns = Table.RemoveColumns(f_IndirectApprovedFilteredFinal,{\"MatchedFamilies\"}),",
                 "",
-                "    // Person - Indirect Approval: ",
-                "    DirectApprovedPerson = Table.SelectColumns(PersonTable, {\"PersonId\"}),",
-                "    DirectApprovedPersonUnique = Table.Distinct(DirectApprovedPerson), // List of Directly approved person",
+                "    //Person - Indirect Approval:",
+                "    //Logic: Identify all approved families > Perform a LEFT JOIN with people > Exclude explicitly removed people.",
+                "    AllPersonTable = Table.SelectColumns(Source{[Name=\"Person\", Signature=\"table\"]}[Data],{\"Id\", \"FamilyId\"}),",
+                "    p_IndirectApproved = Table.SelectColumns(Table.Join(",
+                "        FamilyFinal, \"EntityId\",",
+                "        AllPersonTable, \"FamilyId\",",
+                "        JoinKind.LeftOuter",
+                "    ),{\"Id\", \"RoleName\", \"Status\", \"Date\"}),",
+                "    p_indirectApprovedEntityType = Table.AddColumn(p_IndirectApproved, \"Entity Type\", each \"Person\"),",
+                "    p_indirectApprovedRenamedColumns = Table.RenameColumns(p_indirectApprovedEntityType, {{\"Id\", \"EntityId\"}}),",
+                "    p_indirectApprovedApprovalType = Table.AddColumn(p_indirectApprovedRenamedColumns, \"Approval Type\", each \"Indirect\"),",
                 "",
-                "    // Creating a list of indirect Approved person: ",
-                "    allPerson = Source{[Name=\"Person\", Signature=\"table\"]}[Data],",
-                "    allPersonId = Table.SelectColumns(allPerson, {\"Id\", \"FamilyId\"}),",
-                "    allPersonRenamed = Table.RenameColumns(allPersonId, {\"Id\", \"EntityId\"}),",
-                "    ",
-                "    // Removing people with direct approval.",
-                "    allPersonWithoutDirectApproval = Table.NestedJoin(",
-                "        allPersonRenamed, ",
-                "        {\"EntityId\"}, ",
-                "        DirectApprovedPersonUnique, ",
-                "        {\"PersonId\"}, ",
-                "        \"MatchedFamilies\", ",
-                "        JoinKind.LeftAnti",
-                "    ),",
-                "",
-                "    // Filtering people whose family has direct approval.",
-                "    allPersonWithApprovedFamily = Table.Join(",
-                "        allPersonWithoutDirectApproval, ",
-                "        \"FamilyId\", ",
-                "        DirectApprovedFamiliesUnique, ",
-                "        \"FamilyId\", ",
-                "        JoinKind.Inner",
-                "    ),",
-                "",
-                "    // Creating the Individual Removal table",
+                "    // Additional Step: Filtering out all the explicit removed person:",
                 "    removedIndividualTable = Source{[Name=\"FamilyRoleRemovedIndividuals\",Signature=\"table\"]}[Data],",
                 "    removedIndividualRemoveColumns = Table.RemoveColumns(removedIndividualTable,{\"Person\", \"Role\", \"Family\"}),",
                 "    removedIndividualGeneratedDates = Table.AddColumn(removedIndividualRemoveColumns, \"Date\", each",
@@ -29807,42 +29799,22 @@
                 "    removedIndividualFiltered = Table.SelectRows(removedIndividualExpandedDates, each [Date] <> null and [Date] <> \"\"),",
                 "    removedIndividualFinal = Table.RemoveColumns(removedIndividualFiltered,{\"Start\", \"End\"}),",
                 "",
-                "    // Removing people who have had their role explicitly removed.",
                 "    removedIndividualsFamilies = Table.SelectColumns(removedIndividualFinal, {\"PersonId\", \"FamilyId\"}),",
                 "    removedIndividualsFamiliesUnique = Table.Distinct(removedIndividualsFamilies),",
-                "    PersonIndirectApproval = Table.NestedJoin(",
-                "        allPersonWithApprovedFamily, ",
-                "        {\"EntityId\", \"FamilyId\"}, ",
-                "        removedIndividualsFamiliesUnique, ",
-                "        {\"PersonId\", \"FamilyId\"}, ",
-                "        \"MatchedFamilies2\", ",
+                "",
+                "    p_indirectApprovedFinal = Table.SelectColumns(Table.Join(",
+                "        p_indirectApprovedApprovalType, \"EntityId\",",
+                "        removedIndividualsFamiliesUnique, \"PersonId\",",
                 "        JoinKind.LeftAnti",
-                "    ),",
-                "",
-                "    // Adding the family approval details to prepare the merge:",
-                "    PersonIndirectApprovalColumns = Table.SelectColumns(PersonIndirectApproval, {\"EntityId\", \"FamilyId\"}),",
-                "    PersonIndirectApprovalRenamed = Table.RenameColumns(PersonIndirectApprovalColumns, {{\"EntityId\", \"EntityId_person\"}}),",
-                "    PersonIndirectApprovalData = Table.Join(",
-                "        PersonIndirectApprovalRenamed, ",
-                "        \"FamilyId\", ",
-                "        FamilyFinal, ",
-                "        \"EntityId\", ",
-                "        JoinKind.Inner",
-                "    ),",
-                "    PersonIndirectApprovalSelectedColumns = Table.SelectColumns(PersonIndirectApprovalData, {\"EntityId_person\", \"RoleName\", \"Status\", \"Date\"}),",
-                "    PersonIndirectApprovalType = Table.AddColumn(PersonIndirectApprovalSelectedColumns, \"Entity Type\", each \"Person\"),",
-                "    PersonIndirectApprovalRenamingEntity = Table.RenameColumns(PersonIndirectApprovalType, {{\"EntityId_person\", \"EntityId\"}}),",
-                "    PersonIndirectApprovalFinal = Table.AddColumn(PersonIndirectApprovalRenamingEntity, \"Approval Type\", each \"Indirect\"),",
-                "",
+                "    ), {\"EntityId\", \"RoleName\", \"Status\", \"Date\", \"Entity Type\", \"Approval Type\"}),",
                 "",
                 "    // Combined Data:",
-                "    CombinedTables = Table.Combine({FamilyFinal, PersonFinal, f_IndirectApprovedFilteredFinalColumns, PersonIndirectApprovalFinal}),",
+                "    CombinedTables = Table.Combine({FamilyFinal, PersonFinal, f_IndirectApprovedFinal, p_indirectApprovedFinal}),",
                 "    #\"Reordered Columns\" = Table.ReorderColumns(CombinedTables,{\"EntityId\", \"Entity Type\", \"RoleName\", \"Status\", \"Approval Type\", \"Date\"}),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Reordered Columns\",{{\"EntityId\", \"Entity Id\"}, {\"RoleName\", \"Role Name\"}})",
-                "",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Reordered Columns\",{{\"EntityId\", \"Entity Id\"}, {\"RoleName\", \"Role Name\"}}),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Renamed Columns\", each true)",
                 "in",
-                "",
-                "    #\"Renamed Columns\""
+                "    #\"Filtered Rows\""
               ],
               "type": "m"
             }

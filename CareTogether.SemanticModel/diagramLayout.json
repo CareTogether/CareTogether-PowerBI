@@ -366,14 +366,14 @@
     {
       "ordinal": 1,
       "scrollPosition": {
-        "x": 0,
-        "y": 0
+        "x": 258.83319963081055,
+        "y": 214.83155569357277
       },
       "nodes": [
         {
           "location": {
-            "x": 793.494814249309,
-            "y": 475.94095750233964
+            "x": 837.26867919078143,
+            "y": 563.48868738528449
           },
           "nodeIndex": "Entity",
           "nodeLineageTag": "18ba4465-a9c2-415f-8e79-fd884584fded",
@@ -619,7 +619,7 @@
         }
       ],
       "name": "Data Model",
-      "zoomValue": 54.827235456793787,
+      "zoomValue": 77.269840300731161,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
