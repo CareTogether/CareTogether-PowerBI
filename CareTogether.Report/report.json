@@ -443,6 +443,27 @@
     },
     {
       "config": "{}",
+      "displayName": "Page 2",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "9e321460dc28689dee5b",
+      "ordinal": 26,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"33b7f3c320c12dd81a8e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":92.40121580547113,\"y\":52.52279635258359,\"z\":0,\"width\":875.3799392097264,\"height\":558.2978723404256,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Role Approval.Entity Type\"},{\"queryRef\":\"Role Approval.Approval Type\"},{\"queryRef\":\"Role Approval.Entity Id\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Role Approval\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Entity Type\"},\"Name\":\"Role Approval.Entity Type\",\"NativeReferenceName\":\"Entity Type\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Approval Type\"},\"Name\":\"Role Approval.Approval Type\",\"NativeReferenceName\":\"Approval Type\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Entity Id\"},\"Name\":\"Role Approval.Entity Id\",\"NativeReferenceName\":\"Entity Id\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[{\"name\":\"1b876a67e2d6b38e7445\",\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Role Approval\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Entity Type\"}},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Approval Type\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Person'\"}},{\"Literal\":{\"Value\":\"'Indirect'\"}}]]}}}]},\"type\":\"Include\",\"howCreated\":3}]",
+          "height": 558.30,
+          "width": 875.38,
+          "x": 92.40,
+          "y": 52.52,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
       "displayName": "Arrangements",
       "displayOption": 1,
       "filters": "[{\"name\":\"Filter06043c5a9bcbae927cd3\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Date\"}},\"Property\":\"Date\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Between\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"}},\"LowerBound\":{\"DateSpan\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"Now\":{}},\"Amount\":-18,\"TimeUnit\":2}},\"TimeUnit\":2}},\"UpperBound\":{\"DateSpan\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"Now\":{}},\"Amount\":-1,\"TimeUnit\":2}},\"TimeUnit\":2}}}}}]},\"type\":\"RelativeDate\",\"howCreated\":1,\"isLockedInViewMode\":false},{\"name\":\"Filterd0a8df5a062a427c2609\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Date\"}},\"Property\":\"Date\"}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":false},{\"name\":\"Filter4236a28ed0288091b4c1\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Arrangement Type\"}},\"Property\":\"Arrangement Type\"}},\"type\":\"Categorical\",\"howCreated\":1}]",
@@ -766,7 +787,7 @@
       "ordinal": 15,
       "visualContainers": [
         {
-          "config": "{\"name\":\"1a9f70107748c43e6d5a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":343.14068759599166,\"y\":0,\"z\":1000,\"width\":937.0380315121312,\"height\":719.7155960346697,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"stackedAreaChart\",\"projections\":{\"Rows\":[{\"queryRef\":\"Role.Role Name\"}],\"Category\":[{\"queryRef\":\"Date.Date\",\"active\":true}],\"Series\":[{\"queryRef\":\"Approval Status.Status\"}],\"Y\":[{\"queryRef\":\"Role.# of Approval Statuses\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Role\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0},{\"Name\":\"a\",\"Entity\":\"Approval Status\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Role Name\"},\"Name\":\"Role.Role Name\",\"NativeReferenceName\":\"Role Name\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"},\"Name\":\"Date.Date\",\"NativeReferenceName\":\"Date\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Status\"},\"Name\":\"Approval Status.Status\",\"NativeReferenceName\":\"Status\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"# of Approval Statuses\"},\"Name\":\"Role.# of Approval Statuses\",\"NativeReferenceName\":\"# of Approval Statuses\"}]},\"drillFilterOtherVisuals\":true}}",
+          "config": "{\"name\":\"1a9f70107748c43e6d5a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":343.14068759599166,\"y\":0,\"z\":1000,\"width\":937.0380315121312,\"height\":719.7155960346697,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"stackedAreaChart\",\"projections\":{\"Rows\":[{\"queryRef\":\"Role.Role Name\"}],\"Category\":[{\"queryRef\":\"Date.Date\",\"active\":true}],\"Series\":[{\"queryRef\":\"Approval Status.Status\"}],\"Y\":[{\"queryRef\":\"Entity.# of Approval Statuses (NEW)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Role\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0},{\"Name\":\"a\",\"Entity\":\"Approval Status\",\"Type\":0},{\"Name\":\"e\",\"Entity\":\"Entity\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Role Name\"},\"Name\":\"Role.Role Name\",\"NativeReferenceName\":\"Role Name\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"},\"Name\":\"Date.Date\",\"NativeReferenceName\":\"Date\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Status\"},\"Name\":\"Approval Status.Status\",\"NativeReferenceName\":\"Status\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"# of Approval Statuses (NEW)\"},\"Name\":\"Entity.# of Approval Statuses (NEW)\",\"NativeReferenceName\":\"# of Approval Statuses (NEW)\"}]},\"drillFilterOtherVisuals\":true}}",
           "filters": "[]",
           "height": 719.72,
           "width": 937.04,
@@ -1026,7 +1047,7 @@
       "config": "{\"objects\":{\"outspacePane\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"190L\"}}}}}]}}",
       "displayName": "Approvals by Person",
       "displayOption": 1,
-      "filters": "[{\"name\":\"Filterd5358708d09c303a497c\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Role\"}},\"Property\":\"Role Name\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},{\"name\":\"Filter8d466b251b1be0521d3c\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Approval Status\"}},\"Property\":\"Status\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},{\"name\":\"Filterb19867d420e09bbcae90\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Date\"}},\"Property\":\"Date\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Between\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"}},\"LowerBound\":{\"DateSpan\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"Now\":{}},\"Amount\":-1,\"TimeUnit\":3}},\"TimeUnit\":3}},\"UpperBound\":{\"DateSpan\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"Now\":{}},\"Amount\":-1,\"TimeUnit\":3}},\"TimeUnit\":3}}}}}]},\"type\":\"RelativeDate\",\"howCreated\":1}]",
+      "filters": "[{\"name\":\"Filterd5358708d09c303a497c\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Role\"}},\"Property\":\"Role Name\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},{\"name\":\"Filter8d466b251b1be0521d3c\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Approval Status\"}},\"Property\":\"Status\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},{\"name\":\"Filterb19867d420e09bbcae90\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Date\"}},\"Property\":\"Date\"}},\"type\":\"RelativeDate\",\"howCreated\":1}]",
       "height": 720.00,
       "name": "ReportSectionff64824ca42209d6e6d1",
       "ordinal": 12,
@@ -1086,7 +1107,7 @@
           "z": 2000.00
         },
         {
-          "config": "{\"name\":\"bf4f8e26d2dfced5e5d0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":426.4926254320617,\"z\":5000,\"width\":355.2639601537174,\"height\":164.44148650679492,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Person.Ethnicity\",\"active\":true}],\"Y\":[{\"queryRef\":\"Entity.# of People in Role (NEW)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Person\",\"Type\":0},{\"Name\":\"e\",\"Entity\":\"Entity\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Ethnicity\"},\"Name\":\"Person.Ethnicity\",\"NativeReferenceName\":\"Ethnicity\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"# of People in Role (NEW)\"},\"Name\":\"Entity.# of People in Role (NEW)\",\"NativeReferenceName\":\"# of People in Role (NEW)\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"# of People in Role (NEW)\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{}}}",
+          "config": "{\"name\":\"bf4f8e26d2dfced5e5d0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":426.4926254320617,\"z\":5000,\"width\":355.2639601537174,\"height\":164.44148650679492,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Entity.Ethnicity\",\"active\":true}],\"Y\":[{\"queryRef\":\"Entity.# of People in Role (NEW)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Entity\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"# of People in Role (NEW)\"},\"Name\":\"Entity.# of People in Role (NEW)\",\"NativeReferenceName\":\"# of People in Role (NEW)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Ethnicity\"},\"Name\":\"Entity.Ethnicity\",\"NativeReferenceName\":\"Ethnicity1\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"# of People in Role (NEW)\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{}}}",
           "filters": "[]",
           "height": 164.44,
           "width": 355.26,
@@ -1095,7 +1116,7 @@
           "z": 5000.00
         },
         {
-          "config": "{\"name\":\"ce71f1fa4562a3f966cb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1107.122093647352,\"y\":0,\"z\":4000,\"width\":173.23514888683744,\"height\":129.2668369866249,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Person.Adult or Child\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Person\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Adult or Child\"},\"Name\":\"Person.Adult or Child\",\"NativeReferenceName\":\"Adult or Child\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Person\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Adult or Child\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Adult'\"}}]]}}}]}}}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Age Group'\"}}},\"showRestatement\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{}}}",
+          "config": "{\"name\":\"ce71f1fa4562a3f966cb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1107.122093647352,\"y\":0,\"z\":4000,\"width\":173.23514888683744,\"height\":129.2668369866249,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Entity.Adult or Child\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Entity\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Adult or Child\"},\"Name\":\"Entity.Adult or Child\",\"NativeReferenceName\":\"Adult or Child1\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Entity\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Adult or Child\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Adult'\"}}]]}}}]}}}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Age Group'\"}}},\"showRestatement\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{}}}",
           "filters": "[]",
           "height": 129.27,
           "width": 173.24,
@@ -1104,7 +1125,7 @@
           "z": 4000.00
         },
         {
-          "config": "{\"name\":\"f4b6b2fa7339bcf612f5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":590.9341119388566,\"z\":6000,\"width\":355.2639601537174,\"height\":129.2668369866249,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Person.Age (bins)\",\"active\":true}],\"Y\":[{\"queryRef\":\"Entity.# of People in Role (NEW)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Person\",\"Type\":0},{\"Name\":\"e\",\"Entity\":\"Entity\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Age (bins)\"},\"Name\":\"Person.Age (bins)\",\"NativeReferenceName\":\"Age (bins)\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"# of People in Role (NEW)\"},\"Name\":\"Entity.# of People in Role (NEW)\",\"NativeReferenceName\":\"# of People in Role (NEW)\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"# of People in Role (NEW)\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"valueAxis\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"categoryAxis\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "config": "{\"name\":\"f4b6b2fa7339bcf612f5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":590.9341119388566,\"z\":6000,\"width\":355.2639601537174,\"height\":129.2668369866249,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Entity.Age (bins)\",\"active\":true}],\"Y\":[{\"queryRef\":\"Entity.# of People in Role (NEW)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Entity\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"# of People in Role (NEW)\"},\"Name\":\"Entity.# of People in Role (NEW)\",\"NativeReferenceName\":\"# of People in Role (NEW)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Age (bins)\"},\"Name\":\"Entity.Age (bins)\",\"NativeReferenceName\":\"Age (bins)1\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"# of People in Role (NEW)\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"valueAxis\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"categoryAxis\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
           "filters": "[]",
           "height": 129.27,
           "width": 355.26,
@@ -1303,6 +1324,27 @@
           "x": 0.00,
           "y": 0.00,
           "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 3",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ea079842103e9884e83a",
+      "ordinal": 27,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"c012c93d76b268c001a0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":1280,\"height\":720.6546644844517,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Entity.# of People in Role (NEW)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Entity\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"# of People in Role (NEW)\"},\"Name\":\"Entity.# of People in Role (NEW)\",\"NativeReferenceName\":\"# of People in Role (NEW)\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"# of People in Role (NEW)\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 720.65,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
         }
       ],
       "width": 1280.00
