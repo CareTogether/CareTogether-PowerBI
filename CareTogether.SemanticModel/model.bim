@@ -4478,118 +4478,6 @@
                   "Value": "Hidden"
                 }
               },
-              "child_location_record.childcare_family_name": {
-                "Definition": {
-                  "Binding": {
-                    "ConceptualEntity": "Child Location Record",
-                    "ConceptualProperty": "Childcare Family Name"
-                  }
-                },
-                "State": "Generated",
-                "Terms": [
-                  {
-                    "childcare family name": {
-                      "State": "Generated"
-                    }
-                  },
-                  {
-                    "childcare family": {
-                      "State": "Generated",
-                      "Weight": 0.97
-                    }
-                  },
-                  {
-                    "childcare family nickname": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.739
-                    }
-                  },
-                  {
-                    "childcare family title": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.739
-                    }
-                  },
-                  {
-                    "childcare family label": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.739
-                    }
-                  },
-                  {
-                    "childcare family tag": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.739
-                    }
-                  },
-                  {
-                    "childcare clan": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.475
-                    }
-                  },
-                  {
-                    "childcare person": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.475
-                    }
-                  },
-                  {
-                    "childcare kinfolk": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.475
-                    }
-                  },
-                  {
-                    "childcare dynasty": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.451
-                    }
-                  },
-                  {
-                    "childcare lineage": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.451
-                    }
-                  }
-                ]
-              },
               "child_location_record.childcare_plan": {
                 "Definition": {
                   "Binding": {
@@ -21913,6 +21801,20 @@
         "toTable": "LocalDateTable_365e3c39-843a-4f3f-8b0a-c25778f7b0f2"
       },
       {
+        "name": "f65f23e4-4531-4302-8daf-36f7a3525920",
+        "annotations": [
+          {
+            "name": "PBI_IsFromSource",
+            "value": "FS"
+          }
+        ],
+        "fromColumn": "ReferralId",
+        "fromTable": "Arrangement",
+        "isActive": false,
+        "toColumn": "Id",
+        "toTable": "Referral"
+      },
+      {
         "name": "aa504477-b521-495d-8863-464b7539ee5c",
         "fromColumn": "Date",
         "fromTable": "Family Role Approval",
@@ -26047,16 +25949,9 @@
               }
             ],
             "dataType": "string",
-            "expression": [
-              "LOOKUPVALUE(",
-              "    Family[Family Name],",
-              "    Family[Id], 'Child Location Record'[FamilyId]",
-              ")"
-            ],
-            "isDataTypeInferred": true,
-            "lineageTag": "a9cb977c-85b8-4cdc-af0b-6e367a113505",
-            "summarizeBy": "none",
-            "type": "calculated"
+            "lineageTag": "466b77dd-eacc-4c9e-b87e-fa1d7fa07230",
+            "sourceColumn": "Childcare Family Name",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "97d0ba37-acfb-4f78-bc62-fb59df0fb93e",
@@ -26208,7 +26103,7 @@
               "VAR EndDate = [Selected Timeframe End]  // This is a measure calculating the end of the desired timeframe.",
               "VAR Result =",
               "    CALCULATE(",
-              "        COUNTROWS('ChildLocationExpanded'),",
+              "        DISTINCTCOUNT(ChildLocationExpanded[Date]),",
               "        'ChildLocationExpanded'[ChildcarePlan] <> \"WithParent\",",
               "        'ChildLocationExpanded'[Date] >= StartDate,",
               "        'ChildLocationExpanded'[Date] <= MIN(EndDate, CurrentDate)  // Ensure calculation up to the current date or the end date, whichever is earlier.",
@@ -26236,7 +26131,7 @@
               "VAR EndDate = [Selected Timeframe End]  // This is a measure calculating the end of the desired timeframe.",
               "VAR Result =",
               "    CALCULATE(",
-              "        COUNTROWS('ChildLocationExpanded'),",
+              "        DISTINCTCOUNT(ChildLocationExpanded[Date]),",
               "        'ChildLocationExpanded'[ChildcarePlan] <> \"WithParent\",",
               "        'ChildLocationExpanded'[OvernightStay] = TRUE(),  // Only consider records where OvernightStay is TRUE.",
               "        'ChildLocationExpanded'[Date] >= StartDate,",
@@ -26271,9 +26166,22 @@
                 "    #\"Removed Columns\" = Table.RemoveColumns(ChildLocationRecords_table1,{\"Arrangement\", \"Child\", \"Family\"}),",
                 "    #\"Calculated Local Time\" = Table.TransformColumns(#\"Removed Columns\",{{\"StartedAtUtc\", DateTimeZone.ToLocal, type datetimezone}, {\"EndedAtUtc\", DateTimeZone.ToLocal, type datetimezone}}),",
                 "    #\"Renamed Columns\" = Table.RenameColumns(#\"Calculated Local Time\",{{\"StartedAtUtc\", \"Started\"}, {\"EndedAtUtc\", \"Ended\"}}),",
-                "    #\"Added Index\" = Table.AddIndexColumn(#\"Renamed Columns\", \"Index\", 1, 1, Int64.Type)",
+                "    #\"Added Index\" = Table.AddIndexColumn(#\"Renamed Columns\", \"Index\", 1, 1, Int64.Type),",
+                "",
+                "    // Adding the family Name: ",
+                "    Families = Table.SelectColumns(Source{[Name=\"Family\",Signature=\"table\"]}[Data], {\"Id\", \"Name\"}),",
+                "",
+                "    // Merged tables: ",
+                "    Merge = Table.RenameColumns(Table.SelectColumns(Table.Join(",
+                "        #\"Added Index\",",
+                "        \"FamilyId\",",
+                "        Families,",
+                "        \"Id\",",
+                "        JoinKind.LeftOuter",
+                "    ),{\"ArrangementId\", \"ChildPersonId\", \"FamilyId\", \"Started\", \"ChildcarePlan\", \"Ended\", \"Duration\", \"Index\", \"Name\"}), ",
+                "    {{\"Name\", \"Childcare Family Name\"}})",
                 "in",
-                "    #\"Added Index\""
+                "    Merge"
               ],
               "type": "m"
             }
