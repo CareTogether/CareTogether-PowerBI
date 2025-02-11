@@ -21793,14 +21793,6 @@
         "toTable": "LocalDateTable_c6f5f2bf-94ad-49eb-b2ac-502d51b89614"
       },
       {
-        "name": "c9cb6432-a25a-4d8b-beed-d28284facdcf",
-        "fromColumn": "Date",
-        "fromTable": "Individual Role Approval",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_365e3c39-843a-4f3f-8b0a-c25778f7b0f2"
-      },
-      {
         "name": "f65f23e4-4531-4302-8daf-36f7a3525920",
         "annotations": [
           {
@@ -21813,6 +21805,14 @@
         "isActive": false,
         "toColumn": "Id",
         "toTable": "Referral"
+      },
+      {
+        "name": "c9cb6432-a25a-4d8b-beed-d28284facdcf",
+        "fromColumn": "Date",
+        "fromTable": "Individual Role Approval",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_365e3c39-843a-4f3f-8b0a-c25778f7b0f2"
       },
       {
         "name": "aa504477-b521-495d-8863-464b7539ee5c",
@@ -22008,6 +22008,15 @@
         "toCardinality": "many",
         "toColumn": "FamilyId",
         "toTable": "Entity"
+      },
+      {
+        "name": "baca5828-9756-eac3-496e-004f9dc82867",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "FamilyId",
+        "fromTable": "Entity",
+        "toCardinality": "many",
+        "toColumn": "FamilyId",
+        "toTable": "Community Member Families"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -29121,6 +29130,63 @@
             "lineageTag": "487e8f57-6086-42b7-aec8-42e60a6a9898",
             "summarizeBy": "none",
             "type": "calculated"
+          },
+          {
+            "name": "Community Membership Count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "COALESCE(COUNTROWS(RELATEDTABLE('Community Member Families')),0)",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "7ea830d6-37ac-4c5b-902b-400e4d545aa6",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "Participation Type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "displayFolder": "_columns",
+            "expression": [
+              "",
+              "",
+              "VAR FamilyRoleApprovals = CALCULATE(",
+              "    COUNTROWS('Role Approval'),",
+              "    'Role Approval'[Entity Type] = \"Family\",",
+              "    USERELATIONSHIP(Entity[FamilyId], 'Role Approval'[Entity Id]),",
+              "    CROSSFILTER(Entity[PersonId], 'Role Approval'[Entity Id], None)",
+              ")",
+              "",
+              "VAR IndividualRoleApprovals = CALCULATE(",
+              "    COUNTROWS('Role Approval'),",
+              "    'Role Approval'[Entity Type] = \"Person\")",
+              "",
+              "VAR Referrals = COUNTROWS(RELATEDTABLE(Referral))",
+              "",
+              "RETURN",
+              "    IF(",
+              "        FamilyRoleApprovals + IndividualRoleApprovals > 0,",
+              "        \"Volunteer Family\",",
+              "        IF(Referrals > 0,",
+              "            \"Partnering Family\",",
+              "            \"Other\"",
+              "        )",
+              "    )"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "f5cc564e-0e52-4725-b298-c4caf0e8c780",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "lineageTag": "18ba4465-a9c2-415f-8e79-fd884584fded",
@@ -29287,6 +29353,7 @@
               "    DISTINCTCOUNT('Role Approval'[Entity Id]),",
               "    'Role Approval'[Entity Type] = \"Person\"",
               ")",
+              "",
               "RETURN PeopleApprovals"
             ],
             "formatString": "0",
@@ -29302,6 +29369,23 @@
             ],
             "formatString": "0",
             "lineageTag": "202d8b72-a7a6-4280-94a4-a673b34efa25"
+          },
+          {
+            "name": "Participation Type (COUNT)",
+            "expression": [
+              "",
+              "VAR FamilyApprovals = CALCULATE(",
+              "    COUNTROWS('Role Approval'),",
+              "    'Role Approval'[Entity Type] = \"Family\",",
+              "    USERELATIONSHIP(Entity[FamilyId], 'Role Approval'[Entity Id]),",
+              "    CROSSFILTER(Entity[PersonId], 'Role Approval'[Entity Id], None)",
+              ")",
+              "",
+              "RETURN FamilyApprovals",
+              ""
+            ],
+            "formatString": "0",
+            "lineageTag": "ca060fe0-9552-4ec6-b26d-e27dd78f9239"
           }
         ],
         "partitions": [
