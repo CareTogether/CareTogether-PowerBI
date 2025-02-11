@@ -4494,118 +4494,6 @@
                   "Value": "Hidden"
                 }
               },
-              "child_location_record.childcare_family_name": {
-                "Definition": {
-                  "Binding": {
-                    "ConceptualEntity": "Child Location Record",
-                    "ConceptualProperty": "Childcare Family Name"
-                  }
-                },
-                "State": "Generated",
-                "Terms": [
-                  {
-                    "childcare family name": {
-                      "State": "Generated"
-                    }
-                  },
-                  {
-                    "childcare family": {
-                      "State": "Generated",
-                      "Weight": 0.97
-                    }
-                  },
-                  {
-                    "childcare family nickname": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.739
-                    }
-                  },
-                  {
-                    "childcare family title": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.739
-                    }
-                  },
-                  {
-                    "childcare family label": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.739
-                    }
-                  },
-                  {
-                    "childcare family tag": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.739
-                    }
-                  },
-                  {
-                    "childcare clan": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.475
-                    }
-                  },
-                  {
-                    "childcare person": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.475
-                    }
-                  },
-                  {
-                    "childcare kinfolk": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.475
-                    }
-                  },
-                  {
-                    "childcare dynasty": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.451
-                    }
-                  },
-                  {
-                    "childcare lineage": {
-                      "Source": {
-                        "Agent": "Thesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.451
-                    }
-                  }
-                ]
-              },
               "child_location_record.childcare_plan": {
                 "Definition": {
                   "Binding": {
@@ -21817,6 +21705,70 @@
     ],
     "relationships": [
       {
+        "name": "bb43cb93-5366-4c83-85f8-417eb76a0ee4",
+        "fromColumn": "Started",
+        "fromTable": "Arrangement",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_24602e63-6fc7-4520-a5af-36f3df0426a8"
+      },
+      {
+        "name": "f6af9189-e041-4e8e-a848-1bb59b7f3b98",
+        "fromColumn": "Ended",
+        "fromTable": "Arrangement",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_f42c1403-e66d-4045-8af6-5c3c28e884e6"
+      },
+      {
+        "name": "ac5f7851-934b-483f-a0c5-53789755a1b9",
+        "fromColumn": "DateOfBirth",
+        "fromTable": "Person",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_d581fc46-6bf7-41b8-b29a-3c5c09a6d6eb"
+      },
+      {
+        "name": "a5ae77fe-88aa-4706-bfd5-fdf99d014cf8",
+        "fromColumn": "Opened",
+        "fromTable": "Referral",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_badf15b7-4811-4e5f-aee5-299aaab58eca"
+      },
+      {
+        "name": "61ed4f64-5da8-4039-89ee-4b2905a8923d",
+        "fromColumn": "Closed",
+        "fromTable": "Referral",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_d64749d8-d763-4d50-94b8-a3acfe90e321"
+      },
+      {
+        "name": "7d4f3e4a-8e5e-49d7-9b0b-ca9ed9f0051f",
+        "fromColumn": "Requested",
+        "fromTable": "Arrangement",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_73d01070-72e6-4583-b4ff-d5fa05eb2eee"
+      },
+      {
+        "name": "8629abc0-5a97-4810-966e-8aa32eb61866",
+        "fromColumn": "Started",
+        "fromTable": "Child Location Record",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_f5e45cf3-f015-44f1-b705-01530790baec"
+      },
+      {
+        "name": "f63e6923-e035-4908-8427-2c9dac7e9b12",
+        "fromColumn": "Ended",
+        "fromTable": "Child Location Record",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_c6f5f2bf-94ad-49eb-b2ac-502d51b89614"
+      },
+      {
         "name": "a135767c-4356-4dbd-81a4-225cfaea4d46",
         "annotations": [
           {
@@ -21870,22 +21822,6 @@
         "toTable": "Family"
       },
       {
-        "name": "bb43cb93-5366-4c83-85f8-417eb76a0ee4",
-        "fromColumn": "Started",
-        "fromTable": "Arrangement",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_24602e63-6fc7-4520-a5af-36f3df0426a8"
-      },
-      {
-        "name": "f6af9189-e041-4e8e-a848-1bb59b7f3b98",
-        "fromColumn": "Ended",
-        "fromTable": "Arrangement",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_f42c1403-e66d-4045-8af6-5c3c28e884e6"
-      },
-      {
         "name": "f65f23e4-4531-4302-8daf-36f7a3525920",
         "annotations": [
           {
@@ -21900,59 +21836,11 @@
         "toTable": "Referral"
       },
       {
-        "name": "ac5f7851-934b-483f-a0c5-53789755a1b9",
-        "fromColumn": "DateOfBirth",
-        "fromTable": "Person",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_d581fc46-6bf7-41b8-b29a-3c5c09a6d6eb"
-      },
-      {
-        "name": "a5ae77fe-88aa-4706-bfd5-fdf99d014cf8",
-        "fromColumn": "Opened",
-        "fromTable": "Referral",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_badf15b7-4811-4e5f-aee5-299aaab58eca"
-      },
-      {
-        "name": "61ed4f64-5da8-4039-89ee-4b2905a8923d",
-        "fromColumn": "Closed",
-        "fromTable": "Referral",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_d64749d8-d763-4d50-94b8-a3acfe90e321"
-      },
-      {
-        "name": "7d4f3e4a-8e5e-49d7-9b0b-ca9ed9f0051f",
-        "fromColumn": "Requested",
-        "fromTable": "Arrangement",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_73d01070-72e6-4583-b4ff-d5fa05eb2eee"
-      },
-      {
         "name": "ec5dbbe4-02b1-478f-82d2-44a97e815b19",
         "fromColumn": "FamilyId",
         "fromTable": "Referral",
         "toColumn": "Id",
         "toTable": "Family"
-      },
-      {
-        "name": "8629abc0-5a97-4810-966e-8aa32eb61866",
-        "fromColumn": "Started",
-        "fromTable": "Child Location Record",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_f5e45cf3-f015-44f1-b705-01530790baec"
-      },
-      {
-        "name": "f63e6923-e035-4908-8427-2c9dac7e9b12",
-        "fromColumn": "Ended",
-        "fromTable": "Child Location Record",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_c6f5f2bf-94ad-49eb-b2ac-502d51b89614"
       },
       {
         "name": "b5a6b075-dc3a-4e99-9752-f4a75cdf308e",
@@ -22019,14 +21907,6 @@
         "isActive": false,
         "toColumn": "Id",
         "toTable": "Person"
-      },
-      {
-        "name": "d07ec352-100e-43be-a5e2-16034cae497c",
-        "fromColumn": "FamilyId",
-        "fromTable": "Child Location Record",
-        "isActive": false,
-        "toColumn": "Id",
-        "toTable": "Family"
       },
       {
         "name": "dae0c6c1-e427-42ca-86e7-ae3530eadaae",
@@ -26132,16 +26012,9 @@
               }
             ],
             "dataType": "string",
-            "expression": [
-              "LOOKUPVALUE(",
-              "    Family[Family Name],",
-              "    Family[Id], 'Child Location Record'[FamilyId]",
-              ")"
-            ],
-            "isDataTypeInferred": true,
-            "lineageTag": "a9cb977c-85b8-4cdc-af0b-6e367a113505",
-            "summarizeBy": "none",
-            "type": "calculated"
+            "lineageTag": "466b77dd-eacc-4c9e-b87e-fa1d7fa07230",
+            "sourceColumn": "Childcare Family Name",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "97d0ba37-acfb-4f78-bc62-fb59df0fb93e",
@@ -26293,7 +26166,7 @@
               "VAR EndDate = [Selected Timeframe End]  // This is a measure calculating the end of the desired timeframe.",
               "VAR Result =",
               "    CALCULATE(",
-              "        COUNTROWS('ChildLocationExpanded'),",
+              "        DISTINCTCOUNT(ChildLocationExpanded[Date]),",
               "        'ChildLocationExpanded'[ChildcarePlan] <> \"WithParent\",",
               "        'ChildLocationExpanded'[Date] >= StartDate,",
               "        'ChildLocationExpanded'[Date] <= MIN(EndDate, CurrentDate)  // Ensure calculation up to the current date or the end date, whichever is earlier.",
@@ -26321,7 +26194,7 @@
               "VAR EndDate = [Selected Timeframe End]  // This is a measure calculating the end of the desired timeframe.",
               "VAR Result =",
               "    CALCULATE(",
-              "        COUNTROWS('ChildLocationExpanded'),",
+              "        DISTINCTCOUNT(ChildLocationExpanded[Date]),",
               "        'ChildLocationExpanded'[ChildcarePlan] <> \"WithParent\",",
               "        'ChildLocationExpanded'[OvernightStay] = TRUE(),  // Only consider records where OvernightStay is TRUE.",
               "        'ChildLocationExpanded'[Date] >= StartDate,",
@@ -26356,9 +26229,22 @@
                 "    #\"Removed Columns\" = Table.RemoveColumns(ChildLocationRecords_table1,{\"Arrangement\", \"Child\", \"Family\"}),",
                 "    #\"Calculated Local Time\" = Table.TransformColumns(#\"Removed Columns\",{{\"StartedAtUtc\", DateTimeZone.ToLocal, type datetimezone}, {\"EndedAtUtc\", DateTimeZone.ToLocal, type datetimezone}}),",
                 "    #\"Renamed Columns\" = Table.RenameColumns(#\"Calculated Local Time\",{{\"StartedAtUtc\", \"Started\"}, {\"EndedAtUtc\", \"Ended\"}}),",
-                "    #\"Added Index\" = Table.AddIndexColumn(#\"Renamed Columns\", \"Index\", 1, 1, Int64.Type)",
+                "    #\"Added Index\" = Table.AddIndexColumn(#\"Renamed Columns\", \"Index\", 1, 1, Int64.Type),",
+                "",
+                "    // Adding the family Name: ",
+                "    Families = Table.SelectColumns(Source{[Name=\"Family\",Signature=\"table\"]}[Data], {\"Id\", \"Name\"}),",
+                "",
+                "    // Merged tables: ",
+                "    Merge = Table.RenameColumns(Table.SelectColumns(Table.Join(",
+                "        #\"Added Index\",",
+                "        \"FamilyId\",",
+                "        Families,",
+                "        \"Id\",",
+                "        JoinKind.LeftOuter",
+                "    ),{\"ArrangementId\", \"ChildPersonId\", \"FamilyId\", \"Started\", \"ChildcarePlan\", \"Ended\", \"Duration\", \"Index\", \"Name\"}), ",
+                "    {{\"Name\", \"Childcare Family Name\"}})",
                 "in",
-                "    #\"Added Index\""
+                "    Merge"
               ],
               "type": "m"
             }
