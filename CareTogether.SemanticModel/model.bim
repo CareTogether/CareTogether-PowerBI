@@ -29386,6 +29386,15 @@
             ],
             "formatString": "0",
             "lineageTag": "ca060fe0-9552-4ec6-b26d-e27dd78f9239"
+          },
+          {
+            "name": "# of Families (NEW)",
+            "expression": [
+              "DISTINCTCOUNT(Entity[FamilyId])",
+              "    "
+            ],
+            "formatString": "0",
+            "lineageTag": "982e7e0c-55e9-485e-8813-4e519005eb6f"
           }
         ],
         "partitions": [
