@@ -4478,6 +4478,27 @@
                   "Value": "Hidden"
                 }
               },
+              "child_location_record.childcare_family_name": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Child Location Record",
+                    "ConceptualProperty": "Childcare Family Name"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Childcare Family": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
               "child_location_record.childcare_plan": {
                 "Definition": {
                   "Binding": {
@@ -9695,6 +9716,27 @@
                   }
                 ]
               },
+              "entity.family_engagement_level_new": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Entity",
+                    "ConceptualProperty": "Family Engagement Level (NEW)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Assignments": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
               "entity.impacted_adults_new": {
                 "Definition": {
                   "Binding": {
@@ -9748,6 +9790,48 @@
                 "Terms": [
                   {
                     "Children Served": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "entity.of_engaged_families_new": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Entity",
+                    "ConceptualProperty": "# of Engaged Families (NEW)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Engaged Families": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "entity.of_families_in_role_new": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Entity",
+                    "ConceptualProperty": "# of Families in Role (NEW)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Approved/Onboarded Families": {
                       "Source": {
                         "Agent": "PowerBI.VisualColumnRename",
                         "Type": "External"
@@ -10251,19 +10335,7 @@
                     "ConceptualProperty": "Family Engagement Level"
                   }
                 },
-                "State": "Generated",
-                "Terms": [
-                  {
-                    "# of Assignments": {
-                      "Source": {
-                        "Agent": "PowerBI.VisualColumnRename",
-                        "Type": "External"
-                      },
-                      "State": "Suggested",
-                      "Weight": 0.9
-                    }
-                  }
-                ]
+                "State": "Generated"
               },
               "family.family_last_arrangement_end_date": {
                 "Definition": {
@@ -10641,19 +10713,7 @@
                     "ConceptualProperty": "# of Approved Families"
                   }
                 },
-                "State": "Generated",
-                "Terms": [
-                  {
-                    "# of Approved/Onboarded Families": {
-                      "Source": {
-                        "Agent": "PowerBI.VisualColumnRename",
-                        "Type": "External"
-                      },
-                      "State": "Suggested",
-                      "Weight": 0.9
-                    }
-                  }
-                ]
+                "State": "Generated"
               },
               "family.of_engaged_families": {
                 "Definition": {
@@ -21895,6 +21955,7 @@
             "value": "FS"
           }
         ],
+        "crossFilteringBehavior": "bothDirections",
         "fromColumn": "CommunityId",
         "fromTable": "Community Member Families",
         "toColumn": "Id",
@@ -22010,13 +22071,32 @@
         "toTable": "Entity"
       },
       {
-        "name": "baca5828-9756-eac3-496e-004f9dc82867",
+        "name": "6e28cbba-3fa1-fc01-2e00-8b1308cf1a6b",
+        "fromColumn": "FamilyId",
+        "fromTable": "Community Member Families",
+        "toCardinality": "many",
+        "toColumn": "FamilyId",
+        "toTable": "Entity"
+      },
+      {
+        "name": "793602f0-7a89-207e-44f2-e33850a21341",
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "fromColumn": "PersonId",
+        "fromTable": "Community Role Assignments",
+        "isActive": false,
+        "toColumn": "PersonId",
+        "toTable": "Entity"
+      },
+      {
+        "name": "540b955b-b025-9c12-de17-060cc26056d1",
         "crossFilteringBehavior": "bothDirections",
         "fromColumn": "FamilyId",
         "fromTable": "Entity",
+        "isActive": false,
         "toCardinality": "many",
-        "toColumn": "FamilyId",
-        "toTable": "Community Member Families"
+        "toColumn": "EntityId",
+        "toTable": "Function Assignments"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -28039,6 +28119,17 @@
             "expression": "COUNTROWS(Community)",
             "formatString": "0",
             "lineageTag": "936a49f0-4f83-4056-bd40-561afd518652"
+          },
+          {
+            "name": "First Community Membership",
+            "expression": [
+              "",
+              "",
+              "VAR FirstCommunity = MIN(Community[Community Name])",
+              "",
+              "RETURN IF(ISBLANK(FirstCommunity), \"\", FirstCommunity)"
+            ],
+            "lineageTag": "b7d1d23d-01bf-4edc-ab56-d3625c342b19"
           }
         ],
         "partitions": [
@@ -29132,22 +29223,6 @@
             "type": "calculated"
           },
           {
-            "name": "Community Membership Count",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "expression": "COALESCE(COUNTROWS(RELATEDTABLE('Community Member Families')),0)",
-            "formatString": "0",
-            "isDataTypeInferred": true,
-            "lineageTag": "7ea830d6-37ac-4c5b-902b-400e4d545aa6",
-            "summarizeBy": "sum",
-            "type": "calculated"
-          },
-          {
             "name": "Participation Type",
             "annotations": [
               {
@@ -29332,14 +29407,14 @@
             "name": "# of Families in Role (NEW)",
             "expression": [
               "",
-              "VAR FamilyDirectApproval = CALCULATE(",
+              "VAR FamilyApproval = CALCULATE(",
               "    DISTINCTCOUNT('Role Approval'[Entity Id]),",
               "    'Role Approval'[Entity Type] = \"Family\",",
               "    USERELATIONSHIP(Entity[FamilyId], 'Role Approval'[Entity Id]),",
               "    CROSSFILTER(Entity[PersonId], 'Role Approval'[Entity Id], None)",
               ")",
               "",
-              "RETURN FamilyDirectApproval",
+              "RETURN FamilyApproval",
               ""
             ],
             "formatString": "0",
@@ -29371,23 +29446,6 @@
             "lineageTag": "202d8b72-a7a6-4280-94a4-a673b34efa25"
           },
           {
-            "name": "Participation Type (COUNT)",
-            "expression": [
-              "",
-              "VAR FamilyApprovals = CALCULATE(",
-              "    COUNTROWS('Role Approval'),",
-              "    'Role Approval'[Entity Type] = \"Family\",",
-              "    USERELATIONSHIP(Entity[FamilyId], 'Role Approval'[Entity Id]),",
-              "    CROSSFILTER(Entity[PersonId], 'Role Approval'[Entity Id], None)",
-              ")",
-              "",
-              "RETURN FamilyApprovals",
-              ""
-            ],
-            "formatString": "0",
-            "lineageTag": "ca060fe0-9552-4ec6-b26d-e27dd78f9239"
-          },
-          {
             "name": "# of Families (NEW)",
             "expression": [
               "DISTINCTCOUNT(Entity[FamilyId])",
@@ -29395,6 +29453,108 @@
             ],
             "formatString": "0",
             "lineageTag": "982e7e0c-55e9-485e-8813-4e519005eb6f"
+          },
+          {
+            "name": "Community Membership Count",
+            "expression": "COALESCE(COUNTROWS(RELATEDTABLE('Community Member Families')),0)",
+            "formatString": "0",
+            "lineageTag": "eab89055-f3d3-49a0-b310-ecc71d6f052c"
+          },
+          {
+            "name": "# of Engaged Families (NEW)",
+            "expression": [
+              "",
+              "// An engaged family is one who was assigned to a function in an arrangement where that arrangement was active in the given timeframe.",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start] ",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN",
+              "",
+              "IF(",
+              "    CurrentStartDate > Today, ",
+              "    BLANK(), ",
+              "    CALCULATE(",
+              "        DISTINCTCOUNT(Entity[FamilyId]),",
+              "        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]),",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "4f777219-c564-4155-9878-15c678329e3a"
+          },
+          {
+            "name": "Family Engagement Level (NEW)",
+            "expression": [
+              "",
+              "//This is basically counting the # of assignments that the family has, as opposed to just seeing if they have any assignments in the given timeframe or not.",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "",
+              "RETURN",
+              "IF(",
+              "    CurrentStartDate > Today,",
+              "    BLANK(),",
+              "    CALCULATE(",
+              "        COUNTROWS('Function Assignments'),",
+              "        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]), // This needs to be active to associate to the correct family for use in visuals.",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "03942c7e-2261-4327-8398-7e9915a5c677"
+          },
+          {
+            "name": "Family Last Arrangement End Date (NEW)",
+            "expression": [
+              "",
+              "",
+              "VAR Today = TODAY()",
+              "VAR CurrentStartDate = [Selected Timeframe Start]",
+              "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
+              "//",
+              "",
+              "RETURN ",
+              "IF(",
+              "    CurrentStartDate > Today,",
+              "    BLANK(),",
+              "    CALCULATE(",
+              "        MAXX(",
+              "            ADDCOLUMNS(",
+              "                'Family Function Assignment',",
+              "                \"EffectiveEnded\", IF(ISBLANK(RELATED('Arrangement'[Ended])), Today, RELATED('Arrangement'[Ended]))",
+              "            ),",
+              "            [EffectiveEnded]",
+              "        ),",
+              "        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]),",
+              "        NOT ISBLANK(Arrangement[Started]),",
+              "        Arrangement[Started] <= CurrentEndDate,",
+              "        IF(",
+              "            ISBLANK('Arrangement'[Ended]),",
+              "            TRUE(),",
+              "            'Arrangement'[Ended] >= CurrentStartDate",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "lineageTag": "f9597471-ba39-423f-9003-259bf0abccc8"
           }
         ],
         "partitions": [
