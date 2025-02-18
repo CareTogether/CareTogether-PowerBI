@@ -9716,27 +9716,6 @@
                   }
                 ]
               },
-              "entity.family_engagement_level_new": {
-                "Definition": {
-                  "Binding": {
-                    "ConceptualEntity": "Entity",
-                    "ConceptualProperty": "Family Engagement Level (NEW)"
-                  }
-                },
-                "State": "Generated",
-                "Terms": [
-                  {
-                    "# of Assignments": {
-                      "Source": {
-                        "Agent": "PowerBI.VisualColumnRename",
-                        "Type": "External"
-                      },
-                      "State": "Suggested",
-                      "Weight": 0.9
-                    }
-                  }
-                ]
-              },
               "entity.impacted_adults_new": {
                 "Definition": {
                   "Binding": {
@@ -9769,6 +9748,37 @@
                 "Terms": [
                   {
                     "# Impacted Children": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "entity.individual_engagement_level_new": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Entity",
+                    "ConceptualProperty": "Individual Engagement Level (NEW)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "# of Assignments": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  },
+                  {
+                    "Individual Engagement Level": {
                       "Source": {
                         "Agent": "PowerBI.VisualColumnRename",
                         "Type": "External"
@@ -14541,19 +14551,7 @@
                     "ConceptualProperty": "Individual Engagement Level"
                   }
                 },
-                "State": "Generated",
-                "Terms": [
-                  {
-                    "# of Assignments": {
-                      "Source": {
-                        "Agent": "PowerBI.VisualColumnRename",
-                        "Type": "External"
-                      },
-                      "State": "Suggested",
-                      "Weight": 0.9
-                    }
-                  }
-                ]
+                "State": "Generated"
               },
               "person.individual_last_arrangement_end_date": {
                 "Definition": {
@@ -21905,14 +21903,6 @@
         "toTable": "Arrangement"
       },
       {
-        "name": "c9082688-3982-1fe1-4bd6-b3bfe6cb5fd7",
-        "fromColumn": "EntityId",
-        "fromTable": "Function Assignments",
-        "isActive": false,
-        "toColumn": "PersonId",
-        "toTable": "Entity"
-      },
-      {
         "name": "0f87e458-0cd4-4871-e4b8-3b6eaffa9b71",
         "fromColumn": "TypeName",
         "fromTable": "Arrangement",
@@ -22089,14 +22079,13 @@
         "toTable": "Entity"
       },
       {
-        "name": "540b955b-b025-9c12-de17-060cc26056d1",
+        "name": "8b75ee4d-9379-14df-7a46-9e9d91d061ec",
         "crossFilteringBehavior": "bothDirections",
-        "fromColumn": "FamilyId",
-        "fromTable": "Entity",
+        "fromColumn": "EntityId",
+        "fromTable": "Function Assignments",
         "isActive": false,
-        "toCardinality": "many",
-        "toColumn": "EntityId",
-        "toTable": "Function Assignments"
+        "toColumn": "PersonId",
+        "toTable": "Entity"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -23313,7 +23302,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Exception"
+            "value": "Table"
           },
           {
             "name": "PBI_NavigationStepName",
@@ -28415,6 +28404,19 @@
             "lineageTag": "079fd573-495f-401c-9b66-8edc8017fd7d",
             "sourceColumn": "Function",
             "summarizeBy": "none"
+          },
+          {
+            "name": "EntityType",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7ba3788a-52dd-4344-a4dc-cd7b04b35b7f",
+            "sourceColumn": "EntityType",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "37dbfcb3-ae81-4dbe-b5b6-66fa9cff03bd",
@@ -28428,18 +28430,18 @@
                 "let",
                 "    Source = #\"OData Live\",",
                 "",
-                "    // Family Table:",
-                "    FamilyTable = Source{[Name=\"FamilyFunctionAssignments\",Signature=\"table\"]}[Data],",
-                "    FamilyColumns = Table.SelectColumns(FamilyTable, {\"FamilyId\", \"ArrangementId\", \"Function\"}),",
-                "    FamilyRenamed = Table.RenameColumns(FamilyColumns, {{\"FamilyId\", \"EntityId\"}}),",
+                "    // Family Function Assignments",
+                "    Families = Table.SelectColumns(Source{[Name=\"FamilyFunctionAssignments\", Signature=\"table\"]}[Data], {\"ArrangementId\", \"FamilyId\", \"Function\"}),",
+                "    FamiliesEntityId = Table.RenameColumns(Families, {{\"FamilyId\", \"EntityId\"}}),",
+                "    FamiliesEntityType = Table.AddColumn(FamiliesEntityId, \"EntityType\", each \"Family\"),",
                 "",
-                "    //Person Table: ",
-                "    PersonTable = Source{[Name=\"IndividualFunctionAssignments\",Signature=\"table\"]}[Data],",
-                "    PersonColumns = Table.SelectColumns(PersonTable, {\"PersonId\", \"ArrangementId\", \"Function\"}),",
-                "    PersonRenamed = Table.RenameColumns(PersonColumns, {{\"PersonId\", \"EntityId\"}}),",
+                "    // Individual Function Assigments",
+                "    Individuals = Table.SelectColumns(Source{[Name=\"IndividualFunctionAssignments\", Signature=\"table\"]}[Data], {\"ArrangementId\", \"PersonId\", \"Function\"}),",
+                "    IndividualsEntityId = Table.RenameColumns(Individuals, {{\"PersonId\", \"EntityId\"}}),",
+                "    IndividualsEntityType = Table.AddColumn(IndividualsEntityId, \"EntityType\", each \"Person\"),",
                 "",
-                "    //Combined Tables:",
-                "    CombinedTables = Table.Combine({FamilyRenamed, PersonRenamed})",
+                "    //Merged Dataset: ",
+                "    CombinedTables = Table.Combine({FamiliesEntityType, IndividualsEntityType})",
                 "in",
                 "    CombinedTables"
               ],
@@ -29426,7 +29428,8 @@
               "",
               "VAR PeopleApprovals = CALCULATE(",
               "    DISTINCTCOUNT('Role Approval'[Entity Id]),",
-              "    'Role Approval'[Entity Type] = \"Person\"",
+              "    'Role Approval'[Entity Type] = \"Person\",",
+              "    'Role Approval'[Approval Type] = \"Direct\"",
               ")",
               "",
               "RETURN PeopleApprovals"
@@ -29461,23 +29464,26 @@
             "lineageTag": "eab89055-f3d3-49a0-b310-ecc71d6f052c"
           },
           {
-            "name": "# of Engaged Families (NEW)",
+            "name": "Families",
+            "expression": "VALUES(Entity[Family Name])",
+            "lineageTag": "8a97b6f4-3cf1-4654-ab54-ffb9b334fea4"
+          },
+          {
+            "name": "# of Engaged People (NEW)",
             "expression": [
               "",
-              "// An engaged family is one who was assigned to a function in an arrangement where that arrangement was active in the given timeframe.",
+              "// An engaged person is one who was assigned to a function in an arrangement where that arrangement was active in the given timeframe.",
               "",
               "VAR Today = TODAY()",
               "VAR CurrentStartDate = [Selected Timeframe Start] ",
               "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
               "",
-              "RETURN",
-              "",
-              "IF(",
+              "RETURN IF(",
               "    CurrentStartDate > Today, ",
               "    BLANK(), ",
               "    CALCULATE(",
-              "        DISTINCTCOUNT(Entity[FamilyId]),",
-              "        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]),",
+              "        DISTINCTCOUNT(Entity[PersonId]),",
+              "        USERELATIONSHIP(Entity[PersonId], 'Function Assignments'[EntityId]),",
               "        NOT ISBLANK(Arrangement[Started]),",
               "        Arrangement[Started] <= CurrentEndDate,",
               "        IF(",
@@ -29488,14 +29494,13 @@
               "    )",
               ")"
             ],
-            "formatString": "0",
-            "lineageTag": "4f777219-c564-4155-9878-15c678329e3a"
+            "lineageTag": "4eacf164-703f-494a-acbe-01479d510fd1"
           },
           {
-            "name": "Family Engagement Level (NEW)",
+            "name": "Individual Engagement Level (NEW)",
             "expression": [
               "",
-              "//This is basically counting the # of assignments that the family has, as opposed to just seeing if they have any assignments in the given timeframe or not.",
+              "//This is basically counting the # of assignments that the person has, as opposed to just seeing if they have any assignments in the given timeframe or not.",
               "",
               "VAR Today = TODAY()",
               "VAR CurrentStartDate = [Selected Timeframe Start]",
@@ -29507,7 +29512,7 @@
               "    BLANK(),",
               "    CALCULATE(",
               "        COUNTROWS('Function Assignments'),",
-              "        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]), // This needs to be active to associate to the correct family for use in visuals.",
+              "        USERELATIONSHIP(Entity[PersonId], 'Function Assignments'[EntityId]), // This needs to be active to associate to the correct person for use in visuals.",
               "        NOT ISBLANK(Arrangement[Started]),",
               "        Arrangement[Started] <= CurrentEndDate,",
               "        IF(",
@@ -29519,17 +29524,17 @@
               ")"
             ],
             "formatString": "0",
-            "lineageTag": "03942c7e-2261-4327-8398-7e9915a5c677"
+            "lineageTag": "d8ccb01c-4012-4960-9433-6aef21726e72"
           },
           {
-            "name": "Family Last Arrangement End Date (NEW)",
+            "name": "Individual Last Arrangement End Date (NEW)",
             "expression": [
               "",
+              "// If an Arrangement has a blank end date we consider it as ended today.",
               "",
               "VAR Today = TODAY()",
               "VAR CurrentStartDate = [Selected Timeframe Start]",
               "VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])",
-              "//",
               "",
               "RETURN ",
               "IF(",
@@ -29538,12 +29543,12 @@
               "    CALCULATE(",
               "        MAXX(",
               "            ADDCOLUMNS(",
-              "                'Family Function Assignment',",
+              "                'Function Assignments',",
               "                \"EffectiveEnded\", IF(ISBLANK(RELATED('Arrangement'[Ended])), Today, RELATED('Arrangement'[Ended]))",
               "            ),",
               "            [EffectiveEnded]",
               "        ),",
-              "        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]),",
+              "        USERELATIONSHIP(Entity[PersonId], 'Function Assignments'[EntityId]),",
               "        NOT ISBLANK(Arrangement[Started]),",
               "        Arrangement[Started] <= CurrentEndDate,",
               "        IF(",
@@ -29554,7 +29559,8 @@
               "    )",
               ")"
             ],
-            "lineageTag": "f9597471-ba39-423f-9003-259bf0abccc8"
+            "formatString": "Short Date",
+            "lineageTag": "300172cb-05b7-4efb-851d-0af26805504a"
           }
         ],
         "partitions": [
