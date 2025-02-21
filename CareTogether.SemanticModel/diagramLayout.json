@@ -140,32 +140,6 @@
         },
         {
           "location": {
-            "x": 223.63246600573063,
-            "y": 617.345315332566
-          },
-          "nodeIndex": "Family Role Approval",
-          "nodeLineageTag": "810a3cd6-49b2-4879-89d1-6179d6238543",
-          "size": {
-            "height": 235.41089732987143,
-            "width": 234
-          },
-          "zIndex": 24
-        },
-        {
-          "location": {
-            "x": 1153.5711276831396,
-            "y": 555.12372765219448
-          },
-          "nodeIndex": "Individual Role Approval",
-          "nodeLineageTag": "a8b96c21-f14f-4510-95cb-843cfdaeae1f",
-          "size": {
-            "height": 268.25317863897294,
-            "width": 248
-          },
-          "zIndex": 11
-        },
-        {
-          "location": {
             "x": 1722.4326857520346,
             "y": 1549.2473760219598
           },
@@ -202,19 +176,6 @@
             "width": 234
           },
           "zIndex": 15
-        },
-        {
-          "location": {
-            "x": 837.6423373612007,
-            "y": 413.21627527941985
-          },
-          "nodeIndex": "Family Role Removed Individual",
-          "nodeLineageTag": "f3700a33-e10d-4eb2-b253-7d6172702a76",
-          "size": {
-            "height": 202.77732979753887,
-            "width": 234
-          },
-          "zIndex": 12
         },
         {
           "location": {
