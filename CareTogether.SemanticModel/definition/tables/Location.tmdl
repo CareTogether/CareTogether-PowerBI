@@ -1,0 +1,51 @@
+table Location
+	lineageTag: 16a053ed-84f9-4826-879d-c70341fcdfb9
+
+	column Id
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: 77c826a0-a516-4e55-a8d7-4c91f12da689
+		summarizeBy: none
+		sourceColumn: Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationId
+		dataType: string
+		isHidden
+		lineageTag: c1603fe9-9201-410e-af0b-578809b0d6ba
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// The name of the location (a local part of the organization)
+	column Location
+		dataType: string
+		lineageTag: 5f192f7e-c063-471b-805d-3086465c3c25
+		isDefaultLabel
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Location-73b11de1-d894-44a9-b32e-4ba98f7ecfb2 = m
+		mode: import
+		queryGroup: 'Model Queries'
+		source =
+				let
+				    Source = #"OData Live",
+				    Locations_table = Source{[Name="Location",Signature="table"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(Locations_table,{{"Name", "Location"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

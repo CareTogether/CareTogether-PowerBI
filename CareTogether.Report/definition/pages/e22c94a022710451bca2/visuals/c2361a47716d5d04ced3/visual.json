@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "name": "c2361a47716d5d04ced3",
+  "position": {
+    "x": 877.32522796352589,
+    "y": 189.66565349544075,
+    "z": 2000,
+    "height": 531.06382978723411,
+    "width": 402.67477203647417,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Community"
+                    }
+                  },
+                  "Property": "Community Name"
+                }
+              },
+              "queryRef": "Community.Community Name",
+              "nativeQueryRef": "Communities for the selected family",
+              "displayName": "Communities for the selected family"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "name": "1a9f70107748c43e6d5a",
+  "position": {
+    "x": 343.14068759599166,
+    "y": 0,
+    "z": 1000,
+    "height": 719.71559603466972,
+    "width": 937.03803151213117,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "stackedAreaChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "Date.Date",
+              "nativeQueryRef": "Date",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Role"
+                    }
+                  },
+                  "Property": "Role Name"
+                }
+              },
+              "queryRef": "Role.Role Name",
+              "nativeQueryRef": "Role Name"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Approval Status"
+                    }
+                  },
+                  "Property": "Status"
+                }
+              },
+              "queryRef": "Approval Status.Status",
+              "nativeQueryRef": "Status"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Entity"
+                    }
+                  },
+                  "Property": "# of Approval Statuses"
+                }
+              },
+              "queryRef": "Entity.# of Approval Statuses (NEW)",
+              "nativeQueryRef": "# of Approval Statuses (NEW)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

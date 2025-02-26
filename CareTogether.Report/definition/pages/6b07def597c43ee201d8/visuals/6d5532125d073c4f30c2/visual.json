@@ -1,0 +1,215 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "name": "6d5532125d073c4f30c2",
+  "position": {
+    "x": 500.55479252057489,
+    "y": 307.42037699936191,
+    "z": 2000,
+    "height": 412.84696161873961,
+    "width": 779.62516357186882,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Entity"
+                    }
+                  },
+                  "Property": "Family Name"
+                }
+              },
+              "queryRef": "Entity.Family Name",
+              "nativeQueryRef": "Family Name1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Referral"
+                    }
+                  },
+                  "Property": "Referral Source"
+                }
+              },
+              "queryRef": "Referral.Referral Source",
+              "nativeQueryRef": "Referral Source"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Referral"
+                    }
+                  },
+                  "Property": "Opened"
+                }
+              },
+              "queryRef": "Referral.Opened",
+              "nativeQueryRef": "Opened"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Referral"
+                    }
+                  },
+                  "Property": "Closed"
+                }
+              },
+              "queryRef": "Referral.Closed",
+              "nativeQueryRef": "Closed"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Close Reason"
+                    }
+                  },
+                  "Property": "Reason"
+                }
+              },
+              "queryRef": "Close Reason.Reason",
+              "nativeQueryRef": "Reason"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Referral"
+                  }
+                },
+                "Property": "Opened"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "193.23937890341654D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referral.Referral Source"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "129.315628085575D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Close Reason.Reason"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "82.42968482111313D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referral.Closed"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86.85937885483895D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referral.Opened"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "259.9291320080114D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Entity.Family Name"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referral.Opened"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referral.Closed"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

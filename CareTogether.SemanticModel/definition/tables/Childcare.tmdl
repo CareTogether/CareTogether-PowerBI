@@ -1,0 +1,54 @@
+table Childcare
+	lineageTag: ca6cccb8-8c47-4b47-a6a3-3730e2269767
+
+	column ChildInvolvement
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: 3b70af42-591e-4d31-827b-960c48e87a46
+		summarizeBy: none
+		sourceColumn: ChildInvolvement
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2ca7e23f-8f11-4e41-b765-f6df3fcaa47a
+		summarizeBy: none
+		sourceColumn: Order
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Care Type'
+		dataType: string
+		lineageTag: d0b7890e-5b9c-4bd6-ac57-508f55f90a50
+		isDefaultLabel
+		summarizeBy: none
+		sourceColumn: Care Type
+		sortByColumn: Order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Childcare-c5257646-9794-4cef-b5b5-f6c42666d18d = m
+		mode: import
+		queryGroup: 'Reference Tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wcs7IzEnxyC8tzsxLV9JRMgBisJACTCxWJ1rJJbGyJDM3FSzhnFiU6p+XUwlUaAjEUCkFsFwyUE4BLAnS5ZcPFvTMK8vPKUvNTc0rAao3AmK/fIhyBWSp2FgA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ChildInvolvement = _t, Order = _t, Involvement = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"ChildInvolvement", type text}, {"Order", Int64.Type}, {"Involvement", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Involvement", "Care Type"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

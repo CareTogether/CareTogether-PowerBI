@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "name": "dfadc8622ed69eb9d508",
+  "position": {
+    "x": 320,
+    "y": 0,
+    "z": 2000,
+    "height": 133.25227963525836,
+    "width": 320,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Arrangement"
+                    }
+                  },
+                  "Property": "Average Arrangements Duration"
+                }
+              },
+              "queryRef": "Arrangement.Average Arrangement Duration",
+              "nativeQueryRef": "Average Arrangement Duration (days)",
+              "displayName": "Average Arrangement Duration (days)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Arrangement"
+                  }
+                },
+                "Property": "Average Arrangements Duration"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

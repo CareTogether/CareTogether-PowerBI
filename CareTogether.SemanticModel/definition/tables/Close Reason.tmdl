@@ -1,0 +1,55 @@
+table 'Close Reason'
+	lineageTag: bbdc1bb2-de24-4f53-a35b-5004cd067f7e
+
+	column ReferralCloseReason
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: 5a532f98-2d39-40be-b328-f3097862edd2
+		summarizeBy: none
+		sourceColumn: ReferralCloseReason
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 50e6dafd-6383-477f-b9f8-1413b6f8fe8a
+		summarizeBy: none
+		sourceColumn: Order
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reason
+		dataType: string
+		lineageTag: e44dc9e1-908d-42c8-ad27-2f409fa9405b
+		isDefaultLabel
+		summarizeBy: none
+		sourceColumn: Reason
+		sortByColumn: Order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Close Reason-e4532053-4baf-4b3f-86c7-aff0b37bd27f' = m
+		mode: import
+		queryGroup: 'Reference Tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Tcw9DoAgDIbhqzTMDP5dwLgqgythINAYFiGIg7e3gFGHDt+bJ5WSCZ/GEKIP0emEjLOGjiL8q+IZTjpo49JFoC0I3lLB7PcNo0C0aAl0FdUKT85yxcOf0RTU0327/CG4YKI+5Ae0IE+lbg==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ReferralCloseReason = _t, Order = _t, Reason = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"ReferralCloseReason", type text}, {"Order", Int64.Type}, {"Reason", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

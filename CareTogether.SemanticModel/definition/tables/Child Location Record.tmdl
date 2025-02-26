@@ -1,0 +1,320 @@
+table 'Child Location Record'
+	lineageTag: 97d0ba37-acfb-4f78-bc62-fb59df0fb93e
+
+	measure '# of Times Care Provided in Period' =
+			
+			VAR TimePeriodStart = MIN('Date'[Date])
+			VAR TimePeriodEnd = MAX('Date'[Date])
+			RETURN
+			    CALCULATE(
+			        COUNTX(
+			            'Child Location Record',
+			            VAR StartDate = 'Child Location Record'[Started]
+			            VAR EndDate = IF (ISBLANK('Child Location Record'[Ended]), UTCNOW(), 'Child Location Record'[Ended])
+			            VAR DurationInDays = DATEDIFF(StartDate, EndDate, DAY)
+			            RETURN
+			                IF (StartDate >= TimePeriodStart && EndDate <= TimePeriodEnd,
+			                    1,
+			                    IF (StartDate < TimePeriodStart && EndDate <= TimePeriodEnd,
+			                        1,
+			                        IF (StartDate >= TimePeriodStart && EndDate > TimePeriodEnd,
+			                            1,
+			                            1
+			                        )
+			                    )
+			                )
+			        ),
+			        AND(
+			            'Child Location Record'[Started] <= TimePeriodEnd,
+			            OR(ISBLANK('Child Location Record'[Ended]), 'Child Location Record'[Ended] >= TimePeriodStart)
+			        ),
+			        'Child Location Record'[ChildcarePlan] <> "WithParent"
+			    )
+		formatString: 0
+		isHidden
+		lineageTag: 584e6779-63dc-48e4-b0d5-b2ae07e041ca
+
+		changedProperty = IsHidden
+
+	measure '# of Hours of Care' = SUMX(FILTER('Child Location Record', 'Child Location Record'[ChildcarePlan] <> "WithParent"), 'Child Location Record'[Duration] * 24)
+		formatString: 0.0
+		isHidden
+		lineageTag: aa6022d4-d984-4f60-bd66-6ba366e23087
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+	measure '# of Nights of Care in Period' =
+			
+			VAR TimePeriodStart = MIN('Date'[Date])
+			VAR TimePeriodEnd = MAX('Date'[Date])
+			RETURN
+			    CALCULATE(
+			        SUMX(
+			            'Child Location Record',
+			            VAR StartDate = 'Child Location Record'[Started]
+			            VAR EndDate = IF (ISBLANK('Child Location Record'[Ended]), UTCNOW(), 'Child Location Record'[Ended])
+			            VAR DurationInDays = DATEDIFF(StartDate, EndDate, DAY)
+			            RETURN
+			                IF (StartDate >= TimePeriodStart && EndDate <= TimePeriodEnd,
+			                    DurationInDays,
+			                    IF (StartDate < TimePeriodStart && EndDate <= TimePeriodEnd,
+			                        DATEDIFF(TimePeriodStart, EndDate, DAY),
+			                        IF (StartDate >= TimePeriodStart && EndDate > TimePeriodEnd,
+			                            DATEDIFF(StartDate, TimePeriodEnd, DAY),
+			                            DATEDIFF(TimePeriodStart, TimePeriodEnd, DAY)
+			                        )
+			                    )
+			                )
+			        ),
+			        AND(
+			            'Child Location Record'[Started] <= TimePeriodEnd,
+			            OR(ISBLANK('Child Location Record'[Ended]), 'Child Location Record'[Ended] >= TimePeriodStart)
+			        ),
+			        'Child Location Record'[ChildcarePlan] <> "WithParent"
+			    )
+		formatString: 0
+		isHidden
+		lineageTag: d7339b3c-f403-4a06-8c50-2338dc57427c
+
+		changedProperty = IsHidden
+
+	measure '# of Days of Care in Period' =
+			
+			VAR TimePeriodStart = MIN('Date'[Date])
+			VAR TimePeriodEnd = MAX('Date'[Date])
+			RETURN
+			    CALCULATE(
+			        SUMX(
+			            'Child Location Record',
+			            VAR StartDate = 'Child Location Record'[Started]
+			            VAR EndDate = IF (ISBLANK('Child Location Record'[Ended]), UTCNOW(), 'Child Location Record'[Ended])
+			            VAR DurationInDays = DATEDIFF(StartDate, EndDate, DAY)
+			            RETURN
+			                IF (StartDate >= TimePeriodStart && EndDate <= TimePeriodEnd,
+			                    DurationInDays,
+			                    IF (StartDate < TimePeriodStart && EndDate <= TimePeriodEnd,
+			                        DATEDIFF(TimePeriodStart, EndDate, DAY),
+			                        IF (StartDate >= TimePeriodStart && EndDate > TimePeriodEnd,
+			                            DATEDIFF(StartDate, TimePeriodEnd, DAY),
+			                            DATEDIFF(TimePeriodStart, TimePeriodEnd, DAY)
+			                        )
+			                    )
+			                ) + 1
+			        ),
+			        AND(
+			            'Child Location Record'[Started] <= TimePeriodEnd,
+			            OR(ISBLANK('Child Location Record'[Ended]), 'Child Location Record'[Ended] >= TimePeriodStart)
+			        ),
+			        'Child Location Record'[ChildcarePlan] <> "WithParent"
+			    )
+		formatString: 0
+		isHidden
+		lineageTag: 8cedb776-0a99-4a2d-801b-90f84fde1e70
+
+		changedProperty = IsHidden
+
+	measure 'Days of Care' =
+			
+			VAR CurrentDate = TODAY()
+			VAR StartDate = [Selected Timeframe Start]  // This is a measure calculating the start of the desired timeframe.
+			VAR EndDate = [Selected Timeframe End]  // This is a measure calculating the end of the desired timeframe.
+			VAR Result =
+			    CALCULATE(
+			        DISTINCTCOUNT(ChildLocationExpanded[Date]),
+			        'ChildLocationExpanded'[ChildcarePlan] <> "WithParent",
+			        'ChildLocationExpanded'[Date] >= StartDate,
+			        'ChildLocationExpanded'[Date] <= MIN(EndDate, CurrentDate)  // Ensure calculation up to the current date or the end date, whichever is earlier.
+			    )
+			RETURN
+			    IF(
+			        CurrentDate < StartDate,  // If today is before the start date, show BLANK.
+			        BLANK(),
+			        IF(
+			            Result = 0,
+			            0,  // Return 0 if no data is found within the range up to the current date.
+			            Result  // Otherwise, return the actual count.
+			        )
+			    )
+		formatString: 0
+		lineageTag: 0efc4a39-0f01-4fda-8796-3c832f9c8af2
+
+	measure 'Nights of Care' = ```
+			
+			VAR CurrentDate = TODAY()
+			VAR StartDate = [Selected Timeframe Start]  // This is a measure calculating the start of the desired timeframe.
+			VAR EndDate = [Selected Timeframe End]  // This is a measure calculating the end of the desired timeframe.
+			VAR Result =
+			    CALCULATE(
+			        DISTINCTCOUNT(ChildLocationExpanded[Date]),
+			        'ChildLocationExpanded'[ChildcarePlan] <> "WithParent",
+			        'ChildLocationExpanded'[OvernightStay] = TRUE(),  // Only consider records where OvernightStay is TRUE.
+			        'ChildLocationExpanded'[Date] >= StartDate,
+			        'ChildLocationExpanded'[Date] <= MIN(EndDate, CurrentDate)  // Ensure calculation up to the current date or the end date, whichever is earlier.
+			    )
+			RETURN
+			    IF(
+			        CurrentDate < StartDate,  // If today is before the start date, show BLANK.
+			        BLANK(),
+			        IF(
+			            Result = 0,
+			            0,  // Return 0 if no data is found within the range up to the current date.
+			            Result  // Otherwise, return the actual count.
+			        )
+			    )
+			
+			```
+		formatString: 0
+		lineageTag: 2e84ddd1-74f4-473b-9b8d-b93b89c10625
+
+	column ArrangementId
+		dataType: string
+		isHidden
+		displayFolder: _Columns
+		lineageTag: 35cd963b-9383-49a0-8f43-957369306c02
+		summarizeBy: none
+		sourceColumn: ArrangementId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChildPersonId
+		dataType: string
+		isHidden
+		displayFolder: _Columns
+		lineageTag: 88b1135a-1cb9-4149-ae6c-ab177bf74225
+		summarizeBy: none
+		sourceColumn: ChildPersonId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FamilyId
+		dataType: string
+		isHidden
+		displayFolder: _Columns
+		lineageTag: b8f54091-35b4-4e2c-a854-de0b3e59a7cd
+		summarizeBy: none
+		sourceColumn: FamilyId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Started
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: _Columns
+		lineageTag: 46b560c3-3ca2-44a0-baba-b85ecc7d7c76
+		summarizeBy: none
+		sourceColumn: Started
+
+		variation Variation
+			isDefault
+			relationship: 8629abc0-5a97-4810-966e-8aa32eb61866
+			defaultHierarchy: LocalDateTable_f5e45cf3-f015-44f1-b705-01530790baec.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChildcarePlan
+		dataType: string
+		isHidden
+		displayFolder: _Columns
+		lineageTag: 2bdb74fb-63d5-42fe-8be3-6347f3570834
+		summarizeBy: none
+		sourceColumn: ChildcarePlan
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ended
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: _Columns
+		lineageTag: 6cb0d205-2d45-44c8-a6d7-8bfcbb9bc763
+		summarizeBy: none
+		sourceColumn: Ended
+
+		variation Variation
+			isDefault
+			relationship: f63e6923-e035-4908-8427-2c9dac7e9b12
+			defaultHierarchy: LocalDateTable_c6f5f2bf-94ad-49eb-b2ac-502d51b89614.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Duration
+		dataType: double
+		isHidden
+		displayFolder: _Columns
+		lineageTag: 5af3583b-30c3-4122-adbb-7f59f936a5f0
+		summarizeBy: sum
+		sourceColumn: Duration
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Index
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		displayFolder: _Columns
+		lineageTag: 530c8a1c-5003-4896-99f0-d68103824475
+		summarizeBy: none
+		sourceColumn: Index
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Childcare Family Name'
+		dataType: string
+		lineageTag: 466b77dd-eacc-4c9e-b87e-fa1d7fa07230
+		summarizeBy: none
+		sourceColumn: Childcare Family Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Child Location Record-3a748a32-4c86-4eac-923a-0eca77fa6916' = m
+		mode: import
+		queryGroup: 'Model Queries'
+		source = ```
+				let
+				    Source = #"OData Live",
+				    ChildLocationRecords_table1 = Source{[Name="ChildLocationRecords",Signature="table"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(ChildLocationRecords_table1,{"Arrangement", "Child", "Family"}),
+				    #"Calculated Local Time" = Table.TransformColumns(#"Removed Columns",{{"StartedAtUtc", DateTimeZone.ToLocal, type datetimezone}, {"EndedAtUtc", DateTimeZone.ToLocal, type datetimezone}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Calculated Local Time",{{"StartedAtUtc", "Started"}, {"EndedAtUtc", "Ended"}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Renamed Columns", "Index", 1, 1, Int64.Type),
+				
+				    // Adding the family Name: 
+				    Families = Table.SelectColumns(Source{[Name="Family",Signature="table"]}[Data], {"Id", "Name"}),
+				
+				    // Merged tables: 
+				    Merge = Table.RenameColumns(Table.SelectColumns(Table.Join(
+				        #"Added Index",
+				        "FamilyId",
+				        Families,
+				        "Id",
+				        JoinKind.LeftOuter
+				    ),{"ArrangementId", "ChildPersonId", "FamilyId", "Started", "ChildcarePlan", "Ended", "Duration", "Index", "Name"}), 
+				    {{"Name", "Childcare Family Name"}})
+				in
+				    Merge
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

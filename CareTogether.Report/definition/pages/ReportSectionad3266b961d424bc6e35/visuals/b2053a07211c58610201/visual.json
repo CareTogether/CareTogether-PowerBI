@@ -1,0 +1,237 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "name": "b2053a07211c58610201",
+  "position": {
+    "x": 0,
+    "y": 48.3651430902338,
+    "z": 0,
+    "height": 671.8358058352477,
+    "width": 1280.3572425341893
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "Family Name"
+                }
+              },
+              "queryRef": "Family.Family Name",
+              "nativeQueryRef": "Family Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "Email"
+                }
+              },
+              "queryRef": "Family.Email"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "Phone Number"
+                }
+              },
+              "queryRef": "Family.Phone Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "Address Line 1"
+                }
+              },
+              "queryRef": "Family.Address Line 1",
+              "nativeQueryRef": "Address Line 1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "Address Line 2"
+                }
+              },
+              "queryRef": "Family.Address Line 2",
+              "nativeQueryRef": "Address Line 2"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "City"
+                }
+              },
+              "queryRef": "Family.City",
+              "nativeQueryRef": "City"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "County"
+                }
+              },
+              "queryRef": "Family.County",
+              "nativeQueryRef": "County"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "State"
+                }
+              },
+              "queryRef": "Family.State",
+              "nativeQueryRef": "State"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "Postal Code"
+                }
+              },
+              "queryRef": "Family.Postal Code",
+              "nativeQueryRef": "Postal Code"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Families in Selected Roles'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter6a6c7294070e0121b96a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "# of Families in Role"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "Family",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "f"
+                        }
+                      },
+                      "Property": "# of Families in Role"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isHiddenInViewMode": true,
+        "isLockedInViewMode": true
+      }
+    ]
+  }
+}
