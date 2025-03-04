@@ -11738,7 +11738,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Entity",
-			          "ConceptualProperty": "Family Last Arrangement End Date"
+			          "ConceptualProperty": "Family Last Assignment End Date"
 			        }
 			      },
 			      "State": "Generated",
@@ -12619,7 +12619,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Entity",
-			          "ConceptualProperty": "Individual Last Arrangement End Date"
+			          "ConceptualProperty": "Individual Last Assignment End Date"
 			        }
 			      },
 			      "State": "Generated",
@@ -13048,7 +13048,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Entity",
-			          "ConceptualProperty": "# of Approved People"
+			          "ConceptualProperty": "# of People in Role (Direct Only)"
 			        }
 			      },
 			      "State": "Generated",
@@ -13104,7 +13104,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Entity",
-			          "ConceptualProperty": "# of Children Served"
+			          "ConceptualProperty": "# of Children Cared For"
 			        }
 			      },
 			      "State": "Generated",

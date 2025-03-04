@@ -20,13 +20,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "# of Families in Role"
                 }
               },
-              "queryRef": "Family.# of Families in Role",
+              "queryRef": "Entity.# of Families in Role",
               "nativeQueryRef": "# of Families in Role"
             }
           ]
@@ -39,7 +39,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Family"
+                    "Entity": "Entity"
                   }
                 },
                 "Property": "# of Families in Role"

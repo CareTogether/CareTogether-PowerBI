@@ -413,7 +413,7 @@
                 "Entity": "Entity"
               }
             },
-            "Property": "Family Last Arrangement End Date"
+            "Property": "Family Last Assignment End Date"
           }
         },
         "type": "Advanced",

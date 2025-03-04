@@ -75,11 +75,11 @@
                       "Entity": "Entity"
                     }
                   },
-                  "Property": "# of Children Served"
+                  "Property": "# of Children Cared For"
                 }
               },
               "queryRef": "Entity.# of Children Served",
-              "nativeQueryRef": "# of Children Served"
+              "nativeQueryRef": "# of Children Cared For"
             }
           ]
         }

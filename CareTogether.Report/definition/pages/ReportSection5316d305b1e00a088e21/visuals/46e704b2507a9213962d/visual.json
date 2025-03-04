@@ -20,13 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "State"
                 }
               },
-              "queryRef": "Family.State",
+              "queryRef": "Entity.State",
+              "nativeQueryRef": "State",
               "active": true
             },
             {
@@ -34,13 +35,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
-                  "Property": "Postal Code"
+                  "Property": "PostalCode"
                 }
               },
-              "queryRef": "Family.Postal Code",
+              "queryRef": "Entity.PostalCode",
+              "nativeQueryRef": "PostalCode",
               "active": true
             },
             {
@@ -48,13 +50,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "City"
                 }
               },
-              "queryRef": "Family.City",
+              "queryRef": "Entity.City",
+              "nativeQueryRef": "City",
               "active": false
             },
             {
@@ -62,13 +65,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "Address Line 1"
                 }
               },
-              "queryRef": "Family.Address Line 1",
+              "queryRef": "Entity.Address Line 1",
+              "nativeQueryRef": "Address Line 1",
               "active": false
             }
           ]
@@ -97,37 +101,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "# of Families in Role"
                 }
               },
-              "queryRef": "Family.# of Families in Role",
+              "queryRef": "Entity.# of Families in Role",
               "nativeQueryRef": "# of Families in Role"
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Family"
-                        }
-                      },
-                      "Property": "Family Name"
-                    }
-                  },
-                  "Function": 3
-                }
-              },
-              "queryRef": "Min(Family.Family Name)",
-              "nativeQueryRef": "First Family Name"
             }
           ]
         }

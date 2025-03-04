@@ -19,13 +19,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
-                  "Property": "Postal Code"
+                  "Property": "PostalCode"
                 }
               },
-              "queryRef": "Family.Postal Code",
+              "queryRef": "Entity.PostalCode",
+              "nativeQueryRef": "PostalCode",
               "active": true
             },
             {
@@ -33,13 +34,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "State"
                 }
               },
-              "queryRef": "Family.State",
+              "queryRef": "Entity.State",
+              "nativeQueryRef": "State",
               "active": false
             }
           ]

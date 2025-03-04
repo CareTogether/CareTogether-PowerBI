@@ -8,21 +8,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "7d72b84185d2bb9cb024",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Person"
-              }
-            },
-            "Property": "Full Name"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough"
-      },
-      {
         "name": "d15de98390afa637bd47",
         "field": {
           "Column": {
@@ -105,6 +90,21 @@
         },
         "type": "Categorical",
         "howCreated": "Drillthrough"
+      },
+      {
+        "name": "6a2bd7fea7e248a339b5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
       }
     ]
   },
@@ -112,20 +112,6 @@
     "name": "a158f29d4a138a0905c0",
     "type": "Drillthrough",
     "parameters": [
-      {
-        "name": "066226499ce00e7cc80b",
-        "boundFilter": "7d72b84185d2bb9cb024",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Person"
-              }
-            },
-            "Property": "Full Name"
-          }
-        }
-      },
       {
         "name": "9282ba23b4b1e3217835",
         "boundFilter": "d15de98390afa637bd47",
@@ -167,7 +153,24 @@
             "Property": "Status"
           }
         }
+      },
+      {
+        "name": "45ffeab30ba8636e9aea",
+        "boundFilter": "6a2bd7fea7e248a339b5",
+        "asAggregation": false,
+        "qnaSingleSelectRequired": false,
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "Family Name"
+          }
+        }
       }
     ]
-  }
+  },
+  "type": "Drillthrough"
 }

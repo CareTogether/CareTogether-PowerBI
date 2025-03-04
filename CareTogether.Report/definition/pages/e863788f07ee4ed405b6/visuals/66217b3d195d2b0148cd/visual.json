@@ -310,7 +310,7 @@
                 "Entity": "Entity"
               }
             },
-            "Property": "Individual Last Arrangement End Date"
+            "Property": "Individual Last Assignment End Date"
           }
         },
         "type": "Advanced",

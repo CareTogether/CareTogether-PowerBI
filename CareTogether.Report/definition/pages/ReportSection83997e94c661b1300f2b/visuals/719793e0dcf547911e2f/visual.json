@@ -19,14 +19,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "Family Name"
                 }
               },
-              "queryRef": "Family.Family Name",
-              "nativeQueryRef": "Family Name"
+              "queryRef": "Entity.Family Name",
+              "nativeQueryRef": "Family Name1"
             },
             {
               "field": {
@@ -56,23 +56,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Family"
-                  }
-                },
-                "Property": "Family Name"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "visualContainerObjects": {

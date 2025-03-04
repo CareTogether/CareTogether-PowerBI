@@ -1,6 +1,7 @@
 table Entity
 	lineageTag: 18ba4465-a9c2-415f-8e79-fd884584fded
 
+	/// Families are supported when they have an active arrangement during a given timeframe.
 	measure '# of Families Supported' =
 			
 			
@@ -31,7 +32,8 @@ table Entity
 		formatString: 0
 		lineageTag: 42791fd1-d8d3-4e90-b404-9e4f72530deb
 
-	measure '# of Children Served' = ```
+	/// Children are cared for when they have a location record with someone other than a parent in a given timeframe.
+	measure '# of Children Cared For' = ```
 			
 			
 			VAR CurrentDate = TODAY()
@@ -162,43 +164,38 @@ table Entity
 			
 			```
 		formatString: 0
+		isHidden
 		lineageTag: 202d8b72-a7a6-4280-94a4-a673b34efa25
+
+		changedProperty = IsHidden
 
 	measure '# of Families' = ```
 			DISTINCTCOUNT(Entity[FamilyId])
 			    
 			```
 		formatString: 0
+		isHidden
 		lineageTag: 982e7e0c-55e9-485e-8813-4e519005eb6f
+
+		changedProperty = IsHidden
 
 	measure 'Community Membership Count' = COALESCE(COUNTROWS(RELATEDTABLE('Community Member Families')),0)
 		formatString: 0
 		lineageTag: eab89055-f3d3-49a0-b310-ecc71d6f052c
 
-	measure '# of Engaged People' = ```
+	measure '# of Engaged People' =
 			
 			// An engaged person is one who was assigned to a function in an arrangement where that arrangement was active in the given timeframe.
 			
-			VAR Today = TODAY()
-			VAR CurrentStartDate = [Selected Timeframe Start] 
-			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
-			
-			RETURN IF(
-			    CurrentStartDate > Today, 
-			    BLANK(), 
-			    CALCULATE(
-			        DISTINCTCOUNT(Entity[PersonId]),
-			        USERELATIONSHIP(Entity[PersonId], 'Function Assignments'[EntityId]),
-			        NOT ISBLANK(Arrangement[Started]),
-			        Arrangement[Started] <= CurrentEndDate,
-			        IF(
-			            ISBLANK('Arrangement'[Ended]),
-			            TRUE(),
-			            'Arrangement'[Ended] >= CurrentStartDate
-			        )
+			CALCULATE(
+			    DISTINCTCOUNT(Entity[PersonId]),
+			    FILTER(
+			        Entity,
+			        [Individual Engagement Level] > 0
+			        //TODO: Also include indirect engagement (in this case, when the person's family is engaged, ignoring individual role removals for simplicity)
 			    )
 			)
-			```
+		formatString: 0
 		lineageTag: 4eacf164-703f-494a-acbe-01479d510fd1
 
 	measure 'Individual Engagement Level' =
@@ -228,7 +225,7 @@ table Entity
 		formatString: 0
 		lineageTag: d8ccb01c-4012-4960-9433-6aef21726e72
 
-	measure 'Individual Last Arrangement End Date' = ```
+	measure 'Individual Last Assignment End Date' = ```
 			
 			// If an Arrangement has a blank end date we consider it as ended today.
 			
@@ -262,44 +259,30 @@ table Entity
 		formatString: Short Date
 		lineageTag: 300172cb-05b7-4efb-851d-0af26805504a
 
-	measure '# of Engaged Families' = ```
+	measure '# of Engaged Families' =
 			
 			// An engaged family is one who was assigned to a function in an arrangement where that arrangement was active in the given timeframe.
-			
-			VAR Today = TODAY()
-			VAR CurrentStartDate = [Selected Timeframe Start] 
-			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
-			
-			RETURN
-			
-			IF(
-			    CurrentStartDate > Today, 
-			    BLANK(), 
-			    CALCULATE(
-			        DISTINCTCOUNT(Entity[FamilyId]),
-			        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]),
-			        CROSSFILTER(Entity[PersonId], Arrangement[PersonId], None),
-			        'Function Assignments'[EntityType] = "Family",
-			        NOT ISBLANK(Arrangement[Started]),
-			        Arrangement[Started] <= CurrentEndDate,
-			        IF(
-			            ISBLANK('Arrangement'[Ended]),
-			            TRUE(),
-			            'Arrangement'[Ended] >= CurrentStartDate
-			        )
+			CALCULATE(
+			    DISTINCTCOUNT(Entity[FamilyId]),
+			    FILTER(
+			        Entity,
+			        [Family Engagement Level] > 0
+			        //TODO: Also include indirect engagement (in this case, when a person in the family is engaged)
 			    )
 			)
-			```
 		formatString: 0
 		lineageTag: 40be4c5a-1c97-41e8-a64a-2147a9612ed9
 
-	measure '# of Approved People' =
+	measure '# of People in Role (Direct Only)' =
 			CALCULATE(
 			    DISTINCTCOUNT('Role Approval'[Entity Id]),
 			    'Role Approval'[Entity Type] = "Person",
 			    'Role Approval'[Approval Type] = "Direct")
 		formatString: 0
+		isHidden
 		lineageTag: 5bfeb8dc-7346-4162-a6cf-76b9b85adb13
+
+		changedProperty = IsHidden
 
 	measure 'Family Engagement Level' =
 			
@@ -329,7 +312,7 @@ table Entity
 		formatString: 0
 		lineageTag: 580dd274-c050-48a6-adb5-a48fa57014be
 
-	measure 'Family Last Arrangement End Date' = ```
+	measure 'Family Last Assignment End Date' = ```
 			
 			
 			VAR Today = TODAY()

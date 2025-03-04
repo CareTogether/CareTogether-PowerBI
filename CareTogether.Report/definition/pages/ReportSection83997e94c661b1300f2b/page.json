@@ -9,6 +9,7 @@
     "filters": [
       {
         "name": "Filterd5358708d09c303a497c",
+        "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
@@ -39,6 +40,7 @@
       },
       {
         "name": "Filter8d466b251b1be0521d3c",
+        "ordinal": 1,
         "field": {
           "Column": {
             "Expression": {
@@ -69,6 +71,7 @@
       },
       {
         "name": "Filterbd891c8588254083c9ee",
+        "ordinal": 2,
         "field": {
           "Measure": {
             "Expression": {
@@ -82,7 +85,8 @@
         "type": "Categorical",
         "howCreated": "Drillthrough"
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   },
   "pageBinding": {
     "name": "Pod6",

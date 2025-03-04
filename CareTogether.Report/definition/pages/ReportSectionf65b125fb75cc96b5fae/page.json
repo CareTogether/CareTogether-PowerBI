@@ -229,5 +229,6 @@
       }
     ]
   },
-  "visibility": "HiddenInViewMode"
+  "visibility": "HiddenInViewMode",
+  "type": "Drillthrough"
 }

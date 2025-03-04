@@ -52,7 +52,7 @@
                       "Entity": "Entity"
                     }
                   },
-                  "Property": "Individual Last Arrangement End Date"
+                  "Property": "Individual Last Assignment End Date"
                 }
               },
               "queryRef": "Entity.Individual Last Arrangement End Date (NEW)",
@@ -85,7 +85,7 @@
                     "Entity": "Entity"
                   }
                 },
-                "Property": "Individual Last Arrangement End Date"
+                "Property": "Individual Last Assignment End Date"
               }
             },
             "direction": "Descending"

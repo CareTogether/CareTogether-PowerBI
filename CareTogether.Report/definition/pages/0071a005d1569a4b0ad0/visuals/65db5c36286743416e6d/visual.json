@@ -23,7 +23,7 @@
                       "Entity": "Entity"
                     }
                   },
-                  "Property": "# of Approved People"
+                  "Property": "# of People in Role (Direct Only)"
                 }
               },
               "queryRef": "Entity.# of Approved People (NEW)",
@@ -42,7 +42,7 @@
                     "Entity": "Entity"
                   }
                 },
-                "Property": "# of Approved People"
+                "Property": "# of People in Role (Direct Only)"
               }
             },
             "direction": "Descending"
