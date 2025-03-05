@@ -20,13 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Person"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "Full Name"
                 }
               },
-              "queryRef": "Person.Full Name"
+              "queryRef": "Entity.Full Name",
+              "nativeQueryRef": "Full Name"
             },
             {
               "field": {
@@ -58,23 +59,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Person"
-                  }
-                },
-                "Property": "Full Name"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "visualContainerObjects": {
@@ -117,75 +101,24 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "Filter377ee57582da41e1377c",
+        "name": "5c9a87425d2119bd2704",
         "ordinal": 0,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Person"
-              }
-            },
-            "Property": "# of People in Role"
-          }
-        },
-        "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "p",
-              "Entity": "Person",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Comparison": {
-                  "ComparisonKind": 1,
-                  "Left": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Source": "p"
-                        }
-                      },
-                      "Property": "# of People in Role"
-                    }
-                  },
-                  "Right": {
-                    "Literal": {
-                      "Value": "0L"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User",
-        "isHiddenInViewMode": true,
-        "isLockedInViewMode": true
-      },
-      {
-        "name": "Filterbb05e9f02307d7959357",
-        "ordinal": 1,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Person"
+                "Entity": "Entity"
               }
             },
             "Property": "Full Name"
           }
         },
-        "type": "Categorical"
+        "type": "Categorical",
+        "howCreated": "User"
       },
       {
         "name": "Filterc5e76977dbeeb5e00893",
-        "ordinal": 2,
+        "ordinal": 1,
         "field": {
           "Column": {
             "Expression": {
@@ -200,7 +133,7 @@
       },
       {
         "name": "Filter5d5869e02467c226d8c7",
-        "ordinal": 3,
+        "ordinal": 2,
         "field": {
           "Column": {
             "Expression": {
@@ -212,6 +145,37 @@
           }
         },
         "type": "Categorical"
+      },
+      {
+        "name": "555c4d8113f600818c25",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "Full Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "37ac80a564227210e173",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "# of People in Role"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
       }
     ],
     "filterSortOrder": "Custom"

@@ -98,55 +98,19 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "Filter6b878053dba81d560bd9",
+        "name": "086d051770cfed546292",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Family"
+                "Entity": "Entity"
               }
             },
             "Property": "# of Families in Role"
           }
         },
         "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "Family",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Comparison": {
-                  "ComparisonKind": 1,
-                  "Left": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Source": "f"
-                        }
-                      },
-                      "Property": "# of Families in Role"
-                    }
-                  },
-                  "Right": {
-                    "Literal": {
-                      "Value": "0L"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User",
-        "isHiddenInViewMode": true,
-        "isLockedInViewMode": true
+        "howCreated": "User"
       }
     ]
   }

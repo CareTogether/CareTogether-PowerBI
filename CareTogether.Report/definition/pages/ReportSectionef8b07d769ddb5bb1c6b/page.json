@@ -68,12 +68,12 @@
         }
       },
       {
-        "name": "Filter96c52958708931052ee0",
+        "name": "7214f1edd7be6ce54bd5",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Person"
+                "Entity": "Entity"
               }
             },
             "Property": "# of People in Role"
@@ -89,13 +89,15 @@
     "type": "Drillthrough",
     "parameters": [
       {
-        "name": "Param_Filter96c52958708931052ee0",
-        "boundFilter": "Filter96c52958708931052ee0",
+        "name": "6c5eabea50e2097e74ff",
+        "boundFilter": "7214f1edd7be6ce54bd5",
+        "asAggregation": false,
+        "qnaSingleSelectRequired": false,
         "fieldExpr": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Person"
+                "Entity": "Entity"
               }
             },
             "Property": "# of People in Role"

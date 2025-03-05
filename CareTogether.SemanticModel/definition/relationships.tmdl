@@ -8,13 +8,6 @@ relationship f6af9189-e041-4e8e-a848-1bb59b7f3b98
 	fromColumn: Arrangement.Ended
 	toColumn: LocalDateTable_f42c1403-e66d-4045-8af6-5c3c28e884e6.Date
 
-relationship f65f23e4-4531-4302-8daf-36f7a3525920
-	isActive: false
-	fromColumn: Arrangement.ReferralId
-	toColumn: Referral.Id
-
-	annotation PBI_IsFromSource = FS
-
 relationship a5ae77fe-88aa-4706-bfd5-fdf99d014cf8
 	joinOnDateBehavior: datePartOnly
 	fromColumn: Referral.Opened
@@ -39,6 +32,13 @@ relationship f63e6923-e035-4908-8427-2c9dac7e9b12
 	joinOnDateBehavior: datePartOnly
 	fromColumn: 'Child Location Record'.Ended
 	toColumn: LocalDateTable_c6f5f2bf-94ad-49eb-b2ac-502d51b89614.Date
+
+relationship f65f23e4-4531-4302-8daf-36f7a3525920
+	isActive: false
+	fromColumn: Arrangement.ReferralId
+	toColumn: Referral.Id
+
+	annotation PBI_IsFromSource = FS
 
 relationship ef63f3fe-04ee-4288-a9ac-f2f0a7b0d90d
 	joinOnDateBehavior: datePartOnly

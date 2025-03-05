@@ -19,124 +19,126 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "Family Name"
                 }
               },
-              "queryRef": "Family.Family Name",
-              "nativeQueryRef": "Family Name"
+              "queryRef": "Entity.Family Name",
+              "nativeQueryRef": "Family Name1"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "Email"
                 }
               },
-              "queryRef": "Family.Email"
+              "queryRef": "Entity.Email",
+              "nativeQueryRef": "Email"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "Phone Number"
                 }
               },
-              "queryRef": "Family.Phone Number"
+              "queryRef": "Entity.Phone Number",
+              "nativeQueryRef": "Phone Number"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "Address Line 1"
                 }
               },
-              "queryRef": "Family.Address Line 1",
-              "nativeQueryRef": "Address Line 1"
+              "queryRef": "Entity.Address Line 1",
+              "nativeQueryRef": "Address Line 11"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "Address Line 2"
                 }
               },
-              "queryRef": "Family.Address Line 2",
-              "nativeQueryRef": "Address Line 2"
+              "queryRef": "Entity.Address Line 2",
+              "nativeQueryRef": "Address Line 21"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "City"
                 }
               },
-              "queryRef": "Family.City",
-              "nativeQueryRef": "City"
+              "queryRef": "Entity.City",
+              "nativeQueryRef": "City1"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "County"
                 }
               },
-              "queryRef": "Family.County",
-              "nativeQueryRef": "County"
+              "queryRef": "Entity.County",
+              "nativeQueryRef": "County1"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
                   "Property": "State"
                 }
               },
-              "queryRef": "Family.State",
-              "nativeQueryRef": "State"
+              "queryRef": "Entity.State",
+              "nativeQueryRef": "State1"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Entity"
                     }
                   },
-                  "Property": "Postal Code"
+                  "Property": "PostalCode"
                 }
               },
-              "queryRef": "Family.Postal Code",
-              "nativeQueryRef": "Postal Code"
+              "queryRef": "Entity.PostalCode",
+              "nativeQueryRef": "PostalCode"
             }
           ]
         }
@@ -182,55 +184,19 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "Filter6a6c7294070e0121b96a",
+        "name": "c3a6d4259358e936466d",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Family"
+                "Entity": "Entity"
               }
             },
             "Property": "# of Families in Role"
           }
         },
         "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "Family",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Comparison": {
-                  "ComparisonKind": 1,
-                  "Left": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Source": "f"
-                        }
-                      },
-                      "Property": "# of Families in Role"
-                    }
-                  },
-                  "Right": {
-                    "Literal": {
-                      "Value": "0L"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User",
-        "isHiddenInViewMode": true,
-        "isLockedInViewMode": true
+        "howCreated": "User"
       }
     ]
   }

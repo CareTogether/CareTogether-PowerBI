@@ -68,12 +68,12 @@
         }
       },
       {
-        "name": "Filter5f182d88c6a909cb9684",
+        "name": "c858591a7b8abab5256a",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Family"
+                "Entity": "Entity"
               }
             },
             "Property": "# of Families in Role"
@@ -89,13 +89,15 @@
     "type": "Drillthrough",
     "parameters": [
       {
-        "name": "Param_Filter5f182d88c6a909cb9684",
-        "boundFilter": "Filter5f182d88c6a909cb9684",
+        "name": "839bdc630e67e7e41a15",
+        "boundFilter": "c858591a7b8abab5256a",
+        "asAggregation": false,
+        "qnaSingleSelectRequired": false,
         "fieldExpr": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Family"
+                "Entity": "Entity"
               }
             },
             "Property": "# of Families in Role"

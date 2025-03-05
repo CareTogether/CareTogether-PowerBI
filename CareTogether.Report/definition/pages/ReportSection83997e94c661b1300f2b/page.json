@@ -8,8 +8,24 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "Filterd5358708d09c303a497c",
+        "name": "5914da1a84d11a2c5ff0",
         "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "# of Families in Role"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "Filterd5358708d09c303a497c",
+        "ordinal": 1,
         "field": {
           "Column": {
             "Expression": {
@@ -40,7 +56,7 @@
       },
       {
         "name": "Filter8d466b251b1be0521d3c",
-        "ordinal": 1,
+        "ordinal": 2,
         "field": {
           "Column": {
             "Expression": {
@@ -68,22 +84,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "Filterbd891c8588254083c9ee",
-        "ordinal": 2,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "# of Families in Role"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough"
       }
     ],
     "filterSortOrder": "Custom"
@@ -93,13 +93,15 @@
     "type": "Drillthrough",
     "parameters": [
       {
-        "name": "Param_Filterbd891c8588254083c9ee",
-        "boundFilter": "Filterbd891c8588254083c9ee",
+        "name": "9d51c53af4b150b39cdf",
+        "boundFilter": "5914da1a84d11a2c5ff0",
+        "asAggregation": false,
+        "qnaSingleSelectRequired": false,
         "fieldExpr": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Family"
+                "Entity": "Entity"
               }
             },
             "Property": "# of Families in Role"

@@ -11994,6 +11994,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.466
 			          }
+			        },
+			        {
+			          "Family Contact Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -12174,7 +12184,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Child": {
+			          "Person": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -12184,7 +12194,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Person": {
+			          "Child": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -13919,16 +13929,6 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Family": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
-			        {
 			          "Family Contact Name": {
 			            "State": "Suggested",
 			            "Source": {
@@ -14860,19 +14860,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Full Name"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Person": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "referral": {
 			      "Definition": {
