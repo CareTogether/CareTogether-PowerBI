@@ -1,0 +1,42 @@
+table 'Community Member Families'
+	lineageTag: 614cb360-e6aa-4352-801e-f51065f1076b
+
+	column CommunityId
+		dataType: string
+		isHidden
+		lineageTag: c55dba34-12a5-4a3a-8b73-cae82f6301d7
+		summarizeBy: none
+		sourceColumn: CommunityId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FamilyId
+		dataType: string
+		isHidden
+		lineageTag: d371bccb-f5e0-49fe-bd3a-c67d9772d804
+		summarizeBy: none
+		sourceColumn: FamilyId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Community Member Families' = m
+		mode: import
+		queryGroup: 'Model Queries'
+		source =
+				let
+				    ApiHost = if Production then "https://app.caretogether.io" else "http://localhost:5000",
+				    ApiUrl = ApiHost&"/api/odata/live",
+				    Source = OData.Feed(ApiUrl, null, [Implementation="2.0"]),
+				    CommunityMemberFamilies_table1 = Source{[Name="CommunityMemberFamilies",Signature="table"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(CommunityMemberFamilies_table1,{"Community", "Family"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

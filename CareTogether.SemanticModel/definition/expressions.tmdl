@@ -1,0 +1,33 @@
+expression 'OData Live' =
+		let
+		    ApiHost = if Production then "https://app.caretogether.io" else "http://localhost:5000",
+		    ApiUrl = ApiHost&"/api/odata/live",
+		    Source = OData.Feed(ApiUrl, null, [Implementation="2.0"])
+		in
+		    Source
+	lineageTag: 57209f9d-82f3-418c-a931-ceb80491aad8
+	queryGroup: 'Source Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+/// Always leave this as "TRUE" to work with actual production data. "FALSE" is meant to be used by CareTogether developers for local debugging, and will not work when using the Power BI Service.
+expression Production = true meta [IsParameterQuery=true, List={true, false}, DefaultValue=true, Type="Logical", IsParameterQueryRequired=true]
+	lineageTag: af2a21ce-1ab4-401a-bbbd-b0f1d2c7c86f
+
+	annotation PBI_ResultType = Logical
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression _Measures =
+		let
+		    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+		in
+		    #"Removed Columns"
+	lineageTag: 421e7506-d8f7-4e44-b8d9-64dd3a01d54c
+
+	annotation PBI_ResultType = Table
+

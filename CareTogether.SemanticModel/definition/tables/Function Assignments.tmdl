@@ -1,0 +1,62 @@
+table 'Function Assignments'
+	lineageTag: 37dbfcb3-ae81-4dbe-b5b6-66fa9cff03bd
+
+	column EntityId
+		dataType: string
+		lineageTag: 0da6ad46-3065-480b-8f6b-c1c5b295605c
+		summarizeBy: none
+		sourceColumn: EntityId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArrangementId
+		dataType: string
+		lineageTag: 6e947cab-fb5f-4159-a6ed-a29555e29a34
+		summarizeBy: none
+		sourceColumn: ArrangementId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Function
+		dataType: string
+		lineageTag: 079fd573-495f-401c-9b66-8edc8017fd7d
+		summarizeBy: none
+		sourceColumn: Function
+
+		annotation SummarizationSetBy = Automatic
+
+	column EntityType
+		dataType: string
+		lineageTag: 7ba3788a-52dd-4344-a4dc-cd7b04b35b7f
+		summarizeBy: none
+		sourceColumn: EntityType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Function Assignments' = m
+		mode: import
+		queryGroup: 'Consolidated Entities'
+		source = ```
+				let
+				    Source = #"OData Live",
+				
+				    // Family Function Assignments
+				    Families = Table.SelectColumns(Source{[Name="FamilyFunctionAssignments", Signature="table"]}[Data], {"ArrangementId", "FamilyId", "Function"}),
+				    FamiliesEntityId = Table.RenameColumns(Families, {{"FamilyId", "EntityId"}}),
+				    FamiliesEntityType = Table.AddColumn(FamiliesEntityId, "EntityType", each "Family"),
+				
+				    // Individual Function Assigments
+				    Individuals = Table.SelectColumns(Source{[Name="IndividualFunctionAssignments", Signature="table"]}[Data], {"ArrangementId", "PersonId", "Function"}),
+				    IndividualsEntityId = Table.RenameColumns(Individuals, {{"PersonId", "EntityId"}}),
+				    IndividualsEntityType = Table.AddColumn(IndividualsEntityId, "EntityType", each "Person"),
+				
+				    //Merged Dataset: 
+				    CombinedTables = Table.Combine({FamiliesEntityType, IndividualsEntityType})
+				in
+				    CombinedTables
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

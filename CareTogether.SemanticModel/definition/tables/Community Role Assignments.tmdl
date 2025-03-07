@@ -1,0 +1,50 @@
+table 'Community Role Assignments'
+	lineageTag: 5d48d610-1f9d-4a9e-bae4-ef9ac4fec4a1
+
+	column CommunityId
+		dataType: string
+		isHidden
+		lineageTag: 8cbad8e8-1fa4-4947-9e30-e6c6d4b71dea
+		summarizeBy: none
+		sourceColumn: CommunityId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PersonId
+		dataType: string
+		isHidden
+		lineageTag: d67b77c7-3c6e-41ae-8a71-5071b169804f
+		summarizeBy: none
+		sourceColumn: PersonId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Role
+		dataType: string
+		lineageTag: 06599e01-9ba0-42ec-b312-72f9bcf5e226
+		summarizeBy: none
+		sourceColumn: Role
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Community Role Assignments' = m
+		mode: import
+		queryGroup: 'Model Queries'
+		source =
+				let
+				    ApiHost = if Production then "https://app.caretogether.io" else "http://localhost:5000",
+				    ApiUrl = ApiHost&"/api/odata/live",
+				    Source = OData.Feed(ApiUrl, null, [Implementation="2.0"]),
+				    CommunityRoleAssignments_table1 = Source{[Name="CommunityRoleAssignments",Signature="table"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(CommunityRoleAssignments_table1,{"Community", "Person"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

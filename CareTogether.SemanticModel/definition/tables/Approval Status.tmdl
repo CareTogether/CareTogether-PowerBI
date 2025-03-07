@@ -1,0 +1,58 @@
+table 'Approval Status'
+	lineageTag: 5d13b768-cd22-4e23-8052-f51c41e023ce
+
+	measure '# of Member Families'
+		lineageTag: 97f212e8-6531-4aa8-bf70-142425626587
+
+	column RoleApprovalStatus
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: 008d6740-e604-4841-af17-4b192a6a903b
+		summarizeBy: none
+		sourceColumn: RoleApprovalStatus
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5982df6c-a187-49af-93ae-1f451b34357b
+		summarizeBy: none
+		sourceColumn: Order
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Status
+		dataType: string
+		lineageTag: a57d7e6e-88b8-4366-8388-eebf958dd869
+		isDefaultLabel
+		summarizeBy: none
+		sourceColumn: Status
+		sortByColumn: Order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Approval Status-376812d3-28eb-4ac8-ac3d-1c0527c112af' = m
+		mode: import
+		queryGroup: 'Reference Tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCijKLy5ITS7JLEtV0lEyAGJkkVidaCXXioLMotQUoIwhEMN4IBnHgoKi/DKwlBEQw7kgOf+8pPzEohSwpDEQI/ggWc+8RJiVJkAM54LkXFLzMsHaTIEYyomNBQA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [RoleApprovalStatus = _t, Order = _t, Status = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"RoleApprovalStatus", type text}, {"Order", Int64.Type}, {"Status", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

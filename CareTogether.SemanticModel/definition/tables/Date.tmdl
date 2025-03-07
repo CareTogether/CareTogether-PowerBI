@@ -1,0 +1,260 @@
+table Date
+	lineageTag: c3cfcb9b-c6b2-48e0-8d00-9fe6ec85a978
+	dataCategory: Time
+
+	measure 'Selected Timeframe Start' = MIN('Date'[Date])
+		formatString: General Date
+		isHidden
+		lineageTag: 5e773db9-12e4-4821-b121-2372fae517fd
+
+		changedProperty = IsHidden
+
+	measure 'Selected Timeframe End' = MAX('Date'[Date])
+		formatString: General Date
+		isHidden
+		lineageTag: dbc0ac88-f9e6-42ff-9bdf-de3316b1ff6e
+
+		changedProperty = IsHidden
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: 73186f1c-0b1d-46fd-9716-7748c2e868ad
+		isDefaultLabel
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Date Integer'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 51ead800-d994-4614-b6cb-ce1444683320
+		summarizeBy: none
+		sourceColumn: Date Integer
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d55e5fd-6751-47f5-8485-ad4804e7434f
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = User
+
+	column 'Year Default'
+		dataType: string
+		lineageTag: 05b44653-bd38-4db5-8dab-8d4471d851e5
+		summarizeBy: none
+		sourceColumn: Year Default
+		sortByColumn: Year
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column YYYY-MM
+		dataType: string
+		lineageTag: 28c9a978-f625-4d95-93d8-d5c2f1d7baf9
+		summarizeBy: none
+		sourceColumn: YYYY-MM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month-Year
+		dataType: string
+		lineageTag: f5406b2a-c7a9-43e9-8a38-32391e1e8ca5
+		summarizeBy: none
+		sourceColumn: Month-Year
+		sortByColumn: YYYY-MM
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1bed340b-42a7-4d4f-8661-d488da0ed223
+		summarizeBy: none
+		sourceColumn: Month Of Year
+
+		annotation SummarizationSetBy = User
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: f56bf290-8294-4d9f-a5f6-7cc6033b1922
+		summarizeBy: none
+		sourceColumn: Month Name
+		sortByColumn: 'Month Of Year'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name Short'
+		dataType: string
+		lineageTag: 155e0136-28d5-4eed-a4df-496a82278ded
+		summarizeBy: none
+		sourceColumn: Month Name Short
+		sortByColumn: 'Month Of Year'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name Default'
+		dataType: string
+		lineageTag: 703dff3d-8bfe-48f7-8912-997bd0cf56d3
+		summarizeBy: none
+		sourceColumn: Month Name Default
+		sortByColumn: 'Month Of Year'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start of Month'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a6343ebb-28aa-4749-aa20-8d004882ca30
+		summarizeBy: none
+		sourceColumn: Start of Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'End of Month'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 897048b7-ea2f-49be-ab5c-88e10cdd374b
+		summarizeBy: none
+		sourceColumn: End of Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Days in Month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 75f26b05-9b1d-44fc-b06e-1d9e95ef3d6a
+		summarizeBy: none
+		sourceColumn: Days in Month
+
+		annotation SummarizationSetBy = User
+
+	column 'Day Name'
+		dataType: string
+		lineageTag: 3460fef1-f4d9-4132-b296-fa4bfd35cad6
+		summarizeBy: none
+		sourceColumn: Day Name
+		sortByColumn: 'Day of Week Number'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name Short'
+		dataType: string
+		lineageTag: 5f1e6228-ce13-42df-9c2d-52af0b00ff7c
+		summarizeBy: none
+		sourceColumn: Day Name Short
+		sortByColumn: 'Day of Week Number'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Month Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: b6d538e4-409d-4180-92cc-13ed3b0f4dc8
+		summarizeBy: none
+		sourceColumn: Day of Month Number
+
+		annotation SummarizationSetBy = User
+
+	column 'Day of Week Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5b66f695-088f-451a-838a-826464837923
+		summarizeBy: none
+		sourceColumn: Day of Week Number
+
+		annotation SummarizationSetBy = User
+
+	column YYYY-MM-dd
+		dataType: string
+		lineageTag: b7dafe46-49df-4357-8d21-5efdbb2af419
+		summarizeBy: none
+		sourceColumn: YYYY-MM-dd
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date-40f6d57d-becc-4044-b272-b6e77eae3b28 = m
+		mode: import
+		source =
+				let
+				    Today = Date.From( DateTime.LocalNow() ),
+				    StartDate = #date(2021, 1, 1),
+				    EndDate = Date.EndOfYear( Date.AddYears(Today, 1) ),
+				    #"List of Dates" = List.Dates( StartDate, Duration.Days( EndDate - StartDate ) +1, #duration( 1, 0, 0, 0 ) ),
+				    #"Converted to Table" = Table.FromList( #"List of Dates", Splitter.SplitByNothing(), type table[Date = Date.Type] ),
+				    #"Insert Date Integer" = Table.AddColumn(#"Converted to Table", "Date Integer", each Number.From( Date.ToText( [Date], "yyyyMMdd" ) ), Int64.Type ),
+				    #"Insert Year" = Table.AddColumn(#"Insert Date Integer", "Year", each Date.Year([Date]), Int64.Type),
+				    // Creates a dynamic year value called 'Current' that moves with the current date. Put this value in a slicer and it automatically switches to the Current period.
+				    #"Add Year Default" = Table.AddColumn(#"Insert Year", "Year Default", each if Date.Year( Today ) = [Year] then "Current" else Text.From( [Year] ), type text),
+				    #"Insert YYYY-MM" = Table.AddColumn(#"Add Year Default", "YYYY-MM", each Date.ToText( [Date], "yyyy-MM"), type text),
+				    #"Insert YYYY-MM-dd" = Table.AddColumn(#"Insert YYYY-MM", "YYYY-MM-dd", each Date.ToText( [Date], "yyyy-MM-dd"), type text),
+				    #"Insert Month-Year" = Table.AddColumn(#"Insert YYYY-MM-dd", "Month-Year", each Date.ToText( [Date], "MMM yyyy"), type text),
+				    #"Insert Month Number" = Table.AddColumn(#"Insert Month-Year", "Month Of Year", each Date.Month([Date]), Int64.Type),
+				    #"Insert Month Name" = Table.AddColumn(#"Insert Month Number", "Month Name", each Date.MonthName([Date], "EN-us"), type text),
+				    #"Insert Month Name Short" = Table.AddColumn(#"Insert Month Name", "Month Name Short", each Date.ToText( [Date] , "MMM", "EN-us" ), type text),
+				    // Creates a dynamic year value called 'Current' that moves with the current date. Put this value in a slicer and it automatically switches to the current period.
+				    #"Add Month Name Default" = Table.AddColumn(#"Insert Month Name Short", "Month Name Default", each if Date.Month( Today ) = [Month Of Year] then "Current" else [Month Name], type text ),
+				    #"Insert Start of Month" = Table.AddColumn(#"Add Month Name Default", "Start of Month", each Date.StartOfMonth([Date]), type date),
+				    #"Insert End of Month" = Table.AddColumn(#"Insert Start of Month", "End of Month", each Date.EndOfMonth( [Date] ), type date),
+				    #"Insert Days in Month" = Table.AddColumn(#"Insert End of Month", "Days in Month", each Date.DaysInMonth([Date]), Int64.Type),
+				//    #"Add ISO Week" = Table.AddColumn(#"Insert Days in Month", "ISO Weeknumber", each let
+				//        CurrentThursday = Date.AddDays([Date], 3 - Date.DayOfWeek([Date], Day.Monday ) ),
+				//        YearCurrThursday = Date.Year( CurrentThursday ),
+				//        FirstThursdayOfYear = Date.AddDays(#date( YearCurrThursday,1,7),- Date.DayOfWeek(#date(YearCurrThursday,1,1), Day.Friday) ),
+				//        ISO_Week = Duration.Days( CurrentThursday - FirstThursdayOfYear) / 7 + 1
+				//        in ISO_Week, Int64.Type ),
+				//    #"Add ISO Year" = Table.AddColumn(#"Add ISO Week", "ISO Year", each let
+				//        CurrentThursday = Date.AddDays([Date], 3 - Date.DayOfWeek([Date], Day.Monday ) ),
+				//        YearCurrThursday = Date.Year( CurrentThursday )
+				//        in YearCurrThursday, Int64.Type ),
+				//    #"Insert Start of Week" = Table.AddColumn(#"Add ISO Year", "Start of Week", each Date.StartOfWeek([Date], Day.Monday ), type date),
+				//    #"Insert Quarter Number" = Table.AddColumn(#"Insert Start of Week", "Quarter Number", each Date.QuarterOfYear([Date]), Int64.Type),
+				//    #"Added Quarter" = Table.AddColumn(#"Insert Quarter Number", "Quarter", each "Q" & Text.From( Date.QuarterOfYear([Date]) ), type text ),
+				//    #"Add Year-Quarter" = Table.AddColumn(#"Added Quarter", "Year-Quarter", each Text.From( Date.Year([Date]) ) & "-Q" & Text.From( Date.QuarterOfYear([Date]) ), type text ),
+				    #"Insert Day Name" = Table.AddColumn(#"Insert Days in Month", "Day Name", each Date.DayOfWeekName([Date], "EN-us" ), type text),
+				    #"Insert Day Name Short" = Table.AddColumn( #"Insert Day Name", "Day Name Short", each Date.ToText( [Date], "ddd", "EN-us" ), type text),
+				    #"Insert Day of Month Number" = Table.AddColumn(#"Insert Day Name Short", "Day of Month Number", each Date.Day([Date]), Int64.Type),
+				    #"Insert Day of Week" = Table.AddColumn(#"Insert Day of Month Number", "Day of Week Number", each Date.DayOfWeek([Date]), Int64.Type),
+				    #"Insert Day of Year" = Table.AddColumn(#"Insert Day of Week", "Day of Year Number", each Date.DayOfYear([Date]), Int64.Type)
+				//    #"Add Day Offset" = Table.AddColumn(#"Insert Day of Year", "Day Offset", each Number.From( Date.From( Today ) - [Date] ) , Int64.Type ),
+				//    #"Add Week Offset" = Table.AddColumn(#"Add Day Offset", "Week Offset", each ( Number.From( Date.StartOfWeek( [Date], Day.Monday) )- Number.From( Date.StartOfWeek( Today, Day.Monday ) ) ) / 7, Int64.Type ),
+				//    #"Add Month Offset" = Table.AddColumn(#"Add Week Offset", "Month Offset", each ([Year] - Date.Year( Today ) ) *12 + ( [Month Of Year] - Date.Month( Today ) ), Int64.Type ),
+				//    #"Add Quarter Offset" = Table.AddColumn(#"Add Month Offset", "Quarter Offset", each ( [Year] - Date.Year(Today) ) * 4 + Date.QuarterOfYear( [Date] ) - Date.QuarterOfYear( Today ), Int64.Type ),
+				//    #"Add Year Offset" = Table.AddColumn(#"Add Quarter Offset", "Year Offset", each [Year] - Date.Year(Today), Int64.Type ),
+				//    #"Insert Is Weekend" = Table.AddColumn(#"Add Year Offset", "Is Weekend", each if Date.DayOfWeek([Date]) >= 5 then 1 else 0, Int64.Type ),
+				//    #"Insert Is Weekday" = Table.AddColumn(#"Insert Is Weekend", "Is Weekday", each if Date.DayOfWeek([Date]) < 5  then 1 else 0, Int64.Type )
+				in
+				    #"Insert Day of Week"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

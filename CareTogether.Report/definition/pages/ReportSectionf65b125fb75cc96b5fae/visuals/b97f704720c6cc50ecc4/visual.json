@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "name": "b97f704720c6cc50ecc4",
+  "position": {
+    "x": 143.29812126581706,
+    "y": 0,
+    "z": 2000,
+    "height": 42.803334923555738,
+    "width": 665.31270587700772,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Arrangements matching the filters you had applied when you selected the \"drill through\" option"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

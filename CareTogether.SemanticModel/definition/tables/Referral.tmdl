@@ -1,0 +1,139 @@
+table Referral
+	lineageTag: d767a338-d9a5-4e00-8b61-2f6469d3aa63
+
+	/// This measure counts the number of referrals opened during a given timeframe, including duplicate referrals for the same family during the same timeframe.
+	measure '# of Referrals Opened' =
+			COUNTROWS(
+			    FILTER(
+			        Referral,
+			        AND(
+			            Referral[Opened] >= [Selected Timeframe Start],
+			            Referral[Opened] <= [Selected Timeframe End]
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 9629d58a-d07b-4c7a-8853-0a6f66904884
+
+		changedProperty = IsHidden
+
+	/// A family was referred during the selected timeframe if one or more referrals was opened for them during that timeframe. This measure does not count duplicate referrals for the same family during a given timeframe.
+	measure '# of Families Referred' =
+			
+			CALCULATE(
+			    DISTINCTCOUNTNOBLANK(Referral[FamilyId]),
+			    FILTER(
+			        Referral,
+			        AND(
+			            Referral[Opened] >= [Selected Timeframe Start],
+			            Referral[Opened] <= [Selected Timeframe End]
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: f8ef22d6-a7b1-4619-b6aa-f928642d95aa
+
+	column Id
+		dataType: string
+		isHidden
+		isKey
+		displayFolder: _Columns
+		lineageTag: 048d136e-c963-4efb-954c-117136ca81da
+		summarizeBy: none
+		sourceColumn: Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FamilyId
+		dataType: string
+		isHidden
+		displayFolder: _Columns
+		lineageTag: cfbee179-9c41-46c7-912b-1e57e7a4259b
+		summarizeBy: none
+		sourceColumn: FamilyId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Close Reason'
+		dataType: string
+		isHidden
+		displayFolder: _Columns
+		lineageTag: f1b0ee73-7d86-4c34-9e36-ba35604a486c
+		summarizeBy: none
+		sourceColumn: Close Reason
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Opened
+		dataType: dateTime
+		formatString: Short Date
+		displayFolder: _Columns
+		lineageTag: b1b56280-2e23-447e-8eb5-d75b32d2ad37
+		summarizeBy: none
+		sourceColumn: Opened
+
+		variation Variation
+			isDefault
+			relationship: a5ae77fe-88aa-4706-bfd5-fdf99d014cf8
+			defaultHierarchy: LocalDateTable_badf15b7-4811-4e5f-aee5-299aaab58eca.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Closed
+		dataType: dateTime
+		formatString: Short Date
+		displayFolder: _Columns
+		lineageTag: cdceaf22-4188-419b-81de-57ea5041da04
+		summarizeBy: none
+		sourceColumn: Closed
+
+		variation Variation
+			isDefault
+			relationship: 61ed4f64-5da8-4039-89ee-4b2905a8923d
+			defaultHierarchy: LocalDateTable_d64749d8-d763-4d50-94b8-a3acfe90e321.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Referral Source'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 1648497c-1a1b-4dd2-8ce0-8c7463803962
+		summarizeBy: none
+		sourceColumn: Referral Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrimaryReasonForReferral
+		dataType: string
+		lineageTag: 928e879d-7470-4e7e-bba1-6f6e12a14c5d
+		summarizeBy: none
+		sourceColumn: PrimaryReasonForReferral
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Referral-ae1a9126-4929-4d7f-8948-7409da4a474e = m
+		mode: import
+		queryGroup: 'Model Queries'
+		source =
+				let
+				    Source = #"OData Live",
+				    Referral_table = Source{[Name="Referral",Signature="table"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(Referral_table,{"Family"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"ReferralSource", "Referral Source"}, {"CloseReason", "Close Reason"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

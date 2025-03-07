@@ -1,0 +1,650 @@
+table Entity
+	lineageTag: 18ba4465-a9c2-415f-8e79-fd884584fded
+
+	/// Families are supported when they have an active arrangement during a given timeframe.
+	measure '# of Families Supported' =
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			RETURN
+			IF(
+			    CurrentStartDate > Today,  // Check if the current month's start is beyond today
+			    BLANK(),  // Return blank for future months
+			    COUNTROWS(
+			        FILTER(
+			            VALUES(Entity[FamilyId]),
+			            COUNTROWS(
+			                FILTER(
+			                    RELATEDTABLE('Arrangement'),
+			                    NOT(ISBLANK('Arrangement'[Started])) &&
+			                    'Arrangement'[Started] <= CurrentEndDate &&
+			                    (
+			                        ISBLANK('Arrangement'[Ended]) ||
+			                        'Arrangement'[Ended] >= CurrentStartDate
+			                    )
+			                )
+			            ) > 0
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 42791fd1-d8d3-4e90-b404-9e4f72530deb
+
+	/// Children are cared for when they have a location record with someone other than a parent in a given timeframe.
+	measure '# of Children Cared For' = ```
+			
+			
+			VAR CurrentDate = TODAY()
+			VAR StartDate = [Selected Timeframe Start]  // This is a measure calculating the start of the desired timeframe.
+			VAR EndDate = [Selected Timeframe End]  // This is a measure calculating the end of the desired timeframe.
+			VAR Result =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK(Entity[PersonId]),
+			        Entity[PersonType] = "Child",
+			        USERELATIONSHIP(Entity[PersonId], Arrangement[PersonId]),
+			        FILTER(
+			            'Child Location Record',
+			            'Child Location Record'[ChildcarePlan] <> "WithParent" && 
+			            'Child Location Record'[Started] >= StartDate && 
+			            'Child Location Record'[Started] <= MIN(EndDate, CurrentDate)
+			        )
+			    )
+			RETURN
+			    IF(
+			        CurrentDate < StartDate,
+			        BLANK(),
+			        IF(
+			            Result = 0,
+			            0,
+			            Result
+			        )
+			    )
+			```
+		formatString: 0
+		lineageTag: f5368366-cd4e-48c5-aaad-03444bd01031
+
+	measure '# Impacted Adults' = ```
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN
+			IF(
+			    CurrentStartDate > Today, 
+			    BLANK(),
+			    CALCULATE(
+			        DISTINCTCOUNT(Entity[PersonId]),
+			        FILTER(
+			            VALUES(Entity[FamilyId]),
+			            COUNTROWS(
+			                FILTER(
+			                    RELATEDTABLE('Arrangement'), // Added the related table to ensure that the formula correctly filters the arrangement table.
+			                    NOT(ISBLANK('Arrangement'[Started])) &&
+			                    'Arrangement'[Started] <= CurrentEndDate &&
+			                    (
+			                        ISBLANK('Arrangement'[Ended]) || 
+			                        'Arrangement'[Ended] >= CurrentStartDate
+			                    )
+			                )
+			            ) > 0
+			        ),
+			        Entity[PersonType] = "Adult"
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: 1261a671-95aa-4b55-a006-80edcd6f411d
+
+	measure '# Impacted Children' = ```
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN
+			IF(
+			    CurrentStartDate > Today, 
+			    BLANK(),
+			    CALCULATE(
+			        DISTINCTCOUNT(Entity[PersonId]),
+			        FILTER(
+			            VALUES(Entity[FamilyId]),
+			            COUNTROWS(
+			                FILTER(
+			                    RELATEDTABLE('Arrangement'), // Added the related table to ensure that the formula correctly filters the arrangement table.
+			                    NOT(ISBLANK('Arrangement'[Started])) &&
+			                    'Arrangement'[Started] <= CurrentEndDate &&
+			                    (
+			                        ISBLANK('Arrangement'[Ended]) || 
+			                        'Arrangement'[Ended] >= CurrentStartDate
+			                    )
+			                )
+			            ) > 0
+			        ),
+			        Entity[PersonType] = "Child"
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: 56b2562e-e953-4c65-b7b0-d70a8a272259
+
+	measure '# of Families in Role' = ```
+			
+			VAR FamilyApproval = CALCULATE(
+			    DISTINCTCOUNT('Role Approval'[Entity Id]),
+			    'Role Approval'[Entity Type] = "Family",
+			    USERELATIONSHIP(Entity[FamilyId], 'Role Approval'[Entity Id]),
+			    CROSSFILTER(Entity[PersonId], 'Role Approval'[Entity Id], None)
+			)
+			
+			RETURN FamilyApproval
+			
+			```
+		formatString: 0
+		lineageTag: a9874b87-0de5-4fa1-b5ac-a8ee7e646abd
+
+	measure '# of People in Role' =
+			
+			VAR PeopleApprovals = CALCULATE(
+			    DISTINCTCOUNT('Role Approval'[Entity Id]),
+			    'Role Approval'[Entity Type] = "Person"
+			)
+			
+			RETURN PeopleApprovals
+		formatString: 0
+		lineageTag: d7b95e5a-edc1-4688-8c75-5e3d08118b20
+
+	measure '# of Approval Statuses' = ```
+			CALCULATE(
+			    COUNTROWS('Role Approval'),
+			    'Role Approval'[Approval Type] = "Direct")
+			
+			```
+		formatString: 0
+		isHidden
+		lineageTag: 202d8b72-a7a6-4280-94a4-a673b34efa25
+
+		changedProperty = IsHidden
+
+	measure '# of Families' = ```
+			DISTINCTCOUNT(Entity[FamilyId])
+			    
+			```
+		formatString: 0
+		isHidden
+		lineageTag: 982e7e0c-55e9-485e-8813-4e519005eb6f
+
+		changedProperty = IsHidden
+
+	measure 'Community Membership Count' = COALESCE(COUNTROWS(RELATEDTABLE('Community Member Families')),0)
+		formatString: 0
+		lineageTag: eab89055-f3d3-49a0-b310-ecc71d6f052c
+
+	measure '# of Engaged People' =
+			
+			// An engaged person is one who was assigned to a function in an arrangement where that arrangement was active in the given timeframe.
+			
+			CALCULATE(
+			    DISTINCTCOUNT(Entity[PersonId]),
+			    FILTER(
+			        Entity,
+			        [Individual Engagement Level] > 0
+			        //TODO: Also include indirect engagement (in this case, when the person's family is engaged, ignoring individual role removals for simplicity)
+			    )
+			)
+		formatString: 0
+		lineageTag: 4eacf164-703f-494a-acbe-01479d510fd1
+
+	measure 'Individual Engagement Level' =
+			
+			//This is basically counting the # of assignments that the person has, as opposed to just seeing if they have any assignments in the given timeframe or not.
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN
+			IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        COUNTROWS('Function Assignments'),
+			        USERELATIONSHIP(Entity[PersonId], 'Function Assignments'[EntityId]), // This needs to be active to associate to the correct person for use in visuals.
+			        NOT ISBLANK(Arrangement[Started]),
+			        Arrangement[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK('Arrangement'[Ended]),
+			            TRUE(),
+			            'Arrangement'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: d8ccb01c-4012-4960-9433-6aef21726e72
+
+	measure 'Individual Last Assignment End Date' = ```
+			
+			// If an Arrangement has a blank end date we consider it as ended today.
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN 
+			IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        MAXX(
+			            ADDCOLUMNS(
+			                'Function Assignments',
+			                "EffectiveEnded", IF(ISBLANK(RELATED('Arrangement'[Ended])), Today, RELATED('Arrangement'[Ended]))
+			            ),
+			            [EffectiveEnded]
+			        ),
+			        USERELATIONSHIP(Entity[PersonId], 'Function Assignments'[EntityId]),
+			        NOT ISBLANK(Arrangement[Started]),
+			        Arrangement[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK('Arrangement'[Ended]),
+			            TRUE(),
+			            'Arrangement'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+			```
+		formatString: Short Date
+		lineageTag: 300172cb-05b7-4efb-851d-0af26805504a
+
+	measure '# of Engaged Families' =
+			
+			// An engaged family is one who was assigned to a function in an arrangement where that arrangement was active in the given timeframe.
+			CALCULATE(
+			    DISTINCTCOUNT(Entity[FamilyId]),
+			    FILTER(
+			        Entity,
+			        [Family Engagement Level] > 0
+			        //TODO: Also include indirect engagement (in this case, when a person in the family is engaged)
+			    )
+			)
+		formatString: 0
+		lineageTag: 40be4c5a-1c97-41e8-a64a-2147a9612ed9
+
+	measure '# of People in Role (Direct Only)' =
+			CALCULATE(
+			    DISTINCTCOUNT('Role Approval'[Entity Id]),
+			    'Role Approval'[Entity Type] = "Person",
+			    'Role Approval'[Approval Type] = "Direct")
+		formatString: 0
+		isHidden
+		lineageTag: 5bfeb8dc-7346-4162-a6cf-76b9b85adb13
+
+		changedProperty = IsHidden
+
+	measure 'Family Engagement Level' =
+			
+			//This is basically counting the # of assignments that the family has, as opposed to just seeing if they have any assignments in the given timeframe or not.
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN
+			IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        COUNTROWS('Function Assignments'),
+			        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]), // This needs to be active to associate to the correct family for use in visuals.
+			        CROSSFILTER(Entity[PersonId], Arrangement[PersonId], None),
+			        NOT ISBLANK(Arrangement[Started]),
+			        Arrangement[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK('Arrangement'[Ended]),
+			            TRUE(),
+			            'Arrangement'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 580dd274-c050-48a6-adb5-a48fa57014be
+
+	measure 'Family Last Assignment End Date' = ```
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			//
+			
+			RETURN 
+			IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        MAXX(
+			            ADDCOLUMNS(
+			                'Function Assignments',
+			                "EffectiveEnded", IF(ISBLANK(RELATED('Arrangement'[Ended])), Today, RELATED('Arrangement'[Ended]))
+			            ),
+			            [EffectiveEnded]
+			        ),
+			        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]),
+			        CROSSFILTER(Entity[PersonId], Arrangement[PersonId], None),
+			        NOT ISBLANK(Arrangement[Started]),
+			        Arrangement[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK('Arrangement'[Ended]),
+			            TRUE(),
+			            'Arrangement'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+			```
+		formatString: Short Date
+		lineageTag: 0751291e-4fcd-49dd-8bc9-f7f9c593e84a
+
+	column FamilyId
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 9e6bc319-6b32-4874-b0d3-005077b363d4
+		summarizeBy: none
+		sourceColumn: FamilyId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		displayFolder: _columns
+		lineageTag: cfe25239-01f2-40b7-9a90-acfa70ba080d
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Name'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: b23e5b0a-d126-4678-9a71-38ec18aa4882
+		summarizeBy: none
+		sourceColumn: Family Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 862659a1-372b-41f1-83ae-183a267061ce
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Phone Number'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 9fcbcdca-0dd1-41ef-bbc5-0a32f287811f
+		summarizeBy: none
+		sourceColumn: Phone Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 1'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 1361ce88-2882-48c9-a069-840ee560c91d
+		summarizeBy: none
+		sourceColumn: Address Line 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 2'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 3004db58-1488-406b-9f5f-946296263159
+		summarizeBy: none
+		sourceColumn: Address Line 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 772c485f-54b3-4e4c-b97b-2c4a6336adcb
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column County
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 1d769877-b981-4f47-9050-07cbf291d5c3
+		summarizeBy: none
+		sourceColumn: County
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 980edc7f-b09e-4cb9-b374-8fe7ad9ace77
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 76f8d028-c87f-404e-8ffa-c94d695c5b8d
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column HomeChurch
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 233df190-e0d7-4a4a-ba57-73e15c575bfe
+		summarizeBy: none
+		sourceColumn: HomeChurch
+
+		annotation SummarizationSetBy = Automatic
+
+	column PersonId
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 0a01d56d-d1c2-4085-a402-554b51e8df84
+		summarizeBy: none
+		sourceColumn: PersonId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Name'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 19032d1c-f69c-4fb1-b9ec-6da7b34341bc
+		summarizeBy: none
+		sourceColumn: First Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Name'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: a182b468-2952-4172-a8f1-0ac27440da8f
+		summarizeBy: none
+		sourceColumn: Last Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ethnicity
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 3c58c5c6-d1f9-4601-9b49-cba7713e679d
+		summarizeBy: none
+		sourceColumn: Ethnicity
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateOfBirth
+		dataType: dateTime
+		formatString: Long Date
+		displayFolder: _columns
+		lineageTag: 4b14e7ab-d4ca-45c1-8a2b-55ae99d61955
+		summarizeBy: none
+		sourceColumn: DateOfBirth
+
+		variation Variation
+			isDefault
+			relationship: ef63f3fe-04ee-4288-a9ac-f2f0a7b0d90d
+			defaultHierarchy: LocalDateTable_de2c3251-3f42-4917-b1a3-c8994b5b4a55.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Full Name'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: bd311439-7c66-4ceb-8a12-11de38faa3de
+		summarizeBy: none
+		sourceColumn: Full Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age = DATEDIFF(Entity[DateOfBirth], UTCNOW(), YEAR)
+		formatString: 0
+		displayFolder: _columns
+		lineageTag: 33196aab-cb09-4889-b68c-74b4773dac85
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Entity","TableItemName":"Age (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Adult or Child' = IF(ISBLANK(Entity[Age]), BLANK(), IF(Entity[Age]>= 18, "Adult", "Child"))
+		displayFolder: _columns
+		lineageTag: 65775017-7f5a-451c-aca1-00d5e3e17723
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age (bins)' =
+			IF(
+				ISBLANK('Entity'[Age]),
+				BLANK(),
+				INT('Entity'[Age] / 5) * 5
+			)
+		formatString: 0
+		displayFolder: _columns
+		lineageTag: 487e8f57-6086-42b7-aec8-42e60a6a9898
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "binningMetadata": {
+				    "binSize": {
+				      "unit": 0,
+				      "value": 5.0
+				    }
+				  },
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Entity"
+				          }
+				        },
+				        "Property": "Age"
+				      }
+				    }
+				  ],
+				  "version": 0
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"e","Entity":"Entity"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Age"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Age"}},"Size":5.0}}}}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Participation Type' =
+			
+			
+			VAR FamilyRoleApprovals = CALCULATE(
+			    COUNTROWS('Role Approval'),
+			    'Role Approval'[Entity Type] = "Family",
+			    USERELATIONSHIP(Entity[FamilyId], 'Role Approval'[Entity Id]),
+			    CROSSFILTER(Entity[PersonId], 'Role Approval'[Entity Id], None)
+			)
+			
+			VAR IndividualRoleApprovals = CALCULATE(
+			    COUNTROWS('Role Approval'),
+			    'Role Approval'[Entity Type] = "Person")
+			
+			VAR Referrals = COUNTROWS(RELATEDTABLE(Referral))
+			
+			RETURN
+			    IF(
+			        FamilyRoleApprovals + IndividualRoleApprovals > 0,
+			        "Volunteer Family",
+			        IF(Referrals > 0,
+			            "Partnering Family",
+			            "Other"
+			        )
+			    )
+		displayFolder: _columns
+		lineageTag: f5cc564e-0e52-4725-b298-c4caf0e8c780
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column PersonType
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 6de05a4f-6d16-4087-bdf1-60023d7fa16c
+		summarizeBy: none
+		sourceColumn: PersonType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Entity = m
+		mode: import
+		queryGroup: 'Consolidated Entities'
+		source = ```
+				let 
+				    Source = #"OData Live",
+				    Person = Table.SelectColumns(
+				        Source{[Name="Person", Signature="table"]}[Data],
+				        {"Id", "FamilyId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType"}
+				        ),
+				
+				    PersonTableColumnsRenamed = Table.RenameColumns(Person, {{"Id","PersonId"}}),
+				
+				    FamilyTable = Source{[Name="Family", Signature="table"]}[Data],
+				    FamilyTableColumns = Table.SelectColumns(FamilyTable, {"Id", "LocationId", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "PrimaryAddress", "HomeChurch"}),
+				    FamilytableColumnsExpanded = Table.ExpandRecordColumn(FamilyTableColumns, "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}),
+				
+				    CombinedTables = Table.Join(
+				        PersonTableColumnsRenamed,
+				        {"FamilyId"},
+				        FamilytableColumnsExpanded,
+				        {"Id"},
+				        JoinKind.LeftOuter
+				    ),
+				    #"Reordered Columns" = Table.ReorderColumns(CombinedTables,{"FamilyId", "Id", "LocationId", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "Line1", "Line2", "City", "County", "State", "PostalCode", "HomeChurch", "PersonId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"Id"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Name", "Family Name"}, {"PrimaryEmail", "Email"}, {"PrimaryPhoneNumber", "Phone Number"}, {"Line1", "Address Line 1"}, {"Line2", "Address Line 2"}, {"FirstName", "First Name"}, {"LastName", "Last Name"}}),
+				    #"Inserted Merged Column" = Table.AddColumn(#"Renamed Columns", "Full Name", each Text.Combine({[First Name], [Last Name]}, " "), type text)
+				in
+				    #"Inserted Merged Column"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

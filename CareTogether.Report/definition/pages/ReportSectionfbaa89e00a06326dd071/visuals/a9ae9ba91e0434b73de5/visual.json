@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "name": "a9ae9ba91e0434b73de5",
+  "position": {
+    "x": 13.02517858968098,
+    "y": 661.49299837594117,
+    "z": 6000,
+    "height": 49.309604660935136,
+    "width": 335.86353363391669
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "By default, this page will filter data to the current calendar year. Use the Filters pane to adjust this.",
+                    "textStyle": {
+                      "fontStyle": "italic"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

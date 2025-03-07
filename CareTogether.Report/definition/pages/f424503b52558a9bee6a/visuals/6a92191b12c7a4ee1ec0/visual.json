@@ -1,0 +1,243 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "name": "6a92191b12c7a4ee1ec0",
+  "position": {
+    "x": 427.94233697524754,
+    "y": 0,
+    "z": 2000,
+    "height": 720.21784797323573,
+    "width": 852.24261150815255,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Entity"
+                    }
+                  },
+                  "Property": "Full Name"
+                }
+              },
+              "queryRef": "Entity.Full Name",
+              "nativeQueryRef": "Child",
+              "displayName": "Child"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date"
+                    }
+                  },
+                  "Property": "YYYY-MM-dd"
+                }
+              },
+              "queryRef": "Date.YYYY-MM-dd",
+              "nativeQueryRef": "Date",
+              "displayName": "Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Child Location Record"
+                    }
+                  },
+                  "Property": "Childcare Family Name"
+                }
+              },
+              "queryRef": "Child Location Record.Childcare Family Name",
+              "nativeQueryRef": "Childcare Family",
+              "displayName": "Childcare Family"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Arrangement Type"
+                    }
+                  },
+                  "Property": "Arrangement Type"
+                }
+              },
+              "queryRef": "Arrangement Type.Arrangement Type",
+              "nativeQueryRef": "Arrangement Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Arrangement"
+                    }
+                  },
+                  "Property": "Reason"
+                }
+              },
+              "queryRef": "Arrangement.Reason",
+              "nativeQueryRef": "Reason"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ChildLocationExpanded"
+                    }
+                  },
+                  "Property": "ChildcarePlan"
+                }
+              },
+              "queryRef": "ChildLocationExpanded.ChildcarePlan",
+              "nativeQueryRef": "Plan for Care",
+              "displayName": "Plan for Care"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ChildLocationExpanded"
+                    }
+                  },
+                  "Property": "OvernightStay"
+                }
+              },
+              "queryRef": "ChildLocationExpanded.OvernightStay",
+              "nativeQueryRef": "Overnight ?",
+              "displayName": "Overnight ?"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Child Location Record"
+                    }
+                  },
+                  "Property": "Started"
+                }
+              },
+              "queryRef": "Child Location Record.Started",
+              "nativeQueryRef": "Started"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Child Location Record"
+                    }
+                  },
+                  "Property": "Ended"
+                }
+              },
+              "queryRef": "Child Location Record.Ended",
+              "nativeQueryRef": "Ended"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "169.20668455490824D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Entity.Full Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "103.31611307701961D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Date.YYYY-MM-dd"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4e4deaf85ed4e7bfc337",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ChildLocationExpanded"
+              }
+            },
+            "Property": "ChildcarePlan"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "ChildLocationExpanded",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "c"
+                            }
+                          },
+                          "Property": "ChildcarePlan"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'WithParent'"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
