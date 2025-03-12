@@ -1,5 +1,5 @@
 {
-  "name": "CY24SU08",
+  "name": "CY24SU10",
   "dataColors": [
     "#118DFF",
     "#12239E",
@@ -567,9 +567,30 @@
             "responsive": true
           }
         ],
+        "smallMultiplesLayout": [
+          {
+            "backgroundTransparency": 0,
+            "gridLineType": "inner"
+          }
+        ],
         "valueAxis": [
           {
             "show": true
+          }
+        ]
+      }
+    },
+    "hundredPercentStackedAreaChart": {
+      "*": {
+        "general": [
+          {
+            "responsive": true
+          }
+        ],
+        "smallMultiplesLayout": [
+          {
+            "backgroundTransparency": 0,
+            "gridLineType": "inner"
           }
         ]
       }

@@ -27,7 +27,7 @@
               },
               "queryRef": "Date.Year",
               "nativeQueryRef": "Year",
-              "active": true
+              "active": false
             },
             {
               "field": {

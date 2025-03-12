@@ -95,8 +95,6 @@
       {
         "name": "9d51c53af4b150b39cdf",
         "boundFilter": "5914da1a84d11a2c5ff0",
-        "asAggregation": false,
-        "qnaSingleSelectRequired": false,
         "fieldExpr": {
           "Measure": {
             "Expression": {
