@@ -218,19 +218,6 @@
         },
         {
           "location": {
-            "x": 2020.431438715158,
-            "y": 524.67203586271489
-          },
-          "nodeIndex": "Calculation group",
-          "nodeLineageTag": "e8575b46-42f2-4cdf-9ae7-faa632c5fecb",
-          "size": {
-            "height": 128,
-            "width": 234
-          },
-          "zIndex": 14
-        },
-        {
-          "location": {
             "x": 2588.431438715158,
             "y": 1185.7598258451469
           },
@@ -263,6 +250,15 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Approvals Entity Type",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
@@ -276,7 +272,7 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 0
+        "y": 46.589975933545894
       },
       "nodes": [
         {

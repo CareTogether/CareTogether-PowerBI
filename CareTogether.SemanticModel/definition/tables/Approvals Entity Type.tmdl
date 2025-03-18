@@ -1,0 +1,47 @@
+table 'Approvals Entity Type'
+	lineageTag: 7dc61cfe-e821-49b8-88a9-f3f0acb66324
+
+	calculationGroup
+
+		calculationItem Family =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    'Role Approval'[Entity Type] = "Family",
+				    USERELATIONSHIP ( Entity[FamilyId], 'Role Approval'[Entity Id] ),
+				    CROSSFILTER ( Entity[PersonId], 'Role Approval'[Entity Id], NONE )
+				)
+
+		calculationItem Person =
+				CALCULATE(
+				    SELECTEDMEASURE (),
+				    'Role Approval'[Entity Type] = "Person",
+				    USERELATIONSHIP ( Entity[PersonId], 'Role Approval'[Entity Id] ),
+				    CROSSFILTER ( Entity[FamilyId], 'Role Approval'[Entity Id], NONE )
+				)
+
+	measure 'Visibility Management (For Person Related Elements)' = IF(SELECTEDVALUE('Approvals Entity Type'[Entity Type]) = "Person", 1, BLANK())
+		formatString: 0
+		lineageTag: e94ae3aa-9ede-4079-97b3-d792b48628cc
+
+	measure '# of Entities by Role and Approval Status Subtitle' = ```
+			
+			IF(
+			    SELECTEDVALUE('Approvals Entity Type'[Entity Type]) = "Family", 
+			    "WARNING: When this chart includes individual roles, those counts still represent *families* (regardless of number of family members participating in that role).",
+			    "WARNING: When this chart includes family roles, those counts still represent *individual people* (participants in the family role)."
+			)
+			```
+		lineageTag: 49c01831-cbf3-4a77-a79b-41c587702954
+
+	column 'Entity Type'
+		dataType: string
+		lineageTag: 28508158-01d0-4796-9aa8-f2ddbc1d8c43
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: c6416d4c-d0a9-47aa-97ad-313149d7e99a
+		sourceColumn: Ordinal
+

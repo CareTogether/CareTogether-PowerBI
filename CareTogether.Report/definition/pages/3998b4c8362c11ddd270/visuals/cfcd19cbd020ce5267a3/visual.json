@@ -204,8 +204,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#26A3AB'"
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0.2
                     }
                   }
                 }
@@ -358,6 +359,13 @@
                       "Value": "'#6E6E6E'"
                     }
                   }
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

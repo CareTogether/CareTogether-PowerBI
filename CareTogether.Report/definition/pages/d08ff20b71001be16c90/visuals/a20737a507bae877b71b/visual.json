@@ -4,10 +4,10 @@
   "position": {
     "x": 837.14285714285722,
     "y": 480.71428571428572,
-    "z": 13002,
+    "z": 15000,
     "height": 228.57142857142858,
     "width": 434.28571428571433,
-    "tabOrder": 13002
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "stackedAreaChart",
@@ -236,6 +236,13 @@
                   "Value": "'Arial'"
                 }
               }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -247,8 +254,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#80C9D5'"
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0.2
                     }
                   }
                 }
@@ -288,8 +296,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#1A6F7C'"
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": -0.5
                     }
                   }
                 }

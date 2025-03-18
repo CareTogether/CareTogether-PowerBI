@@ -347,6 +347,10 @@ table Entity
 		formatString: Short Date
 		lineageTag: 0751291e-4fcd-49dd-8bc9-f7f9c593e84a
 
+	measure '# of Entities in Role' = DISTINCTCOUNT('Role Approval'[Entity Id])
+		formatString: 0
+		lineageTag: dcc5efbd-9875-442e-a4de-2f9045a3d814
+
 	column FamilyId
 		dataType: string
 		displayFolder: _columns

@@ -43,7 +43,7 @@
               },
               "queryRef": "Entity.PostalCode",
               "nativeQueryRef": "PostalCode",
-              "active": true
+              "active": false
             },
             {
               "field": {

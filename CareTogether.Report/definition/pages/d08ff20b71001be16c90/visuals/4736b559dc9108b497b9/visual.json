@@ -481,23 +481,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "0905092450a80571019c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record"
-              }
-            },
-            "Property": "Days of Care"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

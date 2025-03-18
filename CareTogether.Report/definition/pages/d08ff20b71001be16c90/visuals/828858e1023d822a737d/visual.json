@@ -229,6 +229,13 @@
                   }
                 }
               }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -240,8 +247,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#80C9D5'"
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0.2
                     }
                   }
                 }
@@ -281,8 +289,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#1A6F7C'"
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": -0.5
                     }
                   }
                 }

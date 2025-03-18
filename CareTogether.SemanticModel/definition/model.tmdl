@@ -28,11 +28,13 @@ annotation PBI_QueryOrder = ["Location","Community","Role","OData Live","Product
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.140.1476.0 (25.02)+e8c6a85d1d09735c5c055c3244a60ff4076cd2cf
+annotation PBIDesktopVersion = 2.140.1577.0 (25.02)+00af0910c5ca19a229c472b0dfc17a2c488f6b0a
 
 annotation PBI_ProTooling = ["CalcGroup","DevMode"]
 
 annotation PBI_RemovedChildren = [{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"46d5bd4a-a507-4eb7-941d-b7680ccdeaa3","fromColumnLocalLineageTag":"c2ba4d85-eb62-48a9-9d35-f7ec94997aef","toTableLocalLineageTag":"d767a338-d9a5-4e00-8b61-2f6469d3aa63","toColumnLocalLineageTag":"048d136e-c963-4efb-954c-117136ca81da"}},"objectType":"Relationship"}]
+
+annotation __TEdtr = 1
 
 ref table DateTableTemplate_281570fe-3908-44fd-b0fc-579445d6c411
 ref table Location
@@ -58,11 +60,11 @@ ref table ChildLocationExpanded
 ref table Community
 ref table 'Community Member Families'
 ref table 'Community Role Assignments'
-ref table 'Calculation group'
 ref table 'Function Assignments'
 ref table Entity
 ref table LocalDateTable_de2c3251-3f42-4917-b1a3-c8994b5b4a55
 ref table 'Role Approval'
+ref table 'Approvals Entity Type'
 
 ref cultureInfo en-US
 

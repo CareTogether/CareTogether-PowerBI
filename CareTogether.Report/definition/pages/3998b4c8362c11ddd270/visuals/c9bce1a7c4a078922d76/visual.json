@@ -4,10 +4,10 @@
   "position": {
     "x": 384,
     "y": 8.6666666666666661,
-    "z": 1004,
+    "z": 5000,
     "height": 351.33333333333331,
     "width": 885.33333333333337,
-    "tabOrder": 1004
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "lineChart",
@@ -224,8 +224,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#26A3AB'"
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0.2
                     }
                   }
                 }

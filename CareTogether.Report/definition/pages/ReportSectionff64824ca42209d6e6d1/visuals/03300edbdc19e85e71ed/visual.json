@@ -39,7 +39,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Entity"
+                    "Entity": "Person"
                   }
                 },
                 "Property": "# of People in Role"

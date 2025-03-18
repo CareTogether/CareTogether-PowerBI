@@ -4,10 +4,10 @@
   "position": {
     "x": 384,
     "y": 370,
-    "z": 1006,
+    "z": 7000,
     "height": 341.33333333333331,
     "width": 885.33333333333337,
-    "tabOrder": 1006
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "tableEx",
@@ -181,8 +181,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#9A9A9A'"
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
                     }
                   }
                 }
@@ -192,10 +193,18 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#9A9A9A'"
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
                     }
                   }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }
