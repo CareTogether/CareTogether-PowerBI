@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
   "name": "cec66ef7e524732b0413",
   "position": {
-    "x": 384,
-    "y": 4.666666666666667,
+    "x": 383.9590443686007,
+    "y": 9.2150170648464158,
     "z": 4000,
-    "height": 700,
-    "width": 886.66666666666663,
+    "height": 700.34129692832767,
+    "width": 886.4846416382253,
     "tabOrder": 1002
   },
   "visual": {
@@ -283,6 +283,19 @@
           },
           "selector": {
             "metadata": "ChildLocationExpanded.ChildcarePlan"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
           }
         }
       ]

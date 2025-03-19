@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
-  "name": "95549a511171dc8b86d3",
+  "name": "aa9a662d4d1104019500",
   "position": {
-    "x": 0,
-    "y": 0,
-    "z": 3001,
-    "height": 720,
-    "width": 877,
-    "tabOrder": 3001
+    "x": 8.6006825938566553,
+    "y": 8.6006825938566553,
+    "z": 2,
+    "height": 702.79863481228665,
+    "width": 721.22866894197955,
+    "tabOrder": 2
   },
   "visual": {
     "visualType": "tableEx",
@@ -79,121 +79,51 @@
       "values": [
         {
           "properties": {
-            "backColor": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontColorPrimary": {
               "solid": {
                 "color": {
                   "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "And": {
-                              "Left": {
-                                "Comparison": {
-                                  "ComparisonKind": 2,
-                                  "Left": {
-                                    "Aggregation": {
-                                      "Expression": {
-                                        "Column": {
-                                          "Expression": {
-                                            "SourceRef": {
-                                              "Entity": "Family"
-                                            }
-                                          },
-                                          "Property": "Community Membership Count"
-                                        }
-                                      },
-                                      "Function": 0
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "2D"
-                                    }
-                                  }
-                                }
-                              },
-                              "Right": {
-                                "Comparison": {
-                                  "ComparisonKind": 4,
-                                  "Left": {
-                                    "Aggregation": {
-                                      "Expression": {
-                                        "Column": {
-                                          "Expression": {
-                                            "SourceRef": {
-                                              "Entity": "Family"
-                                            }
-                                          },
-                                          "Property": "Community Membership Count"
-                                        }
-                                      },
-                                      "Function": 0
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "99D"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#FBB1B1'"
-                            }
-                          }
-                        },
-                        {
-                          "Condition": {
-                            "Comparison": {
-                              "ComparisonKind": 0,
-                              "Left": {
-                                "Aggregation": {
-                                  "Expression": {
-                                    "Column": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Family"
-                                        }
-                                      },
-                                      "Property": "Community Membership Count"
-                                    }
-                                  },
-                                  "Function": 0
-                                }
-                              },
-                              "Right": {
-                                "Literal": {
-                                  "Value": "0D"
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#FFDFB7'"
-                            }
-                          }
-                        }
-                      ]
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
                     }
                   }
                 }
               }
             }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Min(Community.Community Name)"
           }
         },
         {
@@ -242,7 +172,7 @@
                                   },
                                   "Right": {
                                     "Literal": {
-                                      "Value": "99D"
+                                      "Value": "99999D"
                                     }
                                   }
                                 }
@@ -307,13 +237,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "231.41644406826038D"
+                  "Value": "106D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Min(Community.Community Name)"
+            "metadata": "ChildLocationExpanded.ChildcarePlan"
           }
         },
         {
@@ -321,13 +251,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "264D"
+                  "Value": "168.58702944373206D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Community.First Community Membership"
+            "metadata": "Entity.Family Name"
           }
         },
         {
@@ -335,7 +265,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "140D"
+                  "Value": "97.9863481228669D"
                 }
               }
             }
@@ -349,19 +279,14 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "250D"
+                  "Value": "196.6723538973542D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Entity.Family Name"
+            "metadata": "Community.First Community Membership"
           }
-        }
-      ],
-      "general": [
-        {
-          "properties": {}
         }
       ],
       "total": [
@@ -371,6 +296,279 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EFEFEF'"
+                    }
+                  }
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#212121'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#9A9A9A'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "customizeSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "verticalSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "spaceBelowTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'None'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F6FCFC'"
+                    }
+                  }
+                }
+              }
+            },
+            "border": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F6FCFC'"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#26A3AB'"
+                    }
+                  }
                 }
               }
             }
