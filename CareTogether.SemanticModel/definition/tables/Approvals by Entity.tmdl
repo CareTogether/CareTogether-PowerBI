@@ -1,4 +1,4 @@
-table 'Approvals Entity Type'
+table 'Approvals by Entity'
 	lineageTag: 7dc61cfe-e821-49b8-88a9-f3f0acb66324
 
 	calculationGroup
@@ -15,23 +15,31 @@ table 'Approvals Entity Type'
 				CALCULATE(
 				    SELECTEDMEASURE (),
 				    'Role Approval'[Entity Type] = "Person",
-				    USERELATIONSHIP ( Entity[PersonId], 'Role Approval'[Entity Id] ),
-				    CROSSFILTER ( Entity[FamilyId], 'Role Approval'[Entity Id], NONE )
+				    USERELATIONSHIP(Entity[PersonId], 'Role Approval'[Entity Id]),
+				    CROSSFILTER (Entity[FamilyId], 'Role Approval'[Entity Id], NONE)
 				)
-
-	measure 'Visibility Management (For Person Related Elements)' = IF(SELECTEDVALUE('Approvals Entity Type'[Entity Type]) = "Person", 1, BLANK())
-		formatString: 0
-		lineageTag: e94ae3aa-9ede-4079-97b3-d792b48628cc
 
 	measure '# of Entities by Role and Approval Status Subtitle' = ```
 			
 			IF(
-			    SELECTEDVALUE('Approvals Entity Type'[Entity Type]) = "Family", 
+			    SELECTEDVALUE('Approvals by Entity'[Entity Type]) = "Family", 
 			    "WARNING: When this chart includes individual roles, those counts still represent *families* (regardless of number of family members participating in that role).",
 			    "WARNING: When this chart includes family roles, those counts still represent *individual people* (participants in the family role)."
 			)
 			```
 		lineageTag: 49c01831-cbf3-4a77-a79b-41c587702954
+
+	measure 'Dynamic Entity Name (Approvals)' =
+			SWITCH(
+			    SELECTEDVALUE('Approvals by Entity'[Entity Type]),
+			    "Family", SELECTEDVALUE(Entity[Family Name]),
+			    "Person", SELECTEDVALUE(Entity[Full Name])
+			)
+		lineageTag: f6cfa147-7839-4df2-871a-bc8f96e58227
+
+	measure 'Visibility Management (Approvals)' = IF(SELECTEDVALUE('Approvals by Entity'[Entity Type]) = "Person", 1, BLANK())
+		formatString: 0
+		lineageTag: a61a110e-b97b-4af0-9227-40cf03f8d634
 
 	column 'Entity Type'
 		dataType: string

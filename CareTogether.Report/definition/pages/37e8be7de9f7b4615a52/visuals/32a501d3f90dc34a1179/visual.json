@@ -3,10 +3,10 @@
   "name": "32a501d3f90dc34a1179",
   "position": {
     "x": 0,
-    "y": 181.65016501650166,
+    "y": 181.22866894197952,
     "z": 3000,
-    "height": 538.61386138613864,
-    "width": 1280,
+    "height": 538.15699658703068,
+    "width": 1280.2730375426622,
     "tabOrder": 3000
   },
   "visual": {
@@ -76,7 +76,21 @@
         }
       },
       "sortDefinition": {
-        "isDefaultSort": true
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Entity"
+                  }
+                },
+                "Property": "Family Engagement Level"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {

@@ -11971,7 +11971,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Person": {
+			          "Child": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -11981,7 +11981,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Child": {
+			          "Person": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -16669,6 +16669,57 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "engagement_by_entity.dynamic_entity_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Engagement by Entity",
+			          "ConceptualProperty": "Dynamic Entity Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Entity Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "approvals_by_entity.dynamic_entity_name_approvals": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Approvals by Entity",
+			          "ConceptualProperty": "Dynamic Entity Name (Approvals)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Entity Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity.of_entities_in_role": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Entity",
+			          "ConceptualProperty": "# of Entities in Role"
+			        }
+			      },
+			      "State": "Generated"
 			    }
 			  },
 			  "Relationships": {

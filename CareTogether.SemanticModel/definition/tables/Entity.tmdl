@@ -351,6 +351,31 @@ table Entity
 		formatString: 0
 		lineageTag: dcc5efbd-9875-442e-a4de-2f9045a3d814
 
+	measure 'Engagement Level' =
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN
+			IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        COUNTROWS('Function Assignments'),
+			        NOT ISBLANK(Arrangement[Started]),
+			        Arrangement[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK(Arrangement[Ended]),
+			            TRUE(),
+			            'Arrangement'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: ef04b2c7-710f-4f7d-ae0e-dc217a08a5ce
+
 	column FamilyId
 		dataType: string
 		displayFolder: _columns

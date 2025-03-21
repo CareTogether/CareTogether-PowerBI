@@ -253,7 +253,18 @@
         },
         {
           "location": {},
-          "nodeIndex": "Approvals Entity Type",
+          "nodeIndex": "Approvals by Entity",
+          "nodeLineageTag": "7dc61cfe-e821-49b8-88a9-f3f0acb66324",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Engagement by Entity",
+          "nodeLineageTag": "8f2409f8-8bb7-409d-a99d-42d2502e2ec7",
           "size": {
             "height": 128,
             "width": 234
@@ -272,13 +283,13 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 46.589975933545894
+        "y": 75.06162789293505
       },
       "nodes": [
         {
           "location": {
-            "x": 772.56037928307887,
-            "y": 566.07701938159255
+            "x": 776.442877277541,
+            "y": 604.90199932621408
           },
           "nodeIndex": "Entity",
           "nodeLineageTag": "18ba4465-a9c2-415f-8e79-fd884584fded",

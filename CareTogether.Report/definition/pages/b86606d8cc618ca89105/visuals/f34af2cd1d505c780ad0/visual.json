@@ -335,20 +335,26 @@
         }
       ]
     },
+    "syncGroup": {
+      "groupName": "PersonType",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "ac1c1a964344b0682e48",
+        "name": "f201bcbc02013038ea08",
+        "ordinal": 0,
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Approvals Entity Type"
+                "Entity": "Approvals by Entity"
               }
             },
-            "Property": "Visibility Management (For Person Related Elements)"
+            "Property": "Visibility Management (Approvals)"
           }
         },
         "type": "Advanced",
@@ -356,8 +362,8 @@
           "Version": 2,
           "From": [
             {
-              "Name": "e",
-              "Entity": "Approvals Entity Type",
+              "Name": "a",
+              "Entity": "Approvals by Entity",
               "Type": 0
             }
           ],
@@ -372,10 +378,10 @@
                         "Measure": {
                           "Expression": {
                             "SourceRef": {
-                              "Source": "e"
+                              "Source": "a"
                             }
                           },
-                          "Property": "Visibility Management (For Person Related Elements)"
+                          "Property": "Visibility Management (Approvals)"
                         }
                       },
                       "Right": {
@@ -391,7 +397,23 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "71ddce6386e5c3014262",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "PersonType"
+          }
+        },
+        "type": "Categorical"
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   }
 }

@@ -1,0 +1,41 @@
+table 'Engagement by Entity'
+	lineageTag: 8f2409f8-8bb7-409d-a99d-42d2502e2ec7
+
+	calculationGroup
+		precedence: 1
+
+		calculationItem Family =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]),
+				        CROSSFILTER(Entity[PersonId], Arrangement[PersonId], None)
+				)
+
+		calculationItem Person =
+				CALCULATE(
+				    SELECTEDMEASURE (),
+				    USERELATIONSHIP(Entity[PersonId], 'Function Assignments'[EntityId])
+				)
+
+	measure 'Dynamic Entity Name' = ```
+			SWITCH(
+			    SELECTEDVALUE('Engagement by Entity'[Entity Type]),
+			    "Family", SELECTEDVALUE(Entity[Family Name]),
+			    "Person", SELECTEDVALUE(Entity[Full Name])
+			)
+			
+			```
+		lineageTag: 0cd7cfa7-2eea-44a1-bde0-e6805c0adaa6
+
+	column 'Entity Type'
+		dataType: string
+		lineageTag: 41bce2c0-a1e4-461b-9226-f9530288cc87
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: 5dfee282-9213-400e-9f81-444b5f5c7b1a
+		sourceColumn: Ordinal
+

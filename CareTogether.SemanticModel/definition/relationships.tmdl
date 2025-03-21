@@ -127,6 +127,7 @@ relationship 901490b3-6c94-f5f5-307f-b5b7046ddf8e
 	toColumn: Date.Date
 
 relationship 2c66665f-b5f5-5081-572d-dbdbde0f3ee5
+	crossFilteringBehavior: bothDirections
 	fromColumn: 'Role Approval'.'Entity Id'
 	toColumn: Entity.PersonId
 

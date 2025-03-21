@@ -64,7 +64,8 @@ ref table 'Function Assignments'
 ref table Entity
 ref table LocalDateTable_de2c3251-3f42-4917-b1a3-c8994b5b4a55
 ref table 'Role Approval'
-ref table 'Approvals Entity Type'
+ref table 'Approvals by Entity'
+ref table 'Engagement by Entity'
 
 ref cultureInfo en-US
 
