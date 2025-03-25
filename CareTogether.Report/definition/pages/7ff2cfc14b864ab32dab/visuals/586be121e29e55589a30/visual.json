@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
   "name": "586be121e29e55589a30",
   "position": {
-    "x": 375.358361774744,
-    "y": 9.829351535836178,
+    "x": 10.443686006825939,
+    "y": 294.88054607508531,
     "z": 4,
-    "height": 700.34129692832767,
-    "width": 896.31399317406147,
+    "height": 415.29010238907853,
+    "width": 1261.2286689419795,
     "tabOrder": 4
   },
   "visual": {
@@ -57,7 +57,8 @@
                 }
               },
               "queryRef": "Entity.Engagement Level",
-              "nativeQueryRef": "Engagement Level"
+              "nativeQueryRef": "# of Assignments",
+              "displayName": "# of Assignments"
             }
           ]
         }

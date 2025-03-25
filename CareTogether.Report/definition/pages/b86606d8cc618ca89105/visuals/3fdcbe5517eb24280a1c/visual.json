@@ -31,9 +31,42 @@
               "active": true
             }
           ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Entity"
+                    }
+                  },
+                  "Property": "# of Entities in Role"
+                }
+              },
+              "queryRef": "Entity.# of Entities in Role",
+              "nativeQueryRef": "# of Entities in Role"
+            }
+          ]
         }
       },
       "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Entity"
+                  }
+                },
+                "Property": "# of Entities in Role"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
         "isDefaultSort": true
       }
     },
@@ -70,6 +103,13 @@
                       "Value": "'#6E6E6E'"
                     }
                   }
+                }
+              }
+            },
+            "maxMarginFactor": {
+              "expr": {
+                "Literal": {
+                  "Value": "50L"
                 }
               }
             }
@@ -218,7 +258,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'# of Entities by Role And Approval Status'"
+                  "Value": "'# of Entities by Community Membership'"
                 }
               }
             },

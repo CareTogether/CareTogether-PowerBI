@@ -378,6 +378,11 @@
       "source": "db179545061c8d04967d",
       "target": "2f134ae1940c41b403b9",
       "type": "DataFilter"
+    },
+    {
+      "source": "22e8ef871416b0b7010b",
+      "target": "3fdcbe5517eb24280a1c",
+      "type": "HighlightFilter"
     }
   ]
 }

@@ -520,5 +520,11 @@
       }
     ]
   },
-  "visualInteractions": []
+  "visualInteractions": [
+    {
+      "source": "6f6302f57c257020062a",
+      "target": "5bbba6e903b286db133d",
+      "type": "DataFilter"
+    }
+  ]
 }

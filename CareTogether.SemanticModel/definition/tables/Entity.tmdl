@@ -376,6 +376,28 @@ table Entity
 		formatString: 0
 		lineageTag: ef04b2c7-710f-4f7d-ae0e-dc217a08a5ce
 
+	measure '# of Engaged Entities' =
+			
+			IF(
+			    SELECTEDVALUE('Engagement by Entity'[Entity Type]) = "Person",
+			    CALCULATE(
+			    DISTINCTCOUNT(Entity[PersonId]),
+			    FILTER(
+			        Entity,
+			        [Engagement Level] > 0
+			    )),
+			IF(
+			    SELECTEDVALUE('Engagement by Entity'[Entity Type]) = "Family",
+			    CALCULATE(
+			    DISTINCTCOUNT(Entity[FamilyId]),
+			    FILTER(
+			        Entity,
+			        [Engagement Level] > 0
+			    ))
+			))
+		formatString: 0
+		lineageTag: bca680a4-55ac-4c55-a442-6aa30c0c0db0
+
 	column FamilyId
 		dataType: string
 		displayFolder: _columns

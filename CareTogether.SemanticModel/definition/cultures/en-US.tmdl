@@ -16720,6 +16720,27 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated"
+			    },
+			    "entity.engagement_level": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Entity",
+			          "ConceptualProperty": "Engagement Level"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "# of Assignments": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
