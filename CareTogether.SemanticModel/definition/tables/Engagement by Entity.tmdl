@@ -17,8 +17,8 @@ table 'Engagement by Entity'
 		calculationItem Person =
 				CALCULATE(
 				    SELECTEDMEASURE (),
-				    'Role Approval'[Entity Type] = "Person",
 				    USERELATIONSHIP(Entity[PersonId], 'Function Assignments'[EntityId]),
+				    CROSSFILTER(Entity[PersonId], Arrangement[PersonId], None),
 				    'Role Approval'[Entity Type] = "Person",
 				    USERELATIONSHIP(Entity[PersonId], 'Role Approval'[Entity Id]),
 				    CROSSFILTER (Entity[FamilyId], 'Role Approval'[Entity Id], NONE)

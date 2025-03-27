@@ -57,11 +57,11 @@
                       "Entity": "Entity"
                     }
                   },
-                  "Property": "# of Entities in Role"
+                  "Property": "# of Approved Entities"
                 }
               },
-              "queryRef": "Entity.# of Entities in Role",
-              "nativeQueryRef": "# of Entities in Role"
+              "queryRef": "Entity.# of Approved Entities",
+              "nativeQueryRef": "# of Approved Entities"
             },
             {
               "field": {
@@ -90,7 +90,7 @@
                     "Entity": "Entity"
                   }
                 },
-                "Property": "# of Entities in Role"
+                "Property": "# of Approved Entities"
               }
             },
             "direction": "Descending"
@@ -360,8 +360,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": -0.5
+                      "ColorId": 6,
+                      "Percent": 0.2
                     }
                   }
                 }
@@ -369,7 +369,7 @@
             }
           },
           "selector": {
-            "metadata": "Entity.# of Entities in Role"
+            "metadata": "Entity.# of Approved Entities"
           }
         },
         {
@@ -379,8 +379,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 6,
-                      "Percent": 0.2
+                      "ColorId": 7,
+                      "Percent": -0.25
                     }
                   }
                 }
@@ -399,6 +399,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
   "name": "586be121e29e55589a30",
   "position": {
-    "x": 10.443686006825939,
-    "y": 294.88054607508531,
+    "x": 10.769230769230768,
+    "y": 294.61538461538458,
     "z": 4,
-    "height": 415.29010238907853,
-    "width": 1261.2286689419795,
+    "height": 415.38461538461536,
+    "width": 1260.7692307692307,
     "tabOrder": 4
   },
   "visual": {
@@ -53,12 +53,40 @@
                       "Entity": "Entity"
                     }
                   },
-                  "Property": "Engagement Level"
+                  "Property": "Entity Engagement Level"
                 }
               },
               "queryRef": "Entity.Engagement Level",
               "nativeQueryRef": "# of Assignments",
               "displayName": "# of Assignments"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Entity"
+                    }
+                  },
+                  "Property": "Entity Last Assignment Date"
+                }
+              },
+              "queryRef": "Entity.Entity Last Assignment Date",
+              "nativeQueryRef": "Entity Last Assignment Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Entity"
+                    }
+                  },
+                  "Property": "Participation Type"
+                }
+              },
+              "queryRef": "Entity.Participation Type",
+              "nativeQueryRef": "Participation Type"
             }
           ]
         }
@@ -73,7 +101,7 @@
                     "Entity": "Entity"
                   }
                 },
-                "Property": "Engagement Level"
+                "Property": "Entity Engagement Level"
               }
             },
             "direction": "Descending"
@@ -167,6 +195,20 @@
           },
           "selector": {
             "metadata": "Function Assignments.EntityId"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "793.5385408024395D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Engagement by Entity.Dynamic Entity Name"
           }
         }
       ],
@@ -493,7 +535,7 @@
                 "Entity": "Entity"
               }
             },
-            "Property": "Engagement Level"
+            "Property": "Entity Engagement Level"
           }
         },
         "type": "Advanced",
@@ -520,7 +562,7 @@
                               "Source": "e1"
                             }
                           },
-                          "Property": "Engagement Level"
+                          "Property": "Entity Engagement Level"
                         }
                       },
                       "Right": {

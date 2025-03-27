@@ -131,21 +131,6 @@ table Entity
 		formatString: 0
 		lineageTag: 56b2562e-e953-4c65-b7b0-d70a8a272259
 
-	measure '# of Families in Role' = ```
-			
-			VAR FamilyApproval = CALCULATE(
-			    DISTINCTCOUNT('Role Approval'[Entity Id]),
-			    'Role Approval'[Entity Type] = "Family",
-			    USERELATIONSHIP(Entity[FamilyId], 'Role Approval'[Entity Id]),
-			    CROSSFILTER(Entity[PersonId], 'Role Approval'[Entity Id], None)
-			)
-			
-			RETURN FamilyApproval
-			
-			```
-		formatString: 0
-		lineageTag: a9874b87-0de5-4fa1-b5ac-a8ee7e646abd
-
 	measure '# of People in Role' =
 			
 			VAR PeopleApprovals = CALCULATE(
@@ -183,175 +168,21 @@ table Entity
 		formatString: 0
 		lineageTag: eab89055-f3d3-49a0-b310-ecc71d6f052c
 
-	measure '# of Engaged People' =
-			
-			// An engaged person is one who was assigned to a function in an arrangement where that arrangement was active in the given timeframe.
-			
-			CALCULATE(
-			    DISTINCTCOUNT(Entity[PersonId]),
-			    FILTER(
-			        Entity,
-			        [Individual Engagement Level] > 0
-			        //TODO: Also include indirect engagement (in this case, when the person's family is engaged, ignoring individual role removals for simplicity)
-			    )
-			)
-		formatString: 0
-		lineageTag: 4eacf164-703f-494a-acbe-01479d510fd1
-
-	measure 'Individual Engagement Level' =
-			
-			//This is basically counting the # of assignments that the person has, as opposed to just seeing if they have any assignments in the given timeframe or not.
-			
-			VAR Today = TODAY()
-			VAR CurrentStartDate = [Selected Timeframe Start]
-			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
-			
-			RETURN
-			IF(
-			    CurrentStartDate > Today,
-			    BLANK(),
-			    CALCULATE(
-			        COUNTROWS('Function Assignments'),
-			        USERELATIONSHIP(Entity[PersonId], 'Function Assignments'[EntityId]), // This needs to be active to associate to the correct person for use in visuals.
-			        NOT ISBLANK(Arrangement[Started]),
-			        Arrangement[Started] <= CurrentEndDate,
-			        IF(
-			            ISBLANK('Arrangement'[Ended]),
-			            TRUE(),
-			            'Arrangement'[Ended] >= CurrentStartDate
-			        )
-			    )
-			)
-		formatString: 0
-		lineageTag: d8ccb01c-4012-4960-9433-6aef21726e72
-
-	measure 'Individual Last Assignment End Date' = ```
-			
-			// If an Arrangement has a blank end date we consider it as ended today.
-			
-			VAR Today = TODAY()
-			VAR CurrentStartDate = [Selected Timeframe Start]
-			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
-			
-			RETURN 
-			IF(
-			    CurrentStartDate > Today,
-			    BLANK(),
-			    CALCULATE(
-			        MAXX(
-			            ADDCOLUMNS(
-			                'Function Assignments',
-			                "EffectiveEnded", IF(ISBLANK(RELATED('Arrangement'[Ended])), Today, RELATED('Arrangement'[Ended]))
-			            ),
-			            [EffectiveEnded]
-			        ),
-			        USERELATIONSHIP(Entity[PersonId], 'Function Assignments'[EntityId]),
-			        NOT ISBLANK(Arrangement[Started]),
-			        Arrangement[Started] <= CurrentEndDate,
-			        IF(
-			            ISBLANK('Arrangement'[Ended]),
-			            TRUE(),
-			            'Arrangement'[Ended] >= CurrentStartDate
-			        )
-			    )
-			)
-			```
-		formatString: Short Date
-		lineageTag: 300172cb-05b7-4efb-851d-0af26805504a
-
-	measure '# of Engaged Families' =
-			
-			// An engaged family is one who was assigned to a function in an arrangement where that arrangement was active in the given timeframe.
-			CALCULATE(
-			    DISTINCTCOUNT(Entity[FamilyId]),
-			    FILTER(
-			        Entity,
-			        [Family Engagement Level] > 0
-			        //TODO: Also include indirect engagement (in this case, when a person in the family is engaged)
-			    )
-			)
-		formatString: 0
-		lineageTag: 40be4c5a-1c97-41e8-a64a-2147a9612ed9
-
 	measure '# of People in Role (Direct Only)' =
 			CALCULATE(
 			    DISTINCTCOUNT('Role Approval'[Entity Id]),
 			    'Role Approval'[Entity Type] = "Person",
 			    'Role Approval'[Approval Type] = "Direct")
 		formatString: 0
-		isHidden
 		lineageTag: 5bfeb8dc-7346-4162-a6cf-76b9b85adb13
 
 		changedProperty = IsHidden
-
-	measure 'Family Engagement Level' =
-			
-			//This is basically counting the # of assignments that the family has, as opposed to just seeing if they have any assignments in the given timeframe or not.
-			
-			VAR Today = TODAY()
-			VAR CurrentStartDate = [Selected Timeframe Start]
-			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
-			
-			RETURN
-			IF(
-			    CurrentStartDate > Today,
-			    BLANK(),
-			    CALCULATE(
-			        COUNTROWS('Function Assignments'),
-			        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]), // This needs to be active to associate to the correct family for use in visuals.
-			        CROSSFILTER(Entity[PersonId], Arrangement[PersonId], None),
-			        NOT ISBLANK(Arrangement[Started]),
-			        Arrangement[Started] <= CurrentEndDate,
-			        IF(
-			            ISBLANK('Arrangement'[Ended]),
-			            TRUE(),
-			            'Arrangement'[Ended] >= CurrentStartDate
-			        )
-			    )
-			)
-		formatString: 0
-		lineageTag: 580dd274-c050-48a6-adb5-a48fa57014be
-
-	measure 'Family Last Assignment End Date' = ```
-			
-			
-			VAR Today = TODAY()
-			VAR CurrentStartDate = [Selected Timeframe Start]
-			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
-			//
-			
-			RETURN 
-			IF(
-			    CurrentStartDate > Today,
-			    BLANK(),
-			    CALCULATE(
-			        MAXX(
-			            ADDCOLUMNS(
-			                'Function Assignments',
-			                "EffectiveEnded", IF(ISBLANK(RELATED('Arrangement'[Ended])), Today, RELATED('Arrangement'[Ended]))
-			            ),
-			            [EffectiveEnded]
-			        ),
-			        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]),
-			        CROSSFILTER(Entity[PersonId], Arrangement[PersonId], None),
-			        NOT ISBLANK(Arrangement[Started]),
-			        Arrangement[Started] <= CurrentEndDate,
-			        IF(
-			            ISBLANK('Arrangement'[Ended]),
-			            TRUE(),
-			            'Arrangement'[Ended] >= CurrentStartDate
-			        )
-			    )
-			)
-			```
-		formatString: Short Date
-		lineageTag: 0751291e-4fcd-49dd-8bc9-f7f9c593e84a
 
 	measure '# of Entities in Role' = DISTINCTCOUNT('Role Approval'[Entity Id])
 		formatString: 0
 		lineageTag: dcc5efbd-9875-442e-a4de-2f9045a3d814
 
-	measure 'Engagement Level' =
+	measure 'Entity Engagement Level' =
 			
 			
 			VAR Today = TODAY()
@@ -384,7 +215,7 @@ table Entity
 			    DISTINCTCOUNT(Entity[PersonId]),
 			    FILTER(
 			        Entity,
-			        [Engagement Level] > 0
+			        [Entity Engagement Level] > 0
 			    )),
 			IF(
 			    SELECTEDVALUE('Engagement by Entity'[Entity Type]) = "Family",
@@ -392,11 +223,76 @@ table Entity
 			    DISTINCTCOUNT(Entity[FamilyId]),
 			    FILTER(
 			        Entity,
-			        [Engagement Level] > 0
+			        [Entity Engagement Level] > 0
 			    ))
 			))
 		formatString: 0
 		lineageTag: bca680a4-55ac-4c55-a442-6aa30c0c0db0
+
+	measure '# of Approved Entities' =
+			
+			VAR ApprovedFamilies = DISTINCTCOUNT('Role Approval'[Entity Id]) // All the logic for this field is defined in the Engagement calculation Group.
+			VAR ApprovedPerson = CALCULATE(
+			    DISTINCTCOUNT('Role Approval'[Entity Id]),
+			    'Role Approval'[Approval Type] = "Direct")
+			RETURN IF(SELECTEDVALUE('Engagement by Entity'[Entity Type]) = "Family", ApprovedFamilies, ApprovedPerson)
+		formatString: 0
+		lineageTag: 0fda565c-40bf-4267-937f-17b46f11526c
+
+	measure 'Entity Last Assignment Date' =
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN IF(SELECTEDVALUE('Engagement by Entity'[Entity Type]) = "Family",
+			
+			    IF(
+			        CurrentStartDate > Today,
+			        BLANK(),
+			        CALCULATE(
+			            MAXX(
+			                ADDCOLUMNS(
+			                    'Function Assignments',
+			                    "EffectiveEnded", IF(ISBLANK(RELATED('Arrangement'[Ended])), Today, RELATED('Arrangement'[Ended]))
+			                ),
+			                [EffectiveEnded]
+			            ),
+			            NOT ISBLANK(Arrangement[Started]),
+			            Arrangement[Started] <= CurrentEndDate,
+			            IF(
+			                ISBLANK('Arrangement'[Ended]),
+			                TRUE(),
+			                'Arrangement'[Ended] >= CurrentStartDate
+			            )
+			        )
+			    ),
+			
+			    IF(
+			        CurrentStartDate > Today,
+			        BLANK(),
+			        CALCULATE(
+			            MAXX(
+			                ADDCOLUMNS(
+			                    'Function Assignments',
+			                    "EffectiveEnded", IF(ISBLANK(RELATED('Arrangement'[Ended])), Today, RELATED('Arrangement'[Ended]))
+			                ),
+			                [EffectiveEnded]
+			            ),
+			            NOT ISBLANK(Arrangement[Started]),
+			            Arrangement[Started] <= CurrentEndDate,
+			            IF(
+			                ISBLANK('Arrangement'[Ended]),
+			                TRUE(),
+			                'Arrangement'[Ended] >= CurrentStartDate
+			            )
+			        )
+			    )
+			
+			)
+		formatString: Short Date
+		lineageTag: fb33ac15-607e-454c-8940-c3532b67f934
 
 	column FamilyId
 		dataType: string

@@ -23,11 +23,11 @@
                       "Entity": "Entity"
                     }
                   },
-                  "Property": "# of Entities in Role"
+                  "Property": "# of Approved Entities"
                 }
               },
-              "queryRef": "Entity.# of Entities in Role",
-              "nativeQueryRef": "# of Entities in Role"
+              "queryRef": "Entity.# of Approved Entities",
+              "nativeQueryRef": "# of Approved Entities"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "Entity"
                   }
                 },
-                "Property": "# of Entities in Role"
+                "Property": "# of Approved Entities"
               }
             },
             "direction": "Descending"
