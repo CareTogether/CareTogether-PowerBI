@@ -1,0 +1,66 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "f971bc15e537b4091ce3",
+  "position": {
+    "x": 82.935153583617748,
+    "y": 226.07508532423208,
+    "z": 1000,
+    "height": 410.37542662116039,
+    "width": 1197.3378839590443,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Role Approval"
+                    }
+                  },
+                  "Property": "Entity Id"
+                }
+              },
+              "queryRef": "Role Approval.Entity Id",
+              "nativeQueryRef": "Entity Id"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Approvals by Entity"
+                    }
+                  },
+                  "Property": "Dynamic Entity Name (Approvals)"
+                }
+              },
+              "queryRef": "Approvals by Entity.Dynamic Entity Name (Approvals)",
+              "nativeQueryRef": "Dynamic Entity Name (Approvals)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Entity"
+                    }
+                  },
+                  "Property": "# of Entities in Role"
+                }
+              },
+              "queryRef": "Entity.# of Entities in Role",
+              "nativeQueryRef": "# of Entities in Role"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
   "name": "bc13df403a5b7c10b485",
   "position": {
     "x": 374.74402730375425,
     "y": 9.829351535836178,
-    "z": 10,
+    "z": 8000,
     "height": 274.6075085324232,
     "width": 896.92832764505124,
-    "tabOrder": 10
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -359,9 +359,27 @@
               "solid": {
                 "color": {
                   "expr": {
+                    "Literal": {
+                      "Value": "'#14535D'"
+                    }
+                  }
+                }
+              }
+            },
+            "borderShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "borderColor": {
+              "solid": {
+                "color": {
+                  "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 6,
-                      "Percent": 0.2
+                      "ColorId": 0,
+                      "Percent": 0
                     }
                   }
                 }
@@ -378,9 +396,27 @@
               "solid": {
                 "color": {
                   "expr": {
+                    "Literal": {
+                      "Value": "'#14535D'"
+                    }
+                  }
+                }
+              }
+            },
+            "borderShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "borderColor": {
+              "solid": {
+                "color": {
+                  "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 7,
-                      "Percent": -0.25
+                      "ColorId": 0,
+                      "Percent": 0
                     }
                   }
                 }
@@ -439,7 +475,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Families Referred'"
+                  "Value": "'Entities Referred'"
                 }
               }
             },

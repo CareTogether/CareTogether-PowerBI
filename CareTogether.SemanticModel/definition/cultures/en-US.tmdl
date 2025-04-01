@@ -1802,16 +1802,6 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.475
 			          }
-			        },
-			        {
-			          "Age at Start": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
 			        }
 			      ]
 			    },
@@ -11700,16 +11690,6 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.9
 			          }
-			        },
-			        {
-			          "Person": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
 			        }
 			      ],
 			      "NameType": "Name"
@@ -12345,16 +12325,6 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "# of Approved/Onboard People": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -15968,13 +15938,13 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Engagement by Entity",
-			          "ConceptualProperty": "Dynamic Entity Name"
+			          "ConceptualProperty": "Dynamic Entity Name (Engagement)"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Entity Name": {
+			          "Name": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -15995,7 +15965,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Entity Name": {
+			          "Name": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -16026,6 +15996,45 @@ cultureInfo en-US
 			      "Terms": [
 			        {
 			          "# of Assignments": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity.family_engagement_level": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Entity",
+			          "ConceptualProperty": "Family Engagement Level"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "entity.individual_engagement_level": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Entity",
+			          "ConceptualProperty": "Individual Engagement Level"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "entity.entity_last_assignment_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Entity",
+			          "ConceptualProperty": "Entity Last Assignment Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Last Assignment Date": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

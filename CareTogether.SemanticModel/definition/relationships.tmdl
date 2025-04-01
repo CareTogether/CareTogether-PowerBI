@@ -130,12 +130,6 @@ relationship 2c66665f-b5f5-5081-572d-dbdbde0f3ee5
 	fromColumn: 'Role Approval'.'Entity Id'
 	toColumn: Entity.PersonId
 
-relationship 2ccc2fef-f4e9-e31a-9b07-f4fa51e8f7e1
-	isActive: false
-	toCardinality: many
-	fromColumn: 'Role Approval'.'Entity Id'
-	toColumn: Entity.FamilyId
-
 relationship 6e28cbba-3fa1-fc01-2e00-8b1308cf1a6b
 	crossFilteringBehavior: bothDirections
 	toCardinality: many
@@ -160,5 +154,11 @@ relationship e803244f-a454-24e8-a1d9-57c25933802d
 	crossFilteringBehavior: bothDirections
 	toCardinality: many
 	fromColumn: 'Function Assignments'.EntityId
+	toColumn: Entity.FamilyId
+
+relationship 19181880-94a8-73fe-0698-b26363fab540
+	isActive: false
+	toCardinality: many
+	fromColumn: 'Role Approval'.'Entity Id'
 	toColumn: Entity.FamilyId
 

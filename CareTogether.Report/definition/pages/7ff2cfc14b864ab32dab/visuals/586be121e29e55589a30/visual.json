@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
   "name": "586be121e29e55589a30",
   "position": {
-    "x": 10.769230769230768,
-    "y": 294.61538461538458,
-    "z": 4,
-    "height": 415.38461538461536,
-    "width": 1260.7692307692307,
-    "tabOrder": 4
+    "x": 11.058020477815699,
+    "y": 294.88054607508531,
+    "z": 2000,
+    "height": 415.29010238907853,
+    "width": 629.07849829351539,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "tableEx",
@@ -38,12 +38,12 @@
                       "Entity": "Engagement by Entity"
                     }
                   },
-                  "Property": "Dynamic Entity Name"
+                  "Property": "Dynamic Entity Name (Engagement)"
                 }
               },
               "queryRef": "Engagement by Entity.Dynamic Entity Name",
-              "nativeQueryRef": "Entity Name",
-              "displayName": "Entity Name"
+              "nativeQueryRef": "Name",
+              "displayName": "Name"
             },
             {
               "field": {
@@ -72,7 +72,8 @@
                 }
               },
               "queryRef": "Entity.Entity Last Assignment Date",
-              "nativeQueryRef": "Entity Last Assignment Date"
+              "nativeQueryRef": "Last Assignment Date",
+              "displayName": "Last Assignment Date"
             },
             {
               "field": {
@@ -202,13 +203,41 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "793.5385408024395D"
+                  "Value": "167.81159590050513D"
                 }
               }
             }
           },
           "selector": {
             "metadata": "Engagement by Entity.Dynamic Entity Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "170.48806297202424D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Entity.Entity Last Assignment Date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "117.85658382386374D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Entity.Engagement Level"
           }
         }
       ],
@@ -284,6 +313,20 @@
           "selector": {
             "metadata": "Function Assignments.EntityId"
           }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Entity.Entity Last Assignment Date"
+          }
         }
       ]
     },
@@ -329,6 +372,13 @@
                   "Value": "true"
                 }
               }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arrangement Details'"
+                }
+              }
             }
           }
         }
@@ -358,6 +408,13 @@
               "expr": {
                 "Literal": {
                   "Value": "8D"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'TIP: Click on the rows of the table on the left to view the details of the arrangements in the table on the right.'"
                 }
               }
             }

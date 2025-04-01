@@ -49,27 +49,27 @@
                       "Expression": {
                         "DateAdd": {
                           "Expression": {
-                            "Now": {}
+                            "DateAdd": {
+                              "Expression": {
+                                "Now": {}
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
                           },
-                          "Amount": -1,
+                          "Amount": -100,
                           "TimeUnit": 3
                         }
                       },
-                      "TimeUnit": 3
+                      "TimeUnit": 0
                     }
                   },
                   "UpperBound": {
                     "DateSpan": {
                       "Expression": {
-                        "DateAdd": {
-                          "Expression": {
-                            "Now": {}
-                          },
-                          "Amount": -1,
-                          "TimeUnit": 3
-                        }
+                        "Now": {}
                       },
-                      "TimeUnit": 3
+                      "TimeUnit": 0
                     }
                   }
                 }

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
   "name": "2f134ae1940c41b403b9",
   "position": {
     "x": 739.65870307167233,
     "y": 392.55972696245732,
-    "z": 9002,
+    "z": 11000,
     "height": 318.839590443686,
     "width": 530.78498293515361,
-    "tabOrder": 17
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "tableEx",
@@ -15,6 +15,64 @@
       "queryState": {
         "Values": {
           "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Approvals by Entity"
+                    }
+                  },
+                  "Property": "Dynamic Entity Name (Approvals)"
+                }
+              },
+              "queryRef": "Approvals by Entity.Dynamic Entity Name (Approvals)",
+              "nativeQueryRef": "Name",
+              "displayName": "Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Role"
+                    }
+                  },
+                  "Property": "Role Name"
+                }
+              },
+              "queryRef": "Role.Role Name",
+              "nativeQueryRef": "Role Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Approval Status"
+                    }
+                  },
+                  "Property": "Status"
+                }
+              },
+              "queryRef": "Approval Status.Status",
+              "nativeQueryRef": "Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Role Approval"
+                    }
+                  },
+                  "Property": "Approval Type"
+                }
+              },
+              "queryRef": "Role Approval.Approval Type",
+              "nativeQueryRef": "Approval Type",
+              "displayName": "Approval Type"
+            },
             {
               "field": {
                 "Column": {
@@ -42,96 +100,28 @@
                 }
               },
               "queryRef": "Entity.# of Entities in Role",
-              "nativeQueryRef": "  ",
-              "displayName": "  "
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Approvals by Entity"
-                    }
-                  },
-                  "Property": "Dynamic Entity Name (Approvals)"
-                }
-              },
-              "queryRef": "Approvals by Entity.Dynamic Entity Name (Approvals)",
-              "nativeQueryRef": "Entity Name",
-              "displayName": "Entity Name"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Location"
-                    }
-                  },
-                  "Property": "Location"
-                }
-              },
-              "queryRef": "Location.Location",
-              "nativeQueryRef": "Location"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Entity"
-                    }
-                  },
-                  "Property": "County"
-                }
-              },
-              "queryRef": "Entity.County",
-              "nativeQueryRef": "County"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Entity"
-                    }
-                  },
-                  "Property": "City"
-                }
-              },
-              "queryRef": "Entity.City",
-              "nativeQueryRef": "City"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Entity"
-                    }
-                  },
-                  "Property": "HomeChurch"
-                }
-              },
-              "queryRef": "Entity.HomeChurch",
-              "nativeQueryRef": "HomeChurch"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Entity"
-                    }
-                  },
-                  "Property": "Phone Number"
-                }
-              },
-              "queryRef": "Entity.Phone Number",
-              "nativeQueryRef": "Phone Number"
+              "nativeQueryRef": " 1",
+              "displayName": " "
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Approval Status"
+                  }
+                },
+                "Property": "Status"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {
@@ -241,13 +231,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "84.26569675965993D"
+                  "Value": "160.65832990452273D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Location.Location"
+            "metadata": "Approvals by Entity.Dynamic Entity Name (Approvals)"
           }
         },
         {
@@ -255,13 +245,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "93.0716723549488D"
+                  "Value": "128.82716059062042D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Entity.HomeChurch"
+            "metadata": "Role.Role Name"
           }
         },
         {
@@ -269,27 +259,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "76.9590458752982D"
+                  "Value": "86.65867275556003D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Entity.County"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "67.17411183971097D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Entity.City"
+            "metadata": "Approval Status.Status"
           }
         }
       ],
@@ -343,6 +319,22 @@
             }
           }
         }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Approvals by Entity.Dynamic Entity Name (Approvals)"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -385,6 +377,13 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Approvals Details'"
                 }
               }
             }

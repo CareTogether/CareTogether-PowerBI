@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
   "name": "5bbba6e903b286db133d",
   "position": {
     "x": 10.443686006825939,
     "y": 195.35836177474403,
-    "z": 9,
+    "z": 7000,
     "height": 89.078498293515352,
     "width": 354.47098976109214,
-    "tabOrder": 9
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "card",
@@ -151,8 +151,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Total # of Entities'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Engagement by Entity"
+                    }
+                  },
+                  "Property": "# Approved Entities (Dynamic Title)"
                 }
               }
             },

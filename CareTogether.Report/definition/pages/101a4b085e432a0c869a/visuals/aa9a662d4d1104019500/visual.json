@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
   "name": "aa9a662d4d1104019500",
   "position": {
     "x": 8.6006825938566553,
     "y": 8.6006825938566553,
-    "z": 2,
+    "z": 1000,
     "height": 702.79863481228665,
     "width": 721.22866894197955,
-    "tabOrder": 2
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "tableEx",
@@ -383,6 +383,13 @@
                   "Value": "true"
                 }
               }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Community Membership'"
+                }
+              }
             }
           }
         }
@@ -412,6 +419,13 @@
               "expr": {
                 "Literal": {
                   "Value": "8D"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "' '"
                 }
               }
             }

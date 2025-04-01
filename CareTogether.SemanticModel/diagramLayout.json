@@ -270,6 +270,16 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Export Contacts",
+          "nodeLineageTag": "60ba141e-f35f-47f1-89c6-55e30f55efa7",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
   "name": "f3e6c831b1a4ad89cd63",
   "position": {
-    "x": 7.7811550151975686,
-    "y": 39.878419452887542,
+    "x": 7.986348122866894,
+    "y": 39.931740614334473,
     "z": 1000,
-    "height": 662.370820668693,
-    "width": 1255.6838905775076,
+    "height": 662.25255972696243,
+    "width": 1255.6996587030717,
     "tabOrder": 1000
   },
   "visual": {
@@ -85,21 +85,6 @@
               },
               "queryRef": "Arrangement.Reason",
               "nativeQueryRef": "Reason"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Entity"
-                    }
-                  },
-                  "Property": "Individual Engagement Level"
-                }
-              },
-              "queryRef": "Entity.Individual Engagement Level (NEW)",
-              "nativeQueryRef": "Individual Engagement Level",
-              "displayName": "Individual Engagement Level"
             },
             {
               "field": {
@@ -193,20 +178,6 @@
           "selector": {
             "metadata": "Arrangement.Id"
           }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Entity.Individual Engagement Level (NEW)"
-          }
         }
       ],
       "values": [
@@ -241,7 +212,77 @@
   "filterConfig": {
     "filters": [
       {
+        "name": "42870036960d5d4cd595",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Engagement by Entity"
+              }
+            },
+            "Property": "Entity Type"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "e",
+              "Entity": "Engagement by Entity",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "e"
+                          }
+                        },
+                        "Property": "Entity Type"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Person'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Family'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      },
+      {
         "name": "ba1303c63f9fe07b669d",
+        "ordinal": 1,
         "field": {
           "Arithmetic": {
             "Left": {
@@ -274,7 +315,129 @@
         },
         "type": "Advanced",
         "howCreated": "User"
+      },
+      {
+        "name": "77efa8c880de8a327a20",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement"
+              }
+            },
+            "Property": "TypeName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d81821987b9198e1b04a",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement"
+              }
+            },
+            "Property": "Ended"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "21118448d00d05cba25c",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "Entity Engagement Level"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "cd7c0d4bd2e305705705",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f23c476aec08098344c0",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "Full Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1a3d0be4b157d47e5eeb",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement"
+              }
+            },
+            "Property": "Id"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "171aa5f90b2603c0c60d",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement"
+              }
+            },
+            "Property": "Reason"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5097ffe500ec25de1e73",
+        "ordinal": 9,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement"
+              }
+            },
+            "Property": "Started"
+          }
+        },
+        "type": "Categorical"
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   }
 }

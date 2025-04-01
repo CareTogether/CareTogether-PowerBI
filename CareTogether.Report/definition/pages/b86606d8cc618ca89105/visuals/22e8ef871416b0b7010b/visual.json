@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
   "name": "22e8ef871416b0b7010b",
   "position": {
     "x": 10.443686006825939,
@@ -7,7 +7,7 @@
     "z": 9000,
     "height": 479.79522184300339,
     "width": 359.38566552901023,
-    "tabOrder": 12
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "funnel",
@@ -62,6 +62,18 @@
                   "Value": "true"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 7,
+                      "Percent": -0.25
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -73,6 +85,23 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#14535D'"
+                    }
+                  }
                 }
               }
             }

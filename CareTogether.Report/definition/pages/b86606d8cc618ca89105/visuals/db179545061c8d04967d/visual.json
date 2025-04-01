@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
   "name": "db179545061c8d04967d",
   "position": {
     "x": 10.443686006825939,
@@ -7,7 +7,7 @@
     "z": 1000,
     "height": 96.450511945392492,
     "width": 354.47098976109214,
-    "tabOrder": 3
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -41,7 +41,7 @@
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Dropdown'"
+                  "Value": "'Basic'"
                 }
               }
             }

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
   "name": "6f6302f57c257020062a",
   "position": {
     "x": 10.443686006825939,
     "y": 9.829351535836178,
-    "z": 6,
+    "z": 4000,
     "height": 96.450511945392492,
     "width": 354.47098976109214,
-    "tabOrder": 6
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "slicer",
@@ -41,7 +41,7 @@
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Dropdown'"
+                  "Value": "'Basic'"
                 }
               }
             }
@@ -108,7 +108,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Person'"
+                                "Value": "'Family'"
                               }
                             }
                           ]

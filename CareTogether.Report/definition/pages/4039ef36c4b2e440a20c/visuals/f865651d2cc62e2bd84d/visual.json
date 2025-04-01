@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
   "name": "f865651d2cc62e2bd84d",
   "position": {
     "x": 7.7811550151975686,
@@ -28,21 +28,6 @@
               },
               "queryRef": "Arrangement.Id",
               "nativeQueryRef": "Id"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Entity"
-                    }
-                  },
-                  "Property": "Family Engagement Level"
-                }
-              },
-              "queryRef": "Entity.Family Engagement Level (NEW)",
-              "nativeQueryRef": "# of Assignments",
-              "displayName": "# of Assignments"
             },
             {
               "field": {
@@ -85,48 +70,6 @@
               },
               "queryRef": "Arrangement Type.Arrangement Type",
               "nativeQueryRef": "Arrangement Type"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Arrangement"
-                    }
-                  },
-                  "Property": "Reason"
-                }
-              },
-              "queryRef": "Arrangement.Reason",
-              "nativeQueryRef": "Reason"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Arrangement"
-                    }
-                  },
-                  "Property": "Started"
-                }
-              },
-              "queryRef": "Arrangement.Started",
-              "nativeQueryRef": "Started"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Arrangement"
-                    }
-                  },
-                  "Property": "Ended"
-                }
-              },
-              "queryRef": "Arrangement.Ended",
-              "nativeQueryRef": "Ended"
             }
           ]
         }
@@ -179,13 +122,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "205.27307130396974D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Entity.Family Engagement Level (NEW)"
+            "metadata": "Entity.Family Name"
           }
         },
         {
@@ -193,13 +136,27 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "545D"
+                  "Value": "172.2593753637306D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Entity.Family Name"
+            "metadata": "Arrangement.Full Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "144.14334226172525D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Arrangement Type.Arrangement Type"
           }
         }
       ],
