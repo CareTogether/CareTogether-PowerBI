@@ -28,12 +28,9 @@ table 'Engagement by Entity'
 			CALCULATE(
 			    SWITCH(
 			        SELECTEDVALUE('Engagement by Entity'[Entity Type]),
-			        "Family", CALCULATE(
-			            SELECTEDVALUE(Entity[Family Name]),
-			            CROSSFILTER(Entity[FamilyId], 'Role Approval'[Entity Id], Both)),
+			        "Family", SELECTEDVALUE(Entity[Family Name]),
 			        "Person", SELECTEDVALUE(Entity[Full Name])
-			)
-			)
+			))
 		lineageTag: 0cd7cfa7-2eea-44a1-bde0-e6805c0adaa6
 
 	measure '# Engaged Entities (Dynamic Title)' =

@@ -16044,6 +16044,27 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "export_contacts.dynamic_entity_name_approval": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Export Contacts",
+			          "ConceptualProperty": "Dynamic Entity Name (Approval)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {

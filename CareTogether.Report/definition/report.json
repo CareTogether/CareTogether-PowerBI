@@ -12,7 +12,7 @@
       "type": "RegisteredResources"
     }
   },
-  "layoutOptimization": "PhonePortrait",
+  "layoutOptimization": "None",
   "filterConfig": {
     "filters": [
       {
@@ -163,7 +163,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "true"
+                "Value": "false"
               }
             }
           }

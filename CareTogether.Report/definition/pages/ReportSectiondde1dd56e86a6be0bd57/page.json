@@ -83,5 +83,6 @@
         }
       }
     ]
-  }
+  },
+  "visibility": "HiddenInViewMode"
 }

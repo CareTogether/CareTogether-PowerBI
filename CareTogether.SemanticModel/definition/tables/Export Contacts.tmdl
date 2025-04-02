@@ -8,18 +8,14 @@ table 'Export Contacts'
 
 		calculationItem Person = SELECTEDMEASURE()
 
-	measure 'Dynamic Entity Name (Contacts)' = ```
+	measure 'Dynamic Entity Name (Approval)' =
 			
-			
-			VAR Option = SELECTEDVALUE('Approvals by Entity'[Entity Type])
-			
+			VAR Option = SELECTEDVALUE('Export Contacts'[Entity Type])
 			RETURN SWITCH(
 			    Option,
 			    "Family", SELECTEDVALUE(Entity[Family Name]),
 			    "Person", SELECTEDVALUE(Entity[Full Name])
 			)
-			
-			```
 		lineageTag: 6c40a732-8d76-4585-9c81-e048bb92f87c
 
 	measure 'Referential Ids' =
