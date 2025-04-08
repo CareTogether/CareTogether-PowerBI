@@ -31,12 +31,18 @@ table 'Export Contacts'
 	column 'Entity Type'
 		dataType: string
 		lineageTag: 798b8350-7e72-4ba1-bf35-9e3fce0f55d7
+		summarizeBy: none
 		sourceColumn: Name
 		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
 
 	column Ordinal
 		dataType: int64
 		isHidden
 		lineageTag: ff8163ef-30c6-4473-9fa7-e2715124d167
+		summarizeBy: sum
 		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
 

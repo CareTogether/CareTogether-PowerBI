@@ -1,19 +1,53 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
-  "name": "c723db5a181300c28a00",
+  "name": "4d23a7c0fe63b235bc2f",
   "position": {
-    "x": 10,
-    "y": 8.5714285714285712,
-    "z": 1000,
-    "height": 221.42857142857144,
-    "width": 365,
-    "tabOrder": 1000
+    "x": 411.60409556313994,
+    "y": 9.829351535836178,
+    "z": 5000,
+    "height": 423.27645051194537,
+    "width": 859.45392491467578,
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "donutChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "Date.Year",
+              "nativeQueryRef": "Year",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date"
+                    }
+                  },
+                  "Property": "Month Name Short"
+                }
+              },
+              "queryRef": "Date.Month Name Short",
+              "nativeQueryRef": "Month Name Short",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
           "projections": [
             {
               "field": {
@@ -27,8 +61,7 @@
                 }
               },
               "queryRef": "Location.Location",
-              "nativeQueryRef": "Location",
-              "active": true
+              "nativeQueryRef": "Location"
             }
           ]
         },
@@ -39,48 +72,99 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Arrangement"
                     }
                   },
-                  "Property": "# of Referrals Opened"
+                  "Property": "# of Arrangements"
                 }
               },
-              "queryRef": "Referral.# of Referrals Opened",
-              "nativeQueryRef": "# of Referrals Opened"
+              "queryRef": "Arrangement.# of Arrangements",
+              "nativeQueryRef": "# of Arrangements"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Referral"
-                  }
-                },
-                "Property": "# of Referrals Opened"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
-      "legend": [
+      "categoryAxis": [
         {
           "properties": {
-            "position": {
+            "titleFontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top'"
+                  "Value": "8D"
                 }
               }
             },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#6E6E6E'"
+                    }
+                  }
+                }
+              }
+            },
+            "maxMarginFactor": {
+              "expr": {
+                "Literal": {
+                  "Value": "50L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#6E6E6E'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
             "show": {
               "expr": {
                 "Literal": {
@@ -88,13 +172,19 @@
                 }
               }
             },
-            "showTitle": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "8D"
                 }
               }
-            },
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
             "fontSize": {
               "expr": {
                 "Literal": {
@@ -124,39 +214,13 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": -0.5
+                      "ColorId": 6,
+                      "Percent": -0.25
                     }
                   }
                 }
               }
             }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Location"
-                          }
-                        },
-                        "Property": "Id"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'0000000a-1000-0000-0000-000000000000'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
           }
         },
         {
@@ -199,42 +263,15 @@
               }
             ]
           }
-        }
-      ],
-      "labels": [
-        {
-          "properties": {
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "percentageLabelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
-                }
-              }
-            }
-          }
         },
         {
           "properties": {
-            "color": {
+            "fill": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#26A3AB'"
+                      "Value": "'#135256'"
                     }
                   }
                 }
@@ -244,104 +281,36 @@
           "selector": {
             "data": [
               {
-                "dataViewWildcard": {
-                  "matchingOption": 1
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Location"
+                          }
+                        },
+                        "Property": "Id"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'0000000a-1000-0000-0000-000000000000'"
+                      }
+                    }
+                  }
                 }
               }
             ]
           }
         }
-      ],
-      "slices": [
-        {
-          "properties": {
-            "innerRadiusRatio": {
-              "expr": {
-                "Literal": {
-                  "Value": "55L"
-                }
-              }
-            },
-            "startAngle": {
-              "expr": {
-                "Literal": {
-                  "Value": "180L"
-                }
-              }
-            }
-          }
-        }
       ]
     },
     "visualContainerObjects": {
-      "background": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#212121'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Referrals Opened'"
-                }
-              }
-            }
-          }
-        }
-      ],
       "padding": [
         {
           "properties": {
-            "left": {
-              "expr": {
-                "Literal": {
-                  "Value": "20D"
-                }
-              }
-            },
             "top": {
               "expr": {
                 "Literal": {
@@ -362,6 +331,58 @@
                   "Value": "20D"
                 }
               }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#212121'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arrangements by Month'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -372,59 +393,39 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
-            }
-          }
-        }
-      ],
-      "spacing": [
-        {
-          "properties": {
-            "verticalSpacing": {
+            },
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "''"
                 }
               }
-            }
-          }
-        }
-      ],
-      "visualHeader": [
-        {
-          "properties": {
-            "background": {
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F6FCFC'"
+                      "Value": "'#9A9A9A'"
                     }
                   }
                 }
               }
             },
-            "border": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#F6FCFC'"
-                    }
-                  }
-                }
-              }
-            },
-            "foreground": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#26A3AB'"
-                    }
-                  }
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

@@ -280,6 +280,16 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Arrangements by Entity",
+          "nodeLineageTag": "e19223f9-8daf-425c-b34a-68e984e4dc8d",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

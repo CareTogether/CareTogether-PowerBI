@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
-  "name": "6f6302f57c257020062a",
+  "name": "79a9c339aadd59d38bdf",
   "position": {
     "x": 11.058020477815699,
     "y": 9.829351535836178,
-    "z": 4000,
+    "z": 2000,
     "height": 96.450511945392492,
-    "width": 354.47098976109214,
-    "tabOrder": 4000
+    "width": 391.33105802047783,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Engagement by Entity"
+                      "Entity": "Arrangements by Entity"
                     }
                   },
-                  "Property": "Entity Type"
+                  "Property": "Situation"
                 }
               },
-              "queryRef": "Engagement by Entity.Entity Type",
-              "nativeQueryRef": "Entity Type",
+              "queryRef": "Arrangements by Entity.Situation",
+              "nativeQueryRef": "Situation",
               "active": true
             }
           ]
@@ -83,8 +83,8 @@
                 "Version": 2,
                 "From": [
                   {
-                    "Name": "e",
-                    "Entity": "Engagement by Entity",
+                    "Name": "a",
+                    "Entity": "Arrangements by Entity",
                     "Type": 0
                   }
                 ],
@@ -97,10 +97,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Source": "e"
+                                  "Source": "a"
                                 }
                               },
-                              "Property": "Entity Type"
+                              "Property": "Situation"
                             }
                           }
                         ],
@@ -108,7 +108,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Person'"
+                                "Value": "'Active'"
                               }
                             }
                           ]
@@ -212,7 +212,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Entity Type'"
+                  "Value": "'Arrangement Status'"
                 }
               }
             },

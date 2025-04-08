@@ -2727,7 +2727,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Total Arrangements Duration (days)": {
+			          "Arrangement Duration": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -2737,7 +2737,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Arrangement Duration": {
+			          "Total Arrangements Duration (days)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
