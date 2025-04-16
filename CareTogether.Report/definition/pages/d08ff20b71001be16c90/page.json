@@ -390,5 +390,47 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "c723db5a181300c28a00",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "4736b559dc9108b497b9",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "9f8fd0b22c3917eaa741",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "828858e1023d822a737d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "a20737a507bae877b71b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "177d33ba163573002323",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "197c3aad6a9c6e7ca65b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "9c4ee39ac067a0ed9785",
+      "type": "DataFilter"
+    }
+  ]
 }

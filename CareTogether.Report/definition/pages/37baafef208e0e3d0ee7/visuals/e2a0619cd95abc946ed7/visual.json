@@ -3,11 +3,11 @@
   "name": "e2a0619cd95abc946ed7",
   "position": {
     "x": 11.058020477815699,
-    "y": 116.7235494880546,
+    "y": 180.61433447098977,
     "z": 8000,
-    "height": 316.38225255972696,
+    "height": 252.49146757679182,
     "width": 391.33105802047783,
-    "tabOrder": 5002
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -29,24 +29,6 @@
               "queryRef": "Arrangement Type.Arrangement Type",
               "nativeQueryRef": "Arrangement Type",
               "active": true
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Location"
-                    }
-                  },
-                  "Property": "Location"
-                }
-              },
-              "queryRef": "Location.Location",
-              "nativeQueryRef": "Location"
             }
           ]
         },

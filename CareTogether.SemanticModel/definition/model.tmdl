@@ -28,7 +28,7 @@ annotation PBI_QueryOrder = ["Location","Community","Role","OData Live","Product
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.141.1451.0 (25.03)+5007b75f0f7edbed506e31fcb76584cd6d711788
+annotation PBIDesktopVersion = 2.141.1558.0 (25.03)+75b5f06a991f8f8a8a4d6b6fcd0f66e1ec2d6fdc
 
 annotation PBI_ProTooling = ["CalcGroup","DevMode"]
 

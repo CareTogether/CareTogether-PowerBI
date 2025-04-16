@@ -54,14 +54,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Location"
+                      "Entity": "Arrangement Type"
                     }
                   },
-                  "Property": "Location"
+                  "Property": "Arrangement Type"
                 }
               },
-              "queryRef": "Location.Location",
-              "nativeQueryRef": "Location"
+              "queryRef": "Arrangement Type.Arrangement Type",
+              "nativeQueryRef": "Arrangement Type"
             }
           ]
         },
@@ -373,7 +373,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arrangements by Month'"
+                  "Value": "'Arrangements Over Time'"
                 }
               }
             },

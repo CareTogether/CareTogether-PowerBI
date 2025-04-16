@@ -64,12 +64,18 @@ table 'Arrangements by Entity'
 	column Situation
 		dataType: string
 		lineageTag: f3ea4e95-8e63-461b-969d-60de01a5f89c
+		summarizeBy: none
 		sourceColumn: Name
 		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
 
 	column Ordinal
 		dataType: int64
 		isHidden
 		lineageTag: 8445d6fb-58a5-45a2-8587-6eea94d5f537
+		summarizeBy: sum
 		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
 
