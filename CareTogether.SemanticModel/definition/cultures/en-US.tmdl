@@ -2727,16 +2727,6 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Arrangement Duration": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
-			        {
 			          "Total Arrangements Duration (days)": {
 			            "State": "Suggested",
 			            "Source": {

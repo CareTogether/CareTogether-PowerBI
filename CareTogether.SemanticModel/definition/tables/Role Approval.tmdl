@@ -1,6 +1,38 @@
 table 'Role Approval'
 	lineageTag: 46da9e14-7769-40f8-9645-fc47e5f2407b
 
+	measure '# Approval Tracker' =
+			
+			VAR Tracker =
+			    SWITCH(
+			        TRUE(),
+			
+			        // Nível mais detalhado: mostrar somente se houver movimentação
+			        ISINSCOPE('Role Approval'[Entity Name]),
+			        VAR MaxDate = CALCULATE(
+			            MAX('Role Approval'[Date]),
+			            'Role Approval'[StatusChanged] = TRUE()
+			        )
+			        RETURN IF(ISBLANK(MaxDate), BLANK(), FORMAT(MaxDate, "YYYY-MM-DD")),
+			
+			        // Nível intermediário: sempre mostrar
+			        ISINSCOPE('Role Approval'[Role Name]),
+			        FORMAT(CALCULATE(
+			            DISTINCTCOUNT('Role Approval'[Entity Id]),
+			            'Role Approval'[StatusChanged] = TRUE()
+			        ), "0"),
+			
+			        ISINSCOPE('Role Approval'[Entity Type]),
+			        FORMAT(CALCULATE(
+			            DISTINCTCOUNT('Role Approval'[Entity Id]),
+			            'Role Approval'[StatusChanged] = TRUE()
+			        ), "0")
+			    )
+			
+			RETURN
+			    IF(ISBLANK(Tracker), BLANK(), Tracker)
+		lineageTag: 590209fb-c050-4003-98c4-8671173f3212
+
 	column 'Entity Type'
 		dataType: string
 		lineageTag: 0fb1b97a-9aca-43be-aaaf-64c2d919515c
@@ -49,6 +81,25 @@ table 'Role Approval'
 		lineageTag: 93bb5d50-0036-491c-b364-ac3082d6a3d8
 		summarizeBy: none
 		sourceColumn: Entity Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column StatusChanged
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c6a7afb2-a64e-45f9-8d08-812a0085a9dc
+		summarizeBy: none
+		sourceColumn: StatusChanged
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity Name' =
+			COALESCE(
+			    LOOKUPVALUE(Entity[Family Name], Entity[FamilyId], 'Role Approval'[Entity Id]),
+			    LOOKUPVALUE(Entity[Full Name], Entity[PersonId], 'Role Approval'[Entity Id])
+			)
+		lineageTag: 33487ad4-e5c8-45c5-bdfc-261c58809382
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
@@ -146,9 +197,31 @@ table 'Role Approval'
 				    CombinedTables = Table.Combine({FamilyFinal, PersonFinal, f_IndirectApprovedFinal, p_indirectApprovedFinal}),
 				    #"Reordered Columns" = Table.ReorderColumns(CombinedTables,{"EntityId", "Entity Type", "RoleName", "Status", "Approval Type", "Date"}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Reordered Columns",{{"EntityId", "Entity Id"}, {"RoleName", "Role Name"}}),
-				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each true)
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each true),
+				
+				    // Additional step: Status Change Flag
+				    
+				    
+				    SortedTable = Table.Sort(#"Filtered Rows",{{"Entity Id", Order.Ascending}, {"Role Name", Order.Ascending}, {"Date", Order.Ascending}}),
+				
+				    
+				    GroupedTable = Table.Group(SortedTable, {"Entity Id", "Role Name"}, {
+				        {"AllData", each 
+				            let 
+				                AddIndex = Table.AddIndexColumn(_, "RowIndex", 0, 1, Int64.Type),
+				                AddPreviousStatus = Table.AddColumn(AddIndex, "PreviousStatus", each try AddIndex{[RowIndex]-1}[Status] otherwise null),
+				                AddStatusChangeFlag = Table.AddColumn(AddPreviousStatus, "StatusChanged", each if [Status] <> [PreviousStatus] then 1 else 0),
+				                RemoveAuxColumns = Table.RemoveColumns(AddStatusChangeFlag, {"RowIndex", "PreviousStatus"})
+				            in 
+				                RemoveAuxColumns
+				        }
+				    }),
+				
+				    
+				    ExpandedTable = Table.Combine(Table.Column(GroupedTable, "AllData")),
+				    #"Changed Type" = Table.TransformColumnTypes(ExpandedTable,{{"StatusChanged", type logical}})
 				in
-				    #"Filtered Rows"
+				    #"Changed Type"
 				```
 
 	annotation PBI_NavigationStepName = Navigation
