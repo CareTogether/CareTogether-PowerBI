@@ -1802,16 +1802,6 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.475
 			          }
-			        },
-			        {
-			          "Age at Start": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
 			        }
 			      ]
 			    },
@@ -2745,16 +2735,6 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.9
 			          }
-			        },
-			        {
-			          "Arrangement Duration": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
 			        }
 			      ]
 			    },
@@ -2886,16 +2866,6 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.714
-			          }
-			        },
-			        {
-			          "Arrangement Type": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -3686,219 +3656,6 @@ cultureInfo en-US
 			        }
 			      ],
 			      "NameType": "Name"
-			    },
-			    "calculation_group": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Calculation group"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "calculation group": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "calculation category": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "calculation organization": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "calculation bracket": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "calculation class": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "calculation crew": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "calculation team": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        }
-			      ]
-			    },
-			    "calculation_group.calculation_group_column": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Calculation group",
-			          "ConceptualProperty": "Calculation group column"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "calculation group column": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "group column": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "calculation category column": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.609
-			          }
-			        },
-			        {
-			          "calculation organization column": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.609
-			          }
-			        },
-			        {
-			          "category column": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.6
-			          }
-			        },
-			        {
-			          "organization column": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.6
-			          }
-			        },
-			        {
-			          "calculation bracket column": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.591
-			          }
-			        },
-			        {
-			          "calculation class column": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.591
-			          }
-			        },
-			        {
-			          "calculation crew column": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.591
-			          }
-			        },
-			        {
-			          "calculation team column": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.591
-			          }
-			        },
-			        {
-			          "bracket column": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.582
-			          }
-			        },
-			        {
-			          "class column": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.582
-			          }
-			        }
-			      ]
-			    },
-			    "calculation_group.ordinal": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Calculation group",
-			          "ConceptualProperty": "Ordinal"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "ordinal": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
 			    },
 			    "child_location_expanded": {
 			      "Definition": {
@@ -11467,144 +11224,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "entity.family_engagement_level_NEW": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Entity",
-			          "ConceptualProperty": "Family Engagement Level"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "family engagement level": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "level": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "engagement level": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "family engagement quantity": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.762
-			          }
-			        },
-			        {
-			          "family engagement threshold": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.762
-			          }
-			        },
-			        {
-			          "engagement quantity": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "engagement threshold": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "family engagement amount": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "family engagement grade": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "family engagement point": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "family engagement rank": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "family engagement tier": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "threshold": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "# of Assignments": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
 			    "entity.family_id": {
 			      "Definition": {
 			        "Binding": {
@@ -11734,147 +11353,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "entity.family_last_arrangement_end_date": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Entity",
-			          "ConceptualProperty": "Family Last Assignment End Date"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "family last arrangement end date": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "date": {
-			            "State": "Generated",
-			            "Weight": 0.7
-			          }
-			        },
-			        {
-			          "end date": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "arrangement end date": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "last arrangement end date": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "family last arrangement end moment": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.78
-			          }
-			        },
-			        {
-			          "last arrangement end moment": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.771
-			          }
-			        },
-			        {
-			          "arrangement end moment": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.762
-			          }
-			        },
-			        {
-			          "family last arrangement end period": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.757
-			          }
-			        },
-			        {
-			          "end moment": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "last arrangement end period": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "arrangement end period": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "end period": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "family last arrangement culmination date": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.64
-			          }
-			        },
-			        {
-			          "last arrangement culmination date": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.629
-			          }
-			        }
-			      ],
-			      "SemanticType": "Time"
-			    },
 			    "entity.family_name": {
 			      "Definition": {
 			        "Binding": {
@@ -11993,16 +11471,6 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.466
-			          }
-			        },
-			        {
-			          "Family Contact Name": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -12184,16 +11652,6 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Person": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
-			        {
 			          "Child": {
 			            "State": "Suggested",
 			            "Source": {
@@ -12368,6 +11826,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.492
 			          }
+			        },
+			        {
+			          "Impacted Adults": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -12484,137 +11952,9 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.482
 			          }
-			        }
-			      ]
-			    },
-			    "entity.individual_engagement_level_new": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Entity",
-			          "ConceptualProperty": "Individual Engagement Level"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "individual engagement level": {
-			            "State": "Generated"
-			          }
 			        },
 			        {
-			          "level": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "engagement level": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "individual engagement quantity": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.762
-			          }
-			        },
-			        {
-			          "individual engagement threshold": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.762
-			          }
-			        },
-			        {
-			          "engagement quantity": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "engagement threshold": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "individual engagement amount": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "individual engagement grade": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "individual engagement point": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "individual engagement rank": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "individual engagement tier": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "threshold": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "# of Assignments": {
+			          "Impacted Children": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -12624,147 +11964,6 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
-			    },
-			    "entity.individual_last_arrangement_end_date_NEW": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Entity",
-			          "ConceptualProperty": "Individual Last Assignment End Date"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "individual last arrangement end date": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "date": {
-			            "State": "Generated",
-			            "Weight": 0.7
-			          }
-			        },
-			        {
-			          "end date": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "arrangement end date": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "last arrangement end date": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "individual last arrangement end moment": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.78
-			          }
-			        },
-			        {
-			          "last arrangement end moment": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.771
-			          }
-			        },
-			        {
-			          "arrangement end moment": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.762
-			          }
-			        },
-			        {
-			          "individual last arrangement end period": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.757
-			          }
-			        },
-			        {
-			          "end moment": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "last arrangement end period": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "arrangement end period": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "end period": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "individual last arrangement culmination date": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.64
-			          }
-			        },
-			        {
-			          "last arrangement culmination date": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.629
-			          }
-			        }
-			      ],
-			      "SemanticType": "Time"
 			    },
 			    "entity.last_name": {
 			      "Definition": {
@@ -13097,16 +12296,6 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.748
 			          }
-			        },
-			        {
-			          "# of Approved/Onboard People": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
 			        }
 			      ]
 			    },
@@ -13155,105 +12344,13 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Children Served": {
+			          "Children Cared For": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
 			              "Agent": "PowerBI.VisualColumnRename"
 			            },
 			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
-			    "entity.of_engaged_families_NEW": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Entity",
-			          "ConceptualProperty": "# of Engaged Families"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "# of engaged families": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "no of engaged family": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "num of engaged family": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "number of engaged family": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        }
-			      ]
-			    },
-			    "entity.of_engaged_people_NEW": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Entity",
-			          "ConceptualProperty": "# of Engaged People"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "# of engaged people": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "no of engaged person": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "num of engaged person": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "number of engaged person": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
 			          }
 			        }
 			      ]
@@ -13300,62 +12397,6 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.739
-			          }
-			        }
-			      ]
-			    },
-			    "entity.of_families_in_role_new": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Entity",
-			          "ConceptualProperty": "# of Families in Role"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "# of families in role": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "no of family in role": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.757
-			          }
-			        },
-			        {
-			          "num of family in role": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.757
-			          }
-			        },
-			        {
-			          "number of family in role": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.757
-			          }
-			        },
-			        {
-			          "# of Approved/Onboarded Families": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -13773,16 +12814,6 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.727
 			          }
-			        },
-			        {
-			          "Adult or Child": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
 			        }
 			      ]
 			    },
@@ -13926,19 +12957,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Family Name"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Family Contact Name": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "function_assignment": {
 			      "Definition": {
@@ -16874,6 +15893,138 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "engagement_by_entity.dynamic_entity_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Engagement by Entity",
+			          "ConceptualProperty": "Dynamic Entity Name (Engagement)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "approvals_by_entity.dynamic_entity_name_approvals": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Approvals by Entity",
+			          "ConceptualProperty": "Dynamic Entity Name (Approvals)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity.of_entities_in_role": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Entity",
+			          "ConceptualProperty": "# of Entities in Role"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "entity.engagement_level": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Entity",
+			          "ConceptualProperty": "Entity Engagement Level"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "# of Assignments": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity.family_engagement_level": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Entity",
+			          "ConceptualProperty": "Family Engagement Level"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "entity.individual_engagement_level": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Entity",
+			          "ConceptualProperty": "Individual Engagement Level"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "entity.entity_last_assignment_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Entity",
+			          "ConceptualProperty": "Entity Last Assignment Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Last Assignment Date": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "export_contacts.dynamic_entity_name_approval": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Export Contacts",
+			          "ConceptualProperty": "Dynamic Entity Name (Approval)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
@@ -18391,72 +17542,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "arrangement_types_are_names_IDs_of_arrangement_types1"
-			        }
-			      ]
-			    },
-			    "calculation_group_has_calculation_group_column": {
-			      "Binding": {
-			        "ConceptualEntity": "Calculation group"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "calculation_group": {
-			          "Target": {
-			            "Entity": "calculation_group"
-			          }
-			        },
-			        "calculation_group.calculation_group_column": {
-			          "Target": {
-			            "Entity": "calculation_group.calculation_group_column"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "calculation_group"
-			            },
-			            "Object": {
-			              "Role": "calculation_group.calculation_group_column"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "calculation_groups_have_calculation_group_columns"
-			        }
-			      ]
-			    },
-			    "calculation_group_has_ordinal": {
-			      "Binding": {
-			        "ConceptualEntity": "Calculation group"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "calculation_group": {
-			          "Target": {
-			            "Entity": "calculation_group"
-			          }
-			        },
-			        "calculation_group.ordinal": {
-			          "Target": {
-			            "Entity": "calculation_group.ordinal"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "calculation_group"
-			            },
-			            "Object": {
-			              "Role": "calculation_group.ordinal"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "calculation_groups_have_ordinals"
 			        }
 			      ]
 			    },

@@ -1,0 +1,436 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.3.0/schema.json",
+  "name": "d08ff20b71001be16c90",
+  "displayName": "Impact",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "dc875673d2060c2b8c2b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Date",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "d"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "Now": {}
+                          },
+                          "Amount": -1,
+                          "TimeUnit": 3
+                        }
+                      },
+                      "TimeUnit": 3
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "Now": {}
+                          },
+                          "Amount": -1,
+                          "TimeUnit": 3
+                        }
+                      },
+                      "TimeUnit": 3
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "b70484c6dd7ba1006d15",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement Type"
+              }
+            },
+            "Property": "Arrangement Type"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "objects": {
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F6FCFC'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "foregroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#333333'"
+                  }
+                }
+              }
+            }
+          },
+          "borderColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#EFEFEF'"
+                  }
+                }
+              }
+            }
+          },
+          "inputBoxColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F6FCFC'"
+                  }
+                }
+              }
+            }
+          },
+          "headerSize": {
+            "expr": {
+              "Literal": {
+                "Value": "10L"
+              }
+            }
+          },
+          "backgroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#FFFFFF'"
+                  }
+                }
+              }
+            }
+          },
+          "checkboxAndApplyColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#26A3AB'"
+                  }
+                }
+              }
+            }
+          },
+          "border": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "searchTextSize": {
+            "expr": {
+              "Literal": {
+                "Value": "10L"
+              }
+            }
+          },
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "250L"
+              }
+            }
+          },
+          "fontFamily": {
+            "expr": {
+              "Literal": {
+                "Value": "'Arial'"
+              }
+            }
+          },
+          "titleSize": {
+            "expr": {
+              "Literal": {
+                "Value": "10L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "filterCard": [
+      {
+        "properties": {
+          "fontFamily": {
+            "expr": {
+              "Literal": {
+                "Value": "'Arial'"
+              }
+            }
+          },
+          "textSize": {
+            "expr": {
+              "Literal": {
+                "Value": "10L"
+              }
+            }
+          },
+          "backgroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "foregroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#333333'"
+                  }
+                }
+              }
+            }
+          },
+          "inputBoxColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "border": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "borderColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#EFEFEF'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "id": "Available"
+        }
+      },
+      {
+        "properties": {
+          "fontFamily": {
+            "expr": {
+              "Literal": {
+                "Value": "'Arial'"
+              }
+            }
+          },
+          "textSize": {
+            "expr": {
+              "Literal": {
+                "Value": "10L"
+              }
+            }
+          },
+          "foregroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#212121'"
+                  }
+                }
+              }
+            }
+          },
+          "inputBoxColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F6FCFC'"
+                  }
+                }
+              }
+            }
+          },
+          "borderColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#EFEFEF'"
+                  }
+                }
+              }
+            }
+          },
+          "backgroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F6FCFC'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "id": "Applied"
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "c723db5a181300c28a00",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "4736b559dc9108b497b9",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "9f8fd0b22c3917eaa741",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "828858e1023d822a737d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "a20737a507bae877b71b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "177d33ba163573002323",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "197c3aad6a9c6e7ca65b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ad9d5cba41e396de2df0",
+      "target": "9c4ee39ac067a0ed9785",
+      "type": "DataFilter"
+    }
+  ]
+}

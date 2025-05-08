@@ -2,22 +2,21 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/1.2.0/schema.json",
   "themeCollection": {
     "baseTheme": {
-      "name": "CY24SU08",
-      "reportVersionAtImport": "5.58",
+      "name": "CY24SU10",
+      "reportVersionAtImport": "5.61",
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "Innovate",
-      "reportVersionAtImport": "5.58",
-      "type": "SharedResources"
+      "name": "Care_Together5543764606031234.json",
+      "reportVersionAtImport": "5.61",
+      "type": "RegisteredResources"
     }
   },
-  "layoutOptimization": "PhonePortrait",
+  "layoutOptimization": "None",
   "filterConfig": {
     "filters": [
       {
-        "name": "Filterd74d7925530cba56d572",
-        "displayName": "Location",
+        "name": "20e3df9e210a58cd8a38",
         "ordinal": 0,
         "field": {
           "Column": {
@@ -29,71 +28,24 @@
             "Property": "Location"
           }
         },
-        "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
+        "type": "Categorical",
+        "howCreated": "User",
+        "isHiddenInViewMode": true,
+        "objects": {
+          "general": [
             {
-              "Name": "l",
-              "Entity": "Location",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "Comparison": {
-                      "ComparisonKind": 0,
-                      "Left": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Source": "l"
-                            }
-                          },
-                          "Property": "Location"
-                        }
-                      },
-                      "Right": {
-                        "Literal": {
-                          "Value": "null"
-                        }
-                      }
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
                     }
                   }
                 }
               }
             }
           ]
-        },
-        "howCreated": "User",
-        "isHiddenInViewMode": true,
-        "isLockedInViewMode": true,
-        "objects": {
-          "general": [
-            {
-              "properties": {}
-            }
-          ]
         }
-      },
-      {
-        "name": "8226d77ab68e04afa4bf",
-        "ordinal": 1,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Location"
-              }
-            },
-            "Property": "Location"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "User"
       }
     ],
     "filterSortOrder": "Custom"
@@ -132,13 +84,19 @@
       "type": "SharedResources",
       "items": [
         {
-          "name": "CY24SU08",
-          "path": "BaseThemes/CY24SU08.json",
+          "name": "CY24SU10",
+          "path": "BaseThemes/CY24SU10.json",
           "type": "BaseTheme"
-        },
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
         {
-          "name": "Innovate",
-          "path": "BuiltInThemes/Innovate.json",
+          "name": "Care_Together5543764606031234.json",
+          "path": "Care_Together5543764606031234.json",
           "type": "CustomTheme"
         }
       ]
