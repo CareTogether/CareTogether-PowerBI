@@ -5,13 +5,13 @@ table 'Engagement by Entity'
 		precedence: 1
 
 		calculationItem Family =
-				CALCULATE (
+				CALCULATE(
 				    SELECTEDMEASURE (),
-				        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]),
-				        CROSSFILTER(Entity[PersonId], Arrangement[PersonId], None),
-				        'Role Approval'[Entity Type] = "Family",
-				        USERELATIONSHIP ( Entity[FamilyId], 'Role Approval'[Entity Id] ),
-				        CROSSFILTER ( Entity[PersonId], 'Role Approval'[Entity Id], NONE )
+				    USERELATIONSHIP(Entity[PersonId], 'Function Assignments'[EntityId]),
+				    CROSSFILTER(Entity[PersonId], Arrangement[PersonId], None),
+				    'Role Approval'[Entity Type] = "Family",
+				    USERELATIONSHIP(Entity[PersonId], 'Role Approval'[Entity Id]),
+				    CROSSFILTER (Entity[FamilyId], 'Role Approval'[Entity Id], NONE)
 				)
 
 		calculationItem Person =

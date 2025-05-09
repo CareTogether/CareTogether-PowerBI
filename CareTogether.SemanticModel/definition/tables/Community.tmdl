@@ -8,7 +8,7 @@ table Community
 	measure 'First Community Membership' =
 			
 			
-			VAR FirstCommunity = MIN(Community[Community Name])
+			VAR FirstCommunity = MIN(Community[Name])
 			
 			RETURN IF(ISBLANK(FirstCommunity), "", FirstCommunity)
 		lineageTag: b7d1d23d-01bf-4edc-ab56-d3625c342b19
@@ -25,23 +25,12 @@ table Community
 
 		annotation SummarizationSetBy = Automatic
 
-	column LocationId
-		dataType: string
-		isHidden
-		lineageTag: 0cfac6c8-71df-440e-b16d-b9c44f18615f
-		summarizeBy: none
-		sourceColumn: LocationId
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Community Name'
+	column Name
 		dataType: string
 		lineageTag: 129fec00-1f2b-4369-a96b-fdc0549392fa
 		isDefaultLabel
 		summarizeBy: none
-		sourceColumn: Community Name
+		sourceColumn: Name
 
 		annotation SummarizationSetBy = Automatic
 
@@ -52,6 +41,22 @@ table Community
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: 10648cd9-5d83-46c5-9219-32b863a8e7db
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: 977c9e84-5700-4100-8be7-ad46beb14739
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Community = m
 		mode: import
 		queryGroup: 'Model Queries'
@@ -59,10 +64,13 @@ table Community
 				let
 				    Source = #"OData Live",
 				    Families_table = Source{[Name="Communities",Signature="table"]}[Data],
-				    #"Removed Columns" = Table.RemoveColumns(Families_table,{"Location"}),
-				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Name", "Community Name"}})
+				    #"Expanded Organization" = Table.ExpandRecordColumn(Families_table, "Organization", {"Id"}, {"Organization.Id"}),
+				    #"Expanded Location" = Table.ExpandRecordColumn(#"Expanded Organization", "Location", {"Id", "OrganizationId", "Name"}, {"Location.Id", "Location.OrganizationId", "Location.Name"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Expanded Location",{"OrganizationId", "LocationId"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Organization.Id", "OrganizationId"}, {"Location.Id", "LocationId"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns",{"Location.OrganizationId", "Location.Name"})
 				in
-				    #"Renamed Columns"
+				    #"Removed Columns1"
 
 	annotation PBI_ResultType = Table
 

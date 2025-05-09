@@ -1,0 +1,27 @@
+table Organization
+	lineageTag: ffb41729-a210-4265-b303-4eb4bf20dc3b
+
+	column OrganizationId
+		dataType: string
+		lineageTag: 33764d61-d090-45bb-973e-9c3f64a9033e
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Organization = m
+		mode: import
+		queryGroup: 'Model Queries'
+		source =
+				let
+				    Source = #"OData Live",
+				    LocationUserAccess_table = Source{[Name="LocationUserAccess",Signature="table"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(LocationUserAccess_table,{"UserId", "LocationId"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

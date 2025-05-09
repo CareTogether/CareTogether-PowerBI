@@ -33,6 +33,22 @@ table 'Function Assignments'
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: c13355eb-b52e-4117-b891-c9cd9e3f05f0
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: c238497d-a673-496b-8adf-3ffd013225d5
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Function Assignments' = m
 		mode: import
 		queryGroup: 'Consolidated Entities'
@@ -41,8 +57,10 @@ table 'Function Assignments'
 				    Source = #"OData Live",
 				
 				    // Family Function Assignments
-				    Families = Table.SelectColumns(Source{[Name="FamilyFunctionAssignments", Signature="table"]}[Data], {"ArrangementId", "FamilyId", "Function"}),
-				    FamiliesEntityId = Table.RenameColumns(Families, {{"FamilyId", "EntityId"}}),
+				    Families = Table.SelectColumns(Source{[Name="FamilyFunctionAssignments", Signature="table"]}[Data], {"ArrangementId", "FamilyId", "Function", "Organization", "Location"}),
+				    #"Expanded Organization" = Table.ExpandRecordColumn(Families, "Organization", {"Id"}, {"Organization.Id"}),
+				    #"Expanded Location" = Table.ExpandRecordColumn(#"Expanded Organization", "Location", {"Id"}, {"Location.Id"}),
+				    FamiliesEntityId = Table.RenameColumns(Table.RenameColumns(#"Expanded Location", {{"FamilyId", "EntityId"}}), {{"Location.Id", "LocationId"}, {"Organization.Id", "OrganizationId"}})  ,
 				    FamiliesEntityType = Table.AddColumn(FamiliesEntityId, "EntityType", each "Family"),
 				
 				    // Individual Function Assigments

@@ -31,6 +31,22 @@ table 'Community Role Assignments'
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: 43c19cf6-9343-4cc0-bc84-e461ce1a58ab
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: 45948d52-4461-4650-a1a1-18bb70d74cf8
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Community Role Assignments' = m
 		mode: import
 		queryGroup: 'Model Queries'
@@ -40,9 +56,12 @@ table 'Community Role Assignments'
 				    ApiUrl = ApiHost&"/api/odata/live",
 				    Source = OData.Feed(ApiUrl, null, [Implementation="2.0"]),
 				    CommunityRoleAssignments_table1 = Source{[Name="CommunityRoleAssignments",Signature="table"]}[Data],
-				    #"Removed Columns" = Table.RemoveColumns(CommunityRoleAssignments_table1,{"Community", "Person"})
+				    #"Removed Columns" = Table.RemoveColumns(CommunityRoleAssignments_table1,{"Community", "Person", "OrganizationId", "LocationId"}),
+				    #"Expanded Organization" = Table.ExpandRecordColumn(#"Removed Columns", "Organization", {"Id"}, {"Organization.Id"}),
+				    #"Expanded Location" = Table.ExpandRecordColumn(#"Expanded Organization", "Location", {"Id"}, {"Location.Id"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded Location",{{"Organization.Id", "OrganizationId"}, {"Location.Id", "LocationId"}})
 				in
-				    #"Removed Columns"
+				    #"Renamed Columns"
 
 	annotation PBI_ResultType = Table
 

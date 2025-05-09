@@ -294,6 +294,19 @@ table Entity
 		formatString: Short Date
 		lineageTag: fb33ac15-607e-454c-8940-c3532b67f934
 
+	measure '# of Engaged Entities (NEW)' =
+			
+			
+			CALCULATE(
+			    DISTINCTCOUNT(Entity[PersonId]),
+			    FILTER(
+			        Entity,
+			        [Entity Engagement Level] > 0
+			    )
+			)
+		formatString: 0
+		lineageTag: 9648f304-9232-43cc-a282-72f384eb2e8a
+
 	column FamilyId
 		dataType: string
 		displayFolder: _columns
@@ -399,15 +412,6 @@ table Entity
 		lineageTag: 233df190-e0d7-4a4a-ba57-73e15c575bfe
 		summarizeBy: none
 		sourceColumn: HomeChurch
-
-		annotation SummarizationSetBy = Automatic
-
-	column PersonId
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 0a01d56d-d1c2-4085-a402-554b51e8df84
-		summarizeBy: none
-		sourceColumn: PersonId
 
 		annotation SummarizationSetBy = Automatic
 
@@ -559,30 +563,63 @@ table Entity
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: 55943f05-d46c-4007-88d5-40726a60fa20
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column PersonId
+		dataType: string
+		lineageTag: 4c0c2b4d-8c3c-4d13-b91b-c2542ce9a0ed
+		summarizeBy: none
+		sourceColumn: PersonId
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Entity = m
 		mode: import
 		queryGroup: 'Consolidated Entities'
 		source = ```
-				let 
+				let
 				    Source = #"OData Live",
-				    Person = Table.SelectColumns(
-				        Source{[Name="Person", Signature="table"]}[Data],
-				        {"Id", "FamilyId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType"}
+				
+				    //Person Table:
+				    PersonTable = Table.ExpandRecordColumn(
+				        Table.ExpandRecordColumn(
+				            Table.SelectColumns(
+				                Source{[Name="Person", Signature="table"]}[Data],
+				                {"Id", "FamilyId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType","Organization", "Location"}
+				            ),
+				            "Organization", {"Id"}, {"OrganizationId"}
+				        ), "Location", {"Id"}, {"LocationId"}
+				    ),
+				
+				    PersonRenamed = Table.RenameColumns(
+				        PersonTable,
+				        {"Id","PersonId"}
+				    ),
+				
+				    // Family Table: 
+				    FamilyTable = Table.ExpandRecordColumn(
+				        Table.SelectColumns(
+				            Source{[Name="Family", Signature="table"]}[Data],
+				            {"Id", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "PrimaryAddress", "HomeChurch"}
 				        ),
+				        "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}
+				    ),
 				
-				    PersonTableColumnsRenamed = Table.RenameColumns(Person, {{"Id","PersonId"}}),
-				
-				    FamilyTable = Source{[Name="Family", Signature="table"]}[Data],
-				    FamilyTableColumns = Table.SelectColumns(FamilyTable, {"Id", "LocationId", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "PrimaryAddress", "HomeChurch"}),
-				    FamilytableColumnsExpanded = Table.ExpandRecordColumn(FamilyTableColumns, "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}),
-				
+				    //Combined Tables: 
 				    CombinedTables = Table.Join(
-				        PersonTableColumnsRenamed,
+				        PersonRenamed,
 				        {"FamilyId"},
-				        FamilytableColumnsExpanded,
+				        FamilyTable,
 				        {"Id"},
 				        JoinKind.LeftOuter
 				    ),
+				
 				    #"Reordered Columns" = Table.ReorderColumns(CombinedTables,{"FamilyId", "Id", "LocationId", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "Line1", "Line2", "City", "County", "State", "PostalCode", "HomeChurch", "PersonId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType"}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"Id"}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Name", "Family Name"}, {"PrimaryEmail", "Email"}, {"PrimaryPhoneNumber", "Phone Number"}, {"Line1", "Address Line 1"}, {"Line2", "Address Line 2"}, {"FirstName", "First Name"}, {"LastName", "Last Name"}}),
