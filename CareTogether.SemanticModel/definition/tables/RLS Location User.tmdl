@@ -1,0 +1,33 @@
+table 'RLS Location User'
+	lineageTag: 638c4247-a41d-43f2-9669-55b848e95b3e
+
+	column UserId
+		dataType: string
+		lineageTag: 9dbe6248-2420-4806-a1df-be2ef1df9630
+		summarizeBy: none
+		sourceColumn: UserId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: 65956f81-4e72-443a-94b3-4418f1ca4df6
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'RLS Location User' = m
+		mode: import
+		queryGroup: RLS
+		source =
+				let
+				    Source = #"OData Live",
+				    LocationUserAccess_table = Source{[Name="LocationUserAccess",Signature="table"]}[Data]
+				in
+				    LocationUserAccess_table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -290,6 +290,16 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "RLS Location User",
+          "nodeLineageTag": "638c4247-a41d-43f2-9669-55b848e95b3e",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
@@ -552,10 +562,23 @@
             "width": 234
           },
           "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "RLS Location User",
+          "nodeLineageTag": "638c4247-a41d-43f2-9669-55b848e95b3e",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 20
         }
       ],
       "name": "Data Model",
-      "zoomValue": 77.269840300731175,
+      "zoomValue": 122.09416340762331,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
