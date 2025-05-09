@@ -12,6 +12,14 @@ table Role
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: 5b588556-c5df-4549-be92-11cfa09d19bd
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Role-e671c74c-88c5-4c48-a3a5-404c5dec31f4 = m
 		mode: import
 		queryGroup: 'Model Queries'
@@ -19,7 +27,9 @@ table Role
 				let
 				    Source = #"OData Live",
 				    Roles_table = Source{[Name="Role",Signature="table"]}[Data],
-				    #"Renamed Columns" = Table.RenameColumns(Roles_table,{{"Name", "Role Name"}})
+				    #"Removed Columns" = Table.RemoveColumns(Roles_table,{"OrganizationId"}),
+				    #"Expanded Organization" = Table.ExpandRecordColumn(#"Removed Columns", "Organization", {"Id"}, {"Organization.Id"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded Organization",{{"Organization.Id", "OrganizationId"}, {"Name", "Role Name"}})
 				in
 				    #"Renamed Columns"
 

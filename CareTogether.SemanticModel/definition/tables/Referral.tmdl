@@ -121,6 +121,22 @@ table Referral
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: 7d0d2a57-78b1-4567-9c57-aece9b751ca8
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: 488b6227-d8df-420d-ac81-0cebcacd85b0
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Referral-ae1a9126-4929-4d7f-8948-7409da4a474e = m
 		mode: import
 		queryGroup: 'Model Queries'
@@ -128,10 +144,13 @@ table Referral
 				let
 				    Source = #"OData Live",
 				    Referral_table = Source{[Name="Referral",Signature="table"]}[Data],
-				    #"Removed Columns" = Table.RemoveColumns(Referral_table,{"Family"}),
-				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"ReferralSource", "Referral Source"}, {"CloseReason", "Close Reason"}})
+				    #"Removed Columns" = Table.RemoveColumns(Referral_table,{"Family", "OrganizationId", "LocationId"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"ReferralSource", "Referral Source"}, {"CloseReason", "Close Reason"}}),
+				    #"Expanded Organization" = Table.ExpandRecordColumn(#"Renamed Columns", "Organization", {"Id"}, {"Organization.Id"}),
+				    #"Expanded Location" = Table.ExpandRecordColumn(#"Expanded Organization", "Location", {"Id"}, {"Location.Id"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Expanded Location",{{"Organization.Id", "OrganizationId"}, {"Location.Id", "LocationId"}})
 				in
-				    #"Renamed Columns"
+				    #"Renamed Columns1"
 
 	annotation PBI_ResultType = Table
 

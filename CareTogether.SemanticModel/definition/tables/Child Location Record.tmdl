@@ -286,6 +286,22 @@ table 'Child Location Record'
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: 68b783cc-f531-4046-a60d-26bd69587b98
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: f761869f-d54b-4658-9fe4-48d16e75f601
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Child Location Record-3a748a32-4c86-4eac-923a-0eca77fa6916' = m
 		mode: import
 		queryGroup: 'Model Queries'
@@ -293,11 +309,12 @@ table 'Child Location Record'
 				let
 				    Source = #"OData Live",
 				    ChildLocationRecords_table1 = Source{[Name="ChildLocationRecords",Signature="table"]}[Data],
-				    #"Removed Columns" = Table.RemoveColumns(ChildLocationRecords_table1,{"Arrangement", "Child", "Family"}),
+				    #"Expanded Organization" = Table.ExpandRecordColumn(ChildLocationRecords_table1, "Organization", {"Id"}, {"Organization.Id"}),
+				    #"Expanded Location" = Table.ExpandRecordColumn(#"Expanded Organization", "Location", {"Id"}, {"Location.Id"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Expanded Location",{"Arrangement", "Child", "Family", "OrganizationId", "LocationId"}),
 				    #"Calculated Local Time" = Table.TransformColumns(#"Removed Columns",{{"StartedAtUtc", DateTimeZone.ToLocal, type datetimezone}, {"EndedAtUtc", DateTimeZone.ToLocal, type datetimezone}}),
-				    #"Renamed Columns" = Table.RenameColumns(#"Calculated Local Time",{{"StartedAtUtc", "Started"}, {"EndedAtUtc", "Ended"}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Calculated Local Time",{{"StartedAtUtc", "Started"}, {"EndedAtUtc", "Ended"}, {"Organization.Id", "OrganizationId"}, {"Location.Id", "LocationId"}}),
 				    #"Added Index" = Table.AddIndexColumn(#"Renamed Columns", "Index", 1, 1, Int64.Type),
-				
 				    // Adding the family Name: 
 				    Families = Table.SelectColumns(Source{[Name="Family",Signature="table"]}[Data], {"Id", "Name"}),
 				
@@ -308,7 +325,7 @@ table 'Child Location Record'
 				        Families,
 				        "Id",
 				        JoinKind.LeftOuter
-				    ),{"ArrangementId", "ChildPersonId", "FamilyId", "Started", "ChildcarePlan", "Ended", "Duration", "Index", "Name"}), 
+				    ),{"ArrangementId", "ChildPersonId", "FamilyId", "Started", "ChildcarePlan", "Ended", "Duration", "Index", "Name", "OrganizationId", "LocationId"}), 
 				    {{"Name", "Childcare Family Name"}})
 				in
 				    Merge

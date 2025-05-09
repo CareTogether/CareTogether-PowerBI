@@ -22,6 +22,22 @@ table 'Arrangement Type'
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: 5cedf8f1-dd7b-4e63-a0af-d8a544bd21b2
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: 9e5ea841-b6d3-4c17-bfa3-0e20de93dd3c
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Arrangement Type-597c3ca7-59e2-4e86-8453-c8def7291a36' = m
 		mode: import
 		queryGroup: 'Model Queries'
@@ -29,7 +45,10 @@ table 'Arrangement Type'
 				let
 				    Source = #"OData Live",
 				    ArrangementType_table1 = Source{[Name="ArrangementType",Signature="table"]}[Data],
-				    #"Renamed Columns" = Table.RenameColumns(ArrangementType_table1,{{"Type", "Arrangement Type"}})
+				    #"Removed Columns" = Table.RemoveColumns(ArrangementType_table1,{"OrganizationId", "LocationId"}),
+				    #"Expanded Organization" = Table.ExpandRecordColumn(#"Removed Columns", "Organization", {"Id"}, {"Organization.Id"}),
+				    #"Expanded Location" = Table.ExpandRecordColumn(#"Expanded Organization", "Location", {"Id"}, {"Location.Id"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded Location",{{"Type", "Arrangement Type"}, {"Organization.Id", "OrganizationId"}, {"Location.Id", "LocationId"}})
 				in
 				    #"Renamed Columns"
 

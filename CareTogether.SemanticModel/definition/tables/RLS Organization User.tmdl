@@ -1,0 +1,34 @@
+table 'RLS Organization User'
+	lineageTag: 1f8cdcb3-3f73-421c-b1a2-45079bfbcdb3
+
+	column UserId
+		dataType: string
+		lineageTag: 18474972-83b9-461c-acf7-e02046b7b563
+		summarizeBy: none
+		sourceColumn: UserId
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationId
+		dataType: string
+		lineageTag: de4fae6f-1a31-4bf7-8417-cd82b3c3c3be
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'RLS Organization User' = m
+		mode: import
+		queryGroup: RLS
+		source =
+				let
+				    Source = #"OData Live",
+				    LocationUserAccess_table = Table.SelectColumns(Source{[Name="LocationUserAccess",Signature="table"]}[Data], {"UserId", "OrganizationId"}),
+				    #"Removed Duplicates1" = Table.Distinct(LocationUserAccess_table)
+				in
+				    #"Removed Duplicates1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

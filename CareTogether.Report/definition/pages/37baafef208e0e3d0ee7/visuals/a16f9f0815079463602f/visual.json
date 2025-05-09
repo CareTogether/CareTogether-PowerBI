@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.7.0/schema.json",
   "name": "a16f9f0815079463602f",
   "position": {
     "x": 402.38907849829354,
