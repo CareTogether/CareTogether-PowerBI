@@ -1,0 +1,11 @@
+role Dynamic
+	modelPermission: read
+
+	tablePermission 'RLS Location User - Approvals' = USERNAME() = 'RLS Location User - Approvals'[UserId]
+
+	tablePermission 'RLS Location User - Referral' = USERNAME() = 'RLS Location User - Referral'[UserId]
+
+	tablePermission 'RLS Location User - Arrangements' = USERNAME() = 'RLS Location User - Arrangements'[UserId]
+
+	annotation PBI_Id = 48755128b26e4366a08bd6a38df559b4
+

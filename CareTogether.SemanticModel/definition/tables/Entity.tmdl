@@ -303,114 +303,6 @@ table Entity
 
 		annotation SummarizationSetBy = Automatic
 
-	column LocationId
-		dataType: string
-		displayFolder: _columns
-		lineageTag: cfe25239-01f2-40b7-9a90-acfa70ba080d
-		summarizeBy: none
-		sourceColumn: LocationId
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Family Name'
-		dataType: string
-		displayFolder: _columns
-		lineageTag: b23e5b0a-d126-4678-9a71-38ec18aa4882
-		summarizeBy: none
-		sourceColumn: Family Name
-
-		annotation SummarizationSetBy = Automatic
-
-	column Email
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 862659a1-372b-41f1-83ae-183a267061ce
-		summarizeBy: none
-		sourceColumn: Email
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Phone Number'
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 9fcbcdca-0dd1-41ef-bbc5-0a32f287811f
-		summarizeBy: none
-		sourceColumn: Phone Number
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Address Line 1'
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 1361ce88-2882-48c9-a069-840ee560c91d
-		summarizeBy: none
-		sourceColumn: Address Line 1
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Address Line 2'
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 3004db58-1488-406b-9f5f-946296263159
-		summarizeBy: none
-		sourceColumn: Address Line 2
-
-		annotation SummarizationSetBy = Automatic
-
-	column City
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 772c485f-54b3-4e4c-b97b-2c4a6336adcb
-		summarizeBy: none
-		sourceColumn: City
-
-		annotation SummarizationSetBy = Automatic
-
-	column County
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 1d769877-b981-4f47-9050-07cbf291d5c3
-		summarizeBy: none
-		sourceColumn: County
-
-		annotation SummarizationSetBy = Automatic
-
-	column State
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 980edc7f-b09e-4cb9-b374-8fe7ad9ace77
-		summarizeBy: none
-		sourceColumn: State
-
-		annotation SummarizationSetBy = Automatic
-
-	column PostalCode
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 76f8d028-c87f-404e-8ffa-c94d695c5b8d
-		summarizeBy: none
-		sourceColumn: PostalCode
-
-		annotation SummarizationSetBy = Automatic
-
-	column HomeChurch
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 233df190-e0d7-4a4a-ba57-73e15c575bfe
-		summarizeBy: none
-		sourceColumn: HomeChurch
-
-		annotation SummarizationSetBy = Automatic
-
-	column PersonId
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 0a01d56d-d1c2-4085-a402-554b51e8df84
-		summarizeBy: none
-		sourceColumn: PersonId
-
-		annotation SummarizationSetBy = Automatic
-
 	column 'First Name'
 		dataType: string
 		displayFolder: _columns
@@ -454,15 +346,6 @@ table Entity
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
-
-	column 'Full Name'
-		dataType: string
-		displayFolder: _columns
-		lineageTag: bd311439-7c66-4ceb-8a12-11de38faa3de
-		summarizeBy: none
-		sourceColumn: Full Name
-
-		annotation SummarizationSetBy = Automatic
 
 	column Age = DATEDIFF(Entity[DateOfBirth], UTCNOW(), YEAR)
 		formatString: 0
@@ -559,31 +442,168 @@ table Entity
 
 		annotation SummarizationSetBy = Automatic
 
+	column PersonId
+		dataType: string
+		lineageTag: ce8a1026-5955-4183-a8dd-91c131b60422
+		summarizeBy: none
+		sourceColumn: PersonId
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationId
+		dataType: string
+		lineageTag: c2020579-1e5b-4384-8d73-c63db2883fb3
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: 1cd5ece6-3e22-4e4d-a795-478aa93be465
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 087909ae-97c5-4c52-b7d3-0a256af54a96
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Name'
+		dataType: string
+		lineageTag: 74940fab-8358-4136-a3ed-8e8dbb227c74
+		summarizeBy: none
+		sourceColumn: Family Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: c2808eba-a9ab-4a86-8eac-afe5be7fe2ad
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Phone Number'
+		dataType: string
+		lineageTag: fde2e83a-ee9f-4fed-aa17-6c29e5b9299a
+		summarizeBy: none
+		sourceColumn: Phone Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 1'
+		dataType: string
+		lineageTag: 38500f73-01a0-4d69-bf89-53aa8173d01f
+		summarizeBy: none
+		sourceColumn: Address Line 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 2'
+		dataType: string
+		lineageTag: 55a68ebf-4b08-4323-9f1b-ac3afc65629e
+		summarizeBy: none
+		sourceColumn: Address Line 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 0873ce1f-73e9-4a4c-94b8-031fcb88f04a
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column County
+		dataType: string
+		lineageTag: 26222d31-db01-4684-9dd6-a138835ab0bf
+		summarizeBy: none
+		sourceColumn: County
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 3bad9943-09af-45ab-bfc3-8917498f84cd
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		lineageTag: 4bcb8b53-8713-4a37-999f-5b70e43ad398
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column HomeChurch
+		dataType: string
+		lineageTag: 03c5c23e-17a6-4b06-94d5-f94a6c7ba11a
+		summarizeBy: none
+		sourceColumn: HomeChurch
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Name'
+		dataType: string
+		lineageTag: 0fdf0d38-48ce-473f-8199-67e2ed60bf01
+		summarizeBy: none
+		sourceColumn: Full Name
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Entity = m
 		mode: import
 		queryGroup: 'Consolidated Entities'
 		source = ```
 				let 
 				    Source = #"OData Live",
-				    Person = Table.SelectColumns(
-				        Source{[Name="Person", Signature="table"]}[Data],
-				        {"Id", "FamilyId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType"}
+				
+				    //Individuals:
+				    Person = 
+				
+				    Table.RenameColumns(
+				        Table.SelectColumns(
+				            Source{[Name="Person", Signature="table"]}[Data],
+				            {"Id", "FamilyId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType"}
 				        ),
+				        {{"Id", "PersonId"}}
+				    ),
 				
-				    PersonTableColumnsRenamed = Table.RenameColumns(Person, {{"Id","PersonId"}}),
+				    // Families:
+				    Family = 
 				
-				    FamilyTable = Source{[Name="Family", Signature="table"]}[Data],
-				    FamilyTableColumns = Table.SelectColumns(FamilyTable, {"Id", "LocationId", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "PrimaryAddress", "HomeChurch"}),
-				    FamilytableColumnsExpanded = Table.ExpandRecordColumn(FamilyTableColumns, "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}),
+				    Table.ExpandRecordColumn(
+				        Table.SelectColumns(
+				            Table.AddColumn(
+				                Source{[Name="Family", Signature="table"]}[Data],
+				               "RLS Key", each Text.Combine({[LocationId], [OrganizationId]}, "-")
+				            ),
+				            {"OrganizationId", "LocationId", "RLS Key", "Id", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "PrimaryAddress", "HomeChurch"}
+				        ),
+				        "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}
+				    ),
 				
+				    //Combined Tables:
 				    CombinedTables = Table.Join(
-				        PersonTableColumnsRenamed,
+				        Person,
 				        {"FamilyId"},
-				        FamilytableColumnsExpanded,
+				        Family,
 				        {"Id"},
 				        JoinKind.LeftOuter
 				    ),
-				    #"Reordered Columns" = Table.ReorderColumns(CombinedTables,{"FamilyId", "Id", "LocationId", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "Line1", "Line2", "City", "County", "State", "PostalCode", "HomeChurch", "PersonId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType"}),
+				
+				    #"Reordered Columns" = Table.ReorderColumns(CombinedTables,{"OrganizationId", "LocationId", "RLS Key", "FamilyId", "Id", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "Line1", "Line2", "City", "County", "State", "PostalCode", "HomeChurch", "PersonId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType"}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"Id"}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Name", "Family Name"}, {"PrimaryEmail", "Email"}, {"PrimaryPhoneNumber", "Phone Number"}, {"Line1", "Address Line 1"}, {"Line2", "Address Line 2"}, {"FirstName", "First Name"}, {"LastName", "Last Name"}}),
 				    #"Inserted Merged Column" = Table.AddColumn(#"Renamed Columns", "Full Name", each Text.Combine({[First Name], [Last Name]}, " "), type text)

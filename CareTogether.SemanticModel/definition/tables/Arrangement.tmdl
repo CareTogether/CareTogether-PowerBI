@@ -215,36 +215,6 @@ table Arrangement
 
 		annotation SummarizationSetBy = Automatic
 
-	column Started
-		dataType: dateTime
-		formatString: General Date
-		displayFolder: _Columns
-		lineageTag: c2f7a97c-28a4-4ca3-aaf2-795d8a72a5f1
-		summarizeBy: none
-		sourceColumn: Started
-
-		variation Variation
-			isDefault
-			relationship: bb43cb93-5366-4c83-85f8-417eb76a0ee4
-			defaultHierarchy: LocalDateTable_24602e63-6fc7-4520-a5af-36f3df0426a8.'Date Hierarchy'
-
-		annotation SummarizationSetBy = Automatic
-
-	column Ended
-		dataType: dateTime
-		formatString: General Date
-		displayFolder: _Columns
-		lineageTag: 2450bd4a-7cef-4f62-a39c-97a1705bb84c
-		summarizeBy: none
-		sourceColumn: Ended
-
-		variation Variation
-			isDefault
-			relationship: f6af9189-e041-4e8e-a848-1bb59b7f3b98
-			defaultHierarchy: LocalDateTable_f42c1403-e66d-4045-8af6-5c3c28e884e6.'Date Hierarchy'
-
-		annotation SummarizationSetBy = Automatic
-
 	column Phase
 		dataType: string
 		isHidden
@@ -355,18 +325,85 @@ table Arrangement
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: 6dc118f1-901b-4e9e-97fe-c59cf3ae4e89
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: bc4a1f2f-9b88-4cf5-8faf-2f8ec7c1320a
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 322b3534-ee75-496f-86be-cd5187348a28
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Started
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7652483d-f51a-484c-abb4-fff3855e8319
+		summarizeBy: none
+		sourceColumn: Started
+
+		variation Variation
+			isDefault
+			relationship: 95fcee5c-4dd6-423f-bcaa-46ee042929d5
+			defaultHierarchy: LocalDateTable_a8dbb200-3155-4e8c-9348-db038fea8ca8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ended
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 62d33619-e522-4680-9921-919bcd4e353f
+		summarizeBy: none
+		sourceColumn: Ended
+
+		variation Variation
+			isDefault
+			relationship: cb04e139-f527-4489-bcee-c6c5bf29eaf0
+			defaultHierarchy: LocalDateTable_394f1348-ca56-4f1c-9fdb-7b35bb6746a6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Arrangement-29b16dc9-0b71-4817-97ff-82d89d8e0d95 = m
 		mode: import
 		queryGroup: 'Model Queries'
-		source =
+		source = ```
 				let
 				    Source = #"OData Live",
-				    Arrangement_table = Source{[Name="Arrangement",Signature="table"]}[Data],
-				    #"Removed Columns" = Table.RemoveColumns(Arrangement_table,{"Referral", "Person"}),
-				    #"Calculated Local Time" = Table.TransformColumns(#"Removed Columns",{{"StartedUtc", DateTimeZone.ToLocal, type datetimezone}, {"EndedUtc", DateTimeZone.ToLocal, type datetimezone}}),
-				    #"Renamed Columns" = Table.RenameColumns(#"Calculated Local Time",{{"StartedUtc", "Started"}, {"EndedUtc", "Ended"}})
+				    SourceTable = Source{[Name="Arrangement",Signature="table"]}[Data],
+				
+				    Arrangement = 
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(
+				                Table.TransformColumns(
+				                    SourceTable,
+				                    {{"StartedUtc", DateTimeZone.ToLocal, type datetimezone}, {"EndedUtc", DateTimeZone.ToLocal, type datetimezone}}
+				                ),
+				                {{"StartedUtc", "Started"}, {"EndedUtc", "Ended"}}
+				            ),
+				            "RLS Key", each Text.Combine({[LocationId], [OrganizationId]}, "-")
+				        ),
+				        {"Id", "OrganizationId", "LocationId", "RLS Key", "TypeName", "ReferralId", "PersonId", "Requested", "Started", "Ended", "Phase", "Reason"}
+				    )
+				
+				
 				in
-				    #"Renamed Columns"
+				    Arrangement
+				```
 
 	annotation PBI_ResultType = Table
 

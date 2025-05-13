@@ -32,7 +32,7 @@ table 'Community Member Families'
 				    ApiUrl = ApiHost&"/api/odata/live",
 				    Source = OData.Feed(ApiUrl, null, [Implementation="2.0"]),
 				    CommunityMemberFamilies_table1 = Source{[Name="CommunityMemberFamilies",Signature="table"]}[Data],
-				    #"Removed Columns" = Table.RemoveColumns(CommunityMemberFamilies_table1,{"Community", "Family"})
+				    #"Removed Columns" = Table.RemoveColumns(CommunityMemberFamilies_table1,{"Community", "Family", "OrganizationId", "LocationId", "Organization", "Location"})
 				in
 				    #"Removed Columns"
 

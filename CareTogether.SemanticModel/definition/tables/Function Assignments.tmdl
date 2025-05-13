@@ -1,14 +1,6 @@
 table 'Function Assignments'
 	lineageTag: 37dbfcb3-ae81-4dbe-b5b6-66fa9cff03bd
 
-	column EntityId
-		dataType: string
-		lineageTag: 0da6ad46-3065-480b-8f6b-c1c5b295605c
-		summarizeBy: none
-		sourceColumn: EntityId
-
-		annotation SummarizationSetBy = Automatic
-
 	column ArrangementId
 		dataType: string
 		lineageTag: 6e947cab-fb5f-4159-a6ed-a29555e29a34
@@ -25,11 +17,35 @@ table 'Function Assignments'
 
 		annotation SummarizationSetBy = Automatic
 
-	column EntityType
+	column OrganizationId
 		dataType: string
-		lineageTag: 7ba3788a-52dd-4344-a4dc-cd7b04b35b7f
+		lineageTag: 3bf90936-d651-468d-84df-2c4743f87024
 		summarizeBy: none
-		sourceColumn: EntityType
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: 98fc42e1-37d8-4fd8-a295-0debe46dffc5
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: a62545b1-4137-41f8-9d68-0900e4d3a38f
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column EntityId
+		dataType: string
+		lineageTag: 2d038b06-0aab-426f-a859-cc8c2f60c7ce
+		summarizeBy: none
+		sourceColumn: EntityId
 
 		annotation SummarizationSetBy = Automatic
 
@@ -37,21 +53,43 @@ table 'Function Assignments'
 		mode: import
 		queryGroup: 'Consolidated Entities'
 		source = ```
-				let
+				let 
 				    Source = #"OData Live",
 				
 				    // Family Function Assignments
-				    Families = Table.SelectColumns(Source{[Name="FamilyFunctionAssignments", Signature="table"]}[Data], {"ArrangementId", "FamilyId", "Function"}),
-				    FamiliesEntityId = Table.RenameColumns(Families, {{"FamilyId", "EntityId"}}),
-				    FamiliesEntityType = Table.AddColumn(FamiliesEntityId, "EntityType", each "Family"),
+				    Family = 
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(
+				                Table.AddColumn(
+				                    Source{[Name="FamilyFunctionAssignments", Signature="table"]}[Data],
+				                    "EntityType", each "Family"
+				                ),
+				                {{"FamilyId", "EntityId"}}
+				            ),
+				            "RLS Key", each Text.Combine({[LocationId], [OrganizationId]}, "-")
+				        ),
+				        {"OrganizationId", "LocationId", "RLS Key", "ArrangementId", "EntityId", "Function"}
+				    ),
+				    
+				    // Individual Function Assignments
+				    Person = 
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(
+				                Table.AddColumn(
+				                    Source{[Name="IndividualFunctionAssignments", Signature="table"]}[Data],
+				                    "EntityType", each "Person"
+				                ),
+				                {{"PersonId", "EntityId"}}
+				            ),
+				            "RLS Key", each Text.Combine({[LocationId], [OrganizationId]}, "-")
+				        ),
+				        {"OrganizationId", "LocationId", "RLS Key", "ArrangementId", "EntityId", "Function"}
+				    ),
 				
-				    // Individual Function Assigments
-				    Individuals = Table.SelectColumns(Source{[Name="IndividualFunctionAssignments", Signature="table"]}[Data], {"ArrangementId", "PersonId", "Function"}),
-				    IndividualsEntityId = Table.RenameColumns(Individuals, {{"PersonId", "EntityId"}}),
-				    IndividualsEntityType = Table.AddColumn(IndividualsEntityId, "EntityType", each "Person"),
-				
-				    //Merged Dataset: 
-				    CombinedTables = Table.Combine({FamiliesEntityType, IndividualsEntityType})
+				    //Combined Table:
+				    CombinedTables = Table.Combine({Family, Person})
 				in
 				    CombinedTables
 				```

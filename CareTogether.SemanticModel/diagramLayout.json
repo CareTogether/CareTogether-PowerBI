@@ -290,6 +290,34 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "RLS Location User - Approvals",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "RLS Location User - Arrangements",
+          "nodeLineageTag": "83f21d64-df74-414e-a850-93d14a71c9ed",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "RLS Location User - Referral",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
@@ -303,7 +331,7 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 0
+        "y": 848.9728947890585
       },
       "nodes": [
         {
@@ -374,7 +402,7 @@
         {
           "location": {
             "x": 0,
-            "y": 1516.0967815518995
+            "y": 1654.5725433543832
           },
           "nodeIndex": "Childcare",
           "nodeLineageTag": "ca6cccb8-8c47-4b47-a6a3-3730e2269767",
@@ -392,7 +420,7 @@
           "nodeIndex": "Referral",
           "nodeLineageTag": "d767a338-d9a5-4e00-8b61-2f6469d3aa63",
           "size": {
-            "height": 149.45109380648046,
+            "height": 207.68856372341293,
             "width": 234
           },
           "zIndex": 15
@@ -552,6 +580,44 @@
             "width": 234
           },
           "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1090.9819364438663,
+            "y": 255.71898549974824
+          },
+          "nodeIndex": "RLS Location User - Approvals",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 849.80362851401242,
+            "y": 2185.3204887474408
+          },
+          "nodeIndex": "RLS Location User - Arrangements",
+          "nodeLineageTag": "33698e4d-76dd-47c5-8e1f-c1840bbe254b",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 1395.8792298734684
+          },
+          "nodeIndex": "RLS Location User - Referral",
+          "nodeLineageTag": "1f77a3f3-523f-421b-9b4d-874ecf65c340",
+          "size": {
+            "height": 163.0583400184596,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Data Model",
