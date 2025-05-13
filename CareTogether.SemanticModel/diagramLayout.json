@@ -333,7 +333,7 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 475.65220736025623
+        "y": 580.39170769710609
       },
       "nodes": [
         {
@@ -624,7 +624,7 @@
         }
       ],
       "name": "Data Model",
-      "zoomValue": 97.129792073073233,
+      "zoomValue": 68.918972255329209,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

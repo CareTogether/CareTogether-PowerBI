@@ -1,0 +1,83 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.7.0/schema.json",
+  "name": "03f79d1bee4032ec1020",
+  "position": {
+    "x": 320.57450628366246,
+    "y": 128.68940754039497,
+    "z": 0,
+    "height": 533.1418312387791,
+    "width": 799.71274685816877,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Entity"
+                    }
+                  },
+                  "Property": "# of Families Supported"
+                }
+              },
+              "queryRef": "Entity.# of Families Supported",
+              "nativeQueryRef": "# of Families Supported"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Entity"
+                    }
+                  },
+                  "Property": "Family Name"
+                }
+              },
+              "queryRef": "Entity.Family Name",
+              "nativeQueryRef": "Family Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Arrangement"
+                    }
+                  },
+                  "Property": "Id"
+                }
+              },
+              "queryRef": "Arrangement.Id",
+              "nativeQueryRef": "Id"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Arrangement"
+                  }
+                },
+                "Property": "Id"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

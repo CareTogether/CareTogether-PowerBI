@@ -307,6 +307,10 @@ table Entity
 		formatString: 0
 		lineageTag: 9648f304-9232-43cc-a282-72f384eb2e8a
 
+	measure '# of Families tEST' = DISTINCTCOUNT(Entity[FamilyId])
+		formatString: 0
+		lineageTag: 355cb575-367c-4d4a-a01c-d8b48c5eadf2
+
 	column FamilyId
 		dataType: string
 		displayFolder: _columns

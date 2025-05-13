@@ -50,11 +50,11 @@
                           "Expression": {
                             "Now": {}
                           },
-                          "Amount": -1,
-                          "TimeUnit": 3
+                          "Amount": -6,
+                          "TimeUnit": 2
                         }
                       },
-                      "TimeUnit": 3
+                      "TimeUnit": 2
                     }
                   },
                   "UpperBound": {
@@ -65,10 +65,10 @@
                             "Now": {}
                           },
                           "Amount": -1,
-                          "TimeUnit": 3
+                          "TimeUnit": 2
                         }
                       },
-                      "TimeUnit": 3
+                      "TimeUnit": 2
                     }
                   }
                 }
