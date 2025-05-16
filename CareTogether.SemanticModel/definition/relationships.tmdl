@@ -79,12 +79,6 @@ relationship 901490b3-6c94-f5f5-307f-b5b7046ddf8e
 	fromColumn: 'Role Approval'.Date
 	toColumn: Date.Date
 
-relationship 6e28cbba-3fa1-fc01-2e00-8b1308cf1a6b
-	crossFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: 'Community Member Families'.FamilyId
-	toColumn: Entity.FamilyId
-
 relationship 95fcee5c-4dd6-423f-bcaa-46ee042929d5
 	joinOnDateBehavior: datePartOnly
 	fromColumn: Arrangement.Started
@@ -184,4 +178,17 @@ relationship 79a55a8b-2737-2a82-a7a8-366934a34fe7
 	securityFilteringBehavior: bothDirections
 	fromColumn: 'RLS Location User - Locations'.'RLS Key'
 	toColumn: Location.'RLS Key'
+
+relationship 668f65da-c275-bcb8-2381-2e0a8303e48d
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Community Member Families'.FamilyId
+	toColumn: Entity.FamilyId
+
+relationship f851faf3-ad4b-60e6-c753-3027f9dcaeef
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'RLS Location User - Community'.'RLS Key'
+	toColumn: Community.'RLS Key'
 

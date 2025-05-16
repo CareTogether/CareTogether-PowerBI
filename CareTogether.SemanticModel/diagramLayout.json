@@ -328,6 +328,16 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "RLS Location User - Community",
+          "nodeLineageTag": "ad97e9c3-5a9b-4286-8286-7a3b3c2b6419",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
@@ -341,7 +351,7 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 1040.5094625158583
+        "y": 75.06162789293505
       },
       "nodes": [
         {
@@ -636,6 +646,19 @@
           },
           "nodeIndex": "RLS Location User - Locations",
           "nodeLineageTag": "3eb27047-01ff-4ea6-896d-2e949e7bc73c",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 304.95974329115614,
+            "y": 620.67379697919125
+          },
+          "nodeIndex": "RLS Location User - Community",
+          "nodeLineageTag": "ad97e9c3-5a9b-4286-8286-7a3b3c2b6419",
           "size": {
             "height": 145,
             "width": 234
