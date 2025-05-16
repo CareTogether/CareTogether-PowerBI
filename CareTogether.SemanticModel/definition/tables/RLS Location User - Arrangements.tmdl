@@ -40,7 +40,7 @@ table 'RLS Location User - Arrangements'
 				let
 				    Source = #"OData Live",
 				    LocationUserAccess_table = Source{[Name="LocationUserAccess",Signature="table"]}[Data],
-				    #"Added Custom" = Table.AddColumn(LocationUserAccess_table, "RLS Key", each Text.Combine({[LocationId], [OrganizationId]}, "-")),
+				    #"Added Custom" = Table.AddColumn(LocationUserAccess_table, "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")),
 				    #"Removed Duplicates" = Table.Distinct(#"Added Custom")
 				in
 				    #"Removed Duplicates"

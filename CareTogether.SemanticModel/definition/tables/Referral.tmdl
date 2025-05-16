@@ -156,7 +156,7 @@ table Referral
 				                SourceTable,
 				                {{"ReferralSource", "Referral Source"}, {"CloseReason", "Close Reason"}}
 				            ),
-				            "RLS Key", each Text.Combine({[LocationId], [OrganizationId]}, "-")
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				        ),
 				        {"Id", "OrganizationId", "LocationId", "RLS Key", "FamilyId", "Opened", "Closed", "Referral Source", "Close Reason", "PrimaryReasonForReferral"}
 				    )

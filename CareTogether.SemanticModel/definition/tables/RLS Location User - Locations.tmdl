@@ -1,9 +1,9 @@
-table 'RLS Location User - Referral'
-	lineageTag: 1f77a3f3-523f-421b-9b4d-874ecf65c340
+table 'RLS Location User - Locations'
+	lineageTag: 3eb27047-01ff-4ea6-896d-2e949e7bc73c
 
 	column UserId
 		dataType: string
-		lineageTag: 17e420b6-6c1d-4470-b962-3688bca6cd1b
+		lineageTag: a7f17970-a02b-4641-9a65-c07e7aeb1e62
 		summarizeBy: none
 		sourceColumn: UserId
 
@@ -11,7 +11,7 @@ table 'RLS Location User - Referral'
 
 	column OrganizationId
 		dataType: string
-		lineageTag: cb020fc7-89fa-428a-8b1e-890b350b2030
+		lineageTag: 1adafcb6-b8b1-4f0e-a267-2578be7d17e1
 		summarizeBy: none
 		sourceColumn: OrganizationId
 
@@ -19,7 +19,7 @@ table 'RLS Location User - Referral'
 
 	column LocationId
 		dataType: string
-		lineageTag: afcca006-8eef-467e-b91f-b0f2328412eb
+		lineageTag: 6284542e-e77e-4f71-9c0e-acef3a2c37c1
 		summarizeBy: none
 		sourceColumn: LocationId
 
@@ -27,13 +27,13 @@ table 'RLS Location User - Referral'
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: 68f42068-5c81-4afc-ae26-53ff64dbaae4
+		lineageTag: 8bcc77a9-3705-4cf1-8b27-709ef70ba55a
 		summarizeBy: none
 		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 'RLS Location User - Referral' = m
+	partition 'RLS Location User - Locations' = m
 		mode: import
 		queryGroup: RLS
 		source =

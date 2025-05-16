@@ -151,11 +151,17 @@ table 'Role Approval'
 				    FamilyDateType = Table.TransformColumnTypes(FamilyFiltered,{{"Date", type date}}),
 				    FamilyAdjusted = Table.RemoveColumns(FamilyDateType,{"Start", "End"}),
 				    FamilyApprovalType = Table.AddColumn(FamilyAdjusted, "Approval Type", each "Direct"),
-				    FamilyFinal = Table.AddColumn(
-				        Table.RenameColumns(FamilyApprovalType, {{"FamilyId", "EntityId"}}
+				    FamilyFinal = 
+				    
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(FamilyApprovalType, {{"FamilyId", "EntityId"}}
+				            ),
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]},"-")
 				        ),
-				        "RLS Key", each Text.Combine({[LocationId], [OrganizationId]},"-")
+				        {"OrganizationId", "LocationId", "RLS Key", "EntityId", "RoleName", "Status", "Entity Type", "Date", "Approval Type"}
 				    ),
+				
 				
 				    //Person - Direct Approval: 
 				    PersonTable = Source{[Name="IndividualRoleApprovals",Signature="table"]}[Data],
@@ -169,10 +175,16 @@ table 'Role Approval'
 				    PersonDateType = Table.TransformColumnTypes(PersonFiltered,{{"Date", type date}}),
 				    PersonAdjusted = Table.RemoveColumns(PersonDateType,{"Start", "End"}),
 				    PersonApprovalType = Table.AddColumn(PersonAdjusted, "Approval Type", each "Direct"),
-				    PersonFinal = Table.AddColumn(
-				        Table.RenameColumns(PersonApprovalType, {{"PersonId", "EntityId"}}),
-				        "RLS Key", each Text.Combine({[LocationId], [OrganizationId]}, "-")
+				    PersonFinal = 
+				    
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(PersonApprovalType, {{"PersonId", "EntityId"}}),
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        ),
+				        {"OrganizationId", "LocationId", "RLS Key", "EntityId", "RoleName", "Status", "Entity Type", "Date", "Approval Type"}
 				    ),
+				
 				    
 				
 				    // Families - Indirect Approval: 
@@ -187,10 +199,16 @@ table 'Role Approval'
 				    f_IndirectApprovedDateType = Table.TransformColumnTypes(f_IndirectApprovedFiltered,{{"Date", type date}}),
 				    f_IndirectApprovedAdjusted = Table.RemoveColumns(f_IndirectApprovedDateType,{"Start", "End"}),
 				    f_IndirectApprovedApprovalType = Table.AddColumn(f_IndirectApprovedAdjusted, "Approval Type", each "Indirect"),
-				    f_IndirectApprovedFinal = Table.AddColumn(
-				        Table.RenameColumns(f_IndirectApprovedApprovalType, {{"FamilyId", "EntityId"}}),
-				        "RLS Key", each Text.Combine({[LocationId], [OrganizationId]}, "-")
+				    f_IndirectApprovedFinal = 
+				    
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(f_IndirectApprovedApprovalType, {{"FamilyId", "EntityId"}}),
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        ),
+				        {"OrganizationId", "LocationId", "RLS Key", "RoleName", "EntityId", "Status", "Entity Type", "Date", "Approval Type"}
 				    ),
+				
 				    
 				    
 				

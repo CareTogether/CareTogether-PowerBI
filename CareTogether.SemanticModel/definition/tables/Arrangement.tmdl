@@ -305,7 +305,7 @@ table Arrangement
 		formatString: 0
 		displayFolder: _Columns
 		lineageTag: 9b8d247f-6a51-4d0f-9e31-b96930045f38
-		summarizeBy: sum
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
@@ -395,7 +395,7 @@ table Arrangement
 				                ),
 				                {{"StartedUtc", "Started"}, {"EndedUtc", "Ended"}}
 				            ),
-				            "RLS Key", each Text.Combine({[LocationId], [OrganizationId]}, "-")
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				        ),
 				        {"Id", "OrganizationId", "LocationId", "RLS Key", "TypeName", "ReferralId", "PersonId", "Requested", "Started", "Ended", "Phase", "Reason"}
 				    )

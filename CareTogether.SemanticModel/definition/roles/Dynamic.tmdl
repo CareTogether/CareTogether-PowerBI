@@ -7,5 +7,7 @@ role Dynamic
 
 	tablePermission 'RLS Location User - Arrangements' = USERNAME() = 'RLS Location User - Arrangements'[UserId]
 
+	tablePermission 'RLS Location User - Locations' = USERNAME() = 'RLS Location User - Locations'[UserId]
+
 	annotation PBI_Id = 48755128b26e4366a08bd6a38df559b4
 

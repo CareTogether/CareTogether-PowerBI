@@ -20,6 +20,14 @@ table 'Arrangement Type'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'RLS Key'
+		dataType: string
+		lineageTag: d5779dd9-d981-42f6-a99f-94f9a0b4660d
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Arrangement Type-597c3ca7-59e2-4e86-8453-c8def7291a36' = m
 		mode: import
 		queryGroup: 'Model Queries'
@@ -30,11 +38,14 @@ table 'Arrangement Type'
 				
 				    ArrangementType = 
 				    Table.SelectColumns(
-				        Table.RenameColumns(
-				            SourceTable,
-				            {{"Type", "Arrangement Type"}}
+				        Table.AddColumn(
+				            Table.RenameColumns(
+				                SourceTable,
+				                {{"Type", "Arrangement Type"}}
+				            ),
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				        ),
-				        {"Arrangement Type", "ChildInvolvement"}
+				        {"RLS Key", "Arrangement Type", "ChildInvolvement"}
 				    )
 				in
 				    ArrangementType

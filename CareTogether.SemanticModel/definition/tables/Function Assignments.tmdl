@@ -67,7 +67,7 @@ table 'Function Assignments'
 				                ),
 				                {{"FamilyId", "EntityId"}}
 				            ),
-				            "RLS Key", each Text.Combine({[LocationId], [OrganizationId]}, "-")
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				        ),
 				        {"OrganizationId", "LocationId", "RLS Key", "ArrangementId", "EntityId", "Function"}
 				    ),
@@ -83,7 +83,7 @@ table 'Function Assignments'
 				                ),
 				                {{"PersonId", "EntityId"}}
 				            ),
-				            "RLS Key", each Text.Combine({[LocationId], [OrganizationId]}, "-")
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				        ),
 				        {"OrganizationId", "LocationId", "RLS Key", "ArrangementId", "EntityId", "Function"}
 				    ),

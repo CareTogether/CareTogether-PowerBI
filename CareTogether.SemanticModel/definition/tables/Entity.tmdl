@@ -587,7 +587,7 @@ table Entity
 				        Table.SelectColumns(
 				            Table.AddColumn(
 				                Source{[Name="Family", Signature="table"]}[Data],
-				               "RLS Key", each Text.Combine({[LocationId], [OrganizationId]}, "-")
+				               "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				            ),
 				            {"OrganizationId", "LocationId", "RLS Key", "Id", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "PrimaryAddress", "HomeChurch"}
 				        ),

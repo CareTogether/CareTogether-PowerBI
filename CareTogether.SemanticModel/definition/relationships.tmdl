@@ -105,10 +105,6 @@ relationship 5219e77b-bbc9-450b-a090-ed7b1f9e6270
 	fromColumn: 'Child Location Record'.Ended
 	toColumn: LocalDateTable_dff05e92-cf4f-4a2f-8fa1-12d5156f3746.Date
 
-relationship a104db00-393e-4fca-32fa-24c7b1fb82f5
-	fromColumn: Entity.LocationId
-	toColumn: Location.Id
-
 relationship 463833ee-b2e9-9100-765b-65677c51d906
 	isActive: false
 	crossFilteringBehavior: bothDirections
@@ -176,4 +172,16 @@ relationship b71d1bbe-7db0-3122-2557-534f5655c78f
 relationship abe18f65-1233-3015-e4c3-3e961e8ac41e
 	fromColumn: 'Role Approval'.'Role Name'
 	toColumn: Role.'Role Name'
+
+relationship 37b30d6b-f416-6f58-6818-5e167639fd45
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'RLS Location User - Locations'.'RLS Key'
+	toColumn: Entity.'RLS Key'
+
+relationship 79a55a8b-2737-2a82-a7a8-366934a34fe7
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: bothDirections
+	fromColumn: 'RLS Location User - Locations'.'RLS Key'
+	toColumn: Location.'RLS Key'
 

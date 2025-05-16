@@ -318,6 +318,16 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "RLS Location User - Locations",
+          "nodeLineageTag": "3eb27047-01ff-4ea6-896d-2e949e7bc73c",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
@@ -331,7 +341,7 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 848.9728947890585
+        "y": 1040.5094625158583
       },
       "nodes": [
         {
@@ -428,7 +438,7 @@
         {
           "location": {
             "x": 0,
-            "y": 1068.7606227973454
+            "y": 1156.7639106718209
           },
           "nodeIndex": "Close Reason",
           "nodeLineageTag": "bbdc1bb2-de24-4f53-a35b-5004cd067f7e",
@@ -440,8 +450,8 @@
         },
         {
           "location": {
-            "x": 340.50939181209554,
-            "y": 605.82298704425671
+            "x": 1234.7780965365459,
+            "y": 715.8270968873511
           },
           "nodeIndex": "Location",
           "nodeLineageTag": "16a053ed-84f9-4826-879d-c70341fcdfb9",
@@ -531,8 +541,8 @@
         },
         {
           "location": {
-            "x": 1499.8418279370669,
-            "y": 1099.1559385867977
+            "x": 1505.018491929683,
+            "y": 1162.5700724963463
           },
           "nodeIndex": "Childcare Plan",
           "nodeLineageTag": "e454f50c-d108-4cc7-b49d-4585c9ad868e",
@@ -544,8 +554,8 @@
         },
         {
           "location": {
-            "x": 1878.1422018792482,
-            "y": 1424.6585170372639
+            "x": 1870.3772058903239,
+            "y": 1384.5393710944882
           },
           "nodeIndex": "ChildLocationExpanded",
           "nodeLineageTag": "1ad7d14d-cbb6-433b-85ee-5fc54cf0046c",
@@ -615,6 +625,19 @@
           "nodeLineageTag": "1f77a3f3-523f-421b-9b4d-874ecf65c340",
           "size": {
             "height": 163.0583400184596,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1238.0534279602286,
+            "y": 992.099438449404
+          },
+          "nodeIndex": "RLS Location User - Locations",
+          "nodeLineageTag": "3eb27047-01ff-4ea6-896d-2e949e7bc73c",
+          "size": {
+            "height": 145,
             "width": 234
           },
           "zIndex": 0

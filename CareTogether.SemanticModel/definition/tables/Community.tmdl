@@ -40,6 +40,14 @@ table Community
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 6dcceb4c-652e-4283-b288-5caad649fe72
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Community = m
 		mode: import
 		queryGroup: 'Model Queries'
@@ -50,11 +58,14 @@ table Community
 				
 				    Community = 
 				    Table.SelectColumns(
-				        Table.RenameColumns(
-				            SourceTable,
-				            {{"Name", "Community Name"}}
+				        Table.AddColumn(
+				            Table.RenameColumns(
+				                SourceTable,
+				                {{"Name", "Community Name"}}
+				            ),
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				        ),
-				        {"Id", "Community Name"}
+				        {"RLS Key", "Id", "Community Name"}
 				    )
 				
 				        

@@ -420,6 +420,17 @@
               }
             ]
           }
+        },
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "75D"
+                }
+              }
+            }
+          }
         }
       ],
       "lineStyles": [
@@ -465,7 +476,7 @@
             "areaShow": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },

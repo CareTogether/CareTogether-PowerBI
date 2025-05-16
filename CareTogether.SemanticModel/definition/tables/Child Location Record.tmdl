@@ -326,7 +326,7 @@ table 'Child Location Record'
 				                ),
 				                "Index", 1, 1, Int64.Type
 				            ),
-				            "RLS Key", each Text.Combine({[LocationId], [OrganizationId], "-"})
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId], "-"})
 				        ),
 				        {"OrganizationId", "LocationId", "RLS Key", "ArrangementId", "ChildPersonId", "FamilyId", "ChildcarePlan", "Started", "Ended", "Duration", "Index"}
 				    ),

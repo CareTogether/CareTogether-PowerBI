@@ -21,6 +21,14 @@ table Location
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 919fb02a-fa22-46da-bbd7-2ed4b4de9188
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Location-73b11de1-d894-44a9-b32e-4ba98f7ecfb2 = m
 		mode: import
 		queryGroup: 'Model Queries'
@@ -31,11 +39,14 @@ table Location
 				
 				    Locations = 
 				    Table.SelectColumns(
-				        Table.RenameColumns(
-				            SourceTable,
-				            {{"Name", "Location"}}
+				        Table.AddColumn(
+				            Table.RenameColumns(
+				                SourceTable,
+				                {{"Name", "Location"}}
+				            ),
+				            "RLS Key", each Text.Combine({[OrganizationId], [Id]}, "-")
 				        ),
-				        {"Id", "Location"}
+				        {"RLS Key", "Id", "Location"}
 				    )
 				        
 				in
