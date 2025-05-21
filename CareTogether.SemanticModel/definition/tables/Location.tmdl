@@ -13,37 +13,45 @@ table Location
 
 		annotation SummarizationSetBy = Automatic
 
-	column OrganizationId
+	column Location
 		dataType: string
-		isHidden
-		lineageTag: c1603fe9-9201-410e-af0b-578809b0d6ba
+		lineageTag: c9741d87-8c80-4ebf-98af-bfb5b2942cc9
 		summarizeBy: none
-		sourceColumn: OrganizationId
-
-		changedProperty = IsHidden
+		sourceColumn: Location
 
 		annotation SummarizationSetBy = Automatic
 
-	/// The name of the location (a local part of the organization)
-	column Location
+	column 'RLS Key'
 		dataType: string
-		lineageTag: 5f192f7e-c063-471b-805d-3086465c3c25
-		isDefaultLabel
+		lineageTag: 919fb02a-fa22-46da-bbd7-2ed4b4de9188
 		summarizeBy: none
-		sourceColumn: Location
+		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
 	partition Location-73b11de1-d894-44a9-b32e-4ba98f7ecfb2 = m
 		mode: import
 		queryGroup: 'Model Queries'
-		source =
+		source = ```
 				let
 				    Source = #"OData Live",
-				    Locations_table = Source{[Name="Location",Signature="table"]}[Data],
-				    #"Renamed Columns" = Table.RenameColumns(Locations_table,{{"Name", "Location"}})
+				    SourceTable = Source{[Name="Location",Signature="table"]}[Data],
+				
+				    Locations = 
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(
+				                SourceTable,
+				                {{"Name", "Location"}}
+				            ),
+				            "RLS Key", each Text.Combine({[OrganizationId], [Id]}, "-")
+				        ),
+				        {"RLS Key", "Id", "Location"}
+				    )
+				        
 				in
-				    #"Renamed Columns"
+				    Locations
+				```
 
 	annotation PBI_ResultType = Table
 

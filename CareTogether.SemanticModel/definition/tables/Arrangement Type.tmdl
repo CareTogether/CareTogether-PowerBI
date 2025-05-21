@@ -1,16 +1,6 @@
 table 'Arrangement Type'
 	lineageTag: c7cb613d-9d95-4212-99b0-afeb17ed7411
 
-	column 'Arrangement Type'
-		dataType: string
-		isKey
-		lineageTag: 6d868529-a926-4987-abe4-9cb21a750b7e
-		isDefaultLabel
-		summarizeBy: none
-		sourceColumn: Arrangement Type
-
-		annotation SummarizationSetBy = Automatic
-
 	column ChildInvolvement
 		dataType: string
 		isHidden
@@ -22,16 +12,44 @@ table 'Arrangement Type'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Arrangement Type'
+		dataType: string
+		lineageTag: 43965f59-42d2-47e8-ba87-6943e599d63a
+		summarizeBy: none
+		sourceColumn: Arrangement Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: d5779dd9-d981-42f6-a99f-94f9a0b4660d
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Arrangement Type-597c3ca7-59e2-4e86-8453-c8def7291a36' = m
 		mode: import
 		queryGroup: 'Model Queries'
-		source =
+		source = ```
 				let
 				    Source = #"OData Live",
-				    ArrangementType_table1 = Source{[Name="ArrangementType",Signature="table"]}[Data],
-				    #"Renamed Columns" = Table.RenameColumns(ArrangementType_table1,{{"Type", "Arrangement Type"}})
+				    SourceTable = Source{[Name="ArrangementType",Signature="table"]}[Data],
+				
+				    ArrangementType = 
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(
+				                SourceTable,
+				                {{"Type", "Arrangement Type"}}
+				            ),
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        ),
+				        {"RLS Key", "Arrangement Type", "ChildInvolvement"}
+				    )
 				in
-				    #"Renamed Columns"
+				    ArrangementType
+				```
 
 	annotation PBI_ResultType = Table
 

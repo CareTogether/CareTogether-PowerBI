@@ -1,0 +1,51 @@
+table 'RLS Location User - Approvals'
+	lineageTag: 4128016e-d199-421c-9046-fe1696fa1853
+
+	column UserId
+		dataType: string
+		lineageTag: 0434c103-d49c-4352-adc5-256d4a30ea56
+		summarizeBy: none
+		sourceColumn: UserId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: e0a9a634-1cec-4ea2-8f67-4f823722f060
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationId
+		dataType: string
+		lineageTag: fb291485-d24b-4d55-a636-dde9bc5264f7
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 8dfd7d8b-83c3-4435-8810-73f724dd0c11
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'RLS Location User - Approvals' = m
+		mode: import
+		queryGroup: RLS
+		source =
+				let
+				    Source = #"OData Live",
+				    LocationUserAccess_table = Source{[Name="LocationUserAccess",Signature="table"]}[Data],
+				    #"Added Custom" = Table.AddColumn(LocationUserAccess_table, "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")),
+				    #"Removed Duplicates" = Table.Distinct(#"Added Custom")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

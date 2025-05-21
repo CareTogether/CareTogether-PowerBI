@@ -31,18 +31,36 @@ table 'Community Role Assignments'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 7d7dc74e-96dc-4d55-b1f7-05c70051b20d
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Community Role Assignments' = m
 		mode: import
 		queryGroup: 'Model Queries'
-		source =
+		source = ```
 				let
-				    ApiHost = if Production then "https://app.caretogether.io" else "http://localhost:5000",
-				    ApiUrl = ApiHost&"/api/odata/live",
-				    Source = OData.Feed(ApiUrl, null, [Implementation="2.0"]),
-				    CommunityRoleAssignments_table1 = Source{[Name="CommunityRoleAssignments",Signature="table"]}[Data],
-				    #"Removed Columns" = Table.RemoveColumns(CommunityRoleAssignments_table1,{"Community", "Person"})
+				    Source = #"OData Live",
+				    SourceTable = Source{[Name="CommunityRoleAssignments",Signature="table"]}[Data],
+				
+				    CommunityRoleAssignments = 
+				
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            SourceTable,
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        ),
+				        {"RLS Key", "CommunityId", "PersonId", "Role"}
+				    )
+				    
+				
 				in
-				    #"Removed Columns"
+				    CommunityRoleAssignments
+				```
 
 	annotation PBI_ResultType = Table
 

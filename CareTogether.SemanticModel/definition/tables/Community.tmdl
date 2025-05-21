@@ -25,26 +25,6 @@ table Community
 
 		annotation SummarizationSetBy = Automatic
 
-	column LocationId
-		dataType: string
-		isHidden
-		lineageTag: 0cfac6c8-71df-440e-b16d-b9c44f18615f
-		summarizeBy: none
-		sourceColumn: LocationId
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Community Name'
-		dataType: string
-		lineageTag: 129fec00-1f2b-4369-a96b-fdc0549392fa
-		isDefaultLabel
-		summarizeBy: none
-		sourceColumn: Community Name
-
-		annotation SummarizationSetBy = Automatic
-
 	column 'Community Membership Count' = COUNTROWS(RELATEDTABLE('Community Member Families'))
 		formatString: 0
 		lineageTag: 7d18a30a-e29a-424d-8374-b7e090f3ea28
@@ -52,17 +32,46 @@ table Community
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Community Name'
+		dataType: string
+		lineageTag: a71ae971-d636-466e-9ad0-1c78feb732f3
+		summarizeBy: none
+		sourceColumn: Community Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 6dcceb4c-652e-4283-b288-5caad649fe72
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Community = m
 		mode: import
 		queryGroup: 'Model Queries'
-		source =
-				let
+		source = ```
+				let 
 				    Source = #"OData Live",
-				    Families_table = Source{[Name="Communities",Signature="table"]}[Data],
-				    #"Removed Columns" = Table.RemoveColumns(Families_table,{"Location"}),
-				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Name", "Community Name"}})
+				    SourceTable = Source{[Name="Communities", Signature="table"]}[Data],
+				
+				    Community = 
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(
+				                SourceTable,
+				                {{"Name", "Community Name"}}
+				            ),
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        ),
+				        {"RLS Key", "Id", "Community Name"}
+				    )
+				
+				        
 				in
-				    #"Renamed Columns"
+				    Community
+				```
 
 	annotation PBI_ResultType = Table
 

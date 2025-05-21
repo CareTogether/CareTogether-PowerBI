@@ -76,14 +76,6 @@ table 'Role Approval'
 
 		annotation UnderlyingDateTimeDataType = Date
 
-	column 'Entity Id'
-		dataType: string
-		lineageTag: 93bb5d50-0036-491c-b364-ac3082d6a3d8
-		summarizeBy: none
-		sourceColumn: Entity Id
-
-		annotation SummarizationSetBy = Automatic
-
 	column StatusChanged
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
@@ -100,6 +92,38 @@ table 'Role Approval'
 			)
 		lineageTag: 33487ad4-e5c8-45c5-bdfc-261c58809382
 		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationId
+		dataType: string
+		lineageTag: 9497c0bf-c108-4d9f-adb8-da4f3e9e630e
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: 0c47a74a-83df-4e2b-abbb-c778c3ad3ee5
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity Id'
+		dataType: string
+		lineageTag: ace9f0af-2b63-4185-8702-fe34eb6b7a4d
+		summarizeBy: none
+		sourceColumn: Entity Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 65cbb2c1-a71a-43c7-8c83-c8b49006b3e1
+		summarizeBy: none
+		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
@@ -127,7 +151,17 @@ table 'Role Approval'
 				    FamilyDateType = Table.TransformColumnTypes(FamilyFiltered,{{"Date", type date}}),
 				    FamilyAdjusted = Table.RemoveColumns(FamilyDateType,{"Start", "End"}),
 				    FamilyApprovalType = Table.AddColumn(FamilyAdjusted, "Approval Type", each "Direct"),
-				    FamilyFinal = Table.RenameColumns(FamilyApprovalType, {{"FamilyId", "EntityId"}}),
+				    FamilyFinal = 
+				    
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(FamilyApprovalType, {{"FamilyId", "EntityId"}}
+				            ),
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]},"-")
+				        ),
+				        {"OrganizationId", "LocationId", "RLS Key", "EntityId", "RoleName", "Status", "Entity Type", "Date", "Approval Type"}
+				    ),
+				
 				
 				    //Person - Direct Approval: 
 				    PersonTable = Source{[Name="IndividualRoleApprovals",Signature="table"]}[Data],
@@ -141,7 +175,17 @@ table 'Role Approval'
 				    PersonDateType = Table.TransformColumnTypes(PersonFiltered,{{"Date", type date}}),
 				    PersonAdjusted = Table.RemoveColumns(PersonDateType,{"Start", "End"}),
 				    PersonApprovalType = Table.AddColumn(PersonAdjusted, "Approval Type", each "Direct"),
-				    PersonFinal = Table.RenameColumns(PersonApprovalType, {{"PersonId", "EntityId"}}),
+				    PersonFinal = 
+				    
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(PersonApprovalType, {{"PersonId", "EntityId"}}),
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        ),
+				        {"OrganizationId", "LocationId", "RLS Key", "EntityId", "RoleName", "Status", "Entity Type", "Date", "Approval Type"}
+				    ),
+				
+				    
 				
 				    // Families - Indirect Approval: 
 				    f_IndirectApprovedFamilies = Source{[Name="IndividualRoleApprovals",Signature="table"]}[Data],
@@ -155,7 +199,18 @@ table 'Role Approval'
 				    f_IndirectApprovedDateType = Table.TransformColumnTypes(f_IndirectApprovedFiltered,{{"Date", type date}}),
 				    f_IndirectApprovedAdjusted = Table.RemoveColumns(f_IndirectApprovedDateType,{"Start", "End"}),
 				    f_IndirectApprovedApprovalType = Table.AddColumn(f_IndirectApprovedAdjusted, "Approval Type", each "Indirect"),
-				    f_IndirectApprovedFinal = Table.RenameColumns(f_IndirectApprovedApprovalType, {{"FamilyId", "EntityId"}}),
+				    f_IndirectApprovedFinal = 
+				    
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(f_IndirectApprovedApprovalType, {{"FamilyId", "EntityId"}}),
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        ),
+				        {"OrganizationId", "LocationId", "RLS Key", "RoleName", "EntityId", "Status", "Entity Type", "Date", "Approval Type"}
+				    ),
+				
+				    
+				    
 				
 				    //Person - Indirect Approval:
 				
@@ -177,7 +232,7 @@ table 'Role Approval'
 				        FamilyFinal,
 				        "EntityId",
 				        JoinKind.RightOuter
-				    ), {"Id", "EntityId", "RoleName", "Status", "Date"}),
+				    ), {"OrganizationId", "LocationId", "RLS Key", "Id", "EntityId", "RoleName", "Status", "Date"}),
 				
 				    AllPersonWithoutExclusions = Table.Join(
 				        AllPersonFiltered,
@@ -188,7 +243,7 @@ table 'Role Approval'
 				    ),
 				
 				    // 3rd Step: Recreate the table structure to merge with the others:
-				    p_indirectApproved = Table.SelectColumns(AllPersonWithoutExclusions, {"Id", "RoleName", "Status", "Date"}),
+				    p_indirectApproved = Table.SelectColumns(AllPersonWithoutExclusions, {"OrganizationId", "LocationId", "RLS Key", "Id", "RoleName", "Status", "Date"}),
 				    p_indirectApprovedRenamed = Table.RenameColumns(p_indirectApproved, {"Id", "EntityId"}),
 				    p_indirectApprovedEntityType = Table.AddColumn(p_indirectApprovedRenamed, "Entity Type", each "Person"),
 				    p_indirectApprovedFinal = Table.AddColumn(p_indirectApprovedEntityType, "Approval Type", each "Indirect"),

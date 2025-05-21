@@ -58,18 +58,6 @@ table Referral
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Close Reason'
-		dataType: string
-		isHidden
-		displayFolder: _Columns
-		lineageTag: f1b0ee73-7d86-4c34-9e36-ba35604a486c
-		summarizeBy: none
-		sourceColumn: Close Reason
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
 	column Opened
 		dataType: dateTime
 		formatString: Short Date
@@ -104,15 +92,6 @@ table Referral
 
 		annotation UnderlyingDateTimeDataType = Date
 
-	column 'Referral Source'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 1648497c-1a1b-4dd2-8ce0-8c7463803962
-		summarizeBy: none
-		sourceColumn: Referral Source
-
-		annotation SummarizationSetBy = Automatic
-
 	column PrimaryReasonForReferral
 		dataType: string
 		lineageTag: 928e879d-7470-4e7e-bba1-6f6e12a14c5d
@@ -121,17 +100,70 @@ table Referral
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: 6b6c6730-f1d8-4329-98b0-6748f012affb
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: f4f9f29f-0f0f-4286-a0f8-cf244d0a953d
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: b4a44b4c-008d-49aa-a087-54ece637cca6
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Referral Source'
+		dataType: string
+		lineageTag: d0ea8f71-65ca-462c-8492-08265f63ed0e
+		summarizeBy: none
+		sourceColumn: Referral Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Close Reason'
+		dataType: string
+		lineageTag: f1bcff93-20cb-49d5-ad15-51627c6ec550
+		summarizeBy: none
+		sourceColumn: Close Reason
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Referral-ae1a9126-4929-4d7f-8948-7409da4a474e = m
 		mode: import
 		queryGroup: 'Model Queries'
-		source =
-				let
+		source = ```
+				let 
 				    Source = #"OData Live",
-				    Referral_table = Source{[Name="Referral",Signature="table"]}[Data],
-				    #"Removed Columns" = Table.RemoveColumns(Referral_table,{"Family"}),
-				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"ReferralSource", "Referral Source"}, {"CloseReason", "Close Reason"}})
+				    SourceTable = Source{[Name="Referral", Signature="table"]}[Data],
+				
+				    Referral = 
+				    
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(
+				                SourceTable,
+				                {{"ReferralSource", "Referral Source"}, {"CloseReason", "Close Reason"}}
+				            ),
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        ),
+				        {"Id", "OrganizationId", "LocationId", "RLS Key", "FamilyId", "Opened", "Closed", "Referral Source", "Close Reason", "PrimaryReasonForReferral"}
+				    )
+				        
 				in
-				    #"Renamed Columns"
+				    Referral
+				```
 
 	annotation PBI_ResultType = Table
 

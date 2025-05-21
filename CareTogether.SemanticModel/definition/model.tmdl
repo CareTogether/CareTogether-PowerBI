@@ -24,13 +24,18 @@ queryGroup 'Consolidated Entities'
 
 	annotation PBI_QueryGroupOrder = 3
 
-annotation PBI_QueryOrder = ["Location","Community","Role","OData Live","Production","Referral","Arrangement","Arrangement Type","Child Location Record","Approval Status","Close Reason","Arrangement Phase","Childcare","Childcare Plan","Date","_Measures","Community Member Families","Community Role Assignments","Function Assignments","Entity","Role Approval"]
+/// Row Level Security Tables
+queryGroup RLS
+
+	annotation PBI_QueryGroupOrder = 4
+
+annotation PBI_QueryOrder = ["Location","Community","Role","OData Live","Production","Referral","Arrangement","Arrangement Type","Child Location Record","Approval Status","Close Reason","Arrangement Phase","Childcare","Childcare Plan","Date","_Measures","Community Member Families","Community Role Assignments","Function Assignments","Entity","Role Approval","RLS Location User - Approvals","RLS Location User - Arrangements","RLS Location User - Referral","RLS Location User - Locations","RLS Location User - Community"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.142.928.0 (25.04)+de52df9f0bb74ad93a80d89c52d63fe6d07e0e1b
+annotation PBIDesktopVersion = 2.143.878.0 (25.05)+b20aa3b866ec1b70879135a4e60e4b1301c75b21
 
-annotation PBI_ProTooling = ["CalcGroup","DevMode"]
+annotation PBI_ProTooling = ["CalcGroup","DevMode","DaxQueryView_Desktop"]
 
 annotation PBI_RemovedChildren = [{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"46d5bd4a-a507-4eb7-941d-b7680ccdeaa3","fromColumnLocalLineageTag":"c2ba4d85-eb62-48a9-9d35-f7ec94997aef","toTableLocalLineageTag":"d767a338-d9a5-4e00-8b61-2f6469d3aa63","toColumnLocalLineageTag":"048d136e-c963-4efb-954c-117136ca81da"}},"objectType":"Relationship"}]
 
@@ -41,15 +46,11 @@ ref table Location
 ref table Role
 ref table Referral
 ref table Arrangement
-ref table LocalDateTable_24602e63-6fc7-4520-a5af-36f3df0426a8
-ref table LocalDateTable_f42c1403-e66d-4045-8af6-5c3c28e884e6
 ref table LocalDateTable_badf15b7-4811-4e5f-aee5-299aaab58eca
 ref table LocalDateTable_d64749d8-d763-4d50-94b8-a3acfe90e321
 ref table LocalDateTable_73d01070-72e6-4583-b4ff-d5fa05eb2eee
 ref table 'Arrangement Type'
 ref table 'Child Location Record'
-ref table LocalDateTable_f5e45cf3-f015-44f1-b705-01530790baec
-ref table LocalDateTable_c6f5f2bf-94ad-49eb-b2ac-502d51b89614
 ref table 'Approval Status'
 ref table 'Close Reason'
 ref table 'Arrangement Phase'
@@ -68,6 +69,17 @@ ref table 'Approvals by Entity'
 ref table 'Engagement by Entity'
 ref table 'Export Contacts'
 ref table 'Arrangements by Entity'
+ref table 'RLS Location User - Approvals'
+ref table 'RLS Location User - Arrangements'
+ref table LocalDateTable_a8dbb200-3155-4e8c-9348-db038fea8ca8
+ref table LocalDateTable_394f1348-ca56-4f1c-9fdb-7b35bb6746a6
+ref table LocalDateTable_9ca3cc68-8275-4543-b0b6-67540c77809a
+ref table LocalDateTable_dff05e92-cf4f-4a2f-8fa1-12d5156f3746
+ref table 'RLS Location User - Referral'
+ref table 'RLS Location User - Locations'
+ref table 'RLS Location User - Community'
+
+ref role Dynamic
 
 ref cultureInfo en-US
 
