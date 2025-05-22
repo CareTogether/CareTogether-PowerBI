@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "a20737a507bae877b71b",
   "position": {
     "x": 830.27027027027032,
@@ -79,7 +79,7 @@
                 }
               },
               "queryRef": "Child Location Record.Nights of Care",
-              "nativeQueryRef": "Nights of Care"
+              "nativeQueryRef": "Nights of Care1"
             }
           ]
         }

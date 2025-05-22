@@ -24,10 +24,11 @@ table Role
 				            {{"Name", "Role Name"}}
 				        ),
 				        {"Role Name"}
-				    )
+				    ),
+				    #"Removed Duplicates" = Table.Distinct(Role)
 				    
 				in
-				    Role
+				    #"Removed Duplicates"
 				```
 
 	annotation PBI_ResultType = Table

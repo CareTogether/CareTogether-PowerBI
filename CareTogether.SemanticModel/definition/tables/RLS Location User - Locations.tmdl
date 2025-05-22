@@ -33,17 +33,64 @@ table 'RLS Location User - Locations'
 
 		annotation SummarizationSetBy = Automatic
 
+	column Id
+		dataType: string
+		lineageTag: 080fe3ad-ca1a-4037-aeca-a2ec0a9a768c
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LocationId PK'
+		dataType: string
+		lineageTag: 5e0d88d2-2e27-4010-bab0-b6eb8a53b085
+		summarizeBy: none
+		sourceColumn: LocationId PK
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'RLS Location User - Locations' = m
 		mode: import
 		queryGroup: RLS
-		source =
+		source = ```
 				let
 				    Source = #"OData Live",
-				    LocationUserAccess_table = Source{[Name="LocationUserAccess",Signature="table"]}[Data],
-				    #"Added Custom" = Table.AddColumn(LocationUserAccess_table, "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")),
-				    #"Removed Duplicates" = Table.Distinct(#"Added Custom")
+				    LocationUserAccess_table = 
+				    Table.SelectColumns(
+				        Source{[Name="LocationUserAccess",Signature="table"]}[Data],
+				        {"UserId", "OrganizationId", "LocationId"}
+				    ),
+				
+				    LocationNames = 
+				    Table.SelectColumns(
+				        Source{[Name="Location", Signature="table"]}[Data],
+				        {"Id", "Name"}
+				    ),
+				    
+				
+				    LocationRLS = Table.Join(
+				        LocationUserAccess_table,
+				        {"LocationId"},
+				        LocationNames,
+				        {"Id"},
+				        JoinKind.Inner
+				    ),
+				
+				    #"Added Custom" = Table.AddColumn(LocationRLS, "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")),
+				    #"Removed Duplicates" = Table.Distinct(#"Added Custom"),
+				
+				    LocationRLSFinal = 
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            #"Removed Duplicates",
+				            "LocationId PK", each Text.Combine({[RLS Key], [Name]}, "-")
+				        ),
+				        {"OrganizationId", "LocationId", "RLS Key", "Id", "LocationId PK", "UserId"}
+				    )
+				
 				in
-				    #"Removed Duplicates"
+				    LocationRLSFinal
+				```
 
 	annotation PBI_NavigationStepName = Navigation
 

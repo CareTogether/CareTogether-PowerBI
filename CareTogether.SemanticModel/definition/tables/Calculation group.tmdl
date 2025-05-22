@@ -1,0 +1,26 @@
+table 'Calculation group'
+	lineageTag: f97f23f0-ca4b-4e75-be6d-0d4f92ba8c0e
+
+	calculationGroup
+		precedence: 4
+
+		calculationItem 'Calculation item' = SELECTEDMEASURE()
+
+	column 'Calculation group column'
+		dataType: string
+		lineageTag: c46fe5ba-d79f-4623-bcd0-79c824ddf88d
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		formatString: 0
+		lineageTag: b491608f-5106-45c2-b2f9-05cd83c1aa73
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

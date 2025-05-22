@@ -49,6 +49,14 @@ table 'Function Assignments'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'EntityId PK'
+		dataType: string
+		lineageTag: 3cc0a459-b1a0-4d54-bace-b5cef9e66efd
+		summarizeBy: none
+		sourceColumn: EntityId PK
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Function Assignments' = m
 		mode: import
 		queryGroup: 'Consolidated Entities'
@@ -89,7 +97,12 @@ table 'Function Assignments'
 				    ),
 				
 				    //Combined Table:
-				    CombinedTables = Table.Combine({Family, Person})
+				    CombinedTables = 
+				    Table.AddColumn(
+				        Table.Combine({Family, Person}),
+				        "EntityId PK", each Text.Combine({[RLS Key], [EntityId]})
+				    )
+				    
 				in
 				    CombinedTables
 				```

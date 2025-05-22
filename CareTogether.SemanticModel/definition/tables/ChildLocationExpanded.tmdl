@@ -13,7 +13,7 @@ table ChildLocationExpanded
 	column Index
 		formatString: 0
 		lineageTag: c979d0b0-9941-4fd5-ad26-e00c72644cde
-		summarizeBy: none
+		summarizeBy: sum
 		isNameInferred
 		sourceColumn: [Index]
 
@@ -33,6 +33,14 @@ table ChildLocationExpanded
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [ChildcarePlan]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Index PK'
+		lineageTag: f71d191b-d988-4d2c-9b73-4b4c87eacb77
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Index PK]
 
 		annotation SummarizationSetBy = Automatic
 
@@ -59,6 +67,7 @@ table ChildLocationExpanded
 				            ISBLANK('Child Location Record'[Ended]) && INT('Date'[Date]) <= INT(UTCTODAY())))
 				    ),
 				    "Date", 'Date'[Date],
+				    "Index PK", 'Child Location Record'[RLS Key] & "-" & 'Child Location Record'[Index] & "-" & 'Child Location Record'[ChildPersonId],
 				    "Index", 'Child Location Record'[Index],
 				    "ChildcarePlan", 'Child Location Record'[ChildcarePlan],
 				    "OvernightStay", [OvernightStay]

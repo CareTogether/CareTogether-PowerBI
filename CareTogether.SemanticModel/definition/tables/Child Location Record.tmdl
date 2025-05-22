@@ -1,119 +1,5 @@
 table 'Child Location Record'
-	lineageTag: 97d0ba37-acfb-4f78-bc62-fb59df0fb93e
-
-	measure '# of Times Care Provided in Period' =
-			
-			VAR TimePeriodStart = MIN('Date'[Date])
-			VAR TimePeriodEnd = MAX('Date'[Date])
-			RETURN
-			    CALCULATE(
-			        COUNTX(
-			            'Child Location Record',
-			            VAR StartDate = 'Child Location Record'[Started]
-			            VAR EndDate = IF (ISBLANK('Child Location Record'[Ended]), UTCNOW(), 'Child Location Record'[Ended])
-			            VAR DurationInDays = DATEDIFF(StartDate, EndDate, DAY)
-			            RETURN
-			                IF (StartDate >= TimePeriodStart && EndDate <= TimePeriodEnd,
-			                    1,
-			                    IF (StartDate < TimePeriodStart && EndDate <= TimePeriodEnd,
-			                        1,
-			                        IF (StartDate >= TimePeriodStart && EndDate > TimePeriodEnd,
-			                            1,
-			                            1
-			                        )
-			                    )
-			                )
-			        ),
-			        AND(
-			            'Child Location Record'[Started] <= TimePeriodEnd,
-			            OR(ISBLANK('Child Location Record'[Ended]), 'Child Location Record'[Ended] >= TimePeriodStart)
-			        ),
-			        'Child Location Record'[ChildcarePlan] <> "WithParent"
-			    )
-		formatString: 0
-		isHidden
-		lineageTag: 584e6779-63dc-48e4-b0d5-b2ae07e041ca
-
-		changedProperty = IsHidden
-
-	measure '# of Hours of Care' = SUMX(FILTER('Child Location Record', 'Child Location Record'[ChildcarePlan] <> "WithParent"), 'Child Location Record'[Duration] * 24)
-		formatString: 0.0
-		isHidden
-		lineageTag: aa6022d4-d984-4f60-bd66-6ba366e23087
-
-		changedProperty = FormatString
-
-		changedProperty = IsHidden
-
-	measure '# of Nights of Care in Period' =
-			
-			VAR TimePeriodStart = MIN('Date'[Date])
-			VAR TimePeriodEnd = MAX('Date'[Date])
-			RETURN
-			    CALCULATE(
-			        SUMX(
-			            'Child Location Record',
-			            VAR StartDate = 'Child Location Record'[Started]
-			            VAR EndDate = IF (ISBLANK('Child Location Record'[Ended]), UTCNOW(), 'Child Location Record'[Ended])
-			            VAR DurationInDays = DATEDIFF(StartDate, EndDate, DAY)
-			            RETURN
-			                IF (StartDate >= TimePeriodStart && EndDate <= TimePeriodEnd,
-			                    DurationInDays,
-			                    IF (StartDate < TimePeriodStart && EndDate <= TimePeriodEnd,
-			                        DATEDIFF(TimePeriodStart, EndDate, DAY),
-			                        IF (StartDate >= TimePeriodStart && EndDate > TimePeriodEnd,
-			                            DATEDIFF(StartDate, TimePeriodEnd, DAY),
-			                            DATEDIFF(TimePeriodStart, TimePeriodEnd, DAY)
-			                        )
-			                    )
-			                )
-			        ),
-			        AND(
-			            'Child Location Record'[Started] <= TimePeriodEnd,
-			            OR(ISBLANK('Child Location Record'[Ended]), 'Child Location Record'[Ended] >= TimePeriodStart)
-			        ),
-			        'Child Location Record'[ChildcarePlan] <> "WithParent"
-			    )
-		formatString: 0
-		isHidden
-		lineageTag: d7339b3c-f403-4a06-8c50-2338dc57427c
-
-		changedProperty = IsHidden
-
-	measure '# of Days of Care in Period' =
-			
-			VAR TimePeriodStart = MIN('Date'[Date])
-			VAR TimePeriodEnd = MAX('Date'[Date])
-			RETURN
-			    CALCULATE(
-			        SUMX(
-			            'Child Location Record',
-			            VAR StartDate = 'Child Location Record'[Started]
-			            VAR EndDate = IF (ISBLANK('Child Location Record'[Ended]), UTCNOW(), 'Child Location Record'[Ended])
-			            VAR DurationInDays = DATEDIFF(StartDate, EndDate, DAY)
-			            RETURN
-			                IF (StartDate >= TimePeriodStart && EndDate <= TimePeriodEnd,
-			                    DurationInDays,
-			                    IF (StartDate < TimePeriodStart && EndDate <= TimePeriodEnd,
-			                        DATEDIFF(TimePeriodStart, EndDate, DAY),
-			                        IF (StartDate >= TimePeriodStart && EndDate > TimePeriodEnd,
-			                            DATEDIFF(StartDate, TimePeriodEnd, DAY),
-			                            DATEDIFF(TimePeriodStart, TimePeriodEnd, DAY)
-			                        )
-			                    )
-			                ) + 1
-			        ),
-			        AND(
-			            'Child Location Record'[Started] <= TimePeriodEnd,
-			            OR(ISBLANK('Child Location Record'[Ended]), 'Child Location Record'[Ended] >= TimePeriodStart)
-			        ),
-			        'Child Location Record'[ChildcarePlan] <> "WithParent"
-			    )
-		formatString: 0
-		isHidden
-		lineageTag: 8cedb776-0a99-4a2d-801b-90f84fde1e70
-
-		changedProperty = IsHidden
+	lineageTag: e081ea24-ed7a-472d-a129-6b4ac6d0fee2
 
 	measure 'Days of Care' =
 			
@@ -138,7 +24,7 @@ table 'Child Location Record'
 			        )
 			    )
 		formatString: 0
-		lineageTag: 0efc4a39-0f01-4fda-8796-3c832f9c8af2
+		lineageTag: d94de293-34d2-47e4-b358-5b2cb522aa37
 
 	measure 'Nights of Care' = ```
 			
@@ -166,95 +52,11 @@ table 'Child Location Record'
 			
 			```
 		formatString: 0
-		lineageTag: 2e84ddd1-74f4-473b-9b8d-b93b89c10625
-
-	column ArrangementId
-		dataType: string
-		isHidden
-		displayFolder: _Columns
-		lineageTag: 35cd963b-9383-49a0-8f43-957369306c02
-		summarizeBy: none
-		sourceColumn: ArrangementId
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column ChildPersonId
-		dataType: string
-		isHidden
-		displayFolder: _Columns
-		lineageTag: 88b1135a-1cb9-4149-ae6c-ab177bf74225
-		summarizeBy: none
-		sourceColumn: ChildPersonId
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column FamilyId
-		dataType: string
-		isHidden
-		displayFolder: _Columns
-		lineageTag: b8f54091-35b4-4e2c-a854-de0b3e59a7cd
-		summarizeBy: none
-		sourceColumn: FamilyId
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column ChildcarePlan
-		dataType: string
-		isHidden
-		displayFolder: _Columns
-		lineageTag: 2bdb74fb-63d5-42fe-8be3-6347f3570834
-		summarizeBy: none
-		sourceColumn: ChildcarePlan
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column Duration
-		dataType: double
-		isHidden
-		displayFolder: _Columns
-		lineageTag: 5af3583b-30c3-4122-adbb-7f59f936a5f0
-		summarizeBy: sum
-		sourceColumn: Duration
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column Index
-		dataType: int64
-		isHidden
-		isKey
-		formatString: 0
-		displayFolder: _Columns
-		lineageTag: 530c8a1c-5003-4896-99f0-d68103824475
-		summarizeBy: none
-		sourceColumn: Index
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = User
-
-	column 'Childcare Family Name'
-		dataType: string
-		lineageTag: 466b77dd-eacc-4c9e-b87e-fa1d7fa07230
-		summarizeBy: none
-		sourceColumn: Childcare Family Name
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: b6cdfb32-4569-451f-9f1d-6abce525a979
 
 	column OrganizationId
 		dataType: string
-		lineageTag: 87f794c6-4604-4114-bf59-6ed71a889e40
+		lineageTag: ed344387-0276-4f5f-b68e-3018fee85930
 		summarizeBy: none
 		sourceColumn: OrganizationId
 
@@ -262,7 +64,7 @@ table 'Child Location Record'
 
 	column LocationId
 		dataType: string
-		lineageTag: faa6577f-a1d5-449b-810e-9a26b33f9a83
+		lineageTag: 5f75cc31-c749-4b78-9d4e-01a227f7f20e
 		summarizeBy: none
 		sourceColumn: LocationId
 
@@ -270,41 +72,108 @@ table 'Child Location Record'
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: 82281731-b782-4fa0-bf7b-4389ce679571
+		lineageTag: ffe7f29a-098e-4043-9559-7bd897dba745
 		summarizeBy: none
 		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArrangementId
+		dataType: string
+		lineageTag: 855407f0-6592-4e2f-89d4-34b2d51feb88
+		summarizeBy: none
+		sourceColumn: ArrangementId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChildPersonId
+		dataType: string
+		lineageTag: c6001df0-0bc3-4066-be07-0a8f6e2c4a78
+		summarizeBy: none
+		sourceColumn: ChildPersonId
+
+		annotation SummarizationSetBy = Automatic
+
+	column FamilyId
+		dataType: string
+		lineageTag: ad1b2a17-0708-4459-9506-9906fc5fc576
+		summarizeBy: none
+		sourceColumn: FamilyId
 
 		annotation SummarizationSetBy = Automatic
 
 	column Started
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: 6bbd5812-018b-4fed-8cb0-b4029fe9195c
+		lineageTag: f2cfaaf8-0aab-45ac-8aa3-7fa0f7d7950f
 		summarizeBy: none
 		sourceColumn: Started
 
 		variation Variation
 			isDefault
-			relationship: 18a4db2c-4e05-4ea5-8f43-5fb9d592bd70
-			defaultHierarchy: LocalDateTable_9ca3cc68-8275-4543-b0b6-67540c77809a.'Date Hierarchy'
+			relationship: f685517c-f74f-4d78-9f60-c1f6900aa13d
+			defaultHierarchy: LocalDateTable_a0954dd8-550f-49c8-ab64-48f992fb833c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChildcarePlan
+		dataType: string
+		lineageTag: 98d4a9e7-c294-408e-ae27-69136a2c1c92
+		summarizeBy: none
+		sourceColumn: ChildcarePlan
 
 		annotation SummarizationSetBy = Automatic
 
 	column Ended
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: bb9fc08e-ab1b-4525-954d-52ce0e4aaf98
+		lineageTag: 0dce2a65-2417-4291-8f92-2400d4246c3b
 		summarizeBy: none
 		sourceColumn: Ended
 
 		variation Variation
 			isDefault
-			relationship: 5219e77b-bbc9-450b-a090-ed7b1f9e6270
-			defaultHierarchy: LocalDateTable_dff05e92-cf4f-4a2f-8fa1-12d5156f3746.'Date Hierarchy'
+			relationship: bc9a84b4-f487-4bd3-91bd-993033d9d92b
+			defaultHierarchy: LocalDateTable_5ca69e7d-8556-4358-897f-394e94ef347b.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 'Child Location Record-3a748a32-4c86-4eac-923a-0eca77fa6916' = m
+	column Duration
+		dataType: double
+		lineageTag: 903fc9bc-1ec3-4840-afdb-7ee37c2d6df8
+		summarizeBy: sum
+		sourceColumn: Duration
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 5471234c-293b-4d0d-93e5-0f52380995e3
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Childcare Family Name'
+		dataType: string
+		lineageTag: 54a61d5d-5d7c-4a7a-835a-86cb905a6306
+		summarizeBy: none
+		sourceColumn: Childcare Family Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Index PK'
+		dataType: string
+		lineageTag: 5c1dff47-d76c-4540-b49c-212ef6a2fbe0
+		summarizeBy: none
+		sourceColumn: Index PK
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Child Location Record' = m
 		mode: import
 		queryGroup: 'Model Queries'
 		source = ```
@@ -326,7 +195,7 @@ table 'Child Location Record'
 				                ),
 				                "Index", 1, 1, Int64.Type
 				            ),
-				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId], "-"})
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				        ),
 				        {"OrganizationId", "LocationId", "RLS Key", "ArrangementId", "ChildPersonId", "FamilyId", "ChildcarePlan", "Started", "Ended", "Duration", "Index"}
 				    ),
@@ -343,12 +212,20 @@ table 'Child Location Record'
 				        "Id",
 				        JoinKind.LeftOuter
 				    ),{"OrganizationId", "LocationId", "RLS Key", "ArrangementId", "ChildPersonId", "FamilyId", "Started", "ChildcarePlan", "Ended", "Duration", "Index", "Name"}), 
-				    {{"Name", "Childcare Family Name"}})
+				    {{"Name", "Childcare Family Name"}}),
+				
+				    // Temporary FIX: 
+				    CLRFinal = Table.AddColumn(
+				        Combined,
+				        "Index PK", each Text.Combine({[RLS Key], Text.From([Index]), [ChildPersonId]}, "-")
+				    ),
+				    #"Filtered Rows" = Table.SelectRows(CLRFinal, each true),
+				    #"Removed Duplicates" = Table.Distinct(#"Filtered Rows", {"Index PK"})
 				in
-				    Combined
+				    #"Removed Duplicates"
 				```
 
-	annotation PBI_ResultType = Table
-
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

@@ -1,35 +1,39 @@
 table Location
-	lineageTag: 16a053ed-84f9-4826-879d-c70341fcdfb9
-
-	column Id
-		dataType: string
-		isHidden
-		isKey
-		lineageTag: 77c826a0-a516-4e55-a8d7-4c91f12da689
-		summarizeBy: none
-		sourceColumn: Id
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column Location
-		dataType: string
-		lineageTag: c9741d87-8c80-4ebf-98af-bfb5b2942cc9
-		summarizeBy: none
-		sourceColumn: Location
-
-		annotation SummarizationSetBy = Automatic
+	lineageTag: 2a8d5d04-e25c-46ad-8a29-b1b85c1c570f
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: 919fb02a-fa22-46da-bbd7-2ed4b4de9188
+		lineageTag: 53f24189-2a83-4576-b9a1-7eff6b42968d
 		summarizeBy: none
 		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
-	partition Location-73b11de1-d894-44a9-b32e-4ba98f7ecfb2 = m
+	column Id
+		dataType: string
+		lineageTag: 64108431-f469-4e56-b29f-7d786af2ab2c
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Location PK'
+		dataType: string
+		lineageTag: dafc31cd-d1cd-40fc-990d-c44a222426bd
+		summarizeBy: none
+		sourceColumn: Location PK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: 6156588d-d0ac-4882-9f4d-86f94b8944e2
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Location = m
 		mode: import
 		queryGroup: 'Model Queries'
 		source = ```
@@ -40,20 +44,23 @@ table Location
 				    Locations = 
 				    Table.SelectColumns(
 				        Table.AddColumn(
-				            Table.RenameColumns(
-				                SourceTable,
-				                {{"Name", "Location"}}
+				            Table.AddColumn(
+				                Table.RenameColumns(
+				                    SourceTable,
+				                    {{"Name", "Location"}}
+				                ),
+				                "RLS Key", each Text.Combine({[OrganizationId], [Id]}, "-")
 				            ),
-				            "RLS Key", each Text.Combine({[OrganizationId], [Id]}, "-")
+				            "Location PK", each Text.Combine({[RLS Key], [Location]}, "-")
 				        ),
-				        {"RLS Key", "Id", "Location"}
+				        {"RLS Key", "Id", "Location PK", "Location"}
 				    )
 				        
 				in
 				    Locations
 				```
 
-	annotation PBI_ResultType = Table
-
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

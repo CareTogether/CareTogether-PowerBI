@@ -7,15 +7,15 @@ table 'Approvals by Entity'
 				CALCULATE (
 				    SELECTEDMEASURE (),
 				    'Role Approval'[Entity Type] = "Family",
-				    USERELATIONSHIP ( Entity[FamilyId], 'Role Approval'[Entity Id] ),
-				    CROSSFILTER ( Entity[PersonId], 'Role Approval'[Entity Id], None)
+				    USERELATIONSHIP(Entity[FamilyId PK], 'Role Approval'[EntityId PK] ),
+				    CROSSFILTER(Entity[PersonId PK], 'Role Approval'[EntityId PK], None)
 				)
 
 		calculationItem Person =
 				CALCULATE(
 				    SELECTEDMEASURE (),
 				    'Role Approval'[Entity Type] = "Person",
-				    USERELATIONSHIP(Entity[PersonId], 'Role Approval'[Entity Id])
+				    USERELATIONSHIP(Entity[PersonId PK], 'Role Approval'[EntityId PK])
 				)
 
 	measure '# of Entities by Role and Approval Status Subtitle' = ```
@@ -35,11 +35,11 @@ table 'Approvals by Entity'
 			    Option,
 			    "Family", CALCULATE(
 			        SELECTEDVALUE(Entity[Family Name]),
-			        CROSSFILTER(Entity[FamilyId], 'Role Approval'[Entity Id], Both)
+			        CROSSFILTER(Entity[FamilyId PK], 'Role Approval'[EntityId PK], Both)
 			    ),
 			    "Person", CALCULATE(
 			        SELECTEDVALUE(Entity[Full Name]),
-			        CROSSFILTER(Entity[PersonId], 'Role Approval'[Entity Id], Both)
+			        CROSSFILTER(Entity[PersonId PK], 'Role Approval'[EntityId PK], Both)
 			    )
 			)
 			

@@ -29,7 +29,7 @@ queryGroup RLS
 
 	annotation PBI_QueryGroupOrder = 4
 
-annotation PBI_QueryOrder = ["Location","Community","Role","OData Live","Production","Referral","Arrangement","Arrangement Type","Child Location Record","Approval Status","Close Reason","Arrangement Phase","Childcare","Childcare Plan","Date","_Measures","Community Member Families","Community Role Assignments","Function Assignments","Entity","Role Approval","RLS Location User - Approvals","RLS Location User - Arrangements","RLS Location User - Referral","RLS Location User - Locations","RLS Location User - Community"]
+annotation PBI_QueryOrder = ["Community","Role","OData Live","Production","Referral","Arrangement","Arrangement Type","Approval Status","Close Reason","Arrangement Phase","Childcare","Childcare Plan","Date","_Measures","Community Member Families","Community Role Assignments","Function Assignments","Entity","Role Approval","RLS Location User - Approvals","RLS Location User - Arrangements","RLS Location User - Referral","RLS Location User - Locations","RLS Location User - Community","Location","Child Location Record"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -42,7 +42,6 @@ annotation PBI_RemovedChildren = [{"remoteItemId":{"foreignKeyRelationship":{"fr
 annotation __TEdtr = 1
 
 ref table DateTableTemplate_281570fe-3908-44fd-b0fc-579445d6c411
-ref table Location
 ref table Role
 ref table Referral
 ref table Arrangement
@@ -50,7 +49,6 @@ ref table LocalDateTable_badf15b7-4811-4e5f-aee5-299aaab58eca
 ref table LocalDateTable_d64749d8-d763-4d50-94b8-a3acfe90e321
 ref table LocalDateTable_73d01070-72e6-4583-b4ff-d5fa05eb2eee
 ref table 'Arrangement Type'
-ref table 'Child Location Record'
 ref table 'Approval Status'
 ref table 'Close Reason'
 ref table 'Arrangement Phase'
@@ -73,11 +71,14 @@ ref table 'RLS Location User - Approvals'
 ref table 'RLS Location User - Arrangements'
 ref table LocalDateTable_a8dbb200-3155-4e8c-9348-db038fea8ca8
 ref table LocalDateTable_394f1348-ca56-4f1c-9fdb-7b35bb6746a6
-ref table LocalDateTable_9ca3cc68-8275-4543-b0b6-67540c77809a
-ref table LocalDateTable_dff05e92-cf4f-4a2f-8fa1-12d5156f3746
 ref table 'RLS Location User - Referral'
 ref table 'RLS Location User - Locations'
 ref table 'RLS Location User - Community'
+ref table 'Calculation group'
+ref table Location
+ref table 'Child Location Record'
+ref table LocalDateTable_a0954dd8-550f-49c8-ab64-48f992fb833c
+ref table LocalDateTable_5ca69e7d-8556-4358-897f-394e94ef347b
 
 ref role Dynamic
 
