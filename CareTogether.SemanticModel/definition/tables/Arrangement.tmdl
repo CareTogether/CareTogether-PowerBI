@@ -379,17 +379,9 @@ table Arrangement
 
 	column 'Arrangement Type PK'
 		dataType: string
-		lineageTag: eab17485-5d24-49eb-903d-c84cf24827b3
+		lineageTag: 24aba84c-010c-408e-a937-f5462ee28fe0
 		summarizeBy: none
 		sourceColumn: Arrangement Type PK
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'PersonId PK'
-		dataType: string
-		lineageTag: 3038113d-203e-40dd-9ba8-aaada277ffa4
-		summarizeBy: none
-		sourceColumn: PersonId PK
 
 		annotation SummarizationSetBy = Automatic
 
@@ -403,25 +395,23 @@ table Arrangement
 				
 				    Arrangement = 
 				    Table.SelectColumns(
+				
+				        
 				        Table.AddColumn(
 				            Table.AddColumn(
-				                Table.AddColumn(
-				                    Table.RenameColumns(
-				                        Table.TransformColumns(
-				                            SourceTable,
-				                            {{"StartedUtc", DateTimeZone.ToLocal, type datetimezone}, {"EndedUtc", DateTimeZone.ToLocal, type datetimezone}}
-				                        ),
-				                        {{"StartedUtc", "Started"}, {"EndedUtc", "Ended"}}
+				                Table.RenameColumns(
+				                    Table.TransformColumns(
+				                        SourceTable,
+				                        {{"StartedUtc", DateTimeZone.ToLocal, type datetimezone}, {"EndedUtc", DateTimeZone.ToLocal, type datetimezone}}
 				                    ),
-				                    "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                    {{"StartedUtc", "Started"}, {"EndedUtc", "Ended"}}
 				                ),
-				                "Arrangement Type PK", each Text.Combine({[RLS Key], [TypeName]}, "-")
+				                "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				            ),
-				            "PersonId PK", each Text.Combine({[RLS Key], [PersonId]}, "-")
+				            "Arrangement Type PK", each Text.Combine({[RLS Key], [TypeName]}, "-")
 				        ),
-				    {"Id", "OrganizationId", "LocationId", "RLS Key", "Arrangement Type PK", "TypeName", "ReferralId", "PersonId PK", "PersonId", "Requested", "Started", "Ended", "Phase", "Reason"}
+				        {"Id", "OrganizationId", "LocationId", "RLS Key", "Arrangement Type PK", "TypeName", "ReferralId", "PersonId", "Requested", "Started", "Ended", "Phase", "Reason"}
 				    )
-				
 				
 				in
 				    Arrangement

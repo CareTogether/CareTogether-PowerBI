@@ -30,7 +30,7 @@ table 'Arrangement Type'
 
 	column 'Arrangement Type PK'
 		dataType: string
-		lineageTag: cbcca16e-6118-4add-be82-dbeb6727f3ea
+		lineageTag: ca1384fb-2f66-48e5-8dea-b8c9c7fbb685
 		summarizeBy: none
 		sourceColumn: Arrangement Type PK
 
@@ -54,11 +54,10 @@ table 'Arrangement Type'
 				                ),
 				                "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				            ),
-				            "Arrangement Type PK", each Text.Combine({[RLS Key], [Arrangement Type]}, "-")
+				        "Arrangement Type PK", each Text.Combine({[RLS Key], [Arrangement Type]}, "-")
 				        ),
 				        {"RLS Key", "Arrangement Type PK", "Arrangement Type", "ChildInvolvement"}
 				    )
-				
 				in
 				    ArrangementType
 				```

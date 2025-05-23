@@ -127,14 +127,6 @@ table 'Role Approval'
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'EntityId PK'
-		dataType: string
-		lineageTag: 93e0ec6e-aab9-4dd7-8554-617b754febef
-		summarizeBy: none
-		sourceColumn: EntityId PK
-
-		annotation SummarizationSetBy = Automatic
-
 	partition 'Role Approval' = m
 		mode: import
 		queryGroup: 'Consolidated Entities'
@@ -227,15 +219,9 @@ table 'Role Approval'
 				
 				    // Flatten grouped tables
 				    Final = Table.Combine(Table.Column(Grouped, "AllData")),
-				    ChangedType = Table.TransformColumnTypes(Final, {{"StatusChanged", type logical}}),
-				
-				    // Temporary Fix: Global OData cnx
-				    ApprovalsFinal = Table.AddColumn(
-				        ChangedType,
-				        "EntityId PK", each Text.Combine({[RLS Key], [Entity Id]}, "-")
-				    )
+				    ChangedType = Table.TransformColumnTypes(Final, {{"StatusChanged", type logical}})
 				in
-				    ApprovalsFinal
+				    ChangedType
 				```
 
 	annotation PBI_NavigationStepName = Navigation

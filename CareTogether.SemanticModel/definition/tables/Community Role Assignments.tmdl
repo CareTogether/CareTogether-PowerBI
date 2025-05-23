@@ -39,14 +39,6 @@ table 'Community Role Assignments'
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'PersonId PK'
-		dataType: string
-		lineageTag: ba7667b7-9f80-448d-b9a0-336030acf803
-		summarizeBy: none
-		sourceColumn: PersonId PK
-
-		annotation SummarizationSetBy = Automatic
-
 	partition 'Community Role Assignments' = m
 		mode: import
 		queryGroup: 'Model Queries'
@@ -59,13 +51,10 @@ table 'Community Role Assignments'
 				
 				    Table.SelectColumns(
 				        Table.AddColumn(
-				            Table.AddColumn(
-				                SourceTable,
-				                "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
-				            ),
-				            "PersonId PK", each Text.Combine({[RLS Key], [PersonId]}, "-")
+				            SourceTable,
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				        ),
-				        {"RLS Key", "CommunityId", "PersonId PK", "PersonId", "Role"}
+				        {"RLS Key", "CommunityId", "PersonId", "Role"}
 				    )
 				    
 				

@@ -41,32 +41,49 @@
           "Where": [
             {
               "Condition": {
-                "Not": {
-                  "Expression": {
-                    "In": {
-                      "Expressions": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "l"
-                              }
-                            },
-                            "Property": "Location"
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "l"
                           }
-                        }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "null"
-                            }
-                          }
-                        ]
-                      ]
+                        },
+                        "Property": "Location"
+                      }
                     }
-                  }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Location 0'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Location 1'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Location 2'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Location 3'"
+                        }
+                      }
+                    ]
+                  ]
                 }
               }
             }
@@ -77,15 +94,7 @@
         "objects": {
           "general": [
             {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
+              "properties": {}
             }
           ]
         }
@@ -113,7 +122,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "false"
+                "Value": "true"
               }
             }
           }

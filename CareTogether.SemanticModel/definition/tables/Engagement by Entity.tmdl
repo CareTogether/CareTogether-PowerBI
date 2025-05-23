@@ -7,21 +7,21 @@ table 'Engagement by Entity'
 		calculationItem Family =
 				CALCULATE (
 				    SELECTEDMEASURE (),
-				        USERELATIONSHIP(Entity[FamilyId PK], 'Function Assignments'[EntityId PK]),
-				        CROSSFILTER(Entity[PersonId PK], Arrangement[PersonId PK], None),
+				        USERELATIONSHIP(Entity[FamilyId], 'Function Assignments'[EntityId]),
+				        CROSSFILTER(Entity[PersonId], Arrangement[PersonId], None),
 				        'Role Approval'[Entity Type] = "Family",
-				        USERELATIONSHIP ( Entity[FamilyId PK], 'Role Approval'[EntityId PK] ),
-				        CROSSFILTER ( Entity[PersonId PK], 'Role Approval'[EntityId PK], NONE )
+				        USERELATIONSHIP ( Entity[FamilyId], 'Role Approval'[Entity Id] ),
+				        CROSSFILTER ( Entity[PersonId], 'Role Approval'[Entity Id], NONE )
 				)
 
 		calculationItem Person =
 				CALCULATE(
 				    SELECTEDMEASURE (),
-				    USERELATIONSHIP(Entity[PersonId PK], 'Function Assignments'[EntityId PK]),
-				    CROSSFILTER(Entity[PersonId PK], Arrangement[PersonId PK], None),
+				    USERELATIONSHIP(Entity[PersonId], 'Function Assignments'[EntityId]),
+				    CROSSFILTER(Entity[PersonId], Arrangement[PersonId], None),
 				    'Role Approval'[Entity Type] = "Person",
-				    USERELATIONSHIP(Entity[PersonId PK], 'Role Approval'[EntityId PK]),
-				    CROSSFILTER (Entity[FamilyId PK], 'Role Approval'[EntityId PK], NONE)
+				    USERELATIONSHIP(Entity[PersonId], 'Role Approval'[Entity Id]),
+				    CROSSFILTER (Entity[FamilyId], 'Role Approval'[Entity Id], NONE)
 				)
 
 	measure 'Dynamic Entity Name (Engagement)' =

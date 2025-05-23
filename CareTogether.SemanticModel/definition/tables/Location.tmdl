@@ -1,9 +1,9 @@
 table Location
-	lineageTag: 2a8d5d04-e25c-46ad-8a29-b1b85c1c570f
+	lineageTag: 9b78184e-f905-4fe7-8a9c-7b1b82d0da8c
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: 53f24189-2a83-4576-b9a1-7eff6b42968d
+		lineageTag: 8ad230f8-c550-405a-8203-c929a3086632
 		summarizeBy: none
 		sourceColumn: RLS Key
 
@@ -11,23 +11,15 @@ table Location
 
 	column Id
 		dataType: string
-		lineageTag: 64108431-f469-4e56-b29f-7d786af2ab2c
+		lineageTag: 21cf8ebc-50d3-4f02-9094-2fe85114b691
 		summarizeBy: none
 		sourceColumn: Id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Location PK'
-		dataType: string
-		lineageTag: dafc31cd-d1cd-40fc-990d-c44a222426bd
-		summarizeBy: none
-		sourceColumn: Location PK
-
-		annotation SummarizationSetBy = Automatic
-
 	column Location
 		dataType: string
-		lineageTag: 6156588d-d0ac-4882-9f4d-86f94b8944e2
+		lineageTag: 97b1dc7f-4d67-4527-bf14-7423eb64f770
 		summarizeBy: none
 		sourceColumn: Location
 
@@ -44,21 +36,19 @@ table Location
 				    Locations = 
 				    Table.SelectColumns(
 				        Table.AddColumn(
-				            Table.AddColumn(
-				                Table.RenameColumns(
-				                    SourceTable,
-				                    {{"Name", "Location"}}
-				                ),
-				                "RLS Key", each Text.Combine({[OrganizationId], [Id]}, "-")
+				            Table.RenameColumns(
+				                SourceTable,
+				                {{"Name", "Location"}}
 				            ),
-				            "Location PK", each Text.Combine({[RLS Key], [Location]}, "-")
+				            "RLS Key", each Text.Combine({[OrganizationId], [Id]}, "-")
 				        ),
-				        {"RLS Key", "Id", "Location PK", "Location"}
+				        {"RLS Key", "Id", "Location"}
 				    )
-				        
 				in
 				    Locations
 				```
+
+	changedProperty = Name
 
 	annotation PBI_NavigationStepName = Navigation
 
