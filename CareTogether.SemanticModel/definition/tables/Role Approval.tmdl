@@ -131,152 +131,97 @@ table 'Role Approval'
 		mode: import
 		queryGroup: 'Consolidated Entities'
 		source = ```
-				let 
-				    Source = #"OData Live" ,
-				
-				    //Commom Variables:
+				let
+				    // Data source
+				    Source = #"OData Live",
 				    CurrentDate = DateTime.LocalNow(),
-				    CurrentYear = Date.Year(CurrentDate),
-				    EndOfNextYearCalendar = #date (CurrentYear + 1, 12, 31),
+				    EndOfNextYear = #date(Date.Year(CurrentDate) + 1, 12, 31),
 				
-				    //Families - Direct Approval: 
-				    FamilyTable = Source{[Name="FamilyRoleApprovals",Signature="table"]}[Data],
-				    FamilyAddType = Table.AddColumn(FamilyTable, "Entity Type", each "Family"),
-				    FamilyColumns = Table.RemoveColumns(FamilyAddType, {"Family", "Role"}),
-				    FamilyAddColumns = Table.AddColumn(FamilyColumns, "Date", each
-				        if [Start] > EndOfNextYearCalendar then {}
-				        else List.Dates([Start], Duration.Days(List.Min({[End], EndOfNextYearCalendar}) - [Start]) + 1, #duration(1,0,0,0))),
-				    FamilyExpandDate = Table.ExpandListColumn(FamilyAddColumns, "Date"),
-				    FamilyFiltered = Table.SelectRows(FamilyExpandDate, each [Date] <> null and [Date] <> ""),
-				    FamilyDateType = Table.TransformColumnTypes(FamilyFiltered,{{"Date", type date}}),
-				    FamilyAdjusted = Table.RemoveColumns(FamilyDateType,{"Start", "End"}),
-				    FamilyApprovalType = Table.AddColumn(FamilyAdjusted, "Approval Type", each "Direct"),
-				    FamilyFinal = 
-				    
-				    Table.SelectColumns(
-				        Table.AddColumn(
-				            Table.RenameColumns(FamilyApprovalType, {{"FamilyId", "EntityId"}}
-				            ),
-				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]},"-")
-				        ),
-				        {"OrganizationId", "LocationId", "RLS Key", "EntityId", "RoleName", "Status", "Entity Type", "Date", "Approval Type"}
-				    ),
+				    // Helper function: Generate list of dates between Start and End (limited to EndOfNextYear)
+				    fnGenerateDates = (start as date, end as date) as list =>
+				        let
+				            finalEnd = if end < EndOfNextYear then end else EndOfNextYear
+				        in
+				            if start > EndOfNextYear then {} else List.Dates(start, Duration.Days(finalEnd - start) + 1, #duration(1, 0, 0, 0)),
 				
+				    // Helper function: Prepare and normalize the structure of a table
+				    fnPrepareTable = (tbl as table, entityType as text, idCol as text, dropCols as list, approvalType as text) as table =>
+				        let
+				            step1 = Table.RemoveColumns(tbl, dropCols),
+				            step2 = Table.AddColumn(step1, "Entity Type", each entityType, type text),
+				            step3 = Table.AddColumn(step2, "Date", each fnGenerateDates([Start], [End]), type list),
+				            step4 = Table.ExpandListColumn(step3, "Date"),
+				            step5 = Table.SelectRows(step4, each [Date] <> null),
+				            step6 = Table.TransformColumnTypes(step5, {{"Date", type date}}),
+				            step7 = Table.RemoveColumns(step6, {"Start", "End"}),
+				            step8 = Table.AddColumn(step7, "Approval Type", each approvalType, type text),
+				            step9 = Table.RenameColumns(step8, {{idCol, "EntityId"}}),
+				            step10 = Table.AddColumn(step9, "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")),
+				            step11 = Table.SelectColumns(step10, {"OrganizationId", "LocationId", "RLS Key", "EntityId", "RoleName", "Status", "Entity Type", "Date", "Approval Type"})
+				        in
+				            step11,
 				
-				    //Person - Direct Approval: 
-				    PersonTable = Source{[Name="IndividualRoleApprovals",Signature="table"]}[Data],
-				    PersonAddType = Table.AddColumn(PersonTable, "Entity Type", each "Person"),
-				    PersonColumns = Table.RemoveColumns(PersonAddType,{"Person", "Role", "Family", "FamilyId"}),
-				    PersonAddColumns = Table.AddColumn(PersonColumns, "Date", each
-				        if [Start] > EndOfNextYearCalendar then {}
-				        else List.Dates([Start], Duration.Days(List.Min({[End], EndOfNextYearCalendar}) - [Start]) + 1, #duration(1,0,0,0))),
-				    PersonExpandDate = Table.ExpandListColumn(PersonAddColumns, "Date"),
-				    PersonFiltered = Table.SelectRows(PersonExpandDate, each [Date] <> null and [Date] <> ""),
-				    PersonDateType = Table.TransformColumnTypes(PersonFiltered,{{"Date", type date}}),
-				    PersonAdjusted = Table.RemoveColumns(PersonDateType,{"Start", "End"}),
-				    PersonApprovalType = Table.AddColumn(PersonAdjusted, "Approval Type", each "Direct"),
-				    PersonFinal = 
-				    
-				    Table.SelectColumns(
-				        Table.AddColumn(
-				            Table.RenameColumns(PersonApprovalType, {{"PersonId", "EntityId"}}),
-				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
-				        ),
-				        {"OrganizationId", "LocationId", "RLS Key", "EntityId", "RoleName", "Status", "Entity Type", "Date", "Approval Type"}
-				    ),
+				    // Process each approval table
+				    FamilyFinal = fnPrepareTable(Source{[Name="FamilyRoleApprovals",Signature="table"]}[Data], "Family", "FamilyId", {"Family", "Role"}, "Direct"),
+				    PersonFinal = fnPrepareTable(Source{[Name="IndividualRoleApprovals",Signature="table"]}[Data], "Person", "PersonId", {"Person", "Role", "Family", "FamilyId"}, "Direct"),
+				    IndirectFamilyFinal = fnPrepareTable(Source{[Name="IndividualRoleApprovals",Signature="table"]}[Data], "Family", "FamilyId", {"Person", "Role", "Family", "PersonId"}, "Indirect"),
 				
-				    
+				    // Prepare the exclusion table for indirect person approvals
+				    RemovedIndividuals = 
+				        let
+				            base = Source{[Name="FamilyRoleRemovedIndividuals",Signature="table"]}[Data],
+				            step1 = Table.RemoveColumns(base, {"Person", "Role", "Family"}),
+				            step2 = Table.AddColumn(step1, "ExclusionDate", each fnGenerateDates([Start], [End]), type list),
+				            step3 = Table.ExpandListColumn(step2, "ExclusionDate"),
+				            step4 = Table.SelectRows(step3, each [ExclusionDate] <> null),
+				            final = Table.RemoveColumns(step4, {"Start", "End"})
+				        in
+				            final,
 				
-				    // Families - Indirect Approval: 
-				    f_IndirectApprovedFamilies = Source{[Name="IndividualRoleApprovals",Signature="table"]}[Data],
-				    f_IndirectApprovedAddType = Table.AddColumn(f_IndirectApprovedFamilies, "Entity Type", each "Family"),
-				    f_IndirectApprovedColumns = Table.RemoveColumns(f_IndirectApprovedAddType,{"Person", "Role", "Family", "PersonId"}),
-				    f_IndirectApprovedAddColumns = Table.AddColumn(f_IndirectApprovedColumns, "Date", each
-				        if [Start] > EndOfNextYearCalendar then {}
-				        else List.Dates([Start], Duration.Days(List.Min({[End], EndOfNextYearCalendar}) - [Start]) + 1, #duration(1,0,0,0))),
-				    f_IndirectApprovedExpandDate = Table.ExpandListColumn(f_IndirectApprovedAddColumns, "Date"),
-				    f_IndirectApprovedFiltered = Table.SelectRows(f_IndirectApprovedExpandDate, each [Date] <> null and [Date] <> ""),
-				    f_IndirectApprovedDateType = Table.TransformColumnTypes(f_IndirectApprovedFiltered,{{"Date", type date}}),
-				    f_IndirectApprovedAdjusted = Table.RemoveColumns(f_IndirectApprovedDateType,{"Start", "End"}),
-				    f_IndirectApprovedApprovalType = Table.AddColumn(f_IndirectApprovedAdjusted, "Approval Type", each "Indirect"),
-				    f_IndirectApprovedFinal = 
-				    
-				    Table.SelectColumns(
-				        Table.AddColumn(
-				            Table.RenameColumns(f_IndirectApprovedApprovalType, {{"FamilyId", "EntityId"}}),
-				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
-				        ),
-				        {"OrganizationId", "LocationId", "RLS Key", "RoleName", "EntityId", "Status", "Entity Type", "Date", "Approval Type"}
-				    ),
+				    // Join persons to their families and match with family approvals
+				    AllPersons = Table.SelectColumns(Source{[Name="Person",Signature="table"]}[Data], {"Id", "FamilyId"}),
+				    Joined = Table.Join(AllPersons, "FamilyId", FamilyFinal, "EntityId", JoinKind.RightOuter),
+				    Merged = Table.SelectColumns(Joined, {"OrganizationId", "LocationId", "RLS Key", "Id", "EntityId", "RoleName", "Status", "Date"}),
 				
-				    
-				    
-				
-				    //Person - Indirect Approval:
-				
-				    // 1st Step: Create the Individual Removal Table - We will use this later to filter the person indirect approvals:
-				    removedIndividualTable = Source{[Name="FamilyRoleRemovedIndividuals",Signature="table"]}[Data],
-				    removedIndividualRemoveColumns = Table.RemoveColumns(removedIndividualTable,{"Person", "Role", "Family"}),
-				    removedIndividualGeneratedDates = Table.AddColumn(removedIndividualRemoveColumns, "ExclusionDate", each
-				        if [Start] > EndOfNextYearCalendar then {}
-				        else List.Dates([Start], Duration.Days(List.Min({[End], EndOfNextYearCalendar}) - [Start]) + 1, #duration(1,0,0,0))),
-				    removedIndividualExpandedDates = Table.ExpandListColumn(removedIndividualGeneratedDates, "ExclusionDate"),
-				    removedIndividualFiltered = Table.SelectRows(removedIndividualExpandedDates, each [ExclusionDate] <> null and [ExclusionDate] <> ""),
-				    removedIndividualFinal = Table.RemoveColumns(removedIndividualFiltered,{"Start", "End"}),
-				
-				    //2nd Step: Identify family approvals for person and filter out all the exclusions. 
-				    AllPersonTable = Table.SelectColumns(Source{[Name="Person",Signature="table"]}[Data],{"Id", "FamilyId"}),
-				    AllPersonFiltered = Table.SelectColumns(Table.Join(
-				        AllPersonTable,
-				        "FamilyId",
-				        FamilyFinal,
-				        "EntityId",
-				        JoinKind.RightOuter
-				    ), {"OrganizationId", "LocationId", "RLS Key", "Id", "EntityId", "RoleName", "Status", "Date"}),
-				
-				    AllPersonWithoutExclusions = Table.Join(
-				        AllPersonFiltered,
+				    // Remove individuals who were excluded on a given date
+				    WithoutExclusions = Table.Join(
+				        Merged,
 				        {"Id", "EntityId", "Date"},
-				        Table.SelectColumns(removedIndividualFinal, {"PersonId", "FamilyId", "ExclusionDate"}),
+				        Table.SelectColumns(RemovedIndividuals, {"PersonId", "FamilyId", "ExclusionDate"}),
 				        {"PersonId", "FamilyId", "ExclusionDate"},
 				        JoinKind.LeftAnti
 				    ),
 				
-				    // 3rd Step: Recreate the table structure to merge with the others:
-				    p_indirectApproved = Table.SelectColumns(AllPersonWithoutExclusions, {"OrganizationId", "LocationId", "RLS Key", "Id", "RoleName", "Status", "Date"}),
-				    p_indirectApprovedRenamed = Table.RenameColumns(p_indirectApproved, {"Id", "EntityId"}),
-				    p_indirectApprovedEntityType = Table.AddColumn(p_indirectApprovedRenamed, "Entity Type", each "Person"),
-				    p_indirectApprovedFinal = Table.AddColumn(p_indirectApprovedEntityType, "Approval Type", each "Indirect"),
+				    // Finalize indirect person approval table
+				    pIndirectApproved = Table.SelectColumns(WithoutExclusions, {"OrganizationId", "LocationId", "RLS Key", "Id", "RoleName", "Status", "Date"}),
+				    pIndirectRenamed = Table.RenameColumns(pIndirectApproved, {"Id", "EntityId"}),
+				    pIndirectType = Table.AddColumn(pIndirectRenamed, "Entity Type", each "Person"),
+				    pIndirectFinal = Table.AddColumn(pIndirectType, "Approval Type", each "Indirect"),
 				
-				    // Combined Data:
-				    CombinedTables = Table.Combine({FamilyFinal, PersonFinal, f_IndirectApprovedFinal, p_indirectApprovedFinal}),
-				    #"Reordered Columns" = Table.ReorderColumns(CombinedTables,{"EntityId", "Entity Type", "RoleName", "Status", "Approval Type", "Date"}),
-				    #"Renamed Columns" = Table.RenameColumns(#"Reordered Columns",{{"EntityId", "Entity Id"}, {"RoleName", "Role Name"}}),
-				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each true),
+				    // Combine all approval data
+				    Combined = Table.Combine({FamilyFinal, PersonFinal, IndirectFamilyFinal, pIndirectFinal}),
+				    Ordered = Table.ReorderColumns(Combined, {"EntityId", "Entity Type", "RoleName", "Status", "Approval Type", "Date"}),
+				    Renamed = Table.RenameColumns(Ordered, {{"EntityId", "Entity Id"}, {"RoleName", "Role Name"}}),
 				
-				    // Additional step: Status Change Flag
-				    
-				    
-				    SortedTable = Table.Sort(#"Filtered Rows",{{"Entity Id", Order.Ascending}, {"Role Name", Order.Ascending}, {"Date", Order.Ascending}}),
-				
-				    
-				    GroupedTable = Table.Group(SortedTable, {"Entity Id", "Role Name"}, {
+				    // Track changes in status by Entity and Role
+				    Sorted = Table.Sort(Renamed, {{"Entity Id", Order.Ascending}, {"Role Name", Order.Ascending}, {"Date", Order.Ascending}}),
+				    Grouped = Table.Group(Sorted, {"Entity Id", "Role Name"}, {
 				        {"AllData", each 
 				            let 
-				                AddIndex = Table.AddIndexColumn(_, "RowIndex", 0, 1, Int64.Type),
-				                AddPreviousStatus = Table.AddColumn(AddIndex, "PreviousStatus", each try AddIndex{[RowIndex]-1}[Status] otherwise null),
-				                AddStatusChangeFlag = Table.AddColumn(AddPreviousStatus, "StatusChanged", each if [Status] <> [PreviousStatus] then 1 else 0),
-				                RemoveAuxColumns = Table.RemoveColumns(AddStatusChangeFlag, {"RowIndex", "PreviousStatus"})
-				            in 
-				                RemoveAuxColumns
+				                tbl = _,
+				                AddIndex = Table.AddIndexColumn(tbl, "RowIndex", 0, 1, Int64.Type),
+				                AddPrevious = Table.AddColumn(AddIndex, "PreviousStatus", each try AddIndex{[RowIndex]-1}[Status] otherwise null),
+				                Flag = Table.AddColumn(AddPrevious, "StatusChanged", each [Status] <> [PreviousStatus]),
+				                Clean = Table.RemoveColumns(Flag, {"RowIndex", "PreviousStatus"})
+				            in Clean
 				        }
 				    }),
 				
-				    
-				    ExpandedTable = Table.Combine(Table.Column(GroupedTable, "AllData")),
-				    #"Changed Type" = Table.TransformColumnTypes(ExpandedTable,{{"StatusChanged", type logical}})
+				    // Flatten grouped tables
+				    Final = Table.Combine(Table.Column(Grouped, "AllData")),
+				    ChangedType = Table.TransformColumnTypes(Final, {{"StatusChanged", type logical}})
 				in
-				    #"Changed Type"
+				    ChangedType
 				```
 
 	annotation PBI_NavigationStepName = Navigation

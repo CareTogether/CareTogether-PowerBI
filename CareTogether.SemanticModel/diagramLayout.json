@@ -10,19 +10,6 @@
       "nodes": [
         {
           "location": {
-            "x": 266.4691339240959,
-            "y": 1123.3052451833564
-          },
-          "nodeIndex": "Location",
-          "nodeLineageTag": "16a053ed-84f9-4826-879d-c70341fcdfb9",
-          "size": {
-            "height": 257,
-            "width": 234
-          },
-          "zIndex": 7
-        },
-        {
-          "location": {
             "x": 536.07239163857719,
             "y": 375.35124551609243
           },
@@ -338,6 +325,15 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Location",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
@@ -351,7 +347,7 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 75.06162789293505
+        "y": 485.31224930776972
       },
       "nodes": [
         {
@@ -365,7 +361,7 @@
             "height": 477.01947084761764,
             "width": 271.53081394646767
           },
-          "zIndex": 19
+          "zIndex": 21
         },
         {
           "location": {
@@ -378,20 +374,20 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 7
+          "zIndex": 12
         },
         {
           "location": {
-            "x": 846.13663024029347,
-            "y": 1585.89316850675
+            "x": 808.60581629382591,
+            "y": 1443.5349087098043
           },
           "nodeIndex": "Arrangement",
           "nodeLineageTag": "46d5bd4a-a507-4eb7-941d-b7680ccdeaa3",
           "size": {
-            "height": 558.45342974367918,
+            "height": 713.75334952216554,
             "width": 234
           },
-          "zIndex": 8
+          "zIndex": 22
         },
         {
           "location": {
@@ -404,7 +400,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 9
+          "zIndex": 13
         },
         {
           "location": {
@@ -417,7 +413,7 @@
             "height": 168.21566830788424,
             "width": 234
           },
-          "zIndex": 10
+          "zIndex": 14
         },
         {
           "location": {
@@ -430,11 +426,11 @@
             "height": 170.86273050015598,
             "width": 234
           },
-          "zIndex": 11
+          "zIndex": 15
         },
         {
           "location": {
-            "x": 286.6648161790244,
+            "x": 302.194808156873,
             "y": 1255.1230411059069
           },
           "nodeIndex": "Referral",
@@ -443,7 +439,7 @@
             "height": 207.68856372341293,
             "width": 234
           },
-          "zIndex": 15
+          "zIndex": 18
         },
         {
           "location": {
@@ -456,20 +452,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 12
-        },
-        {
-          "location": {
-            "x": 1234.7780965365459,
-            "y": 715.8270968873511
-          },
-          "nodeIndex": "Location",
-          "nodeLineageTag": "16a053ed-84f9-4826-879d-c70341fcdfb9",
-          "size": {
-            "height": 208.58819150046793,
-            "width": 234
-          },
-          "zIndex": 13
+          "zIndex": 16
         },
         {
           "location": {
@@ -482,7 +465,7 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 17
+          "zIndex": 19
         },
         {
           "location": {
@@ -495,7 +478,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 14
+          "zIndex": 17
         },
         {
           "location": {
@@ -508,7 +491,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 7
         },
         {
           "location": {
@@ -521,7 +504,7 @@
             "height": 223.88414193169996,
             "width": 234
           },
-          "zIndex": 18
+          "zIndex": 20
         },
         {
           "location": {
@@ -534,7 +517,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 8
         },
         {
           "location": {
@@ -547,12 +530,12 @@
             "height": 342.07839880804045,
             "width": 234
           },
-          "zIndex": 16
+          "zIndex": 23
         },
         {
           "location": {
-            "x": 1505.018491929683,
-            "y": 1162.5700724963463
+            "x": 1501.135993935221,
+            "y": 1099.1559385867977
           },
           "nodeIndex": "Childcare Plan",
           "nodeLineageTag": "e454f50c-d108-4cc7-b49d-4585c9ad868e",
@@ -560,7 +543,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 9
         },
         {
           "location": {
@@ -573,7 +556,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 5
+          "zIndex": 10
         },
         {
           "location": {
@@ -586,7 +569,7 @@
             "height": 600.35270873325248,
             "width": 234
           },
-          "zIndex": 6
+          "zIndex": 11
         },
         {
           "location": {
@@ -599,7 +582,7 @@
             "height": 224,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 6
         },
         {
           "location": {
@@ -611,12 +594,12 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
-            "x": 849.80362851401242,
-            "y": 2185.3204887474408
+            "x": 810.97864856939088,
+            "y": 2186.6146547455951
           },
           "nodeIndex": "RLS Location User - Arrangements",
           "nodeLineageTag": "33698e4d-76dd-47c5-8e1f-c1840bbe254b",
@@ -624,7 +607,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
         },
         {
           "location": {
@@ -637,11 +620,11 @@
             "height": 163.0583400184596,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 3
         },
         {
           "location": {
-            "x": 1238.0534279602286,
+            "x": 1227.7000999749962,
             "y": 992.099438449404
           },
           "nodeIndex": "RLS Location User - Locations",
@@ -650,7 +633,7 @@
             "height": 145,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 4
         },
         {
           "location": {
@@ -661,6 +644,19 @@
           "nodeLineageTag": "ad97e9c3-5a9b-4286-8286-7a3b3c2b6419",
           "size": {
             "height": 145,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1241.9359259546902,
+            "y": 693.147092875818
+          },
+          "nodeIndex": "Location",
+          "nodeLineageTag": "9b78184e-f905-4fe7-8a9c-7b1b82d0da8c",
+          "size": {
+            "height": 152,
             "width": 234
           },
           "zIndex": 0

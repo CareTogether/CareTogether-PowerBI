@@ -148,10 +148,6 @@ relationship 4d10df6d-bff5-9261-e0de-ba43fd3a6e8f
 	fromColumn: 'RLS Location User - Referral'.'RLS Key'
 	toColumn: Referral.'RLS Key'
 
-relationship 14f9d30d-f9cd-f986-0dda-1b260da94d49
-	fromColumn: Arrangement.TypeName
-	toColumn: 'Arrangement Type'.'Arrangement Type'
-
 relationship fe8d4934-d958-e553-7973-7f1b28ab04e6
 	fromColumn: Referral.'Close Reason'
 	toColumn: 'Close Reason'.ReferralCloseReason
@@ -173,12 +169,6 @@ relationship 37b30d6b-f416-6f58-6818-5e167639fd45
 	fromColumn: 'RLS Location User - Locations'.'RLS Key'
 	toColumn: Entity.'RLS Key'
 
-relationship 79a55a8b-2737-2a82-a7a8-366934a34fe7
-	crossFilteringBehavior: bothDirections
-	securityFilteringBehavior: bothDirections
-	fromColumn: 'RLS Location User - Locations'.'RLS Key'
-	toColumn: Location.'RLS Key'
-
 relationship 668f65da-c275-bcb8-2381-2e0a8303e48d
 	crossFilteringBehavior: bothDirections
 	toCardinality: many
@@ -191,4 +181,14 @@ relationship f851faf3-ad4b-60e6-c753-3027f9dcaeef
 	toCardinality: many
 	fromColumn: 'RLS Location User - Community'.'RLS Key'
 	toColumn: Community.'RLS Key'
+
+relationship 405db2b6-03e9-8a43-8375-febe7b094b53
+	fromColumn: Arrangement.'Arrangement Type PK'
+	toColumn: 'Arrangement Type'.'Arrangement Type PK'
+
+relationship 2b222138-6250-8c2f-ed33-3d5b282bee7a
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: bothDirections
+	fromColumn: 'RLS Location User - Locations'.'RLS Key'
+	toColumn: Location.'RLS Key'
 

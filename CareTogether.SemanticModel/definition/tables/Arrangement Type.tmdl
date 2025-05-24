@@ -28,6 +28,14 @@ table 'Arrangement Type'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Arrangement Type PK'
+		dataType: string
+		lineageTag: ca1384fb-2f66-48e5-8dea-b8c9c7fbb685
+		summarizeBy: none
+		sourceColumn: Arrangement Type PK
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Arrangement Type-597c3ca7-59e2-4e86-8453-c8def7291a36' = m
 		mode: import
 		queryGroup: 'Model Queries'
@@ -39,13 +47,16 @@ table 'Arrangement Type'
 				    ArrangementType = 
 				    Table.SelectColumns(
 				        Table.AddColumn(
-				            Table.RenameColumns(
-				                SourceTable,
-				                {{"Type", "Arrangement Type"}}
+				            Table.AddColumn(
+				                Table.RenameColumns(
+				                    SourceTable,
+				                    {{"Type", "Arrangement Type"}}
+				                ),
+				                "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				            ),
-				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        "Arrangement Type PK", each Text.Combine({[RLS Key], [Arrangement Type]}, "-")
 				        ),
-				        {"RLS Key", "Arrangement Type", "ChildInvolvement"}
+				        {"RLS Key", "Arrangement Type PK", "Arrangement Type", "ChildInvolvement"}
 				    )
 				in
 				    ArrangementType

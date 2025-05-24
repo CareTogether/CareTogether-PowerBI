@@ -606,9 +606,10 @@ table Entity
 				    #"Reordered Columns" = Table.ReorderColumns(CombinedTables,{"OrganizationId", "LocationId", "RLS Key", "FamilyId", "Id", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "Line1", "Line2", "City", "County", "State", "PostalCode", "HomeChurch", "PersonId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType"}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"Id"}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Name", "Family Name"}, {"PrimaryEmail", "Email"}, {"PrimaryPhoneNumber", "Phone Number"}, {"Line1", "Address Line 1"}, {"Line2", "Address Line 2"}, {"FirstName", "First Name"}, {"LastName", "Last Name"}}),
-				    #"Inserted Merged Column" = Table.AddColumn(#"Renamed Columns", "Full Name", each Text.Combine({[First Name], [Last Name]}, " "), type text)
+				    #"Inserted Merged Column" = Table.AddColumn(#"Renamed Columns", "Full Name", each Text.Combine({[First Name], [Last Name]}, " "), type text),
+				    #"Removed Duplicates" = Table.Distinct(#"Inserted Merged Column", {"PersonId"})
 				in
-				    #"Inserted Merged Column"
+				    #"Removed Duplicates"
 				```
 
 	annotation PBI_NavigationStepName = Navigation

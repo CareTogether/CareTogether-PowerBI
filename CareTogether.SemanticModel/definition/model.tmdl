@@ -29,7 +29,7 @@ queryGroup RLS
 
 	annotation PBI_QueryGroupOrder = 4
 
-annotation PBI_QueryOrder = ["Location","Community","Role","OData Live","Production","Referral","Arrangement","Arrangement Type","Child Location Record","Approval Status","Close Reason","Arrangement Phase","Childcare","Childcare Plan","Date","_Measures","Community Member Families","Community Role Assignments","Function Assignments","Entity","Role Approval","RLS Location User - Approvals","RLS Location User - Arrangements","RLS Location User - Referral","RLS Location User - Locations","RLS Location User - Community"]
+annotation PBI_QueryOrder = ["Community","Role","OData Live","Production","Referral","Arrangement","Arrangement Type","Child Location Record","Approval Status","Close Reason","Arrangement Phase","Childcare","Childcare Plan","Date","_Measures","Community Member Families","Community Role Assignments","Function Assignments","Entity","Role Approval","RLS Location User - Approvals","RLS Location User - Arrangements","RLS Location User - Referral","RLS Location User - Locations","RLS Location User - Community","Location"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -42,7 +42,6 @@ annotation PBI_RemovedChildren = [{"remoteItemId":{"foreignKeyRelationship":{"fr
 annotation __TEdtr = 1
 
 ref table DateTableTemplate_281570fe-3908-44fd-b0fc-579445d6c411
-ref table Location
 ref table Role
 ref table Referral
 ref table Arrangement
@@ -78,6 +77,7 @@ ref table LocalDateTable_dff05e92-cf4f-4a2f-8fa1-12d5156f3746
 ref table 'RLS Location User - Referral'
 ref table 'RLS Location User - Locations'
 ref table 'RLS Location User - Community'
+ref table Location
 
 ref role Dynamic
 

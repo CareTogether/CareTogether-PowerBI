@@ -1,35 +1,31 @@
 table Location
-	lineageTag: 16a053ed-84f9-4826-879d-c70341fcdfb9
-
-	column Id
-		dataType: string
-		isHidden
-		isKey
-		lineageTag: 77c826a0-a516-4e55-a8d7-4c91f12da689
-		summarizeBy: none
-		sourceColumn: Id
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column Location
-		dataType: string
-		lineageTag: c9741d87-8c80-4ebf-98af-bfb5b2942cc9
-		summarizeBy: none
-		sourceColumn: Location
-
-		annotation SummarizationSetBy = Automatic
+	lineageTag: 9b78184e-f905-4fe7-8a9c-7b1b82d0da8c
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: 919fb02a-fa22-46da-bbd7-2ed4b4de9188
+		lineageTag: 8ad230f8-c550-405a-8203-c929a3086632
 		summarizeBy: none
 		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
-	partition Location-73b11de1-d894-44a9-b32e-4ba98f7ecfb2 = m
+	column Id
+		dataType: string
+		lineageTag: 21cf8ebc-50d3-4f02-9094-2fe85114b691
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: 97b1dc7f-4d67-4527-bf14-7423eb64f770
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Location = m
 		mode: import
 		queryGroup: 'Model Queries'
 		source = ```
@@ -48,12 +44,13 @@ table Location
 				        ),
 				        {"RLS Key", "Id", "Location"}
 				    )
-				        
 				in
 				    Locations
 				```
 
-	annotation PBI_ResultType = Table
+	changedProperty = Name
 
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

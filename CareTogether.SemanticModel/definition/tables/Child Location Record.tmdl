@@ -326,7 +326,7 @@ table 'Child Location Record'
 				                ),
 				                "Index", 1, 1, Int64.Type
 				            ),
-				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId], "-"})
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				        ),
 				        {"OrganizationId", "LocationId", "RLS Key", "ArrangementId", "ChildPersonId", "FamilyId", "ChildcarePlan", "Started", "Ended", "Duration", "Index"}
 				    ),
@@ -343,9 +343,10 @@ table 'Child Location Record'
 				        "Id",
 				        JoinKind.LeftOuter
 				    ),{"OrganizationId", "LocationId", "RLS Key", "ArrangementId", "ChildPersonId", "FamilyId", "Started", "ChildcarePlan", "Ended", "Duration", "Index", "Name"}), 
-				    {{"Name", "Childcare Family Name"}})
+				    {{"Name", "Childcare Family Name"}}),
+				    #"Removed Duplicates" = Table.Distinct(Combined, {"Index"})
 				in
-				    Combined
+				    #"Removed Duplicates"
 				```
 
 	annotation PBI_ResultType = Table
