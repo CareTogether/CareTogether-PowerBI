@@ -159,10 +159,6 @@ relationship b71d1bbe-7db0-3122-2557-534f5655c78f
 	fromColumn: 'Community Role Assignments'.PersonId
 	toColumn: Entity.PersonId
 
-relationship abe18f65-1233-3015-e4c3-3e961e8ac41e
-	fromColumn: 'Role Approval'.'Role Name'
-	toColumn: Role.'Role Name'
-
 relationship 37b30d6b-f416-6f58-6818-5e167639fd45
 	crossFilteringBehavior: bothDirections
 	toCardinality: many
@@ -191,4 +187,24 @@ relationship 2b222138-6250-8c2f-ed33-3d5b282bee7a
 	securityFilteringBehavior: bothDirections
 	fromColumn: 'RLS Location User - Locations'.'RLS Key'
 	toColumn: Location.'RLS Key'
+
+relationship 8f351d67-8216-c729-3f38-ea6890c52daf
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'RLS Location User - Arrangement Type'.'RLS Key'
+	toColumn: 'Arrangement Type'.'RLS Key'
+
+relationship e0e63704-7641-7a86-63ca-36f11c581f2c
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'RLS Location User - Role'.OrganizationId
+	toColumn: Role.OrganizationId
+
+relationship 9e085f6d-f238-fbac-c1f3-56665912e6b3
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Role.'Role Name'
+	toColumn: 'Role Approval'.'Role Name'
 

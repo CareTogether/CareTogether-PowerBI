@@ -334,6 +334,26 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "RLS Location User - Arrangement Type",
+          "nodeLineageTag": "0cd69502-2d52-44a5-857b-27e9b5570f5b",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "RLS Location User - Role",
+          "nodeLineageTag": "148d9c98-2c42-433d-b9fb-cbf549f9919a",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
@@ -347,7 +367,7 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 485.31224930776972
+        "y": 0
       },
       "nodes": [
         {
@@ -391,8 +411,8 @@
         },
         {
           "location": {
-            "x": 312.63977420268606,
-            "y": 1757.1342227246423
+            "x": 338.52309416576713,
+            "y": 2184.2090021154795
           },
           "nodeIndex": "Arrangement Phase",
           "nodeLineageTag": "8a45b6de-6ddf-451f-885a-53d149374a7d",
@@ -657,6 +677,32 @@
           "nodeLineageTag": "9b78184e-f905-4fe7-8a9c-7b1b82d0da8c",
           "size": {
             "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 308.84224128561834,
+            "y": 1746.598215373217
+          },
+          "nodeIndex": "RLS Location User - Arrangement Type",
+          "nodeLineageTag": "0cd69502-2d52-44a5-857b-27e9b5570f5b",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 515.90880099026685,
+            "y": 0
+          },
+          "nodeIndex": "RLS Location User - Role",
+          "nodeLineageTag": "148d9c98-2c42-433d-b9fb-cbf549f9919a",
+          "size": {
+            "height": 145,
             "width": 234
           },
           "zIndex": 0
