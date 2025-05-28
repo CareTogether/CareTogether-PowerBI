@@ -29,7 +29,7 @@ queryGroup RLS
 
 	annotation PBI_QueryGroupOrder = 4
 
-annotation PBI_QueryOrder = ["Community","Role","OData Live","Production","Referral","Arrangement","Arrangement Type","Child Location Record","Approval Status","Close Reason","Arrangement Phase","Childcare","Childcare Plan","Date","_Measures","Community Member Families","Community Role Assignments","Function Assignments","Entity","Role Approval","RLS Location User - Approvals","RLS Location User - Arrangements","RLS Location User - Referral","RLS Location User - Locations","RLS Location User - Community","Location","RLS Location User - Arrangement Type","RLS Location User - Role"]
+annotation PBI_QueryOrder = ["Community","Role","OData Live","Production","Referral","Arrangement","Arrangement Type","Child Location Record","Approval Status","Close Reason","Arrangement Phase","Childcare","Childcare Plan","Date","_Measures","Community Member Families","Community Role Assignments","Function Assignments","Entity","Role Approval","RLS Location User - Approvals","RLS Location User - Arrangements","RLS Location User - Referral","RLS Location User - Locations","RLS Location User - Community","Location","RLS Location User - Arrangement Type","RLS Location User - Role","RLS Location User - Entity"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -80,6 +80,7 @@ ref table 'RLS Location User - Community'
 ref table Location
 ref table 'RLS Location User - Arrangement Type'
 ref table 'RLS Location User - Role'
+ref table 'RLS Location User - Entity'
 
 ref role Dynamic
 

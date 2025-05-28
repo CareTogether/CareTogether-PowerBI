@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "db179545061c8d04967d",
   "position": {
     "x": 10.443686006825939,
@@ -382,5 +382,23 @@
       "filterChanges": true
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6fba59ee8ef2dd15a275",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approvals by Entity"
+              }
+            },
+            "Property": "Entity Type"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

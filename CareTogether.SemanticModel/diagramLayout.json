@@ -354,6 +354,16 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "RLS Location User - Entity",
+          "nodeLineageTag": "196bef88-706f-4131-bba1-e355518720a5",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
@@ -367,7 +377,7 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 0
+        "y": 388.24979944621577
       },
       "nodes": [
         {
@@ -703,6 +713,19 @@
           "nodeLineageTag": "148d9c98-2c42-433d-b9fb-cbf549f9919a",
           "size": {
             "height": 145,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1226.4059339768417,
+            "y": 1192.6951681632825
+          },
+          "nodeIndex": "RLS Location User - Entity",
+          "nodeLineageTag": "196bef88-706f-4131-bba1-e355518720a5",
+          "size": {
+            "height": 176,
             "width": 234
           },
           "zIndex": 0
