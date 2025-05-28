@@ -835,6 +835,7 @@
           ]
         },
         "howCreated": "User",
+        "isHiddenInViewMode": true,
         "isLockedInViewMode": true
       }
     ]
