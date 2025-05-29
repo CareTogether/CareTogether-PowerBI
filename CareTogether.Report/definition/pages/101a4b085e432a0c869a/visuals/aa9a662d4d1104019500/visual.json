@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "aa9a662d4d1104019500",
   "position": {
     "x": 8.6006825938566553,
@@ -711,6 +711,131 @@
           ]
         },
         "howCreated": "User",
+        "isLockedInViewMode": true
+      },
+      {
+        "name": "395fef7fe81c407e030e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "56b1eebe884ac377118b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "HomeChurch"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4a625f458d0156cfa425",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Community"
+              }
+            },
+            "Property": "First Community Membership"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8d19d8075da352acf42d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "Community Membership Count"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1e1cc6d181aab925cc5f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location"
+              }
+            },
+            "Property": "Location"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a57b757b6837fc48cf0c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "RLS Key Selected"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "e",
+              "Entity": "Entity",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "e"
+                            }
+                          },
+                          "Property": "RLS Key Selected"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isHiddenInViewMode": true,
         "isLockedInViewMode": true
       }
     ]

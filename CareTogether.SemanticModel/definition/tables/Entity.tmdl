@@ -294,6 +294,9 @@ table Entity
 		formatString: Short Date
 		lineageTag: fb33ac15-607e-454c-8940-c3532b67f934
 
+	measure 'RLS Key Selected' = SELECTEDVALUE('RLS Location User - Locations'[RLS Key])
+		lineageTag: 61551920-c7c2-404a-934a-1fe5310f46cd
+
 	column FamilyId
 		dataType: string
 		displayFolder: _columns

@@ -11,5 +11,11 @@ role Dynamic
 
 	tablePermission 'RLS Location User - Community' = USERNAME() = 'RLS Location User - Community'[UserId]
 
+	tablePermission 'RLS Location User - Arrangement Type' = USERNAME() = 'RLS Location User - Arrangement Type'[UserId]
+
+	tablePermission 'RLS Location User - Role' = USERNAME() = 'RLS Location User - Role'[UserId]
+
+	tablePermission 'RLS Location User - Entity' = USERNAME() = 'RLS Location User - Entity'[UserId]
+
 	annotation PBI_Id = 48755128b26e4366a08bd6a38df559b4
 

@@ -9,6 +9,14 @@ table Role
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: adae3153-d7bd-4bfb-a440-f20c0a2b55fa
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Role-e671c74c-88c5-4c48-a3a5-404c5dec31f4 = m
 		mode: import
 		queryGroup: 'Model Queries'
@@ -23,12 +31,10 @@ table Role
 				            SourceTable,
 				            {{"Name", "Role Name"}}
 				        ),
-				        {"Role Name"}
-				    ),
-				    #"Removed Duplicates" = Table.Distinct(Role)
-				    
+				        {"OrganizationId", "Role Name"}
+				    )
 				in
-				    #"Removed Duplicates"
+				    Role
 				```
 
 	annotation PBI_ResultType = Table

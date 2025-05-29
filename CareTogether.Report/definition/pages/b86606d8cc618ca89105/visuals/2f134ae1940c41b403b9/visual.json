@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "2f134ae1940c41b403b9",
   "position": {
     "x": 739.65870307167233,
@@ -580,5 +580,93 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a55e91f10a7c8e6c04a3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approvals by Entity"
+              }
+            },
+            "Property": "Dynamic Entity Name (Approvals)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d441430c30173df3e8ff",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Role"
+              }
+            },
+            "Property": "Role Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "34d252d281456de5195c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approval Status"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "81d7653ee6b9ef392d44",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Role Approval"
+              }
+            },
+            "Property": "Approval Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "89de4a93437b8d29729e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Role Approval"
+              }
+            },
+            "Property": "Entity Id"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "24ded3a5783b31f72f97",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "# of Entities in Role"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
