@@ -447,6 +447,7 @@ table Entity
 
 	column PersonId
 		dataType: string
+		displayFolder: _columns
 		lineageTag: ce8a1026-5955-4183-a8dd-91c131b60422
 		summarizeBy: none
 		sourceColumn: PersonId
@@ -455,6 +456,7 @@ table Entity
 
 	column OrganizationId
 		dataType: string
+		displayFolder: _columns
 		lineageTag: c2020579-1e5b-4384-8d73-c63db2883fb3
 		summarizeBy: none
 		sourceColumn: OrganizationId
@@ -463,6 +465,7 @@ table Entity
 
 	column LocationId
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 1cd5ece6-3e22-4e4d-a795-478aa93be465
 		summarizeBy: none
 		sourceColumn: LocationId
@@ -471,6 +474,7 @@ table Entity
 
 	column 'RLS Key'
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 087909ae-97c5-4c52-b7d3-0a256af54a96
 		summarizeBy: none
 		sourceColumn: RLS Key
@@ -479,6 +483,7 @@ table Entity
 
 	column 'Family Name'
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 74940fab-8358-4136-a3ed-8e8dbb227c74
 		summarizeBy: none
 		sourceColumn: Family Name
@@ -487,6 +492,7 @@ table Entity
 
 	column Email
 		dataType: string
+		displayFolder: _columns
 		lineageTag: c2808eba-a9ab-4a86-8eac-afe5be7fe2ad
 		summarizeBy: none
 		sourceColumn: Email
@@ -495,6 +501,7 @@ table Entity
 
 	column 'Phone Number'
 		dataType: string
+		displayFolder: _columns
 		lineageTag: fde2e83a-ee9f-4fed-aa17-6c29e5b9299a
 		summarizeBy: none
 		sourceColumn: Phone Number
@@ -503,6 +510,7 @@ table Entity
 
 	column 'Address Line 1'
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 38500f73-01a0-4d69-bf89-53aa8173d01f
 		summarizeBy: none
 		sourceColumn: Address Line 1
@@ -511,6 +519,7 @@ table Entity
 
 	column 'Address Line 2'
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 55a68ebf-4b08-4323-9f1b-ac3afc65629e
 		summarizeBy: none
 		sourceColumn: Address Line 2
@@ -519,6 +528,7 @@ table Entity
 
 	column City
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 0873ce1f-73e9-4a4c-94b8-031fcb88f04a
 		summarizeBy: none
 		sourceColumn: City
@@ -527,6 +537,7 @@ table Entity
 
 	column County
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 26222d31-db01-4684-9dd6-a138835ab0bf
 		summarizeBy: none
 		sourceColumn: County
@@ -535,6 +546,7 @@ table Entity
 
 	column State
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 3bad9943-09af-45ab-bfc3-8917498f84cd
 		summarizeBy: none
 		sourceColumn: State
@@ -543,6 +555,7 @@ table Entity
 
 	column PostalCode
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 4bcb8b53-8713-4a37-999f-5b70e43ad398
 		summarizeBy: none
 		sourceColumn: PostalCode
@@ -551,6 +564,7 @@ table Entity
 
 	column HomeChurch
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 03c5c23e-17a6-4b06-94d5-f94a6c7ba11a
 		summarizeBy: none
 		sourceColumn: HomeChurch
@@ -559,6 +573,7 @@ table Entity
 
 	column 'Full Name'
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 0fdf0d38-48ce-473f-8199-67e2ed60bf01
 		summarizeBy: none
 		sourceColumn: Full Name
