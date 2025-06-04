@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "3fdcbe5517eb24280a1c",
   "position": {
     "x": 369.82935153583617,
@@ -337,5 +337,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a4e4016c1c5f687072b2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Community"
+              }
+            },
+            "Property": "Community Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "725923dc40cb975ebae0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "# of Entities in Role"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
