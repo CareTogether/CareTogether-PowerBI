@@ -1,4 +1,5 @@
 import sys 
+import subprocess
 from pathlib import Path
 
 def validate_structure():
@@ -34,6 +35,19 @@ def validate_structure():
     else:
         print('✅ Project structure is correct.')
 
+def is_ignored_by_git(filepath: Path) -> bool:
+    """Retorna True se o arquivo for ignorado pelo .gitignore, False caso contrário."""
+    try:
+        result = subprocess.run(
+            ["git", "check-ignore", "-q", str(filepath)],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+        return result.returncode == 0
+    except Exception as e:
+        print(f"⚠️ Warning: Failed to check git ignore for {filepath}: {e}")
+        return False
+
 def check_file_integrity():
     root_path = Path(".")
     search_paths = [
@@ -41,12 +55,11 @@ def check_file_integrity():
         root_path / "CareTogether.SemanticModel",
     ]
 
-    # Dicionário com extensões e suas respectivas localizações
     file_types = {
         "tmdl": [],
         "json": [],
         "pbism": [],
-        "pbip": [],  # <- este será tratado separadamente
+        "pbip": [],
     }
 
     # Buscar .pbip na raiz do projeto (não recursivo)
@@ -66,8 +79,11 @@ def check_file_integrity():
         print(f"\n🔍 Checking .{ext} files...")
         errors = 0
 
+        # Filtra arquivos ignorados pelo git
+        files = [f for f in files if not is_ignored_by_git(f)]
+
         if not files:
-            print(f"⚠️ No .{ext} files found.")
+            print(f"⚠️ No .{ext} files found (or all ignored by git).")
             continue
 
         for file in files:
