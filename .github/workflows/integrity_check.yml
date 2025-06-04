@@ -20,4 +20,4 @@ jobs:
           python-version: "3.11"
 
       - name: Run integrity check
-        run: python PBI_CD.py
+        run: python pbi_ci.py
