@@ -35,17 +35,16 @@ def validate_structure():
     else:
         print('✅ Project structure is correct.')
 
-def is_ignored_by_git(filepath: Path) -> bool:
-    """Retorna True se o arquivo for ignorado pelo .gitignore, False caso contrário."""
+def is_git_ignored(filepath: Path) -> bool:
     try:
         result = subprocess.run(
-            ["git", "check-ignore", "-q", str(filepath)],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            ["git", "check-ignore", str(filepath)],
+            capture_output=True,
+            text=True,
         )
-        return result.returncode == 0
+        return result.returncode == 0 and result.stdout.strip() == str(filepath)
     except Exception as e:
-        print(f"⚠️ Warning: Failed to check git ignore for {filepath}: {e}")
+        print(f"⚠️ Warning: Could not check git ignore status for {filepath}: {e}")
         return False
 
 def check_file_integrity():
@@ -62,10 +61,8 @@ def check_file_integrity():
         "pbip": [],
     }
 
-    # Buscar .pbip na raiz do projeto (não recursivo)
     file_types["pbip"].extend(root_path.glob("*.pbip"))
 
-    # Buscar os demais tipos recursivamente nas pastas definidas
     for base in search_paths:
         if not base.exists():
             print(f"⚠️ Warning: Directory not found: {base.resolve()}")
@@ -73,17 +70,20 @@ def check_file_integrity():
         for ext in ("tmdl", "json", "pbism"):
             file_types[ext].extend(base.rglob(f"*.{ext}"))
 
+    # Filtra arquivos ignorados pelo git
+    for ext in file_types:
+        files = file_types[ext]
+        filtered = [f for f in files if not is_git_ignored(f)]
+        file_types[ext] = filtered
+
     total_errors = 0
 
     for ext, files in file_types.items():
         print(f"\n🔍 Checking .{ext} files...")
         errors = 0
 
-        # Filtra arquivos ignorados pelo git
-        files = [f for f in files if not is_ignored_by_git(f)]
-
         if not files:
-            print(f"⚠️ No .{ext} files found (or all ignored by git).")
+            print(f"⚠️ No .{ext} files found.")
             continue
 
         for file in files:
