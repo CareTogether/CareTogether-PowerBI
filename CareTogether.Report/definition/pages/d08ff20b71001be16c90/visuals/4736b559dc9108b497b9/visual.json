@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "4736b559dc9108b497b9",
   "position": {
     "x": 10,
@@ -481,5 +481,135 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d50ff4ea95c97ff912ed",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location"
+              }
+            },
+            "Property": "Location"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "cc082f46b0cea9356f91",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referral"
+              }
+            },
+            "Property": "# of Families Referred"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "37db9683e7b9c1478d64",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "# of Families Supported"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8f95c69b34f542f89546",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "# of Children Cared For"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "07bdb936cbd65dfa7afd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement"
+              }
+            },
+            "Property": "# of Arrangements Started"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f4713639d4bcfc40381f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "Days of Care"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b14ccbee96a365ab8049",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "Nights of Care"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ff8eb5696880081ae9ea",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "# Impacted Adults"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6936a80e802639c3f99b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "# Impacted Children"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

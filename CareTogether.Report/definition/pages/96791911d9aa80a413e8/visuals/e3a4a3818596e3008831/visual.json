@@ -802,8 +802,7 @@
           }
         },
         "type": "Advanced",
-        "howCreated": "User",
-        "isLockedInViewMode": true
+        "howCreated": "User"
       },
       {
         "name": "ccafc08ecbb0ab24d70d",
@@ -820,7 +819,6 @@
         },
         "type": "Categorical",
         "howCreated": "User",
-        "isLockedInViewMode": true,
         "objects": {
           "general": [
             {

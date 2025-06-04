@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "cec66ef7e524732b0413",
   "position": {
     "x": 383.9590443686007,
@@ -586,6 +586,118 @@
             }
           ]
         }
+      },
+      {
+        "name": "d0d3a1d16ed0f59c97cb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "Full Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "85b944c96386122924ae",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "YYYY-MM-dd"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "438597cf53a9c952b0cb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "Childcare Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "dd8461c2ab54c083830e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement Type"
+              }
+            },
+            "Property": "Arrangement Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "decd0da0a37a07d321a5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement"
+              }
+            },
+            "Property": "Reason"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e143b765901cb3e2e0c8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ChildLocationExpanded"
+              }
+            },
+            "Property": "OvernightStay"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "53c447dda6eca925b013",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "Started"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "92006b5a87dade4c4ca7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "Ended"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }
