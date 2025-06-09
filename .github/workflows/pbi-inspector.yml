@@ -1,30 +1,31 @@
-name: PBI Inspector on PBIP
+name: Run PBI Inspector
 
 on:
   push:
   pull_request:
 
 jobs:
-  inspect-pbip:
+  inspect:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout your repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install ts-node globally
+        run: npm install -g ts-node typescript
 
       - name: Clone PBI Inspector V2
         run: git clone https://github.com/NatVanG/PBI-InspectorV2.git
 
-      - name: Install PBI Inspector dependencies
-        working-directory: ./PBI-InspectorV2
-        run: npm install
+      - name: Run PBI Inspector CLI
+        run: npx ts-node PBI-InspectorV2/src/cli.ts inspect ./CareTogether.pbip --output result.json
 
-      - name: Run PBI Inspector
-        working-directory: ./PBI-InspectorV2
-        run: npx ts-node src/cli.ts inspect ../CareTogether.pbip --output ../result.json
-
-      - name: Upload inspection results
+      - name: Upload inspection result
         uses: actions/upload-artifact@v4
         with:
-          name: pbiinspector-result
+          name: pbi-inspector-result
           path: result.json
