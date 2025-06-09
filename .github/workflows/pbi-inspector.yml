@@ -1,40 +1,30 @@
-name: PBI Inspector Analysis
+name: Run PBI Inspector
 
 on:
   push:
-    paths:
-      - '*.pbip'
   pull_request:
-    paths:
-      - '*.pbip'
 
 jobs:
   run-inspector:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
+    - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
       with:
-        node-version: '18'
+        dotnet-version: '7.0.x'
 
     - name: Install PBI Inspector
-      run: |
-        git clone https://github.com/NatVanG/PBI-InspectorV2.git pbi-inspector
-        cd pbi-inspector
-        npm install
+      run: dotnet tool install --global pbiinspector.cli
 
-    - name: Run PBI Inspector
-      run: |
-        cd pbi-inspector
-        # Ajuste aqui o caminho para seu arquivo .pbip
-        node index.js ../CareTogether.pbip --output ../pbi-inspector-report.json
+    - name: Run PBI Inspector on pbip file
+      run: pbiinspector inspect CareTogether.pbip --output result.json
 
-    - name: Upload report artifact
+    - name: Upload result
       uses: actions/upload-artifact@v3
       with:
-        name: pbi-inspector-report
-        path: pbi-inspector-report.json
+        name: pbiinspector-result
+        path: result.json
