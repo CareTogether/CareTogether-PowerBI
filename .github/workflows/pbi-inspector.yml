@@ -1,0 +1,24 @@
+name: Power BI Inspector CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  run-inspector:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout your repository
+        uses: actions/checkout@v4
+
+      - name: Clone PBI-InspectorV2
+        run: git clone https://github.com/NatVanG/PBI-InspectorV2.git inspector
+
+      - name: Run PBI Inspector
+        shell: pwsh
+        run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+          ./inspector/src/cli/Check.ps1 -Path ./CareTogether.pbip -OutputFormat text -FailOnError
