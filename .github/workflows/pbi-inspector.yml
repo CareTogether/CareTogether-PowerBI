@@ -1,23 +1,40 @@
-name: Run PBI Inspector V2
+name: PBI Inspector Analysis
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - '*.pbip'
   pull_request:
+    paths:
+      - '*.pbip'
 
 jobs:
-  pbi-inspector:
-    runs-on: windows-latest
+  run-inspector:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout repo
+      uses: actions/checkout@v3
 
-      - name: Download PBI Inspector CLI
-        run: |
-          curl -L -o PBIInspectorCLI.zip https://github.com/NatVanG/PBI-InspectorV2/releases/download/v2.3/PBIRInspectorCLI.zip
-          Expand-Archive PBIInspectorCLI.zip -DestinationPath PBIInspectorCLI
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
-      - name: Run PBI Inspector CLI
-        run: |
-          ./PBIInspectorCLI/PBIRInspectorCLI.exe -fabricitem "./CareTogether.pbip" -rules "./rules/Base-rules.json" -formats "GitHub" -verbose true
+    - name: Install PBI Inspector
+      run: |
+        git clone https://github.com/NatVanG/PBI-InspectorV2.git pbi-inspector
+        cd pbi-inspector
+        npm install
+
+    - name: Run PBI Inspector
+      run: |
+        cd pbi-inspector
+        # Ajuste aqui o caminho para seu arquivo .pbip
+        node index.js ../CareTogether.pbip --output ../pbi-inspector-report.json
+
+    - name: Upload report artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: pbi-inspector-report
+        path: pbi-inspector-report.json
