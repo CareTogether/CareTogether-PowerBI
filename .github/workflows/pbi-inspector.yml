@@ -22,7 +22,8 @@ jobs:
         run: git clone https://github.com/NatVanG/PBI-InspectorV2.git
 
       - name: Run PBI Inspector CLI
-        run: npx ts-node PBI-InspectorV2/src/cli.ts inspect ./CareTogether.pbip --output result.json
+        working-directory: ./PBI-InspectorV2
+        run: npx ts-node src/cli.ts inspect ../CareTogether.pbip --output ../result.json
 
       - name: Upload inspection result
         uses: actions/upload-artifact@v4
