@@ -11,16 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          dotnet-version: '7.0.x'
+          node-version: '18'
 
-      - name: Install PBI Inspector CLI
-        run: dotnet tool install --global pbiinspector.cli
+      - name: Install PBI Inspector CLI globally
+        run: npm install -g @natvang/pbi-inspector
 
       - name: Run PBI Inspector on CareTogether.pbip
-        run: pbiinspector inspect CareTogether.pbip --output result.json
+        run: pbi-inspector inspect ./CareTogether.pbip --output result.json
 
       - name: Upload inspection results
         uses: actions/upload-artifact@v4
