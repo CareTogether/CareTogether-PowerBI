@@ -5,26 +5,25 @@ on:
   pull_request:
 
 jobs:
-  run-inspector:
+  inspect-pbip:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '7.0.x'
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
 
-    - name: Install PBI Inspector
-      run: dotnet tool install --global pbiinspector.cli
+      - name: Install PBI Inspector CLI
+        run: dotnet tool install --global pbiinspector.cli
 
-    - name: Run PBI Inspector on pbip file
-      run: pbiinspector inspect CareTogether.pbip --output result.json
+      - name: Run PBI Inspector on CareTogether.pbip
+        run: pbiinspector inspect CareTogether.pbip --output result.json
 
-    - name: Upload result
-      uses: actions/upload-artifact@v3
-      with:
-        name: pbiinspector-result
-        path: result.json
+      - name: Upload inspection results
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbiinspector-result
+          path: result.json
