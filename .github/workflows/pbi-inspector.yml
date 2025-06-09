@@ -30,4 +30,5 @@ jobs:
 
       - name: Run PBI Inspector
         run: |
-          python inspector/check.py CareTogether.pbip --fail-on-error --output-format text
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/inspector/src
+          python -m pbi_inspector check CareTogether.pbip --fail-on-error --output-format text
