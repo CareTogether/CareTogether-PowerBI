@@ -109,7 +109,6 @@ def check_file_integrity():
     else:
         print("\n✅ All files passed integrity check.")
 
-
 if __name__ == '__main__':
     validate_structure()
     check_file_integrity()

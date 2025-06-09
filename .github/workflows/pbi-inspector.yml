@@ -1,0 +1,29 @@
+name: Power BI Inspector CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  run-inspector:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install PBI-InspectorV2
+        run: |
+          python -m pip install --upgrade pip
+          pip install git+https://github.com/NatVanG/PBI-InspectorV2.git
+
+      - name: Run PBI Inspector on CareTogether.pbip
+        run: |
+          pbi-inspector check CareTogether.pbip --fail-on-error --output-format text
