@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout your project repository
+      - name: Checkout your repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -19,11 +19,15 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Clone PBI-InspectorV2 repository
+      - name: Install required Python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install jsonschema
+
+      - name: Clone PBI-InspectorV2
         run: |
           git clone https://github.com/NatVanG/PBI-InspectorV2.git inspector
-          pip install -r inspector/requirements.txt
 
-      - name: Run PBI Inspector on CareTogether.pbip
+      - name: Run PBI Inspector
         run: |
           python inspector/check.py CareTogether.pbip --fail-on-error --output-format text
