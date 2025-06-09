@@ -1,4 +1,4 @@
-name: Run PBI Inspector
+name: PBI Inspector on PBIP
 
 on:
   push:
@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout your repo
+        uses: actions/checkout@v3
 
       - name: Clone PBI Inspector V2
         run: git clone https://github.com/NatVanG/PBI-InspectorV2.git
@@ -20,8 +21,7 @@ jobs:
 
       - name: Run PBI Inspector
         working-directory: ./PBI-InspectorV2
-        run: |
-          npx ts-node src/cli.ts inspect ../CareTogether.pbip --output ../result.json
+        run: npx ts-node src/cli.ts inspect ../CareTogether.pbip --output ../result.json
 
       - name: Upload inspection results
         uses: actions/upload-artifact@v4
