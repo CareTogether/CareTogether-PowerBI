@@ -29,10 +29,17 @@ jobs:
           cd PBI-InspectorV2/PBIRInspectorCLI
           dotnet build -c Release
 
-      - name: Run validation
+      - name: Run PBIRInspector validation
+        shell: pwsh
         run: |
-          .\PBI-InspectorV2\PBIRInspectorCLI\bin\Release\net8.0\PBIRInspectorCLI.exe `
-            -fabricitem "${{ github.workspace }}/CareTogether.Report" `
-            -rules "${{ github.workspace }}/rules/pbi-inspector-rules.json" `
-            -formats "Console,GitHub" `
-            -failOnIssue true
+          $output = & .\PBI-InspectorV2\PBIRInspectorCLI\bin\Release\net8.0\PBIRInspectorCLI.exe `
+            -fabricitem "${{ github.workspace }}\CareTogether.Report" `
+            -rules "${{ github.workspace }}\rules\pbi-inspector-rules.json" `
+            -formats "Console,GitHub"
+
+          Write-Output $output
+
+          if ($output -match "❌") {
+            Write-Error "PBIRInspector found issues in the report."
+            exit 1
+          }
