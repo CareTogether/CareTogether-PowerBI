@@ -39,7 +39,7 @@ jobs:
 
           Write-Output $output
 
-          if ($output -match "❌") {
-            Write-Error "PBIRInspector found issues in the report."
+          if ($output -match "Warning:") {
+            Write-Error "Validation failed due to rule violations."
             exit 1
           }
