@@ -32,7 +32,7 @@ jobs:
       - name: Run validation
         run: |
           .\PBI-InspectorV2\PBIRInspectorCLI\bin\Release\net8.0\PBIRInspectorCLI.exe `
-            -fabricitem "${{ github.workspace }}\CareTogether.Report" `
-            -rules "${{ github.workspace }}\rules\pbi-inspector-rules.json" `
+            -fabricitem "${{ github.workspace }}/CareTogether.Report" `
+            -rules "${{ github.workspace }}/rules/pbi-inspector-rules.json" `
             -formats "Console,GitHub" `
             -failOnIssue true
