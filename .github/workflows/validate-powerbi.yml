@@ -1,0 +1,38 @@
+name: Validate Power BI report
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**.pbip'
+      - '**.tmdl'
+      - 'rules/**'
+
+jobs:
+  validate:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Clone PBIRInspectorV2
+        run: git clone https://github.com/NatVanG/PBI-InspectorV2.git
+
+      - name: Build PBIRInspectorCLI
+        run: |
+          cd PBI-InspectorV2/PBIRInspectorCLI
+          dotnet build -c Release
+
+      - name: Run validation
+        run: |
+          .\PBI-InspectorV2\PBIRInspectorCLI\bin\Release\net8.0\PBIRInspectorCLI.exe `
+            -fabricitem "${{ github.workspace }}\CareTogether.Report" `
+            -rules "${{ github.workspace }}\rules\pbi-inspector-rules.json" `
+            -formats "Console,GitHub" `
+            -failOnIssue true
