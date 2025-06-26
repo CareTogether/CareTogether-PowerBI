@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
-  "name": "e3a4a3818596e3008831",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "9b68b6ad157412dbb610",
   "position": {
     "x": 10.443686006825939,
-    "y": 116.7235494880546,
-    "z": 4000,
-    "height": 593.44709897610926,
+    "y": 99.5221843003413,
+    "z": 3000,
+    "height": 608.80546075085329,
     "width": 1260,
-    "tabOrder": 4000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "tableEx",
@@ -17,18 +17,62 @@
           "projections": [
             {
               "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Entity"
+                    }
+                  },
+                  "Property": "Family Name"
+                }
+              },
+              "queryRef": "Entity.Family Name",
+              "nativeQueryRef": "Family Name"
+            },
+            {
+              "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Export Contacts"
+                      "Entity": "Role Approval"
                     }
                   },
-                  "Property": "Dynamic Entity Name (Approval)"
+                  "Property": "Volunteer Family Status Flag"
                 }
               },
-              "queryRef": "Export Contacts.Dynamic Entity Name (Approval)",
-              "nativeQueryRef": "Name",
-              "displayName": "Name"
+              "queryRef": "Role Approval.Volunteer Family Status Flag",
+              "nativeQueryRef": "Family Status",
+              "displayName": "Family Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Entity"
+                    }
+                  },
+                  "Property": "Full Name"
+                }
+              },
+              "queryRef": "Entity.Full Name",
+              "nativeQueryRef": "Person Name",
+              "displayName": "Person Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Role Approval"
+                    }
+                  },
+                  "Property": "Volunteer Individual Status Flag"
+                }
+              },
+              "queryRef": "Role Approval.Volunteer Individual Status Flag",
+              "nativeQueryRef": "Person Status",
+              "displayName": "Person Status"
             },
             {
               "field": {
@@ -122,40 +166,11 @@
                       "Entity": "Entity"
                     }
                   },
-                  "Property": "State"
-                }
-              },
-              "queryRef": "Entity.State",
-              "nativeQueryRef": "State"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Entity"
-                    }
-                  },
                   "Property": "PostalCode"
                 }
               },
               "queryRef": "Entity.PostalCode",
               "nativeQueryRef": "PostalCode"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Entity"
-                    }
-                  },
-                  "Property": "FamilyId"
-                }
-              },
-              "queryRef": "Entity.FamilyId",
-              "nativeQueryRef": " ",
-              "displayName": " "
             }
           ]
         }
@@ -164,13 +179,13 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Export Contacts"
+                    "Entity": "Entity"
                   }
                 },
-                "Property": "Dynamic Entity Name (Approval)"
+                "Property": "Family Name"
               }
             },
             "direction": "Ascending"
@@ -179,6 +194,44 @@
       }
     },
     "objects": {
+      "grid": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EFEFEF'"
+                    }
+                  }
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ],
       "values": [
         {
           "properties": {
@@ -257,14 +310,47 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "144.68612033644854D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Entity.FamilyId"
+            "metadata": "Entity.Full Name"
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "137.61774821355488D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Role Approval.Volunteer Family Status Flag"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "114.04436525992223D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Role Approval.Volunteer Individual Status Flag"
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
         }
       ],
       "total": [
@@ -274,44 +360,6 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "grid": [
-        {
-          "properties": {
-            "outlineStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "outlineColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#EFEFEF'"
-                    }
-                  }
-                }
-              }
-            },
-            "gridHorizontal": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "rowPadding": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
                 }
               }
             }
@@ -361,13 +409,6 @@
                   "Value": "true"
                 }
               }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "' '"
-                }
-              }
             }
           }
         }
@@ -397,13 +438,6 @@
               "expr": {
                 "Literal": {
                   "Value": "8D"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "' '"
                 }
               }
             }
@@ -573,104 +607,8 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "67c06ee220eb80ed0854",
+        "name": "f99a5827ac2405aab80b",
         "ordinal": 0,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "FamilyId"
-          }
-        },
-        "type": "Categorical",
-        "isHiddenInViewMode": true,
-        "isLockedInViewMode": true
-      },
-      {
-        "name": "d86ad02a0353ac215e68",
-        "ordinal": 1,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Export Contacts"
-              }
-            },
-            "Property": "Dynamic Entity Name (Approval)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "8d3fee0bc3786443ae75",
-        "ordinal": 2,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Community"
-              }
-            },
-            "Property": "Community Name"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "User",
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      },
-      {
-        "name": "40ff275d3bd75824b141",
-        "displayName": "Home Church",
-        "ordinal": 3,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "HomeChurch"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "User"
-      },
-      {
-        "name": "7172210ecd3bc2cdaba3",
-        "ordinal": 4,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Role"
-              }
-            },
-            "Property": "Role Name"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "User"
-      },
-      {
-        "name": "62a32508d20b530641b4",
-        "ordinal": 5,
         "field": {
           "Column": {
             "Expression": {
@@ -684,8 +622,8 @@
         "type": "Categorical"
       },
       {
-        "name": "52c57556805a585470c7",
-        "ordinal": 6,
+        "name": "f9595f50402a33842bed",
+        "ordinal": 1,
         "field": {
           "Column": {
             "Expression": {
@@ -699,8 +637,8 @@
         "type": "Categorical"
       },
       {
-        "name": "da9529a317c661d2378a",
-        "ordinal": 7,
+        "name": "0877463cd61a00ca087b",
+        "ordinal": 2,
         "field": {
           "Column": {
             "Expression": {
@@ -714,8 +652,8 @@
         "type": "Categorical"
       },
       {
-        "name": "5bc9fa6c59a03523306e",
-        "ordinal": 8,
+        "name": "6bee80ccc1ae4a035646",
+        "ordinal": 3,
         "field": {
           "Column": {
             "Expression": {
@@ -729,8 +667,8 @@
         "type": "Categorical"
       },
       {
-        "name": "0f2cdaf0b78a78b7004b",
-        "ordinal": 9,
+        "name": "4a816c80b883e0006b28",
+        "ordinal": 4,
         "field": {
           "Column": {
             "Expression": {
@@ -744,8 +682,83 @@
         "type": "Categorical"
       },
       {
-        "name": "c3d10f0cbc5431251c1a",
-        "ordinal": 10,
+        "name": "c1907b530500447ba701",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "e",
+              "Entity": "Entity",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "e"
+                            }
+                          },
+                          "Property": "Family Name"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      },
+      {
+        "name": "d74e135dda07d1238a4b",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Entity"
+              }
+            },
+            "Property": "Full Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c129bfdb2949b473ee09",
+        "ordinal": 7,
         "field": {
           "Column": {
             "Expression": {
@@ -759,8 +772,8 @@
         "type": "Categorical"
       },
       {
-        "name": "4ed43f684a2bc5ac29d9",
-        "ordinal": 11,
+        "name": "c8894cb0dd5505e07825",
+        "ordinal": 8,
         "field": {
           "Column": {
             "Expression": {
@@ -774,72 +787,38 @@
         "type": "Categorical"
       },
       {
-        "name": "e645b7486bbb703e1b7d",
-        "ordinal": 12,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "State"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "07d619698618b6ea0d40",
-        "ordinal": 13,
+        "name": "d44446935aa3ee16a464",
+        "ordinal": 9,
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Role Approval"
               }
             },
-            "Property": "Entity Last Assignment Date"
+            "Property": "Volunteer Family Status Flag"
           }
         },
-        "type": "Advanced",
-        "howCreated": "User",
-        "isLockedInViewMode": true
+        "type": "Advanced"
       },
       {
-        "name": "ccafc08ecbb0ab24d70d",
-        "ordinal": 14,
+        "name": "7384fde40366b1a17057",
+        "ordinal": 10,
         "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Role Approval"
               }
             },
-            "Property": "Participation Type"
+            "Property": "Volunteer Individual Status Flag"
           }
         },
-        "type": "Categorical",
-        "howCreated": "User",
-        "isLockedInViewMode": true,
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
+        "type": "Advanced"
       },
       {
-        "name": "97533da7124c7c76f41c",
-        "ordinal": 15,
+        "name": "2dab7609b64d602e1ed0",
+        "ordinal": 11,
         "field": {
           "Measure": {
             "Expression": {
@@ -890,7 +869,8 @@
           ]
         },
         "howCreated": "User",
-        "isHiddenInViewMode": true
+        "isHiddenInViewMode": true,
+        "isLockedInViewMode": true
       }
     ],
     "filterSortOrder": "Custom"

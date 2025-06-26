@@ -33,7 +33,7 @@ annotation PBI_QueryOrder = ["Community","Role","OData Live","Production","Refer
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.143.1204.0 (25.05)+23c84aace645781dd62b8a26eb0418c7e6a84b72
+annotation PBIDesktopVersion = 2.144.1155.0 (25.06)+46435b07013d2a234d7fd007083a9e70b8e79f1c
 
 annotation PBI_ProTooling = ["CalcGroup","DevMode","DaxQueryView_Desktop"]
 
@@ -66,7 +66,6 @@ ref table LocalDateTable_de2c3251-3f42-4917-b1a3-c8994b5b4a55
 ref table 'Role Approval'
 ref table 'Approvals by Entity'
 ref table 'Engagement by Entity'
-ref table 'Export Contacts'
 ref table 'Arrangements by Entity'
 ref table 'RLS Location User - Approvals'
 ref table 'RLS Location User - Arrangements'

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "828858e1023d822a737d",
   "position": {
     "x": 382.14285714285717,
@@ -719,65 +719,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "4acb5336be1409e0bc08",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "11c905633e2c199e6c82",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Month Name Short"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "533d1f513baa07cca1ad",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Location"
-              }
-            },
-            "Property": "Location"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "44d162dc427d3e43a400",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "# of Children Cared For"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

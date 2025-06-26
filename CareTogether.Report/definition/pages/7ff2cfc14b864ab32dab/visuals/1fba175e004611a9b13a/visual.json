@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "1fba175e004611a9b13a",
   "position": {
     "x": 640.13651877133111,
@@ -578,62 +578,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "76486043152c0b40a354",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "Family Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "0de09770644018286015",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "Full Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "334873341a5c90c6dea0",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement Type"
-              }
-            },
-            "Property": "Arrangement Type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "0c2b2993b3501070e013",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "Id"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }
