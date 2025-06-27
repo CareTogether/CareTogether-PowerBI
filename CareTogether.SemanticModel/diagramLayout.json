@@ -260,16 +260,6 @@
         },
         {
           "location": {},
-          "nodeIndex": "Export Contacts",
-          "nodeLineageTag": "60ba141e-f35f-47f1-89c6-55e30f55efa7",
-          "size": {
-            "height": 128,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {},
           "nodeIndex": "Arrangements by Entity",
           "nodeLineageTag": "e19223f9-8daf-425c-b34a-68e984e4dc8d",
           "size": {
@@ -377,7 +367,7 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 388.24979944621577
+        "y": 208.36072570280245
       },
       "nodes": [
         {

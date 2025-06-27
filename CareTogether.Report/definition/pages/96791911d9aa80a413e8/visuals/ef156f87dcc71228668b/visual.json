@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
-  "name": "91a1cbf0411a520a7dea",
+  "name": "ef156f87dcc71228668b",
   "position": {
-    "x": 10,
-    "y": 550.58823529411768,
-    "z": 2000,
-    "height": 158.8235294117647,
-    "width": 364.70588235294116,
-    "tabOrder": 2000
+    "x": 301.02389078498294,
+    "y": 7.3720136518771335,
+    "z": 3001,
+    "height": 92.150170648464169,
+    "width": 969.41979522184306,
+    "tabOrder": 3001
   },
   "visual": {
     "visualType": "textbox",
@@ -19,20 +19,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "Days of Care:",
-                    "textStyle": {
-                      "fontWeight": "bold",
-                      "fontSize": "8pt"
-                    }
-                  },
-                  {
-                    "value": " # of days on which a child was cared for by volunteers (counts total dates, like check-in to check-out at a hotel);",
+                    "value": "To apply filters to the data:",
                     "textStyle": {
                       "fontSize": "8pt"
                     }
                   }
-                ],
-                "listType": "bullet"
+                ]
               },
               {
                 "textRuns": [
@@ -44,57 +36,65 @@
               {
                 "textRuns": [
                   {
-                    "value": "Nights of Care:",
+                    "value": "Click on the table",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "8pt"
                     }
                   },
                   {
-                    "value": " # of times a child was cared for by volunteers overnight (counts actual nights only, like nights at a hotel)",
+                    "value": " to activate it.",
                     "textStyle": {
                       "fontSize": "8pt"
                     }
                   }
                 ],
-                "listType": "bullet"
+                "listType": "ordered"
               },
               {
                 "textRuns": [
                   {
-                    "value": ""
-                  }
-                ]
-              },
-              {
-                "textRuns": [
+                    "value": "Use the ",
+                    "textStyle": {
+                      "fontSize": "8pt"
+                    }
+                  },
                   {
-                    "value": "Children Served:",
+                    "value": "available filters",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "8pt"
                     }
                   },
                   {
-                    "value": " # of children who were cared for at least once by volunteers",
+                    "value": " on the side panel or interact directly with the fields in the table.",
                     "textStyle": {
                       "fontSize": "8pt"
                     }
                   }
                 ],
-                "listType": "bullet"
+                "listType": "ordered"
               },
               {
                 "textRuns": [
                   {
-                    "value": ""
-                  }
-                ]
-              },
-              {
-                "textRuns": [
+                    "value": "💡 ",
+                    "textStyle": {
+                      "fontSize": "8pt"
+                    }
+                  },
                   {
-                    "value": ""
+                    "value": "Tip",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "8pt"
+                    }
+                  },
+                  {
+                    "value": ": The export will reflect any filters that are applied. Make sure to set the filters first if you want to limit the exported data.",
+                    "textStyle": {
+                      "fontSize": "8pt"
+                    }
                   }
                 ]
               }
@@ -104,33 +104,27 @@
       ]
     },
     "visualContainerObjects": {
-      "background": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
       "padding": [
         {
           "properties": {
-            "bottom": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "10D"
                 }
               }
             },
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "15D"
+                  "Value": "10D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

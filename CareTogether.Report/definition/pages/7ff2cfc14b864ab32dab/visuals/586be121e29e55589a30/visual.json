@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "586be121e29e55589a30",
   "position": {
     "x": 11.058020477815699,
@@ -634,62 +634,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "a3844bdd5f6233fcbcbf",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Function Assignments"
-              }
-            },
-            "Property": "EntityId"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "7df8b72de5c2e0dca372",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Engagement by Entity"
-              }
-            },
-            "Property": "Dynamic Entity Name (Engagement)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "5c6dd980d61bb58a6114",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "Entity Last Assignment Date"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "0ea8bcf8cdb3066d11ea",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "Participation Type"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

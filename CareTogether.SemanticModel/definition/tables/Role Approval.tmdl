@@ -6,8 +6,6 @@ table 'Role Approval'
 			VAR Tracker =
 			    SWITCH(
 			        TRUE(),
-			
-			        // Nível mais detalhado: mostrar somente se houver movimentação
 			        ISINSCOPE('Role Approval'[Entity Name]),
 			        VAR MaxDate = CALCULATE(
 			            MAX('Role Approval'[Date]),
@@ -15,7 +13,6 @@ table 'Role Approval'
 			        )
 			        RETURN IF(ISBLANK(MaxDate), BLANK(), FORMAT(MaxDate, "YYYY-MM-DD")),
 			
-			        // Nível intermediário: sempre mostrar
 			        ISINSCOPE('Role Approval'[Role Name]),
 			        FORMAT(CALCULATE(
 			            DISTINCTCOUNT('Role Approval'[Entity Id]),
@@ -32,6 +29,74 @@ table 'Role Approval'
 			RETURN
 			    IF(ISBLANK(Tracker), BLANK(), Tracker)
 		lineageTag: 590209fb-c050-4003-98c4-8671173f3212
+
+	measure 'Volunteer Family Status Flag' = ```
+			
+			
+			// INACTIVE OR ACTIVE DEFINITION:  
+			// Inactive = only 'inactive' or 'denied'
+			// Blank = no role approval
+			// Active = anything other than 'inactive' or 'denied'
+			
+			VAR StartDate = [Selected Timeframe Start] 
+			VAR EndDate = [Selected Timeframe End]
+			
+			VAR FamilyInactive = 
+			    CALCULATE(
+			        COUNTROWS('Role Approval'),
+			        'Role Approval'[Date] >= StartDate && 'Role Approval'[Date] <= EndDate,
+			        'Approval Status'[Status] IN {"Inactive", "Denied"},
+			        'Role Approval'[Entity Type] = "Family",
+			        USERELATIONSHIP(Entity[FamilyId], 'Role Approval'[Entity Id]),
+			        CROSSFILTER(Entity[PersonId], 'Role Approval'[Entity Id], None)
+			    )
+			
+			VAR FamilyActive = 
+			    CALCULATE(
+			        COUNTROWS('Role Approval'),
+			        'Role Approval'[Date] >= StartDate && 'Role Approval'[Date] <= EndDate,
+			        NOT 'Role Approval'[Status] IN {"Inactive", "Denied"},
+			        'Role Approval'[Entity Type] = "Family",
+			        USERELATIONSHIP(Entity[FamilyId], 'Role Approval'[Entity Id]),
+			        CROSSFILTER(Entity[PersonId], 'Role Approval'[Entity Id], None)
+			    )
+			
+			
+			RETURN IF(FamilyActive > 0, "Active", IF(FamilyInactive > 0, "Inactive", IF(ISBLANK(FamilyActive + FamilyInactive), "No Role Approval")))
+			
+			```
+		lineageTag: 26c1a021-747c-49d8-aaf5-a983bb323c80
+
+	measure 'Volunteer Individual Status Flag' = ```
+			
+			
+			// Inactive or Active Definition: 
+			// Inactive = only 'inactive' or 'denied'
+			// Blank = no role approval
+			// Active = anything other than 'inactive' or 'denied'
+			
+			VAR StartDate = [Selected Timeframe Start] 
+			VAR EndDate = [Selected Timeframe End]
+			
+			VAR PersonInactive = 
+			    CALCULATE(
+			        COUNTROWS('Role Approval'),
+			        'Role Approval'[Date] >= StartDate && 'Role Approval'[Date] <= EndDate,
+			        'Approval Status'[Status] IN {"Inactive", "Denied"},
+			        'Role Approval'[Entity Type] = "Person"
+			    )
+			
+			VAR PersonActive = 
+			    CALCULATE(
+			        COUNTROWS('Role Approval'),
+			        'Role Approval'[Date] >= StartDate && 'Role Approval'[Date] <= EndDate,
+			        NOT 'Role Approval'[Status] IN {"Inactive", "Denied"},
+			        'Role Approval'[Entity Type] = "Person"
+			    )
+			
+			RETURN IF(PersonActive > 0, "Active", IF(PersonInactive > 0, "Inactive", IF(ISBLANK(PersonActive + PersonInactive), "No Role Approval")))
+			```
+		lineageTag: 41e6fa73-ec85-4a75-9af2-47bc0c8bddb0
 
 	column 'Entity Type'
 		dataType: string

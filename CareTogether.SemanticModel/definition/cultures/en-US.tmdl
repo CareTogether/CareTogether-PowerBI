@@ -13910,32 +13910,6 @@ cultureInfo en-US
 			      ],
 			      "SemanticType": "Time"
 			    },
-			    "export_contacts.dynamic_entity_name_approval": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Export Contacts",
-			          "ConceptualProperty": "Dynamic Entity Name (Approval)"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "dynamic entity name (approval)": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "Name": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
 			    "entity.full_name": {
 			      "Definition": {
 			        "Binding": {
@@ -14042,6 +14016,16 @@ cultureInfo en-US
 			        },
 			        {
 			          "Child": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Person Name": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -19574,290 +19558,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "export_contact": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Export Contacts"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "export contact": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "contact": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "export connection": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "export interaction": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "connection": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "interaction": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "export phone": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "export telephone": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "export communication": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "export e-mail": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "export link": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "export reach": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        }
-			      ]
-			    },
-			    "export_contact.entity_type": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Export Contacts",
-			          "ConceptualProperty": "Entity Type"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "entity type": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "type": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "entity category": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "entity genre": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "entity manner": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "entity variety": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "category": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "genre": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "manner": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "variety": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "entity brand": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "entity class": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        }
-			      ]
-			    },
-			    "export_contact.ordinal": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Export Contacts",
-			          "ConceptualProperty": "Ordinal"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "ordinal": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "export_contact.referential_ids": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Export Contacts",
-			          "ConceptualProperty": "Referential Ids"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "referential ids": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "ids": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
 			    "arrangement_by_entity": {
 			      "Definition": {
 			        "Binding": {
@@ -23373,42 +23073,51 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
-			    }
-			  },
-			  "Relationships": {
-			    "export_contact_has_entity_type": {
-			      "Binding": {
-			        "ConceptualEntity": "Export Contacts"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "export_contact": {
-			          "Target": {
-			            "Entity": "export_contact"
-			          }
-			        },
-			        "export_contact.entity_type": {
-			          "Target": {
-			            "Entity": "export_contact.entity_type"
-			          }
+			    },
+			    "role_approval.volunteer_family_status_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Role Approval",
+			          "ConceptualProperty": "Volunteer Family Status Flag"
 			        }
 			      },
-			      "Phrasings": [
+			      "State": "Generated",
+			      "Terms": [
 			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "export_contact"
+			          "Family Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
 			            },
-			            "Object": {
-			              "Role": "export_contact.entity_type"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "export_contacts_have_entity_types"
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
+			    "role_approval.volunteer_individual_status_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Role Approval",
+			          "ConceptualProperty": "Volunteer Individual Status Flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Person Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  },
+			  "Relationships": {
 			    "engagement_by_entity_has_approved_entities_dynamic_title": {
 			      "Binding": {
 			        "ConceptualEntity": "Engagement by Entity"
@@ -25161,39 +24870,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "full_names_are_names_IDs_of_entities"
-			        }
-			      ]
-			    },
-			    "export_contact_has_export_contacts_dynamic_entity_name_approval": {
-			      "Binding": {
-			        "ConceptualEntity": "Export Contacts"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "export_contact": {
-			          "Target": {
-			            "Entity": "export_contact"
-			          }
-			        },
-			        "export_contacts.dynamic_entity_name_approval": {
-			          "Target": {
-			            "Entity": "export_contacts.dynamic_entity_name_approval"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "export_contact"
-			            },
-			            "Object": {
-			              "Role": "export_contacts.dynamic_entity_name_approval"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "export_contacts_have_dynamic_entity_name_approval"
 			        }
 			      ]
 			    },
@@ -29572,39 +29248,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "RLS_location_user__approvals_have_user_ids"
-			        }
-			      ]
-			    },
-			    "export_contact_has_referential_ids": {
-			      "Binding": {
-			        "ConceptualEntity": "Export Contacts"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "export_contact": {
-			          "Target": {
-			            "Entity": "export_contact"
-			          }
-			        },
-			        "export_contact.referential_ids": {
-			          "Target": {
-			            "Entity": "export_contact.referential_ids"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "export_contact"
-			            },
-			            "Object": {
-			              "Role": "export_contact.referential_ids"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "export_contacts_have_referential_ids"
 			        }
 			      ]
 			    },
