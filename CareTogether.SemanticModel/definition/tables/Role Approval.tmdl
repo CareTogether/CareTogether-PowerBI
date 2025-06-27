@@ -94,7 +94,7 @@ table 'Role Approval'
 			        'Role Approval'[Entity Type] = "Person"
 			    )
 			
-			RETURN IF(PersonActive > 0, "Active", IF(PersonActive > 0, "Inactive", IF(ISBLANK(PersonActive + PersonActive), "No Role Approval")))
+			RETURN IF(PersonActive > 0, "Active", IF(PersonInactive > 0, "Inactive", IF(ISBLANK(PersonActive + PersonInactive), "No Role Approval")))
 			```
 		lineageTag: 41e6fa73-ec85-4a75-9af2-47bc0c8bddb0
 
