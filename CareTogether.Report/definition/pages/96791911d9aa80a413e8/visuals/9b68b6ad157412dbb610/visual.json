@@ -4,10 +4,10 @@
   "position": {
     "x": 10.443686006825939,
     "y": 99.5221843003413,
-    "z": 3000,
+    "z": 2000,
     "height": 608.80546075085329,
     "width": 1260,
-    "tabOrder": 3000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "tableEx",
@@ -73,6 +73,20 @@
               "queryRef": "Role Approval.Volunteer Individual Status Flag",
               "nativeQueryRef": "Person Status",
               "displayName": "Person Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Entity"
+                    }
+                  },
+                  "Property": "Age"
+                }
+              },
+              "queryRef": "Entity.Age",
+              "nativeQueryRef": "Age"
             },
             {
               "field": {
@@ -338,7 +352,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "114.04436525992223D"
+                  "Value": "93.77688556962005D"
                 }
               }
             }
