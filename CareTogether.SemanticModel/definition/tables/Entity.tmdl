@@ -580,6 +580,15 @@ table Entity
 
 		annotation SummarizationSetBy = Automatic
 
+	column Gender
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 8a72c84c-5918-4f1a-b9f9-ae43676b0df7
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Entity = m
 		mode: import
 		queryGroup: 'Consolidated Entities'
@@ -593,7 +602,7 @@ table Entity
 				    Table.RenameColumns(
 				        Table.SelectColumns(
 				            Source{[Name="Person", Signature="table"]}[Data],
-				            {"Id", "FamilyId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType"}
+				            {"Id", "FamilyId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType", "Gender"}
 				        ),
 				        {{"Id", "PersonId"}}
 				    ),
@@ -621,7 +630,7 @@ table Entity
 				        JoinKind.LeftOuter
 				    ),
 				
-				    #"Reordered Columns" = Table.ReorderColumns(CombinedTables,{"OrganizationId", "LocationId", "RLS Key", "FamilyId", "Id", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "Line1", "Line2", "City", "County", "State", "PostalCode", "HomeChurch", "PersonId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType"}),
+				    #"Reordered Columns" = Table.ReorderColumns(CombinedTables,{"OrganizationId", "LocationId", "RLS Key", "FamilyId", "Id", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "Line1", "Line2", "City", "County", "State", "PostalCode", "HomeChurch", "PersonId", "FirstName", "LastName", "Ethnicity", "DateOfBirth", "PersonType", "Gender"}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"Id"}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Name", "Family Name"}, {"PrimaryEmail", "Email"}, {"PrimaryPhoneNumber", "Phone Number"}, {"Line1", "Address Line 1"}, {"Line2", "Address Line 2"}, {"FirstName", "First Name"}, {"LastName", "Last Name"}}),
 				    #"Inserted Merged Column" = Table.AddColumn(#"Renamed Columns", "Full Name", each Text.Combine({[First Name], [Last Name]}, " "), type text),
