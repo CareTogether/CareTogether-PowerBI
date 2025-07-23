@@ -116,17 +116,6 @@ relationship 2e22745c-3ffa-a009-5f66-a046030cca33
 	fromColumn: Arrangement.PersonId
 	toColumn: Entity.PersonId
 
-relationship f1ecf461-e408-29e0-dfab-73b2aeb18292
-	isActive: false
-	crossFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: 'Role Approval'.'Entity Id'
-	toColumn: Entity.FamilyId
-
-relationship 3460492d-8f6f-f76d-83dc-100003459934
-	fromColumn: 'Role Approval'.'Entity Id'
-	toColumn: Entity.PersonId
-
 relationship 832d22f5-0d58-fc56-14c2-bb35aab16be2
 	crossFilteringBehavior: bothDirections
 	securityFilteringBehavior: bothDirections
@@ -202,9 +191,20 @@ relationship e0e63704-7641-7a86-63ca-36f11c581f2c
 	fromColumn: 'RLS Location User - Role'.OrganizationId
 	toColumn: Role.OrganizationId
 
-relationship 9e085f6d-f238-fbac-c1f3-56665912e6b3
+relationship 53430679-ecc8-b97c-2b91-714ec8e1e203
+	fromColumn: 'Role Approval'.'Entity Id'
+	toColumn: Entity.PersonId
+
+relationship ea4ae88d-ca76-2484-1584-424e939c5046
+	isActive: false
 	crossFilteringBehavior: bothDirections
 	toCardinality: many
-	fromColumn: Role.'Role Name'
-	toColumn: 'Role Approval'.'Role Name'
+	fromColumn: Entity.FamilyId
+	toColumn: 'Role Approval'.'Entity Id'
+
+relationship 10870e51-e908-9513-3cd3-cfdb9fcb195b
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Role Approval'.'Role Name'
+	toColumn: Role.'Role Name'
 
