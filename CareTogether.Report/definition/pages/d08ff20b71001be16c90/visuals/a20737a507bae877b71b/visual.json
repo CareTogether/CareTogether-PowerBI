@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "a20737a507bae877b71b",
   "position": {
-    "x": 830.27027027027032,
-    "y": 480.86486486486484,
+    "x": 836.72354948805457,
+    "y": 480.40955631399316,
     "z": 15000,
-    "height": 228.32432432432432,
-    "width": 435.89189189189187,
+    "height": 227.91808873720137,
+    "width": 434.94880546075086,
     "tabOrder": 15000
   },
   "visual": {
@@ -726,5 +726,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "154e9ca8a52baaba983a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4affa7689cb1ee865bf6",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Month Name Short"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "610c7e1033b1c4aabbcf",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location"
+              }
+            },
+            "Property": "Location"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6cd9856982b82178c0ee",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "Nights of Care"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

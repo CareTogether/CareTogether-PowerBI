@@ -22997,6 +22997,15 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "role_approval.entity_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Role Approval",
+			          "ConceptualProperty": "Entity Id"
+			        }
+			      },
+			      "State": "Generated"
 			    }
 			  },
 			  "Relationships": {

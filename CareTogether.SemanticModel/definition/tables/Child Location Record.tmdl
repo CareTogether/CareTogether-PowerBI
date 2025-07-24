@@ -115,52 +115,72 @@ table 'Child Location Record'
 
 		changedProperty = IsHidden
 
-	measure 'Days of Care' =
+	measure 'Days of Care' = ```
 			
 			VAR CurrentDate = TODAY()
-			VAR StartDate = [Selected Timeframe Start]  // This is a measure calculating the start of the desired timeframe.
-			VAR EndDate = [Selected Timeframe End]  // This is a measure calculating the end of the desired timeframe.
+			VAR StartDate = [Selected Timeframe Start]
+			VAR EndDate = [Selected Timeframe End]
 			VAR Result =
 			    CALCULATE(
-			        DISTINCTCOUNT(ChildLocationExpanded[Date]),
+			        COUNTROWS(
+			            DISTINCT(
+			                SELECTCOLUMNS(
+			                    'ChildLocationExpanded',
+			                    "Key", 
+			                        FORMAT('ChildLocationExpanded'[Date], "yyyy-MM-dd") & "-" & 
+			                        'ChildLocationExpanded'[Index]  // Supondo que "Index" é um identificador por criança, linha, etc.
+			                )
+			            )
+			        ),
 			        'ChildLocationExpanded'[ChildcarePlan] <> "WithParent",
 			        'ChildLocationExpanded'[Date] >= StartDate,
-			        'ChildLocationExpanded'[Date] <= MIN(EndDate, CurrentDate)  // Ensure calculation up to the current date or the end date, whichever is earlier.
+			        'ChildLocationExpanded'[Date] <= MIN(EndDate, CurrentDate)
 			    )
 			RETURN
 			    IF(
-			        CurrentDate < StartDate,  // If today is before the start date, show BLANK.
+			        CurrentDate < StartDate,
 			        BLANK(),
 			        IF(
 			            Result = 0,
-			            0,  // Return 0 if no data is found within the range up to the current date.
-			            Result  // Otherwise, return the actual count.
+			            0,
+			            Result
 			        )
 			    )
+			
+			```
 		formatString: 0
 		lineageTag: 0efc4a39-0f01-4fda-8796-3c832f9c8af2
 
 	measure 'Nights of Care' = ```
 			
 			VAR CurrentDate = TODAY()
-			VAR StartDate = [Selected Timeframe Start]  // This is a measure calculating the start of the desired timeframe.
-			VAR EndDate = [Selected Timeframe End]  // This is a measure calculating the end of the desired timeframe.
+			VAR StartDate = [Selected Timeframe Start]
+			VAR EndDate = [Selected Timeframe End]
 			VAR Result =
 			    CALCULATE(
-			        DISTINCTCOUNT(ChildLocationExpanded[Date]),
+			        COUNTROWS(
+			            DISTINCT(
+			                SELECTCOLUMNS(
+			                    'ChildLocationExpanded',
+			                    "Key", 
+			                        FORMAT('ChildLocationExpanded'[Date], "yyyy-MM-dd") & "-" & 
+			                        'ChildLocationExpanded'[Index]  // Supondo que "Index" é um identificador por criança, linha, etc.
+			                )
+			            )
+			        ),
 			        'ChildLocationExpanded'[ChildcarePlan] <> "WithParent",
-			        'ChildLocationExpanded'[OvernightStay] = TRUE(),  // Only consider records where OvernightStay is TRUE.
+			        'ChildLocationExpanded'[OvernightStay] = TRUE(),
 			        'ChildLocationExpanded'[Date] >= StartDate,
-			        'ChildLocationExpanded'[Date] <= MIN(EndDate, CurrentDate)  // Ensure calculation up to the current date or the end date, whichever is earlier.
+			        'ChildLocationExpanded'[Date] <= MIN(EndDate, CurrentDate)
 			    )
 			RETURN
 			    IF(
-			        CurrentDate < StartDate,  // If today is before the start date, show BLANK.
+			        CurrentDate < StartDate,
 			        BLANK(),
 			        IF(
 			            Result = 0,
-			            0,  // Return 0 if no data is found within the range up to the current date.
-			            Result  // Otherwise, return the actual count.
+			            0,
+			            Result
 			        )
 			    )
 			
