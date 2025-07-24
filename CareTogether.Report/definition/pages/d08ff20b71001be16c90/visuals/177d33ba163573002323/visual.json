@@ -236,6 +236,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -726,5 +733,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c150471057b9458e21a8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0d8050a50efb7599ca0c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Month Name Short"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2810060fca2e4f60699a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location"
+              }
+            },
+            "Property": "Location"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "58a487407235c9ea2d0e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "Days of Care"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
