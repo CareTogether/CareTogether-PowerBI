@@ -56,8 +56,6 @@ table 'Community Role Assignments'
 				        ),
 				        {"RLS Key", "CommunityId", "PersonId", "Role"}
 				    )
-				    
-				
 				in
 				    CommunityRoleAssignments
 				```

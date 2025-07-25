@@ -144,7 +144,6 @@ relationship fe8d4934-d958-e553-7973-7f1b28ab04e6
 relationship b71d1bbe-7db0-3122-2557-534f5655c78f
 	isActive: false
 	crossFilteringBehavior: bothDirections
-	fromCardinality: one
 	fromColumn: 'Community Role Assignments'.PersonId
 	toColumn: Entity.PersonId
 
