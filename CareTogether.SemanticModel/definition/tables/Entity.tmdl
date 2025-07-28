@@ -47,7 +47,7 @@ table Entity
 			        FILTER(
 			            'Child Location Record',
 			            'Child Location Record'[ChildcarePlan] <> "WithParent" && 
-			            'Child Location Record'[Started] >= StartDate && 
+			            'Child Location Record'[Ended] >= StartDate && 
 			            'Child Location Record'[Started] <= MIN(EndDate, CurrentDate)
 			        )
 			    )
