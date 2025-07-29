@@ -1,209 +1,75 @@
-relationship a5ae77fe-88aa-4706-bfd5-fdf99d014cf8
+relationship 093886a6-d141-4813-8b6c-501e63f69801
 	joinOnDateBehavior: datePartOnly
-	fromColumn: Referral.Opened
-	toColumn: LocalDateTable_badf15b7-4811-4e5f-aee5-299aaab58eca.Date
+	fromColumn: Person.'Date of Birth'
+	toColumn: LocalDateTable_489a36aa-e0b2-448a-8b96-aac93e3f3da3.Date
 
-relationship 61ed4f64-5da8-4039-89ee-4b2905a8923d
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Referral.Closed
-	toColumn: LocalDateTable_d64749d8-d763-4d50-94b8-a3acfe90e321.Date
-
-relationship 7d4f3e4a-8e5e-49d7-9b0b-ca9ed9f0051f
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Arrangement.Requested
-	toColumn: LocalDateTable_73d01070-72e6-4583-b4ff-d5fa05eb2eee.Date
-
-relationship f65f23e4-4531-4302-8daf-36f7a3525920
-	isActive: false
-	fromColumn: Arrangement.ReferralId
-	toColumn: Referral.Id
-
-	annotation PBI_IsFromSource = FS
-
-relationship ef63f3fe-04ee-4288-a9ac-f2f0a7b0d90d
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Entity.DateOfBirth
-	toColumn: LocalDateTable_de2c3251-3f42-4917-b1a3-c8994b5b4a55.Date
-
-relationship 845cf168-f7b2-60c8-1dcb-024b5c5b3e6c
-	fromColumn: 'Child Location Record'.ArrangementId
-	toColumn: Arrangement.Id
-
-relationship 8b88d373-2d4a-b53d-e08f-6337f97d1d20
-	fromColumn: 'Function Assignments'.ArrangementId
-	toColumn: Arrangement.Id
-
-relationship 743714a4-5466-a9cc-badf-7c5acadc040c
-	fromColumn: 'Arrangement Type'.ChildInvolvement
-	toColumn: Childcare.ChildInvolvement
-
-relationship f867be65-e46b-4f80-790b-a47905ad2cda
-	fromColumn: Arrangement.Phase
-	toColumn: 'Arrangement Phase'.ArrangementPhase
-
-relationship 2cf7df81-4b88-2114-8080-e67b0b50b5be
-	crossFilteringBehavior: bothDirections
-	fromColumn: 'Community Member Families'.CommunityId
-	toColumn: Community.Id
-
-	annotation PBI_IsFromSource = FS
-
-relationship 725d34a9-3833-748a-025b-2049fce66c03
-	fromColumn: 'Community Role Assignments'.CommunityId
-	toColumn: Community.Id
-
-	annotation PBI_IsFromSource = FS
-
-relationship 1537009b-2d81-248e-cae3-487f0ef3377e
-	toCardinality: many
-	fromColumn: Referral.FamilyId
-	toColumn: Entity.FamilyId
-
-relationship cb842be0-c13c-042f-8c33-0588fcea74ff
-	fromColumn: 'Child Location Record'.ChildcarePlan
-	toColumn: 'Childcare Plan'.ChildLocationPlan
-
-relationship 03e2d658-ca25-54fe-1437-54c60e8ba197
-	fromColumn: ChildLocationExpanded.Index
-	toColumn: 'Child Location Record'.Index
-
-relationship aa19a749-5e13-666b-eba8-4e2b7431c71e
-	fromColumn: ChildLocationExpanded.Date
-	toColumn: Date.Date
-
-relationship e3710347-d15e-a334-ca7a-624fdd681132
-	fromColumn: 'Role Approval'.Status
-	toColumn: 'Approval Status'.Status
-
-relationship 901490b3-6c94-f5f5-307f-b5b7046ddf8e
-	fromColumn: 'Role Approval'.Date
-	toColumn: Date.Date
-
-relationship 95fcee5c-4dd6-423f-bcaa-46ee042929d5
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Arrangement.Started
-	toColumn: LocalDateTable_a8dbb200-3155-4e8c-9348-db038fea8ca8.Date
-
-relationship cb04e139-f527-4489-bcee-c6c5bf29eaf0
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Arrangement.Ended
-	toColumn: LocalDateTable_394f1348-ca56-4f1c-9fdb-7b35bb6746a6.Date
-
-relationship 18a4db2c-4e05-4ea5-8f43-5fb9d592bd70
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Child Location Record'.Started
-	toColumn: LocalDateTable_9ca3cc68-8275-4543-b0b6-67540c77809a.Date
-
-relationship 5219e77b-bbc9-450b-a090-ed7b1f9e6270
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Child Location Record'.Ended
-	toColumn: LocalDateTable_dff05e92-cf4f-4a2f-8fa1-12d5156f3746.Date
-
-relationship 463833ee-b2e9-9100-765b-65677c51d906
+relationship fe2379a9-c1cf-539a-be98-4ff61725c6a0
 	isActive: false
 	crossFilteringBehavior: bothDirections
-	fromColumn: 'Function Assignments'.EntityId
-	toColumn: Entity.PersonId
+	fromCardinality: one
+	fromColumn: Person.'Family UID'
+	toColumn: Family.'Family UID'
 
-relationship 3ab388d7-25eb-9334-5fc0-08436d9d28ed
-	isActive: false
-	crossFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: Entity.FamilyId
-	toColumn: 'Function Assignments'.EntityId
-
-relationship 2e22745c-3ffa-a009-5f66-a046030cca33
-	fromColumn: Arrangement.PersonId
-	toColumn: Entity.PersonId
-
-relationship 832d22f5-0d58-fc56-14c2-bb35aab16be2
-	crossFilteringBehavior: bothDirections
-	securityFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: 'RLS Location User - Approvals'.'RLS Key'
-	toColumn: 'Role Approval'.'RLS Key'
-
-relationship cc6e67bc-326f-faed-d5ff-2aad7336a71b
-	crossFilteringBehavior: bothDirections
-	securityFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: 'RLS Location User - Arrangements'.'RLS Key'
-	toColumn: Arrangement.'RLS Key'
-
-relationship 4d10df6d-bff5-9261-e0de-ba43fd3a6e8f
-	crossFilteringBehavior: bothDirections
-	securityFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: 'RLS Location User - Referral'.'RLS Key'
-	toColumn: Referral.'RLS Key'
-
-relationship fe8d4934-d958-e553-7973-7f1b28ab04e6
-	fromColumn: Referral.'Close Reason'
-	toColumn: 'Close Reason'.ReferralCloseReason
-
-relationship b71d1bbe-7db0-3122-2557-534f5655c78f
-	isActive: false
-	crossFilteringBehavior: bothDirections
-	fromColumn: 'Community Role Assignments'.PersonId
-	toColumn: Entity.PersonId
-
-relationship 37b30d6b-f416-6f58-6818-5e167639fd45
-	crossFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: 'RLS Location User - Locations'.'RLS Key'
-	toColumn: Entity.'RLS Key'
-
-relationship 668f65da-c275-bcb8-2381-2e0a8303e48d
-	crossFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: 'Community Member Families'.FamilyId
-	toColumn: Entity.FamilyId
-
-relationship f851faf3-ad4b-60e6-c753-3027f9dcaeef
-	crossFilteringBehavior: bothDirections
-	securityFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: 'RLS Location User - Community'.'RLS Key'
-	toColumn: Community.'RLS Key'
-
-relationship 405db2b6-03e9-8a43-8375-febe7b094b53
-	fromColumn: Arrangement.'Arrangement Type PK'
-	toColumn: 'Arrangement Type'.'Arrangement Type PK'
-
-relationship 2b222138-6250-8c2f-ed33-3d5b282bee7a
-	crossFilteringBehavior: bothDirections
-	securityFilteringBehavior: bothDirections
-	fromColumn: 'RLS Location User - Locations'.'RLS Key'
+relationship ed2a525d-69f2-25b4-9f3d-61a7fce22c9b
+	fromColumn: Family.'RLS Key'
 	toColumn: Location.'RLS Key'
 
-relationship 8f351d67-8216-c729-3f38-ea6890c52daf
-	crossFilteringBehavior: bothDirections
-	securityFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: 'RLS Location User - Arrangement Type'.'RLS Key'
-	toColumn: 'Arrangement Type'.'RLS Key'
+relationship b28db102-101c-d62e-73f0-b71fd8a913c6
+	fromColumn: 'Function Assignments'.'Entity UID'
+	toColumn: Family.'Family UID'
 
-relationship e0e63704-7641-7a86-63ca-36f11c581f2c
-	crossFilteringBehavior: bothDirections
-	securityFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: 'RLS Location User - Role'.OrganizationId
-	toColumn: Role.OrganizationId
+relationship 2b06ef53-4dfc-1f3f-b979-85d16a27d4a8
+	fromColumn: 'Function Assignments'.'Entity UID'
+	toColumn: Person.'Person UID'
 
-relationship 53430679-ecc8-b97c-2b91-714ec8e1e203
-	fromColumn: 'Role Approval'.'Entity Id'
-	toColumn: Entity.PersonId
+relationship 94b8e5b1-15d3-4893-b628-6f78cdb4bafe
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Arrangements.Requested
+	toColumn: LocalDateTable_e4c82e88-c4c3-4c99-8b77-e121c2e26dd4.Date
 
-relationship ea4ae88d-ca76-2484-1584-424e939c5046
-	isActive: false
-	crossFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: Entity.FamilyId
-	toColumn: 'Role Approval'.'Entity Id'
+relationship 9364ac9f-e354-4909-af5b-be492d899a7e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Arrangements.Started
+	toColumn: LocalDateTable_e028dd1f-b7df-4057-8fee-be7ce425d993.Date
 
-relationship 10870e51-e908-9513-3cd3-cfdb9fcb195b
+relationship 1fc3de92-ab97-49ab-8bd5-dd0546a44739
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Arrangements.Ended
+	toColumn: LocalDateTable_94755f40-c02e-4f12-adba-57d68c4e7bd7.Date
+
+relationship 5fe821ff-86fd-371d-ef2e-71b17bbe86e5
+	fromColumn: 'Function Assignments'.'Arrangement ID'
+	toColumn: Arrangements.'Arrangement ID'
+
+relationship 14d26cb6-6132-49fb-cc4f-1921df800523
+	fromColumn: Arrangements.'Arrangement Type UID'
+	toColumn: 'Arrangement Type'.'Arrangement Type UID'
+
+relationship AutoDetected_157036b2-ebe8-48f8-8dc5-cd28b30197d5
+	fromColumn: 'Arrangement Type'.'Child Involvement'
+	toColumn: Childcare.ChildInvolvement
+
+relationship 1ab2206b-4a20-45f7-9023-09d98267b9ac
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Referrals.Opened
+	toColumn: LocalDateTable_530a03d7-4545-4c50-b8bb-0eafd1c73faf.Date
+
+relationship c4be420d-f6cc-4943-8cbf-0f4f29d6fea4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Referrals.Closed
+	toColumn: LocalDateTable_fde1edd6-5eb1-4a41-b6af-f79f35fa348f.Date
+
+relationship 026614bf-a094-735a-e459-f5717d516889
+	fromColumn: Referrals.'Family UID'
+	toColumn: Family.'Family UID'
+
+relationship bcdbd3de-0a30-a74f-6a38-6bea9c59f9b2
+	fromColumn: Referrals.'Close Reason'
+	toColumn: 'Close Reason'.ReferralCloseReason
+
+relationship c2ef83e8-b44f-7029-123e-268f3cd009c6
 	crossFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: 'Role Approval'.'Role Name'
-	toColumn: Role.'Role Name'
+	fromCardinality: one
+	fromColumn: Family.'Family UID'
+	toColumn: 'Community Member Families'.'Family UID'
 

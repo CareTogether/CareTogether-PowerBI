@@ -1,51 +1,43 @@
 table Location
-	lineageTag: 9b78184e-f905-4fe7-8a9c-7b1b82d0da8c
+	lineageTag: 16999c6b-194b-4c64-b4cd-216cdc159dbd
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: 8ad230f8-c550-405a-8203-c929a3086632
+		lineageTag: 78b3d31c-6abb-47d5-a921-272665412440
 		summarizeBy: none
 		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
-	column Id
+	column 'Location Name'
 		dataType: string
-		lineageTag: 21cf8ebc-50d3-4f02-9094-2fe85114b691
+		lineageTag: feacbf69-72e7-48b8-8005-6ec3e22ace73
 		summarizeBy: none
-		sourceColumn: Id
-
-		annotation SummarizationSetBy = Automatic
-
-	column Location
-		dataType: string
-		lineageTag: 97b1dc7f-4d67-4527-bf14-7423eb64f770
-		summarizeBy: none
-		sourceColumn: Location
+		sourceColumn: Location Name
 
 		annotation SummarizationSetBy = Automatic
 
 	partition Location = m
 		mode: import
-		queryGroup: 'Model Queries'
+		queryGroup: Dimensions
 		source = ```
 				let
 				    Source = #"OData Live",
-				    SourceTable = Source{[Name="Location",Signature="table"]}[Data],
-				
-				    Locations = 
+				    Location = Source{[Name="Location", Signature="table"]}[Data],
+				    LocationTransformed = 
 				    Table.SelectColumns(
-				        Table.AddColumn(
-				            Table.RenameColumns(
-				                SourceTable,
-				                {{"Name", "Location"}}
+				        Table.RenameColumns(
+				            Table.AddColumn(
+				                Location,
+				                "RLS Key", each Text.Combine({[OrganizationId], [Id]}, "-")
 				            ),
-				            "RLS Key", each Text.Combine({[OrganizationId], [Id]}, "-")
+				            {{"Name", "Location Name"}}
 				        ),
-				        {"RLS Key", "Id", "Location"}
+				        {"RLS Key", "Location Name"}
 				    )
+				
 				in
-				    Locations
+				    LocationTransformed
 				```
 
 	annotation PBI_NavigationStepName = Navigation

@@ -1,47 +1,34 @@
 table 'Close Reason'
-	lineageTag: bbdc1bb2-de24-4f53-a35b-5004cd067f7e
+	lineageTag: a1d60698-0bd2-4f71-8c12-2867d488fec6
 
 	column ReferralCloseReason
 		dataType: string
-		isHidden
-		isKey
-		lineageTag: 5a532f98-2d39-40be-b328-f3097862edd2
+		lineageTag: 2f823fb4-8427-475f-941b-b81afdb13f93
 		summarizeBy: none
 		sourceColumn: ReferralCloseReason
-
-		changedProperty = IsHidden
-
-		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
 	column Order
 		dataType: int64
-		isHidden
 		formatString: 0
-		lineageTag: 50e6dafd-6383-477f-b9f8-1413b6f8fe8a
+		lineageTag: 11146fae-f535-4494-9f8f-f904ecd0e2cd
 		summarizeBy: none
 		sourceColumn: Order
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column Reason
 		dataType: string
-		lineageTag: e44dc9e1-908d-42c8-ad27-2f409fa9405b
-		isDefaultLabel
+		lineageTag: 78cc5d34-4bbf-4f5e-bea8-f1afb1ed3113
 		summarizeBy: none
 		sourceColumn: Reason
-		sortByColumn: Order
-
-		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 'Close Reason-e4532053-4baf-4b3f-86c7-aff0b37bd27f' = m
+	partition 'Close Reason' = m
 		mode: import
-		queryGroup: 'Reference Tables'
+		queryGroup: Dimensions
 		source =
 				let
 				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Tcw9DoAgDIbhqzTMDP5dwLgqgythINAYFiGIg7e3gFGHDt+bJ5WSCZ/GEKIP0emEjLOGjiL8q+IZTjpo49JFoC0I3lLB7PcNo0C0aAl0FdUKT85yxcOf0RTU0327/CG4YKI+5Ae0IE+lbg==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ReferralCloseReason = _t, Order = _t, Reason = _t]),
@@ -49,7 +36,7 @@ table 'Close Reason'
 				in
 				    #"Changed Type"
 
-	annotation PBI_ResultType = Table
-
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

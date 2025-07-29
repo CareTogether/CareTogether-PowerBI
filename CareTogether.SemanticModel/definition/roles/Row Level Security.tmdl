@@ -1,0 +1,11 @@
+role 'Row Level Security'
+	modelPermission: read
+
+	tablePermission Family =
+			Family[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	annotation PBI_Id = 48755128b26e4366a08bd6a38df559b4
+

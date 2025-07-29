@@ -1,59 +1,67 @@
 table 'Community Member Families'
-	lineageTag: 614cb360-e6aa-4352-801e-f51065f1076b
-
-	column CommunityId
-		dataType: string
-		isHidden
-		lineageTag: c55dba34-12a5-4a3a-8b73-cae82f6301d7
-		summarizeBy: none
-		sourceColumn: CommunityId
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column FamilyId
-		dataType: string
-		isHidden
-		lineageTag: d371bccb-f5e0-49fe-bd3a-c67d9772d804
-		summarizeBy: none
-		sourceColumn: FamilyId
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
+	lineageTag: 785f05bf-7c33-4d73-a7e1-fb1007f192e8
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: 42c7c364-dce2-4f41-9878-8aedcc685c27
+		lineageTag: 4e29f0b1-3790-41b3-9ea6-d80cd45f6914
 		summarizeBy: none
 		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Family UID'
+		dataType: string
+		lineageTag: b20a44ac-0455-4d8e-91db-be4d5f63a796
+		summarizeBy: none
+		sourceColumn: Family UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family ID'
+		dataType: string
+		lineageTag: 08d4ac8d-675d-45e4-a88a-182c0c068432
+		summarizeBy: none
+		sourceColumn: Family ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Community ID'
+		dataType: string
+		lineageTag: 0e504c9a-2416-4a78-9aeb-b4391e65b05f
+		summarizeBy: none
+		sourceColumn: Community ID
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Community Member Families' = m
 		mode: import
-		queryGroup: 'Model Queries'
+		queryGroup: Dimensions
 		source = ```
 				let
-				    ApiHost = if Production then "https://app.caretogether.io" else "http://localhost:5000",
-				    ApiUrl = ApiHost&"/api/odata/live",
-				    Source = OData.Feed(ApiUrl, null, [Implementation="2.0"]),
-				    CommunityMemberFamilies_table1 = Source{[Name="CommunityMemberFamilies",Signature="table"]}[Data],
-				    
-				    CommunityMemberFamilies =  
+				    Source = #"OData Live",
+				    Community = Source{[Name="CommunityMemberFamilies", Signature="table"]}[Data],
+				    CommunityTransformed = 
+				
 				    Table.SelectColumns(
-				        Table.AddColumn(
-				            CommunityMemberFamilies_table1,
-				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        Table.RenameColumns(
+				            Table.AddColumn(
+				                Table.AddColumn(
+				                    Community,
+				                    "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                ),
+				                "Family UID", each Text.Combine({[RLS Key], [FamilyId]})
+				            ),
+				            {{"CommunityId", "Community ID"}, {"FamilyId", "Family ID"}}
 				        ),
-				        {"RLS Key", "CommunityId", "FamilyId"}
-				    )  
+				        {"RLS Key", "Family UID", "Family ID", "Community ID"}
+				    )
 				in
-				     CommunityMemberFamilies
+				    CommunityTransformed
 				```
 
-	annotation PBI_ResultType = Table
+	changedProperty = Name
 
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

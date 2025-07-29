@@ -1,0 +1,42 @@
+table RLS
+	lineageTag: 1e937af2-258c-44d6-ad23-78399a7d9847
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 44e4313f-f069-4ab7-9f6d-6eba269abb50
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserId
+		dataType: string
+		lineageTag: ede6eafc-16c9-45e6-90e3-6e0f2d903129
+		summarizeBy: none
+		sourceColumn: UserId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RLS = m
+		mode: import
+		queryGroup: RLS
+		source = ```
+				let
+				    Source = #"OData Live",
+				    RLS = 
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Source{[Name="LocationUserAccess", Signature="table"]}[Data],
+				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        ),
+				        {"RLS Key", "UserId"}
+				    )
+				
+				in
+				    RLS
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

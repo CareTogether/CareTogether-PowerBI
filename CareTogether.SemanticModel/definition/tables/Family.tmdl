@@ -1,0 +1,141 @@
+table Family
+	lineageTag: 5585aeeb-f4e2-456d-8f6e-436d261a4cc2
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 9b81b91b-0a7b-4369-8ad5-230d2d2f28b9
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family UID'
+		dataType: string
+		lineageTag: 9602b56d-1e4c-4149-bf57-1db9c8fa0ff0
+		summarizeBy: none
+		sourceColumn: Family UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Id'
+		dataType: string
+		lineageTag: 1bf494d3-fbb9-4a47-970f-c4e70728ecc8
+		summarizeBy: none
+		sourceColumn: Family Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Name'
+		dataType: string
+		lineageTag: 430fe861-f945-4edc-8a28-3a9f5e92853d
+		summarizeBy: none
+		sourceColumn: Family Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 57285976-29bb-4775-b26c-b510b16283c5
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Phone Number'
+		dataType: string
+		lineageTag: c313e0e0-f05d-48cd-89cd-dc39a915e31d
+		summarizeBy: none
+		sourceColumn: Phone Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 1'
+		dataType: string
+		lineageTag: 47710304-9a3a-4657-b8da-77bc8c3d33e7
+		summarizeBy: none
+		sourceColumn: Address Line 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 2'
+		dataType: string
+		lineageTag: 59c6accb-f738-427c-b53b-a1323b764df7
+		summarizeBy: none
+		sourceColumn: Address Line 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Postal Code'
+		dataType: string
+		lineageTag: a8b986bf-7bf6-4500-bc09-d6709065c2a2
+		summarizeBy: none
+		sourceColumn: Postal Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Home Church'
+		dataType: string
+		lineageTag: ba6c0946-1410-40be-9e6f-da5edca96367
+		summarizeBy: none
+		sourceColumn: Home Church
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 0bea3d55-bb7f-438a-a63b-adb8ae95037d
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column County
+		dataType: string
+		lineageTag: 54c9d99e-91e5-49a9-aa7b-d66dbef9a8ac
+		summarizeBy: none
+		sourceColumn: County
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 535724e2-72b9-4a2c-9498-d9c0c329b698
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Family = m
+		mode: import
+		queryGroup: Dimensions
+		source = ```
+				let
+				    Source = #"OData Live",
+				    Family = Source{[Name="Family", Signature="table"]}[Data],
+				    FamilyTransformed = 
+				
+				    Table.SelectColumns(
+				        Table.RenameColumns(
+				            Table.ExpandRecordColumn(
+				                Table.AddColumn(
+				                    Table.AddColumn(
+				                        Family,
+				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                    ),
+				                    "Family UID", each Text.Combine({[RLS Key], [Id]}, "-")
+				                ),
+				                "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}
+				            ),
+				            {{"Id", "Family Id"}, {"Name", "Family Name"}, {"PrimaryEmail", "Email"}, {"PrimaryPhoneNumber", "Phone Number"}, {"Line1", "Address Line 1"}, {"Line2", "Address Line 2"}, {"PostalCode", "Postal Code"}, {"HomeChurch", "Home Church"}}
+				        ),
+				        {"RLS Key", "Family UID", "Family Id", "Family Name", "Email", "Phone Number", "Address Line 1", "Address Line 2", "City", "County", "State", "Postal Code", "Home Church"}
+				    )
+				
+				in
+				    FamilyTransformed
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

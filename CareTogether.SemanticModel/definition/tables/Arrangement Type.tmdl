@@ -1,68 +1,69 @@
 table 'Arrangement Type'
-	lineageTag: c7cb613d-9d95-4212-99b0-afeb17ed7411
-
-	column ChildInvolvement
-		dataType: string
-		isHidden
-		lineageTag: 106f4bcb-6fa8-4ebc-a504-f2cad0bf9090
-		summarizeBy: none
-		sourceColumn: ChildInvolvement
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Arrangement Type'
-		dataType: string
-		lineageTag: 43965f59-42d2-47e8-ba87-6943e599d63a
-		summarizeBy: none
-		sourceColumn: Arrangement Type
-
-		annotation SummarizationSetBy = Automatic
+	lineageTag: b2303fb3-bd33-4a97-9b0d-831a6ca8cf94
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: d5779dd9-d981-42f6-a99f-94f9a0b4660d
+		lineageTag: 4d907de0-fdbb-4b8d-940c-a9176ccd63f7
 		summarizeBy: none
 		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Arrangement Type PK'
+	column 'Arrangement Type UID'
 		dataType: string
-		lineageTag: ca1384fb-2f66-48e5-8dea-b8c9c7fbb685
+		lineageTag: 277471fe-0821-4d8b-bea7-abc26c33fa1d
 		summarizeBy: none
-		sourceColumn: Arrangement Type PK
+		sourceColumn: Arrangement Type UID
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 'Arrangement Type-597c3ca7-59e2-4e86-8453-c8def7291a36' = m
+	column 'Arrangement Type'
+		dataType: string
+		lineageTag: 8bdc2303-5798-400a-9fca-8ce0c988015c
+		summarizeBy: none
+		sourceColumn: Arrangement Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Child Involvement'
+		dataType: string
+		lineageTag: 0ec739bb-7ad6-4b96-b664-224ef7a2ae91
+		summarizeBy: none
+		sourceColumn: Child Involvement
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Arrangement Type' = m
 		mode: import
-		queryGroup: 'Model Queries'
+		queryGroup: Dimensions
 		source = ```
 				let
 				    Source = #"OData Live",
-				    SourceTable = Source{[Name="ArrangementType",Signature="table"]}[Data],
+				    ArrangementType = Source{[Name="ArrangementType", Signature="table"]}[Data],
 				
-				    ArrangementType = 
-				    Table.SelectColumns(
+				    ArrangementTypeTransformed = 
+				    
+				Table.SelectColumns(
+				    Table.RenameColumns(
 				        Table.AddColumn(
 				            Table.AddColumn(
-				                Table.RenameColumns(
-				                    SourceTable,
-				                    {{"Type", "Arrangement Type"}}
-				                ),
+				                ArrangementType,
 				                "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				            ),
-				        "Arrangement Type PK", each Text.Combine({[RLS Key], [Arrangement Type]}, "-")
+				            "Arrangement Type UID", each Text.Combine({[RLS Key], [Type]}, "-")
 				        ),
-				        {"RLS Key", "Arrangement Type PK", "Arrangement Type", "ChildInvolvement"}
-				    )
+				        {{"Type", "Arrangement Type"}, {"ChildInvolvement", "Child Involvement"}}
+				    ),
+				    {"RLS Key", "Arrangement Type UID", "Arrangement Type", "Child Involvement"}
+				
+				)
+				
+				
 				in
-				    ArrangementType
+				    ArrangementTypeTransformed
 				```
 
-	annotation PBI_ResultType = Table
-
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 
