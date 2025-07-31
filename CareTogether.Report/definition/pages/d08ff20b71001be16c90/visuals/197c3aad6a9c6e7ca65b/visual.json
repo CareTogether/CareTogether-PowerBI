@@ -47,24 +47,6 @@
             }
           ]
         },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Location"
-                    }
-                  },
-                  "Property": "Location"
-                }
-              },
-              "queryRef": "Location.Location",
-              "nativeQueryRef": "Location"
-            }
-          ]
-        },
         "Y": {
           "projections": [
             {
@@ -72,13 +54,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
                   "Property": "# of Families Supported"
                 }
               },
-              "queryRef": "Entity.# of Families Supported",
+              "queryRef": "Family.# of Families Supported",
               "nativeQueryRef": "# of Families Supported"
             }
           ]
@@ -739,5 +721,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "aaa591483593d0255d05",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6799a4ec0e7bd78adf36",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Month Name Short"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e1b2112f99637d2bfec5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "# of Families Supported"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

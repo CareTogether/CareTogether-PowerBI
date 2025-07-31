@@ -1,0 +1,109 @@
+table 'Role Approval'
+	lineageTag: dc77a9af-d0f4-42f8-b4b0-a7be6b0e7514
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: cf8eefc8-80bb-4ffe-b22c-dd46fd8dbb7a
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity Type'
+		dataType: string
+		lineageTag: 74501cca-ca8d-4f6e-a64b-6cebf607cc45
+		summarizeBy: none
+		sourceColumn: Entity Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity UID'
+		dataType: string
+		lineageTag: 45c351f4-f241-4b87-9582-0df67d28de5b
+		summarizeBy: none
+		sourceColumn: Entity UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EntityId
+		dataType: string
+		lineageTag: 2c9cd7bd-193c-432c-83da-56d98b1e45f5
+		summarizeBy: none
+		sourceColumn: EntityId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Role Name'
+		dataType: string
+		lineageTag: 04273944-b9a9-4167-9451-9274e07fc368
+		summarizeBy: none
+		sourceColumn: Role Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: da080dce-bece-46d7-84ce-4442bcf0d9c8
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Approval Type'
+		dataType: string
+		lineageTag: f0bc1892-7da7-4488-ad2f-3462f8b8cfeb
+		summarizeBy: none
+		sourceColumn: Approval Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: a5ad8d7d-1fbc-48a5-bf21-b3467dae9aa3
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Changed'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 532f1685-48b8-47af-885a-9f78ad09089c
+		summarizeBy: none
+		sourceColumn: Status Changed
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Role Approval' = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    Source = #"OData Live",
+				    RoleApproval = 
+				
+				        Table.SelectColumns(
+				            Table.RenameColumns(
+				                Table.AddColumn(
+				                    Table.AddColumn(
+				                        Source{[Name="RoleApprovals", Signature="table"]}[Data],
+				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                    ),
+				                    "Entity UID", each Text.Combine({[RLS Key], [EntityId]})
+				                ),
+				                {{"StatusChanged", "Status Changed"}, {"RoleName", "Role Name"}, {"ApprovalType", "Approval Type"}, {"EntityType", "Entity Type"}}
+				            ),
+				            {"RLS Key", "Entity Type", "Entity UID", "EntityId", "Role Name", "Date", "Approval Type", "Status", "Status Changed"}
+				        )
+				
+				in
+				    RoleApproval
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

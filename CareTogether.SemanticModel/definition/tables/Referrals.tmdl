@@ -1,8 +1,37 @@
 table Referrals
 	lineageTag: 9e3a875e-349f-43da-84eb-8c636fdefbc9
 
+	measure '# of Referrals Opened' =
+			COUNTROWS(
+			    FILTER(
+			        Referrals,
+			        AND(
+			            Referrals[Opened] >= [Selected Timeframe Start],
+			            Referrals[Opened] <= [Selected Timeframe End]
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: f3c404d6-390c-431b-9b69-8eb6b0e63a25
+
+	measure '# of Families Referred' =
+			
+			CALCULATE(
+			    DISTINCTCOUNTNOBLANK(Referrals[Family UID]),
+			    FILTER(
+			        Referrals,
+			        AND(
+			            Referrals[Opened] >= [Selected Timeframe Start],
+			            Referrals[Opened] <= [Selected Timeframe End]
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: b5d014ee-8316-42d6-9279-31313afeea43
+
 	column 'RLS Key'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: cd5525dd-e937-49df-b204-6c81e4fda7f7
 		summarizeBy: none
 		sourceColumn: RLS Key
@@ -11,6 +40,7 @@ table Referrals
 
 	column 'Referral ID'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 8186c11b-3aac-469e-9338-c5c6dbe09c2d
 		summarizeBy: none
 		sourceColumn: Referral ID
@@ -19,6 +49,7 @@ table Referrals
 
 	column 'Family UID'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 738b7dad-745e-4b9d-abf1-6e9042b82ab7
 		summarizeBy: none
 		sourceColumn: Family UID
@@ -27,6 +58,7 @@ table Referrals
 
 	column 'Family ID'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 324a14fb-9785-443c-9b0f-17c8e2cdfd72
 		summarizeBy: none
 		sourceColumn: Family ID
@@ -36,6 +68,7 @@ table Referrals
 	column Opened
 		dataType: dateTime
 		formatString: Long Date
+		displayFolder: _Columns
 		lineageTag: 3735aae9-a05e-45e2-b675-64e5b18b46bc
 		summarizeBy: none
 		sourceColumn: Opened
@@ -52,6 +85,7 @@ table Referrals
 	column Closed
 		dataType: dateTime
 		formatString: Long Date
+		displayFolder: _Columns
 		lineageTag: 731a711a-6cf1-4553-98be-25be1f1b4b11
 		summarizeBy: none
 		sourceColumn: Closed
@@ -67,6 +101,7 @@ table Referrals
 
 	column 'Referral Source'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 9ec71218-11b8-4ae6-a43b-42a01cbbef9b
 		summarizeBy: none
 		sourceColumn: Referral Source
@@ -75,6 +110,7 @@ table Referrals
 
 	column 'Close Reason'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: ac057b4d-f637-493e-ad3e-e4d72feb95da
 		summarizeBy: none
 		sourceColumn: Close Reason
@@ -83,6 +119,7 @@ table Referrals
 
 	column 'Primary Reason for Referral'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: ae7e18ff-b6f6-4a22-aa8b-8389894dd252
 		summarizeBy: none
 		sourceColumn: Primary Reason for Referral
@@ -105,7 +142,7 @@ table Referrals
 				                    Referral,
 				                    "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				                ),
-				                "Family UID", each Text.Combine({[RLS Key], [FamilyId]})
+				                "Family UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
 				            ),
 				            {{"Id", "Referral ID"}, {"FamilyId", "Family ID"}, {"ReferralSource", "Referral Source"}, {"CloseReason", "Close Reason"}, {"PrimaryReasonForReferral", "Primary Reason for Referral"}}
 				        ),

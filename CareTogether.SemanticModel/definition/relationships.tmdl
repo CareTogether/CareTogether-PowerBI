@@ -10,15 +10,13 @@ relationship fe2379a9-c1cf-539a-be98-4ff61725c6a0
 	fromColumn: Person.'Family UID'
 	toColumn: Family.'Family UID'
 
-relationship ed2a525d-69f2-25b4-9f3d-61a7fce22c9b
-	fromColumn: Family.'RLS Key'
-	toColumn: Location.'RLS Key'
-
 relationship b28db102-101c-d62e-73f0-b71fd8a913c6
+	isActive: false
 	fromColumn: 'Function Assignments'.'Entity UID'
 	toColumn: Family.'Family UID'
 
 relationship 2b06ef53-4dfc-1f3f-b979-85d16a27d4a8
+	isActive: false
 	fromColumn: 'Function Assignments'.'Entity UID'
 	toColumn: Person.'Person UID'
 
@@ -67,9 +65,78 @@ relationship bcdbd3de-0a30-a74f-6a38-6bea9c59f9b2
 	fromColumn: Referrals.'Close Reason'
 	toColumn: 'Close Reason'.ReferralCloseReason
 
-relationship c2ef83e8-b44f-7029-123e-268f3cd009c6
+relationship ff711f1a-5300-c7d9-3e56-2c966a48259f
+	fromColumn: 'Community Member Families'.'Community ID'
+	toColumn: Community.'Community ID'
+
+relationship 5c1bc9ee-f470-097e-3969-f0cbf1431a8d
+	fromColumn: 'Community Role Assignments'.'Community ID'
+	toColumn: Community.'Community ID'
+
+relationship 346de67e-ab0a-fcd4-bcc4-9a7b047bbd87
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Community Role Assignments'.'Person UID'
+	toColumn: Person.'Person UID'
+
+relationship 3c4bf348-84fa-4150-ae9f-5294c6ed5b46
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Child Location Record'.Started
+	toColumn: LocalDateTable_ed213257-a100-4dcb-8da7-71cc92d5ab60.Date
+
+relationship 8c4a673e-c9be-45b5-a81c-bc5d2743779e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Child Location Record'.Ended
+	toColumn: LocalDateTable_ede24289-e40d-4557-99e4-7c2810f1776e.Date
+
+relationship e0ef5720-21b0-1b04-3593-bb2a37ef4d2e
+	fromColumn: 'Child Location Record'.'Arrangement ID'
+	toColumn: Arrangements.'Arrangement ID'
+
+relationship 8e2a2927-ec9d-4f02-36e1-429d05333866
+	fromColumn: 'Child Location Record'.'Childcare Plan'
+	toColumn: 'Childcare Plan'.ChildLocationPlan
+
+relationship 963a73dd-b136-38d4-17a6-33f95d067187
+	fromColumn: ChildLocationExpanded.Index
+	toColumn: 'Child Location Record'.Index
+
+relationship 4fca6228-7cab-390c-5374-dfc7bef11b75
+	fromColumn: ChildLocationExpanded.Date
+	toColumn: Date.Date
+
+relationship bc102c43-e415-d858-21c4-5f35eb0fe1b9
+	fromColumn: 'Role Approval'.'Entity UID'
+	toColumn: Family.'Family UID'
+
+relationship 83ff491e-07f0-2a5e-bf87-5d2b3df83792
+	fromColumn: 'Role Approval'.'Entity UID'
+	toColumn: Person.'Person UID'
+
+relationship 5f6ea80b-9b67-bb27-dc63-5a4387bcaefa
+	fromColumn: 'Role Approval'.Status
+	toColumn: 'Approval Status'.Status
+
+relationship AutoDetected_5f73fbe0-42c3-4c8c-820c-852e63c0e43c
+	fromColumn: 'Role Approval'.'Role Name'
+	toColumn: Role.'Role Name'
+
+relationship 8a4e7eae-f675-1270-40f6-479975240b1e
+	fromColumn: 'Role Approval'.Date
+	toColumn: Date.Date
+
+relationship 705021e6-2a17-9a13-cfb0-add84b7bd2f2
 	crossFilteringBehavior: bothDirections
 	fromCardinality: one
 	fromColumn: Family.'Family UID'
 	toColumn: 'Community Member Families'.'Family UID'
+
+relationship 47bbec46-80e4-019c-0194-d6945a304f9e
+	fromColumn: Family.'RLS Key'
+	toColumn: Location.'RLS Key'
+
+relationship 203145fe-a13c-45f5-f68a-cd27ac180427
+	fromColumn: Arrangements.'Person UID'
+	toColumn: Person.'Person UID'
 

@@ -1,0 +1,42 @@
+table 'Childcare Plan'
+	lineageTag: 8197a540-9290-4d4f-8a22-c9d6c9ca5256
+
+	column ChildLocationPlan
+		dataType: string
+		lineageTag: 8e7af2a3-2fea-449f-a013-6a71a86e938c
+		summarizeBy: none
+		sourceColumn: ChildLocationPlan
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		formatString: 0
+		lineageTag: c23fbbd6-fa73-4319-9206-d786bc5b1314
+		summarizeBy: none
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plan
+		dataType: string
+		lineageTag: 6fce5db9-ac06-4a3c-8062-b7e67c59e886
+		summarizeBy: none
+		sourceColumn: Plan
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Childcare Plan' = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8i9LLcrLTM8o8cgvLc7MS1fSUTIAYriwAkw8VidaySWxsiQzN9U5IzMnxTmxKBWo0BCIocIKYPFkkDhIcXhmSUYAkJNXAlRiBMQgAQWoSGwsAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ChildLocationPlan = _t, Order = _t, Plan = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"ChildLocationPlan", type text}, {"Order", Int64.Type}, {"Plan", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

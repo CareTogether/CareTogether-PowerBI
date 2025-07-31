@@ -1,8 +1,39 @@
 table Family
 	lineageTag: 5585aeeb-f4e2-456d-8f6e-436d261a4cc2
 
+	measure '# of Families Supported' =
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			RETURN
+			IF(
+			    CurrentStartDate > Today,  // Check if the current month's start is beyond today
+			    BLANK(),  // Return blank for future months
+			    COUNTROWS(
+			        FILTER(
+			            Person,
+			            COUNTROWS(
+			                FILTER(
+			                    RELATEDTABLE('Arrangements'),
+			                    NOT(ISBLANK('Arrangements'[Started])) &&
+			                    'Arrangements'[Started] <= CurrentEndDate &&
+			                    (
+			                        ISBLANK('Arrangements'[Ended]) ||
+			                        'Arrangements'[Ended] >= CurrentStartDate
+			                    )
+			                )
+			            ) > 0
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: ad57b4cc-695a-47d0-ba4c-da026d01baae
+
 	column 'RLS Key'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 9b81b91b-0a7b-4369-8ad5-230d2d2f28b9
 		summarizeBy: none
 		sourceColumn: RLS Key
@@ -11,6 +42,7 @@ table Family
 
 	column 'Family UID'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 9602b56d-1e4c-4149-bf57-1db9c8fa0ff0
 		summarizeBy: none
 		sourceColumn: Family UID
@@ -19,6 +51,7 @@ table Family
 
 	column 'Family Id'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 1bf494d3-fbb9-4a47-970f-c4e70728ecc8
 		summarizeBy: none
 		sourceColumn: Family Id
@@ -27,6 +60,7 @@ table Family
 
 	column 'Family Name'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 430fe861-f945-4edc-8a28-3a9f5e92853d
 		summarizeBy: none
 		sourceColumn: Family Name
@@ -35,6 +69,7 @@ table Family
 
 	column Email
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 57285976-29bb-4775-b26c-b510b16283c5
 		summarizeBy: none
 		sourceColumn: Email
@@ -43,6 +78,7 @@ table Family
 
 	column 'Phone Number'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: c313e0e0-f05d-48cd-89cd-dc39a915e31d
 		summarizeBy: none
 		sourceColumn: Phone Number
@@ -51,6 +87,7 @@ table Family
 
 	column 'Address Line 1'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 47710304-9a3a-4657-b8da-77bc8c3d33e7
 		summarizeBy: none
 		sourceColumn: Address Line 1
@@ -59,6 +96,7 @@ table Family
 
 	column 'Address Line 2'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 59c6accb-f738-427c-b53b-a1323b764df7
 		summarizeBy: none
 		sourceColumn: Address Line 2
@@ -67,6 +105,7 @@ table Family
 
 	column 'Postal Code'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: a8b986bf-7bf6-4500-bc09-d6709065c2a2
 		summarizeBy: none
 		sourceColumn: Postal Code
@@ -75,6 +114,7 @@ table Family
 
 	column 'Home Church'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: ba6c0946-1410-40be-9e6f-da5edca96367
 		summarizeBy: none
 		sourceColumn: Home Church
@@ -83,6 +123,7 @@ table Family
 
 	column City
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 0bea3d55-bb7f-438a-a63b-adb8ae95037d
 		summarizeBy: none
 		sourceColumn: City
@@ -91,6 +132,7 @@ table Family
 
 	column County
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 54c9d99e-91e5-49a9-aa7b-d66dbef9a8ac
 		summarizeBy: none
 		sourceColumn: County
@@ -99,6 +141,7 @@ table Family
 
 	column State
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 535724e2-72b9-4a2c-9498-d9c0c329b698
 		summarizeBy: none
 		sourceColumn: State

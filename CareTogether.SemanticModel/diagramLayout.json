@@ -131,6 +131,85 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Community",
+          "nodeLineageTag": "e7a84953-27c2-4818-8b9a-4ebdd0ebcb9d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Community Role Assignments",
+          "nodeLineageTag": "f609fd05-22d1-4600-8e45-7cf87904cf76",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Child Location Record",
+          "nodeLineageTag": "8fbe750b-9267-4d1b-9df7-3a6f63651067",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Childcare Plan",
+          "nodeLineageTag": "8197a540-9290-4d4f-8a22-c9d6c9ca5256",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "ChildLocationExpanded",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Role Approval",
+          "nodeLineageTag": "dc77a9af-d0f4-42f8-b4b0-a7be6b0e7514",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Approval Status",
+          "nodeLineageTag": "3ef6724d-6748-4b8d-b25c-519df76a376b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Role",
+          "nodeLineageTag": "a5a15efd-7639-4e75-a11f-7e21f671acbe",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
@@ -144,25 +223,26 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 75.06162789293505
+        "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 0,
+            "x": 1856.1713888377226,
             "y": 0
           },
           "nodeIndex": "RLS",
+          "nodeLineageTag": "1e937af2-258c-44d6-ad23-78399a7d9847",
           "size": {
             "height": 145,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 12
         },
         {
           "location": {
-            "x": 583.20543289427746,
-            "y": 161.24486763450241
+            "x": 322.91847214578,
+            "y": 304.40269604617612
           },
           "nodeIndex": "Location",
           "nodeLineageTag": "16999c6b-194b-4c64-b4cd-216cdc159dbd",
@@ -170,38 +250,38 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 13
         },
         {
           "location": {
-            "x": 583.20543289427746,
-            "y": 368.3114273391509
+            "x": 529.52124723989982,
+            "y": 490.320940190009
           },
           "nodeIndex": "Family",
           "nodeLineageTag": "5585aeeb-f4e2-456d-8f6e-436d261a4cc2",
           "size": {
-            "height": 300,
+            "height": 407.36837130875517,
             "width": 234
           },
-          "zIndex": 5
+          "zIndex": 19
         },
         {
           "location": {
-            "x": 865.33362049186087,
-            "y": 369.60559333730492
+            "x": 860.45323997782657,
+            "y": 489.98831268348482
           },
           "nodeIndex": "Person",
           "nodeLineageTag": "68a9b7b7-2438-4d03-bd69-1eb77d7bd43f",
           "size": {
-            "height": 300,
+            "height": 415.50233883214571,
             "width": 234
           },
-          "zIndex": 6
+          "zIndex": 14
         },
         {
           "location": {
-            "x": 690.62121074106369,
-            "y": 1173.2826781909712
+            "x": 675.98006919896068,
+            "y": 1038.2588173026884
           },
           "nodeIndex": "Function Assignments",
           "nodeLineageTag": "eced6c92-2c6c-4731-9471-3ec38417408e",
@@ -209,12 +289,12 @@
             "height": 200,
             "width": 296.11996791139484
           },
-          "zIndex": 10
+          "zIndex": 18
         },
         {
           "location": {
-            "x": 694.50370873552617,
-            "y": 1447.6458697996304
+            "x": 671.72859967003262,
+            "y": 1429.7511412481713
           },
           "nodeIndex": "Arrangements",
           "nodeLineageTag": "1874e170-b37e-4a8f-b672-f37058e8d3e6",
@@ -222,12 +302,12 @@
             "height": 300,
             "width": 294.82580191324018
           },
-          "zIndex": 7
+          "zIndex": 15
         },
         {
           "location": {
-            "x": 380.02137118409115,
-            "y": 1445.0575378033222
+            "x": 377.43303918778304,
+            "y": 1446.3517038014763
           },
           "nodeIndex": "Arrangement Type",
           "nodeLineageTag": "b2303fb3-bd33-4a97-9b0d-831a6ca8cf94",
@@ -235,7 +315,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 8
+          "zIndex": 16
         },
         {
           "location": {
@@ -248,12 +328,12 @@
             "height": 181.76581795754328,
             "width": 234
           },
-          "zIndex": 9
+          "zIndex": 17
         },
         {
           "location": {
-            "x": 374.84470719147492,
-            "y": 1087.8677223128041
+            "x": 278.86389041546647,
+            "y": 962.60462245258964
           },
           "nodeIndex": "Referrals",
           "nodeLineageTag": "9e3a875e-349f-43da-84eb-8c636fdefbc9",
@@ -261,15 +341,132 @@
             "height": 296,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 11.387554532746748,
+            "y": 958.6857804301851
+          },
+          "nodeIndex": "Close Reason",
+          "nodeLineageTag": "a1d60698-0bd2-4f71-8c12-2867d488fec6",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 11
         },
         {
           "location": {
             "x": 0,
-            "y": 1090.456054309112
+            "y": 689.26459488135572
           },
-          "nodeIndex": "Close Reason",
-          "nodeLineageTag": "a1d60698-0bd2-4f71-8c12-2867d488fec6",
+          "nodeIndex": "Community Member Families",
+          "nodeLineageTag": "785f05bf-7c33-4d73-a7e1-fb1007f192e8",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 497.72802715455606
+          },
+          "nodeIndex": "Community",
+          "nodeLineageTag": "e7a84953-27c2-4818-8b9a-4ebdd0ebcb9d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 232.42399753297531
+          },
+          "nodeIndex": "Community Role Assignments",
+          "nodeLineageTag": "f609fd05-22d1-4600-8e45-7cf87904cf76",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1119.1955647705561,
+            "y": 1442.3198619208131
+          },
+          "nodeIndex": "Child Location Record",
+          "nodeLineageTag": "8fbe750b-9267-4d1b-9df7-3a6f63651067",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 20
+        },
+        {
+          "location": {
+            "x": 1117.5687712658778,
+            "y": 1201.5544232284531
+          },
+          "nodeIndex": "Childcare Plan",
+          "nodeLineageTag": "8197a540-9290-4d4f-8a22-c9d6c9ca5256",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1433.1667111734312,
+            "y": 1448.8270359395256
+          },
+          "nodeIndex": "ChildLocationExpanded",
+          "nodeLineageTag": "1c692135-9901-47e8-bbdf-f989aca7384c",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1433.1667111734309,
+            "y": 355.62180079583618
+          },
+          "nodeIndex": "Date",
+          "nodeLineageTag": "c3cfcb9b-c6b2-48e0-8d00-9fe6ec85a978",
+          "size": {
+            "height": 547.27261271107261,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 714.123982105707,
+            "y": 165.93293747716712
+          },
+          "nodeIndex": "Role Approval",
+          "nodeLineageTag": "dc77a9af-d0f4-42f8-b4b0-a7be6b0e7514",
+          "size": {
+            "height": 204.8995637380259,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 335.08109551570732,
+            "y": 0
+          },
+          "nodeIndex": "Approval Status",
+          "nodeLineageTag": "3ef6724d-6748-4b8d-b25c-519df76a376b",
           "size": {
             "height": 152,
             "width": 234
@@ -278,20 +475,20 @@
         },
         {
           "location": {
-            "x": 0,
-            "y": 378.66475532438335
+            "x": 705.99001458231623,
+            "y": 0
           },
-          "nodeIndex": "Community Member Families",
-          "nodeLineageTag": "785f05bf-7c33-4d73-a7e1-fb1007f192e8",
+          "nodeIndex": "Role",
+          "nodeLineageTag": "a5a15efd-7639-4e75-a11f-7e21f671acbe",
           "size": {
-            "height": 176,
+            "height": 104,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 3
         }
       ],
       "name": "Data Model",
-      "zoomValue": 77.269840300731175,
+      "zoomValue": 61.470616714680595,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

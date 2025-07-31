@@ -1,0 +1,35 @@
+table Role
+	lineageTag: a5a15efd-7639-4e75-a11f-7e21f671acbe
+
+	column 'Role Name'
+		dataType: string
+		lineageTag: 99f25033-77d2-472e-aa78-36b450f50e70
+		summarizeBy: none
+		sourceColumn: Role Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Role = m
+		mode: import
+		queryGroup: Dimensions
+		source = ```
+				let
+				    Source = #"OData Live",
+				    SourceTable = Source{[Name="Role", Signature="table"]}[Data],
+				
+				    Role = 
+				    Table.SelectColumns(
+				        Table.RenameColumns(
+				            SourceTable,
+				            {{"Name", "Role Name"}}
+				        ),
+				        {"Role Name"}
+				    )
+				in
+				    Role
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

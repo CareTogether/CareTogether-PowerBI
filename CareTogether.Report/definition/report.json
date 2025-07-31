@@ -15,7 +15,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "837e9567fc9ca18ecf4e",
+        "name": "ef19b2b00fa6797c5510",
         "ordinal": 0,
         "field": {
           "Column": {
@@ -65,22 +65,6 @@
             }
           ]
         },
-        "howCreated": "User"
-      },
-      {
-        "name": "c043e3c3f8b1773d0da4",
-        "ordinal": 1,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Location"
-              }
-            },
-            "Property": "Location"
-          }
-        },
-        "type": "Categorical",
         "howCreated": "User"
       }
     ],

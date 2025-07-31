@@ -23,12 +23,13 @@
                       "Entity": "Location"
                     }
                   },
-                  "Property": "Location"
+                  "Property": "Location Name"
                 }
               },
-              "queryRef": "Location.Location",
+              "queryRef": "Location.Location Name",
               "nativeQueryRef": "Location",
-              "active": true
+              "active": true,
+              "displayName": "Location"
             }
           ]
         },
@@ -39,14 +40,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "# of Referrals Opened"
                 }
               },
-              "queryRef": "Referral.# of Referrals Opened",
-              "nativeQueryRef": "# of Referrals Opened"
+              "queryRef": "Referrals.# of Referrals Opened",
+              "nativeQueryRef": "# of Referrals Opened1"
             }
           ]
         }
@@ -58,7 +59,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Referral"
+                    "Entity": "Referrals"
                   }
                 },
                 "Property": "# of Referrals Opened"
@@ -515,5 +516,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7006c8d6a0a4521dcb78",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location"
+              }
+            },
+            "Property": "Location Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e108d3b6e54c674efab1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "# of Referrals Opened"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

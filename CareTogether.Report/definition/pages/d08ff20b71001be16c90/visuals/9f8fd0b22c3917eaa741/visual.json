@@ -57,11 +57,12 @@
                       "Entity": "Location"
                     }
                   },
-                  "Property": "Location"
+                  "Property": "Location Name"
                 }
               },
-              "queryRef": "Location.Location",
-              "nativeQueryRef": "Location"
+              "queryRef": "Location.Location Name",
+              "nativeQueryRef": "Location",
+              "displayName": "Location"
             }
           ]
         },
@@ -72,13 +73,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "# of Families Referred"
                 }
               },
-              "queryRef": "Referral.# of Families Referred",
+              "queryRef": "Referrals.# of Families Referred",
               "nativeQueryRef": "# of Families Referred"
             }
           ]
@@ -621,5 +622,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f9626c987c8b357d4d7a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9e05a45557347d64f009",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Month Name Short"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "390209e384856fec09f0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "# of Families Referred"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "918927f29d7c7d8dba9e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location"
+              }
+            },
+            "Property": "Location Name"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

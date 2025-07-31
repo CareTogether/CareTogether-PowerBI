@@ -1,0 +1,69 @@
+table ChildLocationExpanded
+	lineageTag: 1c692135-9901-47e8-bbdf-f989aca7384c
+
+	column Date
+		formatString: General Date
+		lineageTag: 4a9ea283-a9a4-466f-b964-223e98718f18
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		formatString: 0
+		lineageTag: d4d69fc4-7f7a-4066-bb19-a5c7ae6b0b89
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Index]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChildcarePlan
+		lineageTag: dba36bc7-6204-4f57-a9a9-7094605a53c9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ChildcarePlan]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OvernightStay
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 86db0a73-0831-4308-860f-91b3d7d44af3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OvernightStay]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ChildLocationExpanded = calculated
+		mode: import
+		source = ```
+				
+				VAR TempTable = CROSSJOIN('Child Location Record', 'Date')
+				VAR TempTableWithNightOfCare = 
+				    ADDCOLUMNS(
+				        TempTable,
+				        "OvernightStay", 
+				        IF(INT('Date'[Date]) < INT('Child Location Record'[Ended]) ||
+				            (ISBLANK('Child Location Record'[Ended]) && INT('Date'[Date]) < INT(UTCTODAY())),
+				            TRUE(),
+				            FALSE())
+				    )
+				RETURN
+				SELECTCOLUMNS(
+				    FILTER(
+				        TempTableWithNightOfCare,
+				        INT('Date'[Date]) >= INT('Child Location Record'[Started]) && 
+				        (INT('Date'[Date]) <= INT('Child Location Record'[Ended]) || (
+				            ISBLANK('Child Location Record'[Ended]) && INT('Date'[Date]) <= INT(UTCTODAY())))
+				    ),
+				    "Date", 'Date'[Date],
+				    "Index", 'Child Location Record'[Index],
+				    "ChildcarePlan", 'Child Location Record'[Childcare Plan],
+				    "OvernightStay", [OvernightStay]
+				)
+				```
+
+	annotation PBI_Id = 4641a2599610442495cf907f1e6354cf
+

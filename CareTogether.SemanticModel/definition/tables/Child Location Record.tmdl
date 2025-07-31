@@ -1,0 +1,188 @@
+table 'Child Location Record'
+	lineageTag: 8fbe750b-9267-4d1b-9df7-3a6f63651067
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: f367d031-337f-4e59-9296-a70b8520a968
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family UID'
+		dataType: string
+		lineageTag: 1f93be81-68ed-4f4f-a1a7-91149d97da8a
+		summarizeBy: none
+		sourceColumn: Family UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family ID'
+		dataType: string
+		lineageTag: 858238a3-563f-423f-be2b-d3abbdd90fc5
+		summarizeBy: none
+		sourceColumn: Family ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Arrangement ID'
+		dataType: string
+		lineageTag: 61c3c958-c541-4b36-b11f-3c38d7036b20
+		summarizeBy: none
+		sourceColumn: Arrangement ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Child Person UID'
+		dataType: string
+		lineageTag: e793d16c-75ab-4c0c-99ce-5287002b9ec8
+		summarizeBy: none
+		sourceColumn: Child Person UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Child Person ID'
+		dataType: string
+		lineageTag: 871e29b8-874e-400c-8019-97d43af4775a
+		summarizeBy: none
+		sourceColumn: Child Person ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Started
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 31dd7f0c-707d-4ab3-ab1b-037f978babb5
+		summarizeBy: none
+		sourceColumn: Started
+
+		variation Variation
+			isDefault
+			relationship: 3c4bf348-84fa-4150-ae9f-5294c6ed5b46
+			defaultHierarchy: LocalDateTable_ed213257-a100-4dcb-8da7-71cc92d5ab60.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ended
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 12635f46-fd7d-4a5b-9ffc-888f920e1c0e
+		summarizeBy: none
+		sourceColumn: Ended
+
+		variation Variation
+			isDefault
+			relationship: 8c4a673e-c9be-45b5-a81c-bc5d2743779e
+			defaultHierarchy: LocalDateTable_ede24289-e40d-4557-99e4-7c2810f1776e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Duration
+		dataType: double
+		lineageTag: fb71f4e2-f2fa-4231-aeae-2752130df893
+		summarizeBy: sum
+		sourceColumn: Duration
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 25ac904d-6795-4a4d-a074-deb6622402b5
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Childcare Family Name'
+		dataType: string
+		lineageTag: 3fad2f9d-6e37-4643-b1fd-ff8ac1ba5437
+		summarizeBy: none
+		sourceColumn: Childcare Family Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Childcare Plan'
+		dataType: string
+		lineageTag: f903847d-f8f7-40af-b40b-a9d64ea29867
+		summarizeBy: none
+		sourceColumn: Childcare Plan
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Child Location Record' = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    Source = #"OData Live",
+				    ChildLocationRecord = Source{[Name="ChildLocationRecords", Signature="table"]}[Data],
+				    ChildLocationRecordTransformed = 
+				
+				        Table.AddColumn(
+				            Table.AddColumn(
+				                Table.TransformColumns(
+				                    Table.AddIndexColumn(
+				                        Table.AddColumn(
+				                            ChildLocationRecord,
+				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        ),
+				                        "Index", 1, 1, Int64.Type
+				                    ),
+				                    {{"StartedAtUtc", DateTimeZone.ToLocal, type datetimezone}, {"EndedAtUtc", DateTimeZone.ToLocal, type datetimezone}}
+				                ),
+				                "Child Person UID", each Text.Combine({[RLS Key], [ChildPersonId]}, "-")
+				            ),
+				            "Family UID", each Text.Combine({[RLS Key], [FamilyId]},"-")
+				        ),
+				
+				    // Adding the Family Name
+				    Family = 
+				        Table.SelectColumns(
+				            Table.RenameColumns(
+				                Table.AddColumn(
+				                    Table.AddColumn(
+				                        Source{[Name="Family", Signature="table"]}[Data],
+				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                    ),
+				                    "FamilyUID", each Text.Combine({[RLS Key], [Id]}, "-")
+				                ),
+				                {{"Name", "Childcare Family Name"}}
+				            ),
+				            {"FamilyUID", "Childcare Family Name"}
+				        ),
+				
+				    // Combined Tables: 
+				    Combined =
+				        Table.SelectColumns(
+				            Table.RenameColumns(
+				                Table.Join(
+				                    ChildLocationRecordTransformed,
+				                    "Family UID",
+				                    Family,
+				                    "FamilyUID",
+				                    JoinKind.LeftOuter
+				                ),
+				                {
+				                    {"ArrangementId", "Arrangement ID"}, {"ChildPersonId", "Child Person ID"}, {"FamilyId", "Family ID"},
+				                    {"StartedAtUtc", "Started"}, {"EndedAtUtc", "Ended"}, {"ChildcarePlan", "Childcare Plan"}
+				                }
+				            ),
+				            {
+				                "RLS Key", "Family UID", "Family ID", "Arrangement ID", "Child Person UID", "Child Person ID",
+				                "Started", "Ended", "Duration", "Index", "Childcare Family Name", "Childcare Plan"
+				            }
+				        )
+				
+				
+				
+				in
+				    Combined
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

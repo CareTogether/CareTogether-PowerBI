@@ -8,22 +8,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "dc875673d2060c2b8c2b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Date"
-          }
-        },
-        "type": "RelativeDate",
-        "howCreated": "User"
-      },
-      {
-        "name": "b70484c6dd7ba1006d15",
+        "name": "16c9176aacd331a7ed5e",
         "field": {
           "Column": {
             "Expression": {
@@ -51,6 +36,21 @@
             }
           ]
         }
+      },
+      {
+        "name": "4f6dfccf8ee9bb727d90",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "RelativeDate",
+        "howCreated": "User"
       }
     ]
   },

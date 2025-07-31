@@ -1,0 +1,42 @@
+table 'Approval Status'
+	lineageTag: 3ef6724d-6748-4b8d-b25c-519df76a376b
+
+	column RoleApprovalStatus
+		dataType: string
+		lineageTag: 27960aa4-fbc7-4ed9-b8bb-9c5104abb985
+		summarizeBy: none
+		sourceColumn: RoleApprovalStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 74db945b-9f6f-4067-be9d-b1ea07f2f47c
+		summarizeBy: none
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 3151ba5d-8fae-437b-b0eb-fc90a14d6e09
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Approval Status' = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCijKLy5ITS7JLEtV0lEyAGJkkVidaCXXioLMotQUoIwhEMN4IBnHgoKi/DKwlBEQw7kgOf+8pPzEohSwpDEQI/ggWc+8RJiVJkAM54LkXFLzMsHaTIEYyomNBQA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [RoleApprovalStatus = _t, Order = _t, Status = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"RoleApprovalStatus", type text}, {"Order", Int64.Type}, {"Status", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

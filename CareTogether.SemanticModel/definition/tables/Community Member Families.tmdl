@@ -35,7 +35,7 @@ table 'Community Member Families'
 
 	partition 'Community Member Families' = m
 		mode: import
-		queryGroup: Dimensions
+		queryGroup: Fact
 		source = ```
 				let
 				    Source = #"OData Live",
@@ -58,8 +58,6 @@ table 'Community Member Families'
 				in
 				    CommunityTransformed
 				```
-
-	changedProperty = Name
 
 	annotation PBI_NavigationStepName = Navigation
 
