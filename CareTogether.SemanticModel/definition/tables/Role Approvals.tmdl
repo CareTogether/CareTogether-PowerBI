@@ -1,9 +1,9 @@
-table 'Role Approval'
-	lineageTag: dc77a9af-d0f4-42f8-b4b0-a7be6b0e7514
+table 'Role Approvals'
+	lineageTag: 90811375-696f-4ad0-9941-2e1af48bc4a6
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: cf8eefc8-80bb-4ffe-b22c-dd46fd8dbb7a
+		lineageTag: 77858b49-ac6f-4892-bc48-8bd62f9e6d40
 		summarizeBy: none
 		sourceColumn: RLS Key
 
@@ -11,7 +11,7 @@ table 'Role Approval'
 
 	column 'Entity Type'
 		dataType: string
-		lineageTag: 74501cca-ca8d-4f6e-a64b-6cebf607cc45
+		lineageTag: ae951a29-7894-44c0-a0fc-3624c7931f47
 		summarizeBy: none
 		sourceColumn: Entity Type
 
@@ -19,7 +19,7 @@ table 'Role Approval'
 
 	column 'Entity UID'
 		dataType: string
-		lineageTag: 45c351f4-f241-4b87-9582-0df67d28de5b
+		lineageTag: 72cc5255-1daf-4227-b104-a21c5550e226
 		summarizeBy: none
 		sourceColumn: Entity UID
 
@@ -27,7 +27,7 @@ table 'Role Approval'
 
 	column EntityId
 		dataType: string
-		lineageTag: 2c9cd7bd-193c-432c-83da-56d98b1e45f5
+		lineageTag: 04a62da9-9e70-4df9-af63-36142150a572
 		summarizeBy: none
 		sourceColumn: EntityId
 
@@ -35,7 +35,7 @@ table 'Role Approval'
 
 	column 'Role Name'
 		dataType: string
-		lineageTag: 04273944-b9a9-4167-9451-9274e07fc368
+		lineageTag: 8cce3bf0-cef2-42f3-b82e-ee8aacfaa610
 		summarizeBy: none
 		sourceColumn: Role Name
 
@@ -43,8 +43,8 @@ table 'Role Approval'
 
 	column Date
 		dataType: dateTime
-		formatString: Long Date
-		lineageTag: da080dce-bece-46d7-84ce-4442bcf0d9c8
+		formatString: Short Date
+		lineageTag: 999480bf-10e4-420e-848d-44ec30a8ebb2
 		summarizeBy: none
 		sourceColumn: Date
 
@@ -54,7 +54,7 @@ table 'Role Approval'
 
 	column 'Approval Type'
 		dataType: string
-		lineageTag: f0bc1892-7da7-4488-ad2f-3462f8b8cfeb
+		lineageTag: 4b7da618-12c8-4615-b350-0863121b299b
 		summarizeBy: none
 		sourceColumn: Approval Type
 
@@ -62,7 +62,7 @@ table 'Role Approval'
 
 	column Status
 		dataType: string
-		lineageTag: a5ad8d7d-1fbc-48a5-bf21-b3467dae9aa3
+		lineageTag: 7462714d-009e-4ab8-9fb1-22c7e8b41907
 		summarizeBy: none
 		sourceColumn: Status
 
@@ -71,13 +71,13 @@ table 'Role Approval'
 	column 'Status Changed'
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 532f1685-48b8-47af-885a-9f78ad09089c
+		lineageTag: 954287c6-cf6f-4e01-aaba-ffe455632f82
 		summarizeBy: none
 		sourceColumn: Status Changed
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 'Role Approval' = m
+	partition 'Role Approvals' = m
 		mode: import
 		queryGroup: Fact
 		source = ```
@@ -92,7 +92,7 @@ table 'Role Approval'
 				                        Source{[Name="RoleApprovals", Signature="table"]}[Data],
 				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				                    ),
-				                    "Entity UID", each Text.Combine({[RLS Key], [EntityId]})
+				                    "Entity UID", each Text.Combine({[RLS Key], [EntityId]}, "-")
 				                ),
 				                {{"StatusChanged", "Status Changed"}, {"RoleName", "Role Name"}, {"ApprovalType", "Approval Type"}, {"EntityType", "Entity Type"}}
 				            ),

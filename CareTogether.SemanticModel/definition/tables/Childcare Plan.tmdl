@@ -13,7 +13,7 @@ table 'Childcare Plan'
 		dataType: int64
 		formatString: 0
 		lineageTag: c23fbbd6-fa73-4319-9206-d786bc5b1314
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Order
 
 		annotation SummarizationSetBy = Automatic

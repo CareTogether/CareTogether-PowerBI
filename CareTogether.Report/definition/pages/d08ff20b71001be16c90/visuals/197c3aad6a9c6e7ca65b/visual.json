@@ -7,7 +7,7 @@
     "z": 5000,
     "height": 221.42857142857144,
     "width": 445.71428571428572,
-    "tabOrder": 4000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "stackedAreaChart",
@@ -44,6 +44,25 @@
               "queryRef": "Date.Month Name Short",
               "nativeQueryRef": "Month Name Short",
               "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Location"
+                    }
+                  },
+                  "Property": "Location"
+                }
+              },
+              "queryRef": "Location.Location Name",
+              "nativeQueryRef": "Location",
+              "displayName": "Location"
             }
           ]
         },
@@ -215,6 +234,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -721,51 +747,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "aaa591483593d0255d05",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6799a4ec0e7bd78adf36",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Month Name Short"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "e1b2112f99637d2bfec5",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "# of Families Supported"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

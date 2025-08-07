@@ -6,8 +6,7 @@
     "y": 99.5221843003413,
     "z": 2000,
     "height": 608.80546075085329,
-    "width": 1260,
-    "tabOrder": 2000
+    "width": 1260
   },
   "visual": {
     "visualType": "tableEx",
@@ -34,7 +33,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Role Approval"
+                      "Entity": "Role Approval Bridge"
                     }
                   },
                   "Property": "Volunteer Family Status Flag"
@@ -64,7 +63,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Role Approval"
+                      "Entity": "Role Approval Bridge"
                     }
                   },
                   "Property": "Volunteer Individual Status Flag"
@@ -821,7 +820,7 @@
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Role Approval"
+                "Entity": "Role Approval Bridge"
               }
             },
             "Property": "Volunteer Family Status Flag"
@@ -836,7 +835,7 @@
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Role Approval"
+                "Entity": "Role Approval Bridge"
               }
             },
             "Property": "Volunteer Individual Status Flag"
@@ -899,34 +898,6 @@
         "howCreated": "User",
         "isHiddenInViewMode": true,
         "isLockedInViewMode": true
-      },
-      {
-        "name": "8c064333caa252e5bd47",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "Age"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6978d73b650dc6187aaa",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "Gender"
-          }
-        },
-        "type": "Categorical"
       }
     ],
     "filterSortOrder": "Custom"

@@ -23,6 +23,9 @@ table 'Approval Status'
 		lineageTag: 3151ba5d-8fae-437b-b0eb-fc90a14d6e09
 		summarizeBy: none
 		sourceColumn: Status
+		sortByColumn: Order
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 

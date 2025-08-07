@@ -7,7 +7,7 @@
     "z": 1000,
     "height": 221.42857142857144,
     "width": 365,
-    "tabOrder": 1000
+    "tabOrder": 16000
   },
   "visual": {
     "visualType": "donutChart",
@@ -23,7 +23,7 @@
                       "Entity": "Location"
                     }
                   },
-                  "Property": "Location Name"
+                  "Property": "Location"
                 }
               },
               "queryRef": "Location.Location Name",
@@ -516,37 +516,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "7006c8d6a0a4521dcb78",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Location"
-              }
-            },
-            "Property": "Location Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "e108d3b6e54c674efab1",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Referrals"
-              }
-            },
-            "Property": "# of Referrals Opened"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

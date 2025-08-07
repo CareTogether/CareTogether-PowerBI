@@ -36,6 +36,14 @@ table ChildLocationExpanded
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'RLS Key'
+		lineageTag: 96752d28-7318-48f2-bfaa-8367bf84bebe
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [RLS Key]
+
+		annotation SummarizationSetBy = Automatic
+
 	partition ChildLocationExpanded = calculated
 		mode: import
 		source = ```
@@ -61,7 +69,8 @@ table ChildLocationExpanded
 				    "Date", 'Date'[Date],
 				    "Index", 'Child Location Record'[Index],
 				    "ChildcarePlan", 'Child Location Record'[Childcare Plan],
-				    "OvernightStay", [OvernightStay]
+				    "OvernightStay", [OvernightStay],
+				    "RLS Key", 'Child Location Record'[RLS Key]
 				)
 				```
 

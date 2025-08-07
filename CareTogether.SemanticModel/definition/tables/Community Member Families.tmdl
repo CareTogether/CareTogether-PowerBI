@@ -49,7 +49,7 @@ table 'Community Member Families'
 				                    Community,
 				                    "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				                ),
-				                "Family UID", each Text.Combine({[RLS Key], [FamilyId]})
+				                "Family UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
 				            ),
 				            {{"CommunityId", "Community ID"}, {"FamilyId", "Family ID"}}
 				        ),

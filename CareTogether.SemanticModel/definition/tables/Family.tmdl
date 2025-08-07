@@ -3,7 +3,6 @@ table Family
 
 	measure '# of Families Supported' =
 			
-			
 			VAR Today = TODAY()
 			VAR CurrentStartDate = [Selected Timeframe Start]
 			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
@@ -13,7 +12,7 @@ table Family
 			    BLANK(),  // Return blank for future months
 			    COUNTROWS(
 			        FILTER(
-			            Person,
+			            'Family',
 			            COUNTROWS(
 			                FILTER(
 			                    RELATEDTABLE('Arrangements'),

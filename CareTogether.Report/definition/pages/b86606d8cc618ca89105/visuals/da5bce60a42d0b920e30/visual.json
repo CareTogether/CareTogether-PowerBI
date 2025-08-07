@@ -7,7 +7,7 @@
     "z": 6000,
     "height": 373.51535836177476,
     "width": 530.78498293515361,
-    "tabOrder": 6000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "barChart",
@@ -57,13 +57,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Approvals Group"
                     }
                   },
                   "Property": "# of Entities in Role"
                 }
               },
-              "queryRef": "Entity.# of Entities in Role",
+              "queryRef": "Approvals Group.# of Entities in Role",
               "nativeQueryRef": "# of Entities in Role"
             }
           ]
@@ -310,51 +310,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "afe229f675408851be21",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Role"
-              }
-            },
-            "Property": "Role Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "5724bf58b405e361daee",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Approval Status"
-              }
-            },
-            "Property": "Status"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "a9baa468730bfe1a8006",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "# of Entities in Role"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -7,7 +7,7 @@
     "z": 5000,
     "height": 351.33333333333331,
     "width": 885.33333333333337,
-    "tabOrder": 5000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "lineChart",
@@ -54,14 +54,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "# of Referrals Opened"
                 }
               },
-              "queryRef": "Referral.# of Referrals Opened",
-              "nativeQueryRef": "# of Referrals Opened"
+              "queryRef": "Referrals.# of Referrals Opened",
+              "nativeQueryRef": "# of Referrals Opened1"
             }
           ]
         }
@@ -224,9 +224,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": 0.2
+                    "Literal": {
+                      "Value": "'#51B5BC'"
                     }
                   }
                 }
@@ -234,7 +233,7 @@
             }
           },
           "selector": {
-            "metadata": "Referral.# of Referrals Opened"
+            "metadata": "Referrals.# of Referrals Opened"
           }
         }
       ],
@@ -371,6 +370,13 @@
                       "Value": "'#E6E6E6'"
                     }
                   }
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

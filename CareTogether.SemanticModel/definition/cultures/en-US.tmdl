@@ -1530,7 +1530,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Location",
-			          "ConceptualProperty": "Location Name"
+			          "ConceptualProperty": "Location"
 			        }
 			      },
 			      "State": "Generated",
@@ -1945,6 +1945,16 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "Families Supported": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -2709,128 +2719,6 @@ cultureInfo en-US
 			          "UID": {
 			            "State": "Generated",
 			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "role_approval.approval_type": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval",
-			          "ConceptualProperty": "Approval Type"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "approval type": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "type": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "approval category": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "approval genre": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "approval manner": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "approval variety": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "category": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "genre": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "manner": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "variety": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "approval brand": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "approval class": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
 			          }
 			        }
 			      ]
@@ -4046,6 +3934,16 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "Child": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ],
@@ -9228,6 +9126,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.748
 			          }
+			        },
+			        {
+			          "Referrals Opened": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -13312,853 +13220,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "role_approval": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "role approval": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "approval": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "role endorsement": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.5
-			          }
-			        },
-			        {
-			          "role agreement": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.5
-			          }
-			        },
-			        {
-			          "role authorization": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.5
-			          }
-			        },
-			        {
-			          "endorsement": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "agreement": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "authorization": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "role support": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "role sanction": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "role consent": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "role say-so": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        }
-			      ]
-			    },
-			    "role_approval.RLS_key": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval",
-			          "ConceptualProperty": "RLS Key"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "RLS key": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "RL key": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.78
-			          }
-			        },
-			        {
-			          "key": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "main": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "basic": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "fundamental": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "central": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "major": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "keynote": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "essential": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "rl solution": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.475
-			          }
-			        },
-			        {
-			          "rl explanation": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.475
-			          }
-			        },
-			        {
-			          "rl basis": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.475
-			          }
-			        }
-			      ]
-			    },
-			    "role_approval.entity_type": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval",
-			          "ConceptualProperty": "Entity Type"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "entity type": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "type": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "entity category": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "entity genre": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "entity manner": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "entity variety": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "category": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "genre": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "manner": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "variety": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "entity brand": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "entity class": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        }
-			      ]
-			    },
-			    "role_approval.entity_UID": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval",
-			          "ConceptualProperty": "Entity UID"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "entity UID": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "UID": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "role_approval.entity_id": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval",
-			          "ConceptualProperty": "EntityId"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "entity id": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "EntityId": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.99
-			          }
-			        },
-			        {
-			          "entity": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "entity identification": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "entity identity": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "entity identifier": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "entity credential": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "unit": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "thing": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "creature": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "object": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "article": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "being": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        }
-			      ]
-			    },
-			    "role_approval.role_name": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval",
-			          "ConceptualProperty": "Role Name"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "role name": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "role nickname": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "role title": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "role label": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "role tag": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        }
-			      ]
-			    },
-			    "role_approval.date": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval",
-			          "ConceptualProperty": "Date"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "date": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "moment": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "period": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.714
-			          }
-			        }
-			      ],
-			      "SemanticType": "Time"
-			    },
-			    "role_approval.status": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval",
-			          "ConceptualProperty": "Status"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "status": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "category": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "importance": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "prestige": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "prominence": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "condition": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.714
-			          }
-			        },
-			        {
-			          "class": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.714
-			          }
-			        },
-			        {
-			          "grade": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.714
-			          }
-			        },
-			        {
-			          "level": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.714
-			          }
-			        },
-			        {
-			          "position": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.714
-			          }
-			        }
-			      ]
-			    },
-			    "role_approval.status_changed": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval",
-			          "ConceptualProperty": "Status Changed"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "status changed": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "category changed": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "importance changed": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "prestige changed": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "prominence changed": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "condition changed": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "class changed": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "grade changed": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "level changed": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "position changed": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "rank changed": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        }
-			      ]
-			    },
 			    "approval_status": {
 			      "Definition": {
 			        "Binding": {
@@ -14866,16 +13927,6 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Child": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
-			        {
 			          "Person Name": {
 			            "State": "Suggested",
 			            "Source": {
@@ -14945,70 +13996,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Dynamic Entity Name (Approvals)"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Name": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
-			    "role_approval.entity_id1": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval",
-			          "ConceptualProperty": "Entity Id"
-			        }
-			      },
 			      "State": "Generated"
-			    },
-			    "role_approval.volunteer_family_status_flag": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval",
-			          "ConceptualProperty": "Volunteer Family Status Flag"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Family Status": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
-			    "role_approval.volunteer_individual_status_flag": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval",
-			          "ConceptualProperty": "Volunteer Individual Status Flag"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Person Status": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
 			    },
 			    "function_assignments.entityid": {
 			      "Definition": {
@@ -15039,6 +14027,169 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "person.of_children_cared_for": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Person",
+			          "ConceptualProperty": "# of Children Cared For"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Children Cared For": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "arrangements.of_arrangements_started": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Arrangements",
+			          "ConceptualProperty": "# of Arrangements Started"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Arrangements Started": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "child_location_record.of_days_of_care": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Child Location Record",
+			          "ConceptualProperty": "# of Days of Care"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Ddddddays of Care": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Days of Care": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "child_location_record.of_nights_of_care": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Child Location Record",
+			          "ConceptualProperty": "# of Nights of Care"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Nights of Care": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "person.of_impacted_adults": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Person",
+			          "ConceptualProperty": "# of Impacted Adults"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Impacted Adults": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "person.of_impacted_children": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Person",
+			          "ConceptualProperty": "# of Impacted Children"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Impacted children": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "arrangements.of_arrangements": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Arrangements",
+			          "ConceptualProperty": "# of Arrangements"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "approvals_group.dynamic_entity_name_approvals": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Approvals Group",
+			          "ConceptualProperty": "Dynamic Entity Name (Approvals)"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "approvals_group.of_entities_in_role": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Approvals Group",
+			          "ConceptualProperty": "# of Entities in Role"
+			        }
+			      },
+			      "State": "Generated"
 			    }
 			  },
 			  "Relationships": {
@@ -15864,243 +15015,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "date_of_birth_have_date_hierarchy_of_birth"
-			        }
-			      ]
-			    },
-			    "role_approval_has_date1": {
-			      "Binding": {
-			        "ConceptualEntity": "Role Approval"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "role_approval": {
-			          "Target": {
-			            "Entity": "role_approval"
-			          }
-			        },
-			        "date": {
-			          "Target": {
-			            "Entity": "date"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Object": {
-			              "Role": "date"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "role_approvals_have_dates"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "date"
-			            },
-			            "Object": {
-			              "Role": "role_approval"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dates_have_role_approvals"
-			        }
-			      ]
-			    },
-			    "role_approval_has_role": {
-			      "Binding": {
-			        "ConceptualEntity": "Role Approval"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "role_approval": {
-			          "Target": {
-			            "Entity": "role_approval"
-			          }
-			        },
-			        "role": {
-			          "Target": {
-			            "Entity": "role"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Object": {
-			              "Role": "role"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "role_approvals_have_roles"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "role"
-			            },
-			            "Object": {
-			              "Role": "role_approval"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "roles_have_role_approvals"
-			        }
-			      ]
-			    },
-			    "role_approval_has_approval_status": {
-			      "Binding": {
-			        "ConceptualEntity": "Role Approval"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "role_approval": {
-			          "Target": {
-			            "Entity": "role_approval"
-			          }
-			        },
-			        "approval_status": {
-			          "Target": {
-			            "Entity": "approval_status"
-			          },
-			          "Nouns": [
-			            {
-			              "status": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Object": {
-			              "Role": "approval_status"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "role_approvals_have_approval_statuses"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "approval_status"
-			            },
-			            "Object": {
-			              "Role": "role_approval"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "approval_statuses_have_role_approvals"
-			        }
-			      ]
-			    },
-			    "role_approval_has_person": {
-			      "Binding": {
-			        "ConceptualEntity": "Role Approval"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "role_approval": {
-			          "Target": {
-			            "Entity": "role_approval"
-			          }
-			        },
-			        "person": {
-			          "Target": {
-			            "Entity": "person"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Object": {
-			              "Role": "person"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "role_approvals_have_people"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "person"
-			            },
-			            "Object": {
-			              "Role": "role_approval"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "people_have_role_approvals"
-			        }
-			      ]
-			    },
-			    "role_approval_has_family": {
-			      "Binding": {
-			        "ConceptualEntity": "Role Approval"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "role_approval": {
-			          "Target": {
-			            "Entity": "role_approval"
-			          }
-			        },
-			        "family": {
-			          "Target": {
-			            "Entity": "family"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Object": {
-			              "Role": "family"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "role_approvals_have_families"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "family"
-			            },
-			            "Object": {
-			              "Role": "role_approval"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "families_have_role_approvals"
 			        }
 			      ]
 			    },
@@ -16968,171 +15882,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "approval_statuses_have_role_approval_statuses"
-			        }
-			      ]
-			    },
-			    "role_approval_has_status_changed": {
-			      "Binding": {
-			        "ConceptualEntity": "Role Approval"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "role_approval": {
-			          "Target": {
-			            "Entity": "role_approval"
-			          }
-			        },
-			        "role_approval.status_changed": {
-			          "Target": {
-			            "Entity": "role_approval.status_changed"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Object": {
-			              "Role": "role_approval.status_changed"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "role_approvals_have_status_changed"
-			        }
-			      ]
-			    },
-			    "role_approval_has_date": {
-			      "Binding": {
-			        "ConceptualEntity": "Role Approval"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "role_approval": {
-			          "Target": {
-			            "Entity": "role_approval"
-			          }
-			        },
-			        "role_approval.date": {
-			          "Target": {
-			            "Entity": "role_approval.date"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Object": {
-			              "Role": "role_approval.date"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "role_approvals_have_dates1"
-			        }
-			      ]
-			    },
-			    "role_approval_has_entity_id": {
-			      "Binding": {
-			        "ConceptualEntity": "Role Approval"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "role_approval": {
-			          "Target": {
-			            "Entity": "role_approval"
-			          }
-			        },
-			        "role_approval.entity_id": {
-			          "Target": {
-			            "Entity": "role_approval.entity_id"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Object": {
-			              "Role": "role_approval.entity_id"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "role_approvals_have_entity_ids"
-			        }
-			      ]
-			    },
-			    "role_approval_has_entity_type": {
-			      "Binding": {
-			        "ConceptualEntity": "Role Approval"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "role_approval": {
-			          "Target": {
-			            "Entity": "role_approval"
-			          }
-			        },
-			        "role_approval.entity_type": {
-			          "Target": {
-			            "Entity": "role_approval.entity_type"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Object": {
-			              "Role": "role_approval.entity_type"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "role_approvals_have_entity_types"
-			        }
-			      ]
-			    },
-			    "role_approval_has_RLS_key": {
-			      "Binding": {
-			        "ConceptualEntity": "Role Approval"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "role_approval": {
-			          "Target": {
-			            "Entity": "role_approval"
-			          }
-			        },
-			        "role_approval.RLS_key": {
-			          "Target": {
-			            "Entity": "role_approval.RLS_key"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Object": {
-			              "Role": "role_approval.RLS_key"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "role_approvals_have_RLS_keys"
 			        }
 			      ]
 			    },
@@ -19614,52 +18363,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "role_approval_has_approval_type": {
-			      "Binding": {
-			        "ConceptualEntity": "Role Approval"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "role_approval": {
-			          "Target": {
-			            "Entity": "role_approval"
-			          }
-			        },
-			        "role_approval.approval_type": {
-			          "Target": {
-			            "Entity": "role_approval.approval_type"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Object": {
-			              "Role": "role_approval.approval_type"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "role_approvals_have_approval_types"
-			        },
-			        {
-			          "DynamicAdjective": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Adjective": {
-			              "Role": "role_approval.approval_type"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "approval_types_describe_role_approvals"
-			        }
-			      ]
-			    },
 			    "family_has_family_UID": {
 			      "Binding": {
 			        "ConceptualEntity": "Family"
@@ -21526,61 +20229,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.9,
 			          "ID": "arrangements_are_requested_on_requested"
-			        }
-			      ]
-			    },
-			    "role_approval_is_status_changed": {
-			      "Binding": {
-			        "ConceptualEntity": "Role Approval"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "role_approval": {
-			          "Target": {
-			            "Entity": "role_approval"
-			          }
-			        },
-			        "role_approval.status_changed": {
-			          "Target": {
-			            "Entity": "role_approval.status_changed"
-			          }
-			        }
-			      },
-			      "Conditions": [
-			        {
-			          "Target": {
-			            "Role": "role_approval.status_changed"
-			          },
-			          "Operator": "Equals",
-			          "Value": {
-			            "Boolean": [
-			              true
-			            ]
-			          }
-			        }
-			      ],
-			      "Phrasings": [
-			        {
-			          "Adjective": {
-			            "Subject": {
-			              "Role": "role_approval"
-			            },
-			            "Adjectives": [
-			              {
-			                "status changed": {
-			                  "State": "Generated"
-			                }
-			              },
-			              {
-			                "status-changed": {
-			                  "State": "Generated"
-			                }
-			              }
-			            ]
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "some_role_approvals_are_status_changed_role_approvals"
 			        }
 			      ]
 			    },

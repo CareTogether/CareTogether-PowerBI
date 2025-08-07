@@ -7,7 +7,7 @@
     "z": 3000,
     "height": 341.56996587030716,
     "width": 364.91467576791808,
-    "tabOrder": 3000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "Referral Source"
                 }
               },
-              "queryRef": "Referral.Referral Source",
-              "nativeQueryRef": "Referral Source",
+              "queryRef": "Referrals.Referral Source",
+              "nativeQueryRef": "Referral Source1",
               "active": true
             }
           ]
@@ -39,28 +39,30 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "# of Families Referred"
                 }
               },
-              "queryRef": "Referral.# of Families Referred",
-              "nativeQueryRef": "# of Families Referred"
+              "queryRef": "Referrals.# of Families Referred",
+              "nativeQueryRef": "Families Referred",
+              "displayName": "Families Referred"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "# of Referrals Opened"
                 }
               },
-              "queryRef": "Referral.# of Referrals Opened",
-              "nativeQueryRef": "# of Referrals Opened"
+              "queryRef": "Referrals.# of Referrals Opened",
+              "nativeQueryRef": "Referrals Opened",
+              "displayName": "Referrals Opened"
             }
           ]
         }
@@ -72,15 +74,16 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Referral"
+                    "Entity": "Referrals"
                   }
                 },
-                "Property": "# of Referrals Opened"
+                "Property": "# of Families Referred"
               }
             },
             "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {
@@ -218,9 +221,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": 0.2
+                    "Literal": {
+                      "Value": "'#51B5BC'"
                     }
                   }
                 }
@@ -228,7 +230,7 @@
             }
           },
           "selector": {
-            "metadata": "Referral.# of Families Referred"
+            "metadata": "Referrals.# of Families Referred"
           }
         },
         {
@@ -237,24 +239,16 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": -0.5
+                    "Literal": {
+                      "Value": "'#135256'"
                     }
                   }
-                }
-              }
-            },
-            "borderShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Referral.# of Referrals Opened"
+            "metadata": "Referrals.# of Referrals Opened"
           }
         }
       ],

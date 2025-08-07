@@ -7,7 +7,7 @@
     "z": 5000,
     "height": 423.27645051194537,
     "width": 859.45392491467578,
-    "tabOrder": 4000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "columnChart",
@@ -72,13 +72,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement"
+                      "Entity": "Arrangements"
                     }
                   },
                   "Property": "# of Arrangements"
                 }
               },
-              "queryRef": "Arrangement.# of Arrangements",
+              "queryRef": "Arrangements.# of Arrangements",
               "nativeQueryRef": "# of Arrangements"
             }
           ]

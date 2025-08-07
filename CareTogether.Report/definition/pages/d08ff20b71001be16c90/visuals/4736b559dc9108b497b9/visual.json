@@ -7,7 +7,7 @@
     "z": 3000,
     "height": 468.57142857142861,
     "width": 365,
-    "tabOrder": 3000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "multiRowCard",
@@ -23,7 +23,7 @@
                       "Entity": "Location"
                     }
                   },
-                  "Property": "Location Name"
+                  "Property": "Location"
                 }
               },
               "queryRef": "Location.Location Name",
@@ -44,6 +44,111 @@
               "queryRef": "Referrals.# of Families Referred",
               "nativeQueryRef": "Families Referred",
               "displayName": "Families Referred"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "# of Families Supported"
+                }
+              },
+              "queryRef": "Family.# of Families Supported",
+              "nativeQueryRef": "Families Supported",
+              "displayName": "Families Supported"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Person"
+                    }
+                  },
+                  "Property": "# of Children Cared For"
+                }
+              },
+              "queryRef": "Person.# of Children Cared For",
+              "nativeQueryRef": "Children Cared For",
+              "displayName": "Children Cared For"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Arrangements"
+                    }
+                  },
+                  "Property": "# of Arrangements Started"
+                }
+              },
+              "queryRef": "Arrangements.# of Arrangements Started",
+              "nativeQueryRef": "Arrangements Started",
+              "displayName": "Arrangements Started"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Child Location Record"
+                    }
+                  },
+                  "Property": "# of Days of Care"
+                }
+              },
+              "queryRef": "Child Location Record.# of Days of Care",
+              "nativeQueryRef": "Days of Care",
+              "displayName": "Days of Care"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Child Location Record"
+                    }
+                  },
+                  "Property": "# of Nights of Care"
+                }
+              },
+              "queryRef": "Child Location Record.# of Nights of Care",
+              "nativeQueryRef": "Nights of Care",
+              "displayName": "Nights of Care"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Person"
+                    }
+                  },
+                  "Property": "# of Impacted Adults"
+                }
+              },
+              "queryRef": "Person.# of Impacted Adults",
+              "nativeQueryRef": "Impacted Adults",
+              "displayName": "Impacted Adults"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Person"
+                    }
+                  },
+                  "Property": "# of Impacted Children"
+                }
+              },
+              "queryRef": "Person.# of Impacted Children",
+              "nativeQueryRef": "Impacted children",
+              "displayName": "Impacted children"
             }
           ]
         }
@@ -58,7 +163,7 @@
                     "Entity": "Location"
                   }
                 },
-                "Property": "Location Name"
+                "Property": "Location"
               }
             },
             "direction": "Ascending"
@@ -137,10 +242,18 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#9A9A9A'"
+                    "ThemeDataColor": {
+                      "ColorId": 6,
+                      "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -379,37 +492,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "faf675d5c50bd3de39e7",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Location"
-              }
-            },
-            "Property": "Location Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "7b5351140771a75f516d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Referrals"
-              }
-            },
-            "Property": "# of Families Referred"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

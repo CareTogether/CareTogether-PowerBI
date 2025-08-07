@@ -26,11 +26,11 @@ queryGroup Fact
 
 	annotation PBI_QueryGroupOrder = 3
 
-annotation PBI_QueryOrder = ["OData Live","Production","Date","_Measures","RLS","Family","Location","Person","Function Assignments","Arrangements","Arrangement Type","Childcare","Referrals","Community Member Families","Community Role Assignments","Close Reason","Community","Child Location Record","Childcare Plan","Role Approval","Approval Status","Role"]
+annotation PBI_QueryOrder = ["OData Live","Production","Date","_Measures","RLS","Family","Location","Person","Function Assignments","Arrangements","Arrangement Type","Childcare","Referrals","Community Member Families","Community Role Assignments","Close Reason","Community","Child Location Record","Childcare Plan","Approval Status","Role","Role Approvals"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.145.1457.0 (25.07)+6e87ffa743c5aa106a85a0b5e383d76d522045ba
+annotation PBIDesktopVersion = 2.145.1602.0 (25.07)+10647c9fa319b5e39936cdb21328038c371d1fe4
 
 annotation PBI_ProTooling = ["CalcGroup","DevMode","DaxQueryView_Desktop"]
 
@@ -62,9 +62,11 @@ ref table LocalDateTable_ed213257-a100-4dcb-8da7-71cc92d5ab60
 ref table LocalDateTable_ede24289-e40d-4557-99e4-7c2810f1776e
 ref table 'Childcare Plan'
 ref table ChildLocationExpanded
-ref table 'Role Approval'
 ref table 'Approval Status'
 ref table Role
+ref table 'Arrangements Group'
+ref table 'Approvals Group'
+ref table 'Role Approvals'
 
 ref role 'Row Level Security'
 

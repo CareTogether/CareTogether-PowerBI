@@ -28,7 +28,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Role Approval"
+                "Entity": "Role Approval Bridge"
               }
             },
             "Property": "Entity Name"

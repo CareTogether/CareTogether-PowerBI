@@ -67,7 +67,7 @@ table Referrals
 
 	column Opened
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		displayFolder: _Columns
 		lineageTag: 3735aae9-a05e-45e2-b675-64e5b18b46bc
 		summarizeBy: none
@@ -84,7 +84,7 @@ table Referrals
 
 	column Closed
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		displayFolder: _Columns
 		lineageTag: 731a711a-6cf1-4553-98be-25be1f1b4b11
 		summarizeBy: none

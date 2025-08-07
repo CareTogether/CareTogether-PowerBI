@@ -1,8 +1,84 @@
 table 'Child Location Record'
 	lineageTag: 8fbe750b-9267-4d1b-9df7-3a6f63651067
 
+	measure '# of Days of Care' = ```
+			
+			
+			VAR CurrentDate = TODAY()
+			VAR StartDate = [Selected Timeframe Start]
+			VAR EndDate = [Selected Timeframe End]
+			VAR Result =
+			    CALCULATE(
+			        COUNTROWS(
+			            DISTINCT(
+			                SELECTCOLUMNS(
+			                    'ChildLocationExpanded',
+			                    "Key", 
+			                        FORMAT('ChildLocationExpanded'[Date], "yyyy-MM-dd") & "-" & 
+			                        'ChildLocationExpanded'[Index]  // Creating a Unique Key per Date and Child
+			                )
+			            )
+			        ),
+			        'ChildLocationExpanded'[ChildcarePlan] <> "WithParent",
+			        'ChildLocationExpanded'[Date] >= StartDate,
+			        'ChildLocationExpanded'[Date] <= MIN(EndDate, CurrentDate)
+			    )
+			RETURN
+			    IF(
+			        CurrentDate < StartDate,
+			        BLANK(),
+			        IF(
+			            Result = 0,
+			            BLANK(),
+			            Result
+			        )
+			    )
+			
+			```
+		formatString: 0
+		lineageTag: 82cc0cd6-34d8-4768-a484-07c1d264636c
+
+	measure '# of Nights of Care' = ```
+			
+			
+			VAR CurrentDate = TODAY()
+			VAR StartDate = [Selected Timeframe Start]
+			VAR EndDate = [Selected Timeframe End]
+			VAR Result =
+			    CALCULATE(
+			        COUNTROWS(
+			            DISTINCT(
+			                SELECTCOLUMNS(
+			                    'ChildLocationExpanded',
+			                    "Key", 
+			                        FORMAT('ChildLocationExpanded'[Date], "yyyy-MM-dd") & "-" & 
+			                        'ChildLocationExpanded'[Index]  // Creating a UNIQUE key per Index and Child
+			                )
+			            )
+			        ),
+			        'ChildLocationExpanded'[ChildcarePlan] <> "WithParent",
+			        'ChildLocationExpanded'[OvernightStay] = TRUE(),
+			        'ChildLocationExpanded'[Date] >= StartDate,
+			        'ChildLocationExpanded'[Date] <= MIN(EndDate, CurrentDate)
+			    )
+			RETURN
+			    IF(
+			        CurrentDate < StartDate,
+			        BLANK(),
+			        IF(
+			            Result = 0,
+			            BLANK(),
+			            Result
+			        )
+			    )
+			
+			```
+		formatString: 0
+		lineageTag: e5752dc3-bdff-4939-8d64-2305d2ad90a9
+
 	column 'RLS Key'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: f367d031-337f-4e59-9296-a70b8520a968
 		summarizeBy: none
 		sourceColumn: RLS Key
@@ -11,6 +87,7 @@ table 'Child Location Record'
 
 	column 'Family UID'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 1f93be81-68ed-4f4f-a1a7-91149d97da8a
 		summarizeBy: none
 		sourceColumn: Family UID
@@ -19,6 +96,7 @@ table 'Child Location Record'
 
 	column 'Family ID'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 858238a3-563f-423f-be2b-d3abbdd90fc5
 		summarizeBy: none
 		sourceColumn: Family ID
@@ -27,6 +105,7 @@ table 'Child Location Record'
 
 	column 'Arrangement ID'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 61c3c958-c541-4b36-b11f-3c38d7036b20
 		summarizeBy: none
 		sourceColumn: Arrangement ID
@@ -35,6 +114,7 @@ table 'Child Location Record'
 
 	column 'Child Person UID'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: e793d16c-75ab-4c0c-99ce-5287002b9ec8
 		summarizeBy: none
 		sourceColumn: Child Person UID
@@ -43,6 +123,7 @@ table 'Child Location Record'
 
 	column 'Child Person ID'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 871e29b8-874e-400c-8019-97d43af4775a
 		summarizeBy: none
 		sourceColumn: Child Person ID
@@ -52,6 +133,7 @@ table 'Child Location Record'
 	column Started
 		dataType: dateTime
 		formatString: General Date
+		displayFolder: _Columns
 		lineageTag: 31dd7f0c-707d-4ab3-ab1b-037f978babb5
 		summarizeBy: none
 		sourceColumn: Started
@@ -66,6 +148,7 @@ table 'Child Location Record'
 	column Ended
 		dataType: dateTime
 		formatString: General Date
+		displayFolder: _Columns
 		lineageTag: 12635f46-fd7d-4a5b-9ffc-888f920e1c0e
 		summarizeBy: none
 		sourceColumn: Ended
@@ -79,6 +162,7 @@ table 'Child Location Record'
 
 	column Duration
 		dataType: double
+		displayFolder: _Columns
 		lineageTag: fb71f4e2-f2fa-4231-aeae-2752130df893
 		summarizeBy: sum
 		sourceColumn: Duration
@@ -90,6 +174,7 @@ table 'Child Location Record'
 	column Index
 		dataType: int64
 		formatString: 0
+		displayFolder: _Columns
 		lineageTag: 25ac904d-6795-4a4d-a074-deb6622402b5
 		summarizeBy: none
 		sourceColumn: Index
@@ -98,6 +183,7 @@ table 'Child Location Record'
 
 	column 'Childcare Family Name'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 3fad2f9d-6e37-4643-b1fd-ff8ac1ba5437
 		summarizeBy: none
 		sourceColumn: Childcare Family Name
@@ -106,6 +192,7 @@ table 'Child Location Record'
 
 	column 'Childcare Plan'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: f903847d-f8f7-40af-b40b-a9d64ea29867
 		summarizeBy: none
 		sourceColumn: Childcare Plan

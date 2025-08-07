@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "b0ecd5ecc59902ac0600",
   "position": {
-    "x": 837.33788395904435,
-    "y": 87.849829351535831,
+    "x": 836.5,
+    "y": 87.5,
     "z": 13000,
-    "height": 141.91126279863482,
-    "width": 434.33447098976109,
-    "tabOrder": 13000
+    "height": 142,
+    "width": 435,
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "lineChart",
@@ -61,7 +61,7 @@
                 }
               },
               "queryRef": "Location.Location",
-              "nativeQueryRef": "Location"
+              "nativeQueryRef": "Location1"
             }
           ]
         },
@@ -72,14 +72,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement"
+                      "Entity": "Arrangements"
                     }
                   },
-                  "Property": "# of Arrangements Active"
+                  "Property": "# of Arrangements"
                 }
               },
-              "queryRef": "Arrangement.# of Arrangements Active",
-              "nativeQueryRef": "# of Arrangements Active"
+              "queryRef": "Arrangements.# of Arrangements",
+              "nativeQueryRef": "# of Arrangements"
             }
           ]
         }
@@ -248,6 +248,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

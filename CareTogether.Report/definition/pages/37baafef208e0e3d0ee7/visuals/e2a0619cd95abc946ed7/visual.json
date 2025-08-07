@@ -7,7 +7,7 @@
     "z": 8000,
     "height": 252.49146757679182,
     "width": 391.33105802047783,
-    "tabOrder": 7000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -39,14 +39,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement"
+                      "Entity": "Arrangements"
                     }
                   },
                   "Property": "# of Arrangements"
                 }
               },
-              "queryRef": "Arrangement.# of Arrangements",
-              "nativeQueryRef": "# of Arrangements"
+              "queryRef": "Arrangements.# of Arrangements",
+              "nativeQueryRef": "# of Arrangements1"
             }
           ]
         }
@@ -58,7 +58,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Arrangement"
+                    "Entity": "Arrangements"
                   }
                 },
                 "Property": "# of Arrangements"

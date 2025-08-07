@@ -7,5 +7,35 @@ role 'Row Level Security'
 			    RLS[UserId] = USERNAME()
 			)
 
+	tablePermission Person =
+			Person[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission Arrangements =
+			Arrangements[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission 'Child Location Record' =
+			'Child Location Record'[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission Referrals =
+			Referrals[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission ChildLocationExpanded =
+			ChildLocationExpanded[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
 	annotation PBI_Id = 48755128b26e4366a08bd6a38df559b4
 

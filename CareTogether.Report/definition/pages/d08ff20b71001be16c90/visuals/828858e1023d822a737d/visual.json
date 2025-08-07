@@ -7,7 +7,7 @@
     "z": 12000,
     "height": 228.57142857142858,
     "width": 445.71428571428572,
-    "tabOrder": 12000
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "stackedAreaChart",
@@ -60,8 +60,9 @@
                   "Property": "Location"
                 }
               },
-              "queryRef": "Location.Location",
-              "nativeQueryRef": "Location"
+              "queryRef": "Location.Location Name",
+              "nativeQueryRef": "Location",
+              "displayName": "Location"
             }
           ]
         },
@@ -72,14 +73,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Person"
                     }
                   },
                   "Property": "# of Children Cared For"
                 }
               },
-              "queryRef": "Entity.# of Children Cared For",
-              "nativeQueryRef": "# of Children Cared For"
+              "queryRef": "Person.# of Children Cared For",
+              "nativeQueryRef": "Children Cared For",
+              "displayName": "Children Cared For"
             }
           ]
         }
@@ -234,6 +236,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -719,37 +728,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "e06bd9182f66006b9838",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "3b0fc2f05196846c783e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Month Name Short"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

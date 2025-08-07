@@ -7,7 +7,7 @@
     "z": 9000,
     "height": 479.79522184300339,
     "width": 359.38566552901023,
-    "tabOrder": 8000
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "funnel",
@@ -39,17 +39,34 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Approvals Group"
                     }
                   },
                   "Property": "# of Entities in Role"
                 }
               },
-              "queryRef": "Entity.# of Entities in Role",
+              "queryRef": "Approvals Group.# of Entities in Role",
               "nativeQueryRef": "# of Entities in Role"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Approval Status"
+                  }
+                },
+                "Property": "Status"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "objects": {
@@ -184,5 +201,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5d610271a8d04e866a1a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approval Status"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "253f80dfe3a00147957c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approvals Group"
+              }
+            },
+            "Property": "# of Entities in Role"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

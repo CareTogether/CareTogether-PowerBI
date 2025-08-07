@@ -9,11 +9,11 @@ table Location
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Location Name'
+	column Location
 		dataType: string
 		lineageTag: feacbf69-72e7-48b8-8005-6ec3e22ace73
 		summarizeBy: none
-		sourceColumn: Location Name
+		sourceColumn: Location
 
 		annotation SummarizationSetBy = Automatic
 
@@ -34,10 +34,11 @@ table Location
 				            {{"Name", "Location Name"}}
 				        ),
 				        {"RLS Key", "Location Name"}
-				    )
+				    ),
+				    #"Renamed Columns" = Table.RenameColumns(LocationTransformed,{{"Location Name", "Location"}})
 				
 				in
-				    LocationTransformed
+				    #"Renamed Columns"
 				```
 
 	annotation PBI_NavigationStepName = Navigation
