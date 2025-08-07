@@ -1,12 +1,12 @@
 table ChildLocationExpanded
 	lineageTag: 1ad7d14d-cbb6-433b-85ee-5fc54cf0046c
 
-	column OvernightStay
-		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 787eef0b-4782-465f-b3bc-d3e29ee8e5bb
+	column Date
+		formatString: General Date
+		lineageTag: 7a8d7e88-19f5-400f-b564-81ac64deded9
 		summarizeBy: none
 		isNameInferred
-		sourceColumn: [OvernightStay]
+		sourceColumn: [Date]
 
 		annotation SummarizationSetBy = Automatic
 
@@ -19,20 +19,20 @@ table ChildLocationExpanded
 
 		annotation SummarizationSetBy = Automatic
 
-	column Date
-		formatString: General Date
-		lineageTag: 7a8d7e88-19f5-400f-b564-81ac64deded9
-		summarizeBy: none
-		isNameInferred
-		sourceColumn: [Date]
-
-		annotation SummarizationSetBy = Automatic
-
 	column ChildcarePlan
 		lineageTag: d2112788-be7f-48b7-b736-0594325c6e23
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [ChildcarePlan]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OvernightStay
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 787eef0b-4782-465f-b3bc-d3e29ee8e5bb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OvernightStay]
 
 		annotation SummarizationSetBy = Automatic
 

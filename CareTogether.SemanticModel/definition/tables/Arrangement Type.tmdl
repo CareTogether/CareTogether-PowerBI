@@ -1,14 +1,11 @@
 table 'Arrangement Type'
 	lineageTag: c7cb613d-9d95-4212-99b0-afeb17ed7411
 
-	column ChildInvolvement
+	column 'RLS Key'
 		dataType: string
-		isHidden
-		lineageTag: 106f4bcb-6fa8-4ebc-a504-f2cad0bf9090
+		lineageTag: d5779dd9-d981-42f6-a99f-94f9a0b4660d
 		summarizeBy: none
-		sourceColumn: ChildInvolvement
-
-		changedProperty = IsHidden
+		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
@@ -20,11 +17,14 @@ table 'Arrangement Type'
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'RLS Key'
+	column ChildInvolvement
 		dataType: string
-		lineageTag: d5779dd9-d981-42f6-a99f-94f9a0b4660d
+		isHidden
+		lineageTag: 106f4bcb-6fa8-4ebc-a504-f2cad0bf9090
 		summarizeBy: none
-		sourceColumn: RLS Key
+		sourceColumn: ChildInvolvement
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -62,7 +62,7 @@ table 'Arrangement Type'
 				    ArrangementType
 				```
 
-	annotation PBI_ResultType = Table
-
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 
