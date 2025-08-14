@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "2f134ae1940c41b403b9",
   "position": {
-    "x": 739.65870307167233,
-    "y": 392.55972696245732,
+    "x": 740,
+    "y": 393.33333333333331,
     "z": 11000,
-    "height": 318.839590443686,
-    "width": 530.78498293515361,
-    "tabOrder": 11000
+    "height": 317.77777777777777,
+    "width": 531.11111111111109,
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,88 +20,28 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Approvals by Entity"
+                      "Entity": "Approvals Group"
                     }
                   },
                   "Property": "Dynamic Entity Name (Approvals)"
                 }
               },
-              "queryRef": "Approvals by Entity.Dynamic Entity Name (Approvals)",
-              "nativeQueryRef": "Name",
-              "displayName": "Name"
+              "queryRef": "Approvals Group.Dynamic Entity Name (Approvals)",
+              "nativeQueryRef": "Dynamic Entity Name (Approvals)"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Role"
+                      "Entity": "Role Approval Bridge"
                     }
                   },
-                  "Property": "Role Name"
+                  "Property": "Entity UID"
                 }
               },
-              "queryRef": "Role.Role Name",
-              "nativeQueryRef": "Role Name"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Approval Status"
-                    }
-                  },
-                  "Property": "Status"
-                }
-              },
-              "queryRef": "Approval Status.Status",
-              "nativeQueryRef": "Status"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Role Approval"
-                    }
-                  },
-                  "Property": "Approval Type"
-                }
-              },
-              "queryRef": "Role Approval.Approval Type",
-              "nativeQueryRef": "Approval Type",
-              "displayName": "Approval Type"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Role Approval"
-                    }
-                  },
-                  "Property": "Entity Id"
-                }
-              },
-              "queryRef": "Role Approval.Entity Id",
-              "nativeQueryRef": " ",
-              "displayName": " "
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Entity"
-                    }
-                  },
-                  "Property": "# of Entities in Role"
-                }
-              },
-              "queryRef": "Entity.# of Entities in Role",
-              "nativeQueryRef": " 1",
-              "displayName": " "
+              "queryRef": "Role Approval Bridge.Entity UID",
+              "nativeQueryRef": "Entity UID"
             }
           ]
         }
@@ -110,16 +50,16 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Approval Status"
+                    "Entity": "Approvals Group"
                   }
                 },
-                "Property": "Status"
+                "Property": "Dynamic Entity Name (Approvals)"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -197,76 +137,6 @@
           "selector": {
             "metadata": "ChildLocationExpanded.ChildcarePlan"
           }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Role Approval.Entity Id"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Entity.# of Entities in Role"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "160.65832990452273D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Approvals by Entity.Dynamic Entity Name (Approvals)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "128.82716059062042D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Role.Role Name"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "86.65867275556003D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Approval Status.Status"
-          }
         }
       ],
       "total": [
@@ -317,22 +187,6 @@
                 }
               }
             }
-          }
-        }
-      ],
-      "columnFormatting": [
-        {
-          "properties": {
-            "styleHeader": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Approvals by Entity.Dynamic Entity Name (Approvals)"
           }
         }
       ]

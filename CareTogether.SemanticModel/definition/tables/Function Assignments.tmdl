@@ -1,97 +1,101 @@
 table 'Function Assignments'
-	lineageTag: 37dbfcb3-ae81-4dbe-b5b6-66fa9cff03bd
-
-	column ArrangementId
-		dataType: string
-		lineageTag: 6e947cab-fb5f-4159-a6ed-a29555e29a34
-		summarizeBy: none
-		sourceColumn: ArrangementId
-
-		annotation SummarizationSetBy = Automatic
-
-	column Function
-		dataType: string
-		lineageTag: 079fd573-495f-401c-9b66-8edc8017fd7d
-		summarizeBy: none
-		sourceColumn: Function
-
-		annotation SummarizationSetBy = Automatic
-
-	column OrganizationId
-		dataType: string
-		lineageTag: 3bf90936-d651-468d-84df-2c4743f87024
-		summarizeBy: none
-		sourceColumn: OrganizationId
-
-		annotation SummarizationSetBy = Automatic
-
-	column LocationId
-		dataType: string
-		lineageTag: 98fc42e1-37d8-4fd8-a295-0debe46dffc5
-		summarizeBy: none
-		sourceColumn: LocationId
-
-		annotation SummarizationSetBy = Automatic
+	lineageTag: eced6c92-2c6c-4731-9471-3ec38417408e
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: a62545b1-4137-41f8-9d68-0900e4d3a38f
+		lineageTag: 863adef9-1333-403c-b200-5089d4599ddf
 		summarizeBy: none
 		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
-	column EntityId
+	column 'Entity UID'
 		dataType: string
-		lineageTag: 2d038b06-0aab-426f-a859-cc8c2f60c7ce
+		lineageTag: 70e0c0df-7e9b-4bd6-8400-c64b6eaa19ec
 		summarizeBy: none
-		sourceColumn: EntityId
+		sourceColumn: Entity UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity Type'
+		dataType: string
+		lineageTag: 5bb02500-f2b3-407d-a36b-a9c04c26616a
+		summarizeBy: none
+		sourceColumn: Entity Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Arrangement ID'
+		dataType: string
+		lineageTag: 6b2d7590-bec7-43e8-ba50-1dd985dcad54
+		summarizeBy: none
+		sourceColumn: Arrangement ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Function
+		dataType: string
+		lineageTag: d4127997-a5ce-43e5-84d2-a9b485c5f963
+		summarizeBy: none
+		sourceColumn: Function
 
 		annotation SummarizationSetBy = Automatic
 
 	partition 'Function Assignments' = m
 		mode: import
-		queryGroup: 'Consolidated Entities'
+		queryGroup: Fact
 		source = ```
-				let 
+				let
 				    Source = #"OData Live",
+				    FamilyFunctionAssignments = Source{[Name="FamilyFunctionAssignments", Signature="table"]}[Data],
+				    IndividualFunctionAssignments = Source{[Name="IndividualFunctionAssignments", Signature="table"]}[Data],
 				
-				    // Family Function Assignments
-				    Family = 
-				    Table.SelectColumns(
-				        Table.AddColumn(
+				    // Family Transformations:
+				    FamilyFunc = 
+				        Table.SelectColumns(
 				            Table.RenameColumns(
 				                Table.AddColumn(
-				                    Source{[Name="FamilyFunctionAssignments", Signature="table"]}[Data],
-				                    "EntityType", each "Family"
+				                    Table.AddColumn(
+				                        Table.AddColumn(
+				                            FamilyFunctionAssignments,
+				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        ),
+				                        "Entity UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
+				                    ),
+				                    "Entity Type", each "Family"
 				                ),
-				                {{"FamilyId", "EntityId"}}
+				                {{"ArrangementId", "Arrangement ID"}}
 				            ),
-				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				            {"RLS Key", "Entity UID", "Entity Type", "Arrangement ID", "Function"}
 				        ),
-				        {"OrganizationId", "LocationId", "RLS Key", "ArrangementId", "EntityId", "Function"}
-				    ),
-				    
-				    // Individual Function Assignments
-				    Person = 
-				    Table.SelectColumns(
-				        Table.AddColumn(
+				
+				    // Person Transformations:
+				    IndividualFunc = 
+				        Table.SelectColumns(
 				            Table.RenameColumns(
 				                Table.AddColumn(
-				                    Source{[Name="IndividualFunctionAssignments", Signature="table"]}[Data],
-				                    "EntityType", each "Person"
+				                    Table.AddColumn(
+				                        Table.AddColumn(
+				                            IndividualFunctionAssignments,
+				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        ),
+				                        "Entity UID", each Text.Combine({[RLS Key], [PersonId]}, "-")
+				                    ),
+				                    "Entity Type", each "Person"
 				                ),
-				                {{"PersonId", "EntityId"}}
+				                {{"ArrangementId", "Arrangement ID"}}
 				            ),
-				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				            {"RLS Key", "Entity UID", "Entity Type", "Arrangement ID", "Function"}
 				        ),
-				        {"OrganizationId", "LocationId", "RLS Key", "ArrangementId", "EntityId", "Function"}
-				    ),
 				
-				    //Combined Table:
-				    CombinedTables = Table.Combine({Family, Person})
+				    // Combined Tables:
+				    FuncAssignments = Table.Combine(
+				        {FamilyFunc, IndividualFunc}
+				    )
+				
+				
 				in
-				    CombinedTables
+				    FuncAssignments
 				```
 
 	annotation PBI_NavigationStepName = Navigation

@@ -6,8 +6,7 @@
     "y": 9.829351535836178,
     "z": 2000,
     "height": 96.450511945392492,
-    "width": 364.91467576791808,
-    "tabOrder": 2000
+    "width": 364.91467576791808
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +19,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Person"
                     }
                   },
-                  "Property": "PersonType"
+                  "Property": "Person Type"
                 }
               },
-              "queryRef": "Entity.PersonType",
-              "nativeQueryRef": "PersonType",
+              "queryRef": "Person.Person Type",
+              "nativeQueryRef": "Person Type",
               "active": true
             }
           ]
@@ -345,16 +344,16 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "f201bcbc02013038ea08",
+        "name": "65d060c31024af896a2a",
         "ordinal": 0,
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Approvals by Entity"
+                "Entity": "Approvals Group"
               }
             },
-            "Property": "Visibility Management (Approvals)"
+            "Property": "Person Type Visibility Flag"
           }
         },
         "type": "Advanced",
@@ -363,7 +362,7 @@
           "From": [
             {
               "Name": "a",
-              "Entity": "Approvals by Entity",
+              "Entity": "Approvals Group",
               "Type": 0
             }
           ],
@@ -381,7 +380,7 @@
                               "Source": "a"
                             }
                           },
-                          "Property": "Visibility Management (Approvals)"
+                          "Property": "Person Type Visibility Flag"
                         }
                       },
                       "Right": {
@@ -396,19 +395,21 @@
             }
           ]
         },
-        "howCreated": "User"
+        "howCreated": "User",
+        "isHiddenInViewMode": true,
+        "isLockedInViewMode": true
       },
       {
-        "name": "71ddce6386e5c3014262",
+        "name": "40f266190f854e5b6f74",
         "ordinal": 1,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Person"
               }
             },
-            "Property": "PersonType"
+            "Property": "Person Type"
           }
         },
         "type": "Categorical",
@@ -416,8 +417,8 @@
           "Version": 2,
           "From": [
             {
-              "Name": "e",
-              "Entity": "Entity",
+              "Name": "p",
+              "Entity": "Person",
               "Type": 0
             }
           ],
@@ -430,10 +431,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Source": "e"
+                            "Source": "p"
                           }
                         },
-                        "Property": "PersonType"
+                        "Property": "Person Type"
                       }
                     }
                   ],
@@ -458,6 +459,7 @@
             }
           ]
         },
+        "isHiddenInViewMode": true,
         "isLockedInViewMode": true
       }
     ],

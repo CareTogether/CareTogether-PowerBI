@@ -6,8 +6,7 @@
     "y": 9.829351535836178,
     "z": 2000,
     "height": 96.450511945392492,
-    "width": 391.33105802047783,
-    "tabOrder": 2000
+    "width": 391.33105802047783
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +19,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangements by Entity"
+                      "Entity": "Arrangements Group"
                     }
                   },
                   "Property": "Situation"
                 }
               },
-              "queryRef": "Arrangements by Entity.Situation",
-              "nativeQueryRef": "Situation",
+              "queryRef": "Arrangements Group.Situation",
+              "nativeQueryRef": "Situation1",
               "active": true
             }
           ]
@@ -84,7 +83,7 @@
                 "From": [
                   {
                     "Name": "a",
-                    "Entity": "Arrangements by Entity",
+                    "Entity": "Arrangements Group",
                     "Type": 0
                   }
                 ],

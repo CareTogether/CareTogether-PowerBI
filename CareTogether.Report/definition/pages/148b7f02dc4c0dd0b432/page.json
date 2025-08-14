@@ -40,13 +40,13 @@
         "howCreated": "User"
       },
       {
-        "name": "90e461b713706da434e9",
+        "name": "ac659d1db1fce478b8cb",
         "ordinal": 2,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Arrangement"
+                "Entity": "Arrangements"
               }
             },
             "Property": "Reason"

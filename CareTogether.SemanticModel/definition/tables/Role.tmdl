@@ -1,25 +1,17 @@
 table Role
-	lineageTag: 960f9fe2-c3cc-4543-9ef9-5a2b70f1f590
+	lineageTag: a5a15efd-7639-4e75-a11f-7e21f671acbe
 
 	column 'Role Name'
 		dataType: string
-		lineageTag: b7303532-6c4e-4a4b-83e7-0ad29753ffc8
+		lineageTag: 99f25033-77d2-472e-aa78-36b450f50e70
 		summarizeBy: none
 		sourceColumn: Role Name
 
 		annotation SummarizationSetBy = Automatic
 
-	column OrganizationId
-		dataType: string
-		lineageTag: adae3153-d7bd-4bfb-a440-f20c0a2b55fa
-		summarizeBy: none
-		sourceColumn: OrganizationId
-
-		annotation SummarizationSetBy = Automatic
-
-	partition Role-e671c74c-88c5-4c48-a3a5-404c5dec31f4 = m
+	partition Role = m
 		mode: import
-		queryGroup: 'Model Queries'
+		queryGroup: Dimensions
 		source = ```
 				let
 				    Source = #"OData Live",
@@ -31,13 +23,13 @@ table Role
 				            SourceTable,
 				            {{"Name", "Role Name"}}
 				        ),
-				        {"OrganizationId", "Role Name"}
+				        {"Role Name"}
 				    )
 				in
 				    Role
 				```
 
-	annotation PBI_ResultType = Table
-
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

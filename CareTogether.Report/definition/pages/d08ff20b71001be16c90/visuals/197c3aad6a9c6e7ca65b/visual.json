@@ -7,7 +7,7 @@
     "z": 5000,
     "height": 221.42857142857144,
     "width": 445.71428571428572,
-    "tabOrder": 4000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "stackedAreaChart",
@@ -60,8 +60,9 @@
                   "Property": "Location"
                 }
               },
-              "queryRef": "Location.Location",
-              "nativeQueryRef": "Location"
+              "queryRef": "Location.Location Name",
+              "nativeQueryRef": "Location",
+              "displayName": "Location"
             }
           ]
         },
@@ -72,13 +73,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
                   "Property": "# of Families Supported"
                 }
               },
-              "queryRef": "Entity.# of Families Supported",
+              "queryRef": "Family.# of Families Supported",
               "nativeQueryRef": "# of Families Supported"
             }
           ]
@@ -233,6 +234,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

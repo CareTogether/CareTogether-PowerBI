@@ -15,7 +15,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "837e9567fc9ca18ecf4e",
+        "name": "ef19b2b00fa6797c5510",
         "ordinal": 0,
         "field": {
           "Column": {
@@ -68,7 +68,7 @@
         "howCreated": "User"
       },
       {
-        "name": "c043e3c3f8b1773d0da4",
+        "name": "0415be2e87395908eafa",
         "ordinal": 1,
         "field": {
           "Column": {
@@ -81,7 +81,14 @@
           }
         },
         "type": "Categorical",
-        "howCreated": "User"
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
       }
     ],
     "filterSortOrder": "Custom"
@@ -106,7 +113,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "true"
+                "Value": "false"
               }
             }
           }

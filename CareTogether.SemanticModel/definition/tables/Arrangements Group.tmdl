@@ -1,0 +1,74 @@
+table 'Arrangements Group'
+	lineageTag: a9e85fbb-dcc2-496a-89a9-7067dffa0a55
+
+	calculationGroup
+
+		calculationItem Requested =
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    FILTER(
+				        Arrangements,
+				        AND(
+				            Arrangements[Requested] >= [Selected Timeframe Start],
+				            Arrangements[Requested] <= [Selected Timeframe End]
+				        )
+				    )
+				)
+
+		calculationItem Ended =
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    FILTER(
+				        Arrangements,
+				        AND(
+				            Arrangements[Ended] >= [Selected Timeframe Start],
+				            Arrangements[Ended] <= [Selected Timeframe End]
+				        )
+				    )
+				)
+
+		calculationItem Started =
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    FILTER(
+				        Arrangements,
+				        AND(
+				            Arrangements[Started] >= [Selected Timeframe Start],
+				            Arrangements[Started] <= [Selected Timeframe End]
+				        )
+				    )
+				)
+
+		calculationItem Active =
+				VAR Today = TODAY()
+				VAR CurrentStartDate = [Selected Timeframe Start]
+				VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+				
+				RETURN
+				IF(
+				    CurrentStartDate > Today,  // Check if the current month's start is beyond today
+				    BLANK(),  // Return blank for future months
+				    CALCULATE(
+				       SELECTEDMEASURE(),
+				        NOT ISBLANK('Arrangements'[Started]),
+				        'Arrangements'[Started] <= CurrentEndDate,
+				        IF(
+				            ISBLANK('Arrangements'[Ended]),
+				            TRUE(),
+				            'Arrangements'[Ended] >= CurrentStartDate
+				        )
+				    )
+				)
+
+	column Situation
+		dataType: string
+		lineageTag: c134da4e-2659-4b6c-b76d-1a5786de4d51
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: a59d4652-6b11-4115-b8a0-fe36a628460c
+		sourceColumn: Ordinal
+

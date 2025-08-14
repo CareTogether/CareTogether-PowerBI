@@ -7,7 +7,7 @@
     "z": 1000,
     "height": 221.42857142857144,
     "width": 365,
-    "tabOrder": 1000
+    "tabOrder": 16000
   },
   "visual": {
     "visualType": "donutChart",
@@ -26,9 +26,10 @@
                   "Property": "Location"
                 }
               },
-              "queryRef": "Location.Location",
+              "queryRef": "Location.Location Name",
               "nativeQueryRef": "Location",
-              "active": true
+              "active": true,
+              "displayName": "Location"
             }
           ]
         },
@@ -39,14 +40,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "# of Referrals Opened"
                 }
               },
-              "queryRef": "Referral.# of Referrals Opened",
-              "nativeQueryRef": "# of Referrals Opened"
+              "queryRef": "Referrals.# of Referrals Opened",
+              "nativeQueryRef": "# of Referrals Opened1"
             }
           ]
         }
@@ -58,7 +59,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Referral"
+                    "Entity": "Referrals"
                   }
                 },
                 "Property": "# of Referrals Opened"

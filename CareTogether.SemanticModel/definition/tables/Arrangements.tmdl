@@ -1,0 +1,187 @@
+table Arrangements
+	lineageTag: 1874e170-b37e-4a8f-b672-f37058e8d3e6
+
+	measure '# of Arrangements Started' =
+			
+			CALCULATE(
+			    COUNTROWS(Arrangements),
+			    FILTER(
+			        Arrangements,
+			        AND(
+			            Arrangements[Started] >= [Selected Timeframe Start],
+			            Arrangements[Started] <= [Selected Timeframe End]
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: ab7e2e0c-b1d9-426a-8b69-29995563d78d
+
+	measure '# of Arrangements' = COUNTROWS('Arrangements')
+		formatString: 0
+		lineageTag: 0c0d32aa-b17f-472f-a10d-f1449b90ee2e
+
+	column 'RLS Key'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: e184b5b2-4555-43a0-9208-72af3030f331
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Arrangement ID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 089dcab2-7641-4ade-ab86-a503f62f6599
+		summarizeBy: none
+		sourceColumn: Arrangement ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Arrangement Type UID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 279b5ba1-4fa1-4a1e-825e-88226c46b671
+		summarizeBy: none
+		sourceColumn: Arrangement Type UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Arrangement Type'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 87906a08-7406-460e-92aa-81fec915d98d
+		summarizeBy: none
+		sourceColumn: Arrangement Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Referral ID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 2e0c4140-78a0-4b25-9bae-c22667802f6f
+		summarizeBy: none
+		sourceColumn: Referral ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Person UID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 9ddb1f28-9847-4518-97e5-9bb045185ad8
+		summarizeBy: none
+		sourceColumn: Person UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Person ID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: ca9ecd79-b906-4edd-81d6-62a41d470fd5
+		summarizeBy: none
+		sourceColumn: Person ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Requested
+		dataType: dateTime
+		formatString: Long Date
+		displayFolder: _Columns
+		lineageTag: 046c99c9-52a7-4742-b0e0-440ce7555665
+		summarizeBy: none
+		sourceColumn: Requested
+
+		variation Variation
+			isDefault
+			relationship: 94b8e5b1-15d3-4893-b628-6f78cdb4bafe
+			defaultHierarchy: LocalDateTable_e4c82e88-c4c3-4c99-8b77-e121c2e26dd4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Started
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: _Columns
+		lineageTag: 0c1a0469-1f01-4dbb-8600-4b0fb26fe378
+		summarizeBy: none
+		sourceColumn: Started
+
+		variation Variation
+			isDefault
+			relationship: 9364ac9f-e354-4909-af5b-be492d899a7e
+			defaultHierarchy: LocalDateTable_e028dd1f-b7df-4057-8fee-be7ce425d993.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ended
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: _Columns
+		lineageTag: 42a8b911-0e42-441e-acbc-f3db829d7726
+		summarizeBy: none
+		sourceColumn: Ended
+
+		variation Variation
+			isDefault
+			relationship: 1fc3de92-ab97-49ab-8bd5-dd0546a44739
+			defaultHierarchy: LocalDateTable_94755f40-c02e-4f12-adba-57d68c4e7bd7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phase
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 32be32ef-2f42-4d9d-a960-5fcd8652d20e
+		summarizeBy: none
+		sourceColumn: Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reason
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 519cd03a-46b5-42af-af77-064a532b10f0
+		summarizeBy: none
+		sourceColumn: Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Arrangements = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    Source = #"OData Live",
+				    Arrangement = Source{[Name="Arrangement", Signature="table"]}[Data],
+				    ArrangementTransformed = 
+				
+				
+				Table.SelectColumns(
+				    Table.RenameColumns(
+				            Table.AddColumn(
+				                Table.AddColumn(
+				                    Table.AddColumn(
+				                        Arrangement,
+				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                    ),
+				                    "Arrangement Type UID", each Text.Combine({[RLS Key], [TypeName]}, "-")
+				                ),
+				                "Person UID", each Text.Combine({[RLS Key], [PersonId]}, "-")
+				            ),
+				            {{"Id", "Arrangement ID"}, {"TypeName", "Arrangement Type"}, {"ReferralId", "Referral ID"}, {"PersonId", "Person ID"}, 
+				            {"StartedUtc", "Started"}, {"EndedUtc", "Ended"}}
+				    ),
+				    {"RLS Key", "Arrangement ID", "Arrangement Type UID", "Arrangement Type", "Referral ID", "Person UID", "Person ID", "Requested", "Started", "Ended", "Phase", "Reason"}
+				)
+				
+				
+				in
+				    ArrangementTransformed
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
