@@ -62,7 +62,7 @@
               },
               "queryRef": "Role Approval.Entity Type",
               "nativeQueryRef": "Entity Type",
-              "active": false
+              "active": true
             },
             {
               "field": {
@@ -99,6 +99,23 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Role Approval"
+                  }
+                },
+                "Property": "Entity Name"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "expansionStates": [
@@ -150,10 +167,35 @@
               "Role Approval.Entity Name"
             ],
             "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Role Approval"
+                    }
+                  },
+                  "Property": "Entity Name"
+                }
+              }
+            ],
             "isPinned": true
           }
         ],
-        "root": {}
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Host Family'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
       }
     ],
     "objects": {
@@ -859,5 +901,79 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d5cc457d931685967877",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approval Status"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "40bdb127b593b16ae80e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Role Approval"
+              }
+            },
+            "Property": "Role Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4bdc536ba026360c0856",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Role Approval"
+              }
+            },
+            "Property": "Entity Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "98237feb5dc58c05ce4d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Role Approval"
+              }
+            },
+            "Property": "Entity Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "cff85d29358cd430061a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Role Approval"
+              }
+            },
+            "Property": "# Approval Tracker"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

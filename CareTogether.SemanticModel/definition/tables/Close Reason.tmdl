@@ -49,7 +49,7 @@ table 'Close Reason'
 				in
 				    #"Changed Type"
 
-	annotation PBI_ResultType = Table
-
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

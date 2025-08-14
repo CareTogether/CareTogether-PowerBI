@@ -1,6 +1,22 @@
 table 'Community Role Assignments'
 	lineageTag: 5d48d610-1f9d-4a9e-bae4-ef9ac4fec4a1
 
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 7d7dc74e-96dc-4d55-b1f7-05c70051b20d
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Role
+		dataType: string
+		lineageTag: 06599e01-9ba0-42ec-b312-72f9bcf5e226
+		summarizeBy: none
+		sourceColumn: Role
+
+		annotation SummarizationSetBy = Automatic
+
 	column CommunityId
 		dataType: string
 		isHidden
@@ -20,22 +36,6 @@ table 'Community Role Assignments'
 		sourceColumn: PersonId
 
 		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column Role
-		dataType: string
-		lineageTag: 06599e01-9ba0-42ec-b312-72f9bcf5e226
-		summarizeBy: none
-		sourceColumn: Role
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'RLS Key'
-		dataType: string
-		lineageTag: 7d7dc74e-96dc-4d55-b1f7-05c70051b20d
-		summarizeBy: none
-		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
@@ -60,7 +60,7 @@ table 'Community Role Assignments'
 				    CommunityRoleAssignments
 				```
 
-	annotation PBI_ResultType = Table
-
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

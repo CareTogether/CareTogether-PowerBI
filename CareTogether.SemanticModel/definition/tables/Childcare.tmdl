@@ -48,7 +48,7 @@ table Childcare
 				in
 				    #"Renamed Columns"
 
-	annotation PBI_ResultType = Table
-
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 
