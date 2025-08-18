@@ -9,19 +9,19 @@ table Location
 
 		annotation SummarizationSetBy = Automatic
 
-	column Id
-		dataType: string
-		lineageTag: 21cf8ebc-50d3-4f02-9094-2fe85114b691
-		summarizeBy: none
-		sourceColumn: Id
-
-		annotation SummarizationSetBy = Automatic
-
 	column Location
 		dataType: string
 		lineageTag: 97b1dc7f-4d67-4527-bf14-7423eb64f770
 		summarizeBy: none
 		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id
+		dataType: string
+		lineageTag: 21cf8ebc-50d3-4f02-9094-2fe85114b691
+		summarizeBy: none
+		sourceColumn: Id
 
 		annotation SummarizationSetBy = Automatic
 

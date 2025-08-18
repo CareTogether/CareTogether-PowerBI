@@ -1,11 +1,11 @@
 table 'Function Assignments'
 	lineageTag: 37dbfcb3-ae81-4dbe-b5b6-66fa9cff03bd
 
-	column ArrangementId
+	column 'RLS Key'
 		dataType: string
-		lineageTag: 6e947cab-fb5f-4159-a6ed-a29555e29a34
+		lineageTag: a62545b1-4137-41f8-9d68-0900e4d3a38f
 		summarizeBy: none
-		sourceColumn: ArrangementId
+		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
@@ -14,6 +14,14 @@ table 'Function Assignments'
 		lineageTag: 079fd573-495f-401c-9b66-8edc8017fd7d
 		summarizeBy: none
 		sourceColumn: Function
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArrangementId
+		dataType: string
+		lineageTag: 6e947cab-fb5f-4159-a6ed-a29555e29a34
+		summarizeBy: none
+		sourceColumn: ArrangementId
 
 		annotation SummarizationSetBy = Automatic
 
@@ -30,14 +38,6 @@ table 'Function Assignments'
 		lineageTag: 98fc42e1-37d8-4fd8-a295-0debe46dffc5
 		summarizeBy: none
 		sourceColumn: LocationId
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'RLS Key'
-		dataType: string
-		lineageTag: a62545b1-4137-41f8-9d68-0900e4d3a38f
-		summarizeBy: none
-		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 

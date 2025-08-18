@@ -13,6 +13,22 @@ table Community
 			RETURN IF(ISBLANK(FirstCommunity), "", FirstCommunity)
 		lineageTag: b7d1d23d-01bf-4edc-ab56-d3625c342b19
 
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 6dcceb4c-652e-4283-b288-5caad649fe72
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Community Name'
+		dataType: string
+		lineageTag: a71ae971-d636-466e-9ad0-1c78feb732f3
+		summarizeBy: none
+		sourceColumn: Community Name
+
+		annotation SummarizationSetBy = Automatic
+
 	column Id
 		dataType: string
 		isHidden
@@ -29,22 +45,6 @@ table Community
 		formatString: 0
 		lineageTag: 7d18a30a-e29a-424d-8374-b7e090f3ea28
 		summarizeBy: sum
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Community Name'
-		dataType: string
-		lineageTag: a71ae971-d636-466e-9ad0-1c78feb732f3
-		summarizeBy: none
-		sourceColumn: Community Name
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'RLS Key'
-		dataType: string
-		lineageTag: 6dcceb4c-652e-4283-b288-5caad649fe72
-		summarizeBy: none
-		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
@@ -73,7 +73,7 @@ table Community
 				    Community
 				```
 
-	annotation PBI_ResultType = Table
-
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

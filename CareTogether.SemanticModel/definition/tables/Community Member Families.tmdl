@@ -1,6 +1,14 @@
 table 'Community Member Families'
 	lineageTag: 614cb360-e6aa-4352-801e-f51065f1076b
 
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 42c7c364-dce2-4f41-9878-8aedcc685c27
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
 	column CommunityId
 		dataType: string
 		isHidden
@@ -20,14 +28,6 @@ table 'Community Member Families'
 		sourceColumn: FamilyId
 
 		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'RLS Key'
-		dataType: string
-		lineageTag: 42c7c364-dce2-4f41-9878-8aedcc685c27
-		summarizeBy: none
-		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
@@ -53,7 +53,7 @@ table 'Community Member Families'
 				     CommunityMemberFamilies
 				```
 
-	annotation PBI_ResultType = Table
-
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 
