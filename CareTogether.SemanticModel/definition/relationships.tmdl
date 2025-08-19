@@ -207,7 +207,7 @@ relationship 10870e51-e908-9513-3cd3-cfdb9fcb195b
 	fromColumn: 'Role Approval'.'Role Name'
 	toColumn: Role.'Role Name'
 
-relationship 65e2d38c-306d-a183-5743-844f5f716512
-	fromColumn: 'Role Approval'.LocationId
-	toColumn: Location.Id
+relationship d2f5f9d9-ce16-1daa-13af-e75b1d65927d
+	fromColumn: 'Role Approval'.'RLS Key'
+	toColumn: Location.'RLS Key'
 
