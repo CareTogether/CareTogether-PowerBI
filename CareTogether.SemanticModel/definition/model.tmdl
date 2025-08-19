@@ -33,7 +33,7 @@ annotation PBI_QueryOrder = ["Community","Role","OData Live","Production","Refer
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.145.1602.0 (25.07)+10647c9fa319b5e39936cdb21328038c371d1fe4
+annotation PBIDesktopVersion = 2.146.705.0 (25.08)+b71502aff0a01340c88f384884ef42771068f115
 
 annotation PBI_ProTooling = ["CalcGroup","DevMode","DaxQueryView_Desktop"]
 
