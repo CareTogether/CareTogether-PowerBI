@@ -128,12 +128,14 @@ relationship 2cc7cda4-1643-6e38-53ca-26981164bebb
 	fromColumn: 'Role Approvals'.'Entity UID'
 	toColumn: Family.'Family UID'
 
-relationship 1d8a7795-e027-19be-a27b-61a0e7fe07da
-	isActive: false
-	fromColumn: 'Role Approvals'.'Entity UID'
-	toColumn: Person.'Person UID'
-
 relationship 451c25f7-84f4-0605-3428-8c2153bb3151
 	fromColumn: 'Role Approvals'.Status
 	toColumn: 'Approval Status'.Status
+
+relationship e4d6f43d-5c34-cd50-0242-cdf485a2d5ce
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Person.'Family UID'
+	toColumn: 'Role Approvals'.'Entity UID'
 

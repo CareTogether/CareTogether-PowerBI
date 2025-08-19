@@ -9,19 +9,19 @@ table Community
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Community ID'
-		dataType: string
-		lineageTag: 447eff34-66a1-4168-b2db-0e731d6511e3
-		summarizeBy: none
-		sourceColumn: Community ID
-
-		annotation SummarizationSetBy = Automatic
-
 	column 'Community Name'
 		dataType: string
 		lineageTag: 0d2c8dc8-fed8-4620-b022-4017f39e0774
 		summarizeBy: none
 		sourceColumn: Community Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Community ID'
+		dataType: string
+		lineageTag: 447eff34-66a1-4168-b2db-0e731d6511e3
+		summarizeBy: none
+		sourceColumn: Community ID
 
 		annotation SummarizationSetBy = Automatic
 

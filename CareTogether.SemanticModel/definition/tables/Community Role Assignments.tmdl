@@ -9,6 +9,14 @@ table 'Community Role Assignments'
 
 		annotation SummarizationSetBy = Automatic
 
+	column Role
+		dataType: string
+		lineageTag: c848d7ef-86c7-4d49-b2e0-86ca01633a01
+		summarizeBy: none
+		sourceColumn: Role
+
+		annotation SummarizationSetBy = Automatic
+
 	column 'Community ID'
 		dataType: string
 		lineageTag: 2df87865-be6e-4f30-a526-aa2b7d43d21e
@@ -30,14 +38,6 @@ table 'Community Role Assignments'
 		lineageTag: c2cfbeea-7e85-47ba-82f8-e9dcd9c0f06a
 		summarizeBy: none
 		sourceColumn: Person ID
-
-		annotation SummarizationSetBy = Automatic
-
-	column Role
-		dataType: string
-		lineageTag: c848d7ef-86c7-4d49-b2e0-86ca01633a01
-		summarizeBy: none
-		sourceColumn: Role
 
 		annotation SummarizationSetBy = Automatic
 

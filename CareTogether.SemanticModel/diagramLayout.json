@@ -468,20 +468,21 @@
         },
         {
           "location": {
-            "x": 805.72800993269868,
+            "x": 791.13672161887462,
             "y": 0
           },
           "nodeIndex": "Approval Status",
           "nodeLineageTag": "3ef6724d-6748-4b8d-b25c-519df76a376b",
           "size": {
-            "height": 152,
+            "height": 104,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 3,
+          "expandedHeight": 152
         },
         {
           "location": {
-            "x": 1140.9937740408302,
+            "x": 1051.6221331186573,
             "y": 0
           },
           "nodeIndex": "Role",
@@ -490,7 +491,8 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 4,
+          "expandedHeight": 104
         },
         {
           "location": {

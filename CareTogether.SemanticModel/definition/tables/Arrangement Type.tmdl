@@ -9,19 +9,19 @@ table 'Arrangement Type'
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Arrangement Type UID'
-		dataType: string
-		lineageTag: 277471fe-0821-4d8b-bea7-abc26c33fa1d
-		summarizeBy: none
-		sourceColumn: Arrangement Type UID
-
-		annotation SummarizationSetBy = Automatic
-
 	column 'Arrangement Type'
 		dataType: string
 		lineageTag: 8bdc2303-5798-400a-9fca-8ce0c988015c
 		summarizeBy: none
 		sourceColumn: Arrangement Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Arrangement Type UID'
+		dataType: string
+		lineageTag: 277471fe-0821-4d8b-bea7-abc26c33fa1d
+		summarizeBy: none
+		sourceColumn: Arrangement Type UID
 
 		annotation SummarizationSetBy = Automatic
 

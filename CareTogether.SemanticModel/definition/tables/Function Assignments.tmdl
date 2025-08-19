@@ -9,6 +9,14 @@ table 'Function Assignments'
 
 		annotation SummarizationSetBy = Automatic
 
+	column Function
+		dataType: string
+		lineageTag: d4127997-a5ce-43e5-84d2-a9b485c5f963
+		summarizeBy: none
+		sourceColumn: Function
+
+		annotation SummarizationSetBy = Automatic
+
 	column 'Entity UID'
 		dataType: string
 		lineageTag: 70e0c0df-7e9b-4bd6-8400-c64b6eaa19ec
@@ -30,14 +38,6 @@ table 'Function Assignments'
 		lineageTag: 6b2d7590-bec7-43e8-ba50-1dd985dcad54
 		summarizeBy: none
 		sourceColumn: Arrangement ID
-
-		annotation SummarizationSetBy = Automatic
-
-	column Function
-		dataType: string
-		lineageTag: d4127997-a5ce-43e5-84d2-a9b485c5f963
-		summarizeBy: none
-		sourceColumn: Function
 
 		annotation SummarizationSetBy = Automatic
 

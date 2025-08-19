@@ -85,51 +85,6 @@ table 'Child Location Record'
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Family UID'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 1f93be81-68ed-4f4f-a1a7-91149d97da8a
-		summarizeBy: none
-		sourceColumn: Family UID
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Family ID'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 858238a3-563f-423f-be2b-d3abbdd90fc5
-		summarizeBy: none
-		sourceColumn: Family ID
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Arrangement ID'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 61c3c958-c541-4b36-b11f-3c38d7036b20
-		summarizeBy: none
-		sourceColumn: Arrangement ID
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Child Person UID'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: e793d16c-75ab-4c0c-99ce-5287002b9ec8
-		summarizeBy: none
-		sourceColumn: Child Person UID
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Child Person ID'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 871e29b8-874e-400c-8019-97d43af4775a
-		summarizeBy: none
-		sourceColumn: Child Person ID
-
-		annotation SummarizationSetBy = Automatic
-
 	column Started
 		dataType: dateTime
 		formatString: General Date
@@ -187,6 +142,51 @@ table 'Child Location Record'
 		lineageTag: 3fad2f9d-6e37-4643-b1fd-ff8ac1ba5437
 		summarizeBy: none
 		sourceColumn: Childcare Family Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family UID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 1f93be81-68ed-4f4f-a1a7-91149d97da8a
+		summarizeBy: none
+		sourceColumn: Family UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family ID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 858238a3-563f-423f-be2b-d3abbdd90fc5
+		summarizeBy: none
+		sourceColumn: Family ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Arrangement ID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 61c3c958-c541-4b36-b11f-3c38d7036b20
+		summarizeBy: none
+		sourceColumn: Arrangement ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Child Person UID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: e793d16c-75ab-4c0c-99ce-5287002b9ec8
+		summarizeBy: none
+		sourceColumn: Child Person UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Child Person ID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 871e29b8-874e-400c-8019-97d43af4775a
+		summarizeBy: none
+		sourceColumn: Child Person ID
 
 		annotation SummarizationSetBy = Automatic
 

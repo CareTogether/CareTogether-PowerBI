@@ -30,40 +30,40 @@ annotation PBI_QueryOrder = ["OData Live","Production","Date","_Measures","RLS",
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.145.1602.0 (25.07)+10647c9fa319b5e39936cdb21328038c371d1fe4
+annotation PBIDesktopVersion = 2.146.705.0 (25.08)+b71502aff0a01340c88f384884ef42771068f115
 
 annotation PBI_ProTooling = ["CalcGroup","DevMode","DaxQueryView_Desktop"]
 
 annotation __TEdtr = 1
 
 ref table Date
-ref table RLS
-ref table Family
 ref table Location
-ref table Person
-ref table DateTableTemplate_bebbf16f-6440-48cb-8834-0dc3cfff853f
-ref table LocalDateTable_489a36aa-e0b2-448a-8b96-aac93e3f3da3
 ref table 'Function Assignments'
-ref table Arrangements
-ref table LocalDateTable_e4c82e88-c4c3-4c99-8b77-e121c2e26dd4
-ref table LocalDateTable_e028dd1f-b7df-4057-8fee-be7ce425d993
-ref table LocalDateTable_94755f40-c02e-4f12-adba-57d68c4e7bd7
 ref table 'Arrangement Type'
 ref table Childcare
-ref table Referrals
-ref table LocalDateTable_530a03d7-4545-4c50-b8bb-0eafd1c73faf
-ref table LocalDateTable_fde1edd6-5eb1-4a41-b6af-f79f35fa348f
 ref table 'Close Reason'
 ref table 'Community Member Families'
 ref table Community
 ref table 'Community Role Assignments'
 ref table 'Child Location Record'
-ref table LocalDateTable_ed213257-a100-4dcb-8da7-71cc92d5ab60
-ref table LocalDateTable_ede24289-e40d-4557-99e4-7c2810f1776e
 ref table 'Childcare Plan'
 ref table ChildLocationExpanded
 ref table 'Approval Status'
 ref table Role
+ref table RLS
+ref table Family
+ref table Person
+ref table DateTableTemplate_bebbf16f-6440-48cb-8834-0dc3cfff853f
+ref table LocalDateTable_489a36aa-e0b2-448a-8b96-aac93e3f3da3
+ref table Arrangements
+ref table LocalDateTable_e4c82e88-c4c3-4c99-8b77-e121c2e26dd4
+ref table LocalDateTable_e028dd1f-b7df-4057-8fee-be7ce425d993
+ref table LocalDateTable_94755f40-c02e-4f12-adba-57d68c4e7bd7
+ref table Referrals
+ref table LocalDateTable_530a03d7-4545-4c50-b8bb-0eafd1c73faf
+ref table LocalDateTable_fde1edd6-5eb1-4a41-b6af-f79f35fa348f
+ref table LocalDateTable_ed213257-a100-4dcb-8da7-71cc92d5ab60
+ref table LocalDateTable_ede24289-e40d-4557-99e4-7c2810f1776e
 ref table 'Arrangements Group'
 ref table 'Approvals Group'
 ref table 'Role Approvals'

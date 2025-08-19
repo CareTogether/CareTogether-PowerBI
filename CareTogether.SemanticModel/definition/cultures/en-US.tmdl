@@ -14190,6 +14190,57 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated"
+			    },
+			    "role_approval_bridge.volunteer_family_status_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Role Approval Bridge",
+			          "ConceptualProperty": "Volunteer Family Status Flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Family Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "role_approval_bridge.volunteer_individual_status_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Role Approval Bridge",
+			          "ConceptualProperty": "Volunteer Individual Status Flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Person Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "role_approval_bridge.entity_uid": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Role Approval Bridge",
+			          "ConceptualProperty": "Entity UID"
+			        }
+			      },
+			      "State": "Generated"
 			    }
 			  },
 			  "Relationships": {
