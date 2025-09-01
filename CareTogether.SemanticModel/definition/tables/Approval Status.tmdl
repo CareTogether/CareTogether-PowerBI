@@ -13,7 +13,7 @@ table 'Approval Status'
 		dataType: int64
 		formatString: 0
 		lineageTag: 74db945b-9f6f-4067-be9d-b1ea07f2f47c
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Order
 
 		annotation SummarizationSetBy = Automatic

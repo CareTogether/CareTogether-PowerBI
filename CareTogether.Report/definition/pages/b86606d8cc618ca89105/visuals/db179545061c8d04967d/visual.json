@@ -7,7 +7,7 @@
     "z": 1000,
     "height": 96.450511945392492,
     "width": 354.47098976109214,
-    "tabOrder": 11000
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "slicer",
@@ -382,5 +382,23 @@
       "filterChanges": true
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5f968dd02d30b0b29b03",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approvals Group"
+              }
+            },
+            "Property": "Entity Type"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

@@ -6,7 +6,8 @@
     "y": 9.829351535836178,
     "z": 2000,
     "height": 96.450511945392492,
-    "width": 391.33105802047783
+    "width": 391.33105802047783,
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "slicer",
@@ -107,7 +108,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Started'"
+                                "Value": "'Active'"
                               }
                             }
                           ]

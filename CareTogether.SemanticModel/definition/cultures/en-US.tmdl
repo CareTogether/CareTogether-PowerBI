@@ -3945,6 +3945,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.9
 			          }
+			        },
+			        {
+			          "Person Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ],
 			      "NameType": "Name"
@@ -13924,19 +13934,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Full Name"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Person Name": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "entity.of_entities_in_role": {
 			      "Definition": {
@@ -14173,15 +14171,6 @@ cultureInfo en-US
 			      },
 			      "State": "Generated"
 			    },
-			    "approvals_group.dynamic_entity_name_approvals": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Approvals Group",
-			          "ConceptualProperty": "Dynamic Entity Name (Approvals)"
-			        }
-			      },
-			      "State": "Generated"
-			    },
 			    "approvals_group.of_entities_in_role": {
 			      "Definition": {
 			        "Binding": {
@@ -14198,6 +14187,51 @@ cultureInfo en-US
 			          "ConceptualProperty": "Volunteer Family Status Flag"
 			        }
 			      },
+			      "State": "Generated"
+			    },
+			    "role_approval_bridge.volunteer_individual_status_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Role Approval Bridge",
+			          "ConceptualProperty": "Volunteer Individual Status Flag"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "role_approval_bridge.entity_uid": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Role Approval Bridge",
+			          "ConceptualProperty": "Entity UID"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "role_approval.approval_type": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Role Approval",
+			          "ConceptualProperty": "Approval Type"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "role_approval.entity_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Role Approval",
+			          "ConceptualProperty": "Entity Id"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "family_role_approvals.volunteer_family_status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Role Approvals",
+			          "ConceptualProperty": "Volunteer Family Status"
+			        }
+			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
@@ -14212,11 +14246,11 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "role_approval_bridge.volunteer_individual_status_flag": {
+			    "individual_role_approvals.volunteer_individual_status": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Role Approval Bridge",
-			          "ConceptualProperty": "Volunteer Individual Status Flag"
+			          "ConceptualEntity": "Individual Role Approvals",
+			          "ConceptualProperty": "Volunteer Individual Status"
 			        }
 			      },
 			      "State": "Generated",
@@ -14232,15 +14266,6 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
-			    },
-			    "role_approval_bridge.entity_uid": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Role Approval Bridge",
-			          "ConceptualProperty": "Entity UID"
-			        }
-			      },
-			      "State": "Generated"
 			    }
 			  },
 			  "Relationships": {

@@ -1,8 +1,15 @@
 table Community
 	lineageTag: e7a84953-27c2-4818-8b9a-4ebdd0ebcb9d
 
+	measure 'First Community Membership' =
+			
+			VAR FirstCommunity = MIN(Community[Community Name])
+			RETURN IF(ISBLANK(FirstCommunity), "", FirstCommunity)
+		lineageTag: b408252d-cb32-499f-8753-1aa99f2c2283
+
 	column 'RLS Key'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 8f3ad27a-2280-44ba-a5e5-bcbd74e914fe
 		summarizeBy: none
 		sourceColumn: RLS Key
@@ -11,6 +18,7 @@ table Community
 
 	column 'Community Name'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 0d2c8dc8-fed8-4620-b022-4017f39e0774
 		summarizeBy: none
 		sourceColumn: Community Name
@@ -19,6 +27,7 @@ table Community
 
 	column 'Community ID'
 		dataType: string
+		displayFolder: _Columns
 		lineageTag: 447eff34-66a1-4168-b2db-0e731d6511e3
 		summarizeBy: none
 		sourceColumn: Community ID

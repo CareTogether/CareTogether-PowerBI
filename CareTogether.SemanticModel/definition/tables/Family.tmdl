@@ -30,6 +30,14 @@ table Family
 		formatString: 0
 		lineageTag: ad57b4cc-695a-47d0-ba4c-da026d01baae
 
+	measure 'Community Membership Count' = COALESCE(COUNTROWS(RELATEDTABLE('Community Member Families')),0)
+		formatString: 0
+		lineageTag: f444aa30-f3a1-4b3c-b10b-e2ff4d9d616a
+
+	measure '# of Families' = DISTINCTCOUNT(Family[Family UID])
+		formatString: 0
+		lineageTag: 59c543dd-aa32-4225-a26a-67e95815db24
+
 	column 'RLS Key'
 		dataType: string
 		displayFolder: _Columns
@@ -144,6 +152,34 @@ table Family
 		lineageTag: 535724e2-72b9-4a2c-9498-d9c0c329b698
 		summarizeBy: none
 		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Participation Type' =
+			
+			
+			VAR FamilyRoleApprovals = CALCULATE(
+			    COUNTROWS('Family Role Approvals'),
+			    'Family Role Approvals'[Entity Type] = "Family"
+			)
+			
+			VAR IndividualRoleApprovals = CALCULATE(
+			    COUNTROWS('Individual Role Approvals'),
+			    'Individual Role Approvals'[Entity Type] = "Person"
+			)
+			
+			VAR Referrals = COUNTROWS(RELATEDTABLE(Referrals))
+			
+			RETURN IF(
+			    FamilyRoleApprovals + IndividualRoleApprovals > 0,
+			    "Volunteer Family",
+			    IF(Referrals > 0,
+			        "Partnering Family",
+			        "Other"
+			    )
+			)
+		lineageTag: 7850d05a-73b3-44bc-a171-99cbfbbb53b1
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 

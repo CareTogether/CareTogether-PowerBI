@@ -1,19 +1,35 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
-  "name": "0fd45c9be3deb6542a51",
+  "name": "6f553af3a957ccbdda56",
   "position": {
-    "x": 650.580204778157,
-    "y": 441.70648464163821,
-    "z": 3000,
-    "height": 269.07849829351534,
-    "width": 620.47781569965866
+    "x": 739.84962406015029,
+    "y": 394.58646616541353,
+    "z": 12000,
+    "height": 317.593984962406,
+    "width": 530.52631578947364,
+    "tabOrder": 12000
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Values": {
+        "Rows": {
           "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "Family Name"
+                }
+              },
+              "queryRef": "Family.Family Name",
+              "nativeQueryRef": "Family Name",
+              "active": true
+            },
             {
               "field": {
                 "Column": {
@@ -26,101 +42,133 @@
                 }
               },
               "queryRef": "Person.Full Name",
-              "nativeQueryRef": "Full Name1"
+              "nativeQueryRef": "Full Name",
+              "active": true
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement Type"
+                      "Entity": "Role"
                     }
                   },
-                  "Property": "Arrangement Type"
+                  "Property": "Role Name"
                 }
               },
-              "queryRef": "Arrangement Type.Arrangement Type",
-              "nativeQueryRef": "Arrangement Type"
+              "queryRef": "Role.Role Name",
+              "nativeQueryRef": "Role Name",
+              "active": true
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangements"
+                      "Entity": "Approval Status"
                     }
                   },
-                  "Property": "Started"
+                  "Property": "Status"
                 }
               },
-              "queryRef": "Arrangements.Started",
-              "nativeQueryRef": "Started1"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Arrangements"
-                    }
-                  },
-                  "Property": "Ended"
-                }
-              },
-              "queryRef": "Arrangements.Ended",
-              "nativeQueryRef": "Ended1"
-            },
+              "queryRef": "Approval Status.Status",
+              "nativeQueryRef": "Status",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangements"
+                      "Entity": "Approvals Group"
                     }
                   },
-                  "Property": "# of Arrangements"
+                  "Property": "# of Entities in Role"
                 }
               },
-              "queryRef": "Arrangements.# of Arrangements",
+              "queryRef": "Approvals Group.# of Entities in Role",
               "nativeQueryRef": " ",
-              "displayName": " "
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Arrangements"
-                    }
-                  },
-                  "Property": "Arrangement ID"
-                }
-              },
-              "queryRef": "Arrangements.Arrangement ID",
-              "nativeQueryRef": " 1",
               "displayName": " "
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Arrangements"
-                  }
-                },
-                "Property": "Started"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Family.Family Name"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "Family Name"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Person.Full Name"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Person"
+                    }
+                  },
+                  "Property": "Full Name"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Role.Role Name"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Role"
+                    }
+                  },
+                  "Property": "Role Name"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Approval Status.Status"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
     "objects": {
       "values": [
         {
@@ -200,13 +248,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "157.47439492404249D"
+                  "Value": "132.02904913344594D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Arrangement Type.Arrangement Type"
+            "metadata": "Family.Family Name"
           }
         },
         {
@@ -220,49 +268,13 @@
             }
           },
           "selector": {
-            "metadata": "Arrangements.# of Arrangements"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Arrangements.Arrangement ID"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "183.64431379090652D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Person.Full Name"
+            "metadata": "Approvals Group.# of Entities in Role"
           }
         }
       ],
       "total": [
         {
-          "properties": {
-            "totals": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
+          "properties": {}
         }
       ],
       "grid": [
@@ -296,7 +308,125 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "0D"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabular'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "repeatRowHeaders": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "expandCollapseButtonsColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 7,
+                      "Percent": 0.2
+                    }
+                  }
+                }
+              }
+            },
+            "expandCollapseButtonsSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -350,7 +480,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Details'"
+                  "Value": "'Approvals Details'"
                 }
               }
             }
@@ -382,13 +512,6 @@
               "expr": {
                 "Literal": {
                   "Value": "8D"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'To extract data from this table, right-click on it and select ''Export data'''"
                 }
               }
             }
@@ -554,5 +677,79 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6e5abf75e5207027a9c8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e7f21dd165078d2566c1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Role"
+              }
+            },
+            "Property": "Role Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c418e05cdc03ac1aed7b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approval Status"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "68189f38519b5ee4d2b6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approvals Group"
+              }
+            },
+            "Property": "# of Entities in Role"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3b8b44e367a7a80e0e64",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Person"
+              }
+            },
+            "Property": "Full Name"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

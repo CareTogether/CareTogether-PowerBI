@@ -100,6 +100,10 @@ table Person
 		formatString: 0
 		lineageTag: c51b6f94-dd69-4e59-9c3d-98417bc8a56b
 
+	measure '# of Person' = DISTINCTCOUNT(Person[Person UID])
+		formatString: 0
+		lineageTag: 435e97af-ba06-462a-87db-76f68747bbd6
+
 	column 'RLS Key'
 		dataType: string
 		displayFolder: _Columns
@@ -206,6 +210,14 @@ table Person
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
+
+	column Age = DATEDIFF(Person[Date of Birth], UTCNOW(), YEAR)
+		formatString: 0
+		displayFolder: _Columns
+		lineageTag: e340382b-fbcb-407b-87e5-29e3dfc33107
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
 
 	partition Person = m
 		mode: import

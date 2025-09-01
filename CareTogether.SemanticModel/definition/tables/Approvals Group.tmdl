@@ -7,27 +7,34 @@ table 'Approvals Group'
 		calculationItem Family =
 				CALCULATE(
 				    SELECTEDMEASURE(),
-				    'Family Role Approval'[Entity Type] = "Family"
+				    'Family Role Approvals'[Entity Type] = "Family"
 				)
 
-		calculationItem Person = ```
+		calculationItem Person =
 				CALCULATE(
-				    SELECTEDMEASURE (),
-				    'Role Approvals'[Entity Type] = "Person"
+				    SELECTEDMEASURE(),
+				    'Family Role Approvals'[Entity Type] = "Person"
 				)
-				
-				```
 
-	measure '# of Entities in Role' = ```
+	measure '# of Entities in Role' =
 			
-			 
 			VAR Option = SELECTEDVALUE('Approvals Group'[Entity Type])
+			
+			VAR Families = CALCULATE(
+			    DISTINCTCOUNT('Family Role Approvals'[Entity UID]),
+			    'Family Role Approvals'[Entity Type] = "Family"
+			)
+			
+			VAR Individuals = CALCULATE(
+			    DISTINCTCOUNT('Individual Role Approvals'[Entity UID]),
+			    'Individual Role Approvals'[Entity Type] = "Person"
+			)
+			
 			RETURN SWITCH(
 			    Option,
-			    "Family", DISTINCTCOUNT('Family Role Approval'[Entity UID]),
-			    "Person", DISTINCTCOUNT('Individual Role Approval'[Entity UID])
+			    "Family", Families,
+			    "Person", Individuals
 			)
-			```
 		formatString: 0
 		lineageTag: 312b4bb7-0c6e-4571-9e26-90941077e24e
 
@@ -35,22 +42,34 @@ table 'Approvals Group'
 		formatString: 0
 		lineageTag: 7abae082-a878-4f7c-ba78-2b93365ad019
 
-	measure 'Dynamic Entity Name (Approvals)' = ```
+	measure '# Approval Tracker' =
 			
-			VAR Option = SELECTEDVALUE('Approvals Group'[Entity Type])
-			RETURN SWITCH(
-			    Option,
-			    "Family", CALCULATE(
-			        SELECTEDVALUE(Family[Family Name]),
-			        CROSSFILTER(Family[Family UID], 'Role Approval Bridge'[Entity UID], Both)
-			    ),
-			    "Person", CALCULATE(
-			        SELECTEDVALUE(Person[Full Name])
+			VAR Tracker =
+			    SWITCH(
+			        TRUE(),
+			        ISINSCOPE('Role Approval'[Entity Name]),
+			        VAR MaxDate = CALCULATE(
+			            MAX('Role Approval'[Date]),
+			            'Role Approval'[StatusChanged] = TRUE()
+			        )
+			        RETURN IF(ISBLANK(MaxDate), BLANK(), FORMAT(MaxDate, "YYYY-MM-DD")),
+			
+			        ISINSCOPE('Role Approval'[Role Name]),
+			        FORMAT(CALCULATE(
+			            DISTINCTCOUNT('Role Approval'[Entity Id]),
+			            'Role Approval'[StatusChanged] = TRUE()
+			        ), "0"),
+			
+			        ISINSCOPE('Role Approval'[Entity Type]),
+			        FORMAT(CALCULATE(
+			            DISTINCTCOUNT('Role Approval'[Entity Id]),
+			            'Role Approval'[StatusChanged] = TRUE()
+			        ), "0")
 			    )
-			)
 			
-			```
-		lineageTag: 4bea9d6e-045d-4191-b8cc-1bdc6b11c980
+			RETURN
+			    IF(ISBLANK(Tracker), BLANK(), Tracker)
+		lineageTag: 7abee868-4764-4bf9-95df-354a69267d92
 
 	column 'Entity Type'
 		dataType: string

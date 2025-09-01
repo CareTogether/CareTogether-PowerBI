@@ -1,0 +1,22 @@
+table 'Dynamic UIDS'
+	lineageTag: 9dd5ef52-caef-45e4-9276-943575ba599e
+
+	column UID
+		lineageTag: e870f569-c93c-48c9-97e1-d49e0c185bb1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [UID]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dynamic UIDS' = calculated
+		mode: import
+		source =
+				
+				UNION(
+				    SELECTCOLUMNS(Person, "UID", Person[Person UID]),
+				    SELECTCOLUMNS(Family, "UID", Family[Family UID])
+				)
+
+	annotation PBI_Id = 000a512e9d674f09b493f5378c936a48
+

@@ -7,7 +7,7 @@
     "z": 5000,
     "height": 351.33333333333331,
     "width": 885.33333333333337,
-    "tabOrder": 3000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "lineChart",
@@ -286,20 +286,6 @@
                 }
               }
             },
-            "minimumOffset": {
-              "expr": {
-                "Literal": {
-                  "Value": "20D"
-                }
-              }
-            },
-            "maximumOffset": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
             "optimizeLabelDisplay": {
               "expr": {
                 "Literal": {
@@ -311,6 +297,20 @@
               "expr": {
                 "Literal": {
                   "Value": "200D"
+                }
+              }
+            },
+            "minimumOffset": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "maximumOffset": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
                 }
               }
             }
@@ -449,6 +449,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'smooth'"
+                }
+              }
+            },
+            "showMarker": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

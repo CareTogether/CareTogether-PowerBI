@@ -6,8 +6,7 @@
     "y": 10.443686006825939,
     "z": 1000,
     "height": 700.34129692832767,
-    "width": 1260,
-    "tabOrder": 1000
+    "width": 1260
   },
   "visual": {
     "visualType": "pivotTable",
@@ -39,63 +38,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Role Approval Bridge"
+                      "Entity": "Role"
                     }
                   },
                   "Property": "Role Name"
                 }
               },
-              "queryRef": "Role Approval.Role Name",
-              "nativeQueryRef": "Role Name",
+              "queryRef": "Role.Role Name",
+              "nativeQueryRef": "Role Name1",
               "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Role Approval Bridge"
-                    }
-                  },
-                  "Property": "Entity Type"
-                }
-              },
-              "queryRef": "Role Approval.Entity Type",
-              "nativeQueryRef": "Entity Type",
-              "active": false
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Role Approval Bridge"
-                    }
-                  },
-                  "Property": "Entity Name"
-                }
-              },
-              "queryRef": "Role Approval.Entity Name",
-              "nativeQueryRef": "Entity Name",
-              "active": false
-            }
-          ]
-        },
-        "Values": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Role Approval Bridge"
-                    }
-                  },
-                  "Property": "# Approval Tracker"
-                }
-              },
-              "queryRef": "Role Approval.# Approval Tracker",
-              "nativeQueryRef": "# Approval Tracker"
             }
           ]
         }
@@ -109,7 +60,7 @@
         "levels": [
           {
             "queryRefs": [
-              "Role Approval.Role Name"
+              "Role.Role Name"
             ],
             "isCollapsed": true,
             "identityKeys": [
@@ -117,7 +68,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Role Approval Bridge"
+                      "Entity": "Role"
                     }
                   },
                   "Property": "Role Name"
@@ -125,35 +76,22 @@
               }
             ],
             "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "Role Approval.Entity Type"
-            ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Role Approval Bridge"
-                    }
-                  },
-                  "Property": "Entity Type"
-                }
-              }
-            ],
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "Role Approval.Entity Name"
-            ],
-            "isCollapsed": true,
-            "isPinned": true
           }
         ],
-        "root": {}
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Additional Resources'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
       }
     ],
     "objects": {
@@ -309,20 +247,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "212.45930140778864D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Role Approval.Role Name"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "105.57336063904248D"
                 }
               }
@@ -464,20 +388,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "368.262863054316D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Role Approval.Entity Name"
           }
         }
       ],
@@ -859,5 +769,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4ee22eaa0a6e0cc9d8b8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approval Status"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "33710ea48c0a50438916",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Role"
+              }
+            },
+            "Property": "Role Name"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

@@ -1,0 +1,161 @@
+table 'Individual Role Approvals'
+	lineageTag: f1316aaa-f0fd-49a4-8963-e182d41d7a32
+
+	measure 'Volunteer Individual Status' = ```
+			
+			
+			// INACTIVE OR ACTIVE DEFINITION:  
+			// Inactive = only 'inactive' or 'denied'
+			// Blank = no role approval
+			// Active = anything other than 'inactive' or 'denied'
+			
+			VAR StartDate = [Selected Timeframe Start] 
+			VAR EndDate = [Selected Timeframe End]
+			VAR FamilyUID = SELECTEDVALUE(Family[Family UID])
+			
+			VAR PersonInactive = 
+			    CALCULATE(
+			        COUNTROWS('Individual Role Approvals'),
+			        'Family Role Approvals'[Date] >= StartDate && 'Family Role Approvals'[Date] <= EndDate,
+			        'Approval Status'[Status] IN {"Inactive", "Denied"},
+			        'Family Role Approvals'[Entity Type] = "Person"
+			    )
+			
+			VAR PersonActive = 
+			    CALCULATE(
+			        COUNTROWS('Individual Role Approvals'),
+			        'Family Role Approvals'[Date] >= StartDate && 'Family Role Approvals'[Date] <= EndDate,
+			        NOT 'Family Role Approvals'[Status] IN {"Inactive", "Denied"},
+			        'Family Role Approvals'[Entity Type] = "Person"
+			    )
+			
+			RETURN
+			IF(
+			    PersonActive > 0,
+			        "Active",
+			    IF(PersonInactive > 0, 
+			        "Inactive", 
+			    IF(ISBLANK(PersonActive + PersonInactive) && [# of Person] > 0,
+			        "No Role Approval"
+			        )
+			    )
+			)
+			```
+		lineageTag: 18f1582f-7ebe-47b4-b18f-903b2964b3fe
+
+	column 'RLS Key'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: c186e32b-ea33-4fa0-8aee-f5d9fe65f4ac
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity Type'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 545df9b7-4c29-4773-bb5b-6884969865cc
+		summarizeBy: none
+		sourceColumn: Entity Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity UID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 1396b793-6dba-4d1f-823c-40e160f7bfe5
+		summarizeBy: none
+		sourceColumn: Entity UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EntityId
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 4d0154a8-80e2-4955-9758-8e02faaf1442
+		summarizeBy: none
+		sourceColumn: EntityId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Role Name'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 49cd6cd2-8ec2-4c37-ac27-765affa9fcb7
+		summarizeBy: none
+		sourceColumn: Role Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		displayFolder: _Columns
+		lineageTag: 32975043-174b-4fbf-b68d-4027ee7d49d3
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Approval Type'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 95c2cfae-b348-4150-b6bc-be8d7ddf28d1
+		summarizeBy: none
+		sourceColumn: Approval Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 429464f0-95b1-4a35-b128-b773579e8ab2
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Changed'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: _Columns
+		lineageTag: 5047badb-6392-4c5d-9afb-95416af92cb3
+		summarizeBy: none
+		sourceColumn: Status Changed
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Individual Role Approvals' = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    Source = #"OData Live",
+				    RoleApproval = 
+				
+				        Table.SelectColumns(
+				            Table.RenameColumns(
+				                Table.AddColumn(
+				                    Table.AddColumn(
+				                        Source{[Name="RoleApprovals", Signature="table"]}[Data],
+				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                    ),
+				                    "Entity UID", each Text.Combine({[RLS Key], [EntityId]}, "-")
+				                ),
+				                {{"StatusChanged", "Status Changed"}, {"RoleName", "Role Name"}, {"ApprovalType", "Approval Type"}, {"EntityType", "Entity Type"}}
+				            ),
+				            {"RLS Key", "Entity Type", "Entity UID", "EntityId", "Role Name", "Date", "Approval Type", "Status", "Status Changed"}
+				        ),
+				    #"Filtered Rows" = Table.SelectRows(RoleApproval, each ([Entity Type] = "Person"))
+				
+				in
+				    #"Filtered Rows"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

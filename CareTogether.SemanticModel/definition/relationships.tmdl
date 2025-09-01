@@ -38,104 +38,105 @@ relationship 8c4a673e-c9be-45b5-a81c-bc5d2743779e
 	fromColumn: 'Child Location Record'.Ended
 	toColumn: LocalDateTable_ede24289-e40d-4557-99e4-7c2810f1776e.Date
 
-relationship 8d32931c-5a42-da5d-bf82-30b33ad79e15
-	fromColumn: Family.'RLS Key'
-	toColumn: Location.'RLS Key'
-
-relationship e3bca6bd-55af-23e2-586e-79c244a039d1
-	fromColumn: Arrangements.'Person UID'
-	toColumn: Person.'Person UID'
-
-relationship 87bf339a-80ff-831f-0c2a-da082253edf1
-	fromColumn: 'Child Location Record'.'Arrangement ID'
-	toColumn: Arrangements.'Arrangement ID'
-
-relationship b542f384-62a8-f46b-6a45-430652ec1296
+relationship 1b2fdd82-5273-6461-550a-5925f0e410d3
 	crossFilteringBehavior: bothDirections
 	fromColumn: Person.'Family UID'
 	toColumn: Family.'Family UID'
 
-relationship 4d5cf0e3-bf7c-1f29-57b4-79e88e2d3cd1
-	fromColumn: ChildLocationExpanded.Date
-	toColumn: Date.Date
+relationship c7ec49a7-95cf-66c7-0fdc-d814839a75ec
+	isActive: false
+	fromColumn: 'Function Assignments'.'Entity UID'
+	toColumn: Family.'Family UID'
 
-relationship 56bcedae-ef89-a262-cdc8-d85a2bf52231
-	fromColumn: ChildLocationExpanded.Index
-	toColumn: 'Child Location Record'.Index
+relationship f079994b-e194-be87-cbea-e286e540728d
+	isActive: false
+	fromColumn: 'Function Assignments'.'Entity UID'
+	toColumn: Person.'Person UID'
 
-relationship e1e5f20b-b20e-da58-1763-ce693d173b8c
+relationship 2a340009-9a22-bf5a-e7bf-20ca9d71abbe
+	fromColumn: Family.'RLS Key'
+	toColumn: Location.'RLS Key'
+
+relationship 5aba2852-c842-eba4-8071-d1dc3bbb0720
 	fromColumn: Referrals.'Family UID'
 	toColumn: Family.'Family UID'
 
-relationship e2ada23b-c9c1-f941-6b5b-586d5c6fd03a
+relationship 73e5b166-c4e6-9336-00c4-ee6faa14db58
 	fromColumn: Referrals.'Close Reason'
 	toColumn: 'Close Reason'.ReferralCloseReason
 
-relationship 5df70fb2-4926-59a8-7efe-4d5fabba9bf4
-	isActive: false
-	fromColumn: 'Function Assignments'.'Entity UID'
-	toColumn: Family.'Family UID'
-
-relationship d2a29f85-3cc4-a6d9-e0a7-b6b2f52be864
-	fromColumn: 'Function Assignments'.'Arrangement ID'
-	toColumn: Arrangements.'Arrangement ID'
-
-relationship e94eb087-7586-582e-8537-070c6e13f5ea
-	fromColumn: Arrangements.'Arrangement Type UID'
-	toColumn: 'Arrangement Type'.'Arrangement Type UID'
-
-relationship 4a45bdbd-a2fe-0e30-dc13-f08dbc608dff
-	fromColumn: 'Arrangement Type'.'Child Involvement'
-	toColumn: Childcare.ChildInvolvement
-
-relationship 8b09995d-5737-1273-8f68-e3f5fcbeb94a
-	isActive: false
-	toCardinality: many
-	fromColumn: 'Function Assignments'.'Entity UID'
-	toColumn: Person.'Family UID'
-
-relationship a1e441af-8699-6086-da6b-92baf320e2ee
+relationship 4d32855b-35ea-d18f-911f-05b9c692f5e8
 	crossFilteringBehavior: bothDirections
 	fromCardinality: one
 	fromColumn: Family.'Family UID'
 	toColumn: 'Community Member Families'.'Family UID'
 
-relationship 377475f6-be49-206c-f322-ea887f97f424
+relationship 9085acfd-bdb2-e163-32e0-ddaf0905fcbb
 	crossFilteringBehavior: bothDirections
 	fromColumn: 'Community Member Families'.'Community ID'
 	toColumn: Community.'Community ID'
 
-relationship c0d24db8-0e11-df90-4ff8-780b00231a29
+relationship 3b16e699-aa26-4d85-a5d9-dd7752faae9d
 	fromColumn: 'Community Role Assignments'.'Community ID'
 	toColumn: Community.'Community ID'
 
-relationship 6fe47445-52b8-784b-9f8f-5faf8f99f952
-	fromColumn: 'Role Approvals'.'Role Name'
-	toColumn: Role.'Role Name'
-
-relationship c7ddebc8-61f8-881c-ec16-0e82c7612bd4
-	fromColumn: 'Role Approvals'.Date
-	toColumn: Date.Date
-
-relationship b981c82f-de8e-b53b-34cf-af454b76c4d0
-	isActive: false
-	crossFilteringBehavior: bothDirections
-	fromCardinality: one
-	fromColumn: Person.'Person UID'
-	toColumn: 'Community Role Assignments'.'Person UID'
-
-relationship 2cc7cda4-1643-6e38-53ca-26981164bebb
-	fromColumn: 'Role Approvals'.'Entity UID'
+relationship 68bd892e-c661-c7b7-5c03-5aefca191f67
+	fromColumn: 'Family Role Approvals'.'Entity UID'
 	toColumn: Family.'Family UID'
 
-relationship 451c25f7-84f4-0605-3428-8c2153bb3151
-	fromColumn: 'Role Approvals'.Status
+relationship 2b4882b1-b8b3-858d-c55d-c0f9da73aed8
+	fromColumn: 'Individual Role Approvals'.'Entity UID'
+	toColumn: Person.'Person UID'
+
+relationship ad35c164-c226-0e58-bc1d-d47bcbe2819a
+	fromColumn: 'Family Role Approvals'.'Role Name'
+	toColumn: Role.'Role Name'
+
+relationship 9cae875d-bb97-1acf-d418-4b3da5f3932a
+	fromColumn: 'Individual Role Approvals'.'Role Name'
+	toColumn: Role.'Role Name'
+
+relationship 9b1c5b38-28ce-e2ea-8a4e-f8c7ff209c6f
+	fromColumn: 'Family Role Approvals'.Status
 	toColumn: 'Approval Status'.Status
 
-relationship e4d6f43d-5c34-cd50-0242-cdf485a2d5ce
-	isActive: false
-	crossFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: Person.'Family UID'
-	toColumn: 'Role Approvals'.'Entity UID'
+relationship 56241e07-7826-df43-4383-bca80bef08d8
+	fromColumn: 'Individual Role Approvals'.Status
+	toColumn: 'Approval Status'.Status
+
+relationship 3482c69c-b97f-8d4e-5b8d-8af6f298227f
+	fromColumn: Arrangements.'Person UID'
+	toColumn: Person.'Person UID'
+
+relationship bf212760-a3b9-bce2-faaf-01a8238ebb89
+	fromColumn: 'Child Location Record'.'Arrangement ID'
+	toColumn: Arrangements.'Arrangement ID'
+
+relationship 6ac79b10-a5d7-cbc2-52d4-3f957ad99329
+	fromColumn: 'Child Location Record'.'Childcare Plan'
+	toColumn: 'Childcare Plan'.ChildLocationPlan
+
+relationship 6258b247-91eb-1566-13a4-193073f6ec52
+	fromColumn: ChildLocationExpanded.Index
+	toColumn: 'Child Location Record'.Index
+
+relationship 7defcc5e-23db-5306-923b-a9db0a56cdc6
+	fromColumn: ChildLocationExpanded.Date
+	toColumn: Date.Date
+
+relationship 787f10f8-ac9d-0b8d-7fab-a9d48b19ddb6
+	fromColumn: 'Individual Role Approvals'.Date
+	toColumn: Date.Date
+
+relationship 72e40e5e-81bd-60b4-7e34-449fc0bf6053
+	fromColumn: 'Family Role Approvals'.Date
+	toColumn: Date.Date
+
+relationship f3befea4-84d5-33a4-675e-4917ebd13baa
+	fromColumn: Arrangements.'Arrangement Type UID'
+	toColumn: 'Arrangement Type'.'Arrangement Type UID'
+
+relationship 6920aeab-414a-ab33-69c8-ad7429e973bf
+	fromColumn: 'Arrangement Type'.'Child Involvement'
+	toColumn: Childcare.ChildInvolvement
 

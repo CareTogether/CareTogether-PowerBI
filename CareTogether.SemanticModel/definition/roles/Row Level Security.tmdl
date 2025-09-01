@@ -1,18 +1,6 @@
 role 'Row Level Security'
 	modelPermission: read
 
-	tablePermission Family =
-			Family[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission Person =
-			Person[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
 	tablePermission Arrangements =
 			Arrangements[RLS Key] IN CALCULATETABLE(
 			    VALUES(RLS[RLS Key]),
@@ -33,6 +21,24 @@ role 'Row Level Security'
 
 	tablePermission ChildLocationExpanded =
 			ChildLocationExpanded[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission Family =
+			Family[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission Person =
+			Person[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission Location =
+			Location[RLS Key] IN CALCULATETABLE(
 			    VALUES(RLS[RLS Key]),
 			    RLS[UserId] = USERNAME()
 			)

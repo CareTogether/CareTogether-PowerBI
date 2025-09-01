@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
-  "name": "aa9a662d4d1104019500",
+  "name": "0e0f5f07a55029a7559c",
   "position": {
     "x": 8.6006825938566553,
     "y": 8.6006825938566553,
-    "z": 1000,
+    "z": 5001,
     "height": 702.79863481228665,
     "width": 721.22866894197955,
-    "tabOrder": 5000
+    "tabOrder": 5001
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,28 +20,28 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
                   "Property": "Family Name"
                 }
               },
-              "queryRef": "Entity.Family Name",
-              "nativeQueryRef": "Family Name"
+              "queryRef": "Family.Family Name",
+              "nativeQueryRef": "Family Name1"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
-                  "Property": "HomeChurch"
+                  "Property": "Home Church"
                 }
               },
-              "queryRef": "Entity.HomeChurch",
-              "nativeQueryRef": "HomeChurch"
+              "queryRef": "Family.Home Church",
+              "nativeQueryRef": "Home Church"
             },
             {
               "field": {
@@ -62,28 +62,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
                   "Property": "Community Membership Count"
                 }
               },
-              "queryRef": "Entity.Community Membership Count (Measure)",
-              "nativeQueryRef": "Community Membership Count"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Location"
-                    }
-                  },
-                  "Property": "Location"
-                }
-              },
-              "queryRef": "Location.Location",
-              "nativeQueryRef": "Location"
+              "queryRef": "Family.Community Membership Count",
+              "nativeQueryRef": "Community Membership Count1"
             }
           ]
         }
@@ -95,7 +81,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Entity"
+                    "Entity": "Family"
                   }
                 },
                 "Property": "Family Name"
@@ -182,7 +168,7 @@
                                     "Measure": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Entity"
+                                          "Entity": "Family"
                                         }
                                       },
                                       "Property": "Community Membership Count"
@@ -202,7 +188,7 @@
                                     "Measure": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Entity"
+                                          "Entity": "Family"
                                         }
                                       },
                                       "Property": "Community Membership Count"
@@ -231,7 +217,7 @@
                                 "Measure": {
                                   "Expression": {
                                     "SourceRef": {
-                                      "Entity": "Entity"
+                                      "Entity": "Family"
                                     }
                                   },
                                   "Property": "Community Membership Count"
@@ -289,35 +275,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "168.58702944373206D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Entity.Family Name"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "97.9863481228669D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Entity.HomeChurch"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "196.6723538973542D"
+                  "Value": "191.66401208678136D"
                 }
               }
             }
@@ -331,13 +289,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "124.5000064276943D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Location.Location"
+            "metadata": "Family.Home Church"
           }
         }
       ],
@@ -660,113 +618,60 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "da9f846150cb1f625a15",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "FamilyId"
-          }
-        },
-        "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "e",
-              "Entity": "Entity",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "Comparison": {
-                      "ComparisonKind": 0,
-                      "Left": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Source": "e"
-                            }
-                          },
-                          "Property": "FamilyId"
-                        }
-                      },
-                      "Right": {
-                        "Literal": {
-                          "Value": "null"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User",
-        "isLockedInViewMode": true
-      },
-      {
-        "name": "a57b757b6837fc48cf0c",
+        "name": "0fdad43569016eec40ec",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Community"
               }
             },
-            "Property": "RLS Key Selected"
+            "Property": "First Community Membership"
           }
         },
-        "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "e",
-              "Entity": "Entity",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "Comparison": {
-                      "ComparisonKind": 0,
-                      "Left": {
-                        "Measure": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Source": "e"
-                            }
-                          },
-                          "Property": "RLS Key Selected"
-                        }
-                      },
-                      "Right": {
-                        "Literal": {
-                          "Value": "null"
-                        }
-                      }
-                    }
-                  }
-                }
+        "type": "Advanced"
+      },
+      {
+        "name": "a1341d3fbde1a004b339",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
               }
-            }
-          ]
+            },
+            "Property": "Family Name"
+          }
         },
-        "howCreated": "User",
-        "isHiddenInViewMode": true,
-        "isLockedInViewMode": true
+        "type": "Categorical"
+      },
+      {
+        "name": "07ae4c131740e0634782",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Home Church"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fed5c96262b3b0755723",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Community Membership Count"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
