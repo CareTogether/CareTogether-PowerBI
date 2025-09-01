@@ -1,0 +1,22 @@
+table 'Approval Type'
+	lineageTag: b8cb7b24-2738-41f5-928b-2ce2c2019e8d
+
+	column 'Approval Type'
+		dataType: string
+		lineageTag: b4d611e8-01b2-4167-be2b-8e668e8796bf
+		summarizeBy: none
+		sourceColumn: Approval Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Approval Type' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WcsksSk0uUYrViVbyzEuBcmIB", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Approval Type" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Approval Type", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

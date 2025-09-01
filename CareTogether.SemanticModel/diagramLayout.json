@@ -249,6 +249,16 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Approval Type",
+          "nodeLineageTag": "b8cb7b24-2738-41f5-928b-2ce2c2019e8d",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
@@ -261,7 +271,7 @@
     {
       "ordinal": 1,
       "scrollPosition": {
-        "x": 290.1958538485527,
+        "x": 1.4509792692427634,
         "y": 7.2548963462138172
       },
       "nodes": [
@@ -488,7 +498,7 @@
         },
         {
           "location": {
-            "x": 771.096978562209,
+            "x": 804.46950175479253,
             "y": 0
           },
           "nodeIndex": "Approval Status",
@@ -501,13 +511,13 @@
         },
         {
           "location": {
-            "x": 1117.7417524661582,
-            "y": 1.2941659981540532
+            "x": 1087.2711878120601,
+            "y": 0
           },
           "nodeIndex": "Role",
           "nodeLineageTag": "a5a15efd-7639-4e75-a11f-7e21f671acbe",
           "size": {
-            "height": 145,
+            "height": 152.25489634621383,
             "width": 234
           },
           "zIndex": 5
@@ -537,6 +547,19 @@
             "width": 234
           },
           "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 362.27408085073569,
+            "y": 21.078341539421075
+          },
+          "nodeIndex": "Approval Type",
+          "nodeLineageTag": "b8cb7b24-2738-41f5-928b-2ce2c2019e8d",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Data Model",

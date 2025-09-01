@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
-  "name": "d6084660d102c3617329",
+  "name": "bb53773b627777712a28",
   "position": {
     "x": 10.827067669172932,
-    "y": 12.030075187969924,
-    "z": 1000,
-    "height": 347.66917293233081,
+    "y": 359.69924812030075,
+    "z": 1001,
+    "height": 350.0751879699248,
     "width": 1259.5488721804511,
-    "tabOrder": 1000
+    "tabOrder": 1001
   },
   "visual": {
     "visualType": "pivotTable",
@@ -54,16 +54,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family Role Approvals"
+                      "Entity": "Individual Role Approvals"
                     }
                   },
-                  "Property": "Family Name"
+                  "Property": "Person Name"
                 }
               },
-              "queryRef": "Family Role Approvals.Entity Name",
-              "nativeQueryRef": "Family Name",
-              "active": true,
-              "displayName": "Family Name"
+              "queryRef": "Individual Role Approvals.Person Name",
+              "nativeQueryRef": "Person Name",
+              "active": true
             },
             {
               "field": {
@@ -89,14 +88,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family Role Approvals"
+                      "Entity": "Individual Role Approvals"
                     }
                   },
-                  "Property": "Family Approval Tracker"
+                  "Property": "Individual Approval Tracker"
                 }
               },
-              "queryRef": "Family Role Approvals.Family Approval Tracker",
-              "nativeQueryRef": "Family Approval Tracker"
+              "queryRef": "Individual Role Approvals.individual Approvals Tracker",
+              "nativeQueryRef": "Individual Approval Tracker"
             }
           ]
         }
@@ -128,7 +127,19 @@
           },
           {
             "queryRefs": [
-              "Family Role Approvals.Entity Name"
+              "Individual Role Approvals.Person Name"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Individual Role Approvals"
+                    }
+                  },
+                  "Property": "Person Name"
+                }
+              }
             ],
             "isPinned": true
           },
@@ -444,7 +455,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "152.1093974739058D"
+                  "Value": "148.44269419584808D"
                 }
               }
             }
@@ -458,13 +469,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "309.2513800761568D"
+                  "Value": "308.40599053461733D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Family Role Approvals.Entity Name"
+            "metadata": "Individual Role Approvals.Person Name"
           }
         },
         {
@@ -472,7 +483,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "366.6766296210888D"
+                  "Value": "382.3157237769739D"
                 }
               }
             }
@@ -649,7 +660,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Family Approvals Tracker'"
+                  "Value": "'Individual Approvals Tracker'"
                 }
               }
             }
@@ -687,7 +698,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'\"Expand the levels to view more details. At the ''Role Name'' level, the number of families that had a status change during the selected period is counted. At the ''Family Name'' level, the date on which the status change occurred is displayed.\"'"
+                  "Value": "'\"Expand the levels to view more details. At the ''Role Name'' level, the number of individuals that had a status change during the selected period is counted. At the ''Person Name'' level, the date on which the status change occurred is displayed.\"'"
                 }
               }
             },
@@ -864,7 +875,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "348c9b1ff720526e886b",
+        "name": "cb65601ca9ca22d9249d",
         "field": {
           "Column": {
             "Expression": {
@@ -878,35 +889,35 @@
         "type": "Categorical"
       },
       {
-        "name": "1b59358728fef51e0420",
+        "name": "e01306f090befa4988b2",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Family Role Approvals"
+                "Entity": "Individual Role Approvals"
               }
             },
-            "Property": "Family Name"
+            "Property": "Person Name"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "48b4541027113499daff",
+        "name": "8e94d6d2a0f749209962",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Family Role Approvals"
+                "Entity": "Individual Role Approvals"
               }
             },
-            "Property": "Family Approval Tracker"
+            "Property": "Individual Approval Tracker"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "5fac3f298f1f72611b26",
+        "name": "3c35142ca14f5857ca73",
         "field": {
           "Column": {
             "Expression": {
@@ -920,7 +931,7 @@
         "type": "Categorical"
       },
       {
-        "name": "79c84b8ad79ddd1b811a",
+        "name": "5363c9d7bd4b5a750f75",
         "field": {
           "Column": {
             "Expression": {

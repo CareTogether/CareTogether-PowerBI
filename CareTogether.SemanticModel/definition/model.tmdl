@@ -26,11 +26,11 @@ queryGroup Fact
 
 	annotation PBI_QueryGroupOrder = 3
 
-annotation PBI_QueryOrder = ["OData Live","Production","Date","_Measures","RLS","Family","Location","Person","Function Assignments","Arrangements","Arrangement Type","Childcare","Referrals","Community Member Families","Community Role Assignments","Close Reason","Community","Child Location Record","Childcare Plan","Approval Status","Role","Family Role Approvals","Individual Role Approvals"]
+annotation PBI_QueryOrder = ["OData Live","Production","Date","_Measures","RLS","Family","Location","Person","Function Assignments","Arrangements","Arrangement Type","Childcare","Referrals","Community Member Families","Community Role Assignments","Close Reason","Community","Child Location Record","Childcare Plan","Approval Status","Role","Family Role Approvals","Individual Role Approvals","Approval Type"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.146.1133.0 (25.08)+c8010d55d1db76eda03c968b03481610e96a1ef7
+annotation PBIDesktopVersion = 2.146.1254.0 (25.08)+791a7518fadc83da883d79322a2658aff57c8db3
 
 annotation PBI_ProTooling = ["CalcGroup","DevMode","DaxQueryView_Desktop"]
 
@@ -69,6 +69,7 @@ ref table 'Approvals Group'
 ref table 'Family Role Approvals'
 ref table 'Individual Role Approvals'
 ref table 'Dynamic UIDS'
+ref table 'Approval Type'
 
 ref role 'Row Level Security'
 

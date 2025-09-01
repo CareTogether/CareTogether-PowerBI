@@ -23,34 +23,58 @@
         "howCreated": "User"
       },
       {
-        "name": "bc5998523a3db1e0e048",
+        "name": "f53472caea5175b4405f",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Role Approval Bridge"
+                "Entity": "Approval Type"
               }
             },
-            "Property": "Entity Name"
+            "Property": "Approval Type"
           }
         },
         "type": "Categorical",
-        "howCreated": "User",
-        "objects": {
-          "general": [
+        "filter": {
+          "Version": 2,
+          "From": [
             {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
+              "Name": "a",
+              "Entity": "Approval Type",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "a"
+                          }
+                        },
+                        "Property": "Approval Type"
+                      }
                     }
-                  }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Direct'"
+                        }
+                      }
+                    ]
+                  ]
                 }
               }
             }
           ]
-        }
+        },
+        "howCreated": "User"
       }
     ]
   },

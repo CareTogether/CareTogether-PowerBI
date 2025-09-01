@@ -6,8 +6,7 @@
     "y": 0,
     "z": 3000,
     "height": 720,
-    "width": 905.33333333333337,
-    "tabOrder": 1000
+    "width": 905.33333333333337
   },
   "visual": {
     "visualType": "shape",

@@ -7,7 +7,7 @@
     "z": 9000,
     "height": 479.79522184300339,
     "width": 359.38566552901023,
-    "tabOrder": 5000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "funnel",
@@ -251,20 +251,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "dfadcec416e4b0210e40",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Approval Status"
-              }
-            },
-            "Property": "Status"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

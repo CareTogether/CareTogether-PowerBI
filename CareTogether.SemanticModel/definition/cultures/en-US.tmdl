@@ -14266,6 +14266,27 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "family_role_approvals.entity_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Role Approvals",
+			          "ConceptualProperty": "Family Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Family Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {

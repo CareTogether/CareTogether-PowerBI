@@ -43,6 +43,32 @@ table 'Individual Role Approvals'
 			```
 		lineageTag: 18f1582f-7ebe-47b4-b18f-903b2964b3fe
 
+	measure 'Individual Approval Tracker' = ```
+			
+			VAR Tracker = 
+			    SWITCH(
+			        TRUE(),
+			        ISINSCOPE('Individual Role Approvals'[Person Name]),
+			        VAR MaxDate = CALCULATE(
+			            MAX('Individual Role Approvals'[Date]),
+			            'Individual Role Approvals'[Status Changed] = TRUE()
+			        )
+			        RETURN IF(ISBLANK(MaxDate), BLANK(), FORMAT(MaxDate, "YYYY-MM-DD")),
+			
+			        ISINSCOPE(Role[Role Name]),
+			        FORMAT(CALCULATE(
+			            DISTINCTCOUNT('Individual Role Approvals'[Entity UID]),
+			            'Individual Role Approvals'[Status Changed] = TRUE()
+			        ), "0")
+			    )
+			
+			RETURN 
+			    IF(ISBLANK(Tracker), BLANK(), Tracker)
+			
+			
+			```
+		lineageTag: 51bf8735-c3e8-433c-9c3d-9fa08374a62b
+
 	column 'RLS Key'
 		dataType: string
 		displayFolder: _Columns
@@ -125,6 +151,13 @@ table 'Individual Role Approvals'
 		lineageTag: 5047badb-6392-4c5d-9afb-95416af92cb3
 		summarizeBy: none
 		sourceColumn: Status Changed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Person Name' = RELATED(Person[Full Name])
+		displayFolder: _Columns
+		lineageTag: 4da6eb22-350c-4fde-a95a-529d51f62cf0
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 

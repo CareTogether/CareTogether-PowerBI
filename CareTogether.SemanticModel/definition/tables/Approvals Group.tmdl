@@ -42,33 +42,13 @@ table 'Approvals Group'
 		formatString: 0
 		lineageTag: 7abae082-a878-4f7c-ba78-2b93365ad019
 
-	measure '# Approval Tracker' =
+	measure '# Approval Tracker' = ```
 			
-			VAR Tracker =
-			    SWITCH(
-			        TRUE(),
-			        ISINSCOPE('Role Approval'[Entity Name]),
-			        VAR MaxDate = CALCULATE(
-			            MAX('Role Approval'[Date]),
-			            'Role Approval'[StatusChanged] = TRUE()
-			        )
-			        RETURN IF(ISBLANK(MaxDate), BLANK(), FORMAT(MaxDate, "YYYY-MM-DD")),
 			
-			        ISINSCOPE('Role Approval'[Role Name]),
-			        FORMAT(CALCULATE(
-			            DISTINCTCOUNT('Role Approval'[Entity Id]),
-			            'Role Approval'[StatusChanged] = TRUE()
-			        ), "0"),
-			
-			        ISINSCOPE('Role Approval'[Entity Type]),
-			        FORMAT(CALCULATE(
-			            DISTINCTCOUNT('Role Approval'[Entity Id]),
-			            'Role Approval'[StatusChanged] = TRUE()
-			        ), "0")
-			    )
-			
-			RETURN
-			    IF(ISBLANK(Tracker), BLANK(), Tracker)
+			VAR Tracker = "TEST" 
+			RETURN TRUE
+			```
+		formatString: """TRUE"";""TRUE"";""FALSE"""
 		lineageTag: 7abee868-4764-4bf9-95df-354a69267d92
 
 	column 'Entity Type'

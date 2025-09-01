@@ -43,6 +43,32 @@ table 'Family Role Approvals'
 			```
 		lineageTag: 5883105c-c094-4a06-8664-af239ef7279e
 
+	measure 'Family Approval Tracker' = ```
+			
+			VAR Tracker = 
+			    SWITCH(
+			        TRUE(),
+			        ISINSCOPE('Family Role Approvals'[Family Name]),
+			        VAR MaxDate = CALCULATE(
+			            MAX('Family Role Approvals'[Date]),
+			            'Family Role Approvals'[Status Changed] = TRUE()
+			        )
+			        RETURN IF(ISBLANK(MaxDate), BLANK(), FORMAT(MaxDate, "YYYY-MM-DD")),
+			
+			        ISINSCOPE(Role[Role Name]),
+			        FORMAT(CALCULATE(
+			            DISTINCTCOUNT('Family Role Approvals'[Entity UID]),
+			            'Family Role Approvals'[Status Changed] = TRUE()
+			        ), "0")
+			    )
+			
+			RETURN 
+			    IF(ISBLANK(Tracker), BLANK(), Tracker)
+			
+			
+			```
+		lineageTag: 128ea585-a56c-4d69-bc6f-12c259605f3c
+
 	column 'RLS Key'
 		dataType: string
 		displayFolder: _Columns
@@ -125,6 +151,13 @@ table 'Family Role Approvals'
 		lineageTag: 4f1c8bb9-d813-42f3-8e4a-642fcb3a5afe
 		summarizeBy: none
 		sourceColumn: Status Changed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Name' = RELATED(Family[Family Name])
+		displayFolder: _Columns
+		lineageTag: 031befcd-b479-40a9-bb30-6da7020c8bfb
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 

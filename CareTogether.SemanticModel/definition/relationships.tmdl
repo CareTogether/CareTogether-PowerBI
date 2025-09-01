@@ -140,3 +140,11 @@ relationship 6920aeab-414a-ab33-69c8-ad7429e973bf
 	fromColumn: 'Arrangement Type'.'Child Involvement'
 	toColumn: Childcare.ChildInvolvement
 
+relationship AutoDetected_e5513f7d-50b2-4f9e-ab69-72c9fe80fe2f
+	fromColumn: 'Family Role Approvals'.'Approval Type'
+	toColumn: 'Approval Type'.'Approval Type'
+
+relationship AutoDetected_ff3cd7a8-e7a4-4141-bd30-2716d74353c3
+	fromColumn: 'Individual Role Approvals'.'Approval Type'
+	toColumn: 'Approval Type'.'Approval Type'
+
