@@ -1,0 +1,79 @@
+table 'Family Function Assignments'
+	lineageTag: c21a9948-7cba-4782-ae1d-3b3dd7308e43
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 968f00e7-15a4-4539-982d-fddad1e3fccf
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity UID'
+		dataType: string
+		lineageTag: bf431a1f-e8c8-4f79-8aec-5f7874ac803b
+		summarizeBy: none
+		sourceColumn: Entity UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity Type'
+		dataType: string
+		lineageTag: a3ce366c-6027-44ec-ba77-93e78ac58cc4
+		summarizeBy: none
+		sourceColumn: Entity Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Arrangement ID'
+		dataType: string
+		lineageTag: 087087b1-56c9-4653-8cda-fcea05ea5ee5
+		summarizeBy: none
+		sourceColumn: Arrangement ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Function
+		dataType: string
+		lineageTag: 6656abca-3f4f-4169-9ed8-5378007daf8e
+		summarizeBy: none
+		sourceColumn: Function
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Family Function Assignments' = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    Source = #"OData Live",
+				    FamilyFunctionAssignments = Source{[Name="FamilyFunctionAssignments", Signature="table"]}[Data],
+				    IndividualFunctionAssignments = Source{[Name="IndividualFunctionAssignments", Signature="table"]}[Data],
+				
+				    // Family Transformations:
+				    FamilyFunc = 
+				        Table.SelectColumns(
+				            Table.RenameColumns(
+				                Table.AddColumn(
+				                    Table.AddColumn(
+				                        Table.AddColumn(
+				                            FamilyFunctionAssignments,
+				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        ),
+				                        "Entity UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
+				                    ),
+				                    "Entity Type", each "Family"
+				                ),
+				                {{"ArrangementId", "Arrangement ID"}}
+				            ),
+				            {"RLS Key", "Entity UID", "Entity Type", "Arrangement ID", "Function"}
+				        )
+				
+				in
+				    FamilyFunc
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

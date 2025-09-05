@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "1fba175e004611a9b13a",
   "position": {
-    "x": 640.13651877133111,
-    "y": 294.88054607508531,
-    "z": 9000,
-    "height": 415.29010238907853,
-    "width": 631.53583617747438,
-    "tabOrder": 5000
+    "x": 640,
+    "y": 295,
+    "z": 10000,
+    "height": 198,
+    "width": 632,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,28 +20,30 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Client Family"
                     }
                   },
                   "Property": "Family Name"
                 }
               },
-              "queryRef": "Entity.Family Name",
-              "nativeQueryRef": "Family Name"
+              "queryRef": "Client Family.Family Name",
+              "nativeQueryRef": "Client Family",
+              "displayName": "Client Family"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement"
+                      "Entity": "Client Person"
                     }
                   },
                   "Property": "Full Name"
                 }
               },
-              "queryRef": "Arrangement.Full Name",
-              "nativeQueryRef": "Full Name"
+              "queryRef": "Client Person.Full Name",
+              "nativeQueryRef": "Client",
+              "displayName": "Client"
             },
             {
               "field": {
@@ -59,36 +61,53 @@
             },
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Arrangements"
                     }
                   },
-                  "Property": "Entity Engagement Level"
+                  "Property": "Arrangement ID"
                 }
               },
-              "queryRef": "Entity.Entity Engagement Level",
+              "queryRef": "Arrangements.Arrangement ID",
               "nativeQueryRef": " ",
               "displayName": " "
             },
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement"
+                      "Entity": "Family"
                     }
                   },
-                  "Property": "Id"
+                  "Property": "Family Engagement Level"
                 }
               },
-              "queryRef": "Arrangement.Id",
+              "queryRef": "Family.Family Engagement Level",
               "nativeQueryRef": " 1",
               "displayName": " "
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Family"
+                  }
+                },
+                "Property": "Family Engagement Level"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {
@@ -176,7 +195,7 @@
             }
           },
           "selector": {
-            "metadata": "Entity.Entity Engagement Level"
+            "metadata": "Arrangements.Arrangement ID"
           }
         },
         {
@@ -190,7 +209,7 @@
             }
           },
           "selector": {
-            "metadata": "Arrangement.Id"
+            "metadata": "Family.Family Engagement Level"
           }
         },
         {
@@ -198,13 +217,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "203.62118261774708D"
+                  "Value": "218D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Arrangement.Full Name"
+            "metadata": "Client Family.Family Name"
           }
         },
         {
@@ -212,13 +231,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "202.29619781320372D"
+                  "Value": "223D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Entity.Family Name"
+            "metadata": "Client Person.Full Name"
           }
         }
       ],
@@ -524,61 +543,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "763e8a830eb54b507631",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "Entity Engagement Level"
-          }
-        },
-        "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "e1",
-              "Entity": "Entity",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "Comparison": {
-                      "ComparisonKind": 0,
-                      "Left": {
-                        "Measure": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Source": "e1"
-                            }
-                          },
-                          "Property": "Entity Engagement Level"
-                        }
-                      },
-                      "Right": {
-                        "Literal": {
-                          "Value": "null"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    ]
   }
 }

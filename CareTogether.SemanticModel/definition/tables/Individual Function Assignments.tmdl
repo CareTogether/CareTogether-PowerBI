@@ -1,25 +1,17 @@
-table 'Function Assignments'
-	lineageTag: eced6c92-2c6c-4731-9471-3ec38417408e
+table 'Individual Function Assignments'
+	lineageTag: 49e39722-8999-4392-9e8a-a71c9b18644f
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: 863adef9-1333-403c-b200-5089d4599ddf
+		lineageTag: d1f67159-aa39-4e9f-8fb7-1d45a6817964
 		summarizeBy: none
 		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
-	column Function
-		dataType: string
-		lineageTag: d4127997-a5ce-43e5-84d2-a9b485c5f963
-		summarizeBy: none
-		sourceColumn: Function
-
-		annotation SummarizationSetBy = Automatic
-
 	column 'Entity UID'
 		dataType: string
-		lineageTag: 70e0c0df-7e9b-4bd6-8400-c64b6eaa19ec
+		lineageTag: 82dcb42e-bfec-4b34-9919-f08f8978f5ff
 		summarizeBy: none
 		sourceColumn: Entity UID
 
@@ -27,7 +19,7 @@ table 'Function Assignments'
 
 	column 'Entity Type'
 		dataType: string
-		lineageTag: 5bb02500-f2b3-407d-a36b-a9c04c26616a
+		lineageTag: 4f39e1fb-5499-44f5-9964-c7003f76cce5
 		summarizeBy: none
 		sourceColumn: Entity Type
 
@@ -35,13 +27,21 @@ table 'Function Assignments'
 
 	column 'Arrangement ID'
 		dataType: string
-		lineageTag: 6b2d7590-bec7-43e8-ba50-1dd985dcad54
+		lineageTag: ba5d39ac-b2da-4509-bb85-5ca1c1ba4e8e
 		summarizeBy: none
 		sourceColumn: Arrangement ID
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 'Function Assignments' = m
+	column Function
+		dataType: string
+		lineageTag: e81a46c1-5a72-4ce8-95f5-9a601806aaea
+		summarizeBy: none
+		sourceColumn: Function
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Individual Function Assignments' = m
 		mode: import
 		queryGroup: Fact
 		source = ```
@@ -49,25 +49,6 @@ table 'Function Assignments'
 				    Source = #"OData Live",
 				    FamilyFunctionAssignments = Source{[Name="FamilyFunctionAssignments", Signature="table"]}[Data],
 				    IndividualFunctionAssignments = Source{[Name="IndividualFunctionAssignments", Signature="table"]}[Data],
-				
-				    // Family Transformations:
-				    FamilyFunc = 
-				        Table.SelectColumns(
-				            Table.RenameColumns(
-				                Table.AddColumn(
-				                    Table.AddColumn(
-				                        Table.AddColumn(
-				                            FamilyFunctionAssignments,
-				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
-				                        ),
-				                        "Entity UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
-				                    ),
-				                    "Entity Type", each "Family"
-				                ),
-				                {{"ArrangementId", "Arrangement ID"}}
-				            ),
-				            {"RLS Key", "Entity UID", "Entity Type", "Arrangement ID", "Function"}
-				        ),
 				
 				    // Person Transformations:
 				    IndividualFunc = 
@@ -86,16 +67,10 @@ table 'Function Assignments'
 				                {{"ArrangementId", "Arrangement ID"}}
 				            ),
 				            {"RLS Key", "Entity UID", "Entity Type", "Arrangement ID", "Function"}
-				        ),
-				
-				    // Combined Tables:
-				    FuncAssignments = Table.Combine(
-				        {FamilyFunc, IndividualFunc}
-				    )
-				
+				        )
 				
 				in
-				    FuncAssignments
+				    IndividualFunc
 				```
 
 	annotation PBI_NavigationStepName = Navigation

@@ -1,0 +1,77 @@
+table 'Engagement Group'
+	lineageTag: 73ee2eee-feeb-4667-91e7-95e39da082c2
+
+	calculationGroup
+		precedence: 2
+
+		calculationItem Family =
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    'Family Role Approvals'[Entity Type] = "Family"
+				)
+
+		calculationItem Person =
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    'Family Role Approvals'[Entity Type] = "Person"
+				)
+
+	measure '# of Engaged Entities' =
+			
+			
+			VAR Option = SELECTEDVALUE('Engagement Group'[Entity Type])
+			
+			VAR Families = CALCULATE(
+			    DISTINCTCOUNT(Family[Family UID]),
+			    FILTER(
+			        Family,
+			        [Family Engagement Level] > 0
+			    )
+			)
+			
+			VAR Person = CALCULATE(
+			    DISTINCTCOUNT(Person[Person UID]),
+			    FILTER(
+			        Person,
+			        [Individual Engagement Level] > 0
+			    )
+			)
+			
+			RETURN SWITCH(
+			    Option,
+			    "Family", Families,
+			    "Person", Person
+			)
+		formatString: 0
+		lineageTag: 56c15284-33bb-4a7e-887f-e30adad5e876
+
+	measure '# of Approved Entities' =
+			
+			VAR Option = SELECTEDVALUE('Engagement Group'[Entity Type])
+			
+			RETURN SWITCH(
+			    Option,
+			    "Family", CALCULATE(
+			        DISTINCTCOUNT('Family Role Approvals'[Entity UID]),
+			        'Approval Type'[Approval Type] = "Direct"
+			    ),
+			    "Person", CALCULATE(
+			        DISTINCTCOUNT('Individual Role Approvals'[Entity UID]),
+			        'Approval Type'[Approval Type] = "Direct"
+			    )
+			    )
+		formatString: 0
+		lineageTag: 249e807f-8f3e-4681-ab99-8d5d0bc3aadf
+
+	column 'Entity Type'
+		dataType: string
+		lineageTag: 26724bd9-c3b9-43c0-bf28-1c1311df1364
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: ea4d4bf1-e636-48b0-af48-23f79b6888fa
+		sourceColumn: Ordinal
+

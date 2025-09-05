@@ -58,7 +58,7 @@
                             "Source": "a"
                           }
                         },
-                        "Property": "RoleApprovalStatus"
+                        "Property": "Status"
                       }
                     }
                   ],
@@ -66,88 +66,31 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'Onboarded'"
+                          "Value": "'Approved'"
                         }
                       }
                     ],
                     [
                       {
                         "Literal": {
-                          "Value": "'Approved'"
+                          "Value": "'Onboarded'"
                         }
                       }
                     ]
-                  ]
-                }
-              },
-              "Annotations": {
-                "filterExpressionMetadata": {
-                  "expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Approval Status"
-                          }
-                        },
-                        "Property": "Status"
-                      }
-                    }
-                  ],
-                  "decomposedIdentities": {
-                    "values": [
-                      [
-                        {
-                          "0": [
-                            {
-                              "Literal": {
-                                "Value": "'Approved'"
-                              }
-                            }
-                          ]
-                        }
-                      ],
-                      [
-                        {
-                          "0": [
-                            {
-                              "Literal": {
-                                "Value": "'Onboarded'"
-                              }
-                            }
-                          ]
-                        }
-                      ]
-                    ],
-                    "columns": [
-                      {
-                        "value": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "Approval Status"
-                              }
-                            },
-                            "Property": "RoleApprovalStatus"
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "valueMap": [
-                    {
-                      "0": "Approved"
-                    },
-                    {
-                      "0": "Onboarded"
-                    }
                   ]
                 }
               }
             }
           ]
         },
-        "howCreated": "User"
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
       },
       {
         "name": "7e70b6586aee7625d416",

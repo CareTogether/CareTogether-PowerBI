@@ -43,5 +43,69 @@ role 'Row Level Security'
 			    RLS[UserId] = USERNAME()
 			)
 
+	tablePermission 'Arrangement Type' =
+			'Arrangement Type'[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission 'Client Family' =
+			'Client Family'[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission 'Client Person' =
+			'Client Person'[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission Community =
+			Community[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission 'Community Member Families' =
+			'Community Member Families'[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission 'Community Role Assignments' =
+			'Community Role Assignments'[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission 'Family Function Assignments' =
+			'Family Function Assignments'[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission 'Family Role Approvals' =
+			'Family Role Approvals'[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission 'Individual Role Approvals' =
+			'Individual Role Approvals'[RLS Key] IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission RLS
+
+	tablePermission Role
+
+	tablePermission 'Individual Function Assignments' =
+			'Individual Function Assignments'[RLS Key]IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
 	annotation PBI_Id = 48755128b26e4366a08bd6a38df559b4
 

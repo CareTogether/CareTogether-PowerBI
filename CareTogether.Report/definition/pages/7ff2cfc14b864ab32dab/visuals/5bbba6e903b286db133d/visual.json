@@ -4,10 +4,10 @@
   "position": {
     "x": 10.443686006825939,
     "y": 195.35836177474403,
-    "z": 7000,
+    "z": 8000,
     "height": 89.078498293515352,
     "width": 354.47098976109214,
-    "tabOrder": 3000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "card",
@@ -20,13 +20,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Engagement Group"
                     }
                   },
                   "Property": "# of Approved Entities"
                 }
               },
-              "queryRef": "Entity.# of Approved Entities",
+              "queryRef": "Engagement Group.# of Approved Entities",
               "nativeQueryRef": "# of Approved Entities"
             }
           ]
@@ -39,7 +39,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Entity"
+                    "Entity": "Engagement Group"
                   }
                 },
                 "Property": "# of Approved Entities"

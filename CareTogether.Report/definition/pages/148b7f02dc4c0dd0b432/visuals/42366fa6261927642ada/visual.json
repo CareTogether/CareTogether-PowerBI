@@ -6,8 +6,7 @@
     "y": 9.2150170648464158,
     "z": 1000,
     "height": 555.9726962457338,
-    "width": 364.91467576791808,
-    "tabOrder": 2000
+    "width": 364.91467576791808
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -69,14 +68,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Person"
+                      "Entity": "Client Person"
                     }
                   },
-                  "Property": "# of Children Cared For"
+                  "Property": "# of Children Cared For (Client)"
                 }
               },
-              "queryRef": "Person.# of Children Cared For",
-              "nativeQueryRef": "Children Cared For",
+              "queryRef": "Client Person.# of Children Cared For (Client)",
+              "nativeQueryRef": "Children Cared For1",
               "displayName": "Children Cared For"
             }
           ]
@@ -261,24 +260,6 @@
           },
           "selector": {
             "metadata": "Child Location Record.# of Nights of Care"
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#0E4F52'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Person.# of Children Cared For"
           }
         }
       ],

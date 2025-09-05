@@ -6,7 +6,8 @@
     "y": 133.25227963525836,
     "z": 4000,
     "height": 302.4924012158055,
-    "width": 966.80851063829789
+    "width": 966.80851063829789,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "lineClusteredColumnComboChart",

@@ -7,7 +7,7 @@
     "z": 3000,
     "height": 269.07849829351534,
     "width": 620.47781569965866,
-    "tabOrder": 10000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Person"
+                      "Entity": "Client Person"
                     }
                   },
                   "Property": "Full Name"
                 }
               },
-              "queryRef": "Person.Full Name",
-              "nativeQueryRef": "Full Name1"
+              "queryRef": "Client Person.Full Name",
+              "nativeQueryRef": "Full Name"
             },
             {
               "field": {
@@ -236,20 +236,6 @@
           },
           "selector": {
             "metadata": "Arrangements.Arrangement ID"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "183.64431379090652D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Person.Full Name"
           }
         }
       ],

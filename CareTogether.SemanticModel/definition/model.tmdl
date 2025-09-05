@@ -26,7 +26,7 @@ queryGroup Fact
 
 	annotation PBI_QueryGroupOrder = 3
 
-annotation PBI_QueryOrder = ["OData Live","Production","Date","_Measures","RLS","Family","Location","Person","Function Assignments","Arrangements","Arrangement Type","Childcare","Referrals","Community Member Families","Community Role Assignments","Close Reason","Community","Child Location Record","Childcare Plan","Approval Status","Role","Family Role Approvals","Individual Role Approvals","Approval Type"]
+annotation PBI_QueryOrder = ["OData Live","Production","Date","_Measures","RLS","Family","Location","Person","Arrangements","Arrangement Type","Childcare","Referrals","Community Member Families","Community Role Assignments","Close Reason","Community","Child Location Record","Childcare Plan","Approval Status","Role","Family Role Approvals","Individual Role Approvals","Approval Type","Family Function Assignments","Individual Function Assignments","Client Family","Client Person"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -38,7 +38,6 @@ annotation __TEdtr = 1
 
 ref table Date
 ref table Location
-ref table 'Function Assignments'
 ref table 'Arrangement Type'
 ref table Childcare
 ref table 'Close Reason'
@@ -68,8 +67,13 @@ ref table 'Arrangements Group'
 ref table 'Approvals Group'
 ref table 'Family Role Approvals'
 ref table 'Individual Role Approvals'
-ref table 'Dynamic UIDS'
 ref table 'Approval Type'
+ref table 'Engagement Group'
+ref table 'Family Function Assignments'
+ref table 'Individual Function Assignments'
+ref table 'Client Family'
+ref table 'Client Person'
+ref table LocalDateTable_090ec166-11a6-442c-a350-c18312ab6d2e
 
 ref role 'Row Level Security'
 

@@ -1,35 +1,6 @@
 table Family
 	lineageTag: 5585aeeb-f4e2-456d-8f6e-436d261a4cc2
 
-	measure '# of Families Supported' =
-			
-			VAR Today = TODAY()
-			VAR CurrentStartDate = [Selected Timeframe Start]
-			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
-			RETURN
-			IF(
-			    CurrentStartDate > Today,  // Check if the current month's start is beyond today
-			    BLANK(),  // Return blank for future months
-			    COUNTROWS(
-			        FILTER(
-			            'Family',
-			            COUNTROWS(
-			                FILTER(
-			                    RELATEDTABLE('Arrangements'),
-			                    NOT(ISBLANK('Arrangements'[Started])) &&
-			                    'Arrangements'[Started] <= CurrentEndDate &&
-			                    (
-			                        ISBLANK('Arrangements'[Ended]) ||
-			                        'Arrangements'[Ended] >= CurrentStartDate
-			                    )
-			                )
-			            ) > 0
-			        )
-			    )
-			)
-		formatString: 0
-		lineageTag: ad57b4cc-695a-47d0-ba4c-da026d01baae
-
 	measure 'Community Membership Count' = COALESCE(COUNTROWS(RELATEDTABLE('Community Member Families')),0)
 		formatString: 0
 		lineageTag: f444aa30-f3a1-4b3c-b10b-e2ff4d9d616a
@@ -37,6 +8,72 @@ table Family
 	measure '# of Families' = DISTINCTCOUNT(Family[Family UID])
 		formatString: 0
 		lineageTag: 59c543dd-aa32-4225-a26a-67e95815db24
+
+	measure 'Family Engagement Level' =
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN
+			IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        COUNTROWS('Family Function Assignments'),
+			        NOT ISBLANK(Arrangements[Started]),
+			        Arrangements[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK('Arrangements'[Ended]),
+			            TRUE(),
+			            'Arrangements'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 2164632b-94bf-44be-a845-573fd5d5b135
+
+	measure '# of Engaged Families' =
+			CALCULATE(
+			    DISTINCTCOUNT(Family[Family UID]),
+			    FILTER(
+			        Family,
+			        [Family Engagement Level] > 0
+			    )
+			)
+		formatString: 0
+		lineageTag: 94d43bd4-6462-402e-b298-4e63c62007b0
+
+	measure 'Family Last Assignment Date' =
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        MAXX(
+			            ADDCOLUMNS(
+			                'Family Function Assignments',
+			                "EffectiveEnded", IF(ISBLANK(RELATED(Arrangements[Ended])), Today, RELATED(Arrangements[Ended]))
+			            ),
+			            [EffectiveEnded]
+			        ),
+			        NOT ISBLANK(Arrangements[Started]),
+			        Arrangements[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK('Arrangements'[Ended]),
+			            TRUE(),
+			            'Arrangements'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+		formatString: Short Date
+		lineageTag: 2f1e4013-2a6d-4469-8944-fa7b4a586d64
 
 	column 'RLS Key'
 		dataType: string

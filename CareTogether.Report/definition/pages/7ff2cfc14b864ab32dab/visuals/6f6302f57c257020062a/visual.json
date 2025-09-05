@@ -4,9 +4,10 @@
   "position": {
     "x": 11.058020477815699,
     "y": 9.829351535836178,
-    "z": 4000,
+    "z": 6000,
     "height": 96.450511945392492,
-    "width": 354.47098976109214
+    "width": 354.47098976109214,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "slicer",
@@ -19,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Engagement by Entity"
+                      "Entity": "Engagement Group"
                     }
                   },
                   "Property": "Entity Type"
                 }
               },
-              "queryRef": "Engagement by Entity.Entity Type",
+              "queryRef": "Engagement Group.Entity Type",
               "nativeQueryRef": "Entity Type",
               "active": true
             }
@@ -83,7 +84,7 @@
                 "From": [
                   {
                     "Name": "e",
-                    "Entity": "Engagement by Entity",
+                    "Entity": "Engagement Group",
                     "Type": 0
                   }
                 ],
@@ -107,7 +108,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Family'"
+                                "Value": "'Person'"
                               }
                             }
                           ]

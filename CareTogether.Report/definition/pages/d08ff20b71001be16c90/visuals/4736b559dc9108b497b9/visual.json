@@ -7,7 +7,7 @@
     "z": 3000,
     "height": 468.57142857142861,
     "width": 365,
-    "tabOrder": 16000
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "multiRowCard",
@@ -50,14 +50,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Client Family"
                     }
                   },
-                  "Property": "# of Families Supported"
+                  "Property": "# of Client Families Supported"
                 }
               },
-              "queryRef": "Family.# of Families Supported",
-              "nativeQueryRef": "Families Supported",
+              "queryRef": "Client Family.# of Client Families Supported",
+              "nativeQueryRef": "Families Supported1",
               "displayName": "Families Supported"
             },
             {
@@ -65,13 +65,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Person"
+                      "Entity": "Client Person"
                     }
                   },
-                  "Property": "# of Children Cared For"
+                  "Property": "# of Children Cared For (Client)"
                 }
               },
-              "queryRef": "Person.# of Children Cared For",
+              "queryRef": "Client Person.# of Children Cared For (Client)",
               "nativeQueryRef": "Children Cared For",
               "displayName": "Children Cared For"
             },
@@ -125,13 +125,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Person"
+                      "Entity": "Client Person"
                     }
                   },
-                  "Property": "# of Impacted Adults"
+                  "Property": "# of Impacted Adults (Client)"
                 }
               },
-              "queryRef": "Person.# of Impacted Adults",
+              "queryRef": "Client Person.# of Impacted Adults (Client)",
               "nativeQueryRef": "Impacted Adults",
               "displayName": "Impacted Adults"
             },
@@ -140,15 +140,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Person"
+                      "Entity": "Client Person"
                     }
                   },
-                  "Property": "# of Impacted Children"
+                  "Property": "# of Impacted Children (Client)"
                 }
               },
-              "queryRef": "Person.# of Impacted Children",
-              "nativeQueryRef": "Impacted children",
-              "displayName": "Impacted children"
+              "queryRef": "Client Person.# of Impacted Children (Client)",
+              "nativeQueryRef": "Impacted Children",
+              "displayName": "Impacted Children"
             }
           ]
         }

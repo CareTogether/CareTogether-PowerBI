@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "d6084660d102c3617329",
   "position": {
-    "x": 10.827067669172932,
-    "y": 12.030075187969924,
+    "x": 10,
+    "y": 21,
     "z": 1000,
-    "height": 347.66917293233081,
-    "width": 1259.5488721804511,
-    "tabOrder": 1000
+    "height": 339,
+    "width": 1259,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -860,79 +860,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "348c9b1ff720526e886b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Role"
-              }
-            },
-            "Property": "Role Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "1b59358728fef51e0420",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Role Approvals"
-              }
-            },
-            "Property": "Family Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "48b4541027113499daff",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Role Approvals"
-              }
-            },
-            "Property": "Family Approval Tracker"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "5fac3f298f1f72611b26",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Approval Status"
-              }
-            },
-            "Property": "Status"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "79c84b8ad79ddd1b811a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Approval Type"
-              }
-            },
-            "Property": "Approval Type"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

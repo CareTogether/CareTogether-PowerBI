@@ -1903,62 +1903,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "family.of_families_supported": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Family",
-			          "ConceptualProperty": "# of Families Supported"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "# of families supported": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "no of family supported": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "num of family supported": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "number of family supported": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "Families Supported": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
 			    "family.state": {
 			      "Definition": {
 			        "Binding": {
@@ -3937,16 +3881,6 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Child": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
-			        {
 			          "Person Name": {
 			            "State": "Suggested",
 			            "Source": {
@@ -4540,578 +4474,6 @@ cultureInfo en-US
 			        }
 			      ],
 			      "SemanticType": "Time"
-			    },
-			    "function_assignment": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Function Assignments"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "function assignment": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "assignment": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "function duty": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.5
-			          }
-			        },
-			        {
-			          "function obligation": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.5
-			          }
-			        },
-			        {
-			          "duty": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "obligation": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "function task": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "function job": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "function project": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "function mission": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "task": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "job": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        }
-			      ]
-			    },
-			    "function_assignment.RLS_key": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Function Assignments",
-			          "ConceptualProperty": "RLS Key"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "RLS key": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "RL key": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.78
-			          }
-			        },
-			        {
-			          "key": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "main": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "basic": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "fundamental": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "central": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "major": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "keynote": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "essential": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "rl solution": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.475
-			          }
-			        },
-			        {
-			          "rl explanation": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.475
-			          }
-			        },
-			        {
-			          "rl basis": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.475
-			          }
-			        }
-			      ]
-			    },
-			    "function_assignment.entity_UID": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Function Assignments",
-			          "ConceptualProperty": "Entity UID"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "entity UID": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "UID": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "function_assignment.entity_type": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Function Assignments",
-			          "ConceptualProperty": "Entity Type"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "entity type": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "type": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "entity category": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "entity genre": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "entity manner": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "entity variety": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "category": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "genre": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "manner": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "variety": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "entity brand": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "entity class": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        }
-			      ]
-			    },
-			    "function_assignment.arrangement_ID": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Function Assignments",
-			          "ConceptualProperty": "Arrangement ID"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "arrangement ID": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "arrangement identification": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "arrangement identity": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "arrangement identifier": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "arrangement credential": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        }
-			      ]
-			    },
-			    "function_assignment.function": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Function Assignments",
-			          "ConceptualProperty": "Function"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "function": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "occupation": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "purpose": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "meaning": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "job": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "task": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "utility": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "affair": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.466
-			          }
-			        },
-			        {
-			          "soiree": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.466
-			          }
-			        },
-			        {
-			          "soirée": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.466
-			          }
-			        },
-			        {
-			          "gathering": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.452
-			          }
-			        }
-			      ]
 			    },
 			    "arrangement": {
 			      "Definition": {
@@ -13952,19 +13314,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Entity Engagement Level"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "# of Assignments": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "entity.entity_last_assignment_date": {
 			      "Definition": {
@@ -13973,34 +13323,13 @@ cultureInfo en-US
 			          "ConceptualProperty": "Entity Last Assignment Date"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Last Assignment Date": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "approvals_by_entity.dynamic_entity_name_approvals": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Approvals by Entity",
 			          "ConceptualProperty": "Dynamic Entity Name (Approvals)"
-			        }
-			      },
-			      "State": "Generated"
-			    },
-			    "function_assignments.entityid": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Function Assignments",
-			          "ConceptualProperty": "EntityId"
 			        }
 			      },
 			      "State": "Generated"
@@ -14012,40 +13341,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Dynamic Entity Name (Engagement)"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Name": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
-			    "person.of_children_cared_for": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Person",
-			          "ConceptualProperty": "# of Children Cared For"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Children Cared For": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "arrangements.of_arrangements_started": {
 			      "Definition": {
@@ -14120,27 +13416,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "person.of_impacted_adults": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Person",
-			          "ConceptualProperty": "# of Impacted Adults"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Impacted Adults": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
 			    "person.of_impacted_children": {
 			      "Definition": {
 			        "Binding": {
@@ -14148,19 +13423,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "# of Impacted Children"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Impacted children": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "arrangements.of_arrangements": {
 			      "Definition": {
@@ -14278,6 +13541,226 @@ cultureInfo en-US
 			      "Terms": [
 			        {
 			          "Family Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "client_person.of_children_cared_for_client": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Client Person",
+			          "ConceptualProperty": "# of Children Cared For (Client)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Children Cared For": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "client_person.full_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Client Person",
+			          "ConceptualProperty": "Full Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Child": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Client": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "client_family.of_client_families_supported": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Client Family",
+			          "ConceptualProperty": "# of Client Families Supported"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Families Supported": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "client_person.of_impacted_adults_client": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Client Person",
+			          "ConceptualProperty": "# of Impacted Adults (Client)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Impacted Adults": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "client_person.of_impacted_children_client": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Client Person",
+			          "ConceptualProperty": "# of Impacted Children (Client)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Impacted Children": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "family.family_engagement_level": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family",
+			          "ConceptualProperty": "Family Engagement Level"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "# of Assigments": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "family.family_last_assignment_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family",
+			          "ConceptualProperty": "Family Last Assignment Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Last Assignment Date": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "person.individual_engagement_level": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Person",
+			          "ConceptualProperty": "Individual Engagement Level"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "# of Assigments": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "person.individual_last_engagement_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Person",
+			          "ConceptualProperty": "Individual Last Engagement Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Last Assignment Date": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "client_family.family_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Client Family",
+			          "ConceptualProperty": "Family Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Client Family": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -15617,144 +15100,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "arrangement_types_have_arrangements"
-			        }
-			      ]
-			    },
-			    "function_assignment_has_arrangement": {
-			      "Binding": {
-			        "ConceptualEntity": "Function Assignments"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "function_assignment": {
-			          "Target": {
-			            "Entity": "function_assignment"
-			          }
-			        },
-			        "arrangement": {
-			          "Target": {
-			            "Entity": "arrangement"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "function_assignment"
-			            },
-			            "Object": {
-			              "Role": "arrangement"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "function_assignments_have_arrangements"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "arrangement"
-			            },
-			            "Object": {
-			              "Role": "function_assignment"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "arrangements_have_function_assignments"
-			        }
-			      ]
-			    },
-			    "function_assignment_has_person": {
-			      "Binding": {
-			        "ConceptualEntity": "Function Assignments"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "function_assignment": {
-			          "Target": {
-			            "Entity": "function_assignment"
-			          }
-			        },
-			        "person": {
-			          "Target": {
-			            "Entity": "person"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "function_assignment"
-			            },
-			            "Object": {
-			              "Role": "person"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "function_assignments_have_people"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "person"
-			            },
-			            "Object": {
-			              "Role": "function_assignment"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "people_have_function_assignments"
-			        }
-			      ]
-			    },
-			    "function_assignment_has_family": {
-			      "Binding": {
-			        "ConceptualEntity": "Function Assignments"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "function_assignment": {
-			          "Target": {
-			            "Entity": "function_assignment"
-			          }
-			        },
-			        "family": {
-			          "Target": {
-			            "Entity": "family"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "function_assignment"
-			            },
-			            "Object": {
-			              "Role": "family"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "function_assignments_have_families"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "family"
-			            },
-			            "Object": {
-			              "Role": "function_assignment"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "families_have_function_assignments"
 			        }
 			      ]
 			    },
@@ -17811,105 +17156,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "arrangements_have_RLS_keys"
-			        }
-			      ]
-			    },
-			    "function_assignment_has_function": {
-			      "Binding": {
-			        "ConceptualEntity": "Function Assignments"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "function_assignment": {
-			          "Target": {
-			            "Entity": "function_assignment"
-			          }
-			        },
-			        "function_assignment.function": {
-			          "Target": {
-			            "Entity": "function_assignment.function"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "function_assignment"
-			            },
-			            "Object": {
-			              "Role": "function_assignment.function"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "function_assignments_have_functions"
-			        }
-			      ]
-			    },
-			    "function_assignment_has_entity_type": {
-			      "Binding": {
-			        "ConceptualEntity": "Function Assignments"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "function_assignment": {
-			          "Target": {
-			            "Entity": "function_assignment"
-			          }
-			        },
-			        "function_assignment.entity_type": {
-			          "Target": {
-			            "Entity": "function_assignment.entity_type"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "function_assignment"
-			            },
-			            "Object": {
-			              "Role": "function_assignment.entity_type"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "function_assignments_have_entity_types"
-			        }
-			      ]
-			    },
-			    "function_assignment_has_RLS_key": {
-			      "Binding": {
-			        "ConceptualEntity": "Function Assignments"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "function_assignment": {
-			          "Target": {
-			            "Entity": "function_assignment"
-			          }
-			        },
-			        "function_assignment.RLS_key": {
-			          "Target": {
-			            "Entity": "function_assignment.RLS_key"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "function_assignment"
-			            },
-			            "Object": {
-			              "Role": "function_assignment.RLS_key"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "function_assignments_have_RLS_keys"
 			        }
 			      ]
 			    },

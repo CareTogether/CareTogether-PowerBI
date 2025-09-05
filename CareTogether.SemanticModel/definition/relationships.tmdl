@@ -43,23 +43,9 @@ relationship 1b2fdd82-5273-6461-550a-5925f0e410d3
 	fromColumn: Person.'Family UID'
 	toColumn: Family.'Family UID'
 
-relationship c7ec49a7-95cf-66c7-0fdc-d814839a75ec
-	isActive: false
-	fromColumn: 'Function Assignments'.'Entity UID'
-	toColumn: Family.'Family UID'
-
-relationship f079994b-e194-be87-cbea-e286e540728d
-	isActive: false
-	fromColumn: 'Function Assignments'.'Entity UID'
-	toColumn: Person.'Person UID'
-
 relationship 2a340009-9a22-bf5a-e7bf-20ca9d71abbe
 	fromColumn: Family.'RLS Key'
 	toColumn: Location.'RLS Key'
-
-relationship 5aba2852-c842-eba4-8071-d1dc3bbb0720
-	fromColumn: Referrals.'Family UID'
-	toColumn: Family.'Family UID'
 
 relationship 73e5b166-c4e6-9336-00c4-ee6faa14db58
 	fromColumn: Referrals.'Close Reason'
@@ -104,10 +90,6 @@ relationship 56241e07-7826-df43-4383-bca80bef08d8
 	fromColumn: 'Individual Role Approvals'.Status
 	toColumn: 'Approval Status'.Status
 
-relationship 3482c69c-b97f-8d4e-5b8d-8af6f298227f
-	fromColumn: Arrangements.'Person UID'
-	toColumn: Person.'Person UID'
-
 relationship bf212760-a3b9-bce2-faaf-01a8238ebb89
 	fromColumn: 'Child Location Record'.'Arrangement ID'
 	toColumn: Arrangements.'Arrangement ID'
@@ -147,4 +129,38 @@ relationship AutoDetected_e5513f7d-50b2-4f9e-ab69-72c9fe80fe2f
 relationship AutoDetected_ff3cd7a8-e7a4-4141-bd30-2716d74353c3
 	fromColumn: 'Individual Role Approvals'.'Approval Type'
 	toColumn: 'Approval Type'.'Approval Type'
+
+relationship 953e0440-8171-d1d2-082f-53b3efdb1192
+	fromColumn: 'Family Function Assignments'.'Entity UID'
+	toColumn: Family.'Family UID'
+
+relationship b3df2c32-9415-0673-3cfb-cbd49d367f37
+	fromColumn: 'Family Function Assignments'.'Arrangement ID'
+	toColumn: Arrangements.'Arrangement ID'
+
+relationship 50417728-c721-40a8-fe93-d187e5ff3c74
+	fromColumn: 'Individual Function Assignments'.'Entity UID'
+	toColumn: Person.'Person UID'
+
+relationship 7b29c724-7e9c-cc40-46ac-8ca5c09014fd
+	fromColumn: 'Individual Function Assignments'.'Arrangement ID'
+	toColumn: Arrangements.'Arrangement ID'
+
+relationship b98a8108-0c9f-41d4-82e1-71699d90b190
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Client Person'.'Date of Birth'
+	toColumn: LocalDateTable_090ec166-11a6-442c-a350-c18312ab6d2e.Date
+
+relationship 6335aac6-3f29-8b81-b9d3-bd9cdf9cd19c
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Client Person'.'Family UID'
+	toColumn: 'Client Family'.'Family UID'
+
+relationship 2139f5d5-648e-3dab-b179-af506cdef005
+	fromColumn: Arrangements.'Person UID'
+	toColumn: 'Client Person'.'Person UID'
+
+relationship 0f912775-5b1a-2d3e-eaa9-538880e28b36
+	fromColumn: Referrals.'Family UID'
+	toColumn: 'Client Family'.'Family UID'
 

@@ -7,7 +7,7 @@
     "z": 4000,
     "height": 700.34129692832767,
     "width": 886.4846416382253,
-    "tabOrder": 4000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Person"
+                      "Entity": "Client Person"
                     }
                   },
                   "Property": "Full Name"
                 }
               },
-              "queryRef": "Person.Full Name",
+              "queryRef": "Client Person.Full Name",
               "nativeQueryRef": "Child",
               "displayName": "Child"
             },
@@ -156,7 +156,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Person"
+                    "Entity": "Client Person"
                   }
                 },
                 "Property": "Full Name"
@@ -283,20 +283,6 @@
           },
           "selector": {
             "metadata": "ChildLocationExpanded.ChildcarePlan"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "135.58656575212868D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Person.Full Name"
           }
         }
       ],

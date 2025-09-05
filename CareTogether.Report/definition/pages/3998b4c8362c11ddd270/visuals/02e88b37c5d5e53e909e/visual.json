@@ -7,7 +7,7 @@
     "z": 7000,
     "height": 341.33333333333331,
     "width": 885.33333333333337,
-    "tabOrder": 3000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Client Family"
                     }
                   },
                   "Property": "Family Name"
                 }
               },
-              "queryRef": "Family.Family Name",
-              "nativeQueryRef": "Family Name1"
+              "queryRef": "Client Family.Family Name",
+              "nativeQueryRef": "Family Name"
             },
             {
               "field": {
@@ -116,7 +116,7 @@
                 "Property": "Opened"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -252,20 +252,6 @@
           },
           "selector": {
             "metadata": "Referrals.Closed"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "361.74732750701025D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Family.Family Name"
           }
         },
         {

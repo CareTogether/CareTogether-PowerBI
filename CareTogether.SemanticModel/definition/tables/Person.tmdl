@@ -1,71 +1,6 @@
 table Person
 	lineageTag: 68a9b7b7-2438-4d03-bd69-1eb77d7bd43f
 
-	measure '# of Children Cared For' = ```
-			
-			
-			VAR CurrentDate = TODAY()
-			VAR StartDate = [Selected Timeframe Start]  // This is a measure calculating the start of the desired timeframe.
-			VAR EndDate = [Selected Timeframe End]  // This is a measure calculating the end of the desired timeframe.
-			VAR Result =
-			    CALCULATE(
-			        DISTINCTCOUNTNOBLANK(Person[Person UID]),
-			        Person[Person Type] = "Child",
-			        FILTER(
-			            'Child Location Record',
-			            'Child Location Record'[Childcare Plan] <> "WithParent" && 
-			            'Child Location Record'[Ended] >= StartDate && 
-			            'Child Location Record'[Started] <= MIN(EndDate, CurrentDate)
-			        )
-			    )
-			RETURN
-			    IF(
-			        CurrentDate < StartDate,
-			        BLANK(),
-			        IF(
-			            Result = 0,
-			            BLANK(),
-			            Result
-			        )
-			    )
-			```
-		formatString: 0
-		lineageTag: 1adcc143-2ddd-415a-9fef-d197a49dee01
-
-	measure '# of Impacted Adults' = ```
-			
-			
-			VAR Today = TODAY()
-			VAR CurrentStartDate = [Selected Timeframe Start]
-			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
-			
-			RETURN
-			IF(
-			    CurrentStartDate > Today, 
-			    BLANK(),
-			    CALCULATE(
-			        DISTINCTCOUNT(Person[Person UID]),
-			        FILTER(
-			            VALUES(Family[Family UID]),
-			            COUNTROWS(
-			                FILTER(
-			                    RELATEDTABLE('Arrangements'), // Added the related table to ensure that the formula correctly filters the arrangement table.
-			                    NOT(ISBLANK('Arrangements'[Started])) &&
-			                    'Arrangements'[Started] <= CurrentEndDate &&
-			                    (
-			                        ISBLANK('Arrangements'[Ended]) || 
-			                        'Arrangements'[Ended] >= CurrentStartDate
-			                    )
-			                )
-			            ) > 0
-			        ),
-			        Person[Person Type] = "Adult"
-			    )
-			)
-			```
-		formatString: 0
-		lineageTag: 69a5bf6f-61eb-42f7-a08e-c341efcfac65
-
 	measure '# of Impacted Children' = ```
 			
 			
@@ -103,6 +38,61 @@ table Person
 	measure '# of Person' = DISTINCTCOUNT(Person[Person UID])
 		formatString: 0
 		lineageTag: 435e97af-ba06-462a-87db-76f68747bbd6
+
+	measure 'Individual Engagement Level' =
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN
+			IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        COUNTROWS('Individual Function Assignments'),
+			        NOT ISBLANK(Arrangements[Started]),
+			        Arrangements[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK('Arrangements'[Ended]),
+			            TRUE(),
+			            'Arrangements'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 076b887e-20b2-44fb-9a99-55d6ca205f1d
+
+	measure 'Individual Last Engagement Date' =
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        MAXX(
+			            ADDCOLUMNS(
+			                'Individual Function Assignments',
+			                "EffectiveEnded", IF(ISBLANK(RELATED(Arrangements[Ended])), Today, RELATED(Arrangements[Ended]))
+			            ),
+			            [EffectiveEnded]
+			        ),
+			        NOT ISBLANK(Arrangements[Started]),
+			        Arrangements[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK('Arrangements'[Ended]),
+			            TRUE(),
+			            'Arrangements'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+		formatString: Short Date
+		lineageTag: 8aec3d2f-056d-48e2-9651-55858b73bcc4
 
 	column 'RLS Key'
 		dataType: string

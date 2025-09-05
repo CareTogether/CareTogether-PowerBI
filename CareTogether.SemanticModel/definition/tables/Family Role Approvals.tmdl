@@ -116,7 +116,7 @@ table 'Family Role Approvals'
 
 	column Date
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		displayFolder: _Columns
 		lineageTag: 3da2d2b3-2cab-480f-89e0-98008c52ca3f
 		summarizeBy: none

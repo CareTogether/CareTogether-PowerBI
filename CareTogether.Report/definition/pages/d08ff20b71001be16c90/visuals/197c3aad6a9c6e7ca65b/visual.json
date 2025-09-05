@@ -6,7 +6,8 @@
     "y": 8.5714285714285712,
     "z": 5000,
     "height": 221.42857142857144,
-    "width": 445.71428571428572
+    "width": 445.71428571428572,
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "stackedAreaChart",
@@ -72,14 +73,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Client Family"
                     }
                   },
-                  "Property": "# of Families Supported"
+                  "Property": "# of Client Families Supported"
                 }
               },
-              "queryRef": "Family.# of Families Supported",
-              "nativeQueryRef": "# of Families Supported"
+              "queryRef": "Client Family.# of Client Families Supported",
+              "nativeQueryRef": "# of Client Families Supported"
             }
           ]
         }

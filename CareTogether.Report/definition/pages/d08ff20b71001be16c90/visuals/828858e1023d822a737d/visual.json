@@ -7,7 +7,7 @@
     "z": 12000,
     "height": 228.57142857142858,
     "width": 445.71428571428572,
-    "tabOrder": 8000
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "stackedAreaChart",
@@ -73,13 +73,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Person"
+                      "Entity": "Client Person"
                     }
                   },
-                  "Property": "# of Children Cared For"
+                  "Property": "# of Children Cared For (Client)"
                 }
               },
-              "queryRef": "Person.# of Children Cared For",
+              "queryRef": "Client Person.# of Children Cared For (Client)",
               "nativeQueryRef": "Children Cared For",
               "displayName": "Children Cared For"
             }

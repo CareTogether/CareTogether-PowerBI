@@ -6,7 +6,8 @@
     "y": 0,
     "z": 1000,
     "height": 719.71559603466972,
-    "width": 937.03803151213117
+    "width": 937.03803151213117,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "stackedAreaChart",
