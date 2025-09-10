@@ -1529,7 +1529,7 @@ cultureInfo en-US
 			    "location.location_name": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Location",
+			          "ConceptualEntity": "Location Client",
 			          "ConceptualProperty": "Location"
 			        }
 			      },
@@ -1662,7 +1662,7 @@ cultureInfo en-US
 			    "location.RLS_key": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Location",
+			          "ConceptualEntity": "Location Client",
 			          "ConceptualProperty": "RLS Key"
 			        }
 			      },
@@ -1791,7 +1791,7 @@ cultureInfo en-US
 			    "location": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Location"
+			          "ConceptualEntity": "Location Client"
 			        }
 			      },
 			      "State": "Generated",
@@ -18196,7 +18196,7 @@ cultureInfo en-US
 			    },
 			    "location_has_RLS_key": {
 			      "Binding": {
-			        "ConceptualEntity": "Location"
+			        "ConceptualEntity": "Location Client"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -18229,7 +18229,7 @@ cultureInfo en-US
 			    },
 			    "location_has_location_name": {
 			      "Binding": {
-			        "ConceptualEntity": "Location"
+			        "ConceptualEntity": "Location Client"
 			      },
 			      "State": "Generated",
 			      "Roles": {

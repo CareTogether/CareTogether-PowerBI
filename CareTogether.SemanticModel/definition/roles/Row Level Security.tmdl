@@ -37,8 +37,8 @@ role 'Row Level Security'
 			    RLS[UserId] = USERNAME()
 			)
 
-	tablePermission Location =
-			Location[RLS Key] IN CALCULATETABLE(
+	tablePermission 'Location Client' =
+			'Location Client'[RLS Key] IN CALCULATETABLE(
 			    VALUES(RLS[RLS Key]),
 			    RLS[UserId] = USERNAME()
 			)
@@ -97,12 +97,14 @@ role 'Row Level Security'
 			    RLS[UserId] = USERNAME()
 			)
 
-	tablePermission RLS
-
-	tablePermission Role
-
 	tablePermission 'Individual Function Assignments' =
 			'Individual Function Assignments'[RLS Key]IN CALCULATETABLE(
+			    VALUES(RLS[RLS Key]),
+			    RLS[UserId] = USERNAME()
+			)
+
+	tablePermission Location =
+			'Location'[RLS Key] IN CALCULATETABLE(
 			    VALUES(RLS[RLS Key]),
 			    RLS[UserId] = USERNAME()
 			)

@@ -43,19 +43,9 @@ relationship 1b2fdd82-5273-6461-550a-5925f0e410d3
 	fromColumn: Person.'Family UID'
 	toColumn: Family.'Family UID'
 
-relationship 2a340009-9a22-bf5a-e7bf-20ca9d71abbe
-	fromColumn: Family.'RLS Key'
-	toColumn: Location.'RLS Key'
-
 relationship 73e5b166-c4e6-9336-00c4-ee6faa14db58
 	fromColumn: Referrals.'Close Reason'
 	toColumn: 'Close Reason'.ReferralCloseReason
-
-relationship 4d32855b-35ea-d18f-911f-05b9c692f5e8
-	crossFilteringBehavior: bothDirections
-	fromCardinality: one
-	fromColumn: Family.'Family UID'
-	toColumn: 'Community Member Families'.'Family UID'
 
 relationship 9085acfd-bdb2-e163-32e0-ddaf0905fcbb
 	crossFilteringBehavior: bothDirections
@@ -73,14 +63,6 @@ relationship 68bd892e-c661-c7b7-5c03-5aefca191f67
 relationship 2b4882b1-b8b3-858d-c55d-c0f9da73aed8
 	fromColumn: 'Individual Role Approvals'.'Entity UID'
 	toColumn: Person.'Person UID'
-
-relationship ad35c164-c226-0e58-bc1d-d47bcbe2819a
-	fromColumn: 'Family Role Approvals'.'Role Name'
-	toColumn: Role.'Role Name'
-
-relationship 9cae875d-bb97-1acf-d418-4b3da5f3932a
-	fromColumn: 'Individual Role Approvals'.'Role Name'
-	toColumn: Role.'Role Name'
 
 relationship 9b1c5b38-28ce-e2ea-8a4e-f8c7ff209c6f
 	fromColumn: 'Family Role Approvals'.Status
@@ -163,4 +145,24 @@ relationship 2139f5d5-648e-3dab-b179-af506cdef005
 relationship 0f912775-5b1a-2d3e-eaa9-538880e28b36
 	fromColumn: Referrals.'Family UID'
 	toColumn: 'Client Family'.'Family UID'
+
+relationship AutoDetected_008616e6-be5a-4013-bc93-13849ae9a89b
+	fromColumn: 'Family Role Approvals'.'Role UID'
+	toColumn: Role.'Role UID'
+
+relationship AutoDetected_d1548180-1366-427c-a2bd-3f44e0e534d0
+	fromColumn: 'Individual Role Approvals'.'Role UID'
+	toColumn: Role.'Role UID'
+
+relationship d21699af-c18a-82ab-1c87-053ee4dac91e
+	fromColumn: 'Community Member Families'.'Family UID'
+	toColumn: Family.'Family UID'
+
+relationship cc3cc141-4b90-f76f-917a-3cf1e89e5e2c
+	fromColumn: 'Client Family'.'RLS Key'
+	toColumn: 'Location Client'.'RLS Key'
+
+relationship e349dd17-a18d-2497-62cf-d76e3ba8ac2c
+	fromColumn: Family.'RLS Key'
+	toColumn: Location.'RLS Key'
 

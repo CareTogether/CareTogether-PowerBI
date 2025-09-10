@@ -1,6 +1,10 @@
 table 'Community Member Families'
 	lineageTag: 785f05bf-7c33-4d73-a7e1-fb1007f192e8
 
+	measure '# of Families UID' = COUNT('Community Member Families'[Family UID])
+		formatString: 0
+		lineageTag: 333c09f7-8115-448b-a694-55b76b3f4f54
+
 	column 'RLS Key'
 		dataType: string
 		lineageTag: 4e29f0b1-3790-41b3-9ea6-d80cd45f6914

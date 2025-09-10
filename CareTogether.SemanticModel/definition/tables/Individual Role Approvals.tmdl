@@ -161,6 +161,14 @@ table 'Individual Role Approvals'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Role UID'
+		dataType: string
+		lineageTag: d2a4ae74-a0af-4c1a-a066-9618d677c401
+		summarizeBy: none
+		sourceColumn: Role UID
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Individual Role Approvals' = m
 		mode: import
 		queryGroup: Fact
@@ -173,19 +181,23 @@ table 'Individual Role Approvals'
 				            Table.RenameColumns(
 				                Table.AddColumn(
 				                    Table.AddColumn(
-				                        Source{[Name="RoleApprovals", Signature="table"]}[Data],
-				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        Table.AddColumn(
+				                                Table.SelectRows(
+				                                    Source{[Name="RoleApprovals", Signature="table"]}[Data],
+				                                    each [EntityType] = "Person"
+				                                ),
+				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        ),
+				                        "Entity UID", each Text.Combine({[RLS Key], [EntityId]}, "-")
 				                    ),
-				                    "Entity UID", each Text.Combine({[RLS Key], [EntityId]}, "-")
+				                    "Role UID", each Text.Combine({[OrganizationId], [RoleName]}, "-")
 				                ),
 				                {{"StatusChanged", "Status Changed"}, {"RoleName", "Role Name"}, {"ApprovalType", "Approval Type"}, {"EntityType", "Entity Type"}}
 				            ),
-				            {"RLS Key", "Entity Type", "Entity UID", "EntityId", "Role Name", "Date", "Approval Type", "Status", "Status Changed"}
-				        ),
-				    #"Filtered Rows" = Table.SelectRows(RoleApproval, each ([Entity Type] = "Person"))
-				
+				            {"RLS Key", "Entity Type", "Entity UID", "EntityId", "Role UID", "Role Name", "Date", "Approval Type", "Status", "Status Changed"}
+				        )
 				in
-				    #"Filtered Rows"
+				    RoleApproval
 				```
 
 	annotation PBI_NavigationStepName = Navigation

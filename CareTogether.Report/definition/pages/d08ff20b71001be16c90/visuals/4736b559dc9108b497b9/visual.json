@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Location"
+                      "Entity": "Location Client"
                     }
                   },
                   "Property": "Location"
@@ -160,7 +160,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Location"
+                    "Entity": "Location Client"
                   }
                 },
                 "Property": "Location"
@@ -492,5 +492,135 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3b00b963d4d2a9b70695",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location Client"
+              }
+            },
+            "Property": "Location"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8d4f8f1aa806644a5214",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "# of Families Referred"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "513917d84848a6037b78",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Family"
+              }
+            },
+            "Property": "# of Client Families Supported"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "832232f6f8375e7cefd3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Person"
+              }
+            },
+            "Property": "# of Children Cared For (Client)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d27c4d69fd1891ebb317",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangements"
+              }
+            },
+            "Property": "# of Arrangements Started"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e947571007bb856df152",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "# of Days of Care"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7a177a2fcaf2d295743f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "# of Nights of Care"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c7f38b292fd3904e6cc0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Person"
+              }
+            },
+            "Property": "# of Impacted Adults (Client)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3063cbcd6ecf8da977c4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Person"
+              }
+            },
+            "Property": "# of Impacted Children (Client)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

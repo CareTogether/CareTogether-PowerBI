@@ -138,7 +138,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -179,7 +179,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"

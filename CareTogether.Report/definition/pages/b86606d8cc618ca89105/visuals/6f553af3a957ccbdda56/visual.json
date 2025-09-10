@@ -270,6 +270,20 @@
           "selector": {
             "metadata": "Approvals Group.# of Entities in Role"
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "146.51879965723714D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Role.Role Name"
+          }
         }
       ],
       "total": [

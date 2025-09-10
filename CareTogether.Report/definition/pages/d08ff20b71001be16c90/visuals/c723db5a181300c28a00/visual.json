@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Location"
+                      "Entity": "Location Client"
                     }
                   },
                   "Property": "Location"
@@ -143,7 +143,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -184,7 +184,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -225,7 +225,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Location"
@@ -266,7 +266,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Location"
@@ -275,6 +275,47 @@
                     "Right": {
                       "Literal": {
                         "Value": "'Location 0'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A7E4E7'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Location Client"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Location 2'"
                       }
                     }
                   }
@@ -516,5 +557,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "30506b33c5ee36bbd6a2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location Client"
+              }
+            },
+            "Property": "Location"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3f6f617006f10aff35e1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "# of Referrals Opened"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

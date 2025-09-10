@@ -116,7 +116,7 @@
                 "Property": "Opened"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -280,6 +280,20 @@
           },
           "selector": {
             "metadata": "Referrals.# of Referrals Opened"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "353.68069404619666D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Client Family.Family Name"
           }
         }
       ],

@@ -45,16 +45,6 @@
         },
         {
           "location": {},
-          "nodeIndex": "Location",
-          "nodeLineageTag": "16999c6b-194b-4c64-b4cd-216cdc159dbd",
-          "size": {
-            "height": 128,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {},
           "nodeIndex": "Person",
           "nodeLineageTag": "68a9b7b7-2438-4d03-bd69-1eb77d7bd43f",
           "size": {
@@ -290,6 +280,24 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Location Client",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Location",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
@@ -302,8 +310,8 @@
     {
       "ordinal": 1,
       "scrollPosition": {
-        "x": 1098.0856156577188,
-        "y": 0
+        "x": 0,
+        "y": 286.31565682334593
       },
       "nodes": [
         {
@@ -321,19 +329,6 @@
         },
         {
           "location": {
-            "x": 419.56520127427353,
-            "y": 504.94462256797851
-          },
-          "nodeIndex": "Location",
-          "nodeLineageTag": "16999c6b-194b-4c64-b4cd-216cdc159dbd",
-          "size": {
-            "height": 128,
-            "width": 234
-          },
-          "zIndex": 24
-        },
-        {
-          "location": {
             "x": 787.46153859847982,
             "y": 765.39512417995081
           },
@@ -343,7 +338,7 @@
             "height": 339.88366285731854,
             "width": 234
           },
-          "zIndex": 19
+          "zIndex": 17
         },
         {
           "location": {
@@ -356,7 +351,7 @@
             "height": 336.28970704652318,
             "width": 234
           },
-          "zIndex": 18
+          "zIndex": 24
         },
         {
           "location": {
@@ -369,7 +364,7 @@
             "height": 300,
             "width": 294.82580191324018
           },
-          "zIndex": 17
+          "zIndex": 16
         },
         {
           "location": {
@@ -408,7 +403,7 @@
             "height": 157.48397847320211,
             "width": 234
           },
-          "zIndex": 25
+          "zIndex": 23
         },
         {
           "location": {
@@ -421,7 +416,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 21
+          "zIndex": 19
         },
         {
           "location": {
@@ -434,7 +429,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 16
+          "zIndex": 25
         },
         {
           "location": {
@@ -486,7 +481,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 23
+          "zIndex": 21
         },
         {
           "location": {
@@ -499,7 +494,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 22
+          "zIndex": 20
         },
         {
           "location": {
@@ -512,7 +507,7 @@
             "height": 547.27261271107261,
             "width": 234
           },
-          "zIndex": 20
+          "zIndex": 18
         },
         {
           "location": {
@@ -630,6 +625,32 @@
             "width": 234
           },
           "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 1851.929644441447
+          },
+          "nodeIndex": "Location Client",
+          "nodeLineageTag": "16999c6b-194b-4c64-b4cd-216cdc159dbd",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 310.67919294553349,
+            "y": 1001.4588221530406
+          },
+          "nodeIndex": "Location",
+          "nodeLineageTag": "8b4ebd77-c4b0-42a5-93d7-a051b5863d3a",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Data Model",

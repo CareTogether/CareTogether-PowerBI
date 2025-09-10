@@ -1,9 +1,9 @@
-table Location
-	lineageTag: 8b4ebd77-c4b0-42a5-93d7-a051b5863d3a
+table 'Location Client'
+	lineageTag: 16999c6b-194b-4c64-b4cd-216cdc159dbd
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: 518385f7-1022-484f-aa61-3c53f35cd0ac
+		lineageTag: 78b3d31c-6abb-47d5-a921-272665412440
 		summarizeBy: none
 		sourceColumn: RLS Key
 
@@ -11,13 +11,13 @@ table Location
 
 	column Location
 		dataType: string
-		lineageTag: 02c86e9f-d4fb-4f28-b194-e03695bb6fca
+		lineageTag: feacbf69-72e7-48b8-8005-6ec3e22ace73
 		summarizeBy: none
 		sourceColumn: Location
 
 		annotation SummarizationSetBy = Automatic
 
-	partition Location = m
+	partition 'Location Client' = m
 		mode: import
 		queryGroup: Dimensions
 		source = ```

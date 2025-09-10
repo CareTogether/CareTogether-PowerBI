@@ -21,6 +21,28 @@
         },
         "type": "RelativeDate",
         "howCreated": "User"
+      },
+      {
+        "name": "0bcec68f0e2e532b6ffe",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location Client"
+              }
+            },
+            "Property": "Location"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
       }
     ]
   },

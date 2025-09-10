@@ -54,7 +54,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Location"
+                      "Entity": "Location Client"
                     }
                   },
                   "Property": "Location"
@@ -273,7 +273,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -315,7 +315,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -367,7 +367,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Location"
@@ -408,7 +408,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Location"
@@ -447,7 +447,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -523,7 +523,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -747,5 +747,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "87a03405a1b978beda83",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ea495f8ee68a2b7f70d9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Month Name Short"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bf0e0052530bff7a3213",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location Client"
+              }
+            },
+            "Property": "Location"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2699390dfc6097b1c8ce",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Family"
+              }
+            },
+            "Property": "# of Client Families Supported"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -472,7 +472,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "366.6766296210888D"
+                  "Value": "331.75819122450423D"
                 }
               }
             }
@@ -860,5 +860,79 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "75e07629fa391086d7b0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approval Status"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f5d07b2e2838d828a4cb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Role"
+              }
+            },
+            "Property": "Role Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "edd4f3c48b75de26d40e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Role Approvals"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5454a515ba402e2d9c48",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approval Type"
+              }
+            },
+            "Property": "Approval Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "19b5f7ff94ba3220b409",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Role Approvals"
+              }
+            },
+            "Property": "Family Approval Tracker"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

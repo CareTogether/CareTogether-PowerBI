@@ -59,6 +59,29 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "82a99b99537b381e2650",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location"
+              }
+            },
+            "Property": "Location"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
       }
     ],
     "filterSortOrder": "Custom"

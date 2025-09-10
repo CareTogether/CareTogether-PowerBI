@@ -377,5 +377,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9734dc6968b463ad39e1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Engagement Group"
+              }
+            },
+            "Property": "Entity Type"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }
