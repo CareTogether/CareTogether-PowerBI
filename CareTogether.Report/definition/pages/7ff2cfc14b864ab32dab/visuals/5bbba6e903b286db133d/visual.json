@@ -187,5 +187,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a286074e50e778773f42",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Engagement Group"
+              }
+            },
+            "Property": "# of Approved Entities"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

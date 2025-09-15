@@ -614,5 +614,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "32000aaed5d672de1b6a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "51b68762f3197abce3f7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Home Church"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3afb64dacc3ec292f713",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Community"
+              }
+            },
+            "Property": "First Community Membership"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8d16ef87719c0236acb4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Community Membership Count"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

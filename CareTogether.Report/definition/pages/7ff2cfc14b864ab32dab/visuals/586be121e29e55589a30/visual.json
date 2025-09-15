@@ -471,5 +471,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b8f41b30461572418ba7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d6a7ce4c3492f12a971a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Family Engagement Level"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "026088a9e1e67a04b9fb",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Family Last Assignment Date"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "71994fd053e74ded41bb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Participation Type"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

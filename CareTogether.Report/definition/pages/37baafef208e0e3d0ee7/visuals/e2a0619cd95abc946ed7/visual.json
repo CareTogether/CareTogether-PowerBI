@@ -579,5 +579,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f4a8860e0b2cf53ea82b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement Type"
+              }
+            },
+            "Property": "Arrangement Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "63e92aa48bd47a119575",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangements"
+              }
+            },
+            "Property": "# of Arrangements"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

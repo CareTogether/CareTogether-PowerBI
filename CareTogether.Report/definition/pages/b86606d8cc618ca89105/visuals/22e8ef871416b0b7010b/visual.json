@@ -251,6 +251,20 @@
             }
           ]
         }
+      },
+      {
+        "name": "724095f38d855b43d594",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approval Status"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

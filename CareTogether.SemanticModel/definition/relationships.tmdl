@@ -155,6 +155,7 @@ relationship AutoDetected_d1548180-1366-427c-a2bd-3f44e0e534d0
 	toColumn: Role.'Role UID'
 
 relationship d21699af-c18a-82ab-1c87-053ee4dac91e
+	crossFilteringBehavior: bothDirections
 	fromColumn: 'Community Member Families'.'Family UID'
 	toColumn: Family.'Family UID'
 

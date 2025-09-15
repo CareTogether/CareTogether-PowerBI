@@ -108,7 +108,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Person'"
+                                "Value": "'Family'"
                               }
                             }
                           ]
@@ -382,5 +382,23 @@
       "filterChanges": true
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "373036d983a1eaba017d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approvals Group"
+              }
+            },
+            "Property": "Entity Type"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }
