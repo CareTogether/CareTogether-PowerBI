@@ -23,6 +23,8 @@ table 'Arrangement Type'
 		summarizeBy: none
 		sourceColumn: Arrangement Type UID
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column 'Child Involvement'

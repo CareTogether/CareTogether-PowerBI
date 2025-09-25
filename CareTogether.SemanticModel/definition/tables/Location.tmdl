@@ -17,6 +17,14 @@ table Location
 
 		annotation SummarizationSetBy = Automatic
 
+	column Id
+		dataType: string
+		lineageTag: 21cf8ebc-50d3-4f02-9094-2fe85114b691
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Location = m
 		mode: import
 		queryGroup: Dimensions

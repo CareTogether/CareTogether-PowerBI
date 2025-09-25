@@ -152,6 +152,8 @@ table 'Child Location Record'
 		summarizeBy: none
 		sourceColumn: Family UID
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column 'Family ID'
@@ -161,6 +163,8 @@ table 'Child Location Record'
 		summarizeBy: none
 		sourceColumn: Family ID
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column 'Arrangement ID'
@@ -169,6 +173,8 @@ table 'Child Location Record'
 		lineageTag: 61c3c958-c541-4b36-b11f-3c38d7036b20
 		summarizeBy: none
 		sourceColumn: Arrangement ID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
