@@ -7,7 +7,7 @@
     "z": 11000,
     "height": 229.76109215017064,
     "width": 446.00682593856658,
-    "tabOrder": 11000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "columnChart",
@@ -54,14 +54,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Location"
+                      "Entity": "Location Client"
                     }
                   },
                   "Property": "Location"
                 }
               },
-              "queryRef": "Location.Location",
-              "nativeQueryRef": "Location"
+              "queryRef": "Location.Location Name",
+              "nativeQueryRef": "Location",
+              "displayName": "Location"
             }
           ]
         },
@@ -72,13 +73,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "# of Families Referred"
                 }
               },
-              "queryRef": "Referral.# of Families Referred",
+              "queryRef": "Referrals.# of Families Referred",
               "nativeQueryRef": "# of Families Referred"
             }
           ]
@@ -250,6 +251,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
             }
           }
         }
@@ -280,7 +288,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -322,7 +330,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -363,7 +371,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Location"
@@ -404,7 +412,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Location"

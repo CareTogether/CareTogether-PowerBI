@@ -1,0 +1,79 @@
+table 'Individual Function Assignments'
+	lineageTag: 49e39722-8999-4392-9e8a-a71c9b18644f
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: d1f67159-aa39-4e9f-8fb7-1d45a6817964
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity UID'
+		dataType: string
+		lineageTag: 82dcb42e-bfec-4b34-9919-f08f8978f5ff
+		summarizeBy: none
+		sourceColumn: Entity UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity Type'
+		dataType: string
+		lineageTag: 4f39e1fb-5499-44f5-9964-c7003f76cce5
+		summarizeBy: none
+		sourceColumn: Entity Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Arrangement ID'
+		dataType: string
+		lineageTag: ba5d39ac-b2da-4509-bb85-5ca1c1ba4e8e
+		summarizeBy: none
+		sourceColumn: Arrangement ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Function
+		dataType: string
+		lineageTag: e81a46c1-5a72-4ce8-95f5-9a601806aaea
+		summarizeBy: none
+		sourceColumn: Function
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Individual Function Assignments' = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    Source = #"OData Live",
+				    FamilyFunctionAssignments = Source{[Name="FamilyFunctionAssignments", Signature="table"]}[Data],
+				    IndividualFunctionAssignments = Source{[Name="IndividualFunctionAssignments", Signature="table"]}[Data],
+				
+				    // Person Transformations:
+				    IndividualFunc = 
+				        Table.SelectColumns(
+				            Table.RenameColumns(
+				                Table.AddColumn(
+				                    Table.AddColumn(
+				                        Table.AddColumn(
+				                            IndividualFunctionAssignments,
+				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        ),
+				                        "Entity UID", each Text.Combine({[RLS Key], [PersonId]}, "-")
+				                    ),
+				                    "Entity Type", each "Person"
+				                ),
+				                {{"ArrangementId", "Arrangement ID"}}
+				            ),
+				            {"RLS Key", "Entity UID", "Entity Type", "Arrangement ID", "Function"}
+				        )
+				
+				in
+				    IndividualFunc
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

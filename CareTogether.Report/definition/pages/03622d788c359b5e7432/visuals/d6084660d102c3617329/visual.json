@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "d6084660d102c3617329",
   "position": {
-    "x": 10.443686006825939,
-    "y": 10.443686006825939,
+    "x": 10.571791613722999,
+    "y": 9.7585768742058452,
     "z": 1000,
-    "height": 700.34129692832767,
-    "width": 1260,
-    "tabOrder": 1000
+    "height": 339.11054637865311,
+    "width": 1258.856416772554,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -39,14 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Role Approval"
+                      "Entity": "Role"
                     }
                   },
                   "Property": "Role Name"
                 }
               },
-              "queryRef": "Role Approval.Role Name",
-              "nativeQueryRef": "Role Name",
+              "queryRef": "Role.Role Name",
+              "nativeQueryRef": "Role Name1",
               "active": true
             },
             {
@@ -54,30 +54,31 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Role Approval"
+                      "Entity": "Family Role Approvals"
                     }
                   },
-                  "Property": "Entity Type"
+                  "Property": "Family Name"
                 }
               },
-              "queryRef": "Role Approval.Entity Type",
-              "nativeQueryRef": "Entity Type",
-              "active": true
+              "queryRef": "Family Role Approvals.Entity Name",
+              "nativeQueryRef": "Family Name",
+              "active": true,
+              "displayName": "Family Name"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Role Approval"
+                      "Entity": "Approval Type"
                     }
                   },
-                  "Property": "Entity Name"
+                  "Property": "Approval Type"
                 }
               },
-              "queryRef": "Role Approval.Entity Name",
-              "nativeQueryRef": "Entity Name",
-              "active": false
+              "queryRef": "Approval Type.Approval Type",
+              "nativeQueryRef": "Approval Type1",
+              "active": true
             }
           ]
         },
@@ -88,14 +89,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Role Approval"
+                      "Entity": "Family Role Approvals"
                     }
                   },
-                  "Property": "# Approval Tracker"
+                  "Property": "Family Approval Tracker"
                 }
               },
-              "queryRef": "Role Approval.# Approval Tracker",
-              "nativeQueryRef": "# Approval Tracker"
+              "queryRef": "Family Role Approvals.Family Approval Tracker",
+              "nativeQueryRef": "Family Approval Tracker"
             }
           ]
         }
@@ -126,15 +127,14 @@
         "levels": [
           {
             "queryRefs": [
-              "Role Approval.Role Name"
+              "Role.Role Name"
             ],
-            "isCollapsed": true,
             "identityKeys": [
               {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Role Approval"
+                      "Entity": "Role"
                     }
                   },
                   "Property": "Role Name"
@@ -145,26 +145,13 @@
           },
           {
             "queryRefs": [
-              "Role Approval.Entity Type"
-            ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Role Approval"
-                    }
-                  },
-                  "Property": "Entity Type"
-                }
-              }
+              "Family Role Approvals.Entity Name"
             ],
             "isPinned": true
           },
           {
             "queryRefs": [
-              "Role Approval.Entity Name"
+              "Approval Type.Approval Type"
             ],
             "isCollapsed": true,
             "identityKeys": [
@@ -351,20 +338,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "212.45930140778864D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Role Approval.Role Name"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "105.57336063904248D"
                 }
               }
@@ -513,13 +486,41 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "368.262863054316D"
+                  "Value": "152.1093974739058D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Role Approval.Entity Name"
+            "metadata": "Role.Role Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "309.2513800761568D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Family Role Approvals.Entity Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "331.75819122450423D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Approval Type.Approval Type"
           }
         }
       ],
@@ -690,7 +691,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Approvals Tracker'"
+                  "Value": "'Family Approvals Tracker'"
                 }
               }
             }
@@ -728,7 +729,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'\"Expand the levels to view more details. At the ''Entity Type'' and ''Role Name'' levels, the number of families that had a status change during the selected period is counted. At the ''Entity Name'' level, the date on which the status change occurred is displayed.\"'"
+                  "Value": "'\"Expand the levels to view more details. At the ''Role Name'' level, the number of families that had a status change during the selected period is counted. At the ''Family Name'' level, the date on which the status change occurred is displayed.\"'"
                 }
               }
             },
@@ -905,7 +906,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "d5cc457d931685967877",
+        "name": "75e07629fa391086d7b0",
         "field": {
           "Column": {
             "Expression": {
@@ -919,12 +920,12 @@
         "type": "Categorical"
       },
       {
-        "name": "40bdb127b593b16ae80e",
+        "name": "f5d07b2e2838d828a4cb",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Role Approval"
+                "Entity": "Role"
               }
             },
             "Property": "Role Name"
@@ -933,43 +934,43 @@
         "type": "Categorical"
       },
       {
-        "name": "4bdc536ba026360c0856",
+        "name": "edd4f3c48b75de26d40e",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Role Approval"
+                "Entity": "Family Role Approvals"
               }
             },
-            "Property": "Entity Type"
+            "Property": "Family Name"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "98237feb5dc58c05ce4d",
+        "name": "5454a515ba402e2d9c48",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Role Approval"
+                "Entity": "Approval Type"
               }
             },
-            "Property": "Entity Name"
+            "Property": "Approval Type"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "cff85d29358cd430061a",
+        "name": "19b5f7ff94ba3220b409",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Role Approval"
+                "Entity": "Family Role Approvals"
               }
             },
-            "Property": "# Approval Tracker"
+            "Property": "Family Approval Tracker"
           }
         },
         "type": "Advanced"

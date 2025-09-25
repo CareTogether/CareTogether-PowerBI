@@ -24,13 +24,13 @@
         "howCreated": "User"
       },
       {
-        "name": "0beb5c9eece1b46584ed",
+        "name": "45edb04b560c666550b2",
         "ordinal": 1,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Family"
               }
             },
             "Property": "Participation Type"
@@ -41,8 +41,8 @@
           "Version": 2,
           "From": [
             {
-              "Name": "e",
-              "Entity": "Entity",
+              "Name": "f",
+              "Entity": "Family",
               "Type": 0
             }
           ],
@@ -57,7 +57,7 @@
                           "Column": {
                             "Expression": {
                               "SourceRef": {
-                                "Source": "e"
+                                "Source": "f"
                               }
                             },
                             "Property": "Participation Type"
@@ -80,6 +80,37 @@
             }
           ]
         },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "b309867d98ef7e83d21d",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location"
+              }
+            },
+            "Property": "Location"
+          }
+        },
+        "type": "Categorical",
         "howCreated": "User",
         "objects": {
           "general": [

@@ -1,45 +1,34 @@
 table Childcare
-	lineageTag: ca6cccb8-8c47-4b47-a6a3-3730e2269767
+	lineageTag: 0e929471-7d25-410a-953a-359fbad618e6
 
 	column ChildInvolvement
 		dataType: string
-		isHidden
-		isKey
-		lineageTag: 3b70af42-591e-4d31-827b-960c48e87a46
+		lineageTag: 2e7eee7b-f723-4a38-bf92-87b7accdd83f
 		summarizeBy: none
 		sourceColumn: ChildInvolvement
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column Order
 		dataType: int64
-		isHidden
 		formatString: 0
-		lineageTag: 2ca7e23f-8f11-4e41-b765-f6df3fcaa47a
+		lineageTag: 86c56b6e-4c46-4244-98ca-1a62fc061ec1
 		summarizeBy: none
 		sourceColumn: Order
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Care Type'
 		dataType: string
-		lineageTag: d0b7890e-5b9c-4bd6-ac57-508f55f90a50
-		isDefaultLabel
+		lineageTag: c2f8c83b-0e63-4e75-8edc-b90a683a7e39
 		summarizeBy: none
 		sourceColumn: Care Type
-		sortByColumn: Order
-
-		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
-	partition Childcare-c5257646-9794-4cef-b5b5-f6c42666d18d = m
+	partition Childcare = m
 		mode: import
-		queryGroup: 'Reference Tables'
+		queryGroup: Dimensions
 		source =
 				let
 				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wcs7IzEnxyC8tzsxLV9JRMgBisJACTCxWJ1rJJbGyJDM3FSzhnFiU6p+XUwlUaAjEUCkFsFwyUE4BLAnS5ZcPFvTMK8vPKUvNTc0rAao3AmK/fIhyBWSp2FgA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ChildInvolvement = _t, Order = _t, Involvement = _t]),

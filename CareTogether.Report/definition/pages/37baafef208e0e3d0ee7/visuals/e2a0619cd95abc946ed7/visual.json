@@ -7,7 +7,7 @@
     "z": 8000,
     "height": 252.49146757679182,
     "width": 391.33105802047783,
-    "tabOrder": 7000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -39,14 +39,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement"
+                      "Entity": "Arrangements"
                     }
                   },
                   "Property": "# of Arrangements"
                 }
               },
-              "queryRef": "Arrangement.# of Arrangements",
-              "nativeQueryRef": "# of Arrangements"
+              "queryRef": "Arrangements.# of Arrangements",
+              "nativeQueryRef": "# of Arrangements1"
             }
           ]
         }
@@ -58,7 +58,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Arrangement"
+                    "Entity": "Arrangements"
                   }
                 },
                 "Property": "# of Arrangements"
@@ -141,7 +141,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -182,7 +182,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -579,5 +579,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f4a8860e0b2cf53ea82b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement Type"
+              }
+            },
+            "Property": "Arrangement Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "63e92aa48bd47a119575",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangements"
+              }
+            },
+            "Property": "# of Arrangements"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

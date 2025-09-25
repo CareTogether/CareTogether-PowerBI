@@ -1,21 +1,16 @@
 table Community
-	lineageTag: f38961a2-f1d1-478b-87f7-d848cfbf0304
-
-	measure '# of Communities' = COUNTROWS(Community)
-		formatString: 0
-		lineageTag: 936a49f0-4f83-4056-bd40-561afd518652
+	lineageTag: e7a84953-27c2-4818-8b9a-4ebdd0ebcb9d
 
 	measure 'First Community Membership' =
 			
-			
 			VAR FirstCommunity = MIN(Community[Community Name])
-			
 			RETURN IF(ISBLANK(FirstCommunity), "", FirstCommunity)
-		lineageTag: b7d1d23d-01bf-4edc-ab56-d3625c342b19
+		lineageTag: b408252d-cb32-499f-8753-1aa99f2c2283
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: 6dcceb4c-652e-4283-b288-5caad649fe72
+		displayFolder: _Columns
+		lineageTag: 8f3ad27a-2280-44ba-a5e5-bcbd74e914fe
 		summarizeBy: none
 		sourceColumn: RLS Key
 
@@ -23,54 +18,45 @@ table Community
 
 	column 'Community Name'
 		dataType: string
-		lineageTag: a71ae971-d636-466e-9ad0-1c78feb732f3
+		displayFolder: _Columns
+		lineageTag: 0d2c8dc8-fed8-4620-b022-4017f39e0774
 		summarizeBy: none
 		sourceColumn: Community Name
 
 		annotation SummarizationSetBy = Automatic
 
-	column Id
+	column 'Community ID'
 		dataType: string
-		isHidden
-		isKey
-		lineageTag: 635a01f9-6329-4a2d-92a8-cfd868d53381
+		displayFolder: _Columns
+		lineageTag: 447eff34-66a1-4168-b2db-0e731d6511e3
 		summarizeBy: none
-		sourceColumn: Id
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Community Membership Count' = COUNTROWS(RELATEDTABLE('Community Member Families'))
-		formatString: 0
-		lineageTag: 7d18a30a-e29a-424d-8374-b7e090f3ea28
-		summarizeBy: sum
+		sourceColumn: Community ID
 
 		annotation SummarizationSetBy = Automatic
 
 	partition Community = m
 		mode: import
-		queryGroup: 'Model Queries'
+		queryGroup: Dimensions
 		source = ```
-				let 
+				let
 				    Source = #"OData Live",
-				    SourceTable = Source{[Name="Communities", Signature="table"]}[Data],
+				    Community = Source{[Name="Communities", Signature="table"]}[Data],
+				    CommunityTransformed = 
 				
-				    Community = 
 				    Table.SelectColumns(
-				        Table.AddColumn(
-				            Table.RenameColumns(
-				                SourceTable,
-				                {{"Name", "Community Name"}}
+				        Table.RenameColumns(
+				            Table.AddColumn(
+				                Community,
+				                "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				            ),
-				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				            {{"Id", "Community ID"}, {"Name", "Community Name"}}
 				        ),
-				        {"RLS Key", "Id", "Community Name"}
+				        {"RLS Key", "Community ID", "Community Name"}
 				    )
 				
-				        
+				
 				in
-				    Community
+				    CommunityTransformed
 				```
 
 	annotation PBI_NavigationStepName = Navigation

@@ -1,0 +1,183 @@
+table 'Client Family'
+	lineageTag: b2de50d0-cd3c-4669-8a56-bf50dcc20a91
+
+	measure '# of Client Families Supported' =
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			RETURN
+			IF(
+			    CurrentStartDate > Today,  // Check if the current month's start is beyond today
+			    BLANK(),  // Return blank for future months
+			    COUNTROWS(
+			        FILTER(
+			            'Client Family',
+			            COUNTROWS(
+			                FILTER(
+			                    RELATEDTABLE('Arrangements'),
+			                    NOT(ISBLANK('Arrangements'[Started])) &&
+			                    'Arrangements'[Started] <= CurrentEndDate &&
+			                    (
+			                        ISBLANK('Arrangements'[Ended]) ||
+			                        'Arrangements'[Ended] >= CurrentStartDate
+			                    )
+			                )
+			            ) > 0
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: f65a756f-b5e8-403c-bdd4-c5a5a210ef3c
+
+	column 'RLS Key'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: bf9c0124-c3be-4682-83a0-ee2a447888f9
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family UID'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: a848f350-e424-4153-b58b-46a77202c1a1
+		summarizeBy: none
+		sourceColumn: Family UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Id'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: a2a084dd-d086-4d44-8db6-34ea1346636b
+		summarizeBy: none
+		sourceColumn: Family Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Name'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: ca5739d0-cdbf-46fd-9dc1-96b675794188
+		summarizeBy: none
+		sourceColumn: Family Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		displayFolder: _columns
+		lineageTag: a94b8a27-f120-44cb-affd-dac7e9cdd3af
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Phone Number'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: ad8bc09e-c326-4427-a075-eb0e66510fcb
+		summarizeBy: none
+		sourceColumn: Phone Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 1'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f9ea642d-2da3-408c-b578-b7eff4fa95c7
+		summarizeBy: none
+		sourceColumn: Address Line 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 2'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f2d9f731-eadf-445c-aa6c-04ee7c4808a8
+		summarizeBy: none
+		sourceColumn: Address Line 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 19ab5819-ec41-40b3-ab11-fb167049afed
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column County
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 8a799c7b-5341-45d3-8718-6204ab1179d9
+		summarizeBy: none
+		sourceColumn: County
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 72e583df-5814-4da6-bc8d-5cd97eb3fc97
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Postal Code'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: acea93d5-0126-42d1-bdf3-5cc7bae27d2c
+		summarizeBy: none
+		sourceColumn: Postal Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Home Church'
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 6b349939-b46d-4857-8c91-f774cc5fab74
+		summarizeBy: none
+		sourceColumn: Home Church
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Client Family' = m
+		mode: import
+		queryGroup: Dimensions
+		source = ```
+				let
+				    Source = #"OData Live",
+				    Family = Source{[Name="Family", Signature="table"]}[Data],
+				    FamilyTransformed = 
+				
+				    Table.SelectColumns(
+				        Table.RenameColumns(
+				            Table.ExpandRecordColumn(
+				                Table.AddColumn(
+				                    Table.AddColumn(
+				                        Family,
+				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                    ),
+				                    "Family UID", each Text.Combine({[RLS Key], [Id]}, "-")
+				                ),
+				                "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}
+				            ),
+				            {{"Id", "Family Id"}, {"Name", "Family Name"}, {"PrimaryEmail", "Email"}, {"PrimaryPhoneNumber", "Phone Number"}, {"Line1", "Address Line 1"}, {"Line2", "Address Line 2"}, {"PostalCode", "Postal Code"}, {"HomeChurch", "Home Church"}}
+				        ),
+				        {"RLS Key", "Family UID", "Family Id", "Family Name", "Email", "Phone Number", "Address Line 1", "Address Line 2", "City", "County", "State", "Postal Code", "Home Church"}
+				    )
+				
+				in
+				    FamilyTransformed
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

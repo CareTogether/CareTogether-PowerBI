@@ -1,9 +1,9 @@
 table 'Community Role Assignments'
-	lineageTag: 5d48d610-1f9d-4a9e-bae4-ef9ac4fec4a1
+	lineageTag: f609fd05-22d1-4600-8e45-7cf87904cf76
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: 7d7dc74e-96dc-4d55-b1f7-05c70051b20d
+		lineageTag: 7bf9a5d5-ee29-4feb-b494-9072f7263506
 		summarizeBy: none
 		sourceColumn: RLS Key
 
@@ -11,53 +11,63 @@ table 'Community Role Assignments'
 
 	column Role
 		dataType: string
-		lineageTag: 06599e01-9ba0-42ec-b312-72f9bcf5e226
+		lineageTag: c848d7ef-86c7-4d49-b2e0-86ca01633a01
 		summarizeBy: none
 		sourceColumn: Role
 
 		annotation SummarizationSetBy = Automatic
 
-	column CommunityId
+	column 'Community ID'
 		dataType: string
-		isHidden
-		lineageTag: 8cbad8e8-1fa4-4947-9e30-e6c6d4b71dea
+		lineageTag: 2df87865-be6e-4f30-a526-aa2b7d43d21e
 		summarizeBy: none
-		sourceColumn: CommunityId
-
-		changedProperty = IsHidden
+		sourceColumn: Community ID
 
 		annotation SummarizationSetBy = Automatic
 
-	column PersonId
+	column 'Person UID'
 		dataType: string
-		isHidden
-		lineageTag: d67b77c7-3c6e-41ae-8a71-5071b169804f
+		lineageTag: 493fbb49-1acd-4647-af59-6f58ab32a590
 		summarizeBy: none
-		sourceColumn: PersonId
+		sourceColumn: Person UID
 
-		changedProperty = IsHidden
+		annotation SummarizationSetBy = Automatic
+
+	column 'Person ID'
+		dataType: string
+		lineageTag: c2cfbeea-7e85-47ba-82f8-e9dcd9c0f06a
+		summarizeBy: none
+		sourceColumn: Person ID
 
 		annotation SummarizationSetBy = Automatic
 
 	partition 'Community Role Assignments' = m
 		mode: import
-		queryGroup: 'Model Queries'
+		queryGroup: Fact
 		source = ```
 				let
 				    Source = #"OData Live",
-				    SourceTable = Source{[Name="CommunityRoleAssignments",Signature="table"]}[Data],
-				
-				    CommunityRoleAssignments = 
+				    CommunityRoleAssignment = Source{[Name="CommunityRoleAssignments", Signature="table"]}[Data],
+				    
+				    CommunityRoleAssignmentTransformed = 
 				
 				    Table.SelectColumns(
-				        Table.AddColumn(
-				            SourceTable,
-				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        Table.RenameColumns(
+				            Table.AddColumn(
+				                Table.AddColumn(
+				                    CommunityRoleAssignment,
+				                    "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                ),
+				                "Person UID", each Text.Combine({[RLS Key], [PersonId]}, "-")
+				            ),
+				            {{"CommunityId", "Community ID"}, {"PersonId", "Person ID"}}
 				        ),
-				        {"RLS Key", "CommunityId", "PersonId", "Role"}
+				        {"RLS Key", "Community ID", "Person UID", "Person ID", "Role"}
 				    )
+				
+				
 				in
-				    CommunityRoleAssignments
+				    CommunityRoleAssignmentTransformed
 				```
 
 	annotation PBI_NavigationStepName = Navigation

@@ -1,0 +1,206 @@
+table 'Family Role Approvals'
+	lineageTag: 1c9df905-397c-49b4-b600-474b18df7295
+
+	measure 'Volunteer Family Status' = ```
+			
+			
+			// INACTIVE OR ACTIVE DEFINITION:  
+			// Inactive = only 'inactive' or 'denied'
+			// Blank = no role approval
+			// Active = anything other than 'inactive' or 'denied'
+			
+			VAR StartDate = [Selected Timeframe Start] 
+			VAR EndDate = [Selected Timeframe End]
+			VAR FamilyUID = SELECTEDVALUE(Family[Family UID])
+			
+			VAR FamilyInactive = 
+			    CALCULATE(
+			        COUNTROWS('Family Role Approvals'),
+			        'Family Role Approvals'[Date] >= StartDate && 'Family Role Approvals'[Date] <= EndDate,
+			        'Approval Status'[Status] IN {"Inactive", "Denied"},
+			        'Family Role Approvals'[Entity Type] = "Family"
+			    )
+			
+			VAR FamilyActive = 
+			    CALCULATE(
+			        COUNTROWS('Family Role Approvals'),
+			        'Family Role Approvals'[Date] >= StartDate && 'Family Role Approvals'[Date] <= EndDate,
+			        NOT 'Family Role Approvals'[Status] IN {"Inactive", "Denied"},
+			        'Family Role Approvals'[Entity Type] = "Family"
+			    )
+			
+			RETURN
+			IF(
+			    FamilyActive > 0,
+			        "Active",
+			    IF(FamilyInactive > 0, 
+			        "Inactive", 
+			    IF(ISBLANK(FamilyActive + FamilyInactive) && [# of Families] > 0,
+			        "No Role Approval"
+			        )
+			    )
+			)
+			```
+		lineageTag: 5883105c-c094-4a06-8664-af239ef7279e
+
+	measure 'Family Approval Tracker' = ```
+			
+			VAR Tracker = 
+			    SWITCH(
+			        TRUE(),
+			        ISINSCOPE('Family Role Approvals'[Family Name]),
+			        VAR MaxDate = CALCULATE(
+			            MAX('Family Role Approvals'[Date]),
+			            'Family Role Approvals'[Status Changed] = TRUE()
+			        )
+			        RETURN IF(ISBLANK(MaxDate), BLANK(), FORMAT(MaxDate, "YYYY-MM-DD")),
+			
+			        ISINSCOPE(Role[Role Name]),
+			        FORMAT(CALCULATE(
+			            DISTINCTCOUNT('Family Role Approvals'[Entity UID]),
+			            'Family Role Approvals'[Status Changed] = TRUE()
+			        ), "0")
+			    )
+			
+			RETURN 
+			    IF(ISBLANK(Tracker), BLANK(), Tracker)
+			
+			
+			```
+		lineageTag: 128ea585-a56c-4d69-bc6f-12c259605f3c
+
+	column 'RLS Key'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 69ef5b8f-b6e5-4365-9bb6-a105f36baa76
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity Type'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: f5476ccc-c964-4c71-b285-b9ce5816dd53
+		summarizeBy: none
+		sourceColumn: Entity Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entity UID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: ea7b787b-c760-4856-9e9e-03b31364f0f3
+		summarizeBy: none
+		sourceColumn: Entity UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EntityId
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 72ee38a2-e150-4f7e-9874-3cf03b869f5a
+		summarizeBy: none
+		sourceColumn: EntityId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Role Name'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 1b34c7dc-c03d-44a6-8135-25a9669725c9
+		summarizeBy: none
+		sourceColumn: Role Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Short Date
+		displayFolder: _Columns
+		lineageTag: 3da2d2b3-2cab-480f-89e0-98008c52ca3f
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Approval Type'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 8633e687-1dd9-4682-af96-0b965687daf7
+		summarizeBy: none
+		sourceColumn: Approval Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 0134e175-631c-4ffe-af89-cc9fd627b54f
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Changed'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: _Columns
+		lineageTag: 4f1c8bb9-d813-42f3-8e4a-642fcb3a5afe
+		summarizeBy: none
+		sourceColumn: Status Changed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Name' = RELATED(Family[Family Name])
+		displayFolder: _Columns
+		lineageTag: 031befcd-b479-40a9-bb30-6da7020c8bfb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Role UID'
+		dataType: string
+		lineageTag: 2cf9d3de-1dcd-4851-89cc-7484492e2424
+		summarizeBy: none
+		sourceColumn: Role UID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Family Role Approvals' = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    Source = #"OData Live",
+				    RoleApproval = 
+				
+				        Table.SelectColumns(
+				            Table.RenameColumns(
+				                Table.AddColumn(
+				                    Table.AddColumn(    
+				                        Table.AddColumn(
+				                                Table.SelectRows(
+				                                    Source{[Name="RoleApprovals", Signature="table"]}[Data],
+				                                    each [EntityType] = "Family"
+				                                ),
+				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        ),
+				                        "Entity UID", each Text.Combine({[RLS Key], [EntityId]}, "-")
+				                    ),
+				                    "Role UID", each Text.Combine({[OrganizationId], [RoleName]}, "-")
+				                ),
+				                {{"StatusChanged", "Status Changed"}, {"RoleName", "Role Name"}, {"ApprovalType", "Approval Type"}, {"EntityType", "Entity Type"}}
+				            ),
+				            {"RLS Key", "Entity Type", "Entity UID", "EntityId", "Role UID", "Role Name", "Date", "Approval Type", "Status", "Status Changed"}
+				        )
+				in
+				    RoleApproval
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

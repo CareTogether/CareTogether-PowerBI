@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "177d33ba163573002323",
   "position": {
-    "x": 837.14285714285722,
-    "y": 240.71428571428572,
+    "x": 837.29323308270671,
+    "y": 240.6015037593985,
     "z": 14000,
-    "height": 230.00000000000003,
-    "width": 434.28571428571433,
-    "tabOrder": 14000
+    "height": 229.77443609022555,
+    "width": 434.28571428571428,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "stackedAreaChart",
@@ -54,14 +54,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Location"
+                      "Entity": "Location Client"
                     }
                   },
                   "Property": "Location"
                 }
               },
               "queryRef": "Location.Location",
-              "nativeQueryRef": "Location"
+              "nativeQueryRef": "Location1"
             }
           ]
         },
@@ -75,11 +75,12 @@
                       "Entity": "Child Location Record"
                     }
                   },
-                  "Property": "Days of Care"
+                  "Property": "# of Days of Care"
                 }
               },
-              "queryRef": "Child Location Record.Days of Care",
-              "nativeQueryRef": "Days of Care"
+              "queryRef": "Child Location Record.# of Days of Care",
+              "nativeQueryRef": "Ddddddays of Care",
+              "displayName": "Ddddddays of Care"
             }
           ]
         }
@@ -131,7 +132,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -243,6 +244,13 @@
                   "Value": "true"
                 }
               }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
             }
           }
         }
@@ -273,7 +281,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -315,7 +323,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -367,7 +375,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Location"
@@ -408,7 +416,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Location"
@@ -447,7 +455,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -509,7 +517,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -733,65 +741,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "c150471057b9458e21a8",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "0d8050a50efb7599ca0c",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Month Name Short"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "2810060fca2e4f60699a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Location"
-              }
-            },
-            "Property": "Location"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "58a487407235c9ea2d0e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record"
-              }
-            },
-            "Property": "Days of Care"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

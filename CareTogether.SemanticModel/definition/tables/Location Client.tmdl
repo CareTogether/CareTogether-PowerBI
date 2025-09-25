@@ -1,0 +1,49 @@
+table 'Location Client'
+	lineageTag: 16999c6b-194b-4c64-b4cd-216cdc159dbd
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 78b3d31c-6abb-47d5-a921-272665412440
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: feacbf69-72e7-48b8-8005-6ec3e22ace73
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Location Client' = m
+		mode: import
+		queryGroup: Dimensions
+		source = ```
+				let
+				    Source = #"OData Live",
+				    Location = Source{[Name="Location", Signature="table"]}[Data],
+				    LocationTransformed = 
+				    Table.SelectColumns(
+				        Table.RenameColumns(
+				            Table.AddColumn(
+				                Location,
+				                "RLS Key", each Text.Combine({[OrganizationId], [Id]}, "-")
+				            ),
+				            {{"Name", "Location Name"}}
+				        ),
+				        {"RLS Key", "Location Name"}
+				    ),
+				    #"Renamed Columns" = Table.RenameColumns(LocationTransformed,{{"Location Name", "Location"}})
+				
+				in
+				    #"Renamed Columns"
+				```
+
+	changedProperty = Name
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

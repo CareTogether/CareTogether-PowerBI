@@ -7,7 +7,7 @@
     "z": 1000,
     "height": 351.39931740614333,
     "width": 364.91467576791808,
-    "tabOrder": 1000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -39,14 +39,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "# of Referrals Opened"
                 }
               },
-              "queryRef": "Referral.# of Referrals Opened",
-              "nativeQueryRef": "# of Referrals Opened"
+              "queryRef": "Referrals.# of Referrals Opened",
+              "nativeQueryRef": "Referrals Opened",
+              "displayName": "Referrals Opened"
             }
           ]
         }
@@ -58,7 +59,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Referral"
+                    "Entity": "Referrals"
                   }
                 },
                 "Property": "# of Referrals Opened"
@@ -66,7 +67,8 @@
             },
             "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {
@@ -140,7 +142,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -181,7 +183,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -204,9 +206,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": 0.2
+                    "Literal": {
+                      "Value": "'#51B5BC'"
                     }
                   }
                 }

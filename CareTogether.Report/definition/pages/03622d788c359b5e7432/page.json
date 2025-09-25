@@ -23,15 +23,69 @@
         "howCreated": "User"
       },
       {
-        "name": "bc5998523a3db1e0e048",
+        "name": "f53472caea5175b4405f",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Role Approval"
+                "Entity": "Approval Type"
               }
             },
-            "Property": "Entity Name"
+            "Property": "Approval Type"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "Approval Type",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "a"
+                          }
+                        },
+                        "Property": "Approval Type"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Direct'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "f12e517f8e953c8b03fe",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location"
+              }
+            },
+            "Property": "Location"
           }
         },
         "type": "Categorical",

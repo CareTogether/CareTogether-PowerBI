@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "586be121e29e55589a30",
   "position": {
-    "x": 11.058020477815699,
-    "y": 294.88054607508531,
-    "z": 2000,
-    "height": 415.29010238907853,
-    "width": 629.07849829351539,
-    "tabOrder": 2000
+    "x": 10.909090909090908,
+    "y": 294.5454545454545,
+    "z": 5000,
+    "height": 198.18181818181816,
+    "width": 629.090909090909,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,58 +20,42 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Function Assignments"
+                      "Entity": "Family"
                     }
                   },
-                  "Property": "EntityId"
+                  "Property": "Family Name"
                 }
               },
-              "queryRef": "Function Assignments.EntityId",
-              "nativeQueryRef": " ",
-              "displayName": " "
+              "queryRef": "Family.Family Name",
+              "nativeQueryRef": "Family Name"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Engagement by Entity"
+                      "Entity": "Family"
                     }
                   },
-                  "Property": "Dynamic Entity Name (Engagement)"
+                  "Property": "Family Engagement Level"
                 }
               },
-              "queryRef": "Engagement by Entity.Dynamic Entity Name",
-              "nativeQueryRef": "Name",
-              "displayName": "Name"
+              "queryRef": "Family.Family Engagement Level",
+              "nativeQueryRef": "# of Assigments",
+              "displayName": "# of Assigments"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
-                  "Property": "Entity Engagement Level"
+                  "Property": "Family Last Assignment Date"
                 }
               },
-              "queryRef": "Entity.Engagement Level",
-              "nativeQueryRef": "# of Assignments",
-              "displayName": "# of Assignments"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Entity"
-                    }
-                  },
-                  "Property": "Entity Last Assignment Date"
-                }
-              },
-              "queryRef": "Entity.Entity Last Assignment Date",
+              "queryRef": "Family.Family Last Assignment Date",
               "nativeQueryRef": "Last Assignment Date",
               "displayName": "Last Assignment Date"
             },
@@ -80,13 +64,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
                   "Property": "Participation Type"
                 }
               },
-              "queryRef": "Entity.Participation Type",
+              "queryRef": "Family.Participation Type",
               "nativeQueryRef": "Participation Type"
             }
           ]
@@ -99,10 +83,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Entity"
+                    "Entity": "Family"
                   }
                 },
-                "Property": "Entity Engagement Level"
+                "Property": "Family Engagement Level"
               }
             },
             "direction": "Descending"
@@ -183,62 +167,6 @@
           "selector": {
             "metadata": "ChildLocationExpanded.ChildcarePlan"
           }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Function Assignments.EntityId"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "167.81159590050513D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Engagement by Entity.Dynamic Entity Name"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "170.48806297202424D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Entity.Entity Last Assignment Date"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "117.85658382386374D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Entity.Engagement Level"
-          }
         }
       ],
       "total": [
@@ -291,43 +219,6 @@
             }
           }
         }
-      ],
-      "columnFormatting": [
-        {
-          "properties": {
-            "styleTotal": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "styleHeader": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Function Assignments.EntityId"
-          }
-        },
-        {
-          "properties": {
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Left'"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Entity.Entity Last Assignment Date"
-          }
-        }
       ]
     },
     "visualContainerObjects": {
@@ -376,7 +267,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arrangement Details'"
+                  "Value": "'Family Arrangement Details'"
                 }
               }
             }
@@ -584,56 +475,60 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "763e8a830eb54b507631",
+        "name": "b8f41b30461572418ba7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d6a7ce4c3492f12a971a",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Family"
               }
             },
-            "Property": "Entity Engagement Level"
+            "Property": "Family Engagement Level"
           }
         },
-        "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "e1",
-              "Entity": "Entity",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "Comparison": {
-                      "ComparisonKind": 0,
-                      "Left": {
-                        "Measure": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Source": "e1"
-                            }
-                          },
-                          "Property": "Entity Engagement Level"
-                        }
-                      },
-                      "Right": {
-                        "Literal": {
-                          "Value": "null"
-                        }
-                      }
-                    }
-                  }
-                }
+        "type": "Advanced"
+      },
+      {
+        "name": "026088a9e1e67a04b9fb",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
               }
-            }
-          ]
-        }
+            },
+            "Property": "Family Last Assignment Date"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "71994fd053e74ded41bb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Participation Type"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

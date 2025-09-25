@@ -1,0 +1,256 @@
+table Family
+	lineageTag: 5585aeeb-f4e2-456d-8f6e-436d261a4cc2
+
+	measure 'Community Membership Count' = COALESCE(COUNTROWS(RELATEDTABLE('Community Member Families')),0)
+		formatString: 0
+		lineageTag: f444aa30-f3a1-4b3c-b10b-e2ff4d9d616a
+
+	measure '# of Families' = DISTINCTCOUNT(Family[Family UID])
+		formatString: 0
+		lineageTag: 59c543dd-aa32-4225-a26a-67e95815db24
+
+	measure 'Family Engagement Level' =
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN
+			IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        COUNTROWS('Family Function Assignments'),
+			        NOT ISBLANK(Arrangements[Started]),
+			        Arrangements[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK('Arrangements'[Ended]),
+			            TRUE(),
+			            'Arrangements'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 2164632b-94bf-44be-a845-573fd5d5b135
+
+	measure '# of Engaged Families' =
+			CALCULATE(
+			    DISTINCTCOUNT(Family[Family UID]),
+			    FILTER(
+			        Family,
+			        [Family Engagement Level] > 0
+			    )
+			)
+		formatString: 0
+		lineageTag: 94d43bd4-6462-402e-b298-4e63c62007b0
+
+	measure 'Family Last Assignment Date' =
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        MAXX(
+			            ADDCOLUMNS(
+			                'Family Function Assignments',
+			                "EffectiveEnded", IF(ISBLANK(RELATED(Arrangements[Ended])), Today, RELATED(Arrangements[Ended]))
+			            ),
+			            [EffectiveEnded]
+			        ),
+			        NOT ISBLANK(Arrangements[Started]),
+			        Arrangements[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK('Arrangements'[Ended]),
+			            TRUE(),
+			            'Arrangements'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+		formatString: Short Date
+		lineageTag: 2f1e4013-2a6d-4469-8944-fa7b4a586d64
+
+	column 'RLS Key'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 9b81b91b-0a7b-4369-8ad5-230d2d2f28b9
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family UID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 9602b56d-1e4c-4149-bf57-1db9c8fa0ff0
+		summarizeBy: none
+		sourceColumn: Family UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Id'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 1bf494d3-fbb9-4a47-970f-c4e70728ecc8
+		summarizeBy: none
+		sourceColumn: Family Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Name'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 430fe861-f945-4edc-8a28-3a9f5e92853d
+		summarizeBy: none
+		sourceColumn: Family Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 57285976-29bb-4775-b26c-b510b16283c5
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Phone Number'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: c313e0e0-f05d-48cd-89cd-dc39a915e31d
+		summarizeBy: none
+		sourceColumn: Phone Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 1'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 47710304-9a3a-4657-b8da-77bc8c3d33e7
+		summarizeBy: none
+		sourceColumn: Address Line 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 2'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 59c6accb-f738-427c-b53b-a1323b764df7
+		summarizeBy: none
+		sourceColumn: Address Line 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Postal Code'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: a8b986bf-7bf6-4500-bc09-d6709065c2a2
+		summarizeBy: none
+		sourceColumn: Postal Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Home Church'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: ba6c0946-1410-40be-9e6f-da5edca96367
+		summarizeBy: none
+		sourceColumn: Home Church
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 0bea3d55-bb7f-438a-a63b-adb8ae95037d
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column County
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 54c9d99e-91e5-49a9-aa7b-d66dbef9a8ac
+		summarizeBy: none
+		sourceColumn: County
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 535724e2-72b9-4a2c-9498-d9c0c329b698
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Participation Type' =
+			
+			
+			VAR FamilyRoleApprovals = CALCULATE(
+			    COUNTROWS('Family Role Approvals'),
+			    'Family Role Approvals'[Entity Type] = "Family"
+			)
+			
+			VAR IndividualRoleApprovals = CALCULATE(
+			    COUNTROWS('Individual Role Approvals'),
+			    'Individual Role Approvals'[Entity Type] = "Person"
+			)
+			
+			VAR Referrals = COUNTROWS(RELATEDTABLE(Referrals))
+			
+			RETURN IF(
+			    FamilyRoleApprovals + IndividualRoleApprovals > 0,
+			    "Volunteer Family",
+			    IF(Referrals > 0,
+			        "Partnering Family",
+			        "Other"
+			    )
+			)
+		lineageTag: 7850d05a-73b3-44bc-a171-99cbfbbb53b1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Family = m
+		mode: import
+		queryGroup: Dimensions
+		source = ```
+				let
+				    Source = #"OData Live",
+				    Family = Source{[Name="Family", Signature="table"]}[Data],
+				    FamilyTransformed = 
+				
+				    Table.SelectColumns(
+				        Table.RenameColumns(
+				            Table.ExpandRecordColumn(
+				                Table.AddColumn(
+				                    Table.AddColumn(
+				                        Family,
+				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                    ),
+				                    "Family UID", each Text.Combine({[RLS Key], [Id]}, "-")
+				                ),
+				                "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}
+				            ),
+				            {{"Id", "Family Id"}, {"Name", "Family Name"}, {"PrimaryEmail", "Email"}, {"PrimaryPhoneNumber", "Phone Number"}, {"Line1", "Address Line 1"}, {"Line2", "Address Line 2"}, {"PostalCode", "Postal Code"}, {"HomeChurch", "Home Church"}}
+				        ),
+				        {"RLS Key", "Family UID", "Family Id", "Family Name", "Email", "Phone Number", "Address Line 1", "Address Line 2", "City", "County", "State", "Postal Code", "Home Church"}
+				    )
+				
+				in
+				    FamilyTransformed
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

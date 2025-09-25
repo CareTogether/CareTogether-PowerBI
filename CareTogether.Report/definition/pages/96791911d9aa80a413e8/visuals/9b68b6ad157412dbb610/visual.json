@@ -2,12 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "9b68b6ad157412dbb610",
   "position": {
-    "x": 10.443686006825939,
-    "y": 99.5221843003413,
+    "x": 9.98439937597504,
+    "y": 98.8455538221529,
     "z": 2000,
-    "height": 608.80546075085329,
-    "width": 1260,
-    "tabOrder": 2000
+    "height": 613.04212168486742,
+    "width": 1260.0312012480501
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,27 +19,27 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
                   "Property": "Family Name"
                 }
               },
-              "queryRef": "Entity.Family Name",
-              "nativeQueryRef": "Family Name"
+              "queryRef": "Family.Family Name",
+              "nativeQueryRef": "Family Name1"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Role Approval"
+                      "Entity": "Family Role Approvals"
                     }
                   },
-                  "Property": "Volunteer Family Status Flag"
+                  "Property": "Volunteer Family Status"
                 }
               },
-              "queryRef": "Role Approval.Volunteer Family Status Flag",
+              "queryRef": "Family Role Approvals.Volunteer Family Status",
               "nativeQueryRef": "Family Status",
               "displayName": "Family Status"
             },
@@ -49,13 +48,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Person"
                     }
                   },
                   "Property": "Full Name"
                 }
               },
-              "queryRef": "Entity.Full Name",
+              "queryRef": "Person.Full Name",
               "nativeQueryRef": "Person Name",
               "displayName": "Person Name"
             },
@@ -64,13 +63,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Role Approval"
+                      "Entity": "Individual Role Approvals"
                     }
                   },
-                  "Property": "Volunteer Individual Status Flag"
+                  "Property": "Volunteer Individual Status"
                 }
               },
-              "queryRef": "Role Approval.Volunteer Individual Status Flag",
+              "queryRef": "Individual Role Approvals.Volunteer Individual Status",
               "nativeQueryRef": "Person Status",
               "displayName": "Person Status"
             },
@@ -79,13 +78,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Person"
                     }
                   },
                   "Property": "Age"
                 }
               },
-              "queryRef": "Entity.Age",
+              "queryRef": "Person.Age",
               "nativeQueryRef": "Age"
             },
             {
@@ -93,13 +92,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Person"
                     }
                   },
                   "Property": "Gender"
                 }
               },
-              "queryRef": "Entity.Gender",
+              "queryRef": "Person.Gender",
               "nativeQueryRef": "Gender"
             },
             {
@@ -107,13 +106,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
                   "Property": "Email"
                 }
               },
-              "queryRef": "Entity.Email",
+              "queryRef": "Family.Email",
               "nativeQueryRef": "Email"
             },
             {
@@ -121,13 +120,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
                   "Property": "Phone Number"
                 }
               },
-              "queryRef": "Entity.Phone Number",
+              "queryRef": "Family.Phone Number",
               "nativeQueryRef": "Phone Number"
             },
             {
@@ -135,13 +134,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
                   "Property": "Address Line 1"
                 }
               },
-              "queryRef": "Entity.Address Line 1",
+              "queryRef": "Family.Address Line 1",
               "nativeQueryRef": "Address Line 1"
             },
             {
@@ -149,13 +148,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
                   "Property": "Address Line 2"
                 }
               },
-              "queryRef": "Entity.Address Line 2",
+              "queryRef": "Family.Address Line 2",
               "nativeQueryRef": "Address Line 2"
             },
             {
@@ -163,13 +162,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
                   "Property": "City"
                 }
               },
-              "queryRef": "Entity.City",
+              "queryRef": "Family.City",
               "nativeQueryRef": "City"
             },
             {
@@ -177,13 +176,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
                   "Property": "County"
                 }
               },
-              "queryRef": "Entity.County",
+              "queryRef": "Family.County",
               "nativeQueryRef": "County"
             },
             {
@@ -191,34 +190,17 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Family"
                     }
                   },
-                  "Property": "PostalCode"
+                  "Property": "Postal Code"
                 }
               },
-              "queryRef": "Entity.PostalCode",
-              "nativeQueryRef": "PostalCode"
+              "queryRef": "Family.Postal Code",
+              "nativeQueryRef": "Postal Code"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Entity"
-                  }
-                },
-                "Property": "Family Name"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "objects": {
@@ -338,13 +320,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "144.68612033644854D"
+                  "Value": "115.96568432326183D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Entity.Full Name"
+            "metadata": "Family Role Approvals.Volunteer Family Status"
           }
         },
         {
@@ -352,13 +334,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "137.61774821355488D"
+                  "Value": "166.0639661739217D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Role Approval.Volunteer Family Status Flag"
+            "metadata": "Family.Family Name"
           }
         },
         {
@@ -366,13 +348,69 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "93.77688556962005D"
+                  "Value": "124.98127795888982D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Role Approval.Volunteer Individual Status Flag"
+            "metadata": "Person.Full Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "114.96879234722924D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Individual Role Approvals.Volunteer Individual Status"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "48.97815912636506D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Person.Age"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "74.96879875195008D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Person.Gender"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "127.07643289386165D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Family.Address Line 1"
           }
         }
       ],
@@ -635,43 +673,43 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "f99a5827ac2405aab80b",
+        "name": "7f0a19d50751522d2211",
         "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Family"
               }
             },
-            "Property": "Address Line 1"
+            "Property": "Family Name"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "f9595f50402a33842bed",
+        "name": "e3e5d692e0d39808b590",
         "ordinal": 1,
         "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Family Role Approvals"
               }
             },
-            "Property": "Address Line 2"
+            "Property": "Volunteer Family Status"
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
       },
       {
-        "name": "0877463cd61a00ca087b",
+        "name": "e49e4028471b3d067be4",
         "ordinal": 2,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Family"
               }
             },
             "Property": "City"
@@ -680,103 +718,13 @@
         "type": "Categorical"
       },
       {
-        "name": "6bee80ccc1ae4a035646",
+        "name": "9f31cc14a2ded6a9e89c",
         "ordinal": 3,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "County"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "4a816c80b883e0006b28",
-        "ordinal": 4,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "Email"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "c1907b530500447ba701",
-        "ordinal": 5,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "Family Name"
-          }
-        },
-        "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "e",
-              "Entity": "Entity",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "Comparison": {
-                      "ComparisonKind": 0,
-                      "Left": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Source": "e"
-                            }
-                          },
-                          "Property": "Family Name"
-                        }
-                      },
-                      "Right": {
-                        "Literal": {
-                          "Value": "null"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "objects": {
-          "general": [
-            {
-              "properties": {}
-            }
-          ]
-        }
-      },
-      {
-        "name": "d74e135dda07d1238a4b",
-        "ordinal": 6,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Person"
               }
             },
             "Property": "Full Name"
@@ -785,128 +733,28 @@
         "type": "Categorical"
       },
       {
-        "name": "c129bfdb2949b473ee09",
-        "ordinal": 7,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "Phone Number"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "c8894cb0dd5505e07825",
-        "ordinal": 8,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "PostalCode"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d44446935aa3ee16a464",
-        "ordinal": 9,
+        "name": "a2c7e670db071058d930",
+        "ordinal": 4,
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Role Approval"
+                "Entity": "Individual Role Approvals"
               }
             },
-            "Property": "Volunteer Family Status Flag"
+            "Property": "Volunteer Individual Status"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "7384fde40366b1a17057",
-        "ordinal": 10,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Role Approval"
-              }
-            },
-            "Property": "Volunteer Individual Status Flag"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "2dab7609b64d602e1ed0",
-        "ordinal": 11,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "RLS Key Selected"
-          }
-        },
-        "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "e",
-              "Entity": "Entity",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "Comparison": {
-                      "ComparisonKind": 0,
-                      "Left": {
-                        "Measure": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Source": "e"
-                            }
-                          },
-                          "Property": "RLS Key Selected"
-                        }
-                      },
-                      "Right": {
-                        "Literal": {
-                          "Value": "null"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User",
-        "isHiddenInViewMode": true,
-        "isLockedInViewMode": true
-      },
-      {
-        "name": "8c064333caa252e5bd47",
+        "name": "96ff5123e6d47e2c93a0",
+        "ordinal": 5,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Person"
               }
             },
             "Property": "Age"
@@ -915,15 +763,106 @@
         "type": "Advanced"
       },
       {
-        "name": "6978d73b650dc6187aaa",
+        "name": "212be1633e68adecd18a",
+        "ordinal": 6,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Person"
               }
             },
             "Property": "Gender"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5ae951bae82908811bca",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Email"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e8e5c8222e6110e37001",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Phone Number"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b05152100d0ab0208258",
+        "ordinal": 9,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Address Line 1"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6a0ff5001dc0608a0c51",
+        "ordinal": 10,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Address Line 2"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "faf33b7109780c9ab5d5",
+        "ordinal": 11,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "County"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3cad2b6a28eedc05461d",
+        "ordinal": 12,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Postal Code"
           }
         },
         "type": "Categorical"

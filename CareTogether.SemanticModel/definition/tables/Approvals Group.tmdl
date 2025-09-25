@@ -1,0 +1,65 @@
+table 'Approvals Group'
+	lineageTag: 96722cdf-8f85-41c2-b47d-8092ea3c5b95
+
+	calculationGroup
+		precedence: 1
+
+		calculationItem Family =
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    'Family Role Approvals'[Entity Type] = "Family"
+				)
+
+		calculationItem Person =
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    'Family Role Approvals'[Entity Type] = "Person"
+				)
+
+	measure '# of Entities in Role' =
+			
+			VAR Option = SELECTEDVALUE('Approvals Group'[Entity Type])
+			
+			VAR Families = CALCULATE(
+			    DISTINCTCOUNT('Family Role Approvals'[Entity UID]),
+			    'Family Role Approvals'[Entity Type] = "Family"
+			)
+			
+			VAR Individuals = CALCULATE(
+			    DISTINCTCOUNT('Individual Role Approvals'[Entity UID]),
+			    'Individual Role Approvals'[Entity Type] = "Person"
+			)
+			
+			RETURN SWITCH(
+			    Option,
+			    "Family", Families,
+			    "Person", Individuals
+			)
+		formatString: 0
+		lineageTag: 312b4bb7-0c6e-4571-9e26-90941077e24e
+
+	measure 'Person Type Visibility Flag' = IF(SELECTEDVALUE('Approvals Group'[Entity Type]) = "Person", 1, BLANK())
+		formatString: 0
+		lineageTag: 7abae082-a878-4f7c-ba78-2b93365ad019
+
+	measure '# Approval Tracker' = ```
+			
+			
+			VAR Tracker = "TEST" 
+			RETURN TRUE
+			```
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7abee868-4764-4bf9-95df-354a69267d92
+
+	column 'Entity Type'
+		dataType: string
+		lineageTag: 96312954-8b95-4f3b-8c3d-3bc4807386cb
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: dc31dd51-b264-468f-83c2-95e854c889dd
+		sourceColumn: Ordinal
+

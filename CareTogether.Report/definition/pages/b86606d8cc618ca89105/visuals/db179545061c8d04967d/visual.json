@@ -7,7 +7,7 @@
     "z": 1000,
     "height": 96.450511945392492,
     "width": 354.47098976109214,
-    "tabOrder": 1000
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Approvals by Entity"
+                      "Entity": "Approvals Group"
                     }
                   },
                   "Property": "Entity Type"
                 }
               },
-              "queryRef": "Approvals by Entity.Entity Type",
-              "nativeQueryRef": "Entity Type",
+              "queryRef": "Approvals Group.Entity Type",
+              "nativeQueryRef": "Entity Type1",
               "active": true
             }
           ]
@@ -84,7 +84,7 @@
                 "From": [
                   {
                     "Name": "a",
-                    "Entity": "Approvals by Entity",
+                    "Entity": "Approvals Group",
                     "Type": 0
                   }
                 ],
@@ -386,12 +386,12 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "509be7d03f1519aa6c69",
+        "name": "373036d983a1eaba017d",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Approvals by Entity"
+                "Entity": "Approvals Group"
               }
             },
             "Property": "Entity Type"

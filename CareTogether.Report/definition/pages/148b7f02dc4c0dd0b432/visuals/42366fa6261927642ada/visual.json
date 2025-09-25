@@ -6,8 +6,7 @@
     "y": 9.2150170648464158,
     "z": 1000,
     "height": 555.9726962457338,
-    "width": 364.91467576791808,
-    "tabOrder": 1000
+    "width": 364.91467576791808
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -42,11 +41,12 @@
                       "Entity": "Child Location Record"
                     }
                   },
-                  "Property": "Days of Care"
+                  "Property": "# of Days of Care"
                 }
               },
-              "queryRef": "Child Location Record.Days of Care",
-              "nativeQueryRef": "Days of Care"
+              "queryRef": "Child Location Record.# of Days of Care",
+              "nativeQueryRef": "Days of Care",
+              "displayName": "Days of Care"
             },
             {
               "field": {
@@ -56,25 +56,27 @@
                       "Entity": "Child Location Record"
                     }
                   },
-                  "Property": "Nights of Care"
+                  "Property": "# of Nights of Care"
                 }
               },
-              "queryRef": "Child Location Record.Nights of Care",
-              "nativeQueryRef": "Nights of Care"
+              "queryRef": "Child Location Record.# of Nights of Care",
+              "nativeQueryRef": "Nights of Care",
+              "displayName": "Nights of Care"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Client Person"
                     }
                   },
-                  "Property": "# of Children Cared For"
+                  "Property": "# of Children Cared For (Client)"
                 }
               },
-              "queryRef": "Entity.# of Children Cared For",
-              "nativeQueryRef": "# of Children Cared For"
+              "queryRef": "Client Person.# of Children Cared For (Client)",
+              "nativeQueryRef": "Children Cared For1",
+              "displayName": "Children Cared For"
             }
           ]
         }
@@ -89,7 +91,7 @@
                     "Entity": "Child Location Record"
                   }
                 },
-                "Property": "Days of Care"
+                "Property": "# of Days of Care"
               }
             },
             "direction": "Descending"
@@ -169,7 +171,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -210,7 +212,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -249,24 +251,6 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#80C9D5'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Child Location Record.Days of Care"
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
                       "Value": "'#1A6F7C'"
                     }
                   }
@@ -275,25 +259,7 @@
             }
           },
           "selector": {
-            "metadata": "Child Location Record.Nights of Care"
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#0E4F52'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Entity.# of Children Cared For"
+            "metadata": "Child Location Record.# of Nights of Care"
           }
         }
       ],

@@ -1,45 +1,34 @@
 table 'Childcare Plan'
-	lineageTag: e454f50c-d108-4cc7-b49d-4585c9ad868e
+	lineageTag: 8197a540-9290-4d4f-8a22-c9d6c9ca5256
 
 	column ChildLocationPlan
 		dataType: string
-		isHidden
-		isKey
-		lineageTag: e0e1123a-5a87-4d10-ba72-070adf828ed3
+		lineageTag: 8e7af2a3-2fea-449f-a013-6a71a86e938c
 		summarizeBy: none
 		sourceColumn: ChildLocationPlan
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column Order
 		dataType: int64
-		isHidden
 		formatString: 0
-		lineageTag: 18199935-fbc4-4ebf-ad23-3d6cc0b9dd40
+		lineageTag: c23fbbd6-fa73-4319-9206-d786bc5b1314
 		summarizeBy: none
 		sourceColumn: Order
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column Plan
 		dataType: string
-		lineageTag: bff61be4-3b1d-40d9-8f91-f35e2d5dfba1
-		isDefaultLabel
+		lineageTag: 6fce5db9-ac06-4a3c-8062-b7e67c59e886
 		summarizeBy: none
 		sourceColumn: Plan
-		sortByColumn: Order
-
-		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 'Childcare Plan-fb1875f4-18db-43aa-a9b3-00ed767cc8be' = m
+	partition 'Childcare Plan' = m
 		mode: import
-		queryGroup: 'Reference Tables'
+		queryGroup: Dimensions
 		source =
 				let
 				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8i9LLcrLTM8o8cgvLc7MS1fSUTIAYriwAkw8VidaySWxsiQzN9U5IzMnxTmxKBWo0BCIocIKYPFkkDhIcXhmSUYAkJNXAlRiBMQgAQWoSGwsAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ChildLocationPlan = _t, Order = _t, Plan = _t]),

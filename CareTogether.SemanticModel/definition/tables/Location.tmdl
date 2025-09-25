@@ -1,9 +1,9 @@
 table Location
-	lineageTag: 9b78184e-f905-4fe7-8a9c-7b1b82d0da8c
+	lineageTag: 8b4ebd77-c4b0-42a5-93d7-a051b5863d3a
 
 	column 'RLS Key'
 		dataType: string
-		lineageTag: 8ad230f8-c550-405a-8203-c929a3086632
+		lineageTag: 518385f7-1022-484f-aa61-3c53f35cd0ac
 		summarizeBy: none
 		sourceColumn: RLS Key
 
@@ -11,7 +11,7 @@ table Location
 
 	column Location
 		dataType: string
-		lineageTag: 97b1dc7f-4d67-4527-bf14-7423eb64f770
+		lineageTag: 02c86e9f-d4fb-4f28-b194-e03695bb6fca
 		summarizeBy: none
 		sourceColumn: Location
 
@@ -27,26 +27,29 @@ table Location
 
 	partition Location = m
 		mode: import
-		queryGroup: 'Model Queries'
+		queryGroup: Dimensions
 		source = ```
 				let
 				    Source = #"OData Live",
-				    SourceTable = Source{[Name="Location",Signature="table"]}[Data],
-				
-				    Locations = 
+				    Location = Source{[Name="Location", Signature="table"]}[Data],
+				    LocationTransformed = 
 				    Table.SelectColumns(
-				        Table.AddColumn(
-				            Table.RenameColumns(
-				                SourceTable,
-				                {{"Name", "Location"}}
+				        Table.RenameColumns(
+				            Table.AddColumn(
+				                Location,
+				                "RLS Key", each Text.Combine({[OrganizationId], [Id]}, "-")
 				            ),
-				            "RLS Key", each Text.Combine({[OrganizationId], [Id]}, "-")
+				            {{"Name", "Location Name"}}
 				        ),
-				        {"RLS Key", "Id", "Location"}
-				    )
+				        {"RLS Key", "Location Name"}
+				    ),
+				    #"Renamed Columns" = Table.RenameColumns(LocationTransformed,{{"Location Name", "Location"}})
+				
 				in
-				    Locations
+				    #"Renamed Columns"
 				```
+
+	changedProperty = Name
 
 	annotation PBI_NavigationStepName = Navigation
 

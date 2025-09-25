@@ -1,9 +1,9 @@
 table ChildLocationExpanded
-	lineageTag: 1ad7d14d-cbb6-433b-85ee-5fc54cf0046c
+	lineageTag: 1c692135-9901-47e8-bbdf-f989aca7384c
 
 	column Date
 		formatString: General Date
-		lineageTag: 7a8d7e88-19f5-400f-b564-81ac64deded9
+		lineageTag: 4a9ea283-a9a4-466f-b964-223e98718f18
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Date]
@@ -12,7 +12,7 @@ table ChildLocationExpanded
 
 	column Index
 		formatString: 0
-		lineageTag: c979d0b0-9941-4fd5-ad26-e00c72644cde
+		lineageTag: d4d69fc4-7f7a-4066-bb19-a5c7ae6b0b89
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Index]
@@ -20,7 +20,7 @@ table ChildLocationExpanded
 		annotation SummarizationSetBy = Automatic
 
 	column ChildcarePlan
-		lineageTag: d2112788-be7f-48b7-b736-0594325c6e23
+		lineageTag: dba36bc7-6204-4f57-a9a9-7094605a53c9
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [ChildcarePlan]
@@ -29,14 +29,22 @@ table ChildLocationExpanded
 
 	column OvernightStay
 		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 787eef0b-4782-465f-b3bc-d3e29ee8e5bb
+		lineageTag: 86db0a73-0831-4308-860f-91b3d7d44af3
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [OvernightStay]
 
 		annotation SummarizationSetBy = Automatic
 
-	partition ChildLocationExpanded-f26bbd05-0345-4606-964a-f0e944d8b520 = calculated
+	column 'RLS Key'
+		lineageTag: 96752d28-7318-48f2-bfaa-8367bf84bebe
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [RLS Key]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ChildLocationExpanded = calculated
 		mode: import
 		source = ```
 				
@@ -60,10 +68,11 @@ table ChildLocationExpanded
 				    ),
 				    "Date", 'Date'[Date],
 				    "Index", 'Child Location Record'[Index],
-				    "ChildcarePlan", 'Child Location Record'[ChildcarePlan],
-				    "OvernightStay", [OvernightStay]
+				    "ChildcarePlan", 'Child Location Record'[Childcare Plan],
+				    "OvernightStay", [OvernightStay],
+				    "RLS Key", 'Child Location Record'[RLS Key]
 				)
 				```
 
-	annotation PBI_Id = b4c40957ed824bb8ab63356fd2dce55c
+	annotation PBI_Id = 4641a2599610442495cf907f1e6354cf
 

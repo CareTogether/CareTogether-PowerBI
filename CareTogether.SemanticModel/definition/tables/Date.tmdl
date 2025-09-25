@@ -19,7 +19,7 @@ table Date
 	column Date
 		dataType: dateTime
 		isKey
-		formatString: Long Date
+		formatString: yyyy-mm-dd
 		lineageTag: 73186f1c-0b1d-46fd-9716-7748c2e868ad
 		isDefaultLabel
 		summarizeBy: none
@@ -28,6 +28,8 @@ table Date
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
 
 	column 'Date Integer'
 		dataType: int64

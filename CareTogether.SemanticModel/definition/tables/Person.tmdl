@@ -1,0 +1,249 @@
+table Person
+	lineageTag: 68a9b7b7-2438-4d03-bd69-1eb77d7bd43f
+
+	measure '# of Impacted Children' = ```
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN
+			IF(
+			    CurrentStartDate > Today, 
+			    BLANK(),
+			    CALCULATE(
+			        DISTINCTCOUNT(Person[Person UID]),
+			        FILTER(
+			            VALUES(Family[Family UID]),
+			            COUNTROWS(
+			                FILTER(
+			                    RELATEDTABLE('Arrangements'), // Added the related table to ensure that the formula correctly filters the arrangement table.
+			                    NOT(ISBLANK('Arrangements'[Started])) &&
+			                    'Arrangements'[Started] <= CurrentEndDate &&
+			                    (
+			                        ISBLANK('Arrangements'[Ended]) || 
+			                        'Arrangements'[Ended] >= CurrentStartDate
+			                    )
+			                )
+			            ) > 0
+			        ),
+			        Person[Person Type] = "Child"
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: c51b6f94-dd69-4e59-9c3d-98417bc8a56b
+
+	measure '# of Person' = DISTINCTCOUNT(Person[Person UID])
+		formatString: 0
+		lineageTag: 435e97af-ba06-462a-87db-76f68747bbd6
+
+	measure 'Individual Engagement Level' =
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN
+			IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        COUNTROWS('Individual Function Assignments'),
+			        NOT ISBLANK(Arrangements[Started]),
+			        Arrangements[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK('Arrangements'[Ended]),
+			            TRUE(),
+			            'Arrangements'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 076b887e-20b2-44fb-9a99-55d6ca205f1d
+
+	measure 'Individual Last Engagement Date' =
+			
+			
+			VAR Today = TODAY()
+			VAR CurrentStartDate = [Selected Timeframe Start]
+			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
+			
+			RETURN IF(
+			    CurrentStartDate > Today,
+			    BLANK(),
+			    CALCULATE(
+			        MAXX(
+			            ADDCOLUMNS(
+			                'Individual Function Assignments',
+			                "EffectiveEnded", IF(ISBLANK(RELATED(Arrangements[Ended])), Today, RELATED(Arrangements[Ended]))
+			            ),
+			            [EffectiveEnded]
+			        ),
+			        NOT ISBLANK(Arrangements[Started]),
+			        Arrangements[Started] <= CurrentEndDate,
+			        IF(
+			            ISBLANK('Arrangements'[Ended]),
+			            TRUE(),
+			            'Arrangements'[Ended] >= CurrentStartDate
+			        )
+			    )
+			)
+		formatString: Short Date
+		lineageTag: 8aec3d2f-056d-48e2-9651-55858b73bcc4
+
+	column 'RLS Key'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: e7acad06-e8f7-4f64-9c08-b6a7e5f736b9
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family UID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 27a3efe7-d8b1-4b0c-a8ab-83f774ad1bf8
+		summarizeBy: none
+		sourceColumn: Family UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Person UID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 7fee3a3b-c648-457b-a195-ad8462d1a04c
+		summarizeBy: none
+		sourceColumn: Person UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Person ID'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 67b08ce8-1afe-4a7f-83a2-7c58c09ac789
+		summarizeBy: none
+		sourceColumn: Person ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Name'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 313c136f-a46f-4185-acfe-6d0f0614bdec
+		summarizeBy: none
+		sourceColumn: First Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Name'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: b79f2e72-9627-48bd-a372-b5e06a5b9f6e
+		summarizeBy: none
+		sourceColumn: Last Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Name'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 2231b2c8-27a1-438d-918a-6101ed0d4a97
+		summarizeBy: none
+		sourceColumn: Full Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Person Type'
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 6f1cb883-a143-4952-9117-971ed0e6e6fa
+		summarizeBy: none
+		sourceColumn: Person Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ethnicity
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 742971ca-c73a-441a-8bcc-0b8605dde743
+		summarizeBy: none
+		sourceColumn: Ethnicity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		displayFolder: _Columns
+		lineageTag: 72e50cf4-78fb-430a-a348-aed5bc3f5b70
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date of Birth'
+		dataType: dateTime
+		formatString: Long Date
+		displayFolder: _Columns
+		lineageTag: 2711d299-c786-452c-9c0f-ed5fade657e4
+		summarizeBy: none
+		sourceColumn: Date of Birth
+
+		variation Variation
+			isDefault
+			relationship: 093886a6-d141-4813-8b6c-501e63f69801
+			defaultHierarchy: LocalDateTable_489a36aa-e0b2-448a-8b96-aac93e3f3da3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Age = DATEDIFF(Person[Date of Birth], UTCNOW(), YEAR)
+		formatString: 0
+		displayFolder: _Columns
+		lineageTag: e340382b-fbcb-407b-87e5-29e3dfc33107
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Person = m
+		mode: import
+		queryGroup: Dimensions
+		source = ```
+				let
+				    Source = #"OData Live",
+				    Person = Source{[Name="Person", Signature="table"]}[Data],
+				    PersonTransformed = 
+				
+				    Table.SelectColumns(
+				        Table.AddColumn(
+				            Table.RenameColumns(
+				                Table.AddColumn(
+				                    Table.AddColumn(
+				                        Table.AddColumn(
+				                            Person,
+				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        ),
+				                        "Person UID", each Text.Combine({[RLS Key], [Id]}, "-")
+				                    ),
+				                    "Family UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
+				                ),
+				                {{"Id", "Person ID"}, {"FamilyId", "Family ID"}, {"FirstName", "First Name"}, {"LastName", "Last Name"}, 
+				                {"PersonType", "Person Type"}, {"DateOfBirth", "Date of Birth"}}
+				            ),
+				            "Full Name", each Text.Combine({[First Name], [Last Name]}, " ")
+				        ),
+				        {"RLS Key", "Family UID", "Person UID", "Person ID", "First Name", "Last Name", "Full Name", "Person Type", "Ethnicity", "Gender", "Date of Birth"}
+				    )
+				
+				in
+				    PersonTransformed
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

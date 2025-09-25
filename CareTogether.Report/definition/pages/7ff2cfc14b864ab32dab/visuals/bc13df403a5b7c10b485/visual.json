@@ -4,10 +4,10 @@
   "position": {
     "x": 374.74402730375425,
     "y": 9.829351535836178,
-    "z": 8000,
+    "z": 9000,
     "height": 274.6075085324232,
     "width": 896.92832764505124,
-    "tabOrder": 8000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -54,13 +54,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Engagement Group"
                     }
                   },
                   "Property": "# of Approved Entities"
                 }
               },
-              "queryRef": "Entity.# of Approved Entities",
+              "queryRef": "Engagement Group.# of Approved Entities",
               "nativeQueryRef": "# of Approved Entities"
             },
             {
@@ -68,13 +68,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Engagement Group"
                     }
                   },
                   "Property": "# of Engaged Entities"
                 }
               },
-              "queryRef": "Entity.# of Engaged Entities",
+              "queryRef": "Engagement Group.# of Engaged Entities",
               "nativeQueryRef": "# of Engaged Entities"
             }
           ]
@@ -87,7 +87,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Entity"
+                    "Entity": "Engagement Group"
                   }
                 },
                 "Property": "# of Approved Entities"
@@ -294,7 +294,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -336,7 +336,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Location"
+                            "Entity": "Location Client"
                           }
                         },
                         "Property": "Id"
@@ -387,7 +387,7 @@
             }
           },
           "selector": {
-            "metadata": "Entity.# of Approved Entities"
+            "metadata": "Engagement Group.# of Approved Entities"
           }
         },
         {
@@ -424,7 +424,7 @@
             }
           },
           "selector": {
-            "metadata": "Entity.# of Engaged Entities"
+            "metadata": "Engagement Group.# of Engaged Entities"
           }
         }
       ],

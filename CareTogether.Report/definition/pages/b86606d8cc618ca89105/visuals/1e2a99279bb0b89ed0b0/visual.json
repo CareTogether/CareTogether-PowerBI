@@ -7,7 +7,7 @@
     "z": 4000,
     "height": 106.27986348122867,
     "width": 719.38566552901023,
-    "tabOrder": 4000
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "card",
@@ -20,13 +20,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Approvals Group"
                     }
                   },
                   "Property": "# of Entities in Role"
                 }
               },
-              "queryRef": "Entity.# of Entities in Role",
+              "queryRef": "Approvals Group.# of Entities in Role",
               "nativeQueryRef": "# of Entities in Role"
             }
           ]
@@ -39,7 +39,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Entity"
+                    "Entity": "Approvals Group"
                   }
                 },
                 "Property": "# of Entities in Role"
@@ -182,23 +182,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "c4536a5f20aa5f18701f",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Entity"
-              }
-            },
-            "Property": "# of Entities in Role"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

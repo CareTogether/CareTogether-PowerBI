@@ -7,7 +7,7 @@
     "z": 3000,
     "height": 468.57142857142861,
     "width": 365,
-    "tabOrder": 3000
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "multiRowCard",
@@ -20,27 +20,28 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Location"
+                      "Entity": "Location Client"
                     }
                   },
                   "Property": "Location"
                 }
               },
-              "queryRef": "Location.Location",
-              "nativeQueryRef": "Location"
+              "queryRef": "Location.Location Name",
+              "nativeQueryRef": "Location",
+              "displayName": "Location"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "# of Families Referred"
                 }
               },
-              "queryRef": "Referral.# of Families Referred",
+              "queryRef": "Referrals.# of Families Referred",
               "nativeQueryRef": "Families Referred",
               "displayName": "Families Referred"
             },
@@ -49,14 +50,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Client Family"
                     }
                   },
-                  "Property": "# of Families Supported"
+                  "Property": "# of Client Families Supported"
                 }
               },
-              "queryRef": "Entity.# of Families Supported",
-              "nativeQueryRef": "Families Supported",
+              "queryRef": "Client Family.# of Client Families Supported",
+              "nativeQueryRef": "Families Supported1",
               "displayName": "Families Supported"
             },
             {
@@ -64,13 +65,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Client Person"
                     }
                   },
-                  "Property": "# of Children Cared For"
+                  "Property": "# of Children Cared For (Client)"
                 }
               },
-              "queryRef": "Entity.# of Children Cared For",
+              "queryRef": "Client Person.# of Children Cared For (Client)",
               "nativeQueryRef": "Children Cared For",
               "displayName": "Children Cared For"
             },
@@ -79,13 +80,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement"
+                      "Entity": "Arrangements"
                     }
                   },
                   "Property": "# of Arrangements Started"
                 }
               },
-              "queryRef": "Arrangement.# of Arrangements Started",
+              "queryRef": "Arrangements.# of Arrangements Started",
               "nativeQueryRef": "Arrangements Started",
               "displayName": "Arrangements Started"
             },
@@ -97,11 +98,12 @@
                       "Entity": "Child Location Record"
                     }
                   },
-                  "Property": "Days of Care"
+                  "Property": "# of Days of Care"
                 }
               },
-              "queryRef": "Child Location Record.Days of Care",
-              "nativeQueryRef": "Days of Care"
+              "queryRef": "Child Location Record.# of Days of Care",
+              "nativeQueryRef": "Days of Care",
+              "displayName": "Days of Care"
             },
             {
               "field": {
@@ -111,24 +113,25 @@
                       "Entity": "Child Location Record"
                     }
                   },
-                  "Property": "Nights of Care"
+                  "Property": "# of Nights of Care"
                 }
               },
-              "queryRef": "Child Location Record.Nights of Care",
-              "nativeQueryRef": "Nights of Care"
+              "queryRef": "Child Location Record.# of Nights of Care",
+              "nativeQueryRef": "Nights of Care",
+              "displayName": "Nights of Care"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Client Person"
                     }
                   },
-                  "Property": "# Impacted Adults"
+                  "Property": "# of Impacted Adults (Client)"
                 }
               },
-              "queryRef": "Entity.# Impacted Adults",
+              "queryRef": "Client Person.# of Impacted Adults (Client)",
               "nativeQueryRef": "Impacted Adults",
               "displayName": "Impacted Adults"
             },
@@ -137,13 +140,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Client Person"
                     }
                   },
-                  "Property": "# Impacted Children"
+                  "Property": "# of Impacted Children (Client)"
                 }
               },
-              "queryRef": "Entity.# Impacted Children",
+              "queryRef": "Client Person.# of Impacted Children (Client)",
               "nativeQueryRef": "Impacted Children",
               "displayName": "Impacted Children"
             }
@@ -157,7 +160,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Location"
+                    "Entity": "Location Client"
                   }
                 },
                 "Property": "Location"
@@ -239,10 +242,18 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#9A9A9A'"
+                    "ThemeDataColor": {
+                      "ColorId": 6,
+                      "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -485,12 +496,12 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "c95c69fa10c06b6deed0",
+        "name": "3b00b963d4d2a9b70695",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Location"
+                "Entity": "Location Client"
               }
             },
             "Property": "Location"
@@ -499,12 +510,12 @@
         "type": "Categorical"
       },
       {
-        "name": "d209572f6aa31d8693e1",
+        "name": "8d4f8f1aa806644a5214",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Referral"
+                "Entity": "Referrals"
               }
             },
             "Property": "# of Families Referred"
@@ -513,40 +524,40 @@
         "type": "Advanced"
       },
       {
-        "name": "a24293084d20049decb1",
+        "name": "513917d84848a6037b78",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Client Family"
               }
             },
-            "Property": "# of Families Supported"
+            "Property": "# of Client Families Supported"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "3e49ed49ae4e023c415f",
+        "name": "832232f6f8375e7cefd3",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Client Person"
               }
             },
-            "Property": "# of Children Cared For"
+            "Property": "# of Children Cared For (Client)"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "cbf0214be538e7eff490",
+        "name": "d27c4d69fd1891ebb317",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Arrangement"
+                "Entity": "Arrangements"
               }
             },
             "Property": "# of Arrangements Started"
@@ -555,7 +566,7 @@
         "type": "Advanced"
       },
       {
-        "name": "50e527fa2123b423e251",
+        "name": "e947571007bb856df152",
         "field": {
           "Measure": {
             "Expression": {
@@ -563,13 +574,13 @@
                 "Entity": "Child Location Record"
               }
             },
-            "Property": "Days of Care"
+            "Property": "# of Days of Care"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "29447961d7dc4ce7e9ce",
+        "name": "7a177a2fcaf2d295743f",
         "field": {
           "Measure": {
             "Expression": {
@@ -577,35 +588,35 @@
                 "Entity": "Child Location Record"
               }
             },
-            "Property": "Nights of Care"
+            "Property": "# of Nights of Care"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "f7bc66bad845c7f2ba4d",
+        "name": "c7f38b292fd3904e6cc0",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Client Person"
               }
             },
-            "Property": "# Impacted Adults"
+            "Property": "# of Impacted Adults (Client)"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "e1a6888589920fd4d179",
+        "name": "3063cbcd6ecf8da977c4",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Entity"
+                "Entity": "Client Person"
               }
             },
-            "Property": "# Impacted Children"
+            "Property": "# of Impacted Children (Client)"
           }
         },
         "type": "Advanced"

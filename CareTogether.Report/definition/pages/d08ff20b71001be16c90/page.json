@@ -8,7 +8,37 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "dc875673d2060c2b8c2b",
+        "name": "16c9176aacd331a7ed5e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement Type"
+              }
+            },
+            "Property": "Arrangement Type"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "4f6dfccf8ee9bb727d90",
         "field": {
           "Column": {
             "Expression": {
@@ -23,15 +53,15 @@
         "howCreated": "User"
       },
       {
-        "name": "b70484c6dd7ba1006d15",
+        "name": "2eb9f29800f9914b9eb1",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Arrangement Type"
+                "Entity": "Location Client"
               }
             },
-            "Property": "Arrangement Type"
+            "Property": "Location"
           }
         },
         "type": "Categorical",

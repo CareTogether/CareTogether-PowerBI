@@ -7,7 +7,7 @@
     "z": 7000,
     "height": 341.33333333333331,
     "width": 885.33333333333337,
-    "tabOrder": 7000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Client Family"
                     }
                   },
                   "Property": "Family Name"
                 }
               },
-              "queryRef": "Entity.Family Name",
+              "queryRef": "Client Family.Family Name",
               "nativeQueryRef": "Family Name"
             },
             {
@@ -34,42 +34,42 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "Referral Source"
                 }
               },
-              "queryRef": "Referral.Referral Source",
-              "nativeQueryRef": "Referral Source"
+              "queryRef": "Referrals.Referral Source",
+              "nativeQueryRef": "Referral Source1"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "Opened"
                 }
               },
-              "queryRef": "Referral.Opened",
-              "nativeQueryRef": "Opened"
+              "queryRef": "Referrals.Opened",
+              "nativeQueryRef": "Opened1"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "Closed"
                 }
               },
-              "queryRef": "Referral.Closed",
-              "nativeQueryRef": "Closed"
+              "queryRef": "Referrals.Closed",
+              "nativeQueryRef": "Closed1"
             },
             {
               "field": {
@@ -90,13 +90,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referral"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "# of Referrals Opened"
                 }
               },
-              "queryRef": "Referral.# of Referrals Opened",
+              "queryRef": "Referrals.# of Referrals Opened",
               "nativeQueryRef": " ",
               "displayName": " "
             }
@@ -110,7 +110,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Referral"
+                    "Entity": "Referrals"
                   }
                 },
                 "Property": "Opened"
@@ -217,63 +217,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "267.6856391934623D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Entity.Family Name"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "156D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Referral.Referral Source"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "135.33333333333334D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Referral.Opened"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "116.66666666666666D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Referral.Closed"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "149.33333333333334D"
+                  "Value": "121.75088240018746D"
                 }
               }
             }
@@ -287,13 +231,69 @@
             "value": {
               "expr": {
                 "Literal": {
+                  "Value": "79.52213257028777D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referrals.Opened"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "85.75141945589483D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referrals.Closed"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "178.2582159624413D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referrals.Referral Source"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
                   "Value": "4D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Referral.# of Referrals Opened"
+            "metadata": "Referrals.# of Referrals Opened"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "353.68069404619666D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Client Family.Family Name"
           }
         }
       ],

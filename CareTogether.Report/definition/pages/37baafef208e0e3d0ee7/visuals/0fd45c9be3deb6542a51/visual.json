@@ -7,7 +7,7 @@
     "z": 3000,
     "height": 269.07849829351534,
     "width": 620.47781569965866,
-    "tabOrder": 3000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Entity"
+                      "Entity": "Client Person"
                     }
                   },
                   "Property": "Full Name"
                 }
               },
-              "queryRef": "Entity.Full Name",
+              "queryRef": "Client Person.Full Name",
               "nativeQueryRef": "Full Name"
             },
             {
@@ -48,41 +48,41 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement"
+                      "Entity": "Arrangements"
                     }
                   },
                   "Property": "Started"
                 }
               },
-              "queryRef": "Arrangement.Started",
-              "nativeQueryRef": "Started"
+              "queryRef": "Arrangements.Started",
+              "nativeQueryRef": "Started1"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement"
+                      "Entity": "Arrangements"
                     }
                   },
                   "Property": "Ended"
                 }
               },
-              "queryRef": "Arrangement.Ended",
-              "nativeQueryRef": "Ended"
+              "queryRef": "Arrangements.Ended",
+              "nativeQueryRef": "Ended1"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement"
+                      "Entity": "Arrangements"
                     }
                   },
                   "Property": "# of Arrangements"
                 }
               },
-              "queryRef": "Arrangement.# of Arrangements",
+              "queryRef": "Arrangements.# of Arrangements",
               "nativeQueryRef": " ",
               "displayName": " "
             },
@@ -91,13 +91,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement"
+                      "Entity": "Arrangements"
                     }
                   },
-                  "Property": "Id"
+                  "Property": "Arrangement ID"
                 }
               },
-              "queryRef": "Arrangement.Id",
+              "queryRef": "Arrangements.Arrangement ID",
               "nativeQueryRef": " 1",
               "displayName": " "
             }
@@ -111,13 +111,13 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Arrangement"
+                    "Entity": "Arrangements"
                   }
                 },
-                "Property": "Ended"
+                "Property": "Started"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -201,48 +201,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Arrangement.Id"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Arrangement.# of Arrangements"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "158.19567342277128D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Entity.Full Name"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "157.47439492404249D"
                 }
               }
@@ -250,6 +208,34 @@
           },
           "selector": {
             "metadata": "Arrangement Type.Arrangement Type"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Arrangements.# of Arrangements"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Arrangements.Arrangement ID"
           }
         }
       ],
