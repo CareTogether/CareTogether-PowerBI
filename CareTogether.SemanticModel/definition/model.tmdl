@@ -74,7 +74,7 @@ ref table 'Client Person'
 ref table LocalDateTable_090ec166-11a6-442c-a350-c18312ab6d2e
 ref table Location
 
-ref role 'Row Level Security'
+ref role Dynamic
 
 ref cultureInfo en-US
 

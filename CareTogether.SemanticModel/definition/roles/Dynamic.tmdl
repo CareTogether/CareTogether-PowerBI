@@ -1,4 +1,4 @@
-role 'Row Level Security'
+role Dynamic
 	modelPermission: read
 
 	tablePermission Arrangements =
