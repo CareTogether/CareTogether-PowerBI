@@ -53,13 +53,15 @@ table 'Engagement Group'
 			    Option,
 			    "Family", CALCULATE(
 			        DISTINCTCOUNT('Family Role Approvals'[Entity UID]),
-			        'Approval Type'[Approval Type] = "Direct"
+			        'Approval Type'[Approval Type] = "Direct",
+			        'Approval Status'[Status] IN {"Approved", "Onboarded"}
 			    ),
 			    "Person", CALCULATE(
 			        DISTINCTCOUNT('Individual Role Approvals'[Entity UID]),
-			        'Approval Type'[Approval Type] = "Direct"
+			        'Approval Type'[Approval Type] = "Direct",
+			        'Approval Status'[Status] IN {"Approved", "Onboarded"}
 			    )
-			    )
+			)
 		formatString: 0
 		lineageTag: 249e807f-8f3e-4681-ab99-8d5d0bc3aadf
 

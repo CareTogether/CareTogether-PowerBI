@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "f0e43f9fd05668cac760",
   "position": {
     "x": 10.443686006825939,
@@ -150,13 +150,8 @@
             },
             "text": {
               "expr": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Engagement by Entity"
-                    }
-                  },
-                  "Property": "# Engaged Entities (Dynamic Title)"
+                "Literal": {
+                  "Value": "'# of Engaged Entities'"
                 }
               }
             },
@@ -186,5 +181,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2041060429ab86a6a5a9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Engagement Group"
+              }
+            },
+            "Property": "# of Engaged Entities"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

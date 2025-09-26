@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "1fba175e004611a9b13a",
   "position": {
     "x": 640,
@@ -58,6 +58,20 @@
               },
               "queryRef": "Arrangement Type.Arrangement Type",
               "nativeQueryRef": "Arrangement Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family Function Assignments"
+                    }
+                  },
+                  "Property": "Function"
+                }
+              },
+              "queryRef": "Family Function Assignments.Function",
+              "nativeQueryRef": "Function"
             },
             {
               "field": {
@@ -217,7 +231,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "218D"
+                  "Value": "160.25256546577424D"
                 }
               }
             }
@@ -231,13 +245,27 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "223D"
+                  "Value": "137.6407490250382D"
                 }
               }
             }
           },
           "selector": {
             "metadata": "Client Person.Full Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "137.15902421610863D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Arrangement Type.Arrangement Type"
           }
         }
       ],
@@ -543,5 +571,93 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b6f35da3a42c0510da9d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Family"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "db56b0fdd0c05b601457",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Person"
+              }
+            },
+            "Property": "Full Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "87dc981a3eb38358abe8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement Type"
+              }
+            },
+            "Property": "Arrangement Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6dca523414d06c3e3b31",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangements"
+              }
+            },
+            "Property": "Arrangement ID"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7a2b0385899e144b1cd2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Family Engagement Level"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e0c490b62be000e5aa6e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Function Assignments"
+              }
+            },
+            "Property": "Function"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }
