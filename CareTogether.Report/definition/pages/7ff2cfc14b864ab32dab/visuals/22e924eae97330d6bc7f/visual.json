@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "22e924eae97330d6bc7f",
   "position": {
     "x": 640,
@@ -58,6 +58,20 @@
               },
               "queryRef": "Arrangement Type.Arrangement Type",
               "nativeQueryRef": "Arrangement Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Individual Function Assignments"
+                    }
+                  },
+                  "Property": "Function"
+                }
+              },
+              "queryRef": "Individual Function Assignments.Function",
+              "nativeQueryRef": "Function"
             },
             {
               "field": {
@@ -203,7 +217,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "218D"
+                  "Value": "163.93857192540565D"
                 }
               }
             }
@@ -217,7 +231,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "223D"
+                  "Value": "138.79571306745538D"
                 }
               }
             }
@@ -238,6 +252,20 @@
           },
           "selector": {
             "metadata": "Person.Individual Engagement Level"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "131.70815899491618D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Arrangement Type.Arrangement Type"
           }
         }
       ],
@@ -543,5 +571,93 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f927ea238a9001343c52",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Family"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "60cfef39a60d1b657a81",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Person"
+              }
+            },
+            "Property": "Full Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "535281ef0c7968d9418e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement Type"
+              }
+            },
+            "Property": "Arrangement Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "89d711be5c24a091c517",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangements"
+              }
+            },
+            "Property": "Arrangement ID"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e1aa788280e73badd000",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Person"
+              }
+            },
+            "Property": "Individual Engagement Level"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6a9115de1a8cdb06703e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Individual Function Assignments"
+              }
+            },
+            "Property": "Function"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }
