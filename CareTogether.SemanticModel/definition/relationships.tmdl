@@ -47,15 +47,6 @@ relationship 73e5b166-c4e6-9336-00c4-ee6faa14db58
 	fromColumn: Referrals.'Close Reason'
 	toColumn: 'Close Reason'.ReferralCloseReason
 
-relationship 9085acfd-bdb2-e163-32e0-ddaf0905fcbb
-	crossFilteringBehavior: bothDirections
-	fromColumn: 'Community Member Families'.'Community ID'
-	toColumn: Community.'Community ID'
-
-relationship 3b16e699-aa26-4d85-a5d9-dd7752faae9d
-	fromColumn: 'Community Role Assignments'.'Community ID'
-	toColumn: Community.'Community ID'
-
 relationship 68bd892e-c661-c7b7-5c03-5aefca191f67
 	fromColumn: 'Family Role Approvals'.'Entity UID'
 	toColumn: Family.'Family UID'
@@ -71,10 +62,6 @@ relationship 9b1c5b38-28ce-e2ea-8a4e-f8c7ff209c6f
 relationship 56241e07-7826-df43-4383-bca80bef08d8
 	fromColumn: 'Individual Role Approvals'.Status
 	toColumn: 'Approval Status'.Status
-
-relationship bf212760-a3b9-bce2-faaf-01a8238ebb89
-	fromColumn: 'Child Location Record'.'Arrangement ID'
-	toColumn: Arrangements.'Arrangement ID'
 
 relationship 6ac79b10-a5d7-cbc2-52d4-3f957ad99329
 	fromColumn: 'Child Location Record'.'Childcare Plan'
@@ -116,17 +103,9 @@ relationship 953e0440-8171-d1d2-082f-53b3efdb1192
 	fromColumn: 'Family Function Assignments'.'Entity UID'
 	toColumn: Family.'Family UID'
 
-relationship b3df2c32-9415-0673-3cfb-cbd49d367f37
-	fromColumn: 'Family Function Assignments'.'Arrangement ID'
-	toColumn: Arrangements.'Arrangement ID'
-
 relationship 50417728-c721-40a8-fe93-d187e5ff3c74
 	fromColumn: 'Individual Function Assignments'.'Entity UID'
 	toColumn: Person.'Person UID'
-
-relationship 7b29c724-7e9c-cc40-46ac-8ca5c09014fd
-	fromColumn: 'Individual Function Assignments'.'Arrangement ID'
-	toColumn: Arrangements.'Arrangement ID'
 
 relationship b98a8108-0c9f-41d4-82e1-71699d90b190
 	joinOnDateBehavior: datePartOnly
@@ -166,4 +145,24 @@ relationship cc3cc141-4b90-f76f-917a-3cf1e89e5e2c
 relationship e349dd17-a18d-2497-62cf-d76e3ba8ac2c
 	fromColumn: Family.'RLS Key'
 	toColumn: Location.'RLS Key'
+
+relationship AutoDetected_59e6e179-6344-42a1-944c-b69cf722c579
+	fromColumn: 'Community Member Families'.'Community UID'
+	toColumn: Community.'Community UID'
+
+relationship AutoDetected_f5d995a0-5351-4a2b-9493-e0cb5a8e576f
+	fromColumn: 'Community Role Assignments'.'Community UID'
+	toColumn: Community.'Community UID'
+
+relationship AutoDetected_621a6882-fac5-4c7f-97f3-c28737a5ad82
+	fromColumn: 'Child Location Record'.'Arrangement UID'
+	toColumn: Arrangements.'Arrangement UID'
+
+relationship AutoDetected_8f7027d1-4ef6-4476-afe7-288e534c8171
+	fromColumn: 'Family Function Assignments'.'Arrangement UID'
+	toColumn: Arrangements.'Arrangement UID'
+
+relationship AutoDetected_3695053e-fd8b-42ee-9a64-15888710f2e0
+	fromColumn: 'Individual Function Assignments'.'Arrangement UID'
+	toColumn: Arrangements.'Arrangement UID'
 

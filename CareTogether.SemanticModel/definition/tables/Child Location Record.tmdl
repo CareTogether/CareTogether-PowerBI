@@ -205,6 +205,14 @@ table 'Child Location Record'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Arrangement UID'
+		dataType: string
+		lineageTag: 1901fc6d-583f-49e2-9f25-d81196e1c34c
+		summarizeBy: none
+		sourceColumn: Arrangement UID
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Child Location Record' = m
 		mode: import
 		queryGroup: Fact
@@ -250,6 +258,7 @@ table 'Child Location Record'
 				    // Combined Tables: 
 				    Combined =
 				        Table.SelectColumns(
+				            Table.AddColumn(
 				            Table.RenameColumns(
 				                Table.Join(
 				                    ChildLocationRecordTransformed,
@@ -263,8 +272,10 @@ table 'Child Location Record'
 				                    {"StartedAtUtc", "Started"}, {"EndedAtUtc", "Ended"}, {"ChildcarePlan", "Childcare Plan"}
 				                }
 				            ),
+				            "Arrangement UID", each Text.Combine({[RLS Key], [Arrangement ID]}, "-")
+				            ),
 				            {
-				                "RLS Key", "Family UID", "Family ID", "Arrangement ID", "Child Person UID", "Child Person ID",
+				                "RLS Key", "Family UID", "Family ID", "Arrangement UID", "Arrangement ID", "Child Person UID", "Child Person ID",
 				                "Started", "Ended", "Duration", "Index", "Childcare Family Name", "Childcare Plan"
 				            }
 				        )

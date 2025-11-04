@@ -7,6 +7,10 @@ table Community
 			RETURN IF(ISBLANK(FirstCommunity), "", FirstCommunity)
 		lineageTag: b408252d-cb32-499f-8753-1aa99f2c2283
 
+	measure 'ID Count' = DISTINCTCOUNT(Community[Community ID])
+		formatString: 0
+		lineageTag: 5606c5bf-f880-4201-bceb-96505bc09ff6
+
 	column 'RLS Key'
 		dataType: string
 		displayFolder: _Columns
@@ -34,6 +38,14 @@ table Community
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Community UID'
+		dataType: string
+		lineageTag: 126b08b6-00fb-4559-8aad-b0a4527d45a0
+		summarizeBy: none
+		sourceColumn: Community UID
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Community = m
 		mode: import
 		queryGroup: Dimensions
@@ -46,15 +58,16 @@ table Community
 				    Table.SelectColumns(
 				        Table.RenameColumns(
 				            Table.AddColumn(
-				                Community,
-				                "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                Table.AddColumn(
+				                    Community,
+				                    "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                ),
+				                "Community UID", each Text.Combine({[RLS Key], [Id], "-"})
 				            ),
 				            {{"Id", "Community ID"}, {"Name", "Community Name"}}
 				        ),
-				        {"RLS Key", "Community ID", "Community Name"}
+				        {"RLS Key", "Community UID", "Community ID", "Community Name"}
 				    )
-				
-				
 				in
 				    CommunityTransformed
 				```

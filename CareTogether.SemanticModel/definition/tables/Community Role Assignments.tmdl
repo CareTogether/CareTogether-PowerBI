@@ -41,6 +41,14 @@ table 'Community Role Assignments'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Community UID'
+		dataType: string
+		lineageTag: d7498932-3467-4f23-9ba2-4dbefacec77b
+		summarizeBy: none
+		sourceColumn: Community UID
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Community Role Assignments' = m
 		mode: import
 		queryGroup: Fact
@@ -55,14 +63,17 @@ table 'Community Role Assignments'
 				        Table.RenameColumns(
 				            Table.AddColumn(
 				                Table.AddColumn(
-				                    CommunityRoleAssignment,
-				                    "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                    Table.AddColumn(
+				                        CommunityRoleAssignment,
+				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                    ),
+				                    "Person UID", each Text.Combine({[RLS Key], [PersonId]}, "-")
 				                ),
-				                "Person UID", each Text.Combine({[RLS Key], [PersonId]}, "-")
+				                "Community UID", each Text.Combine({[RLS Key], [CommunityId], "-"})
 				            ),
 				            {{"CommunityId", "Community ID"}, {"PersonId", "Person ID"}}
 				        ),
-				        {"RLS Key", "Community ID", "Person UID", "Person ID", "Role"}
+				        {"RLS Key", "Community UID", "Community ID", "Person UID", "Person ID", "Role"}
 				    )
 				
 				

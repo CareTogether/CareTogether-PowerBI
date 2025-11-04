@@ -148,6 +148,14 @@ table Arrangements
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Arrangement UID'
+		dataType: string
+		lineageTag: 4b68391d-0e64-4445-8c68-a54b5c9c676a
+		summarizeBy: none
+		sourceColumn: Arrangement UID
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Arrangements = m
 		mode: import
 		queryGroup: Fact
@@ -163,17 +171,20 @@ table Arrangements
 				            Table.AddColumn(
 				                Table.AddColumn(
 				                    Table.AddColumn(
-				                        Arrangement,
-				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        Table.AddColumn(
+				                            Arrangement,
+				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        ),
+				                        "Arrangement Type UID", each Text.Combine({[RLS Key], [TypeName]}, "-")
 				                    ),
-				                    "Arrangement Type UID", each Text.Combine({[RLS Key], [TypeName]}, "-")
+				                    "Person UID", each Text.Combine({[RLS Key], [PersonId]}, "-")
 				                ),
-				                "Person UID", each Text.Combine({[RLS Key], [PersonId]}, "-")
+				                "Arrangement UID", each Text.Combine({[RLS Key], [Id]}, "-")
 				            ),
 				            {{"Id", "Arrangement ID"}, {"TypeName", "Arrangement Type"}, {"ReferralId", "Referral ID"}, {"PersonId", "Person ID"}, 
 				            {"StartedUtc", "Started"}, {"EndedUtc", "Ended"}}
 				    ),
-				    {"RLS Key", "Arrangement ID", "Arrangement Type UID", "Arrangement Type", "Referral ID", "Person UID", "Person ID", "Requested", "Started", "Ended", "Phase", "Reason"}
+				    {"RLS Key", "Arrangement UID", "Arrangement ID", "Arrangement Type UID", "Arrangement Type", "Referral ID", "Person UID", "Person ID", "Requested", "Started", "Ended", "Phase", "Reason"}
 				)
 				
 				
