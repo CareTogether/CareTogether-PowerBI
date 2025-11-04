@@ -41,6 +41,14 @@ table 'Individual Function Assignments'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Arrangement UID'
+		dataType: string
+		lineageTag: be0b16d9-05e1-4d35-829f-ec514b15a658
+		summarizeBy: none
+		sourceColumn: Arrangement UID
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Individual Function Assignments' = m
 		mode: import
 		queryGroup: Fact
@@ -57,16 +65,19 @@ table 'Individual Function Assignments'
 				                Table.AddColumn(
 				                    Table.AddColumn(
 				                        Table.AddColumn(
-				                            IndividualFunctionAssignments,
-				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                            Table.AddColumn(
+				                                IndividualFunctionAssignments,
+				                                "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                            ),
+				                            "Entity UID", each Text.Combine({[RLS Key], [PersonId]}, "-")
 				                        ),
-				                        "Entity UID", each Text.Combine({[RLS Key], [PersonId]}, "-")
+				                        "Entity Type", each "Person"
 				                    ),
-				                    "Entity Type", each "Person"
+				                    "Arrangement UID", each Text.Combine({[RLS Key], [ArrangementId]}, "-")
 				                ),
 				                {{"ArrangementId", "Arrangement ID"}}
 				            ),
-				            {"RLS Key", "Entity UID", "Entity Type", "Arrangement ID", "Function"}
+				            {"RLS Key", "Entity UID", "Entity Type", "Arrangement UID", "Arrangement ID", "Function"}
 				        )
 				
 				in

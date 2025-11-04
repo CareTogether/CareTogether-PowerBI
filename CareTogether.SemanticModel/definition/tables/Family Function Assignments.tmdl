@@ -41,6 +41,14 @@ table 'Family Function Assignments'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Arrangement UID'
+		dataType: string
+		lineageTag: 36e50517-7b49-4cbb-b9c9-cb9d0e3e0171
+		summarizeBy: none
+		sourceColumn: Arrangement UID
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Family Function Assignments' = m
 		mode: import
 		queryGroup: Fact
@@ -57,16 +65,19 @@ table 'Family Function Assignments'
 				                Table.AddColumn(
 				                    Table.AddColumn(
 				                        Table.AddColumn(
-				                            FamilyFunctionAssignments,
-				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                            Table.AddColumn(
+				                                FamilyFunctionAssignments,
+				                                "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                            ),
+				                            "Entity UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
 				                        ),
-				                        "Entity UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
+				                        "Entity Type", each "Family"
 				                    ),
-				                    "Entity Type", each "Family"
+				                    "Arrangement UID", each Text.Combine({[RLS Key], [ArrangementId]}, "-") 
 				                ),
 				                {{"ArrangementId", "Arrangement ID"}}
 				            ),
-				            {"RLS Key", "Entity UID", "Entity Type", "Arrangement ID", "Function"}
+				            {"RLS Key", "Entity UID", "Entity Type", "Arrangement UID", "Arrangement ID", "Function"}
 				        )
 				
 				in

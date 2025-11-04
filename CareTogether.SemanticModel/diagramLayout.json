@@ -311,7 +311,7 @@
       "ordinal": 1,
       "scrollPosition": {
         "x": 0,
-        "y": 0
+        "y": 374.78225732992081
       },
       "nodes": [
         {
@@ -325,7 +325,7 @@
             "height": 145,
             "width": 234
           },
-          "zIndex": 12
+          "zIndex": 13
         },
         {
           "location": {
@@ -338,7 +338,7 @@
             "height": 339.88366285731854,
             "width": 234
           },
-          "zIndex": 17
+          "zIndex": 18
         },
         {
           "location": {
@@ -364,7 +364,7 @@
             "height": 300,
             "width": 294.82580191324018
           },
-          "zIndex": 16
+          "zIndex": 17
         },
         {
           "location": {
@@ -377,7 +377,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 13
+          "zIndex": 14
         },
         {
           "location": {
@@ -390,7 +390,7 @@
             "height": 181.76581795754328,
             "width": 234
           },
-          "zIndex": 14
+          "zIndex": 15
         },
         {
           "location": {
@@ -416,7 +416,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 19
+          "zIndex": 20
         },
         {
           "location": {
@@ -429,7 +429,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 25
+          "zIndex": 26
         },
         {
           "location": {
@@ -442,7 +442,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 10
+          "zIndex": 25
         },
         {
           "location": {
@@ -455,7 +455,7 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 11
+          "zIndex": 12
         },
         {
           "location": {
@@ -468,7 +468,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 15
+          "zIndex": 16
         },
         {
           "location": {
@@ -481,7 +481,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 21
+          "zIndex": 22
         },
         {
           "location": {
@@ -494,7 +494,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 20
+          "zIndex": 21
         },
         {
           "location": {
@@ -507,7 +507,7 @@
             "height": 547.27261271107261,
             "width": 234
           },
-          "zIndex": 18
+          "zIndex": 19
         },
         {
           "location": {
@@ -520,7 +520,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 8
+          "zIndex": 10
         },
         {
           "location": {
@@ -533,7 +533,7 @@
             "height": 152.25489634621383,
             "width": 234
           },
-          "zIndex": 9
+          "zIndex": 11
         },
         {
           "location": {
@@ -546,7 +546,7 @@
             "height": 296,
             "width": 234
           },
-          "zIndex": 6
+          "zIndex": 8
         },
         {
           "location": {
@@ -559,7 +559,7 @@
             "height": 296,
             "width": 234
           },
-          "zIndex": 7
+          "zIndex": 9
         },
         {
           "location": {
@@ -572,7 +572,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 5
+          "zIndex": 7
         },
         {
           "location": {
@@ -585,7 +585,7 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 3
         },
         {
           "location": {
@@ -598,7 +598,7 @@
             "height": 204.35293780772827,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 4
         },
         {
           "location": {
@@ -611,7 +611,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 5
         },
         {
           "location": {
@@ -624,7 +624,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 6
         },
         {
           "location": {
@@ -637,7 +637,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
@@ -650,7 +650,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
         }
       ],
       "name": "Data Model",
