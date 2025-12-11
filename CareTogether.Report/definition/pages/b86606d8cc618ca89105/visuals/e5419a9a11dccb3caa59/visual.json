@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "109d2aa6c6b3fcb3e93b",
+  "name": "e5419a9a11dccb3caa59",
   "position": {
-    "x": 11.058020477815699,
-    "y": 441.70648464163821,
-    "z": 9000,
-    "height": 269.07849829351534,
-    "width": 629.07849829351539,
-    "tabOrder": 4000
+    "x": 10.443686006825939,
+    "y": 471.19453924914677,
+    "z": 12001,
+    "height": 240.20477815699658,
+    "width": 718.77133105802045,
+    "tabOrder": 12001
   },
   "visual": {
     "visualType": "azureMap",
@@ -23,11 +23,11 @@
                       "Entity": "Family"
                     }
                   },
-                  "Property": "Postal Code"
+                  "Property": "State"
                 }
               },
-              "queryRef": "Family.Postal Code",
-              "nativeQueryRef": "Postal Code",
+              "queryRef": "Family.State",
+              "nativeQueryRef": "State",
               "active": true
             },
             {
@@ -38,178 +38,82 @@
                       "Entity": "Family"
                     }
                   },
-                  "Property": "State"
+                  "Property": "Postal Code"
                 }
               },
-              "queryRef": "Family.State",
-              "nativeQueryRef": "State1",
+              "queryRef": "Family.Postal Code",
+              "nativeQueryRef": "Postal Code",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "City"
+                }
+              },
+              "queryRef": "Family.City",
+              "nativeQueryRef": "City",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family"
+                    }
+                  },
+                  "Property": "Address Line 1"
+                }
+              },
+              "queryRef": "Family.Address Line 1",
+              "nativeQueryRef": "Address Line 1",
               "active": false
             }
           ]
         },
-        "Size": {
+        "Series": {
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangements"
+                      "Entity": "Approval Status"
                     }
                   },
-                  "Property": "# of Arrangements"
+                  "Property": "Status"
                 }
               },
-              "queryRef": "Arrangements.# of Arrangements",
-              "nativeQueryRef": "# of Arrangements"
+              "queryRef": "Approval Status.Status",
+              "nativeQueryRef": "Status"
             }
           ]
         }
       }
     },
     "objects": {
-      "mapControls": [
+      "dataPoint": [
         {
           "properties": {
-            "defaultStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "'road'"
-                }
-              }
-            },
-            "showStylePicker": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "showNavigationControls": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "showSelectionControl": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "bubbleLayer": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "bubbleRadius": {
-              "expr": {
-                "Literal": {
-                  "Value": "6L"
-                }
-              }
-            },
-            "minBubbleRadius": {
-              "expr": {
-                "Literal": {
-                  "Value": "6L"
-                }
-              }
-            },
-            "maxRadius": {
-              "expr": {
-                "Literal": {
-                  "Value": "21L"
-                }
-              }
-            },
-            "bubbleStrokeWidth": {
-              "expr": {
-                "Literal": {
-                  "Value": "1L"
-                }
-              }
-            },
-            "autoStrokeColor": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "layerPosition": {
-              "expr": {
-                "Literal": {
-                  "Value": "''"
-                }
-              }
-            },
-            "markerRangeType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'scatterDeprecated'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "legend": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Top'"
-                }
-              }
-            },
-            "showTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
-                }
-              }
-            },
-            "labelColor": {
+            "fill": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#9A9A9A'"
+                      "Value": "'#26A3AB'"
                     }
                   }
                 }
               }
             }
           }
-        }
-      ],
-      "dataPoint": [
+        },
         {
           "properties": {
             "fill": {
@@ -291,15 +195,45 @@
               }
             ]
           }
-        },
+        }
+      ],
+      "legend": [
         {
           "properties": {
-            "fill": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top'"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "labelColor": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#26A3AB'"
+                      "Value": "'#9A9A9A'"
                     }
                   }
                 }
@@ -356,6 +290,102 @@
             ]
           }
         }
+      ],
+      "mapControls": [
+        {
+          "properties": {
+            "defaultStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'road'"
+                }
+              }
+            },
+            "showStylePicker": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showNavigationControls": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showSelectionControl": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "bubbleLayer": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "bubbleRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "6L"
+                }
+              }
+            },
+            "minBubbleRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "6L"
+                }
+              }
+            },
+            "markerRangeType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'scatterDeprecated'"
+                }
+              }
+            },
+            "maxRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "21L"
+                }
+              }
+            },
+            "autoStrokeColor": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "bubbleStrokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
+            },
+            "layerPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -365,7 +395,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arrangement by Zip Code'"
+                  "Value": "'Families Location'"
                 }
               }
             },
@@ -405,6 +435,40 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
                 }
               }
             }
@@ -500,40 +564,6 @@
           }
         }
       ],
-      "padding": [
-        {
-          "properties": {
-            "top": {
-              "expr": {
-                "Literal": {
-                  "Value": "20D"
-                }
-              }
-            },
-            "bottom": {
-              "expr": {
-                "Literal": {
-                  "Value": "20D"
-                }
-              }
-            },
-            "left": {
-              "expr": {
-                "Literal": {
-                  "Value": "20D"
-                }
-              }
-            },
-            "right": {
-              "expr": {
-                "Literal": {
-                  "Value": "20D"
-                }
-              }
-            }
-          }
-        }
-      ],
       "border": [
         {
           "properties": {
@@ -592,21 +622,56 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "c945225687a831392fbd",
+        "name": "2a517fb62e7009bb2968",
         "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Family"
+                "Entity": "Approvals Group"
               }
             },
-            "Property": "Postal Code"
+            "Property": "# of Entities in Role"
           }
         },
-        "type": "Categorical"
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a1",
+              "Entity": "Approvals Group",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "a1"
+                        }
+                      },
+                      "Property": "# of Entities in Role"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
       },
       {
-        "name": "5d13116b454cefa4c4b6",
+        "name": "9f47ace8881d08766766",
         "field": {
           "Column": {
             "Expression": {
@@ -620,18 +685,60 @@
         "type": "Categorical"
       },
       {
-        "name": "92115fb5e4e75e9010af",
+        "name": "8ad5ea546ee87b5a97d0",
         "field": {
-          "Measure": {
+          "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Arrangements"
+                "Entity": "Family"
               }
             },
-            "Property": "# of Arrangements"
+            "Property": "Postal Code"
           }
         },
-        "type": "Advanced"
+        "type": "Categorical"
+      },
+      {
+        "name": "d5fbf6d1fe93a01d7414",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "City"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7147ee2f3d6954473d7c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family"
+              }
+            },
+            "Property": "Address Line 1"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b50311a01b38ae287b16",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approval Status"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }
