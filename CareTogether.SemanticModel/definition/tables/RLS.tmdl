@@ -17,6 +17,22 @@ table RLS
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: ce37c732-0cd2-4f6e-ace2-a79efb11331c
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationId
+		dataType: string
+		lineageTag: 05d2f26a-f10b-4193-a2ff-27616724c840
+		summarizeBy: none
+		sourceColumn: LocationId
+
+		annotation SummarizationSetBy = Automatic
+
 	partition RLS = m
 		mode: import
 		queryGroup: RLS
@@ -29,7 +45,7 @@ table RLS
 				            Source{[Name="LocationUserAccess", Signature="table"]}[Data],
 				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
 				        ),
-				        {"RLS Key", "UserId"}
+				        {"RLS Key", "OrganizationId", "LocationId", "UserId"}
 				    )
 				
 				in

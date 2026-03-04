@@ -17,6 +17,14 @@ table Role
 
 		annotation SummarizationSetBy = Automatic
 
+	column OrganizationId
+		dataType: string
+		lineageTag: e8c282e0-484a-4b73-98fc-7bb1acf9e7e4
+		summarizeBy: none
+		sourceColumn: OrganizationId
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Role = m
 		mode: import
 		queryGroup: Dimensions
@@ -34,7 +42,7 @@ table Role
 				            ),
 				            "Role UID", each Text.Combine({[OrganizationId], [Role Name]}, "-")
 				        ),
-				        {"Role UID", "Role Name"}
+				        {"OrganizationId", "Role UID", "Role Name"}
 				    )
 				
 				in

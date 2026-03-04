@@ -109,5 +109,11 @@ role Dynamic
 			    RLS[UserId] = USERNAME()
 			)
 
+	tablePermission Role =
+			Role[OrganizationId] IN CALCULATETABLE(
+			    VALUES(RLS[OrganizationId]),
+			    RLS[UserId] = USERNAME()
+			)
+
 	annotation PBI_Id = 48755128b26e4366a08bd6a38df559b4
 
