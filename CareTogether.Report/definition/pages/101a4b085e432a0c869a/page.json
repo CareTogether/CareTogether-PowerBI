@@ -411,5 +411,12 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "0e0f5f07a55029a7559c",
+      "target": "6981b709222874e107d0",
+      "type": "DataFilter"
+    }
+  ]
 }

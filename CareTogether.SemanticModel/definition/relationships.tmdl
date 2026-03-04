@@ -147,6 +147,7 @@ relationship e349dd17-a18d-2497-62cf-d76e3ba8ac2c
 	toColumn: Location.'RLS Key'
 
 relationship AutoDetected_59e6e179-6344-42a1-944c-b69cf722c579
+	crossFilteringBehavior: bothDirections
 	fromColumn: 'Community Member Families'.'Community UID'
 	toColumn: Community.'Community UID'
 
