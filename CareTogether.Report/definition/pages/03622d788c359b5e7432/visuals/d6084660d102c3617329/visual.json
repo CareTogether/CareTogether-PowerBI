@@ -147,6 +147,18 @@
             "queryRefs": [
               "Family Role Approvals.Entity Name"
             ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Family Role Approvals"
+                    }
+                  },
+                  "Property": "Family Name"
+                }
+              }
+            ],
             "isPinned": true
           },
           {
@@ -893,49 +905,63 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "75e07629fa391086d7b0",
+        "name": "1e953a2d10deab77d06a",
+        "ordinal": 0,
         "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Approval Status"
-              }
-            },
-            "Property": "Status"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "f5d07b2e2838d828a4cb",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Role"
-              }
-            },
-            "Property": "Role Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "edd4f3c48b75de26d40e",
-        "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
                 "Entity": "Family Role Approvals"
               }
             },
-            "Property": "Family Name"
+            "Property": "Family Approval Tracker"
           }
         },
-        "type": "Categorical"
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "Family Role Approvals",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "f"
+                            }
+                          },
+                          "Property": "Family Approval Tracker"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "isHiddenInViewMode": true,
+        "isLockedInViewMode": true
       },
       {
         "name": "5454a515ba402e2d9c48",
+        "ordinal": 1,
         "field": {
           "Column": {
             "Expression": {
@@ -950,6 +976,7 @@
       },
       {
         "name": "19b5f7ff94ba3220b409",
+        "ordinal": 2,
         "field": {
           "Measure": {
             "Expression": {
@@ -960,8 +987,55 @@
             "Property": "Family Approval Tracker"
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "edd4f3c48b75de26d40e",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Role Approvals"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f5d07b2e2838d828a4cb",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Role"
+              }
+            },
+            "Property": "Role Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "75e07629fa391086d7b0",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Approval Status"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   }
 }
