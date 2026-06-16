@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "109d2aa6c6b3fcb3e93b",
   "position": {
     "x": 11.058020477815699,
@@ -20,30 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Client Family"
                     }
                   },
-                  "Property": "Postal Code"
+                  "Property": "GeoLocation"
                 }
               },
-              "queryRef": "Family.Postal Code",
-              "nativeQueryRef": "Postal Code",
+              "queryRef": "Client Family.GeoLocation",
+              "nativeQueryRef": "GeoLocation",
               "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Family"
-                    }
-                  },
-                  "Property": "State"
-                }
-              },
-              "queryRef": "Family.State",
-              "nativeQueryRef": "State1",
-              "active": false
             }
           ]
         },
@@ -365,7 +350,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arrangement by Zip Code'"
+                  "Value": "'Arrangement by Location'"
                 }
               }
             },
@@ -592,34 +577,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "c945225687a831392fbd",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "Postal Code"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "5d13116b454cefa4c4b6",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "State"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
         "name": "92115fb5e4e75e9010af",
         "field": {
           "Measure": {
@@ -632,6 +589,20 @@
           }
         },
         "type": "Advanced"
+      },
+      {
+        "name": "19a2d7b16d9298001040",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Family"
+              }
+            },
+            "Property": "GeoLocation"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

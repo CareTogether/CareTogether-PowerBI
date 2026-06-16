@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "4d23a7c0fe63b235bc2f",
   "position": {
     "x": 411.60409556313994,
@@ -434,5 +434,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "445b72e6e9d0206cd130",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0d4220e8ed1905300eae",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Month Name Short"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6f331c87ce373d5c535c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement Type"
+              }
+            },
+            "Property": "Arrangement Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3828af1ee74179943041",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangements"
+              }
+            },
+            "Property": "# of Arrangements"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
