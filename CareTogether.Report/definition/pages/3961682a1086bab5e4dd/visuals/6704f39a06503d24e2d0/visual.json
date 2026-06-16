@@ -1,0 +1,149 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "6704f39a06503d24e2d0",
+  "position": {
+    "x": 997.679180887372,
+    "y": 9.2150170648464158,
+    "z": 10007,
+    "height": 121.6382252559727,
+    "width": 273.3788395904437,
+    "tabOrder": 10007
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Compliant",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "8pt",
+                      "color": "#488c96"
+                    }
+                  },
+                  {
+                    "value": ": ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "8pt",
+                      "color": "#1a1a1a"
+                    }
+                  },
+                  {
+                    "value": "All requirements completed",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#1a1a1a"
+                    }
+                  },
+                  {
+                    "value": ".",
+                    "textStyle": {
+                      "color": "#1a1a1a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Non-Compliant",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "8pt",
+                      "color": "#1d7a80"
+                    }
+                  },
+                  {
+                    "value": ": ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "8pt",
+                      "color": "#1a1a1a"
+                    }
+                  },
+                  {
+                    "value": "Some completed or exempted requirements have expired.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#1a1a1a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "In Progress: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "8pt",
+                      "color": "#488c96"
+                    }
+                  },
+                  {
+                    "value": "Some requirements are still pending",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "At-Risk: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "8pt",
+                      "color": "#488c96"
+                    }
+                  },
+                  {
+                    "value": "Completed or exempted requirements will expire within 30 days.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#1a1a1a"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            },
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

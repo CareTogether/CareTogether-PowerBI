@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "109d2aa6c6b3fcb3e93b",
   "position": {
     "x": 11.058020477815699,
@@ -7,7 +7,7 @@
     "z": 9000,
     "height": 269.07849829351534,
     "width": 629.07849829351539,
-    "tabOrder": 4000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "azureMap",
@@ -588,51 +588,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "c945225687a831392fbd",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "Postal Code"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "5d13116b454cefa4c4b6",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "State"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "92115fb5e4e75e9010af",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangements"
-              }
-            },
-            "Property": "# of Arrangements"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

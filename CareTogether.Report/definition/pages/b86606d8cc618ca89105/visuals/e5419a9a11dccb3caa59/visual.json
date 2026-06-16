@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "e5419a9a11dccb3caa59",
   "position": {
     "x": 10.443686006825939,
     "y": 471.19453924914677,
-    "z": 12001,
+    "z": 13000,
     "height": 240.20477815699658,
     "width": 718.77133105802045,
-    "tabOrder": 12001
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "azureMap",
@@ -669,76 +669,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "9f47ace8881d08766766",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "State"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "8ad5ea546ee87b5a97d0",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "Postal Code"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d5fbf6d1fe93a01d7414",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "City"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "7147ee2f3d6954473d7c",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "Address Line 1"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "b50311a01b38ae287b16",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Approval Status"
-              }
-            },
-            "Property": "Status"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

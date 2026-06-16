@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "586be121e29e55589a30",
   "position": {
     "x": 10.909090909090908,
@@ -7,7 +7,7 @@
     "z": 5000,
     "height": 198.18181818181816,
     "width": 629.090909090909,
-    "tabOrder": 6000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "tableEx",
@@ -471,65 +471,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "b8f41b30461572418ba7",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "Family Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d6a7ce4c3492f12a971a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "Family Engagement Level"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "026088a9e1e67a04b9fb",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "Family Last Assignment Date"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "71994fd053e74ded41bb",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "Participation Type"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

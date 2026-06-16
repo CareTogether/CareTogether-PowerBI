@@ -1,12 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "f0e43f9fd05668cac760",
   "position": {
     "x": 10.443686006825939,
     "y": 116.10921501706484,
     "z": 7000,
     "height": 79.249146757679185,
-    "width": 354.47098976109214
+    "width": 354.47098976109214,
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "card",
@@ -181,23 +182,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "2041060429ab86a6a5a9",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Engagement Group"
-              }
-            },
-            "Property": "# of Engaged Entities"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -48,9 +48,8 @@
           "Where": [
             {
               "Condition": {
-                "Comparison": {
-                  "ComparisonKind": 0,
-                  "Left": {
+                "Between": {
+                  "Expression": {
                     "Column": {
                       "Expression": {
                         "SourceRef": {
@@ -60,10 +59,30 @@
                       "Property": "Date"
                     }
                   },
-                  "Right": {
+                  "LowerBound": {
                     "DateSpan": {
                       "Expression": {
-                        "Now": {}
+                        "DateAdd": {
+                          "Expression": {
+                            "Now": {}
+                          },
+                          "Amount": -1,
+                          "TimeUnit": 3
+                        }
+                      },
+                      "TimeUnit": 3
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "Now": {}
+                          },
+                          "Amount": -1,
+                          "TimeUnit": 3
+                        }
                       },
                       "TimeUnit": 3
                     }
@@ -98,7 +117,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "true"
+                "Value": "false"
               }
             }
           }

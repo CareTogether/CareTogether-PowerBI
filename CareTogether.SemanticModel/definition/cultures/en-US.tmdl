@@ -13770,6 +13770,468 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "family_requirement_status.of_families_with_requirements": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Requirement Status",
+			          "ConceptualProperty": "# of Families with Requirements"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Families": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "individual_requirement_status.of_individuals_with_requirements": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Individual Requirement Status",
+			          "ConceptualProperty": "# of Individuals with Requirements"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Individuals": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "family_requirement_status.of_families_compliant": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Requirement Status",
+			          "ConceptualProperty": "# of Families Approved"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Compliant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "family_requirement_status.of_families_in_progress": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Requirement Status",
+			          "ConceptualProperty": "# of Families In Progress"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "In Progress": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "family_requirement_status.of_families_at_risk": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Requirement Status",
+			          "ConceptualProperty": "# of Families Expiring Soon"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "At Risk": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "family_requirement_status.of_families_noncompliant": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Requirement Status",
+			          "ConceptualProperty": "# of Families Expired"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Non-Compliant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "individual_requirement_status.of_individuals_at_risk": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Individual Requirement Status",
+			          "ConceptualProperty": "# of Individuals Expiring Soon"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "At Risk": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "individual_requirement_status.of_individuals_compliant": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Individual Requirement Status",
+			          "ConceptualProperty": "# of Individuals Approved"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Compliant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "individual_requirement_status.of_individuals_in_progress": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Individual Requirement Status",
+			          "ConceptualProperty": "# of Individuals In Progress"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "In Progress": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "individual_requirement_status.of_individuals_noncompliant": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Individual Requirement Status",
+			          "ConceptualProperty": "# of Individuals Expired"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Non-Compliant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "individual_requirement_status.of_individuals_overall_compliance": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Individual Requirement Status",
+			          "ConceptualProperty": "# of Individuals Overall Approval"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Compliance": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "family_requirement_status.of_families_overall_compliance": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Requirement Status",
+			          "ConceptualProperty": "# of Families Overall Approval"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Compliance": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "family_requirement_status.family_compliance_status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Requirement Status",
+			          "ConceptualProperty": "Family Compliance Status"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "individual_requirement_status.individual_compliance_status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Individual Requirement Status",
+			          "ConceptualProperty": "Individual Compliance Status"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "family_requirement_status.of_requirements_completed_family": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Requirement Status",
+			          "ConceptualProperty": "# of Requirements Completed (Family)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Completed": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "family_requirement_status.of_requirements_pending_family": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Requirement Status",
+			          "ConceptualProperty": "# of Requirements Pending (Family)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Pending": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "family_requirement_status.of_requirements_expired_family": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Requirement Status",
+			          "ConceptualProperty": "# of Requirements Expired (Family)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Expired": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "family_requirement_status.of_requirements_expiring_soon_family": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Family Requirement Status",
+			          "ConceptualProperty": "# of Requirements Expiring Soon (Family)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Expiring Soon (30 days)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "individual_requirement_status.of_requirements_completed_individual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Individual Requirement Status",
+			          "ConceptualProperty": "# of Requirements Completed (Individual)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Completed": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "individual_requirement_status.of_requirements_pending_individual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Individual Requirement Status",
+			          "ConceptualProperty": "# of Requirements Pending (Individual)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Pending": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "individual_requirement_status.of_requirements_expiring_soon_individual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Individual Requirement Status",
+			          "ConceptualProperty": "# of Requirements Expiring Soon (Individual)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Expiring Soon (30 days)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "individual_requirement_status.of_requirements_expired_individual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Individual Requirement Status",
+			          "ConceptualProperty": "# of Requirements Expired (Individual)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Expired": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {

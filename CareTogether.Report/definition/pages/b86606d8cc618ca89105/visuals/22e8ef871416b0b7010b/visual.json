@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "22e8ef871416b0b7010b",
   "position": {
     "x": 10.443686006825939,
@@ -7,7 +7,7 @@
     "z": 9000,
     "height": 240.20477815699658,
     "width": 359.38566552901023,
-    "tabOrder": 2000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "funnel",
@@ -251,20 +251,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "724095f38d855b43d594",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Approval Status"
-              }
-            },
-            "Property": "Status"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }
