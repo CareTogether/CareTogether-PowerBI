@@ -9,6 +9,7 @@
     "filters": [
       {
         "name": "dc875673d2060c2b8c2b",
+        "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
@@ -24,6 +25,7 @@
       },
       {
         "name": "7d839484bb5fa075647d",
+        "ordinal": 1,
         "field": {
           "Column": {
             "Expression": {
@@ -43,8 +45,72 @@
             }
           ]
         }
+      },
+      {
+        "name": "4118157812b417c9235d",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Family"
+              }
+            },
+            "Property": "City"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "ae8ae57f856d3490e90d",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Family"
+              }
+            },
+            "Property": "County"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "b22af1524e721e4490a1",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Family"
+              }
+            },
+            "Property": "State"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   },
   "objects": {
     "outspace": [

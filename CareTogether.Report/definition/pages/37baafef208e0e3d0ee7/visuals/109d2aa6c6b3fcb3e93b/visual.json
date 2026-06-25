@@ -350,7 +350,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arrangement by Zip Code'"
+                  "Value": "'Arrangement by Location'"
                 }
               }
             },
@@ -577,7 +577,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "0267ce76de0443151111",
+        "name": "92115fb5e4e75e9010af",
         "field": {
           "Measure": {
             "Expression": {
@@ -591,7 +591,7 @@
         "type": "Advanced"
       },
       {
-        "name": "78ccbd51f79a04b0e96a",
+        "name": "19a2d7b16d9298001040",
         "field": {
           "Column": {
             "Expression": {
