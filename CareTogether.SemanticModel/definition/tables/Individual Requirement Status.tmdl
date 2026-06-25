@@ -186,7 +186,7 @@ table 'Individual Requirement Status'
 
 	column Date
 		dataType: dateTime
-		formatString: Short Date
+		formatString: yyyy-mm-dd
 		lineageTag: d66651cb-f4f9-4183-9fd6-97a61c5f0093
 		summarizeBy: none
 		sourceColumn: Date
@@ -198,6 +198,8 @@ table 'Individual Requirement Status'
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
 	column Requirement
 		dataType: string
 		lineageTag: a2718b3f-6f87-4341-9e0f-1245c8aa18b0
@@ -208,7 +210,7 @@ table 'Individual Requirement Status'
 
 	column 'Expire Date'
 		dataType: dateTime
-		formatString: Short Date
+		formatString: yyyy-mm-dd
 		lineageTag: 595bfac4-4313-40ef-b2b2-16000ce945cf
 		summarizeBy: none
 		sourceColumn: Expire Date
@@ -219,6 +221,8 @@ table 'Individual Requirement Status'
 			defaultHierarchy: LocalDateTable_2272b114-a7da-4a21-b826-0bba8a4281ab.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
 
 	column 'Is Latest Status'
 		dataType: boolean

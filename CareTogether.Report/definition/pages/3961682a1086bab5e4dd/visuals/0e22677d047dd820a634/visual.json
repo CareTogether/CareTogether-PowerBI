@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "Family Requirement Status.# of Families Overall Compliance",
-              "nativeQueryRef": "Compliance",
-              "displayName": "Compliance"
+              "nativeQueryRef": "Approved",
+              "displayName": "Approved"
             }
           ]
         }
@@ -560,23 +560,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "da8d6f2cb8dfc3a76c6d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "# of Families Overall Approval"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

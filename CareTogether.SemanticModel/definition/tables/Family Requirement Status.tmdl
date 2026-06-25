@@ -184,7 +184,7 @@ table 'Family Requirement Status'
 
 	column Date
 		dataType: dateTime
-		formatString: Short Date
+		formatString: yyyy-mm-dd
 		lineageTag: 46c53f91-b34f-4bf5-8c1f-1fd7af332683
 		summarizeBy: none
 		sourceColumn: Date
@@ -196,6 +196,8 @@ table 'Family Requirement Status'
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
 	column Requirement
 		dataType: string
 		lineageTag: 6ca7f88b-5f18-4daa-8542-93b7da7f2374
@@ -206,7 +208,7 @@ table 'Family Requirement Status'
 
 	column 'Expire Date'
 		dataType: dateTime
-		formatString: Short Date
+		formatString: yyyy-mm-dd
 		lineageTag: fbfc757f-3a15-4691-a082-60c3e34b514e
 		summarizeBy: none
 		sourceColumn: Expire Date
@@ -217,6 +219,8 @@ table 'Family Requirement Status'
 			defaultHierarchy: LocalDateTable_ea2e0654-261a-4f44-8f26-4de497ccae31.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
 
 	column 'Is Latest Status'
 		dataType: boolean

@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "Individual Requirement Status.# of Individuals Compliant",
-              "nativeQueryRef": "Compliant",
-              "displayName": "Compliant"
+              "nativeQueryRef": "Approved",
+              "displayName": "Approved"
             },
             {
               "field": {
@@ -57,8 +57,8 @@
                 }
               },
               "queryRef": "Individual Requirement Status.# of Individuals At Risk",
-              "nativeQueryRef": "At Risk",
-              "displayName": "At Risk"
+              "nativeQueryRef": "Expiring Soon",
+              "displayName": "Expiring Soon"
             },
             {
               "field": {
@@ -72,8 +72,8 @@
                 }
               },
               "queryRef": "Individual Requirement Status.# of Individuals Non-Compliant",
-              "nativeQueryRef": "Non-Compliant",
-              "displayName": "Non-Compliant"
+              "nativeQueryRef": "Expired",
+              "displayName": "Expired"
             }
           ]
         }
@@ -624,65 +624,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "ba6a521b67e74bb381ad",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirement Status"
-              }
-            },
-            "Property": "# of Individuals Approved"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "e8eea70898609dc695ee",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirement Status"
-              }
-            },
-            "Property": "# of Individuals In Progress"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "e828987fff925f59ca41",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirement Status"
-              }
-            },
-            "Property": "# of Individuals Expiring Soon"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "4081d42585b5c0880e13",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirement Status"
-              }
-            },
-            "Property": "# of Individuals Expired"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

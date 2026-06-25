@@ -220,6 +220,13 @@ table Family
 
 		annotation SummarizationSetBy = Automatic
 
+	column GeoLocation = "US"
+		displayFolder: _Columns
+		lineageTag: d15dff6b-7abd-4f3d-a0c2-6f15c224989a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Family = m
 		mode: import
 		queryGroup: Dimensions

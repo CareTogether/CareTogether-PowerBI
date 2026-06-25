@@ -13823,7 +13823,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Compliant": {
+			          "Approved": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -13865,7 +13865,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "At Risk": {
+			          "Expiring Soon": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -13886,7 +13886,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Non-Compliant": {
+			          "Expired": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -13907,7 +13907,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "At Risk": {
+			          "Expiring Soon": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -13928,7 +13928,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Compliant": {
+			          "Approved": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -13970,7 +13970,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Non-Compliant": {
+			          "Expired": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -13991,7 +13991,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Compliance": {
+			          "Approved": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -14012,7 +14012,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Compliance": {
+			          "Approved": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

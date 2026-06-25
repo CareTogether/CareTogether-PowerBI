@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "5ca82472ee2b5017015e",
   "position": {
-    "x": 8.6006825938566553,
-    "y": 140.06825938566553,
-    "z": 10001,
-    "height": 289.96587030716722,
-    "width": 631.53583617747438,
-    "tabOrder": 10001
+    "x": 8.5714285714285712,
+    "y": 177.85714285714286,
+    "z": 11000,
+    "height": 240,
+    "width": 631.42857142857144,
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "tableEx",
@@ -1079,7 +1079,7 @@
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "5D"
                 }
               }
             },
@@ -1178,50 +1178,8 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "7837deb451478edffd27",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "Family Compliance Status"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "e9aa02739798477ed552",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "Family Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "7323972099486543a474",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "Family Compliance Status"
-          }
-        },
-        "type": "Advanced",
-        "howCreated": "User"
-      },
-      {
-        "name": "9744376a69be4d3b486c",
+        "name": "194ea604414ebf2f1472",
+        "ordinal": 0,
         "field": {
           "Measure": {
             "Expression": {
@@ -1235,21 +1193,8 @@
         "type": "Advanced"
       },
       {
-        "name": "ac61daab00840d0fb239",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "# of Requirements Pending (Family)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "01eecaae41431e5c7c37",
+        "name": "0d1f3996bb7c39f972fe",
+        "ordinal": 1,
         "field": {
           "Measure": {
             "Expression": {
@@ -1263,7 +1208,8 @@
         "type": "Advanced"
       },
       {
-        "name": "a1fd7bda8ebcb3da78b7",
+        "name": "ac698d59c7a77e587cb1",
+        "ordinal": 2,
         "field": {
           "Measure": {
             "Expression": {
@@ -1275,7 +1221,53 @@
           }
         },
         "type": "Advanced"
+      },
+      {
+        "name": "a5f7a65af9d645aff8cc",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Requirement Status"
+              }
+            },
+            "Property": "Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "22080f4025663d761aca",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Requirement Status"
+              }
+            },
+            "Property": "# of Requirements Pending (Family)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7323972099486543a474",
+        "ordinal": 5,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Requirement Status"
+              }
+            },
+            "Property": "Family Compliance Status"
+          }
+        },
+        "type": "Advanced"
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   }
 }

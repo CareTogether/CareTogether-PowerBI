@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "c45a11aa70830092331c",
   "position": {
-    "x": 8.6006825938566553,
-    "y": 430.03412969283278,
-    "z": 10004,
-    "height": 280.75085324232083,
-    "width": 631.53583617747438,
-    "tabOrder": 10004
+    "x": 8.5714285714285712,
+    "y": 455.71428571428572,
+    "z": 13000,
+    "height": 255.00000000000003,
+    "width": 631.42857142857144,
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "tableEx",
@@ -1007,7 +1007,7 @@
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "5D"
                 }
               }
             },
@@ -1106,21 +1106,8 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "a4c1cd2301ca6aada4fc",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirement Status"
-              }
-            },
-            "Property": "Full Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "abcb185135341694d0c8",
+        "name": "45dfb75a1b2049103e99",
+        "ordinal": 0,
         "field": {
           "Measure": {
             "Expression": {
@@ -1134,7 +1121,8 @@
         "type": "Advanced"
       },
       {
-        "name": "8e593acf74a0563665d2",
+        "name": "7ec833eb549d149d6e1c",
+        "ordinal": 1,
         "field": {
           "Measure": {
             "Expression": {
@@ -1142,27 +1130,14 @@
                 "Entity": "Individual Requirement Status"
               }
             },
-            "Property": "# of Requirements Pending (Individual)"
+            "Property": "# of Requirements Expired (Individual)"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "3a65a779369a051a5224",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirement Status"
-              }
-            },
-            "Property": "Individual Compliance Status"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b67d822ab579d98edcb5",
+        "name": "68f0a70ac0a9160ec074",
+        "ordinal": 2,
         "field": {
           "Measure": {
             "Expression": {
@@ -1176,7 +1151,23 @@
         "type": "Advanced"
       },
       {
-        "name": "622dd4ec156decf84a8b",
+        "name": "c42003dcc652ddda9a33",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Individual Requirement Status"
+              }
+            },
+            "Property": "Full Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8fdf7ec47af1e4150a3a",
+        "ordinal": 4,
         "field": {
           "Measure": {
             "Expression": {
@@ -1184,11 +1175,27 @@
                 "Entity": "Individual Requirement Status"
               }
             },
-            "Property": "# of Requirements Expired (Individual)"
+            "Property": "# of Requirements Pending (Individual)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a922a83f3a8dd9a427ab",
+        "ordinal": 5,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Individual Requirement Status"
+              }
+            },
+            "Property": "Individual Compliance Status"
           }
         },
         "type": "Advanced"
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   }
 }

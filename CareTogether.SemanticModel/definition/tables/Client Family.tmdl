@@ -147,6 +147,13 @@ table 'Client Family'
 
 		annotation SummarizationSetBy = Automatic
 
+	column GeoLocation = 'Client Family'[Address Line 1] & "," & 'Client Family'[Address Line 2] & "," & 'Client Family'[City] & "," & 'Client Family'[County] & "," & 'Client Family'[State] & "," & 'Client Family'[Postal Code]
+		displayFolder: _columns
+		lineageTag: 56bf6f22-dae1-4239-b7fb-37e0f9e8711b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Client Family' = m
 		mode: import
 		queryGroup: Dimensions

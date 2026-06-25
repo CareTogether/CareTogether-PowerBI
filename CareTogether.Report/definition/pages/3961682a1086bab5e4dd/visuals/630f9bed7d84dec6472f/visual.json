@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "Individual Requirement Status.# of Individuals Overall Compliance",
-              "nativeQueryRef": "Compliance",
-              "displayName": "Compliance"
+              "nativeQueryRef": "Approved",
+              "displayName": "Approved"
             }
           ]
         }
@@ -560,23 +560,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "029c8d366c9d7638c1c8",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirement Status"
-              }
-            },
-            "Property": "# of Individuals Overall Approval"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

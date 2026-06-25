@@ -4,10 +4,10 @@
   "position": {
     "x": 997.679180887372,
     "y": 9.2150170648464158,
-    "z": 10007,
+    "z": 16000,
     "height": 121.6382252559727,
     "width": 273.3788395904437,
-    "tabOrder": 10007
+    "tabOrder": 16000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Compliant",
+                    "value": "Approved",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "8pt",
@@ -52,7 +52,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Non-Compliant",
+                    "value": "Expired",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "8pt",

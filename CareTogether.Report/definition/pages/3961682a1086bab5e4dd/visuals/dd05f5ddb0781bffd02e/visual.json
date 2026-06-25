@@ -748,5 +748,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fdf77a154aedd30cb68e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Requirement Status"
+              }
+            },
+            "Property": "# of Families with Requirements"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

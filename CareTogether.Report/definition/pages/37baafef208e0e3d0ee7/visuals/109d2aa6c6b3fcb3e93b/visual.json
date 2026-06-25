@@ -20,30 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Client Family"
                     }
                   },
-                  "Property": "Postal Code"
+                  "Property": "GeoLocation"
                 }
               },
-              "queryRef": "Family.Postal Code",
-              "nativeQueryRef": "Postal Code",
+              "queryRef": "Client Family.GeoLocation",
+              "nativeQueryRef": "GeoLocation",
               "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Family"
-                    }
-                  },
-                  "Property": "State"
-                }
-              },
-              "queryRef": "Family.State",
-              "nativeQueryRef": "State1",
-              "active": false
             }
           ]
         },
@@ -588,5 +573,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0267ce76de0443151111",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangements"
+              }
+            },
+            "Property": "# of Arrangements"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "78ccbd51f79a04b0e96a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Family"
+              }
+            },
+            "Property": "GeoLocation"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

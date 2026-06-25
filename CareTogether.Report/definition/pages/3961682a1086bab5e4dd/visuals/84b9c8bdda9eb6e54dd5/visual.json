@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "84b9c8bdda9eb6e54dd5",
   "position": {
-    "x": 640.13651877133111,
-    "y": 430.03412969283278,
-    "z": 10005,
-    "height": 280.75085324232083,
-    "width": 630.92150170648461,
-    "tabOrder": 10005
+    "x": 638.57142857142856,
+    "y": 455.71428571428572,
+    "z": 14000,
+    "height": 255.00000000000003,
+    "width": 631.42857142857144,
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "tableEx",
@@ -696,7 +696,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'If no family is selected on the left, no requirement details will be shown.'"
+                  "Value": "'If no person is selected on the left, no requirement details will be shown.'"
                 }
               }
             }
@@ -767,7 +767,7 @@
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "5D"
                 }
               }
             },

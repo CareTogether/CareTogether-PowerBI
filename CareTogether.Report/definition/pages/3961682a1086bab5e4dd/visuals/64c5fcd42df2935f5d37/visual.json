@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "Family Requirement Status.# of Families Compliant",
-              "nativeQueryRef": "Compliant",
-              "displayName": "Compliant"
+              "nativeQueryRef": "Approved",
+              "displayName": "Approved"
             },
             {
               "field": {
@@ -57,8 +57,8 @@
                 }
               },
               "queryRef": "Family Requirement Status.# of Families At Risk",
-              "nativeQueryRef": "At Risk",
-              "displayName": "At Risk"
+              "nativeQueryRef": "Expiring Soon",
+              "displayName": "Expiring Soon"
             },
             {
               "field": {
@@ -72,8 +72,8 @@
                 }
               },
               "queryRef": "Family Requirement Status.# of Families Non-Compliant",
-              "nativeQueryRef": "Non-Compliant",
-              "displayName": "Non-Compliant"
+              "nativeQueryRef": "Expired",
+              "displayName": "Expired"
             }
           ]
         }
@@ -627,65 +627,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "59878bd7d1c17f1e6c43",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "# of Families Approved"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "215a84ce371fc37436e4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "# of Families In Progress"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c1ad5bde4e5bce732a40",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "# of Families Expiring Soon"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "3db990000fee188947f5",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "# of Families Expired"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

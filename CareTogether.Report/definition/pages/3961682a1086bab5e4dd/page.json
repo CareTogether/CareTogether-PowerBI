@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
   "name": "3961682a1086bab5e4dd",
-  "displayName": "Requirements Tracker - Option 2",
+  "displayName": "Requirements Tracker",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280,
@@ -43,6 +43,21 @@
             }
           ]
         }
+      },
+      {
+        "name": "472c6d47873dd061c2f3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Requirement Status"
+              }
+            },
+            "Property": "Family Compliance Status Column"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
       }
     ]
   },
