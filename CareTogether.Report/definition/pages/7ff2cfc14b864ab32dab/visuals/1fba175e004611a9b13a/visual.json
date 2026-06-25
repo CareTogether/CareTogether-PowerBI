@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "1fba175e004611a9b13a",
   "position": {
     "x": 640,
@@ -7,7 +7,7 @@
     "z": 10000,
     "height": 198,
     "width": 632,
-    "tabOrder": 3000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "tableEx",
@@ -571,93 +571,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "b6f35da3a42c0510da9d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Client Family"
-              }
-            },
-            "Property": "Family Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "db56b0fdd0c05b601457",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Client Person"
-              }
-            },
-            "Property": "Full Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "87dc981a3eb38358abe8",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement Type"
-              }
-            },
-            "Property": "Arrangement Type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "6dca523414d06c3e3b31",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangements"
-              }
-            },
-            "Property": "Arrangement ID"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "7a2b0385899e144b1cd2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family"
-              }
-            },
-            "Property": "Family Engagement Level"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "e0c490b62be000e5aa6e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Function Assignments"
-              }
-            },
-            "Property": "Function"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

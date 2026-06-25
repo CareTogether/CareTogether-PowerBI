@@ -51,6 +51,24 @@ table 'Approvals Group'
 		formatString: """TRUE"";""TRUE"";""FALSE"""
 		lineageTag: 7abee868-4764-4bf9-95df-354a69267d92
 
+	measure 'Requirement Status Icon' =
+			SWITCH(
+			    SELECTEDVALUE('Approvals Group'[Entity Type]),
+			    "Family", SWITCH(
+			        SELECTEDVALUE('Family Requirement Status'[Status]),
+			        "Complete", "✅",
+			        "Pending", "❌",
+			        "Exempted", "⚪"
+			    ),
+			    "Person", SWITCH(
+			        SELECTEDVALUE('Individual Requirement Status'[Status]),
+			        "Complete", "✅",
+			        "Pending", "❌",
+			        "Exempted", "⚪"
+			    )
+			)
+		lineageTag: eb430a7e-cb48-465c-84a6-96d3f114728e
+
 	column 'Entity Type'
 		dataType: string
 		lineageTag: 96312954-8b95-4f3b-8c3d-3bc4807386cb

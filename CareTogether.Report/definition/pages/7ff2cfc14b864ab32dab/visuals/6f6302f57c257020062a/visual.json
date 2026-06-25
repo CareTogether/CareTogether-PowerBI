@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "6f6302f57c257020062a",
   "position": {
     "x": 11.058020477815699,
@@ -7,7 +7,7 @@
     "z": 6000,
     "height": 96.450511945392492,
     "width": 354.47098976109214,
-    "tabOrder": 8000
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "slicer",
@@ -377,23 +377,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "9734dc6968b463ad39e1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Engagement Group"
-              }
-            },
-            "Property": "Entity Type"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

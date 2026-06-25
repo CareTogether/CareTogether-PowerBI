@@ -1,0 +1,331 @@
+table 'Individual Requirement Status'
+	lineageTag: 65b503a0-5ba2-4f16-bdde-a7362967f6da
+
+	measure 'Individual Requirement Status Icon' =
+			SWITCH(
+			    SELECTEDVALUE('Individual Requirement Status'[Status]),
+			    "Complete", "✅",
+			    "Pending", "❌",
+			    "Exempted", "⚪"
+			)
+		lineageTag: 9f4ec3e3-519c-409d-bd33-7644e55b75cf
+
+	measure '# of Individuals with Requirements' = ```
+			DISTINCTCOUNT('Individual Requirement Status'[Full Name])
+			
+			```
+		formatString: 0
+		lineageTag: d756f09b-37e6-416a-9490-c481d0b0862d
+
+	measure 'Individual Compliance Status' =
+			
+			VAR TotalReqs = COUNTROWS('Individual Requirement Status')
+			
+			VAR ExpiredReqs = CALCULATE(
+			    COUNTROWS('Individual Requirement Status'),
+			    'Individual Requirement Status'[Status] IN { "Complete", "Exempted"},
+			    'Individual Requirement Status'[Expire Date] < TODAY(),
+			    NOT ISBLANK('Individual Requirement Status'[Expire Date]),
+			    'Individual Requirement Status'[Is Latest Status]
+			)
+			
+			VAR PendingReqs = CALCULATE(
+			    COUNTROWS('Individual Requirement Status'),
+			    'Individual Requirement Status'[Status] = "Pending",
+			    'Individual Requirement Status'[Is Latest Status]
+			)
+			
+			VAR ExpireSoonReqs = CALCULATE(
+			    COUNTROWS('Individual Requirement Status'),
+			    'Individual Requirement Status'[Expire Date] >= TODAY() && 'Individual Requirement Status'[Expire Date] <= TODAY() + 30,
+			    NOT ISBLANK('Individual Requirement Status'[Expire Date]),
+			    'Individual Requirement Status'[Is Latest Status]
+			)
+			
+			RETURN SWITCH(
+			    TRUE(),
+			    TotalReqs = 0, BLANK(),
+			    ExpiredReqs > 0, "Expired",
+			    PendingReqs > 0, "In Progress",
+			    ExpireSoonReqs > 0, "Expiring Soon",
+			    "Approved"
+			)
+		lineageTag: 8ff2c9ca-1a51-48e4-b15d-3a7e40ebc18f
+
+	measure '# of Individuals Expiring Soon' =
+			COUNTROWS(
+			    FILTER(
+			        VALUES('Individual Requirement Status'[Full Name]),
+			        [Individual Compliance Status] = "Expiring Soon"
+			    )
+			)
+		formatString: 0
+		lineageTag: 040bc1ba-65d9-4b84-9503-6fa860ebc273
+
+	measure '# of Individuals Approved' =
+			COUNTROWS(
+			    FILTER(
+			        VALUES('Individual Requirement Status'[Full Name]),
+			        [Individual Compliance Status] = "Approved"
+			    )
+			)
+		formatString: 0
+		lineageTag: a692249c-6859-43a8-b46f-8010019d7bc9
+
+	measure '# of Individuals In Progress' =
+			COUNTROWS(
+			    FILTER(
+			        VALUES('Individual Requirement Status'[Full Name]),
+			        [Individual Compliance Status] = "In Progress"
+			    )
+			)
+		formatString: 0
+		lineageTag: 23ccf533-0e3d-48ad-87c9-fa848ae81e51
+
+	measure '# of Individuals Expired' =
+			COUNTROWS(
+			    FILTER(
+			        VALUES('Individual Requirement Status'[Full Name]),
+			        [Individual Compliance Status] = "Expired"
+			    )
+			)
+		formatString: 0
+		lineageTag: c6841c3e-3292-4271-9b67-8dfa9cc5a44b
+
+	measure '# of Individuals Overall Approval' = DIVIDE([# of Individuals Approved], [# of Individuals with Requirements])
+		formatString: 0%;-0%;0%
+		lineageTag: 2e56dd8d-b4f1-41eb-9d3f-724566c319cf
+
+	measure '# of Individuals Overall Approval Target' = [# of individuals with Requirements] - [# of Individuals Approved]
+		formatString: 0
+		lineageTag: 593505c7-5e59-4175-bca5-c78a6e4a2397
+
+	measure '# of Requirements Completed (Individual)' =
+			CALCULATE(
+			    DISTINCTCOUNT('Individual Requirement Status'[Requirement]),
+			    'Individual Requirement Status'[Status] IN { "Complete", "Exempted" },
+			    (
+			        ISBLANK('Individual Requirement Status'[Expire Date])
+			        ||
+			        'Individual Requirement Status'[Expire Date] >= TODAY() + 30
+			    ),
+			    'Individual Requirement Status'[Is Latest Status]
+			)
+		formatString: 0
+		lineageTag: 11147f6e-785c-43db-8f55-93e41c97e659
+
+	measure '# of Requirements Pending (Individual)' =
+			CALCULATE(
+			    DISTINCTCOUNT('Individual Requirement Status'[Requirement]),
+			    'Individual Requirement Status'[Status] = "Pending",
+			    'Individual Requirement Status'[Is Latest Status]
+			)
+		formatString: 0
+		lineageTag: 9769a5b9-2f00-4ba0-8be0-2be65af71472
+
+	measure '# of Requirements Expiring Soon (Individual)' =
+			CALCULATE(
+			    DISTINCTCOUNT('Individual Requirement Status'[Requirement]),
+			    'Individual Requirement Status'[Status] IN { "Complete", "Exempted"},
+			    'Individual Requirement Status'[Expire Date] >= TODAY(),
+			    'Individual Requirement Status'[Expire Date] <= TODAY() + 30,
+			    NOT ISBLANK('Individual Requirement Status'[Expire Date]),
+			    'Individual Requirement Status'[Is Latest Status]
+			)
+		formatString: 0
+		lineageTag: e6c764f5-6f51-45c3-827d-b43aa6c55512
+
+	measure '# of Requirements Expired (Individual)' =
+			CALCULATE(
+			    DISTINCTCOUNT('Individual Requirement Status'[Requirement]),
+			    'Individual Requirement Status'[Status] IN { "Complete", "Exempted" },
+			    'Individual Requirement Status'[Expire Date] < TODAY(),
+			    NOT ISBLANK('Individual Requirement Status'[Expire Date]),
+			    'Individual Requirement Status'[Is Latest Status]
+			)
+		formatString: 0
+		lineageTag: a61901dd-91d6-4c56-9f49-76c063a88c1c
+
+	measure 'Drill Down Visibility Flag (Individual)' =
+			
+			VAR HasFamilyFilter =
+			    ISFILTERED('Individual Requirement Status'[Full Name])
+			
+			RETURN
+			IF(
+			    HasFamilyFilter,
+			    1,
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: 477fc8d8-bc68-442e-9b6d-ccdb370abb94
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 5434ca5a-efec-4566-a062-156c35869040
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Person UID'
+		dataType: string
+		lineageTag: 64919556-7aee-4fa8-bdd9-09122f1d867d
+		summarizeBy: none
+		sourceColumn: Person UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: ce6315b5-a013-4765-8886-e24085798579
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: d66651cb-f4f9-4183-9fd6-97a61c5f0093
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: e2aeebac-2be8-4aa0-8b20-72a385fc305d
+			defaultHierarchy: LocalDateTable_b0585918-a0c3-468f-8c47-888824fd4fb1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Requirement
+		dataType: string
+		lineageTag: a2718b3f-6f87-4341-9e0f-1245c8aa18b0
+		summarizeBy: none
+		sourceColumn: Requirement
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Expire Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 595bfac4-4313-40ef-b2b2-16000ce945cf
+		summarizeBy: none
+		sourceColumn: Expire Date
+
+		variation Variation
+			isDefault
+			relationship: 54e1be63-5ee1-469a-abd4-e55c6221c150
+			defaultHierarchy: LocalDateTable_2272b114-a7da-4a21-b826-0bba8a4281ab.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Is Latest Status'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: feb72d72-94a5-490d-9868-019ac6888524
+		summarizeBy: none
+		sourceColumn: Is Latest Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Name' = RELATED(Person[Full Name])
+		lineageTag: 152c8095-e98c-4c3e-ab55-9e212c641b6a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Individual Requirement Status' = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    Source = #"OData Live",
+				    IndividualRequirements = Source{[Name="IndividualRequirementStatuses", Signature="table"]}[Data],
+				
+				    AddRLSKey =
+				        Table.AddColumn(
+				            IndividualRequirements,
+				            "RLS Key",
+				            each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        ),
+				
+				    AddPersonUID =
+				        Table.AddColumn(
+				            AddRLSKey,
+				            "Person UID",
+				            each Text.Combine({[RLS Key], [PersonId]}, "-")
+				        ),
+				
+				    Renamed =
+				        Table.RenameColumns(
+				            AddPersonUID,
+				            {{"RequirementName", "Requirement"}, {"ExpireDate", "Expire Date"}}
+				        ),
+				
+				    Selected =
+				        Table.SelectColumns(
+				            Renamed,
+				            {"RLS Key", "Person UID", "PersonId", "Requirement", "Status", "Date", "Expire Date"}
+				        ),
+				
+				
+				    AddEffectiveDate =
+				        Table.AddColumn(
+				            Selected,
+				            "Effective Date",
+				            each if [Date] <> null then [Date] else [Expire Date],
+				            type datetime
+				        ),
+				
+				    Sorted =
+				        Table.Sort(
+				            AddEffectiveDate,
+				            {
+				                {"Person UID", Order.Ascending},
+				                {"Requirement", Order.Ascending},
+				                {"Effective Date", Order.Descending}
+				            }
+				        ),
+				
+				    Grouped =
+				        Table.Group(
+				            Sorted,
+				            {"Person UID", "Requirement"},
+				            {{"Data", each Table.AddIndexColumn(_, "Index", 0, 1, Int64.Type)}}
+				        ),
+				
+				    Expanded =
+				        Table.ExpandTableColumn(
+				            Grouped,
+				            "Data",
+				            {"RLS Key", "PersonId", "Status", "Date", "Expire Date", "Effective Date", "Index"}
+				        ),
+				
+				    AddFlag =
+				        Table.AddColumn(
+				            Expanded,
+				            "Is Latest Status",
+				            each [Index] = 0,
+				            type logical
+				        ),
+				
+				    FinalQuery = 
+				        Table.SelectColumns(
+				            AddFlag,
+				            {"RLS Key", "Person UID", "Requirement", "Status", "Date", "Expire Date", "Is Latest Status"}
+				        ),
+				    #"Changed Type" = Table.TransformColumnTypes(FinalQuery,{{"Date", type datetime}, {"Expire Date", type datetime}})
+				
+				in
+				    #"Changed Type"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

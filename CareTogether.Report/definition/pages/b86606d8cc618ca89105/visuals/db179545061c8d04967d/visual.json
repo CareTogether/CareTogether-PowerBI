@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "db179545061c8d04967d",
   "position": {
     "x": 10.443686006825939,
@@ -7,7 +7,7 @@
     "z": 1000,
     "height": 96.450511945392492,
     "width": 354.47098976109214,
-    "tabOrder": 7000
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "slicer",
@@ -382,23 +382,5 @@
       "filterChanges": true
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "373036d983a1eaba017d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Approvals Group"
-              }
-            },
-            "Property": "Entity Type"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

@@ -167,3 +167,33 @@ relationship AutoDetected_3695053e-fd8b-42ee-9a64-15888710f2e0
 	fromColumn: 'Individual Function Assignments'.'Arrangement UID'
 	toColumn: Arrangements.'Arrangement UID'
 
+relationship 4ccd24fd-e5bd-42ac-ea69-3c027a804678
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Family Requirement Status'.'Family UID'
+	toColumn: Family.'Family UID'
+
+relationship 65512282-1f66-bc46-a9e9-362fc4dcb848
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Individual Requirement Status'.'Person UID'
+	toColumn: Person.'Person UID'
+
+relationship 01b391d9-9007-4f37-ba4f-725dd59a6413
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Family Requirement Status'.Date
+	toColumn: LocalDateTable_1a3b43e2-122a-4fe6-9f35-c6254ba54629.Date
+
+relationship de85b5ad-2428-4e90-bc13-a4e8e4e88f46
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Family Requirement Status'.'Expire Date'
+	toColumn: LocalDateTable_ea2e0654-261a-4f44-8f26-4de497ccae31.Date
+
+relationship e2aeebac-2be8-4aa0-8b20-72a385fc305d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Individual Requirement Status'.Date
+	toColumn: LocalDateTable_b0585918-a0c3-468f-8c47-888824fd4fb1.Date
+
+relationship 54e1be63-5ee1-469a-abd4-e55c6221c150
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Individual Requirement Status'.'Expire Date'
+	toColumn: LocalDateTable_2272b114-a7da-4a21-b826-0bba8a4281ab.Date
+

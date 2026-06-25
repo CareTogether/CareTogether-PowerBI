@@ -1,0 +1,328 @@
+table 'Family Requirement Status'
+	lineageTag: 9b42f978-20bd-47f4-82ec-c84e4f70d5f5
+
+	measure 'Family Requirement Status Icon' =
+			SWITCH(
+			    SELECTEDVALUE('Family Requirement Status'[Status]),
+			    "Complete", "✅",
+			    "Pending", "❌",
+			    "Exempted", "⚪"
+			)
+		lineageTag: bbf86485-e8d1-41bf-8112-e72aef277b41
+
+	measure '# of Families with Requirements' = DISTINCTCOUNT('Family Requirement Status'[Family Name])
+		formatString: 0
+		lineageTag: fc5aa783-35cb-4a9f-b0e7-1d1a527b6260
+
+	measure 'Family Compliance Status' =
+			
+			VAR TotalReqs = COUNTROWS('Family Requirement Status')
+			
+			VAR ExpiredReqs = CALCULATE(
+			    COUNTROWS('Family Requirement Status'),
+			    'Family Requirement Status'[Status] IN { "Complete", "Exempted"},
+			    'Family Requirement Status'[Expire Date] < TODAY(),
+			    NOT ISBLANK('Family Requirement Status'[Expire Date]),
+			    'Family Requirement Status'[Is Latest Status]
+			)
+			
+			VAR PendingReqs = CALCULATE(
+			    COUNTROWS('Family Requirement Status'),
+			    'Family Requirement Status'[Status] = "Pending",
+			    'Family Requirement Status'[Is Latest Status]
+			)
+			
+			VAR ExpireSoonReqs = CALCULATE(
+			    COUNTROWS('Family Requirement Status'),
+			    'Family Requirement Status'[Expire Date] >= TODAY(),
+			    'Family Requirement Status'[Expire Date] <= TODAY() + 30,
+			    NOT ISBLANK('Family Requirement Status'[Expire Date]),
+			    'Family Requirement Status'[Is Latest Status]
+			)
+			
+			RETURN SWITCH(
+			    TRUE(),
+			    TotalReqs = 0, BLANK(),
+			    ExpiredReqs > 0, "Expired",
+			    PendingReqs > 0, "In Progress",
+			    ExpireSoonReqs > 0, "Expiring Soon",
+			    "Approved"
+			)
+		lineageTag: 4c21bf6e-cba0-49be-972b-eb3b749278d0
+
+	measure '# of Families Approved' =
+			COUNTROWS(
+			    FILTER(
+			        VALUES('Family Requirement Status'[Family Name]),
+			        [Family Compliance Status] = "Approved"
+			    )
+			)
+		formatString: 0
+		lineageTag: b012d8e2-9fb6-40c5-aa9e-fb8004a668c5
+
+	measure '# of Families In Progress' =
+			COUNTROWS(
+			    FILTER(
+			        VALUES('Family Requirement Status'[Family Name]),
+			        [Family Compliance Status] = "In Progress"
+			    )
+			)
+		formatString: 0
+		lineageTag: e596695d-a5e7-4b72-9277-14c02145bf16
+
+	measure '# of Families Expiring Soon' =
+			COUNTROWS(
+			    FILTER(
+			        VALUES('Family Requirement Status'[Family Name]),
+			        [Family Compliance Status] = "Expiring Soon"
+			    )
+			)
+		formatString: 0
+		lineageTag: 4002bd4f-7879-481e-a582-e6f851ba1da6
+
+	measure '# of Families Expired' =
+			COUNTROWS(
+			    FILTER(
+			        VALUES('Family Requirement Status'[Family Name]),
+			        [Family Compliance Status] = "Expired"
+			    )
+			)
+		formatString: 0
+		lineageTag: b72dcb1b-246f-4f4e-8ffc-9e9583a8503f
+
+	measure '# of Families Overall Approval' = DIVIDE([# of Families Approved], [# of Families with Requirements])
+		formatString: 0%;-0%;0%
+		lineageTag: f14677ba-0721-45b8-838d-e0211eb8506d
+
+	measure '# of Families Overall Approval Target' = [# of Families with Requirements] - [# of Families Approved]
+		formatString: 0
+		lineageTag: a6b81d7c-6d2d-4d42-8507-6481e215de1f
+
+	measure '# of Requirements Completed (Family)' =
+			CALCULATE(
+			    DISTINCTCOUNT('Family Requirement Status'[Requirement]),
+			    'Family Requirement Status'[Status] IN { "Complete", "Exempted" },
+			    (
+			        ISBLANK('Family Requirement Status'[Expire Date])
+			        ||
+			        'Family Requirement Status'[Expire Date] >= TODAY() + 30
+			    ),
+			    'Family Requirement Status'[Is Latest Status]
+			)
+		formatString: 0
+		lineageTag: 5a0f1241-c970-44f4-8dcc-5360763992c0
+
+	measure '# of Requirements Pending (Family)' =
+			CALCULATE(
+			    DISTINCTCOUNT('Family Requirement Status'[Requirement]),
+			    'Family Requirement Status'[Status] = "Pending",
+			    'Family Requirement Status'[Is Latest Status]
+			)
+		formatString: 0
+		lineageTag: 3a1d6ba0-5fc1-416c-970c-a415ff633daf
+
+	measure '# of Requirements Expired (Family)' =
+			CALCULATE(
+			    DISTINCTCOUNT('Family Requirement Status'[Requirement]),
+			    'Family Requirement Status'[Status] IN { "Complete", "Exempted" },
+			    'Family Requirement Status'[Expire Date] < TODAY(),
+			    NOT ISBLANK('Family Requirement Status'[Expire Date]),
+			    'Family Requirement Status'[Is Latest Status]
+			)
+		formatString: 0
+		lineageTag: 47452cbd-1efd-4d7d-9ade-a9f051d0cbea
+
+	measure '# of Requirements Expiring Soon (Family)' =
+			CALCULATE(
+			    DISTINCTCOUNT('Family Requirement Status'[Requirement]),
+			    'Family Requirement Status'[Status] IN { "Complete", "Exempted"},
+			    'Family Requirement Status'[Expire Date] >= TODAY(),
+			    'Family Requirement Status'[Expire Date] <= TODAY() + 30,
+			    NOT ISBLANK('Family Requirement Status'[Expire Date]),
+			    'Family Requirement Status'[Is Latest Status]
+			)
+		formatString: 0
+		lineageTag: 865919d2-80a5-4445-bb39-3f0eb4f47b6d
+
+	measure 'Drill Down Visibility Flag (Family)' =
+			
+			VAR HasFamilyFilter =
+			    ISFILTERED('Family Requirement Status'[Family Name])
+			
+			RETURN
+			IF(
+			    HasFamilyFilter,
+			    1,
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: 9f2337e1-94c7-4525-8a39-0119db08e15d
+
+	column 'RLS Key'
+		dataType: string
+		lineageTag: 1b5794c2-4631-4c9a-ad1d-df6ab886100d
+		summarizeBy: none
+		sourceColumn: RLS Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family UID'
+		dataType: string
+		lineageTag: 658accb1-e8cb-4d8b-8266-01ae26ac143d
+		summarizeBy: none
+		sourceColumn: Family UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: ddbd724e-b28a-4220-8a0c-d48f1bc1d000
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 46c53f91-b34f-4bf5-8c1f-1fd7af332683
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 01b391d9-9007-4f37-ba4f-725dd59a6413
+			defaultHierarchy: LocalDateTable_1a3b43e2-122a-4fe6-9f35-c6254ba54629.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Requirement
+		dataType: string
+		lineageTag: 6ca7f88b-5f18-4daa-8542-93b7da7f2374
+		summarizeBy: none
+		sourceColumn: Requirement
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Expire Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: fbfc757f-3a15-4691-a082-60c3e34b514e
+		summarizeBy: none
+		sourceColumn: Expire Date
+
+		variation Variation
+			isDefault
+			relationship: de85b5ad-2428-4e90-bc13-a4e8e4e88f46
+			defaultHierarchy: LocalDateTable_ea2e0654-261a-4f44-8f26-4de497ccae31.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Is Latest Status'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: db62c29f-5982-4b0f-a1a1-ba9f6e5fee79
+		summarizeBy: none
+		sourceColumn: Is Latest Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Name' = RELATED(Family[Family Name])
+		lineageTag: aa041787-87f2-40e6-871d-b92fb7e00246
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Family Requirement Status' = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    Source = #"OData Live",
+				    FamilyRequirements = Source{[Name="FamilyRequirementStatuses", Signature="table"]}[Data],
+				
+				    AddRLSKey =
+				        Table.AddColumn(
+				            FamilyRequirements,
+				            "RLS Key",
+				            each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				        ),
+				
+				    AddFamilyUID =
+				        Table.AddColumn(
+				            AddRLSKey,
+				            "Family UID",
+				            each Text.Combine({[RLS Key], [FamilyId]}, "-")
+				        ),
+				
+				    Renamed =
+				        Table.RenameColumns(
+				            AddFamilyUID,
+				            {{"RequirementName", "Requirement"}, {"ExpireDate", "Expire Date"}}
+				        ),
+				
+				    Selected =
+				        Table.SelectColumns(
+				            Renamed,
+				            {"RLS Key", "Family UID", "FamilyId", "Requirement", "Status", "Date", "Expire Date"}
+				        ),
+				
+				    AddEffectiveDate =
+				        Table.AddColumn(
+				            Selected,
+				            "Effective Date",
+				            each if [Date] <> null then [Date] else [Expire Date],
+				            type datetime
+				        ),
+				
+				    Sorted =
+				        Table.Sort(
+				            AddEffectiveDate,
+				            {
+				                {"Family UID", Order.Ascending},
+				                {"Requirement", Order.Ascending},
+				                {"Effective Date", Order.Descending}
+				            }
+				        ),
+				
+				    Grouped =
+				        Table.Group(
+				            Sorted,
+				            {"Family UID", "Requirement"},
+				            {{"Data", each Table.AddIndexColumn(_, "Index", 0, 1, Int64.Type)}}
+				        ),
+				
+				    Expanded =
+				        Table.ExpandTableColumn(
+				            Grouped,
+				            "Data",
+				            {"RLS Key", "FamilyId", "Status", "Date", "Expire Date", "Effective Date", "Index"}
+				        ),
+				
+				    AddFlag =
+				        Table.AddColumn(
+				            Expanded,
+				            "Is Latest Status",
+				            each [Index] = 0,
+				            type logical
+				        ),
+				
+				    FinalQuery = 
+				        Table.SelectColumns(
+				            AddFlag,
+				            {"RLS Key", "Family UID", "Requirement", "Status", "Date", "Expire Date", "Is Latest Status"}
+				        ),
+				    #"Changed Type" = Table.TransformColumnTypes(FinalQuery,{{"Date", type datetime}, {"Expire Date", type datetime}})
+				
+				in
+				    #"Changed Type"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
