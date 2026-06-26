@@ -100,7 +100,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "At-Risk: ",
+                    "value": "Expiring Soon: ",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "8pt",
