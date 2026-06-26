@@ -191,11 +191,6 @@ table 'Individual Requirement Status'
 		summarizeBy: none
 		sourceColumn: Date
 
-		variation Variation
-			isDefault
-			relationship: e2aeebac-2be8-4aa0-8b20-72a385fc305d
-			defaultHierarchy: LocalDateTable_b0585918-a0c3-468f-8c47-888824fd4fb1.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isDateTimeCustom":true}
@@ -214,11 +209,6 @@ table 'Individual Requirement Status'
 		lineageTag: 595bfac4-4313-40ef-b2b2-16000ce945cf
 		summarizeBy: none
 		sourceColumn: Expire Date
-
-		variation Variation
-			isDefault
-			relationship: 54e1be63-5ee1-469a-abd4-e55c6221c150
-			defaultHierarchy: LocalDateTable_2272b114-a7da-4a21-b826-0bba8a4281ab.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 

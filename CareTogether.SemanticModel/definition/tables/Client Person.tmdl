@@ -198,11 +198,6 @@ table 'Client Person'
 		summarizeBy: none
 		sourceColumn: Date of Birth
 
-		variation Variation
-			isDefault
-			relationship: b98a8108-0c9f-41d4-82e1-71699d90b190
-			defaultHierarchy: LocalDateTable_090ec166-11a6-442c-a350-c18312ab6d2e.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date

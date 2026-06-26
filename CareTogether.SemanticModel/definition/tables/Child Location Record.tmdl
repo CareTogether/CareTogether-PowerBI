@@ -93,11 +93,6 @@ table 'Child Location Record'
 		summarizeBy: none
 		sourceColumn: Started
 
-		variation Variation
-			isDefault
-			relationship: 3c4bf348-84fa-4150-ae9f-5294c6ed5b46
-			defaultHierarchy: LocalDateTable_ed213257-a100-4dcb-8da7-71cc92d5ab60.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 	column Ended
@@ -107,11 +102,6 @@ table 'Child Location Record'
 		lineageTag: 12635f46-fd7d-4a5b-9ffc-888f920e1c0e
 		summarizeBy: none
 		sourceColumn: Ended
-
-		variation Variation
-			isDefault
-			relationship: 8c4a673e-c9be-45b5-a81c-bc5d2743779e
-			defaultHierarchy: LocalDateTable_ede24289-e40d-4557-99e4-7c2810f1776e.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
