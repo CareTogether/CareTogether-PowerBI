@@ -73,11 +73,6 @@ table Referrals
 		summarizeBy: none
 		sourceColumn: Opened
 
-		variation Variation
-			isDefault
-			relationship: 1ab2206b-4a20-45f7-9023-09d98267b9ac
-			defaultHierarchy: LocalDateTable_530a03d7-4545-4c50-b8bb-0eafd1c73faf.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -89,11 +84,6 @@ table Referrals
 		lineageTag: 731a711a-6cf1-4553-98be-25be1f1b4b11
 		summarizeBy: none
 		sourceColumn: Closed
-
-		variation Variation
-			isDefault
-			relationship: c4be420d-f6cc-4943-8cbf-0f4f29d6fea4
-			defaultHierarchy: LocalDateTable_fde1edd6-5eb1-4a41-b6af-f79f35fa348f.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 

@@ -91,11 +91,6 @@ table Arrangements
 		summarizeBy: none
 		sourceColumn: Requested
 
-		variation Variation
-			isDefault
-			relationship: 94b8e5b1-15d3-4893-b628-6f78cdb4bafe
-			defaultHierarchy: LocalDateTable_e4c82e88-c4c3-4c99-8b77-e121c2e26dd4.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -108,11 +103,6 @@ table Arrangements
 		summarizeBy: none
 		sourceColumn: Started
 
-		variation Variation
-			isDefault
-			relationship: 9364ac9f-e354-4909-af5b-be492d899a7e
-			defaultHierarchy: LocalDateTable_e028dd1f-b7df-4057-8fee-be7ce425d993.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 	column Ended
@@ -122,11 +112,6 @@ table Arrangements
 		lineageTag: 42a8b911-0e42-441e-acbc-f3db829d7726
 		summarizeBy: none
 		sourceColumn: Ended
-
-		variation Variation
-			isDefault
-			relationship: 1fc3de92-ab97-49ab-8bd5-dd0546a44739
-			defaultHierarchy: LocalDateTable_94755f40-c02e-4f12-adba-57d68c4e7bd7.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 

@@ -28,7 +28,7 @@ queryGroup Fact
 
 annotation PBI_QueryOrder = ["OData Live","Production","Date","_Measures","RLS","Family","Location Client","Person","Family Requirement Status","Individual Requirement Status","Arrangements","Arrangement Type","Childcare","Referrals","Community Member Families","Community Role Assignments","Close Reason","Community","Child Location Record","Childcare Plan","Approval Status","Role","Family Role Approvals","Individual Role Approvals","Approval Type","Family Function Assignments","Individual Function Assignments","Client Family","Client Person","Location"]
 
-annotation __PBI_TimeIntelligenceEnabled = 1
+annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_ProTooling = ["CalcGroup","DevMode","DaxQueryView_Desktop"]
 
@@ -50,17 +50,8 @@ ref table Role
 ref table RLS
 ref table Family
 ref table Person
-ref table DateTableTemplate_bebbf16f-6440-48cb-8834-0dc3cfff853f
-ref table LocalDateTable_489a36aa-e0b2-448a-8b96-aac93e3f3da3
 ref table Arrangements
-ref table LocalDateTable_e4c82e88-c4c3-4c99-8b77-e121c2e26dd4
-ref table LocalDateTable_e028dd1f-b7df-4057-8fee-be7ce425d993
-ref table LocalDateTable_94755f40-c02e-4f12-adba-57d68c4e7bd7
 ref table Referrals
-ref table LocalDateTable_530a03d7-4545-4c50-b8bb-0eafd1c73faf
-ref table LocalDateTable_fde1edd6-5eb1-4a41-b6af-f79f35fa348f
-ref table LocalDateTable_ed213257-a100-4dcb-8da7-71cc92d5ab60
-ref table LocalDateTable_ede24289-e40d-4557-99e4-7c2810f1776e
 ref table 'Arrangements Group'
 ref table 'Approvals Group'
 ref table 'Family Role Approvals'
@@ -71,14 +62,9 @@ ref table 'Family Function Assignments'
 ref table 'Individual Function Assignments'
 ref table 'Client Family'
 ref table 'Client Person'
-ref table LocalDateTable_090ec166-11a6-442c-a350-c18312ab6d2e
 ref table Location
 ref table 'Family Requirement Status'
 ref table 'Individual Requirement Status'
-ref table LocalDateTable_1a3b43e2-122a-4fe6-9f35-c6254ba54629
-ref table LocalDateTable_ea2e0654-261a-4f44-8f26-4de497ccae31
-ref table LocalDateTable_b0585918-a0c3-468f-8c47-888824fd4fb1
-ref table LocalDateTable_2272b114-a7da-4a21-b826-0bba8a4281ab
 
 ref role Dynamic
 

@@ -1,43 +1,3 @@
-relationship 093886a6-d141-4813-8b6c-501e63f69801
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Person.'Date of Birth'
-	toColumn: LocalDateTable_489a36aa-e0b2-448a-8b96-aac93e3f3da3.Date
-
-relationship 94b8e5b1-15d3-4893-b628-6f78cdb4bafe
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Arrangements.Requested
-	toColumn: LocalDateTable_e4c82e88-c4c3-4c99-8b77-e121c2e26dd4.Date
-
-relationship 9364ac9f-e354-4909-af5b-be492d899a7e
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Arrangements.Started
-	toColumn: LocalDateTable_e028dd1f-b7df-4057-8fee-be7ce425d993.Date
-
-relationship 1fc3de92-ab97-49ab-8bd5-dd0546a44739
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Arrangements.Ended
-	toColumn: LocalDateTable_94755f40-c02e-4f12-adba-57d68c4e7bd7.Date
-
-relationship 1ab2206b-4a20-45f7-9023-09d98267b9ac
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Referrals.Opened
-	toColumn: LocalDateTable_530a03d7-4545-4c50-b8bb-0eafd1c73faf.Date
-
-relationship c4be420d-f6cc-4943-8cbf-0f4f29d6fea4
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Referrals.Closed
-	toColumn: LocalDateTable_fde1edd6-5eb1-4a41-b6af-f79f35fa348f.Date
-
-relationship 3c4bf348-84fa-4150-ae9f-5294c6ed5b46
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Child Location Record'.Started
-	toColumn: LocalDateTable_ed213257-a100-4dcb-8da7-71cc92d5ab60.Date
-
-relationship 8c4a673e-c9be-45b5-a81c-bc5d2743779e
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Child Location Record'.Ended
-	toColumn: LocalDateTable_ede24289-e40d-4557-99e4-7c2810f1776e.Date
-
 relationship 1b2fdd82-5273-6461-550a-5925f0e410d3
 	crossFilteringBehavior: bothDirections
 	fromColumn: Person.'Family UID'
@@ -107,11 +67,6 @@ relationship 50417728-c721-40a8-fe93-d187e5ff3c74
 	fromColumn: 'Individual Function Assignments'.'Entity UID'
 	toColumn: Person.'Person UID'
 
-relationship b98a8108-0c9f-41d4-82e1-71699d90b190
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Client Person'.'Date of Birth'
-	toColumn: LocalDateTable_090ec166-11a6-442c-a350-c18312ab6d2e.Date
-
 relationship 6335aac6-3f29-8b81-b9d3-bd9cdf9cd19c
 	crossFilteringBehavior: bothDirections
 	fromColumn: 'Client Person'.'Family UID'
@@ -176,24 +131,4 @@ relationship 65512282-1f66-bc46-a9e9-362fc4dcb848
 	crossFilteringBehavior: bothDirections
 	fromColumn: 'Individual Requirement Status'.'Person UID'
 	toColumn: Person.'Person UID'
-
-relationship 01b391d9-9007-4f37-ba4f-725dd59a6413
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Family Requirement Status'.Date
-	toColumn: LocalDateTable_1a3b43e2-122a-4fe6-9f35-c6254ba54629.Date
-
-relationship de85b5ad-2428-4e90-bc13-a4e8e4e88f46
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Family Requirement Status'.'Expire Date'
-	toColumn: LocalDateTable_ea2e0654-261a-4f44-8f26-4de497ccae31.Date
-
-relationship e2aeebac-2be8-4aa0-8b20-72a385fc305d
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Individual Requirement Status'.Date
-	toColumn: LocalDateTable_b0585918-a0c3-468f-8c47-888824fd4fb1.Date
-
-relationship 54e1be63-5ee1-469a-abd4-e55c6221c150
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Individual Requirement Status'.'Expire Date'
-	toColumn: LocalDateTable_2272b114-a7da-4a21-b826-0bba8a4281ab.Date
 

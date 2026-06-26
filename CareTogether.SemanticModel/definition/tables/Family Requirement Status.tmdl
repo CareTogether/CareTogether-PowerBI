@@ -189,11 +189,6 @@ table 'Family Requirement Status'
 		summarizeBy: none
 		sourceColumn: Date
 
-		variation Variation
-			isDefault
-			relationship: 01b391d9-9007-4f37-ba4f-725dd59a6413
-			defaultHierarchy: LocalDateTable_1a3b43e2-122a-4fe6-9f35-c6254ba54629.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isDateTimeCustom":true}
@@ -212,11 +207,6 @@ table 'Family Requirement Status'
 		lineageTag: fbfc757f-3a15-4691-a082-60c3e34b514e
 		summarizeBy: none
 		sourceColumn: Expire Date
-
-		variation Variation
-			isDefault
-			relationship: de85b5ad-2428-4e90-bc13-a4e8e4e88f46
-			defaultHierarchy: LocalDateTable_ea2e0654-261a-4f44-8f26-4de497ccae31.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
