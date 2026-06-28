@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 220.6999290805642,
-        "y": 847.24250552594367
+        "x": 0,
+        "y": 0
       },
       "nodes": [
         {
@@ -31,7 +31,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 2
         },
         {
           "location": {
@@ -57,7 +57,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 3
         },
         {
           "location": {
@@ -70,7 +70,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 4
         },
         {
           "location": {
@@ -83,7 +83,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 5
         },
         {
           "location": {
@@ -94,19 +94,6 @@
           "nodeLineageTag": "0e929471-7d25-410a-953a-359fbad618e6",
           "size": {
             "height": 152,
-            "width": 234
-          },
-          "zIndex": 5
-        },
-        {
-          "location": {
-            "x": 271.20268200240412,
-            "y": 157.76309055954835
-          },
-          "nodeIndex": "Referrals",
-          "nodeLineageTag": "9e3a875e-349f-43da-84eb-8c636fdefbc9",
-          "size": {
-            "height": 296,
             "width": 234
           },
           "zIndex": 6
@@ -405,6 +392,32 @@
             "width": 234
           },
           "zIndex": 30
+        },
+        {
+          "location": {
+            "x": 46.8244207704972,
+            "y": 223.97306928371759
+          },
+          "nodeIndex": "Cases",
+          "nodeLineageTag": "9e3a875e-349f-43da-84eb-8c636fdefbc9",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 32
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 630.22090859672221
+          },
+          "nodeIndex": "Referrals",
+          "nodeLineageTag": "827d0073-eb4c-48e2-b555-4d0ceee7ce76",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
         }
       ],
       "name": "All tables",
@@ -498,19 +511,6 @@
             "width": 234
           },
           "zIndex": 15
-        },
-        {
-          "location": {
-            "x": 325.92651059177609,
-            "y": 2264.4274283730888
-          },
-          "nodeIndex": "Referrals",
-          "nodeLineageTag": "9e3a875e-349f-43da-84eb-8c636fdefbc9",
-          "size": {
-            "height": 157.48397847320211,
-            "width": 234
-          },
-          "zIndex": 23
         },
         {
           "location": {
@@ -758,6 +758,18 @@
             "width": 234
           },
           "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 325.92651059177609,
+            "y": 2264.4274283730888
+          },
+          "nodeIndex": "Cases",
+          "size": {
+            "height": 157.48397847320211,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Data Model",

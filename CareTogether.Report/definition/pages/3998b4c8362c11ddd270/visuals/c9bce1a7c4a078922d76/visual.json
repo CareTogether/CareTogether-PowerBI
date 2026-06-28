@@ -54,7 +54,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referrals"
+                      "Entity": "Cases"
                     }
                   },
                   "Property": "# of Referrals Opened"

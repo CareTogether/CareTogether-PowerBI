@@ -205,7 +205,7 @@ table Family
 			    'Individual Role Approvals'[Entity Type] = "Person"
 			)
 			
-			VAR Referrals = COUNTROWS(RELATEDTABLE(Referrals))
+			VAR Referrals = COUNTROWS(RELATEDTABLE('Cases'))
 			
 			RETURN IF(
 			    FamilyRoleApprovals + IndividualRoleApprovals > 0,

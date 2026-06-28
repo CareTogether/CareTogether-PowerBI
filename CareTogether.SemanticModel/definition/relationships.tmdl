@@ -4,7 +4,7 @@ relationship 1b2fdd82-5273-6461-550a-5925f0e410d3
 	toColumn: Family.'Family UID'
 
 relationship 73e5b166-c4e6-9336-00c4-ee6faa14db58
-	fromColumn: Referrals.'Close Reason'
+	fromColumn: Cases.'Close Reason'
 	toColumn: 'Close Reason'.ReferralCloseReason
 
 relationship 68bd892e-c661-c7b7-5c03-5aefca191f67
@@ -77,7 +77,7 @@ relationship 2139f5d5-648e-3dab-b179-af506cdef005
 	toColumn: 'Client Person'.'Person UID'
 
 relationship 0f912775-5b1a-2d3e-eaa9-538880e28b36
-	fromColumn: Referrals.'Family UID'
+	fromColumn: Cases.'Family UID'
 	toColumn: 'Client Family'.'Family UID'
 
 relationship AutoDetected_008616e6-be5a-4013-bc93-13849ae9a89b
@@ -131,4 +131,8 @@ relationship 65512282-1f66-bc46-a9e9-362fc4dcb848
 	crossFilteringBehavior: bothDirections
 	fromColumn: 'Individual Requirement Status'.'Person UID'
 	toColumn: Person.'Person UID'
+
+relationship 03bb0ee6-d6a1-31e0-8cb7-5cc3fabaeaf5
+	fromColumn: Referrals.'Case UID'
+	toColumn: Cases.'Case UID'
 

@@ -13,8 +13,8 @@ role Dynamic
 			    RLS[UserId] = USERNAME()
 			)
 
-	tablePermission Referrals =
-			Referrals[RLS Key] IN CALCULATETABLE(
+	tablePermission Cases =
+			'Cases'[RLS Key] IN CALCULATETABLE(
 			    VALUES(RLS[RLS Key]),
 			    RLS[UserId] = USERNAME()
 			)
