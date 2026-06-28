@@ -5035,62 +5035,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "arrangement.referral_ID": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Arrangements",
-			          "ConceptualProperty": "Referral ID"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "referral ID": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "referral identification": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "referral identity": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "referral identifier": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "referral credential": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        }
-			      ]
-			    },
 			    "arrangement.person_UID": {
 			      "Definition": {
 			        "Binding": {
@@ -7249,7 +7193,7 @@ cultureInfo en-US
 			    "referral": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals"
+			          "ConceptualEntity": "Cases"
 			        }
 			      },
 			      "State": "Generated",
@@ -7294,7 +7238,7 @@ cultureInfo en-US
 			    "referral.RLS_key": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "ConceptualProperty": "RLS Key"
 			        }
 			      },
@@ -7420,73 +7364,10 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "referral.referral_ID": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Referrals",
-			          "ConceptualProperty": "Referral ID"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "referral ID": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "ID": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "referral identification": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "referral identity": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "referral identifier": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "referral credential": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.727
-			          }
-			        }
-			      ],
-			      "NameType": "Identifier"
-			    },
 			    "referral.family_UID": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "ConceptualProperty": "Family UID"
 			        }
 			      },
@@ -7511,7 +7392,7 @@ cultureInfo en-US
 			    "referral.family_ID": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "ConceptualProperty": "Family ID"
 			        }
 			      },
@@ -7567,7 +7448,7 @@ cultureInfo en-US
 			    "referral.opened": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "ConceptualProperty": "Opened"
 			        }
 			      },
@@ -7590,7 +7471,7 @@ cultureInfo en-US
 			    "referral.opened.date_hierarchy": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "VariationSource": "Opened",
 			          "VariationSet": "Variation",
 			          "Hierarchy": "Date Hierarchy"
@@ -7621,7 +7502,7 @@ cultureInfo en-US
 			    "referral.opened.year": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "VariationSource": "Opened",
 			          "VariationSet": "Variation",
 			          "Hierarchy": "Date Hierarchy",
@@ -7666,7 +7547,7 @@ cultureInfo en-US
 			    "referral.opened.quarter": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "VariationSource": "Opened",
 			          "VariationSet": "Variation",
 			          "Hierarchy": "Date Hierarchy",
@@ -7711,7 +7592,7 @@ cultureInfo en-US
 			    "referral.opened.month": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "VariationSource": "Opened",
 			          "VariationSet": "Variation",
 			          "Hierarchy": "Date Hierarchy",
@@ -7756,7 +7637,7 @@ cultureInfo en-US
 			    "referral.opened.day": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "VariationSource": "Opened",
 			          "VariationSet": "Variation",
 			          "Hierarchy": "Date Hierarchy",
@@ -7781,7 +7662,7 @@ cultureInfo en-US
 			    "referral.closed": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "ConceptualProperty": "Closed"
 			        }
 			      },
@@ -7904,7 +7785,7 @@ cultureInfo en-US
 			    "referral.closed.date_hierarchy": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "VariationSource": "Closed",
 			          "VariationSet": "Variation",
 			          "Hierarchy": "Date Hierarchy"
@@ -7935,7 +7816,7 @@ cultureInfo en-US
 			    "referral.closed.year": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "VariationSource": "Closed",
 			          "VariationSet": "Variation",
 			          "Hierarchy": "Date Hierarchy",
@@ -7980,7 +7861,7 @@ cultureInfo en-US
 			    "referral.closed.quarter": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "VariationSource": "Closed",
 			          "VariationSet": "Variation",
 			          "Hierarchy": "Date Hierarchy",
@@ -8025,7 +7906,7 @@ cultureInfo en-US
 			    "referral.closed.month": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "VariationSource": "Closed",
 			          "VariationSet": "Variation",
 			          "Hierarchy": "Date Hierarchy",
@@ -8070,7 +7951,7 @@ cultureInfo en-US
 			    "referral.closed.day": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "VariationSource": "Closed",
 			          "VariationSet": "Variation",
 			          "Hierarchy": "Date Hierarchy",
@@ -8095,7 +7976,7 @@ cultureInfo en-US
 			    "referral.referral_source": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "ConceptualProperty": "Referral Source"
 			        }
 			      },
@@ -8217,7 +8098,7 @@ cultureInfo en-US
 			    "referral.close_reason": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "ConceptualProperty": "Close Reason"
 			        }
 			      },
@@ -8336,7 +8217,7 @@ cultureInfo en-US
 			    "referral.primary_reason_for_referral": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "ConceptualProperty": "Primary Reason for Referral"
 			        }
 			      },
@@ -8458,7 +8339,7 @@ cultureInfo en-US
 			    "referral.of_referrals_opened": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "ConceptualProperty": "# of Referrals Opened"
 			        }
 			      },
@@ -8514,7 +8395,7 @@ cultureInfo en-US
 			    "referral.of_families_referred": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Referrals",
+			          "ConceptualEntity": "Cases",
 			          "ConceptualProperty": "# of Families Referred"
 			        }
 			      },
@@ -14237,7 +14118,7 @@ cultureInfo en-US
 			  "Relationships": {
 			    "referral_opened_date_hierarchy_has_referral_opened_day": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -14270,7 +14151,7 @@ cultureInfo en-US
 			    },
 			    "referral_opened_date_hierarchy_has_referral_opened_month": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -14303,7 +14184,7 @@ cultureInfo en-US
 			    },
 			    "referral_opened_date_hierarchy_has_referral_opened_quarter": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -14336,7 +14217,7 @@ cultureInfo en-US
 			    },
 			    "referral_opened_date_hierarchy_has_referral_opened_year": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -14369,7 +14250,7 @@ cultureInfo en-US
 			    },
 			    "referral_opened_has_date_hierarchy": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -15371,7 +15252,7 @@ cultureInfo en-US
 			    },
 			    "referral_has_close_reason": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -15417,7 +15298,7 @@ cultureInfo en-US
 			    },
 			    "referral_has_family": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -16726,7 +16607,7 @@ cultureInfo en-US
 			    },
 			    "referral_has_of_families_referred": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -16759,7 +16640,7 @@ cultureInfo en-US
 			    },
 			    "referral_has_of_referrals_opened": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -16792,7 +16673,7 @@ cultureInfo en-US
 			    },
 			    "referral_has_primary_reason_for_referral": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -16825,7 +16706,7 @@ cultureInfo en-US
 			    },
 			    "referral_has_referral_source": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -16858,7 +16739,7 @@ cultureInfo en-US
 			    },
 			    "referral_has_closed": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -16891,7 +16772,7 @@ cultureInfo en-US
 			    },
 			    "referral_has_opened": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -16924,7 +16805,7 @@ cultureInfo en-US
 			    },
 			    "referral_has_family_ID": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -16957,7 +16838,7 @@ cultureInfo en-US
 			    },
 			    "referral_has_referral_ID": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -17003,7 +16884,7 @@ cultureInfo en-US
 			    },
 			    "referral_has_RLS_key": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -19829,7 +19710,7 @@ cultureInfo en-US
 			    },
 			    "referral_is_closed_on_closed": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -19871,7 +19752,7 @@ cultureInfo en-US
 			    },
 			    "referral_is_opened_on_opened": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -20039,7 +19920,7 @@ cultureInfo en-US
 			    },
 			    "referral_closed_has_date_hierarchy": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -20072,7 +19953,7 @@ cultureInfo en-US
 			    },
 			    "referral_closed_date_hierarchy_has_referral_closed_year": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -20105,7 +19986,7 @@ cultureInfo en-US
 			    },
 			    "referral_closed_date_hierarchy_has_referral_closed_quarter": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -20138,7 +20019,7 @@ cultureInfo en-US
 			    },
 			    "referral_closed_date_hierarchy_has_referral_closed_month": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -20171,7 +20052,7 @@ cultureInfo en-US
 			    },
 			    "referral_closed_date_hierarchy_has_referral_closed_day": {
 			      "Binding": {
-			        "ConceptualEntity": "Referrals"
+			        "ConceptualEntity": "Cases"
 			      },
 			      "State": "Generated",
 			      "Roles": {

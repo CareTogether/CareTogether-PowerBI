@@ -1,118 +1,94 @@
 table Referrals
-	lineageTag: 9e3a875e-349f-43da-84eb-8c636fdefbc9
+	lineageTag: 827d0073-eb4c-48e2-b555-4d0ceee7ce76
 
-	measure '# of Referrals Opened' =
-			COUNTROWS(
-			    FILTER(
-			        Referrals,
-			        AND(
-			            Referrals[Opened] >= [Selected Timeframe Start],
-			            Referrals[Opened] <= [Selected Timeframe End]
-			        )
-			    )
-			)
-		formatString: 0
-		lineageTag: f3c404d6-390c-431b-9b69-8eb6b0e63a25
+	column ReferralId
+		dataType: string
+		lineageTag: c85494b1-4f59-4fdb-8b7e-3872c464fc2e
+		summarizeBy: none
+		sourceColumn: ReferralId
 
-	measure '# of Families Referred' =
-			
-			CALCULATE(
-			    DISTINCTCOUNTNOBLANK(Referrals[Family UID]),
-			    FILTER(
-			        Referrals,
-			        AND(
-			            Referrals[Opened] >= [Selected Timeframe Start],
-			            Referrals[Opened] <= [Selected Timeframe End]
-			        )
-			    )
-			)
-		formatString: 0
-		lineageTag: b5d014ee-8316-42d6-9279-31313afeea43
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedAtUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 10d8a3f3-fcfa-4d63-8df9-2106733e9b49
+		summarizeBy: none
+		sourceColumn: CreatedAtUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 2aea02b2-ca85-4a23-ae67-348af516819c
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 1360bfa6-06fb-49eb-a44f-9c8db0f1b9fb
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comment
+		dataType: string
+		lineageTag: 5ba095b0-fa96-4e02-ae6a-aea2142549c3
+		summarizeBy: none
+		sourceColumn: Comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column AcceptedAtUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d52a4d03-5991-44a1-8ddc-577726467fad
+		summarizeBy: none
+		sourceColumn: AcceptedAtUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClosedAtUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d48e174b-55cd-4fa7-bcf1-467d89cbccdb
+		summarizeBy: none
+		sourceColumn: ClosedAtUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column CloseReason
+		dataType: string
+		lineageTag: 2f837136-a8a7-42af-805b-9e6fcf1f86d1
+		summarizeBy: none
+		sourceColumn: CloseReason
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'RLS Key'
 		dataType: string
-		displayFolder: _Columns
-		lineageTag: cd5525dd-e937-49df-b204-6c81e4fda7f7
+		lineageTag: 8100b894-a686-472e-8b13-dbaca1dbcadd
 		summarizeBy: none
 		sourceColumn: RLS Key
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Referral ID'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 8186c11b-3aac-469e-9338-c5c6dbe09c2d
-		summarizeBy: none
-		sourceColumn: Referral ID
-
-		annotation SummarizationSetBy = Automatic
-
 	column 'Family UID'
 		dataType: string
-		displayFolder: _Columns
-		lineageTag: 738b7dad-745e-4b9d-abf1-6e9042b82ab7
+		lineageTag: aa69459a-1de3-4605-98ad-c4ab9bab1407
 		summarizeBy: none
 		sourceColumn: Family UID
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Family ID'
+	column 'Case UID'
 		dataType: string
-		displayFolder: _Columns
-		lineageTag: 324a14fb-9785-443c-9b0f-17c8e2cdfd72
+		lineageTag: a22a2e12-0fbd-4d0f-9653-ddf4bbdc3eb8
 		summarizeBy: none
-		sourceColumn: Family ID
-
-		annotation SummarizationSetBy = Automatic
-
-	column Opened
-		dataType: dateTime
-		formatString: Short Date
-		displayFolder: _Columns
-		lineageTag: 3735aae9-a05e-45e2-b675-64e5b18b46bc
-		summarizeBy: none
-		sourceColumn: Opened
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	column Closed
-		dataType: dateTime
-		formatString: Short Date
-		displayFolder: _Columns
-		lineageTag: 731a711a-6cf1-4553-98be-25be1f1b4b11
-		summarizeBy: none
-		sourceColumn: Closed
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	column 'Referral Source'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 9ec71218-11b8-4ae6-a43b-42a01cbbef9b
-		summarizeBy: none
-		sourceColumn: Referral Source
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Close Reason'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: ac057b4d-f637-493e-ad3e-e4d72feb95da
-		summarizeBy: none
-		sourceColumn: Close Reason
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Primary Reason for Referral'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: ae7e18ff-b6f6-4a22-aa8b-8389894dd252
-		summarizeBy: none
-		sourceColumn: Primary Reason for Referral
+		sourceColumn: Case UID
 
 		annotation SummarizationSetBy = Automatic
 
@@ -122,11 +98,11 @@ table Referrals
 		source = ```
 				let
 				    Source = #"OData Live",
-				    Referral = Source{[Name="Referral", Signature="table"]}[Data],
-				    ReferralTransformed = 
+				    Referral = Source{[Name="Referrals", Signature="table"]}[Data],
 				
+				    ReferralFinal = 
 				    Table.SelectColumns(
-				        Table.RenameColumns(
+				        Table.AddColumn(
 				            Table.AddColumn(
 				                Table.AddColumn(
 				                    Referral,
@@ -134,16 +110,14 @@ table Referrals
 				                ),
 				                "Family UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
 				            ),
-				            {{"Id", "Referral ID"}, {"FamilyId", "Family ID"}, {"ReferralSource", "Referral Source"}, {"CloseReason", "Close Reason"}, {"PrimaryReasonForReferral", "Primary Reason for Referral"}}
+				            "Case UID", each Text.Combine({[RLS Key], [CaseId]}, "-")
 				        ),
-				        {"RLS Key", "Referral ID", "Family UID", "Family ID", "Opened", "Closed", "Referral Source", "Close Reason", "Primary Reason for Referral"}
+				        {"RLS Key", "Family UID", "ReferralId", "Case UID", "CreatedAtUtc", "AcceptedAtUtc", "ClosedAtUtc", "Title", "Status", "Comment", "CloseReason"}
 				    )
 				
 				
-				
-				
 				in
-				    ReferralTransformed
+				    ReferralFinal
 				```
 
 	annotation PBI_NavigationStepName = Navigation

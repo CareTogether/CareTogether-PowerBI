@@ -34,7 +34,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referrals"
+                      "Entity": "Cases"
                     }
                   },
                   "Property": "Referral Source"
@@ -48,7 +48,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referrals"
+                      "Entity": "Cases"
                     }
                   },
                   "Property": "Opened"
@@ -62,7 +62,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referrals"
+                      "Entity": "Cases"
                     }
                   },
                   "Property": "Closed"
@@ -90,7 +90,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referrals"
+                      "Entity": "Cases"
                     }
                   },
                   "Property": "# of Referrals Opened"
@@ -110,7 +110,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Referrals"
+                    "Entity": "Cases"
                   }
                 },
                 "Property": "Opened"

@@ -56,15 +56,6 @@ table Arrangements
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Referral ID'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 2e0c4140-78a0-4b25-9bae-c22667802f6f
-		summarizeBy: none
-		sourceColumn: Referral ID
-
-		annotation SummarizationSetBy = Automatic
-
 	column 'Person UID'
 		dataType: string
 		displayFolder: _Columns
@@ -141,6 +132,14 @@ table Arrangements
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Case ID'
+		dataType: string
+		lineageTag: fade7d32-ca55-480a-aefc-dbc6985bd7e8
+		summarizeBy: none
+		sourceColumn: Case ID
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Arrangements = m
 		mode: import
 		queryGroup: Fact
@@ -166,10 +165,10 @@ table Arrangements
 				                ),
 				                "Arrangement UID", each Text.Combine({[RLS Key], [Id]}, "-")
 				            ),
-				            {{"Id", "Arrangement ID"}, {"TypeName", "Arrangement Type"}, {"ReferralId", "Referral ID"}, {"PersonId", "Person ID"}, 
+				            {{"Id", "Arrangement ID"}, {"TypeName", "Arrangement Type"}, {"CaseId", "Case ID"}, {"PersonId", "Person ID"}, 
 				            {"StartedUtc", "Started"}, {"EndedUtc", "Ended"}}
 				    ),
-				    {"RLS Key", "Arrangement UID", "Arrangement ID", "Arrangement Type UID", "Arrangement Type", "Referral ID", "Person UID", "Person ID", "Requested", "Started", "Ended", "Phase", "Reason"}
+				    {"RLS Key", "Arrangement UID", "Arrangement ID", "Arrangement Type UID", "Arrangement Type", "Case ID", "Person UID", "Person ID", "Requested", "Started", "Ended", "Phase", "Reason"}
 				)
 				
 				
