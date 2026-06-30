@@ -232,20 +232,6 @@
         "howCreated": "User",
         "isHiddenInViewMode": true,
         "isLockedInViewMode": true
-      },
-      {
-        "name": "61befd71507911b41c78",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirement Status"
-              }
-            },
-            "Property": "Requirement"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

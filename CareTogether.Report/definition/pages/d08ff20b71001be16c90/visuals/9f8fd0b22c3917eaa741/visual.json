@@ -73,14 +73,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Cases"
+                      "Entity": "Referrals"
                     }
                   },
                   "Property": "# of Families Referred"
                 }
               },
               "queryRef": "Referrals.# of Families Referred",
-              "nativeQueryRef": "# of Families Referred"
+              "nativeQueryRef": "Families Referred",
+              "displayName": "Families Referred"
             }
           ]
         }

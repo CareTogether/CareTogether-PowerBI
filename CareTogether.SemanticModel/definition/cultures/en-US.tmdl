@@ -8340,7 +8340,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Cases",
-			          "ConceptualProperty": "# of Referrals Opened"
+			          "ConceptualProperty": "# of Cases Opened"
 			        }
 			      },
 			      "State": "Generated",
@@ -8381,63 +8381,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Referrals Opened": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
-			    "referral.of_families_referred": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Cases",
-			          "ConceptualProperty": "# of Families Referred"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "# of families referred": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "no of family referred": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "num of family referred": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "number of family referred": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.748
-			          }
-			        },
-			        {
-			          "Families Referred": {
+			          "Cases Opened": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -14104,6 +14048,90 @@ cultureInfo en-US
 			      "Terms": [
 			        {
 			          "Expired": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "referrals.acceptedatutc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Referrals",
+			          "ConceptualProperty": "AcceptedAtUtc"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Accepted At": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "referrals.createdatutc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Referrals",
+			          "ConceptualProperty": "CreatedAtUtc"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Created At": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "referrals.closedatutc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Referrals",
+			          "ConceptualProperty": "ClosedAtUtc"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Closed At": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "referrals.of_families_referred": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Referrals",
+			          "ConceptualProperty": "# of Families Referred"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Families Referred": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

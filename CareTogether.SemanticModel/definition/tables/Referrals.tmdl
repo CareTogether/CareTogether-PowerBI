@@ -1,8 +1,25 @@
 table Referrals
 	lineageTag: 827d0073-eb4c-48e2-b555-4d0ceee7ce76
 
+	measure '# of Families Referred' =
+			
+			
+			CALCULATE(
+			    DISTINCTCOUNTNOBLANK('Referrals'[Family UID]),
+			    FILTER(
+			        'Referrals',
+			        AND(
+			            'Referrals'[AcceptedAtUtc] >= [Selected Timeframe Start],
+			            'Referrals'[AcceptedAtUtc] <= [Selected Timeframe End]
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 8fc9926f-9251-4552-a3e8-cc01d8ea5732
+
 	column ReferralId
 		dataType: string
+		displayFolder: _columns
 		lineageTag: c85494b1-4f59-4fdb-8b7e-3872c464fc2e
 		summarizeBy: none
 		sourceColumn: ReferralId
@@ -12,6 +29,7 @@ table Referrals
 	column CreatedAtUtc
 		dataType: dateTime
 		formatString: General Date
+		displayFolder: _columns
 		lineageTag: 10d8a3f3-fcfa-4d63-8df9-2106733e9b49
 		summarizeBy: none
 		sourceColumn: CreatedAtUtc
@@ -20,6 +38,7 @@ table Referrals
 
 	column Title
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 2aea02b2-ca85-4a23-ae67-348af516819c
 		summarizeBy: none
 		sourceColumn: Title
@@ -28,6 +47,7 @@ table Referrals
 
 	column Status
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 1360bfa6-06fb-49eb-a44f-9c8db0f1b9fb
 		summarizeBy: none
 		sourceColumn: Status
@@ -36,6 +56,7 @@ table Referrals
 
 	column Comment
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 5ba095b0-fa96-4e02-ae6a-aea2142549c3
 		summarizeBy: none
 		sourceColumn: Comment
@@ -45,6 +66,7 @@ table Referrals
 	column AcceptedAtUtc
 		dataType: dateTime
 		formatString: General Date
+		displayFolder: _columns
 		lineageTag: d52a4d03-5991-44a1-8ddc-577726467fad
 		summarizeBy: none
 		sourceColumn: AcceptedAtUtc
@@ -54,6 +76,7 @@ table Referrals
 	column ClosedAtUtc
 		dataType: dateTime
 		formatString: General Date
+		displayFolder: _columns
 		lineageTag: d48e174b-55cd-4fa7-bcf1-467d89cbccdb
 		summarizeBy: none
 		sourceColumn: ClosedAtUtc
@@ -62,6 +85,7 @@ table Referrals
 
 	column CloseReason
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 2f837136-a8a7-42af-805b-9e6fcf1f86d1
 		summarizeBy: none
 		sourceColumn: CloseReason
@@ -70,6 +94,7 @@ table Referrals
 
 	column 'RLS Key'
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 8100b894-a686-472e-8b13-dbaca1dbcadd
 		summarizeBy: none
 		sourceColumn: RLS Key
@@ -78,6 +103,7 @@ table Referrals
 
 	column 'Family UID'
 		dataType: string
+		displayFolder: _columns
 		lineageTag: aa69459a-1de3-4605-98ad-c4ab9bab1407
 		summarizeBy: none
 		sourceColumn: Family UID
@@ -86,6 +112,7 @@ table Referrals
 
 	column 'Case UID'
 		dataType: string
+		displayFolder: _columns
 		lineageTag: a22a2e12-0fbd-4d0f-9653-ddf4bbdc3eb8
 		summarizeBy: none
 		sourceColumn: Case UID

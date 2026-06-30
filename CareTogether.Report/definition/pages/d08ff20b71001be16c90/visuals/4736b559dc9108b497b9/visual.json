@@ -38,6 +38,21 @@
                       "Entity": "Cases"
                     }
                   },
+                  "Property": "# of Cases Opened"
+                }
+              },
+              "queryRef": "Cases.# of Cases Opened",
+              "nativeQueryRef": "Cases Opened",
+              "displayName": "Cases Opened"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Referrals"
+                    }
+                  },
                   "Property": "# of Families Referred"
                 }
               },

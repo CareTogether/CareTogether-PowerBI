@@ -232,20 +232,6 @@
         "howCreated": "User",
         "isHiddenInViewMode": true,
         "isLockedInViewMode": true
-      },
-      {
-        "name": "3db7e8a81da7a7ac1246",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "Requirement"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

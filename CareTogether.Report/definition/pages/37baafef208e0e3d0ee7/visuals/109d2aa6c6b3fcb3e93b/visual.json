@@ -573,37 +573,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "92115fb5e4e75e9010af",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangements"
-              }
-            },
-            "Property": "# of Arrangements"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "19a2d7b16d9298001040",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Client Family"
-              }
-            },
-            "Property": "GeoLocation"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }
