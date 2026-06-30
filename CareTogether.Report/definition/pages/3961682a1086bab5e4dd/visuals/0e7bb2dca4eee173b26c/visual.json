@@ -257,37 +257,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "c3b855aff3cbd2f4e800",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "# of Families Approved"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "da118fc0b9c99d37d32f",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "# of Families Overall Approval Target"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

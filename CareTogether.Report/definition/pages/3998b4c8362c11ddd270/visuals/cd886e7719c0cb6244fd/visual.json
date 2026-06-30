@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "0fd45c9be3deb6542a51",
+  "name": "cd886e7719c0cb6244fd",
   "position": {
-    "x": 650.580204778157,
-    "y": 441.70648464163821,
-    "z": 3000,
-    "height": 269.07849829351534,
-    "width": 620.47781569965866,
-    "tabOrder": 7000
+    "x": 385.80204778156997,
+    "y": 489.01023890784984,
+    "z": 9000,
+    "height": 222.38907849829351,
+    "width": 885.25597269624575,
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,85 +20,87 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Client Person"
+                      "Entity": "Referrals"
                     }
                   },
-                  "Property": "Full Name"
+                  "Property": "Title"
                 }
               },
-              "queryRef": "Client Person.Full Name",
-              "nativeQueryRef": "Full Name"
+              "queryRef": "Referrals.Title",
+              "nativeQueryRef": "Title"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement Type"
+                      "Entity": "Referrals"
                     }
                   },
-                  "Property": "Arrangement Type"
+                  "Property": "CreatedAtUtc"
                 }
               },
-              "queryRef": "Arrangement Type.Arrangement Type",
-              "nativeQueryRef": "Arrangement Type"
+              "queryRef": "Referrals.CreatedAtUtc",
+              "nativeQueryRef": "Created At",
+              "displayName": "Created At"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangements"
+                      "Entity": "Referrals"
                     }
                   },
-                  "Property": "Started"
+                  "Property": "AcceptedAtUtc"
                 }
               },
-              "queryRef": "Arrangements.Started",
-              "nativeQueryRef": "Started1"
+              "queryRef": "Referrals.AcceptedAtUtc",
+              "nativeQueryRef": "Accepted At",
+              "displayName": "Accepted At"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangements"
+                      "Entity": "Referrals"
                     }
                   },
-                  "Property": "Ended"
+                  "Property": "ClosedAtUtc"
                 }
               },
-              "queryRef": "Arrangements.Ended",
-              "nativeQueryRef": "Ended1"
+              "queryRef": "Referrals.ClosedAtUtc",
+              "nativeQueryRef": "Closed At",
+              "displayName": "Closed At"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Referrals"
+                    }
+                  },
+                  "Property": "Status"
+                }
+              },
+              "queryRef": "Referrals.Status",
+              "nativeQueryRef": "Status"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangements"
+                      "Entity": "Cases"
                     }
                   },
-                  "Property": "# of Arrangements"
+                  "Property": "# of Cases Opened"
                 }
               },
-              "queryRef": "Arrangements.# of Arrangements",
+              "queryRef": "Referrals.# of Referrals Opened",
               "nativeQueryRef": " ",
-              "displayName": " "
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Arrangements"
-                    }
-                  },
-                  "Property": "Arrangement ID"
-                }
-              },
-              "queryRef": "Arrangements.Arrangement ID",
-              "nativeQueryRef": " 1",
               "displayName": " "
             }
           ]
@@ -111,10 +113,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Arrangements"
+                    "Entity": "Referrals"
                   }
                 },
-                "Property": "Started"
+                "Property": "Title"
               }
             },
             "direction": "Ascending"
@@ -123,9 +125,16 @@
       }
     },
     "objects": {
-      "values": [
+      "grid": [
         {
           "properties": {
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
             "outlineStyle": {
               "expr": {
                 "Literal": {
@@ -133,10 +142,34 @@
                 }
               }
             },
-            "fontSize": {
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EFEFEF'"
+                    }
+                  }
+                }
+              }
+            },
+            "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
@@ -171,10 +204,10 @@
                 }
               }
             },
-            "wordWrap": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "8D"
                 }
               }
             }
@@ -187,41 +220,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "106D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "ChildLocationExpanded.ChildcarePlan"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "157.47439492404249D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Arrangement Type.Arrangement Type"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "4D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Arrangements.# of Arrangements"
+            "metadata": "Referrals.# of Referrals Opened"
           }
         },
         {
@@ -229,13 +234,69 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "330.4095352995273D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Arrangements.Arrangement ID"
+            "metadata": "Referrals.Title"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "158.76107008721772D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referrals.CreatedAtUtc"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "143.40271512202708D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referrals.AcceptedAtUtc"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "104.86004296597571D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referrals.ClosedAtUtc"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89.40280334328685D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referrals.Status"
           }
         }
       ],
@@ -251,58 +312,26 @@
             }
           }
         }
-      ],
-      "grid": [
-        {
-          "properties": {
-            "outlineStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "outlineColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#EFEFEF'"
-                    }
-                  }
-                }
-              }
-            },
-            "gridHorizontal": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "rowPadding": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
-                }
-              }
-            }
-          }
-        }
       ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
-            },
-            "titleWrap": {
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "true"
@@ -337,103 +366,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Details'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "subTitle": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#9A9A9A'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'To extract data from this table, right-click on it and select ''Export data'''"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "spacing": [
-        {
-          "properties": {
-            "customizeSpacing": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "verticalSpacing": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "spaceBelowTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "5D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "background": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "100D"
+                  "Value": "'Referrals'"
                 }
               }
             }
@@ -443,6 +376,13 @@
       "padding": [
         {
           "properties": {
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
             "top": {
               "expr": {
                 "Literal": {
@@ -451,13 +391,6 @@
               }
             },
             "bottom": {
-              "expr": {
-                "Literal": {
-                  "Value": "20D"
-                }
-              }
-            },
-            "left": {
               "expr": {
                 "Literal": {
                   "Value": "20D"
@@ -474,26 +407,65 @@
           }
         }
       ],
-      "border": [
+      "subTitle": [
         {
           "properties": {
-            "width": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#9A9A9A'"
+                    }
+                  }
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Interact with the dashboard: Click on the visuals to explore the data dynamically.'"
                 }
               }
             }
           }
         }
       ],
-      "stylePreset": [
+      "spacing": [
         {
           "properties": {
-            "name": {
+            "verticalSpacing": {
               "expr": {
                 "Literal": {
-                  "Value": "'None'"
+                  "Value": "10D"
+                }
+              }
+            },
+            "customizeSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "spaceBelowTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
                 }
               }
             }
@@ -533,6 +505,19 @@
                       "Value": "'#26A3AB'"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'None'"
                 }
               }
             }

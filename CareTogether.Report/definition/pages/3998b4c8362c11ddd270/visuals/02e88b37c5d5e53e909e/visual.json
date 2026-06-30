@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "02e88b37c5d5e53e909e",
   "position": {
-    "x": 384,
-    "y": 370,
-    "z": 7000,
-    "height": 341.33333333333331,
-    "width": 885.33333333333337,
+    "x": 385.80204778156997,
+    "y": 249.419795221843,
+    "z": 8000,
+    "height": 230.98976109215016,
+    "width": 885.25597269624575,
     "tabOrder": 0
   },
   "visual": {
@@ -93,7 +93,7 @@
                       "Entity": "Cases"
                     }
                   },
-                  "Property": "# of Referrals Opened"
+                  "Property": "# of Cases Opened"
                 }
               },
               "queryRef": "Referrals.# of Referrals Opened",
@@ -217,7 +217,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "121.75088240018746D"
+                  "Value": "160.53343817762223D"
                 }
               }
             }
@@ -231,7 +231,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "79.52213257028777D"
+                  "Value": "142.56592492770372D"
                 }
               }
             }
@@ -245,7 +245,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "85.75141945589483D"
+                  "Value": "144.89943389632805D"
                 }
               }
             }
@@ -259,7 +259,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "178.2582159624413D"
+                  "Value": "148.69667477209615D"
                 }
               }
             }
@@ -287,7 +287,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "353.68069404619666D"
+                  "Value": "220.38908722919666D"
                 }
               }
             }
@@ -363,7 +363,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Details'"
+                  "Value": "'Cases'"
                 }
               }
             }

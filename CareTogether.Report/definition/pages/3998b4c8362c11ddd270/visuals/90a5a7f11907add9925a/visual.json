@@ -42,27 +42,27 @@
                       "Entity": "Cases"
                     }
                   },
-                  "Property": "# of Families Referred"
+                  "Property": "# of Cases Opened"
                 }
               },
-              "queryRef": "Referrals.# of Families Referred",
-              "nativeQueryRef": "Families Referred",
-              "displayName": "Families Referred"
+              "queryRef": "Referrals.# of Referrals Opened",
+              "nativeQueryRef": "Cases Opened",
+              "displayName": "Cases Opened"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Cases"
+                      "Entity": "Referrals"
                     }
                   },
-                  "Property": "# of Referrals Opened"
+                  "Property": "# of Families Referred"
                 }
               },
-              "queryRef": "Referrals.# of Referrals Opened",
-              "nativeQueryRef": "Referrals Opened",
-              "displayName": "Referrals Opened"
+              "queryRef": "Referrals.# of Families Referred1",
+              "nativeQueryRef": "Families Referred",
+              "displayName": "Families Referred"
             }
           ]
         }
@@ -77,7 +77,7 @@
                     "Entity": "Cases"
                   }
                 },
-                "Property": "# of Families Referred"
+                "Property": "# of Cases Opened"
               }
             },
             "direction": "Descending"
@@ -213,24 +213,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#51B5BC'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Referrals.# of Families Referred"
           }
         },
         {
@@ -689,5 +671,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c3e71642410c21c0ac41",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "Referral Source"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "54e37495305b6b7c9a5c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "# of Cases Opened"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0f1d5b7a96e239735d38",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "# of Families Referred"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

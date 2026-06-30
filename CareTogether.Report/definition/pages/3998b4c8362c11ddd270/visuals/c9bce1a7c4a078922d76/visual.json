@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "c9bce1a7c4a078922d76",
   "position": {
-    "x": 384,
-    "y": 8.6666666666666661,
+    "x": 384.57337883959042,
+    "y": 8.6006825938566553,
     "z": 5000,
-    "height": 351.33333333333331,
-    "width": 885.33333333333337,
+    "height": 231.60409556313994,
+    "width": 886.4846416382253,
     "tabOrder": 6000
   },
   "visual": {
@@ -57,11 +57,11 @@
                       "Entity": "Cases"
                     }
                   },
-                  "Property": "# of Referrals Opened"
+                  "Property": "# of Cases Opened"
                 }
               },
               "queryRef": "Referrals.# of Referrals Opened",
-              "nativeQueryRef": "# of Referrals Opened1"
+              "nativeQueryRef": "# of Cases Opened"
             }
           ]
         }
@@ -528,7 +528,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Referrals Over Time'"
+                  "Value": "'Cases Over Time'"
                 }
               }
             }

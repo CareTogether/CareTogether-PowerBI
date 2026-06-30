@@ -3,10 +3,6 @@ relationship 1b2fdd82-5273-6461-550a-5925f0e410d3
 	fromColumn: Person.'Family UID'
 	toColumn: Family.'Family UID'
 
-relationship 73e5b166-c4e6-9336-00c4-ee6faa14db58
-	fromColumn: Cases.'Close Reason'
-	toColumn: 'Close Reason'.ReferralCloseReason
-
 relationship 68bd892e-c661-c7b7-5c03-5aefca191f67
 	fromColumn: 'Family Role Approvals'.'Entity UID'
 	toColumn: Family.'Family UID'
@@ -133,6 +129,11 @@ relationship 65512282-1f66-bc46-a9e9-362fc4dcb848
 	toColumn: Person.'Person UID'
 
 relationship 03bb0ee6-d6a1-31e0-8cb7-5cc3fabaeaf5
+	crossFilteringBehavior: bothDirections
 	fromColumn: Referrals.'Case UID'
 	toColumn: Cases.'Case UID'
+
+relationship 2a3e0428-b49a-e786-aebd-1f395ef8b4e8
+	fromColumn: Cases.'Close Reason'
+	toColumn: 'Close Reason'.Reason
 

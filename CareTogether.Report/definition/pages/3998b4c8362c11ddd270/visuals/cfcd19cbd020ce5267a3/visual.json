@@ -42,12 +42,12 @@
                       "Entity": "Cases"
                     }
                   },
-                  "Property": "# of Referrals Opened"
+                  "Property": "# of Cases Opened"
                 }
               },
               "queryRef": "Referrals.# of Referrals Opened",
-              "nativeQueryRef": "Referrals Opened",
-              "displayName": "Referrals Opened"
+              "nativeQueryRef": "Cases Opened",
+              "displayName": "Cases Opened"
             }
           ]
         }
@@ -62,7 +62,7 @@
                     "Entity": "Cases"
                   }
                 },
-                "Property": "# of Referrals Opened"
+                "Property": "# of Cases Opened"
               }
             },
             "direction": "Descending"
@@ -426,7 +426,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top Referral Close Reason'"
+                  "Value": "'Top Case Close Reason'"
                 }
               }
             }
@@ -498,7 +498,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Still-Open referrals are shown as \"(Blank)\"'"
+                  "Value": "'Still-Open cases are shown as \"(Blank)\"'"
                 }
               }
             }

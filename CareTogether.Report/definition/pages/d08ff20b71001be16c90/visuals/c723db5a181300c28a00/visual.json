@@ -43,7 +43,7 @@
                       "Entity": "Cases"
                     }
                   },
-                  "Property": "# of Referrals Opened"
+                  "Property": "# of Cases Opened"
                 }
               },
               "queryRef": "Referrals.# of Referrals Opened",
@@ -62,7 +62,7 @@
                     "Entity": "Cases"
                   }
                 },
-                "Property": "# of Referrals Opened"
+                "Property": "# of Cases Opened"
               }
             },
             "direction": "Descending"
@@ -449,7 +449,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Referrals Opened'"
+                  "Value": "'Cases Opened'"
                 }
               }
             }

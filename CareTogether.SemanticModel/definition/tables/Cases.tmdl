@@ -1,7 +1,7 @@
 table Cases
 	lineageTag: 9e3a875e-349f-43da-84eb-8c636fdefbc9
 
-	measure '# of Referrals Opened' =
+	measure '# of Cases Opened' =
 			COUNTROWS(
 			    FILTER(
 			        'Cases',
@@ -13,21 +13,6 @@ table Cases
 			)
 		formatString: 0
 		lineageTag: f3c404d6-390c-431b-9b69-8eb6b0e63a25
-
-	measure '# of Families Referred' =
-			
-			CALCULATE(
-			    DISTINCTCOUNTNOBLANK('Cases'[Family UID]),
-			    FILTER(
-			        'Cases',
-			        AND(
-			            'Cases'[Opened] >= [Selected Timeframe Start],
-			            'Cases'[Opened] <= [Selected Timeframe End]
-			        )
-			    )
-			)
-		formatString: 0
-		lineageTag: b5d014ee-8316-42d6-9279-31313afeea43
 
 	column 'RLS Key'
 		dataType: string
