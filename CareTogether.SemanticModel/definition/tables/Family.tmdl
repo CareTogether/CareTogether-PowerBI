@@ -236,21 +236,24 @@ table Family
 				    Family = Source{[Name="Family", Signature="table"]}[Data],
 				    FamilyTransformed = 
 				
-				    Table.SelectColumns(
-				        Table.RenameColumns(
-				            Table.ExpandRecordColumn(
-				                Table.AddColumn(
+				    Table.Distinct(
+				        Table.SelectColumns(
+				            Table.RenameColumns(
+				                Table.ExpandRecordColumn(
 				                    Table.AddColumn(
-				                        Family,
-				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        Table.AddColumn(
+				                            Family,
+				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        ),
+				                        "Family UID", each Text.Combine({[RLS Key], [Id]}, "-")
 				                    ),
-				                    "Family UID", each Text.Combine({[RLS Key], [Id]}, "-")
+				                    "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}
 				                ),
-				                "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}
+				                {{"Id", "Family Id"}, {"Name", "Family Name"}, {"PrimaryEmail", "Email"}, {"PrimaryPhoneNumber", "Phone Number"}, {"Line1", "Address Line 1"}, {"Line2", "Address Line 2"}, {"PostalCode", "Postal Code"}, {"HomeChurch", "Home Church"}}
 				            ),
-				            {{"Id", "Family Id"}, {"Name", "Family Name"}, {"PrimaryEmail", "Email"}, {"PrimaryPhoneNumber", "Phone Number"}, {"Line1", "Address Line 1"}, {"Line2", "Address Line 2"}, {"PostalCode", "Postal Code"}, {"HomeChurch", "Home Church"}}
+				            {"RLS Key", "Family UID", "Family Id", "Family Name", "Email", "Phone Number", "Address Line 1", "Address Line 2", "City", "County", "State", "Postal Code", "Home Church"}
 				        ),
-				        {"RLS Key", "Family UID", "Family Id", "Family Name", "Email", "Phone Number", "Address Line 1", "Address Line 2", "City", "County", "State", "Postal Code", "Home Church"}
+				        {"Family UID"}
 				    )
 				
 				in
