@@ -211,25 +211,28 @@ table 'Client Person'
 				    Person = Source{[Name="Person", Signature="table"]}[Data],
 				    PersonTransformed = 
 				
-				    Table.SelectColumns(
-				        Table.AddColumn(
-				            Table.RenameColumns(
-				                Table.AddColumn(
+				    Table.Distinct(
+				        Table.SelectColumns(
+				            Table.AddColumn(
+				                Table.RenameColumns(
 				                    Table.AddColumn(
 				                        Table.AddColumn(
-				                            Person,
-				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                            Table.AddColumn(
+				                                Person,
+				                                "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                            ),
+				                            "Person UID", each Text.Combine({[RLS Key], [Id]}, "-")
 				                        ),
-				                        "Person UID", each Text.Combine({[RLS Key], [Id]}, "-")
+				                        "Family UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
 				                    ),
-				                    "Family UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
+				                    {{"Id", "Person ID"}, {"FamilyId", "Family ID"}, {"FirstName", "First Name"}, {"LastName", "Last Name"}, 
+				                    {"PersonType", "Person Type"}, {"DateOfBirth", "Date of Birth"}}
 				                ),
-				                {{"Id", "Person ID"}, {"FamilyId", "Family ID"}, {"FirstName", "First Name"}, {"LastName", "Last Name"}, 
-				                {"PersonType", "Person Type"}, {"DateOfBirth", "Date of Birth"}}
+				                "Full Name", each Text.Combine({[First Name], [Last Name]}, " ")
 				            ),
-				            "Full Name", each Text.Combine({[First Name], [Last Name]}, " ")
+				            {"RLS Key", "Family UID", "Person UID", "Person ID", "First Name", "Last Name", "Full Name", "Person Type", "Ethnicity", "Gender", "Date of Birth"}
 				        ),
-				        {"RLS Key", "Family UID", "Person UID", "Person ID", "First Name", "Last Name", "Full Name", "Person Type", "Ethnicity", "Gender", "Date of Birth"}
+				        "Person UID"
 				    )
 				
 				in
