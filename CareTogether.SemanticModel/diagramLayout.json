@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 2.4522214342284911,
-        "y": 4.9044428684569823
+        "x": 849.69472696017215,
+        "y": 1101.0474239685925
       },
       "nodes": [
         {
@@ -369,8 +369,8 @@
         },
         {
           "location": {
-            "x": 1774.1447902856551,
-            "y": 1906.3831351244103
+            "x": 1689.5431508047723,
+            "y": 2217.8152572714293
           },
           "nodeIndex": "Family Requirement Status",
           "nodeLineageTag": "9b42f978-20bd-47f4-82ec-c84e4f70d5f5",
@@ -382,8 +382,8 @@
         },
         {
           "location": {
-            "x": 1413.2316589126601,
-            "y": 1691.1975043397308
+            "x": 1429.1710982351451,
+            "y": 1891.0535512293527
           },
           "nodeIndex": "Individual Requirement Status",
           "nodeLineageTag": "65b503a0-5ba2-4f16-bdde-a7362967f6da",
@@ -418,6 +418,31 @@
             "width": 234
           },
           "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1813.0920063333208,
+            "y": 1928.6178687204826
+          },
+          "nodeIndex": "Family Requirements Classification",
+          "nodeLineageTag": "81b3ab05-d019-4eaa-9601-f28d7e0da1d7",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1426.8671304423331,
+            "y": 1613.5074144221212
+          },
+          "nodeIndex": "Individual Requirements Classification",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

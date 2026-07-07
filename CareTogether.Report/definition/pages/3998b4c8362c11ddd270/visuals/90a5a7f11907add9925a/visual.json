@@ -671,51 +671,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "c3e71642410c21c0ac41",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Cases"
-              }
-            },
-            "Property": "Referral Source"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "54e37495305b6b7c9a5c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Cases"
-              }
-            },
-            "Property": "# of Cases Opened"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "0f1d5b7a96e239735d38",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Referrals"
-              }
-            },
-            "Property": "# of Families Referred"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -43,21 +43,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "472c6d47873dd061c2f3",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "Family Compliance Status Column"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "User"
       }
     ]
   },
@@ -341,5 +326,167 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "64c5fcd42df2935f5d37",
+      "target": "0e22677d047dd820a634",
+      "type": "NoFilter"
+    },
+    {
+      "source": "64c5fcd42df2935f5d37",
+      "target": "630f9bed7d84dec6472f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "5ca82472ee2b5017015e",
+      "target": "0e22677d047dd820a634",
+      "type": "NoFilter"
+    },
+    {
+      "source": "5ca82472ee2b5017015e",
+      "target": "630f9bed7d84dec6472f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c5423366ec366a5b24b9",
+      "target": "0e22677d047dd820a634",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4f9c8bbb108e121a2bf3",
+      "target": "0e22677d047dd820a634",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4f9c8bbb108e121a2bf3",
+      "target": "0e7bb2dca4eee173b26c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4f9c8bbb108e121a2bf3",
+      "target": "64c5fcd42df2935f5d37",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4f9c8bbb108e121a2bf3",
+      "target": "dd05f5ddb0781bffd02e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4f9c8bbb108e121a2bf3",
+      "target": "5ca82472ee2b5017015e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4f9c8bbb108e121a2bf3",
+      "target": "630f9bed7d84dec6472f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4f9c8bbb108e121a2bf3",
+      "target": "dadaee4fcfcb680b0d71",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4f9c8bbb108e121a2bf3",
+      "target": "c5423366ec366a5b24b9",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4f9c8bbb108e121a2bf3",
+      "target": "32667c06a6f7750e2f46",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4f9c8bbb108e121a2bf3",
+      "target": "84b9c8bdda9eb6e54dd5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4f9c8bbb108e121a2bf3",
+      "target": "c45a11aa70830092331c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "de68c5629dc65cbcbdcf",
+      "target": "32667c06a6f7750e2f46",
+      "type": "NoFilter"
+    },
+    {
+      "source": "de68c5629dc65cbcbdcf",
+      "target": "c5423366ec366a5b24b9",
+      "type": "NoFilter"
+    },
+    {
+      "source": "de68c5629dc65cbcbdcf",
+      "target": "630f9bed7d84dec6472f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "de68c5629dc65cbcbdcf",
+      "target": "dadaee4fcfcb680b0d71",
+      "type": "NoFilter"
+    },
+    {
+      "source": "de68c5629dc65cbcbdcf",
+      "target": "c45a11aa70830092331c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "de68c5629dc65cbcbdcf",
+      "target": "84b9c8bdda9eb6e54dd5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7af05b1a75bdbc9dde39",
+      "target": "5ca82472ee2b5017015e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7af05b1a75bdbc9dde39",
+      "target": "5b242b65c5e2ef490817",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7af05b1a75bdbc9dde39",
+      "target": "dd05f5ddb0781bffd02e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7af05b1a75bdbc9dde39",
+      "target": "64c5fcd42df2935f5d37",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7af05b1a75bdbc9dde39",
+      "target": "0e22677d047dd820a634",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7af05b1a75bdbc9dde39",
+      "target": "0e7bb2dca4eee173b26c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "487efb28c24f71e65ce9",
+      "target": "dd05f5ddb0781bffd02e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "487efb28c24f71e65ce9",
+      "target": "64c5fcd42df2935f5d37",
+      "type": "NoFilter"
+    },
+    {
+      "source": "487efb28c24f71e65ce9",
+      "target": "0e22677d047dd820a634",
+      "type": "NoFilter"
+    },
+    {
+      "source": "487efb28c24f71e65ce9",
+      "target": "0e7bb2dca4eee173b26c",
+      "type": "NoFilter"
+    }
+  ]
 }

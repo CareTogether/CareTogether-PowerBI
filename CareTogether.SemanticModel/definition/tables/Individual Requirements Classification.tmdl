@@ -1,0 +1,107 @@
+table 'Individual Requirements Classification'
+	lineageTag: 2dd84919-227d-4df2-b9d3-3653d432a2fd
+
+	measure '# of Individuals With Requirements' = DISTINCTCOUNT('Individual Requirements Classification'[Person UID])
+		lineageTag: 7aeffb9e-217f-45d6-ae46-375dfcaad129
+
+	measure '# of Individual Approved' =
+			CALCULATE(
+			    DISTINCTCOUNT('Individual Requirements Classification'[Person UID]),
+			    'Individual Requirements Classification'[Status] = "Approved"
+			)
+		formatString: 0
+		lineageTag: 74b170ef-9aaf-4250-830d-b37a337ea0c2
+
+	measure '# of Individuals Approved Percentage' =
+			
+			VAR ApprovedIndividuals = CALCULATE(
+			    DISTINCTCOUNT('Individual Requirements Classification'[Person UID]),
+			    'Individual Requirements Classification'[Status] = "Approved"
+			)
+			
+			RETURN DIVIDE(ApprovedIndividuals, [# of Individuals With Requirements], 0)
+		formatString: 0%;-0%;0%
+		lineageTag: 22c2635f-a8da-4f11-95e4-0f624b4ecaaf
+
+	measure '# of Individuals Approved Target' = [# of Individuals With Requirements] - [# of Individual Approved]
+		formatString: 0
+		lineageTag: f079adb1-ab40-4afa-a7bc-90b7735ef502
+
+	column 'Person UID'
+		displayFolder: _columns
+		lineageTag: 9317f489-40b3-4576-984f-f14a726dd528
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Individual Requirement Status[Person UID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		displayFolder: _columns
+		lineageTag: 757d50f4-0861-4ed6-9075-2175e7c7fc2b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Individual Requirements Classification' = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    SUMMARIZE(
+				        'Individual Requirement Status',
+				        'Individual Requirement Status'[Person UID]
+				    ),
+				    "Status",
+				    VAR CurrentIndividual = [Person UID]
+				
+				    VAR TotalReqs =
+				        CALCULATE(
+				            COUNTROWS('Individual Requirement Status'),
+				            'Individual Requirement Status'[Person UID] = CurrentIndividual,
+				            'Individual Requirement Status'[Is Latest Status] = TRUE()
+				        )
+				
+				    VAR ExpiredReqs =
+				        CALCULATE(
+				            COUNTROWS('Individual Requirement Status'),
+				            'Individual Requirement Status'[Person UID] = CurrentIndividual,
+				            'Individual Requirement Status'[Status] IN { "Complete", "Exempted" },
+				            'Individual Requirement Status'[Expire Date] < TODAY(),
+				            NOT ISBLANK('Individual Requirement Status'[Expire Date]),
+				            'Individual Requirement Status'[Is Latest Status] = TRUE()
+				        )
+				
+				    VAR PendingReqs =
+				        CALCULATE(
+				            COUNTROWS('Individual Requirement Status'),
+				            'Individual Requirement Status'[Person UID] = CurrentIndividual,
+				            'Individual Requirement Status'[Status] = "Pending",
+				            'Individual Requirement Status'[Is Latest Status] = TRUE()
+				        )
+				
+				    VAR ExpireSoonReqs =
+				        CALCULATE(
+				            COUNTROWS('Individual Requirement Status'),
+				            'Individual Requirement Status'[Person UID] = CurrentIndividual,
+				            'Individual Requirement Status'[Expire Date] >= TODAY(),
+				            'Individual Requirement Status'[Expire Date] <= TODAY() + 180,
+				            NOT ISBLANK('Individual Requirement Status'[Expire Date]),
+				            'Individual Requirement Status'[Is Latest Status] = TRUE()
+				        )
+				
+				    RETURN
+				        SWITCH(
+				            TRUE(),
+				            TotalReqs = 0, BLANK(),
+				            ExpiredReqs > 0, "Expired",
+				            PendingReqs > 0, "In Progress",
+				            ExpireSoonReqs > 0, "Expiring Soon",
+				            "Approved"
+				        )
+				)
+
+	annotation PBI_Id = 3c686783817f46a4be5dab115d8b92f5
+

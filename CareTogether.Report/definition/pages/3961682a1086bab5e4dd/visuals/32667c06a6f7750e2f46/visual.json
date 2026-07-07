@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "32667c06a6f7750e2f46",
   "position": {
-    "x": 498.83959044368328,
+    "x": 500.68259385665527,
     "y": 9.2150170648464158,
     "z": 4000,
     "height": 121.6382252559727,
@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Individual Requirement Status"
+                      "Entity": "Individual Requirements Classification"
                     }
                   },
-                  "Property": "# of Individuals with Requirements"
+                  "Property": "# of Individuals With Requirements"
                 }
               },
-              "queryRef": "Individual Requirement Status.# of Individuals with Requirements",
-              "nativeQueryRef": "Individuals",
+              "queryRef": "Individual Requirements Classification.# of Ind. With Requirements",
+              "nativeQueryRef": "Individuals1",
               "displayName": "Individuals"
             }
           ]
@@ -40,10 +40,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Individual Requirement Status"
+                    "Entity": "Individual Requirements Classification"
                   }
                 },
-                "Property": "# of Individuals with Requirements"
+                "Property": "# of Individuals With Requirements"
               }
             },
             "direction": "Descending"
@@ -97,7 +97,7 @@
             }
           },
           "selector": {
-            "metadata": "Individual Requirement Status.# of Individuals with Requirements"
+            "metadata": "Individual Requirements Classification.# of Ind. With Requirements"
           }
         }
       ],
@@ -424,5 +424,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "755cab56599d4b59e6e0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Individual Requirements Classification"
+              }
+            },
+            "Property": "# of Individuals With Requirements"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

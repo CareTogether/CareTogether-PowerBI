@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "c2d8c5e85273a9d5a5ef",
+  "name": "487efb28c24f71e65ce9",
   "position": {
-    "x": 8.5714285714285712,
-    "y": 140,
-    "z": 17000,
-    "height": 37.857142857142861,
-    "width": 300,
-    "tabOrder": 17000
+    "x": 228.53242320819112,
+    "y": 418.36177474402729,
+    "z": 24001,
+    "height": 38.088737201365191,
+    "width": 219.93174061433447,
+    "tabOrder": 24001
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family"
+                      "Entity": "Individual Requirement Status"
                     }
                   },
-                  "Property": "Family Name"
+                  "Property": "Requirement"
                 }
               },
-              "queryRef": "Family.Family Name",
-              "nativeQueryRef": "Family Name",
+              "queryRef": "Individual Requirement Status.Requirement",
+              "nativeQueryRef": "Requirement1",
               "active": true
             }
           ]
@@ -145,7 +145,7 @@
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "15D"
+                  "Value": "0D"
                 }
               }
             },
@@ -172,15 +172,29 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "4338e438be9260e4707f",
+        "name": "0cd4238002b6ab5f2b2b",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Family Requirement Status"
+                "Entity": "Individual Requirement Status"
               }
             },
-            "Property": "Family UID"
+            "Property": "Requirement"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9117fdbd5093dab010ae",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Individual Requirements Classification"
+              }
+            },
+            "Property": "Person UID"
           }
         },
         "type": "Advanced",
@@ -188,8 +202,8 @@
           "Version": 2,
           "From": [
             {
-              "Name": "f",
-              "Entity": "Family Requirement Status",
+              "Name": "i",
+              "Entity": "Individual Requirements Classification",
               "Type": 0
             }
           ],
@@ -204,10 +218,10 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Source": "f"
+                              "Source": "i"
                             }
                           },
-                          "Property": "Family UID"
+                          "Property": "Person UID"
                         }
                       },
                       "Right": {

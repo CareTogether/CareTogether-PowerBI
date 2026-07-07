@@ -1,0 +1,108 @@
+table 'Family Requirements Classification'
+	lineageTag: 81b3ab05-d019-4eaa-9601-f28d7e0da1d7
+
+	measure '# of Families With Requirements' = DISTINCTCOUNT('Family Requirements Classification'[Family UID])
+		formatString: 0
+		lineageTag: e1fe144b-fbc9-498e-bd3c-e3e8dfb5e7a1
+
+	measure '# of Families Approved Percentage' =
+			
+			VAR ApprovedFamilies = CALCULATE(
+			    DISTINCTCOUNT('Family Requirements Classification'[Family UID]),
+			    'Family Requirements Classification'[Status] = "Approved"
+			)
+			
+			RETURN DIVIDE(ApprovedFamilies, [# of Families With Requirements], 0)
+		formatString: 0%;-0%;0%
+		lineageTag: 34c10090-70b4-465e-87d2-c74c3dd4378e
+
+	measure '# of Families Approved' =
+			CALCULATE(
+			    DISTINCTCOUNT('Family Requirements Classification'[Family UID]),
+			    'Family Requirements Classification'[Status] = "Approved"
+			)
+		formatString: 0
+		lineageTag: 1d5c8972-b1d8-4ec5-b3f3-ed746adbcec9
+
+	measure '# of Families Approved Target' = [# of Families With Requirements] - [# of Families Approved]
+		formatString: 0
+		lineageTag: fe80b8fa-8f25-464f-8397-37f1ac9fef9f
+
+	column 'Family UID'
+		displayFolder: _columns
+		lineageTag: 9bb23e46-324a-42cc-b69c-459084f6e618
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Family Requirement Status[Family UID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		displayFolder: _columns
+		lineageTag: 59588862-cebb-4913-8c8b-84fe1ad3e5ac
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Family Requirements Classification' = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    SUMMARIZE(
+				        'Family Requirement Status',
+				        'Family Requirement Status'[Family UID]
+				    ),
+				    "Status",
+				    VAR CurrentFamily = [Family UID]
+				
+				    VAR TotalReqs =
+				        CALCULATE(
+				            COUNTROWS('Family Requirement Status'),
+				            'Family Requirement Status'[Family UID] = CurrentFamily,
+				            'Family Requirement Status'[Is Latest Status] = TRUE()
+				        )
+				
+				    VAR ExpiredReqs =
+				        CALCULATE(
+				            COUNTROWS('Family Requirement Status'),
+				            'Family Requirement Status'[Family UID] = CurrentFamily,
+				            'Family Requirement Status'[Status] IN { "Complete", "Exempted" },
+				            'Family Requirement Status'[Expire Date] < TODAY(),
+				            NOT ISBLANK('Family Requirement Status'[Expire Date]),
+				            'Family Requirement Status'[Is Latest Status] = TRUE()
+				        )
+				
+				    VAR PendingReqs =
+				        CALCULATE(
+				            COUNTROWS('Family Requirement Status'),
+				            'Family Requirement Status'[Family UID] = CurrentFamily,
+				            'Family Requirement Status'[Status] = "Pending",
+				            'Family Requirement Status'[Is Latest Status] = TRUE()
+				        )
+				
+				    VAR ExpireSoonReqs =
+				        CALCULATE(
+				            COUNTROWS('Family Requirement Status'),
+				            'Family Requirement Status'[Family UID] = CurrentFamily,
+				            'Family Requirement Status'[Expire Date] >= TODAY(),
+				            'Family Requirement Status'[Expire Date] <= TODAY() + 180,
+				            NOT ISBLANK('Family Requirement Status'[Expire Date]),
+				            'Family Requirement Status'[Is Latest Status] = TRUE()
+				        )
+				
+				    RETURN
+				        SWITCH(
+				            TRUE(),
+				            TotalReqs = 0, BLANK(),
+				            ExpiredReqs > 0, "Expired",
+				            PendingReqs > 0, "In Progress",
+				            ExpireSoonReqs > 0, "Expiring Soon",
+				            "Approved"
+				        )
+				)
+
+	annotation PBI_Id = 905b0cdb7a924c2690e8365305bb3244
+

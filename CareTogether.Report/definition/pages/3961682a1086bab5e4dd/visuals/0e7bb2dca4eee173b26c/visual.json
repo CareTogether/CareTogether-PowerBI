@@ -4,10 +4,10 @@
   "position": {
     "x": 358.15699658703073,
     "y": 9.2150170648464158,
-    "z": 6000,
+    "z": 5000,
     "height": 121.6382252559727,
     "width": 131.46757679180888,
-    "tabOrder": 6000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "donutChart",
@@ -20,28 +20,30 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family Requirement Status"
+                      "Entity": "Family Requirements Classification"
                     }
                   },
                   "Property": "# of Families Approved"
                 }
               },
-              "queryRef": "Family Requirement Status.# of Families Compliant",
-              "nativeQueryRef": "# of Families Approved"
+              "queryRef": "Family Requirements Classification.# of Families Approved",
+              "nativeQueryRef": "Approved",
+              "displayName": "Approved"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family Requirement Status"
+                      "Entity": "Family Requirements Classification"
                     }
                   },
-                  "Property": "# of Families Overall Approval Target"
+                  "Property": "# of Families Approved Target"
                 }
               },
-              "queryRef": "Family Requirement Status.# of Families Overall Compliance Target",
-              "nativeQueryRef": "# of Families Overall Approval Target"
+              "queryRef": "Family Requirements Classification.# of Families Approved Target",
+              "nativeQueryRef": "Target",
+              "displayName": "Target"
             }
           ]
         }
@@ -53,7 +55,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Family Requirement Status"
+                    "Entity": "Family Requirements Classification"
                   }
                 },
                 "Property": "# of Families Approved"
@@ -142,7 +144,7 @@
                   "expr": {
                     "ThemeDataColor": {
                       "ColorId": 7,
-                      "Percent": -0.25
+                      "Percent": 0
                     }
                   }
                 }
@@ -150,7 +152,7 @@
             }
           },
           "selector": {
-            "metadata": "Family Requirement Status.# of Families Compliant"
+            "metadata": "Family Requirements Classification.# of Families Approved"
           }
         },
         {
@@ -169,7 +171,7 @@
             }
           },
           "selector": {
-            "metadata": "Family Requirement Status.# of Families Overall Compliance Target"
+            "metadata": "Family Requirements Classification.# of Families Approved Target"
           }
         }
       ]
@@ -257,5 +259,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fa6db8350604ca79cf72",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Requirements Classification"
+              }
+            },
+            "Property": "# of Families Approved"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c1da30bad646ab60333a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Requirements Classification"
+              }
+            },
+            "Property": "# of Families Approved Target"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

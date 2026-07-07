@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "0e22677d047dd820a634",
   "position": {
-    "x": 368.60068259385667,
-    "y": 39.317406143344712,
-    "z": 7000,
-    "height": 60.81911262798635,
-    "width": 109.96587030716724,
-    "tabOrder": 7000
+    "x": 358.15699658703073,
+    "y": 39.931740614334473,
+    "z": 6000,
+    "height": 60.204778156996589,
+    "width": 131.46757679180888,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -20,13 +20,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family Requirement Status"
+                      "Entity": "Family Requirements Classification"
                     }
                   },
-                  "Property": "# of Families Overall Approval"
+                  "Property": "# of Families Approved Percentage"
                 }
               },
-              "queryRef": "Family Requirement Status.# of Families Overall Compliance",
+              "queryRef": "Family Requirements Classification.# of families approved percentage",
               "nativeQueryRef": "Approved",
               "displayName": "Approved"
             }
@@ -40,10 +40,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Family Requirement Status"
+                    "Entity": "Family Requirements Classification"
                   }
                 },
-                "Property": "# of Families Overall Approval"
+                "Property": "# of Families Approved Percentage"
               }
             },
             "direction": "Descending"
@@ -560,5 +560,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1bf53aba5e332393b73f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Requirements Classification"
+              }
+            },
+            "Property": "# of Families Approved Percentage"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

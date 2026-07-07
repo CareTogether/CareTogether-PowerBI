@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "215383ccade10f938482",
+  "name": "4f9c8bbb108e121a2bf3",
   "position": {
-    "x": 8.5714285714285712,
-    "y": 417.85714285714289,
-    "z": 18000,
-    "height": 37.857142857142861,
-    "width": 300,
-    "tabOrder": 18000
+    "x": 8.6006825938566553,
+    "y": 140.06825938566553,
+    "z": 23000,
+    "height": 38.088737201365191,
+    "width": 219.93174061433447,
+    "tabOrder": 23000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Person"
+                      "Entity": "Family Requirements Classification"
                     }
                   },
-                  "Property": "Full Name"
+                  "Property": "Status"
                 }
               },
-              "queryRef": "Person.Full Name",
-              "nativeQueryRef": "Full Name",
+              "queryRef": "Family Requirements Classification.Status",
+              "nativeQueryRef": "Status",
               "active": true
             }
           ]
@@ -179,15 +179,29 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "a20969b918a0a9188f2e",
+        "name": "11d2efb83b7c044e4d80",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Individual Requirement Status"
+                "Entity": "Family Requirements Classification"
               }
             },
-            "Property": "Person UID"
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "07dc5d1e7fa46f32e3b0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Requirements Classification"
+              }
+            },
+            "Property": "Family UID"
           }
         },
         "type": "Advanced",
@@ -195,8 +209,8 @@
           "Version": 2,
           "From": [
             {
-              "Name": "i",
-              "Entity": "Individual Requirement Status",
+              "Name": "f",
+              "Entity": "Family Requirements Classification",
               "Type": 0
             }
           ],
@@ -211,10 +225,10 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Source": "i"
+                              "Source": "f"
                             }
                           },
-                          "Property": "Person UID"
+                          "Property": "Family UID"
                         }
                       },
                       "Right": {

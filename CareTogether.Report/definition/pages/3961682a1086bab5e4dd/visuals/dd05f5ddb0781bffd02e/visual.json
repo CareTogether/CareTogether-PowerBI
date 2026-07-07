@@ -20,13 +20,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family Requirement Status"
+                      "Entity": "Family Requirements Classification"
                     }
                   },
-                  "Property": "# of Families with Requirements"
+                  "Property": "# of Families With Requirements"
                 }
               },
-              "queryRef": "Family Requirement Status.# of Families with Requirements",
+              "queryRef": "Family Requirements Classification.# of Fam. With Requirements",
               "nativeQueryRef": "Families",
               "displayName": "Families"
             }
@@ -40,10 +40,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Family Requirement Status"
+                    "Entity": "Family Requirements Classification"
                   }
                 },
-                "Property": "# of Families with Requirements"
+                "Property": "# of Families With Requirements"
               }
             },
             "direction": "Descending"
@@ -97,7 +97,7 @@
             }
           },
           "selector": {
-            "metadata": "Family Requirement Status.# of Families with Requirements"
+            "metadata": "Family Requirements Classification.# of Fam. With Requirements"
           }
         }
       ],
@@ -185,233 +185,6 @@
                 }
               }
             }
-          }
-        }
-      ],
-      "referenceLabel": [
-        {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "Family Requirement Status.# of Families with Requirements",
-            "id": "field-fb01c5e2-ef6b-f656-97ec-6a2da8f5b45b",
-            "order": 0
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "Family Requirement Status.# of Families with Requirements",
-            "id": "field-e1274669-3210-1d30-488b-2147baa80ff1",
-            "order": 0
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "Family Requirement Status.# of Families with Requirements",
-            "id": "field-370a13b4-6b3f-9f00-8afb-1956ae3c0db9",
-            "order": 0
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "Family Requirement Status.# of Families with Requirements",
-            "id": "field-68db0ce3-b393-8fb8-0d74-e6947197c7c6",
-            "order": 0
-          }
-        },
-        {
-          "properties": {
-            "backgroundShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Family Requirement Status.# of Families with Requirements"
-          }
-        }
-      ],
-      "referenceLabelTitle": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Family Requirement Status.# of Families with Requirements"
-          }
-        },
-        {
-          "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
-            "titleText": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Compliant'"
-                }
-              }
-            },
-            "titleFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
-                }
-              }
-            },
-            "titleFontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.6
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Family Requirement Status.# of Families with Requirements",
-            "id": "field-fb01c5e2-ef6b-f656-97ec-6a2da8f5b45b"
-          }
-        },
-        {
-          "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
-            "titleText": {
-              "expr": {
-                "Literal": {
-                  "Value": "'In Progress'"
-                }
-              }
-            },
-            "titleFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
-                }
-              }
-            },
-            "titleBold": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Family Requirement Status.# of Families with Requirements",
-            "id": "field-e1274669-3210-1d30-488b-2147baa80ff1"
-          }
-        },
-        {
-          "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
-            "titleText": {
-              "expr": {
-                "Literal": {
-                  "Value": "'At Risk'"
-                }
-              }
-            },
-            "titleFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Family Requirement Status.# of Families with Requirements",
-            "id": "field-370a13b4-6b3f-9f00-8afb-1956ae3c0db9"
-          }
-        },
-        {
-          "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
-            "titleText": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Non-Compliant'"
-                }
-              }
-            },
-            "titleFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Family Requirement Status.# of Families with Requirements",
-            "id": "field-68db0ce3-b393-8fb8-0d74-e6947197c7c6"
           }
         }
       ],
@@ -543,103 +316,6 @@
           }
         }
       ],
-      "referenceLabelValue": [
-        {
-          "properties": {
-            "valueFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
-                }
-              }
-            },
-            "valueBold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Family Requirement Status.# of Families with Requirements",
-            "id": "field-68db0ce3-b393-8fb8-0d74-e6947197c7c6"
-          }
-        },
-        {
-          "properties": {
-            "valueFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
-                }
-              }
-            },
-            "valueBold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Family Requirement Status.# of Families with Requirements",
-            "id": "field-370a13b4-6b3f-9f00-8afb-1956ae3c0db9"
-          }
-        },
-        {
-          "properties": {
-            "valueFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
-                }
-              }
-            },
-            "valueBold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Family Requirement Status.# of Families with Requirements",
-            "id": "field-e1274669-3210-1d30-488b-2147baa80ff1"
-          }
-        },
-        {
-          "properties": {
-            "valueFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
-                }
-              }
-            },
-            "valueBold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "valueDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Family Requirement Status.# of Families with Requirements",
-            "id": "field-fb01c5e2-ef6b-f656-97ec-6a2da8f5b45b"
-          }
-        }
-      ],
       "glowCustom": [
         {
           "properties": {
@@ -748,5 +424,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f0cc2683ad321cb17bcc",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Requirements Classification"
+              }
+            },
+            "Property": "# of Families With Requirements"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
