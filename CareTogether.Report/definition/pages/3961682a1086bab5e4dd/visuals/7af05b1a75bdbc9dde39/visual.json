@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "52d57fb4b04756b2dcbc",
+  "name": "7af05b1a75bdbc9dde39",
   "position": {
-    "x": 308.57142857142861,
-    "y": 417.85714285714289,
-    "z": 21000,
-    "height": 37.857142857142861,
-    "width": 304.28571428571428,
-    "tabOrder": 19000
+    "x": 8.6006825938566553,
+    "y": 418.36177474402729,
+    "z": 24003,
+    "height": 38.088737201365191,
+    "width": 219.93174061433447,
+    "tabOrder": 24003
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Individual Requirement Status"
+                      "Entity": "Individual Requirements Classification"
                     }
                   },
-                  "Property": "Requirement"
+                  "Property": "Status"
                 }
               },
-              "queryRef": "Individual Requirement Status.Requirement",
-              "nativeQueryRef": "Requirement",
+              "queryRef": "Individual Requirements Classification.Status",
+              "nativeQueryRef": "Status1",
               "active": true
             }
           ]
@@ -152,7 +152,7 @@
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "15D"
                 }
               }
             },
@@ -179,12 +179,26 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "a20969b918a0a9188f2e",
+        "name": "5c5c1bdfcf2c6c552fa5",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Individual Requirement Status"
+                "Entity": "Individual Requirements Classification"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9abfa3a69c0015a6c329",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Individual Requirements Classification"
               }
             },
             "Property": "Person UID"
@@ -196,7 +210,7 @@
           "From": [
             {
               "Name": "i",
-              "Entity": "Individual Requirement Status",
+              "Entity": "Individual Requirements Classification",
               "Type": 0
             }
           ],

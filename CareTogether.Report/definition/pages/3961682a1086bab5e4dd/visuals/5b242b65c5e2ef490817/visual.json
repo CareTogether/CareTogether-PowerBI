@@ -4,10 +4,10 @@
   "position": {
     "x": 638.57142857142856,
     "y": 177.85714285714286,
-    "z": 12000,
+    "z": 11000,
     "height": 240,
     "width": 630.71428571428578,
-    "tabOrder": 12000
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "tableEx",
@@ -84,7 +84,7 @@
                     "Entity": "Family Requirement Status"
                   }
                 },
-                "Property": "Status"
+                "Property": "Expire Date"
               }
             },
             "direction": "Descending"

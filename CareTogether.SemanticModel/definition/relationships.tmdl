@@ -118,16 +118,6 @@ relationship AutoDetected_3695053e-fd8b-42ee-9a64-15888710f2e0
 	fromColumn: 'Individual Function Assignments'.'Arrangement UID'
 	toColumn: Arrangements.'Arrangement UID'
 
-relationship 4ccd24fd-e5bd-42ac-ea69-3c027a804678
-	crossFilteringBehavior: bothDirections
-	fromColumn: 'Family Requirement Status'.'Family UID'
-	toColumn: Family.'Family UID'
-
-relationship 65512282-1f66-bc46-a9e9-362fc4dcb848
-	crossFilteringBehavior: bothDirections
-	fromColumn: 'Individual Requirement Status'.'Person UID'
-	toColumn: Person.'Person UID'
-
 relationship 03bb0ee6-d6a1-31e0-8cb7-5cc3fabaeaf5
 	crossFilteringBehavior: bothDirections
 	fromColumn: Referrals.'Case UID'
@@ -136,4 +126,27 @@ relationship 03bb0ee6-d6a1-31e0-8cb7-5cc3fabaeaf5
 relationship 2a3e0428-b49a-e786-aebd-1f395ef8b4e8
 	fromColumn: Cases.'Close Reason'
 	toColumn: 'Close Reason'.Reason
+
+relationship 5eb837b4-c43e-0ebd-b5ba-9c53fbfd0828
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Family Requirements Classification'.'Family UID'
+	toColumn: Family.'Family UID'
+
+relationship 1c6c6f33-c4ef-5cc3-9674-fb5be9b84963
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: bothDirections
+	fromColumn: 'Family Requirement Status'.'Family UID'
+	toColumn: 'Family Requirements Classification'.'Family UID'
+
+relationship 65ed786a-9337-7c7b-fe99-7185dddb6615
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Person.'Person UID'
+	toColumn: 'Individual Requirements Classification'.'Person UID'
+
+relationship fc017153-74eb-600f-b706-326e5429b5cc
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Individual Requirement Status'.'Person UID'
+	toColumn: 'Individual Requirements Classification'.'Person UID'
 

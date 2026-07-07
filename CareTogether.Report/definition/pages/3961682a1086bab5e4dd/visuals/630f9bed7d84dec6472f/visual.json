@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "630f9bed7d84dec6472f",
   "position": {
-    "x": 856.382252559727,
+    "x": 849.62457337883961,
     "y": 39.317406143344712,
-    "z": 9000,
+    "z": 8000,
     "height": 60.81911262798635,
-    "width": 109.96587030716724,
-    "tabOrder": 9000
+    "width": 138.839590443686,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -20,13 +20,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Individual Requirement Status"
+                      "Entity": "Individual Requirements Classification"
                     }
                   },
-                  "Property": "# of Individuals Overall Approval"
+                  "Property": "# of Individuals Approved Percentage"
                 }
               },
-              "queryRef": "Individual Requirement Status.# of Individuals Overall Compliance",
+              "queryRef": "Individual Requirements Classification.# of Individuals Approved Percentage",
               "nativeQueryRef": "Approved",
               "displayName": "Approved"
             }
@@ -40,10 +40,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Individual Requirement Status"
+                    "Entity": "Individual Requirements Classification"
                   }
                 },
-                "Property": "# of Individuals Overall Approval"
+                "Property": "# of Individuals Approved Percentage"
               }
             },
             "direction": "Descending"
@@ -560,5 +560,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "19071da20c1100cdf5ef",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Individual Requirements Classification"
+              }
+            },
+            "Property": "# of Individuals Approved Percentage"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

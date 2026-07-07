@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "de68c5629dc65cbcbdcf",
   "position": {
-    "x": 308.57142857142861,
-    "y": 140,
-    "z": 22000,
-    "height": 37.857142857142861,
-    "width": 304.28571428571428,
-    "tabOrder": 20000
+    "x": 228.53242320819112,
+    "y": 140.06825938566553,
+    "z": 19000,
+    "height": 38.088737201365191,
+    "width": 219.93174061433447,
+    "tabOrder": 18000
   },
   "visual": {
     "visualType": "slicer",
@@ -42,13 +42,6 @@
               "expr": {
                 "Literal": {
                   "Value": "'Dropdown'"
-                }
-              }
-            },
-            "isInvertedSelectionMode": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }
@@ -179,12 +172,26 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "4338e438be9260e4707f",
+        "name": "86780667c9e050d661a1",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
                 "Entity": "Family Requirement Status"
+              }
+            },
+            "Property": "Requirement"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b12cee4dffb645f19baa",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Family Requirements Classification"
               }
             },
             "Property": "Family UID"
@@ -196,7 +203,7 @@
           "From": [
             {
               "Name": "f",
-              "Entity": "Family Requirement Status",
+              "Entity": "Family Requirements Classification",
               "Type": 0
             }
           ],

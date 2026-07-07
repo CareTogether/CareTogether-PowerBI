@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "64c5fcd42df2935f5d37",
+  "name": "c5423366ec366a5b24b9",
   "position": {
-    "x": 148.66894197952217,
+    "x": 640.13651877133111,
     "y": 9.2150170648464158,
-    "z": 2000,
+    "z": 22000,
     "height": 121.6382252559727,
     "width": 209.48805460750853,
-    "tabOrder": 2000
+    "tabOrder": 22000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family Requirements Classification"
+                      "Entity": "Individual Requirements Classification"
                     }
                   },
                   "Property": "Status"
                 }
               },
-              "queryRef": "Family Requirements Classification.Status",
-              "nativeQueryRef": "Status",
+              "queryRef": "Individual Requirements Classification.Status",
+              "nativeQueryRef": "Status1",
               "active": true
             }
           ]
@@ -39,14 +39,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Family Requirements Classification"
+                      "Entity": "Individual Requirements Classification"
                     }
                   },
-                  "Property": "# of Families With Requirements"
+                  "Property": "# of Individuals With Requirements"
                 }
               },
-              "queryRef": "Family Requirements Classification.# of Fam. With Requirements",
-              "nativeQueryRef": "# of Families With Requirements"
+              "queryRef": "Individual Requirements Classification.# of Ind. With Requirements",
+              "nativeQueryRef": "# of Individuals With Requirements"
             }
           ]
         }
@@ -58,10 +58,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Family Requirements Classification"
+                    "Entity": "Individual Requirements Classification"
                   }
                 },
-                "Property": "# of Families With Requirements"
+                "Property": "# of Individuals With Requirements"
               }
             },
             "direction": "Descending"
@@ -291,32 +291,32 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "8ead71647318e84d6273",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirements Classification"
-              }
-            },
-            "Property": "# of Families With Requirements"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "067010ae79184ed9a759",
+        "name": "3e5982e025b3f61ce63a",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Family Requirements Classification"
+                "Entity": "Individual Requirements Classification"
               }
             },
             "Property": "Status"
           }
         },
         "type": "Categorical"
+      },
+      {
+        "name": "4ad7742855d7c9ef37b3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Individual Requirements Classification"
+              }
+            },
+            "Property": "# of Individuals With Requirements"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

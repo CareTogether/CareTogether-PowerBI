@@ -66,6 +66,8 @@ ref table Location
 ref table 'Family Requirement Status'
 ref table 'Individual Requirement Status'
 ref table Referrals
+ref table 'Family Requirements Classification'
+ref table 'Individual Requirements Classification'
 
 ref role Dynamic
 

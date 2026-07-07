@@ -4,10 +4,10 @@
   "position": {
     "x": 997.679180887372,
     "y": 9.2150170648464158,
-    "z": 16000,
+    "z": 15000,
     "height": 121.6382252559727,
     "width": 273.3788395904437,
-    "tabOrder": 16000
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "textbox",
@@ -108,7 +108,7 @@
                     }
                   },
                   {
-                    "value": "Completed or exempted requirements will expire within 30 days.",
+                    "value": "Completed or exempted requirements will expire within 180 days.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "8pt",

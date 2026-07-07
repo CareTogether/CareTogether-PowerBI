@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "dadaee4fcfcb680b0d71",
   "position": {
-    "x": 834.26621160409559,
+    "x": 849.62457337883961,
     "y": 9.2150170648464158,
-    "z": 8000,
+    "z": 7000,
     "height": 121.6382252559727,
-    "width": 154.19795221843003,
-    "tabOrder": 8000
+    "width": 138.839590443686,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "donutChart",
@@ -20,28 +20,30 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Individual Requirement Status"
+                      "Entity": "Individual Requirements Classification"
                     }
                   },
-                  "Property": "# of Individuals Approved"
+                  "Property": "# of Individual Approved"
                 }
               },
-              "queryRef": "Individual Requirement Status.# of Individuals Compliant",
-              "nativeQueryRef": "# of Individuals Approved"
+              "queryRef": "Individual Requirements Classification.# of Ind. Approved",
+              "nativeQueryRef": "Approved",
+              "displayName": "Approved"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Individual Requirement Status"
+                      "Entity": "Individual Requirements Classification"
                     }
                   },
-                  "Property": "# of Individuals Overall Approval Target"
+                  "Property": "# of Individuals Approved Target"
                 }
               },
-              "queryRef": "Individual Requirement Status.# of Individuals Overall Compliance Target",
-              "nativeQueryRef": "# of Individuals Overall Approval Target"
+              "queryRef": "Individual Requirements Classification.# of Individuals Approved Target",
+              "nativeQueryRef": "Target",
+              "displayName": "Target"
             }
           ]
         }
@@ -53,10 +55,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Individual Requirement Status"
+                    "Entity": "Individual Requirements Classification"
                   }
                 },
-                "Property": "# of Individuals Approved"
+                "Property": "# of Individual Approved"
               }
             },
             "direction": "Descending"
@@ -99,7 +101,7 @@
             "labelStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "'Percent of total'"
+                  "Value": "'Data'"
                 }
               }
             },
@@ -114,6 +116,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }
@@ -141,8 +150,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.1
+                      "ColorId": 7,
+                      "Percent": 0
                     }
                   }
                 }
@@ -150,7 +159,7 @@
             }
           },
           "selector": {
-            "metadata": "Individual Requirement Status.# of Individuals Overall Compliance Target"
+            "metadata": "Individual Requirements Classification.# of Ind. Approved"
           }
         },
         {
@@ -160,8 +169,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 7,
-                      "Percent": -0.25
+                      "ColorId": 0,
+                      "Percent": -0.1
                     }
                   }
                 }
@@ -169,7 +178,7 @@
             }
           },
           "selector": {
-            "metadata": "Individual Requirement Status.# of Individuals Compliant"
+            "metadata": "Individual Requirements Classification.# of Individuals Approved Target"
           }
         }
       ]
@@ -257,5 +266,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ce0bf005167a15e87294",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Individual Requirements Classification"
+              }
+            },
+            "Property": "# of Individual Approved"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "98442b5c7f2d107918d3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Individual Requirements Classification"
+              }
+            },
+            "Property": "# of Individuals Approved Target"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

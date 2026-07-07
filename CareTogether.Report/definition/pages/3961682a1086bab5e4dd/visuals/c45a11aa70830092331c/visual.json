@@ -4,10 +4,10 @@
   "position": {
     "x": 8.5714285714285712,
     "y": 455.71428571428572,
-    "z": 13000,
+    "z": 12000,
     "height": 255.00000000000003,
     "width": 631.42857142857144,
-    "tabOrder": 13000
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,29 +20,28 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Individual Requirement Status"
+                      "Entity": "Person"
                     }
                   },
                   "Property": "Full Name"
                 }
               },
-              "queryRef": "Individual Requirement Status.Full Name",
-              "nativeQueryRef": "Full Name"
+              "queryRef": "Person.Full Name",
+              "nativeQueryRef": "Full Name1"
             },
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Individual Requirement Status"
+                      "Entity": "Individual Requirements Classification"
                     }
                   },
-                  "Property": "Individual Compliance Status"
+                  "Property": "Status"
                 }
               },
-              "queryRef": "Individual Requirement Status.Individual Compliance Status",
-              "nativeQueryRef": "Status",
-              "displayName": "Status"
+              "queryRef": "Individual Requirements Classification.Status",
+              "nativeQueryRef": "Status1"
             },
             {
               "field": {
@@ -86,8 +85,8 @@
                 }
               },
               "queryRef": "Individual Requirement Status.# of Requirements Expiring Soon (Individual)",
-              "nativeQueryRef": "Expiring Soon (30 days)",
-              "displayName": "Expiring Soon (30 days)"
+              "nativeQueryRef": "Expiring Soon (180 days)",
+              "displayName": "Expiring Soon (180 days)"
             },
             {
               "field": {
@@ -111,13 +110,13 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Individual Requirement Status"
+                    "Entity": "Individual Requirements Classification"
                   }
                 },
-                "Property": "Individual Compliance Status"
+                "Property": "Status"
               }
             },
             "direction": "Ascending"
@@ -466,169 +465,6 @@
             ],
             "metadata": "Family Requirement Status.Family Name"
           }
-        },
-        {
-          "properties": {
-            "icon": {
-              "kind": "Icon",
-              "layout": {
-                "expr": {
-                  "Literal": {
-                    "Value": "'Before'"
-                  }
-                }
-              },
-              "verticalAlignment": {
-                "expr": {
-                  "Literal": {
-                    "Value": "'Middle'"
-                  }
-                }
-              },
-              "value": {
-                "expr": {
-                  "Conditional": {
-                    "Cases": [
-                      {
-                        "Condition": {
-                          "Comparison": {
-                            "ComparisonKind": 0,
-                            "Left": {
-                              "Measure": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Entity": "Individual Requirement Status"
-                                  }
-                                },
-                                "Property": "Individual Compliance Status"
-                              }
-                            },
-                            "Right": {
-                              "Literal": {
-                                "Value": "'Expiring Soon'"
-                              }
-                            }
-                          },
-                          "Annotations": {
-                            "PowerBI.SQExprEvaluationKind": 1,
-                            "PowerBI.SQExprTextOperatorOption": 2
-                          }
-                        },
-                        "Value": {
-                          "Literal": {
-                            "Value": "'CircleSymbolMedium'"
-                          }
-                        }
-                      },
-                      {
-                        "Condition": {
-                          "Comparison": {
-                            "ComparisonKind": 0,
-                            "Left": {
-                              "Measure": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Entity": "Individual Requirement Status"
-                                  }
-                                },
-                                "Property": "Individual Compliance Status"
-                              }
-                            },
-                            "Right": {
-                              "Literal": {
-                                "Value": "'In Progress'"
-                              }
-                            }
-                          },
-                          "Annotations": {
-                            "PowerBI.SQExprEvaluationKind": 1,
-                            "PowerBI.SQExprTextOperatorOption": 2
-                          }
-                        },
-                        "Value": {
-                          "Literal": {
-                            "Value": "'SymbolMedium'"
-                          }
-                        }
-                      },
-                      {
-                        "Condition": {
-                          "Comparison": {
-                            "ComparisonKind": 0,
-                            "Left": {
-                              "Measure": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Entity": "Individual Requirement Status"
-                                  }
-                                },
-                                "Property": "Individual Compliance Status"
-                              }
-                            },
-                            "Right": {
-                              "Literal": {
-                                "Value": "'Approved'"
-                              }
-                            }
-                          },
-                          "Annotations": {
-                            "PowerBI.SQExprEvaluationKind": 1,
-                            "PowerBI.SQExprTextOperatorOption": 2
-                          }
-                        },
-                        "Value": {
-                          "Literal": {
-                            "Value": "'CircleSymbolHigh'"
-                          }
-                        }
-                      },
-                      {
-                        "Condition": {
-                          "Comparison": {
-                            "ComparisonKind": 0,
-                            "Left": {
-                              "Measure": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Entity": "Individual Requirement Status"
-                                  }
-                                },
-                                "Property": "Individual Compliance Status"
-                              }
-                            },
-                            "Right": {
-                              "Literal": {
-                                "Value": "'Expired'"
-                              }
-                            }
-                          },
-                          "Annotations": {
-                            "PowerBI.SQExprEvaluationKind": 1,
-                            "PowerBI.SQExprTextOperatorOption": 2
-                          }
-                        },
-                        "Value": {
-                          "Literal": {
-                            "Value": "'CircleSymbolLow'"
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Individual Requirement Status.Full Name"
-          }
         }
       ],
       "total": [
@@ -764,13 +600,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "213.72393862591096D"
+                  "Value": "201.49433853720143D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Individual Requirement Status.Full Name"
+            "metadata": "Person.Full Name"
           }
         },
         {
@@ -778,13 +614,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "81.99709514523587D"
+                  "Value": "85.87372266903132D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Individual Requirement Status.Individual Compliance Status"
+            "metadata": "Individual Requirements Classification.Status"
           }
         },
         {
@@ -820,7 +656,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "125D"
+                  "Value": "132.37201340616957D"
                 }
               }
             }
@@ -1163,7 +999,8 @@
             "Property": "Full Name"
           }
         },
-        "type": "Categorical"
+        "type": "Categorical",
+        "howCreated": "User"
       },
       {
         "name": "8fdf7ec47af1e4150a3a",
@@ -1193,7 +1030,36 @@
             "Property": "Individual Compliance Status"
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "fa347ddf64c689a898fb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Person"
+              }
+            },
+            "Property": "Full Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "971420fe5f934eb323c7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Individual Requirements Classification"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
       }
     ],
     "filterSortOrder": "Custom"
