@@ -4,10 +4,10 @@
   "position": {
     "x": 640.13651877133111,
     "y": 9.2150170648464158,
-    "z": 22000,
+    "z": 18000,
     "height": 121.6382252559727,
     "width": 209.48805460750853,
-    "tabOrder": 22000
+    "tabOrder": 18000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -287,37 +287,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "3e5982e025b3f61ce63a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirements Classification"
-              }
-            },
-            "Property": "Status"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "4ad7742855d7c9ef37b3",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirements Classification"
-              }
-            },
-            "Property": "# of Individuals With Requirements"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

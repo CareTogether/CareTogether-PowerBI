@@ -4,10 +4,10 @@
   "position": {
     "x": 8.6006825938566553,
     "y": 418.36177474402729,
-    "z": 24003,
+    "z": 23000,
     "height": 38.088737201365191,
     "width": 219.93174061433447,
-    "tabOrder": 24003
+    "tabOrder": 23000
   },
   "visual": {
     "visualType": "slicer",
@@ -178,20 +178,6 @@
   },
   "filterConfig": {
     "filters": [
-      {
-        "name": "5c5c1bdfcf2c6c552fa5",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirements Classification"
-              }
-            },
-            "Property": "Status"
-          }
-        },
-        "type": "Categorical"
-      },
       {
         "name": "9abfa3a69c0015a6c329",
         "field": {

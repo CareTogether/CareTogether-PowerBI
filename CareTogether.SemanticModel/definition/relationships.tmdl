@@ -23,14 +23,6 @@ relationship 6ac79b10-a5d7-cbc2-52d4-3f957ad99329
 	fromColumn: 'Child Location Record'.'Childcare Plan'
 	toColumn: 'Childcare Plan'.ChildLocationPlan
 
-relationship 6258b247-91eb-1566-13a4-193073f6ec52
-	fromColumn: ChildLocationExpanded.Index
-	toColumn: 'Child Location Record'.Index
-
-relationship 7defcc5e-23db-5306-923b-a9db0a56cdc6
-	fromColumn: ChildLocationExpanded.Date
-	toColumn: Date.Date
-
 relationship 787f10f8-ac9d-0b8d-7fab-a9d48b19ddb6
 	fromColumn: 'Individual Role Approvals'.Date
 	toColumn: Date.Date
@@ -149,4 +141,12 @@ relationship fc017153-74eb-600f-b706-326e5429b5cc
 	crossFilteringBehavior: bothDirections
 	fromColumn: 'Individual Requirement Status'.'Person UID'
 	toColumn: 'Individual Requirements Classification'.'Person UID'
+
+relationship 7defcc5e-23db-5306-923b-a9db0a56cdc6
+	fromColumn: ChildLocationExpanded.Date
+	toColumn: Date.Date
+
+relationship 6258b247-91eb-1566-13a4-193073f6ec52
+	fromColumn: ChildLocationExpanded.Index
+	toColumn: 'Child Location Record'.Index
 

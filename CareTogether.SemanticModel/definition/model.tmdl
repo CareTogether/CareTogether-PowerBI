@@ -68,6 +68,7 @@ ref table 'Individual Requirement Status'
 ref table Referrals
 ref table 'Family Requirements Classification'
 ref table 'Individual Requirements Classification'
+ref table 'First-Time Child Care Filter'
 
 ref role Dynamic
 

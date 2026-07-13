@@ -79,8 +79,8 @@
                 }
               },
               "queryRef": "Child Location Record.# of Days of Care",
-              "nativeQueryRef": "Ddddddays of Care",
-              "displayName": "Ddddddays of Care"
+              "nativeQueryRef": "Days of Care",
+              "displayName": "Days of Care"
             }
           ]
         }

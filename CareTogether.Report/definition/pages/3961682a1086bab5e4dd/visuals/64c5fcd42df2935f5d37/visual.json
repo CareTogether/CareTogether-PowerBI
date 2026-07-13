@@ -287,37 +287,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "8ead71647318e84d6273",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirements Classification"
-              }
-            },
-            "Property": "# of Families With Requirements"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "067010ae79184ed9a759",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirements Classification"
-              }
-            },
-            "Property": "Status"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

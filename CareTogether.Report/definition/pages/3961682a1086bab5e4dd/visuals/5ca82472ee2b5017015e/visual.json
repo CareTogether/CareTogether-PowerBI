@@ -847,62 +847,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "c199e728ac3b261b1a67",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "# of Requirements Completed (Family)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a7f84c181e808462d24c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "# of Requirements Pending (Family)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "216427dc9e9662fd8546",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "# of Requirements Expired (Family)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ae2395c1b736dfaf235b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "# of Requirements Expiring Soon (Family)"
-          }
-        },
-        "type": "Advanced"
       }
     ],
     "filterSortOrder": "Custom"

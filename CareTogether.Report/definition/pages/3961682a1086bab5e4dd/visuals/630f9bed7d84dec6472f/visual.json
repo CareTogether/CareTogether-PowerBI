@@ -560,23 +560,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "19071da20c1100cdf5ef",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirements Classification"
-              }
-            },
-            "Property": "# of Individuals Approved Percentage"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -4,10 +4,10 @@
   "position": {
     "x": 228.53242320819112,
     "y": 140.06825938566553,
-    "z": 19000,
+    "z": 16000,
     "height": 38.088737201365191,
     "width": 219.93174061433447,
-    "tabOrder": 18000
+    "tabOrder": 16000
   },
   "visual": {
     "visualType": "slicer",
@@ -171,20 +171,6 @@
   },
   "filterConfig": {
     "filters": [
-      {
-        "name": "86780667c9e050d661a1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirement Status"
-              }
-            },
-            "Property": "Requirement"
-          }
-        },
-        "type": "Categorical"
-      },
       {
         "name": "b12cee4dffb645f19baa",
         "field": {

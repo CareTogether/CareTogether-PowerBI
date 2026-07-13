@@ -203,78 +203,211 @@ table 'Child Location Record'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'First Care Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 64d0e326-7b94-49f6-9b7d-689f5fe980f4
+		summarizeBy: none
+		sourceColumn: First Care Date
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Child Location Record' = m
 		mode: import
 		queryGroup: Fact
-		source = ```
+		source =
 				let
 				    Source = #"OData Live",
-				    ChildLocationRecord = Source{[Name="ChildLocationRecords", Signature="table"]}[Data],
-				    ChildLocationRecordTransformed = 
 				
+				    ChildLocationRecord =
+				        Source{[Name="ChildLocationRecords", Signature="table"]}[Data],
+				
+				    ChildLocationRecordTransformed =
 				        Table.AddColumn(
 				            Table.AddColumn(
 				                Table.TransformColumns(
 				                    Table.AddIndexColumn(
 				                        Table.AddColumn(
 				                            ChildLocationRecord,
-				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                            "RLS Key",
+				                            each Text.Combine(
+				                                {
+				                                    Text.From([OrganizationId]),
+				                                    Text.From([LocationId])
+				                                },
+				                                "-"
+				                            ),
+				                            type text
 				                        ),
-				                        "Index", 1, 1, Int64.Type
+				                        "Index",
+				                        1,
+				                        1,
+				                        Int64.Type
 				                    ),
-				                    {{"StartedAtUtc", DateTimeZone.ToLocal, type datetimezone}, {"EndedAtUtc", DateTimeZone.ToLocal, type datetimezone}}
+				                    {
+				                        {
+				                            "StartedAtUtc",
+				                            DateTimeZone.ToLocal,
+				                            type datetimezone
+				                        },
+				                        {
+				                            "EndedAtUtc",
+				                            DateTimeZone.ToLocal,
+				                            type datetimezone
+				                        }
+				                    }
 				                ),
-				                "Child Person UID", each Text.Combine({[RLS Key], [ChildPersonId]}, "-")
+				                "Child Person UID",
+				                each Text.Combine(
+				                    {
+				                        [RLS Key],
+				                        Text.From([ChildPersonId])
+				                    },
+				                    "-"
+				                ),
+				                type text
 				            ),
-				            "Family UID", each Text.Combine({[RLS Key], [FamilyId]},"-")
+				            "Family UID",
+				            each Text.Combine(
+				                {
+				                    [RLS Key],
+				                    Text.From([FamilyId])
+				                },
+				                "-"
+				            ),
+				            type text
 				        ),
 				
 				    // Adding the Family Name
-				    Family = 
+				    Family =
 				        Table.SelectColumns(
 				            Table.RenameColumns(
 				                Table.AddColumn(
 				                    Table.AddColumn(
 				                        Source{[Name="Family", Signature="table"]}[Data],
-				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
+				                        "RLS Key",
+				                        each Text.Combine(
+				                            {
+				                                Text.From([OrganizationId]),
+				                                Text.From([LocationId])
+				                            },
+				                            "-"
+				                        ),
+				                        type text
 				                    ),
-				                    "FamilyUID", each Text.Combine({[RLS Key], [Id]}, "-")
+				                    "FamilyUID",
+				                    each Text.Combine(
+				                        {
+				                            [RLS Key],
+				                            Text.From([Id])
+				                        },
+				                        "-"
+				                    ),
+				                    type text
 				                ),
-				                {{"Name", "Childcare Family Name"}}
+				                {
+				                    {"Name", "Childcare Family Name"}
+				                }
 				            ),
-				            {"FamilyUID", "Childcare Family Name"}
+				            {
+				                "FamilyUID",
+				                "Childcare Family Name"
+				            }
 				        ),
 				
-				    // Combined Tables: 
+				    // Combined Tables
 				    Combined =
 				        Table.SelectColumns(
 				            Table.AddColumn(
-				            Table.RenameColumns(
-				                Table.Join(
-				                    ChildLocationRecordTransformed,
-				                    "Family UID",
-				                    Family,
-				                    "FamilyUID",
-				                    JoinKind.LeftOuter
+				                Table.RenameColumns(
+				                    Table.Join(
+				                        ChildLocationRecordTransformed,
+				                        "Family UID",
+				                        Family,
+				                        "FamilyUID",
+				                        JoinKind.LeftOuter
+				                    ),
+				                    {
+				                        {"ArrangementId", "Arrangement ID"},
+				                        {"ChildPersonId", "Child Person ID"},
+				                        {"FamilyId", "Family ID"},
+				                        {"StartedAtUtc", "Started"},
+				                        {"EndedAtUtc", "Ended"},
+				                        {"ChildcarePlan", "Childcare Plan"}
+				                    }
 				                ),
-				                {
-				                    {"ArrangementId", "Arrangement ID"}, {"ChildPersonId", "Child Person ID"}, {"FamilyId", "Family ID"},
-				                    {"StartedAtUtc", "Started"}, {"EndedAtUtc", "Ended"}, {"ChildcarePlan", "Childcare Plan"}
-				                }
-				            ),
-				            "Arrangement UID", each Text.Combine({[RLS Key], [Arrangement ID]}, "-")
+				                "Arrangement UID",
+				                each Text.Combine(
+				                    {
+				                        [RLS Key],
+				                        Text.From([Arrangement ID])
+				                    },
+				                    "-"
+				                ),
+				                type text
 				            ),
 				            {
-				                "RLS Key", "Family UID", "Family ID", "Arrangement UID", "Arrangement ID", "Child Person UID", "Child Person ID",
-				                "Started", "Ended", "Duration", "Index", "Childcare Family Name", "Childcare Plan"
+				                "RLS Key",
+				                "Family UID",
+				                "Family ID",
+				                "Arrangement UID",
+				                "Arrangement ID",
+				                "Child Person UID",
+				                "Child Person ID",
+				                "Started",
+				                "Ended",
+				                "Duration",
+				                "Index",
+				                "Childcare Family Name",
+				                "Childcare Plan"
 				            }
+				        ),
+				
+				    // Only records that represent actual care
+				    ValidCareRecords =
+				        Table.SelectRows(
+				            Combined,
+				            each
+				                [Started] <> null
+				                and [Childcare Plan] <> null
+				                and [Childcare Plan] <> "WithParent"
+				        ),
+				
+				    // First care date for each child
+				    FirstCareDates =
+				        Table.Group(
+				            ValidCareRecords,
+				            {"Child Person UID"},
+				            {
+				                {
+				                    "First Care Date",
+				                    each List.Min([Started]),
+				                    type nullable datetimezone
+				                }
+				            }
+				        ),
+				
+				    // Add the first care date to every record for the child
+				    CombinedWithFirstCare =
+				        Table.NestedJoin(
+				            Combined,
+				            {"Child Person UID"},
+				            FirstCareDates,
+				            {"Child Person UID"},
+				            "FirstCare",
+				            JoinKind.LeftOuter
+				        ),
+				
+				    ExpandedFirstCare =
+				        Table.ExpandTableColumn(
+				            CombinedWithFirstCare,
+				            "FirstCare",
+				            {"First Care Date"},
+				            {"First Care Date"}
 				        )
 				
-				
-				
 				in
-				    Combined
-				```
+				    ExpandedFirstCare
 
 	annotation PBI_NavigationStepName = Navigation
 
