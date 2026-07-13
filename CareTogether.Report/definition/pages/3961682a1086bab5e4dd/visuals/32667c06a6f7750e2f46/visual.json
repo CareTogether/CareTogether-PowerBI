@@ -424,23 +424,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "755cab56599d4b59e6e0",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirements Classification"
-              }
-            },
-            "Property": "# of Individuals With Requirements"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

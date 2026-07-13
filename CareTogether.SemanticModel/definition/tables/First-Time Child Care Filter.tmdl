@@ -1,0 +1,35 @@
+table 'First-Time Child Care Filter'
+	lineageTag: cfe350c3-8fd5-47b0-a526-abe0dd11707f
+
+	column 'Is First-Time Only'
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f4fd4dda-6281-4a2a-aa5a-352fef58ca03
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Is First-Time Only]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First-Time Child Care Only'
+		lineageTag: d4f3d070-cecc-4e90-8d31-70ed96d8df7a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [First-Time Child Care Only]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'First-Time Child Care Filter' = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "First-Time Child Care Only", STRING,
+				    "Is First-Time Only", BOOLEAN,
+				    {
+				        {"No", FALSE()},
+				        {"Yes", TRUE()}
+				    }
+				)
+
+	annotation PBI_Id = 86c76c894eb1436dacf4750c35b63d55
+

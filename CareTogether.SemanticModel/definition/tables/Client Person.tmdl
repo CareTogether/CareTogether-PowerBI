@@ -1,23 +1,48 @@
 table 'Client Person'
 	lineageTag: d1d492d4-6e16-4bce-b224-c7fb5de3fa7a
 
-	measure '# of Children Cared For (Client)' = ```
+	measure '# of Children Cared For (Client)' =
 			
 			
 			VAR CurrentDate = TODAY()
-			VAR StartDate = [Selected Timeframe Start]  // This is a measure calculating the start of the desired timeframe.
-			VAR EndDate = [Selected Timeframe End]  // This is a measure calculating the end of the desired timeframe.
-			VAR Result =
+			VAR StartDate = [Selected Timeframe Start]
+			VAR EndDate = [Selected Timeframe End]
+			VAR EffectiveEndDate = MIN(EndDate, CurrentDate)
+			VAR FirstTimeOnly = SELECTEDVALUE('First-Time Child Care Filter'[Is First-Time Only]) = TRUE()
+			
+			VAR TotalChildren =
 			    CALCULATE(
 			        DISTINCTCOUNTNOBLANK('Client Person'[Person UID]),
 			        'Client Person'[Person Type] = "Child",
 			        FILTER(
 			            'Child Location Record',
-			            'Child Location Record'[Childcare Plan] <> "WithParent" && 
-			            'Child Location Record'[Ended] >= StartDate && 
-			            'Child Location Record'[Started] <= MIN(EndDate, CurrentDate)
+			            'Child Location Record'[Childcare Plan] <> "WithParent"
+			                && 'Child Location Record'[Ended] >= StartDate
+			                && 'Child Location Record'[Started] <= EffectiveEndDate
 			        )
 			    )
+			
+			// Children whose first valid care occurred during the selected timeframe
+			VAR FirstTimeChildren =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK('Client Person'[Person UID]),
+			        'Client Person'[Person Type] = "Child",
+			        FILTER(
+			            'Child Location Record',
+			            'Child Location Record'[Childcare Plan] <> "WithParent"
+			                && NOT ISBLANK('Child Location Record'[First Care Date])
+			                && 'Child Location Record'[First Care Date] >= StartDate
+			                && 'Child Location Record'[First Care Date] <= EffectiveEndDate
+			        )
+			    )
+			
+			VAR Result =
+			    IF(
+			        FirstTimeOnly,
+			        FirstTimeChildren,
+			        TotalChildren
+			    )
+			
 			RETURN
 			    IF(
 			        CurrentDate < StartDate,
@@ -28,7 +53,6 @@ table 'Client Person'
 			            Result
 			        )
 			    )
-			```
 		formatString: 0
 		lineageTag: 09c48ad0-f3aa-4588-ab25-39343ed2aa73
 

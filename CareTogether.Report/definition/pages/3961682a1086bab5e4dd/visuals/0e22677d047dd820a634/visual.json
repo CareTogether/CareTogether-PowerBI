@@ -560,23 +560,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "1bf53aba5e332393b73f",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Family Requirements Classification"
-              }
-            },
-            "Property": "# of Families Approved Percentage"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

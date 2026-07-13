@@ -1032,34 +1032,6 @@
         },
         "type": "Advanced",
         "howCreated": "User"
-      },
-      {
-        "name": "fa347ddf64c689a898fb",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Person"
-              }
-            },
-            "Property": "Full Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "971420fe5f934eb323c7",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Individual Requirements Classification"
-              }
-            },
-            "Property": "Status"
-          }
-        },
-        "type": "Categorical"
       }
     ],
     "filterSortOrder": "Custom"

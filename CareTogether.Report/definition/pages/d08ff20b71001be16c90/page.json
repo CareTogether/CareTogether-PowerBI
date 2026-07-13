@@ -9,6 +9,7 @@
     "filters": [
       {
         "name": "16c9176aacd331a7ed5e",
+        "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
@@ -39,6 +40,7 @@
       },
       {
         "name": "4f6dfccf8ee9bb727d90",
+        "ordinal": 1,
         "field": {
           "Column": {
             "Expression": {
@@ -54,6 +56,7 @@
       },
       {
         "name": "2eb9f29800f9914b9eb1",
+        "ordinal": 2,
         "field": {
           "Column": {
             "Expression": {
@@ -69,8 +72,70 @@
         "objects": {
           "general": [
             {
+              "properties": {}
+            }
+          ]
+        }
+      },
+      {
+        "name": "fd133ebd636c14ddaf74",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "First-Time Child Care Filter"
+              }
+            },
+            "Property": "First-Time Child Care Only"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "First-Time Child Care Filter",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "First-Time Child Care Only"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'No'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
               "properties": {
-                "isInvertedSelectionMode": {
+                "requireSingleSelect": {
                   "expr": {
                     "Literal": {
                       "Value": "true"
@@ -80,6 +145,28 @@
               }
             }
           ]
+        }
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "pageBinding": {
+    "name": "2a1012f589d0d3213235",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "456fdc33075ec966f028",
+        "boundFilter": "fd133ebd636c14ddaf74",
+        "qnaSingleSelectRequired": true,
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "First-Time Child Care Filter"
+              }
+            },
+            "Property": "First-Time Child Care Only"
+          }
         }
       }
     ]

@@ -628,5 +628,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "aa5c14b292cc69f8396b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Arrangement Type"
+              }
+            },
+            "Property": "Arrangement Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "693a183107722dcafa19",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "# of Days of Care"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4433ec782de95a9003e8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "# of Nights of Care"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "602a4e0e0f3857bb9b54",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Person"
+              }
+            },
+            "Property": "# of Children Cared For (Client)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
