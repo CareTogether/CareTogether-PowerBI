@@ -208,7 +208,7 @@ table Date
 		source =
 				let
 				    Today = Date.From( DateTime.LocalNow() ),
-				    StartDate = #date(2021, 1, 1),
+				    StartDate = #date(2017, 9, 1),
 				    EndDate = Date.EndOfYear( Date.AddYears(Today, 1) ),
 				    #"List of Dates" = List.Dates( StartDate, Duration.Days( EndDate - StartDate ) +1, #duration( 1, 0, 0, 0 ) ),
 				    #"Converted to Table" = Table.FromList( #"List of Dates", Splitter.SplitByNothing(), type table[Date = Date.Type] ),
