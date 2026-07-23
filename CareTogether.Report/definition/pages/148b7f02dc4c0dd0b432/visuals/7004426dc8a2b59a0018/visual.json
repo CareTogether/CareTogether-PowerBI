@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "cec66ef7e524732b0413",
+  "name": "7004426dc8a2b59a0018",
   "position": {
     "x": 383.75939849624058,
-    "y": 9.62406015037594,
-    "z": 4000,
-    "height": 348.8721804511278,
+    "y": 358.49624060150376,
+    "z": 4001,
+    "height": 350.0751879699248,
     "width": 886.61654135338347,
-    "tabOrder": 1000
+    "tabOrder": 4001
   },
   "visual": {
     "visualType": "tableEx",
@@ -15,6 +15,20 @@
       "queryState": {
         "Values": {
           "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Location Client"
+                    }
+                  },
+                  "Property": "Location"
+                }
+              },
+              "queryRef": "Location Client.Location",
+              "nativeQueryRef": "Location"
+            },
             {
               "field": {
                 "Column": {
@@ -35,116 +49,29 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Date"
-                    }
-                  },
-                  "Property": "YYYY-MM-dd"
-                }
-              },
-              "queryRef": "Date.YYYY-MM-dd",
-              "nativeQueryRef": "Date",
-              "displayName": "Date"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
                       "Entity": "Child Location Record"
                     }
                   },
-                  "Property": "Childcare Family Name"
+                  "Property": "First Care Date"
                 }
               },
-              "queryRef": "Child Location Record.Childcare Family Name",
-              "nativeQueryRef": "Childcare Family",
-              "displayName": "Childcare Family"
+              "queryRef": "Child Location Record.First Care Date",
+              "nativeQueryRef": "First Care Date"
             },
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Arrangement Type"
+                      "Entity": "Client Person"
                     }
                   },
-                  "Property": "Arrangement Type"
+                  "Property": "# of Children Cared For (Client)"
                 }
               },
-              "queryRef": "Arrangement Type.Arrangement Type",
-              "nativeQueryRef": "Arrangement Type"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Arrangements"
-                    }
-                  },
-                  "Property": "Reason"
-                }
-              },
-              "queryRef": "Arrangements.Reason",
-              "nativeQueryRef": "Reason1"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "ChildLocationExpanded"
-                    }
-                  },
-                  "Property": "ChildcarePlan"
-                }
-              },
-              "queryRef": "ChildLocationExpanded.ChildcarePlan",
-              "nativeQueryRef": "Plan for Care",
-              "displayName": "Plan for Care"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "ChildLocationExpanded"
-                    }
-                  },
-                  "Property": "OvernightStay"
-                }
-              },
-              "queryRef": "ChildLocationExpanded.OvernightStay",
-              "nativeQueryRef": "Overnight ?",
-              "displayName": "Overnight ?"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Child Location Record"
-                    }
-                  },
-                  "Property": "Started"
-                }
-              },
-              "queryRef": "Child Location Record.Started",
-              "nativeQueryRef": "Started"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Child Location Record"
-                    }
-                  },
-                  "Property": "Ended"
-                }
-              },
-              "queryRef": "Child Location Record.Ended",
-              "nativeQueryRef": "Ended"
+              "queryRef": "Client Person.# of Children Cared For (Client)",
+              "nativeQueryRef": " ",
+              "displayName": " "
             }
           ]
         }
@@ -156,13 +83,13 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Client Person"
+                    "Entity": "Child Location Record"
                   }
                 },
-                "Property": "Full Name"
+                "Property": "First Care Date"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -270,22 +197,6 @@
           }
         }
       ],
-      "columnWidth": [
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "106D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "ChildLocationExpanded.ChildcarePlan"
-          }
-        }
-      ],
       "columnHeaders": [
         {
           "properties": {
@@ -295,7 +206,86 @@
                   "Value": "10D"
                 }
               }
+            },
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Client Person.# of Children Cared For (Client)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "448.06006889390585D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Client Person.Full Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "197.86918990328107D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Child Location Record.First Care Date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "182.9282602014538D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Location Client.Location"
           }
         }
       ]
@@ -352,7 +342,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Details by Arrangement'"
+                  "Value": "'Details by Child'"
                 }
               }
             }
@@ -571,6 +561,7 @@
             }
           ]
         },
+        "howCreated": "User",
         "objects": {
           "general": [
             {
@@ -588,7 +579,35 @@
         }
       },
       {
-        "name": "c04bb5c9eb84ac697748",
+        "name": "e9949f347dcce5416608",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Location Client"
+              }
+            },
+            "Property": "Location"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b5c778c6b6013c6584e9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Person"
+              }
+            },
+            "Property": "# of Children Cared For (Client)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "38c9dc62043ad03d96d3",
         "field": {
           "Column": {
             "Expression": {
@@ -602,21 +621,7 @@
         "type": "Categorical"
       },
       {
-        "name": "52489046f0c5bc7d137b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "YYYY-MM-dd"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "1d77533c49ebaa1ca0c8",
+        "name": "eb69f51f1a687a01ad40",
         "field": {
           "Column": {
             "Expression": {
@@ -624,77 +629,7 @@
                 "Entity": "Child Location Record"
               }
             },
-            "Property": "Childcare Family Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "6bc4b84e67ff2a4a8db1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement Type"
-              }
-            },
-            "Property": "Arrangement Type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "88a2845ddf8207daa8eb",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangements"
-              }
-            },
-            "Property": "Reason"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "20a42c5ff4d28ca787e3",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ChildLocationExpanded"
-              }
-            },
-            "Property": "OvernightStay"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "c393f4864174743c06e1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record"
-              }
-            },
-            "Property": "Started"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "f891a6fbf18de5f2fc9b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record"
-              }
-            },
-            "Property": "Ended"
+            "Property": "First Care Date"
           }
         },
         "type": "Categorical"

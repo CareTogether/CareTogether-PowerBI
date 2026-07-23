@@ -14023,6 +14023,15 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "client_person.person_uid": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Client Person",
+			          "ConceptualProperty": "Person UID"
+			        }
+			      },
+			      "State": "Generated"
 			    }
 			  },
 			  "Relationships": {
