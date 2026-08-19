@@ -110,11 +110,6 @@ relationship AutoDetected_3695053e-fd8b-42ee-9a64-15888710f2e0
 	fromColumn: 'Individual Function Assignments'.'Arrangement UID'
 	toColumn: Arrangements.'Arrangement UID'
 
-relationship 03bb0ee6-d6a1-31e0-8cb7-5cc3fabaeaf5
-	crossFilteringBehavior: bothDirections
-	fromColumn: Referrals.'Case UID'
-	toColumn: Cases.'Case UID'
-
 relationship 2a3e0428-b49a-e786-aebd-1f395ef8b4e8
 	fromColumn: Cases.'Close Reason'
 	toColumn: 'Close Reason'.Reason

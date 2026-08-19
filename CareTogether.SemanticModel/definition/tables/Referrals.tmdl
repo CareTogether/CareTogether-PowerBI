@@ -17,6 +17,19 @@ table Referrals
 		formatString: 0
 		lineageTag: 8fc9926f-9251-4552-a3e8-cc01d8ea5732
 
+	measure '# of Referrals Opened' =
+			COUNTROWS(
+			    FILTER(
+			        'Referrals',
+			        AND(
+			            'Referrals'[CreatedAtUtc] >= [Selected Timeframe Start],
+			            'Referrals'[CreatedAtUtc] <= [Selected Timeframe End]
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 2acaa842-3752-4068-9908-f0aaea1ca367
+
 	column ReferralId
 		dataType: string
 		displayFolder: _columns

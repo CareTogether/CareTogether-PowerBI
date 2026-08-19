@@ -4,10 +4,10 @@
   "position": {
     "x": 383.75939849624058,
     "y": 358.49624060150376,
-    "z": 4001,
+    "z": 5000,
     "height": 350.0751879699248,
     "width": 886.61654135338347,
-    "tabOrder": 4001
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "tableEx",
@@ -577,62 +577,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "e9949f347dcce5416608",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Location Client"
-              }
-            },
-            "Property": "Location"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "b5c778c6b6013c6584e9",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Client Person"
-              }
-            },
-            "Property": "# of Children Cared For (Client)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "38c9dc62043ad03d96d3",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Client Person"
-              }
-            },
-            "Property": "Full Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "eb69f51f1a687a01ad40",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record"
-              }
-            },
-            "Property": "First Care Date"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }
