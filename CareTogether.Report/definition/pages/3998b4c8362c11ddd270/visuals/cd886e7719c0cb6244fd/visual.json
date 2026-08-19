@@ -93,13 +93,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Cases"
+                      "Entity": "Referrals"
                     }
                   },
-                  "Property": "# of Cases Opened"
+                  "Property": "# of Referrals Opened"
                 }
               },
-              "queryRef": "Referrals.# of Referrals Opened",
+              "queryRef": "Referrals.# of Referrals Opened1",
               "nativeQueryRef": " ",
               "displayName": " "
             }
@@ -116,10 +116,10 @@
                     "Entity": "Referrals"
                   }
                 },
-                "Property": "Title"
+                "Property": "CreatedAtUtc"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -220,20 +220,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Referrals.# of Referrals Opened"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "330.4095352995273D"
                 }
               }
@@ -276,7 +262,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "104.86004296597571D"
+                  "Value": "135.61791909343552D"
                 }
               }
             }
@@ -290,13 +276,27 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "89.40280334328685D"
+                  "Value": "62.458890028157306D"
                 }
               }
             }
           },
           "selector": {
             "metadata": "Referrals.Status"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referrals.# of Referrals Opened1"
           }
         }
       ],

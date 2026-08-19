@@ -54,15 +54,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Referrals"
+                      "Entity": "Cases"
                     }
                   },
-                  "Property": "# of Families Referred"
+                  "Property": "# of Families with Cases"
                 }
               },
-              "queryRef": "Referrals.# of Families Referred1",
-              "nativeQueryRef": "Families Referred",
-              "displayName": "Families Referred"
+              "queryRef": "Cases.# of Families with Cases",
+              "nativeQueryRef": "Families with cases",
+              "displayName": "Families with cases"
             }
           ]
         }
@@ -524,7 +524,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top Referral Sources'"
+                  "Value": "'Top Cases Referral Sources'"
                 }
               }
             }
@@ -671,5 +671,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "dd73f009d28316f34a3d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "Referral Source"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e38f45c1f1b65ecb081c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "# of Cases Opened"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3098e5765948c8606b86",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "# of Families with Cases"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

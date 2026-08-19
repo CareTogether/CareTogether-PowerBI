@@ -10,7 +10,7 @@
     "tabOrder": 6000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -60,8 +60,24 @@
                   "Property": "# of Cases Opened"
                 }
               },
+              "queryRef": "Cases.# of Cases Opened",
+              "nativeQueryRef": "Cases",
+              "displayName": "Cases"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Referrals"
+                    }
+                  },
+                  "Property": "# of Referrals Opened"
+                }
+              },
               "queryRef": "Referrals.# of Referrals Opened",
-              "nativeQueryRef": "# of Cases Opened"
+              "nativeQueryRef": "Referrals",
+              "displayName": "Referrals"
             }
           ]
         }
@@ -208,13 +224,6 @@
                   }
                 }
               }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "75D"
-                }
-              }
             }
           }
         },
@@ -225,7 +234,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#51B5BC'"
+                      "Value": "'#80C9D5'"
                     }
                   }
                 }
@@ -234,6 +243,24 @@
           },
           "selector": {
             "metadata": "Referrals.# of Referrals Opened"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#135256'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cases.# of Cases Opened"
           }
         }
       ],
@@ -264,7 +291,7 @@
             "labelPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'Above'"
+                  "Value": "'OutsideEnd'"
                 }
               }
             },
@@ -289,7 +316,7 @@
             "optimizeLabelDisplay": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -300,17 +327,36 @@
                 }
               }
             },
-            "minimumOffset": {
+            "enableValueDataLabel": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "true"
                 }
               }
             },
-            "maximumOffset": {
+            "enableBackground": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "false"
+                }
+              }
+            },
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "25D"
+                }
+              }
+            },
+            "backgroundColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }
@@ -379,6 +425,20 @@
                   "Value": "0D"
                 }
               }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "invertAxis": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -396,7 +456,7 @@
             "maxMarginFactor": {
               "expr": {
                 "Literal": {
-                  "Value": "50L"
+                  "Value": "40L"
                 }
               }
             },
@@ -424,51 +484,11 @@
                   "Value": "false"
                 }
               }
-            }
-          }
-        }
-      ],
-      "lineStyles": [
-        {
-          "properties": {
-            "areaShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
             },
-            "strokeWidth": {
-              "expr": {
-                "Literal": {
-                  "Value": "2D"
-                }
-              }
-            },
-            "lineChartType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'smooth'"
-                }
-              }
-            },
-            "showMarker": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "seriesLabels": [
-        {
-          "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -528,7 +548,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cases Over Time'"
+                  "Value": "'Cases and Referrals Over Time'"
                 }
               }
             }
@@ -675,5 +695,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0e72ad4cc1eabee42086",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "537a3d92bfafdcdf51bd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Month Name Short"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8e14d132e2fc54e58305",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "# of Cases Opened"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6a580f67100ef1cde360",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "# of Referrals Opened"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

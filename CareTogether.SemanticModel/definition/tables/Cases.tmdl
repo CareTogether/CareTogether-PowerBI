@@ -14,6 +14,22 @@ table Cases
 		formatString: 0
 		lineageTag: f3c404d6-390c-431b-9b69-8eb6b0e63a25
 
+	measure '# of Families with Cases' =
+			
+			
+			CALCULATE(
+			    DISTINCTCOUNTNOBLANK('Cases'[Family UID]),
+			    FILTER(
+			        'Cases',
+			        AND(
+			            'Cases'[Opened] >= [Selected Timeframe Start],
+			            'Cases'[Opened] <= [Selected Timeframe End]
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 5b94c2f4-57b2-4650-9059-cc7a51bd4abe
+
 	column 'RLS Key'
 		dataType: string
 		displayFolder: _Columns
