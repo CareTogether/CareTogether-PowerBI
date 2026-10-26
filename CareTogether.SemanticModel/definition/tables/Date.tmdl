@@ -1,99 +1,127 @@
 table Date
-	lineageTag: c3cfcb9b-c6b2-48e0-8d00-9fe6ec85a978
-	dataCategory: Time
+	lineageTag: 6b0b0936-2e04-4e57-9950-46010d0363e9
 
 	measure 'Selected Timeframe Start' = MIN('Date'[Date])
 		formatString: General Date
-		isHidden
-		lineageTag: 5e773db9-12e4-4821-b121-2372fae517fd
-
-		changedProperty = IsHidden
+		lineageTag: ff4a6ff2-1dd7-4c12-aca9-2bd2dc0d19f9
 
 	measure 'Selected Timeframe End' = MAX('Date'[Date])
 		formatString: General Date
-		isHidden
-		lineageTag: dbc0ac88-f9e6-42ff-9bdf-de3316b1ff6e
+		lineageTag: defaf07e-085c-460e-b916-7912a2c683e3
 
-		changedProperty = IsHidden
+	measure 'PoP Comparison Timeframe' =
+			
+			VAR CurrentStartDate =
+			    [Selected Timeframe Start]
+			
+			VAR CurrentEndDate =
+			    [Selected Timeframe End]
+			
+			VAR NumberOfDays =
+			    DATEDIFF(
+			        CurrentStartDate,
+			        CurrentEndDate,
+			        DAY
+			    ) + 1
+			
+			VAR PreviousStartDate =
+			    CurrentStartDate - NumberOfDays
+			
+			VAR PreviousEndDate =
+			    CurrentStartDate - 1
+			
+			RETURN
+			    FORMAT(PreviousStartDate, "MMM d")
+			    & " – "
+			    & FORMAT(PreviousEndDate, "MMM d, yyyy")
+			    // & " (" & NumberOfDays & " days)"
+		lineageTag: bd5592d1-a7b1-45cc-b1dc-398e93c7a98a
 
 	column Date
 		dataType: dateTime
-		isKey
-		formatString: yyyy-mm-dd
-		lineageTag: 73186f1c-0b1d-46fd-9716-7748c2e868ad
-		isDefaultLabel
+		formatString: Short Date
+		displayFolder: _columns
+		lineageTag: 9c841ede-03e7-44ab-aceb-6321a32f3af5
 		summarizeBy: none
 		sourceColumn: Date
+		sortByColumn: 'Date Integer'
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
 
-		annotation PBI_FormatHint = {"isDateTimeCustom":true}
-
 	column 'Date Integer'
 		dataType: int64
-		isHidden
 		formatString: 0
-		lineageTag: 51ead800-d994-4614-b6cb-ce1444683320
-		summarizeBy: none
+		displayFolder: _columns
+		lineageTag: 85b09fdf-98bf-4672-8d31-6cc1afa22f49
+		summarizeBy: sum
 		sourceColumn: Date Integer
 
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column Year
 		dataType: int64
 		formatString: 0
-		lineageTag: 4d55e5fd-6751-47f5-8485-ad4804e7434f
-		summarizeBy: none
+		displayFolder: _columns
+		lineageTag: 9cd18bd1-8d40-4980-90dc-9f51fff94ac8
+		summarizeBy: sum
 		sourceColumn: Year
 
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column 'Year Default'
 		dataType: string
-		lineageTag: 05b44653-bd38-4db5-8dab-8d4471d851e5
+		displayFolder: _columns
+		lineageTag: 5e9026f2-a0b3-4714-8b02-cb651981a3e7
 		summarizeBy: none
 		sourceColumn: Year Default
-		sortByColumn: Year
-
-		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
 	column YYYY-MM
 		dataType: string
-		lineageTag: 28c9a978-f625-4d95-93d8-d5c2f1d7baf9
+		displayFolder: _columns
+		lineageTag: 25ad9a8a-4ef8-4063-83eb-87b445fda960
 		summarizeBy: none
 		sourceColumn: YYYY-MM
 
 		annotation SummarizationSetBy = Automatic
 
+	column YYYY-MM-dd
+		dataType: string
+		displayFolder: _columns
+		lineageTag: a065d089-75a5-41a6-a0dd-b25a9aa109fc
+		summarizeBy: none
+		sourceColumn: YYYY-MM-dd
+
+		annotation SummarizationSetBy = Automatic
+
 	column Month-Year
 		dataType: string
-		lineageTag: f5406b2a-c7a9-43e9-8a38-32391e1e8ca5
+		displayFolder: _columns
+		lineageTag: 3c96525c-17f9-4d5b-998a-ef183b26b6b8
 		summarizeBy: none
 		sourceColumn: Month-Year
-		sortByColumn: YYYY-MM
-
-		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Month Of Year'
 		dataType: int64
 		formatString: 0
-		lineageTag: 1bed340b-42a7-4d4f-8661-d488da0ed223
-		summarizeBy: none
+		displayFolder: _columns
+		lineageTag: 6bcf02dd-b2db-4f09-8f94-ba3a7f8d2d34
+		summarizeBy: sum
 		sourceColumn: Month Of Year
 
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column 'Month Name'
 		dataType: string
-		lineageTag: f56bf290-8294-4d9f-a5f6-7cc6033b1922
+		displayFolder: _columns
+		lineageTag: 28b1ee2c-585c-483e-b855-c1e0ce4b2d09
 		summarizeBy: none
 		sourceColumn: Month Name
 		sortByColumn: 'Month Of Year'
@@ -104,7 +132,8 @@ table Date
 
 	column 'Month Name Short'
 		dataType: string
-		lineageTag: 155e0136-28d5-4eed-a4df-496a82278ded
+		displayFolder: _columns
+		lineageTag: 427336c6-2e82-40f3-a9bd-facbe9fed400
 		summarizeBy: none
 		sourceColumn: Month Name Short
 		sortByColumn: 'Month Of Year'
@@ -115,7 +144,8 @@ table Date
 
 	column 'Month Name Default'
 		dataType: string
-		lineageTag: 703dff3d-8bfe-48f7-8912-997bd0cf56d3
+		displayFolder: _columns
+		lineageTag: c4704870-5a01-4cd8-9aea-b2c84ea77ab0
 		summarizeBy: none
 		sourceColumn: Month Name Default
 		sortByColumn: 'Month Of Year'
@@ -126,8 +156,9 @@ table Date
 
 	column 'Start of Month'
 		dataType: dateTime
-		formatString: Long Date
-		lineageTag: a6343ebb-28aa-4749-aa20-8d004882ca30
+		formatString: Short Date
+		displayFolder: _columns
+		lineageTag: 630204c5-b902-4df5-a49d-e0ff74dabbc5
 		summarizeBy: none
 		sourceColumn: Start of Month
 
@@ -137,8 +168,9 @@ table Date
 
 	column 'End of Month'
 		dataType: dateTime
-		formatString: Long Date
-		lineageTag: 897048b7-ea2f-49be-ab5c-88e10cdd374b
+		formatString: Short Date
+		displayFolder: _columns
+		lineageTag: 48f3eecc-e45f-402d-90ae-b82eb3f6f970
 		summarizeBy: none
 		sourceColumn: End of Month
 
@@ -149,64 +181,56 @@ table Date
 	column 'Days in Month'
 		dataType: int64
 		formatString: 0
-		lineageTag: 75f26b05-9b1d-44fc-b06e-1d9e95ef3d6a
-		summarizeBy: none
+		displayFolder: _columns
+		lineageTag: 96122548-6909-491b-a578-411ceddb54c8
+		summarizeBy: sum
 		sourceColumn: Days in Month
 
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column 'Day Name'
 		dataType: string
-		lineageTag: 3460fef1-f4d9-4132-b296-fa4bfd35cad6
+		displayFolder: _columns
+		lineageTag: 0b287b00-29f7-42db-8e07-3e90f226176d
 		summarizeBy: none
 		sourceColumn: Day Name
-		sortByColumn: 'Day of Week Number'
-
-		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Day Name Short'
 		dataType: string
-		lineageTag: 5f1e6228-ce13-42df-9c2d-52af0b00ff7c
+		displayFolder: _columns
+		lineageTag: 2efa6d2a-6ef4-43b5-9cfe-f3e709a69212
 		summarizeBy: none
 		sourceColumn: Day Name Short
-		sortByColumn: 'Day of Week Number'
-
-		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Day of Month Number'
 		dataType: int64
 		formatString: 0
-		lineageTag: b6d538e4-409d-4180-92cc-13ed3b0f4dc8
-		summarizeBy: none
+		displayFolder: _columns
+		lineageTag: 1f006dc3-d8c0-4ad6-9ab0-4d58dc419492
+		summarizeBy: sum
 		sourceColumn: Day of Month Number
 
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column 'Day of Week Number'
 		dataType: int64
 		formatString: 0
-		lineageTag: 5b66f695-088f-451a-838a-826464837923
-		summarizeBy: none
+		displayFolder: _columns
+		lineageTag: d157aec8-461c-457e-a01f-e4d55071e683
+		summarizeBy: sum
 		sourceColumn: Day of Week Number
-
-		annotation SummarizationSetBy = User
-
-	column YYYY-MM-dd
-		dataType: string
-		lineageTag: b7dafe46-49df-4357-8d21-5efdbb2af419
-		summarizeBy: none
-		sourceColumn: YYYY-MM-dd
 
 		annotation SummarizationSetBy = Automatic
 
-	partition Date-40f6d57d-becc-4044-b272-b6e77eae3b28 = m
+	partition Date = m
 		mode: import
 		source =
 				let
+				    Date = let
 				    Today = Date.From( DateTime.LocalNow() ),
 				    StartDate = #date(2017, 9, 1),
 				    EndDate = Date.EndOfYear( Date.AddYears(Today, 1) ),
@@ -255,8 +279,10 @@ table Date
 				//    #"Insert Is Weekday" = Table.AddColumn(#"Insert Is Weekend", "Is Weekday", each if Date.DayOfWeek([Date]) < 5  then 1 else 0, Int64.Type )
 				in
 				    #"Insert Day of Week"
+				in
+				    Date
+
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
-
-	annotation PBI_NavigationStepName = Navigation
 

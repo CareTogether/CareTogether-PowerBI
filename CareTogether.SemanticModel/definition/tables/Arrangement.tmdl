@@ -1,0 +1,1485 @@
+table Arrangement
+	lineageTag: 5a7b2de3-02f5-4659-b92c-8a113de80938
+
+	measure '# of Arrangements Requested CP' = ```
+			
+			/*
+			CP = Current Period
+			
+			Counts Arrangements requested during the selected timeframe.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			
+			RETURN 
+			CALCULATE(
+			    COUNTROWS(Arrangement),
+			    Arrangement[requested] >= startDate,
+			    Arrangement[requested] < endDate + 1,
+			    USERELATIONSHIP(Arrangement[location_id], Location[location_id])
+			)
+			```
+		formatString: #,0
+		lineageTag: d41b52e0-9373-4b0f-b443-401c2fac8a32
+
+	measure '# of Arrangements Requested PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Counts Arrangements requested during the period immediately
+			preceding the selected timeframe, using the same number of days.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(Arrangement),
+			    Arrangement[requested] >= previousStartDate,
+			    Arrangement[requested] < previousEndDate + 1,
+			    USERELATIONSHIP(Arrangement[location_id], Location[location_id])
+			)
+		formatString: 0
+		lineageTag: fa9d3cea-9934-44cc-b413-a5da670a9bbd
+
+	measure '# of Arrangements Requested PoP' =
+			
+			VAR currentPeriod = [# of Arrangements Requested CP]
+			VAR previousPeriod = [# of Arrangements Requested PP]
+			VAR Perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Perc), BLANK(),
+			    Perc >= 0, FORMAT(Perc, "+0%") & "▲",
+			    Perc < 0, FORMAT(Perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 6c8db7ff-58fa-4265-be30-4661f6d42833
+
+	measure '# of Arrangements Started CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of Arrangements that effectively started
+			within the selected timeframe, regardless of when they
+			were requested.
+			
+			An Arrangement is considered started when:
+			- Its phase is not Cancelled.
+			- Its start date is populated.
+			- Its start date is on or before today.
+			
+			The selected timeframe is applied to the Arrangement Start Date.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(Arrangement),
+			    Arrangement[started_utc] >= startDate,
+			    Arrangement[started_utc] < endDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: #,0
+		lineageTag: 04c89e7b-290b-46ad-a265-f67850f8ab56
+
+	measure '# of Arrangements Started PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of Arrangements that effectively started
+			within the previous period, regardless of when they
+			were requested.
+			
+			An Arrangement is considered started when:
+			- Its phase is not Cancelled.
+			- Its start date is populated.
+			- Its start date is on or before today.
+			
+			The previous period has the same number of days
+			as the currently selected timeframe.
+			
+			The previous period is calculated based on the
+			Arrangement Start Date, not the Request Date.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			VAR periodDays =
+			    DATEDIFF(
+			        currentStartDate,
+			        currentEndDate,
+			        DAY
+			    ) + 1
+			
+			VAR previousStartDate = currentStartDate - periodDays
+			
+			VAR previousEndDate = currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(Arrangement),
+			    Arrangement[started_utc] >= previousStartDate,
+			    Arrangement[started_utc] < previousEndDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: 0
+		lineageTag: 722fb885-4325-494f-ac25-bb68fb760f72
+
+	measure '# of Arrangements Started PoP' =
+			
+			VAR currentPeriod = [# of Arrangements Started CP]
+			VAR previousPeriod = [# of Arrangements Started PP]
+			VAR Perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Perc), BLANK(),
+			    Perc >= 0, FORMAT(Perc, "+0%") & "▲",
+			    Perc < 0, FORMAT(Perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 8ad271ca-c78c-4d39-86ee-36fca90c1947
+
+	measure '# of People Served CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of unique people served through Arrangements
+			that effectively started within the selected timeframe,
+			regardless of when they were requested.
+			
+			An Arrangement is considered started when:
+			- Its phase is not Cancelled.
+			- Its start date is populated.
+			- Its start date is on or before today.
+			
+			The selected timeframe is applied to the Arrangement Start Date.
+			
+			Each person is counted only once, even if associated
+			with multiple qualifying Arrangements.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(Arrangement[person_id]),
+			    Arrangement[started_utc] >= startDate,
+			    Arrangement[started_utc] < endDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    NOT ISBLANK(Arrangement[person_id]),
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: #,0
+		lineageTag: c6da53c7-7304-4304-b0f4-750e4a5a51db
+
+	measure '# of People Served PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of unique people served through Arrangements
+			that effectively started within the previous period,
+			regardless of when they were requested.
+			
+			An Arrangement is considered started when:
+			- Its phase is not Cancelled.
+			- Its start date is populated.
+			- Its start date is on or before today.
+			
+			The previous period has the same number of days
+			as the currently selected timeframe.
+			
+			The previous period is calculated based on the
+			Arrangement Start Date, not the Request Date.
+			
+			Each person is counted only once, even if associated
+			with multiple qualifying Arrangements.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			VAR periodDays =
+			    DATEDIFF(
+			        currentStartDate,
+			        currentEndDate,
+			        DAY
+			    ) + 1
+			
+			VAR previousStartDate =
+			    currentStartDate - periodDays
+			
+			VAR previousEndDate =
+			    currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(Arrangement[person_id]),
+			    Arrangement[started_utc] >= previousStartDate,
+			    Arrangement[started_utc] < previousEndDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    NOT ISBLANK(Arrangement[person_id]),
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: 0
+		lineageTag: d9be206c-83a0-439e-8cc5-061158d8352c
+
+	measure '# of People Served PoP' =
+			
+			VAR currentPeriod = [# of People Served CP]
+			VAR previousPeriod = [# of People Served PP]
+			VAR Perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Perc), BLANK(),
+			    Perc >= 0, FORMAT(Perc, "+0%") & "▲",
+			    Perc < 0, FORMAT(Perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: a2d4f593-f700-4bfd-a3e4-45e8a9648d05
+
+	measure 'Avg. Time to Start CP' =
+			
+			/*
+			CP = Current Period
+			
+			Calculates the average number of days between the request date
+			and start date for Arrangements that effectively started within
+			the selected timeframe, regardless of when they were requested.
+			
+			An Arrangement is considered started when:
+			- Its phase is not Cancelled.
+			- Its start date is populated.
+			- Its start date is on or before today.
+			
+			The selected timeframe is applied to the Arrangement Start Date.
+			
+			Arrangements with a start date earlier than their request
+			date are excluded to prevent invalid negative durations.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			RETURN
+			CALCULATE(
+			    AVERAGEX(
+			        Arrangement,
+			        Arrangement[started_utc] - Arrangement[requested]
+			    ),
+			    Arrangement[started_utc] >= startDate,
+			    Arrangement[started_utc] < endDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    NOT ISBLANK(Arrangement[requested]),
+			    FILTER(
+			        Arrangement,
+			        Arrangement[started_utc] >= Arrangement[requested]
+			    ),
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: #,0
+		lineageTag: da43fe89-fa46-48ec-be6f-2a275e7287be
+
+	measure 'Avg. Time to Start PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Calculates the average number of days between the request date
+			and start date for Arrangements that effectively started within
+			the previous period, regardless of when they were requested.
+			
+			An Arrangement is considered started when:
+			- Its phase is not Cancelled.
+			- Its start date is populated.
+			- Its start date is on or before today.
+			
+			The previous period is calculated based on the
+			Arrangement Start Date, not the Request Date.
+			
+			The previous period has the same number of days
+			as the currently selected timeframe.
+			
+			Arrangements with a start date earlier than their request
+			date are excluded to prevent invalid negative durations.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			VAR periodDays =
+			    DATEDIFF(
+			        currentStartDate,
+			        currentEndDate,
+			        DAY
+			    ) + 1
+			
+			VAR previousStartDate =
+			    currentStartDate - periodDays
+			
+			VAR previousEndDate =
+			    currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    AVERAGEX(
+			        Arrangement,
+			        Arrangement[started_utc] - Arrangement[requested]
+			    ),
+			    Arrangement[started_utc] >= previousStartDate,
+			    Arrangement[started_utc] < previousEndDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    NOT ISBLANK(Arrangement[requested]),
+			    FILTER(
+			        Arrangement,
+			        Arrangement[started_utc] >= Arrangement[requested]
+			    ),
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		lineageTag: 5af7d50d-6f32-430c-a411-97ea6b8f48fd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg. Time to Start PoP' =
+			
+			VAR currentPeriod = [Avg. Time to Start CP]
+			VAR previousPeriod = [Avg. Time to Start PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: bb476ad4-2c50-4e2e-92fa-42b5b9447e8e
+
+	measure '# of Families Served CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of unique client families served through
+			Arrangements that effectively started within the selected
+			timeframe, regardless of when they were requested.
+			
+			An Arrangement is considered started when:
+			- Its phase is not Cancelled.
+			- Its start date is populated.
+			- Its start date is on or before today.
+			
+			Each family is counted only once, even if associated
+			with multiple qualifying Arrangements.
+			
+			The selected timeframe is applied to the Arrangement Start Date.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(Arrangement[family_id]),
+			    Arrangement[started_utc] >= startDate,
+			    Arrangement[started_utc] < endDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    NOT ISBLANK(Arrangement[family_id]),
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: #,0
+		lineageTag: be66106a-2ff2-4d0f-9f85-74f77c932213
+
+	measure '# of Families Served PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of unique client families served through
+			Arrangements that effectively started within the previous
+			period, regardless of when they were requested.
+			
+			An Arrangement is considered started when:
+			- Its phase is not Cancelled.
+			- Its start date is populated.
+			- Its start date is on or before today.
+			
+			Each family is counted only once, even if associated
+			with multiple qualifying Arrangements.
+			
+			The previous period has the same number of days
+			as the currently selected timeframe.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			VAR periodDays =
+			    DATEDIFF(
+			        currentStartDate,
+			        currentEndDate,
+			        DAY
+			    ) + 1
+			
+			VAR previousStartDate =
+			    currentStartDate - periodDays
+			
+			VAR previousEndDate =
+			    currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(Arrangement[family_id]),
+			    Arrangement[started_utc] >= previousStartDate,
+			    Arrangement[started_utc] < previousEndDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    NOT ISBLANK(Arrangement[family_id]),
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: 0
+		lineageTag: db177557-f96a-412e-bc77-2c04942b49c6
+
+	measure '# of Families Served PoP' =
+			
+			VAR currentPeriod = [# of Families Served CP]
+			VAR previousPeriod = [# of Families Served PP]
+			VAR Perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Perc), BLANK(),
+			    Perc >= 0, FORMAT(Perc, "+0%") & "▲",
+			    Perc < 0, FORMAT(Perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 364c0c22-ebcd-4d45-bac4-ba6b733f884c
+
+	measure '# of Arrangements Started CP (Cohort)' =
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of Arrangements requested within the
+			selected timeframe that effectively started.
+			
+			An Arrangement is considered started when:
+			- Its phase is not Cancelled.
+			- Its start date is populated.
+			- Its start date is on or before today.
+			
+			The selected timeframe defines the cohort based on
+			the Arrangement Request Date.
+			
+			Arrangements may have started after the selected timeframe,
+			as long as their start date is not in the future.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(Arrangement),
+			    Arrangement[requested] >= startDate,
+			    Arrangement[requested] < endDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: 0
+		lineageTag: 4bb7568d-0a5b-4be2-826f-54c79b1f5ab9
+
+	measure '# of Arrangements Cancelled CP (Cohort)' =
+			
+			/*
+			CP = Current Period
+			
+			Counts Arrangements requested within the selected timeframe
+			that are currently classified as Cancelled.
+			
+			The selected timeframe defines the cohort based on
+			the Arrangement Request Date.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(Arrangement),
+			    Arrangement[requested] >= startDate,
+			    Arrangement[requested] < endDate + 1,
+			    Arrangement[phase] = "Cancelled",
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: 0
+		lineageTag: 549e78b9-411a-4e93-ac4c-8ff59a66bd01
+
+	measure '# of Arrangements Not Started CP (Cohort)' =
+			
+			/*
+			CP = Current Period
+			
+			Counts Arrangements requested within the selected timeframe
+			that have not effectively started and are not Cancelled.
+			
+			An Arrangement has not started when:
+			- Its start date is blank, or
+			- Its start date is in the future.
+			
+			The selected timeframe defines the cohort based on
+			the Arrangement Request Date.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(Arrangement),
+			    Arrangement[requested] >= startDate,
+			    Arrangement[requested] < endDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    FILTER(
+			        Arrangement,
+			        ISBLANK(Arrangement[started_utc])
+			            || Arrangement[started_utc] >= todayDate + 1
+			    ),
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: 0
+		lineageTag: 9b6a3595-e0b8-43e1-8840-7ebf626700f4
+
+	measure '# of Arrangements In Progress CP (Cohort)' =
+			
+			/*
+			CP = Current Period
+			
+			Counts Arrangements requested within the selected timeframe
+			that have effectively started and have not yet ended.
+			
+			An Arrangement is considered In Progress when:
+			- Its phase is not Cancelled.
+			- Its start date is populated and on or before today.
+			- Its end date is blank or in the future.
+			
+			The selected timeframe defines the cohort based on
+			the Arrangement Request Date.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(Arrangement),
+			    Arrangement[requested] >= startDate,
+			    Arrangement[requested] < endDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    FILTER(
+			        Arrangement,
+			        ISBLANK(Arrangement[ended_utc])
+			            || Arrangement[ended_utc] >= todayDate + 1
+			    ),
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: 0
+		lineageTag: cbd67952-5640-4788-a8ed-bb8bafd5a6eb
+
+	measure '# of Arrangements Ended Cohort CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts Arrangements requested within the selected timeframe
+			that effectively started and have subsequently ended.
+			
+			The selected timeframe defines the cohort based on
+			the Arrangement Request Date.
+			
+			An Arrangement is considered ended when:
+			- Its phase is not Cancelled.
+			- Its start date is populated and on or before today.
+			- Its end date is populated and on or before today.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(Arrangement),
+			    Arrangement[requested] >= startDate,
+			    Arrangement[requested] < endDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    NOT ISBLANK(Arrangement[ended_utc]),
+			    Arrangement[ended_utc] < todayDate + 1,
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: #,0
+		lineageTag: 9c4d97b2-30cf-4a47-b2fb-497c03ec3517
+
+	measure 'Request Outcomes Description' =
+			
+			/*
+			Dynamically describes the outcomes of Arrangements
+			requested within the selected timeframe.
+			
+			All metrics are based on the Request Date Cohort.
+			
+			The description reflects the current outcomes of
+			the requested Arrangements, regardless of when
+			they started or ended.
+			*/
+			
+			VAR requested =
+			    COALESCE([# of Arrangements Requested CP], 0)
+			
+			VAR customDescription =
+			    "Of the " & FORMAT(requested, "#,##0") &
+			    " Arrangements requested during the selected period: "
+			
+			RETURN
+			    customDescription
+		lineageTag: fdb327e3-dc72-4889-9491-6d5934d7ed0c
+
+	measure 'Avg. Duration CP' =
+			
+			/*
+			CP = Current Period
+			
+			Calculates the average duration, in days, of Arrangements
+			that effectively started within the selected timeframe,
+			regardless of when they were requested.
+			
+			For completed Arrangements:
+			- Duration is calculated from Start Date to End Date.
+			
+			For ongoing Arrangements:
+			- Duration is calculated from Start Date to Today.
+			
+			An Arrangement is considered eligible when:
+			- Its phase is not Cancelled.
+			- Its start date is populated.
+			- Its start date is on or before today.
+			- Its effective end date is not earlier than its start date.
+			
+			The selected timeframe is applied to the Arrangement Start Date.
+			
+			Invalid negative durations are excluded.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			RETURN
+			CALCULATE(
+			    AVERAGEX(
+			        Arrangement,
+			        VAR arrangementStart = Arrangement[started_utc]
+			        VAR arrangementEnd = Arrangement[ended_utc]
+			
+			        VAR effectiveEnd =
+			            COALESCE(
+			                arrangementEnd,
+			                todayDate
+			            )
+			
+			        RETURN
+			            effectiveEnd - arrangementStart
+			    ),
+			    Arrangement[started_utc] >= startDate,
+			    Arrangement[started_utc] < endDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    FILTER(
+			        Arrangement,
+			        VAR effectiveEnd =
+			            COALESCE(
+			                Arrangement[ended_utc],
+			                todayDate
+			            )
+			
+			        RETURN
+			            effectiveEnd >= Arrangement[started_utc]
+			    ),
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		formatString: 0
+		lineageTag: 5509c0fd-7267-4409-8ca8-2e70e0058d09
+
+	measure 'Avg. Duration PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Calculates the average duration, in days, of Arrangements
+			that effectively started within the previous period,
+			regardless of when they were requested.
+			
+			For completed Arrangements:
+			- Duration is calculated from Start Date to End Date.
+			
+			For ongoing Arrangements:
+			- Duration is calculated from Start Date to Today.
+			
+			An Arrangement is considered eligible when:
+			- Its phase is not Cancelled.
+			- Its start date is populated.
+			- Its start date is on or before today.
+			- Its effective end date is not earlier than its start date.
+			
+			The previous period is calculated based on the
+			Arrangement Start Date, not the Request Date.
+			
+			The previous period has the same number of days
+			as the currently selected timeframe.
+			
+			Invalid negative durations are excluded.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			VAR periodDays =
+			    DATEDIFF(
+			        currentStartDate,
+			        currentEndDate,
+			        DAY
+			    ) + 1
+			
+			VAR previousStartDate =
+			    currentStartDate - periodDays
+			
+			VAR previousEndDate =
+			    currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    AVERAGEX(
+			        Arrangement,
+			        VAR arrangementStart = Arrangement[started_utc]
+			        VAR arrangementEnd = Arrangement[ended_utc]
+			
+			        VAR effectiveEnd =
+			            COALESCE(
+			                arrangementEnd,
+			                todayDate
+			            )
+			
+			        RETURN
+			            effectiveEnd - arrangementStart
+			    ),
+			    Arrangement[started_utc] >= previousStartDate,
+			    Arrangement[started_utc] < previousEndDate + 1,
+			    Arrangement[phase] <> "Cancelled",
+			    NOT ISBLANK(Arrangement[started_utc]),
+			    Arrangement[started_utc] < todayDate + 1,
+			    FILTER(
+			        Arrangement,
+			        VAR effectiveEnd =
+			            COALESCE(
+			                Arrangement[ended_utc],
+			                todayDate
+			            )
+			
+			        RETURN
+			            effectiveEnd >= Arrangement[started_utc]
+			    ),
+			    USERELATIONSHIP(
+			        Arrangement[location_id],
+			        Location[location_id]
+			    )
+			)
+		lineageTag: c193646a-852b-49b7-a85c-290b508385d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg. Duration PoP' =
+			
+			VAR currentPeriod = [Avg. Duration CP]
+			VAR previousPeriod = [Avg. Duration PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 7863d591-aad1-41ae-ae1f-5e267b0f39ae
+
+	measure 'Display Arrangements By' =
+			
+			VAR selectedOption = SELECTEDVALUE(_aux_arrangement_display_by[Option])
+			RETURN SWITCH(
+			    selectedOption,
+			    "Requested within the selected period", [# of Arrangements Requested CP],
+			    "Started within the selected period", [# of Arrangements Started CP]
+			)
+		formatString: 0
+		lineageTag: d3a67f8c-4134-4489-a5eb-43a4c013704b
+
+	column arrangement_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 2acfd893-7e48-44c2-93f0-a69eae477415
+		summarizeBy: none
+		sourceColumn: arrangement_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f413a917-d0eb-463a-b856-65a9c77a6a44
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f20ebee0-7341-45f8-b0ae-e4c299ccdc1c
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		displayFolder: _columns
+		lineageTag: fd1e7ce5-83d3-442b-bbce-5c5b3ded0f75
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column case_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 7e381db0-a7a2-4be0-a504-fdfff61eedc6
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 394463ba-5586-440f-9ace-a7c29521da40
+		summarizeBy: none
+		sourceColumn: person_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column requested
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		displayFolder: _columns
+		lineageTag: f5c59374-f973-4158-bd88-335d8e95477d
+		summarizeBy: none
+		sourceColumn: requested
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column started_utc
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		displayFolder: _columns
+		lineageTag: 864fb059-7c28-483f-bbdb-d8df671ea815
+		summarizeBy: none
+		sourceColumn: started_utc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column ended_utc
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		displayFolder: _columns
+		lineageTag: 94be85d2-f619-4e1f-a4e0-ab694612122d
+		summarizeBy: none
+		sourceColumn: ended_utc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column phase
+		dataType: string
+		displayFolder: _columns
+		lineageTag: bd830067-4fc1-4747-8f5a-746a307bfff4
+		summarizeBy: none
+		sourceColumn: phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column reason
+		dataType: string
+		displayFolder: _columns
+		lineageTag: e67144c7-3247-4ee2-955f-4f8745e31722
+		summarizeBy: none
+		sourceColumn: reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_version
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 4ae3a1be-1379-45be-b4b0-85c0b811f526
+		summarizeBy: none
+		sourceColumn: policy_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: e1d60ee9-7ad5-4b8a-bb63-20cb594ea67c
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrangement_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: c342e817-f8f3-408b-bbd0-b4043cca1720
+		summarizeBy: none
+		sourceColumn: arrangement_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: b8fbe089-e458-477e-adad-fa8ed2b8c6b3
+		summarizeBy: none
+		sourceColumn: person_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column type_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f2275fa3-c9e0-49e3-8448-6b5946d0de75
+		summarizeBy: none
+		sourceColumn: type_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Volunteer Families' =
+			
+			VAR familyFunctions =
+			    DISTINCT(
+			        SELECTCOLUMNS(
+			            RELATEDTABLE('Volunteer Family Function Assignment'),
+			            "Family", RELATED('Volunteer Family'[family_name]),
+			            "Function", 'Volunteer Family Function Assignment'[function]
+			        )
+			    )
+			
+			RETURN
+			CONCATENATEX(
+			    familyFunctions,
+			    [Family] & " (" & [Function] & ")",
+			    UNICHAR(10),
+			    [Family],
+			    ASC
+			)
+		displayFolder: _calculated_columns
+		lineageTag: 8c35d404-3baa-44f2-b07a-e84a068a943b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Volunteer Person' =
+			
+			VAR personFunctions =
+			    DISTINCT(
+			        SELECTCOLUMNS(
+			            RELATEDTABLE('Volunteer Person Function Assignment'),
+			            "Person", RELATED('Volunteer Person'[full_name]),
+			            "Function", 'Volunteer Person Function Assignment'[function]
+			        )
+			    )
+			
+			RETURN
+			CONCATENATEX(
+			    personFunctions,
+			    [Person] & " (" & [Function] & ")",
+			    UNICHAR(10),
+			    [Person],
+			    ASC
+			)
+		displayFolder: _calculated_columns
+		lineageTag: 922bf772-e37d-4399-a165-669da3fcffe1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column case_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 175f29f7-8c0c-481a-afab-012cc2435824
+		summarizeBy: none
+		sourceColumn: case_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f2571032-115b-4227-bcf4-acbdf579b334
+		summarizeBy: none
+		sourceColumn: family_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Communities Involved' = ```
+			
+			/*
+			Returns all Communities associated with Volunteer Families
+			and Volunteer Persons involved in the current Arrangement.
+			
+			Displays:
+			Community Name - Person Name (Function)
+			
+			If no Community Role Assignments exist:
+			Community Name - No Roles assigned
+			
+			- Supports multiple Families and Persons.
+			- Supports multiple Communities per Family.
+			- Includes all Community Roles.
+			- Removes duplicate Community/Person/Role combinations.
+			- Sorts by Community, then Person, then Role.
+			*/
+			
+			VAR currentArrangementUID =
+			    Arrangement[arrangement_uid]
+			
+			-- Step 1: Families directly assigned to the Arrangement
+			VAR directFamilies =
+			    SELECTCOLUMNS(
+			        FILTER(
+			            ALL('Volunteer Family Function Assignment'),
+			            'Volunteer Family Function Assignment'[arrangement_uid]
+			                = currentArrangementUID
+			        ),
+			        "FamilyUID",
+			            'Volunteer Family Function Assignment'[family_uid]
+			    )
+			
+			-- Step 2: Individual Volunteers assigned to the Arrangement
+			VAR individualVolunteers =
+			    SELECTCOLUMNS(
+			        FILTER(
+			            ALL('Volunteer Person Function Assignment'),
+			            'Volunteer Person Function Assignment'[arrangement_uid]
+			                = currentArrangementUID
+			        ),
+			        "PersonUID",
+			            'Volunteer Person Function Assignment'[person_uid]
+			    )
+			
+			-- Step 3: Families of Individual Volunteers
+			VAR individualFamilies =
+			    SELECTCOLUMNS(
+			        FILTER(
+			            ALL('Volunteer Person'),
+			            'Volunteer Person'[person_uid]
+			                IN individualVolunteers
+			        ),
+			        "FamilyUID",
+			            'Volunteer Person'[family_uid]
+			    )
+			
+			-- Step 4: Combine all Families
+			VAR allFamilies =
+			    DISTINCT(
+			        FILTER(
+			            UNION(
+			                directFamilies,
+			                individualFamilies
+			            ),
+			            NOT ISBLANK([FamilyUID])
+			        )
+			    )
+			
+			-- Step 5: Communities associated with those Families
+			VAR involvedCommunities =
+			    DISTINCT(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                ALL('Community Member Family'),
+			                'Community Member Family'[family_uid]
+			                    IN allFamilies
+			            ),
+			            "CommunityUID",
+			                'Community Member Family'[community_uid]
+			        )
+			    )
+			
+			-- Step 6: Resolve Community names
+			VAR communitiesWithNames =
+			    ADDCOLUMNS(
+			        involvedCommunities,
+			        "Community",
+			            VAR communityUID = [CommunityUID]
+			            RETURN
+			                LOOKUPVALUE(
+			                    'Community'[community_name],
+			                    'Community'[community_uid],
+			                    communityUID
+			                )
+			    )
+			
+			-- Step 7: Retrieve all Community Role Assignments
+			VAR communitiesWithRoles =
+			    GENERATE(
+			        communitiesWithNames,
+			
+			        VAR currentCommunityUID = [CommunityUID]
+			
+			        VAR assignments =
+			            SELECTCOLUMNS(
+			                FILTER(
+			                    ALL('Community Role Assignment'),
+			                    'Community Role Assignment'[community_uid]
+			                        = currentCommunityUID
+			                ),
+			                "PersonUID",
+			                    'Community Role Assignment'[person_uid],
+			                "Function",
+			                    'Community Role Assignment'[role]
+			            )
+			
+			        VAR roleDetails =
+			            ADDCOLUMNS(
+			                assignments,
+			                "Person",
+			                    VAR personUID = [PersonUID]
+			                    RETURN
+			                        LOOKUPVALUE(
+			                            'Volunteer Person'[full_name],
+			                            'Volunteer Person'[person_uid],
+			                            personUID
+			                        )
+			            )
+			
+			        VAR validRoles =
+			            DISTINCT(
+			                SELECTCOLUMNS(
+			                    FILTER(
+			                        roleDetails,
+			                        NOT ISBLANK([Person])
+			                            && [Person] <> ""
+			                            && NOT ISBLANK([Function])
+			                            && [Function] <> ""
+			                    ),
+			                    "Person", [Person],
+			                    "Function", [Function]
+			                )
+			            )
+			
+			        VAR fallback =
+			            SELECTCOLUMNS(
+			                FILTER(
+			                    ROW(
+			                        "Person", "No roles assigned",
+			                        "Function", ""
+			                    ),
+			                    ISEMPTY(validRoles)
+			                ),
+			                "Person", [Person],
+			                "Function", [Function]
+			            )
+			
+			        RETURN
+			            UNION(
+			                validRoles,
+			                fallback
+			            )
+			    )
+			
+			-- Step 8: Remove duplicate Community/Person/Function combinations
+			VAR finalCommunities =
+			    DISTINCT(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                communitiesWithRoles,
+			                NOT ISBLANK([Community])
+			            ),
+			            "Community", [Community],
+			            "Person", [Person],
+			            "Function", [Function]
+			        )
+			    )
+			
+			-- Step 9: Create sorting key
+			VAR sortedCommunities =
+			    ADDCOLUMNS(
+			        finalCommunities,
+			        "SortKey",
+			            [Community] & "|" & [Person] & "|" & [Function]
+			    )
+			
+			RETURN
+			IF(
+			    ISBLANK(currentArrangementUID),
+			    BLANK(),
+			    CONCATENATEX(
+			        sortedCommunities,
+			        [Community] & " - " & [Person]
+			            & IF(
+			                [Function] <> "",
+			                " (" & [Function] & ")",
+			                ""
+			            ),
+			        UNICHAR(10),
+			        [SortKey],
+			        ASC
+			    )
+			)
+			
+			```
+		displayFolder: _calculated_columns
+		lineageTag: 620ddfb4-f14c-4493-96c5-f29808d95d17
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column index
+		dataType: double
+		formatString: 0
+		displayFolder: _columns
+		lineageTag: 9df926c1-6152-47f9-a9f0-0fc19221bdca
+		summarizeBy: none
+		sourceColumn: index
+
+		annotation SummarizationSetBy = User
+
+	partition Arrangement = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				
+				  Source = #"OData",
+				  Arrangements = Source{[Name="Arrangement", Signature="table"]}[Data],
+				
+				  expandFamilyId = Table.ExpandRecordColumn(Arrangements, "Person", {"FamilyId"}, {"Person.FamilyId"}),
+				
+				  selectColumns = Table.SelectColumns(
+				    expandFamilyId,
+				    {
+				      "Id",
+				      "OrganizationId",
+				      "LocationId",
+				      "TypeName",
+				      "CaseId",
+				      "PersonId",
+				      "Person.FamilyId",
+				      "Requested",
+				      "StartedUtc",
+				      "EndedUtc",
+				      "Phase",
+				      "Reason",
+				      "PolicyVersion"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"Id", "arrangement_id"},
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"TypeName", "type"},
+				      {"CaseId", "case_id"},
+				      {"PersonId", "person_id"},
+				      {"Person.FamilyId", "family_id"},
+				      {"Requested", "requested"},
+				      {"StartedUtc", "started_utc"},
+				      {"EndedUtc", "ended_utc"},
+				      {"Phase", "phase"},
+				      {"Reason", "reason"},
+				      {"PolicyVersion", "policy_version"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addArrangementUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "arrangement_uid",
+				      each
+				          if [arrangement_id] <> null then
+				              Text.Combine({[rls_key], "-", [arrangement_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  addPersonUniqueKey = Table.AddColumn(
+				    addArrangementUniqueKey,
+				    "person_uid",
+				    each
+				      if [person_id] <> null then
+				        Text.Combine({[rls_key], "-", [person_id]})
+				      else
+				        null,
+				      type text
+				  ),
+				
+				  addArrangementTypeUniqueKey = Table.AddColumn(
+				    addPersonUniqueKey,
+				    "type_uid",
+				    each
+				      if [type] <> null then
+				        Text.Combine({[rls_key], "-", [type]})
+				      else
+				        null,
+				      type text
+				  ),
+				
+				  addCaseUniqueKey = Table.AddColumn(
+				    addArrangementTypeUniqueKey,
+				    "case_uid",
+				    each
+				      if [case_id] <> null then
+				        Text.Combine({[rls_key], "-", [case_id]})
+				      else
+				        null,
+				      type text
+				  ),
+				
+				  addTableIndex = Table.AddIndexColumn(
+				    addCaseUniqueKey,
+				    "index",
+				    1
+				  )
+				
+				in
+				
+				  addTableIndex
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

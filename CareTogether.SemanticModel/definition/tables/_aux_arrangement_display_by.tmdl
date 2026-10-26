@@ -1,0 +1,36 @@
+table _aux_arrangement_display_by
+	lineageTag: 5f4778a9-a7e9-4dae-9d12-64374d70fc78
+
+	column ID
+		formatString: 0
+		lineageTag: 6314d84e-27b3-402d-9564-2de6bfb6bc6a
+		summarizeBy: count
+		isNameInferred
+		sourceColumn: [ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Option
+		lineageTag: cf09d3c1-1ac1-4b74-a407-18fb0f2657d5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Option]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _aux_arrangement_display_by = calculated
+		mode: import
+		source =
+				
+				
+				DATATABLE(
+				    "ID", INTEGER,
+				    "Option", STRING,
+				    {
+				        {1, "Requested within the selected period"},
+				        {2, "Started within the selected period"}
+				    }
+				)
+
+	annotation PBI_Id = c8ad1a4ae18d44fca53f2a469bacc7b6
+

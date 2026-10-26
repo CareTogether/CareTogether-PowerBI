@@ -1,124 +1,119 @@
 role Dynamic
 	modelPermission: read
 
-	tablePermission Arrangements =
-			Arrangements[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission 'Child Location Record' =
-			'Child Location Record'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission Cases =
-			'Cases'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission ChildLocationExpanded =
-			ChildLocationExpanded[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission Family =
-			Family[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission Person =
-			Person[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission 'Location Client' =
-			'Location Client'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
+	tablePermission Arrangement =
+			Arrangement[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
 			)
 
 	tablePermission 'Arrangement Type' =
-			'Arrangement Type'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
+			'Arrangement Type'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
+			)
+
+	tablePermission Cases =
+			'Cases'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
+			)
+
+	tablePermission 'Child Location Record' =
+			'Child Location Record'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
+			)
+
+	tablePermission 'Child Location Record Expanded' =
+			'Child Location Record Expanded'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
 			)
 
 	tablePermission 'Client Family' =
-			'Client Family'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
+			'Client Family'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
 			)
 
 	tablePermission 'Client Person' =
-			'Client Person'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
+			'Client Person'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
+			)
+
+	tablePermission 'Close Reason' =
+			'Close Reason'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
 			)
 
 	tablePermission Community =
-			Community[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
+			Community[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
 			)
 
-	tablePermission 'Community Member Families' =
-			'Community Member Families'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
+	tablePermission 'Community Member Family' =
+			'Community Member Family'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
 			)
 
-	tablePermission 'Community Role Assignments' =
-			'Community Role Assignments'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission 'Family Function Assignments' =
-			'Family Function Assignments'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission 'Family Role Approvals' =
-			'Family Role Approvals'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission 'Individual Role Approvals' =
-			'Individual Role Approvals'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission 'Individual Function Assignments' =
-			'Individual Function Assignments'[RLS Key]IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission Location =
-			'Location'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
-			)
-
-	tablePermission Role =
-			Role[OrganizationId] IN CALCULATETABLE(
-			    VALUES(RLS[OrganizationId]),
-			    RLS[UserId] = USERNAME()
+	tablePermission 'Community Role Assignment' =
+			'Community Role Assignment'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
 			)
 
 	tablePermission Referrals =
-			'Referrals'[RLS Key] IN CALCULATETABLE(
-			    VALUES(RLS[RLS Key]),
-			    RLS[UserId] = USERNAME()
+			'Referrals'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
+			)
+
+	tablePermission RLS =
+			RLS[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
+			)
+
+	tablePermission Role =
+			// Roles are defined by Organization, so in this case we don't use the RLS key
+			Role[organization_id] IN CALCULATETABLE(
+			    VALUES(RLS[organization_id]),
+			    RLS[user_id] = USERNAME()
+			)
+
+	tablePermission 'Volunteer Family' =
+			'Volunteer Family'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
+			)
+
+	tablePermission 'Volunteer Family Function Assignment' =
+			'Volunteer Family Function Assignment'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
+			)
+
+	tablePermission 'Volunteer Person' =
+			'Volunteer Person'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
+			)
+
+	tablePermission 'Volunteer Person Function Assignment' =
+			'Volunteer Person Function Assignment'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
+			)
+
+	tablePermission Location =
+			'Location'[rls_key] IN CALCULATETABLE(
+			    VALUES(RLS[rls_key]),
+			    RLS[user_id] = USERNAME()
 			)
 
 	annotation PBI_Id = 48755128b26e4366a08bd6a38df559b4

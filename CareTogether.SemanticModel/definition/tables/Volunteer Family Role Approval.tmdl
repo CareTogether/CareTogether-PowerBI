@@ -1,0 +1,787 @@
+table 'Volunteer Family Role Approval'
+	lineageTag: 87060a4c-3f05-4b70-82e1-e983aecf94be
+
+	measure '# of Family Applications CP' =
+			
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of Family Applications initiated
+			during the selected timeframe.
+			
+			Each entry into Prospective represents a new Application
+			for a specific Family and Role, including reapplications.
+			
+			Applications are identified by Family ID, Role UID,
+			and Prospective start date.
+			
+			Duplicate records across Locations are counted only once.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Family Role Approval',
+			            'Volunteer Family Role Approval'[family_id],
+			            'Volunteer Family Role Approval'[role_uid],
+			            'Volunteer Family Role Approval'[valid_from]
+			        )
+			    ),
+			    'Volunteer Family Role Approval'[status] = "Prospective",
+			    'Volunteer Family Role Approval'[valid_from] >= selectedStartDate,
+			    'Volunteer Family Role Approval'[valid_from] < selectedEndDate + 1,
+			    USERELATIONSHIP('Volunteer Family Role Approval'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		displayFolder: Approval Activity Measures
+		lineageTag: bec457db-d02b-48ea-bf3b-f22709675045
+
+	measure '# of Family Applications PP' =
+			
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of Family Applications initiated
+			during the previous period.
+			
+			The previous period has the same number of calendar days
+			as the currently selected timeframe.
+			
+			Each entry into Prospective represents a new Application
+			for a specific Family and Role, including reapplications.
+			
+			Applications are identified by Family ID, Role UID,
+			and Prospective start date.
+			
+			Duplicate records across Locations are counted only once.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			VAR periodDays = DATEDIFF(selectedStartDate, selectedEndDate, DAY) + 1
+			VAR previousStartDate = selectedStartDate - periodDays
+			VAR previousEndDate = selectedStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Family Role Approval',
+			            'Volunteer Family Role Approval'[family_id],
+			            'Volunteer Family Role Approval'[role_uid],
+			            'Volunteer Family Role Approval'[valid_from]
+			        )
+			    ),
+			    'Volunteer Family Role Approval'[status] = "Prospective",
+			    'Volunteer Family Role Approval'[valid_from] >= previousStartDate,
+			    'Volunteer Family Role Approval'[valid_from] < previousEndDate + 1,
+			    USERELATIONSHIP('Volunteer Family Role Approval'[location_id], Location[location_id])
+			)
+		formatString: 0
+		displayFolder: Approval Activity Measures
+		lineageTag: 30eeac1b-3073-43a9-92b9-c18144e123ef
+
+	measure '# of Family Applications PoP' =
+			
+			
+			VAR currentPeriod = [# of Family Applications CP]
+			VAR previousPeriod = [# of Family Applications PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		displayFolder: Approval Activity Measures
+		lineageTag: a39e9345-2f83-49d9-a819-564a77acca98
+
+	measure '# of Family Approvals CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of Family Approval events
+			during the selected timeframe.
+			
+			Each entry into Approved represents an Approval
+			for a specific Family and Role.
+			
+			Approvals are identified by Family ID, Role UID,
+			and Approved start date.
+			
+			Duplicate records across Locations are counted only once.
+			
+			This is an activity-based measure, not a cohort measure.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Family Role Approval',
+			            'Volunteer Family Role Approval'[family_id],
+			            'Volunteer Family Role Approval'[role_uid],
+			            'Volunteer Family Role Approval'[valid_from]
+			        )
+			    ),
+			    'Volunteer Family Role Approval'[status] = "Approved",
+			    'Volunteer Family Role Approval'[valid_from] >= selectedStartDate,
+			    'Volunteer Family Role Approval'[valid_from] < selectedEndDate + 1,
+			    USERELATIONSHIP('Volunteer Family Role Approval'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		displayFolder: Approval Activity Measures
+		lineageTag: 58a0343b-b112-4f31-841e-8e68ae7cd1b9
+
+	measure '# of Family Approvals PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of Family Approval events
+			during the previous period.
+			
+			The previous period has the same number of calendar days
+			as the currently selected timeframe.
+			
+			Each entry into Approved represents an Approval
+			for a specific Family and Role.
+			
+			Approvals are identified by Family ID, Role UID,
+			and Approved start date.
+			
+			Duplicate records across Locations are counted only once.
+			
+			This is an activity-based measure, not a cohort measure.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			VAR periodDays = DATEDIFF(selectedStartDate, selectedEndDate, DAY) + 1
+			VAR previousStartDate = selectedStartDate - periodDays
+			VAR previousEndDate = selectedStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Family Role Approval',
+			            'Volunteer Family Role Approval'[family_id],
+			            'Volunteer Family Role Approval'[role_uid],
+			            'Volunteer Family Role Approval'[valid_from]
+			        )
+			    ),
+			    'Volunteer Family Role Approval'[status] = "Approved",
+			    'Volunteer Family Role Approval'[valid_from] >= previousStartDate,
+			    'Volunteer Family Role Approval'[valid_from] < previousEndDate + 1,
+			    USERELATIONSHIP('Volunteer Family Role Approval'[location_id], Location[location_id])
+			)
+		formatString: 0
+		displayFolder: Approval Activity Measures
+		lineageTag: 7dbc3b77-cb08-4e52-afef-b807d69ef9d8
+
+	measure '# of Family Approvals PoP' =
+			
+			
+			VAR currentPeriod = [# of Family Approvals CP]
+			VAR previousPeriod = [# of Family Approvals PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		displayFolder: Approval Activity Measures
+		lineageTag: e042ad41-167a-4bb4-80f3-6fa6e5b38f51
+
+	measure '# of Family Onboardings CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of Family Onboarding events
+			during the selected timeframe.
+			
+			Each entry into Onboarded represents an Onboarding
+			event for a specific Family and Role.
+			
+			Onboardings are identified by Family ID, Role UID,
+			and Onboarded start date.
+			
+			Duplicate records across Locations are counted only once.
+			
+			This is an activity-based measure, not a cohort measure.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Family Role Approval',
+			            'Volunteer Family Role Approval'[family_id],
+			            'Volunteer Family Role Approval'[role_uid],
+			            'Volunteer Family Role Approval'[valid_from]
+			        )
+			    ),
+			    'Volunteer Family Role Approval'[status] = "Onboarded",
+			    'Volunteer Family Role Approval'[valid_from] >= selectedStartDate,
+			    'Volunteer Family Role Approval'[valid_from] < selectedEndDate + 1,
+			    USERELATIONSHIP('Volunteer Family Role Approval'[location_id],Location[location_id])
+			)
+		formatString: #,0
+		displayFolder: Approval Activity Measures
+		lineageTag: b8e3ca2d-c31c-43b4-887d-78f9c1c37785
+
+	measure '# of Family Onboardings PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of Family Onboarding events
+			during the previous period.
+			
+			The previous period has the same number of calendar days
+			as the currently selected timeframe.
+			
+			Each entry into Onboarded represents an Onboarding
+			event for a specific Family and Role.
+			
+			Onboardings are identified by Family ID, Role UID,
+			and Onboarded start date.
+			
+			Duplicate records across Locations are counted only once.
+			
+			This is an activity-based measure, not a cohort measure.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			VAR periodDays = DATEDIFF(selectedStartDate, selectedEndDate, DAY) + 1
+			VAR previousStartDate = selectedStartDate - periodDays
+			VAR previousEndDate = selectedStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Family Role Approval',
+			            'Volunteer Family Role Approval'[family_id],
+			            'Volunteer Family Role Approval'[role_uid],
+			            'Volunteer Family Role Approval'[valid_from]
+			        )
+			    ),
+			    'Volunteer Family Role Approval'[status] = "Onboarded",
+			    'Volunteer Family Role Approval'[valid_from] >= previousStartDate,
+			    'Volunteer Family Role Approval'[valid_from] < previousEndDate + 1,
+			    USERELATIONSHIP('Volunteer Family Role Approval'[location_id],Location[location_id])
+			)
+		formatString: 0
+		displayFolder: Approval Activity Measures
+		lineageTag: fe9674a1-5e1e-4581-8cf8-e88a403978f0
+
+	measure '# of Family Onboardings PoP' =
+			
+			/*
+			PoP = Period over Period
+			
+			Calculates the percentage change in Family Onboardings
+			between the current and previous periods.
+			
+			Displays an upward arrow for positive or zero change
+			and a downward arrow for negative change.
+			*/
+			
+			VAR currentPeriod = [# of Family Onboardings CP]
+			VAR previousPeriod = [# of Family Onboardings PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		displayFolder: Approval Activity Measures
+		lineageTag: 88471db9-8ca7-4562-ae26-e1e91ab83486
+
+	measure 'Family Application Outcomes Description' =
+			
+			/*
+			Dynamically describes the outcomes of Family Applications
+			initiated within the selected timeframe.
+			
+			All metrics are based on the Application Start Date Cohort
+			(Prospective).
+			
+			The description reflects the latest observed status of
+			each Application, regardless of when subsequent status
+			transitions occurred.
+			
+			Each Application is counted only once.
+			*/
+			
+			VAR applications =
+			    COALESCE(
+			        CALCULATE(
+			            [# of Family Applications CP],
+			            REMOVEFILTERS(
+			                'Volunteer Family Role Approval'[Family Application Final Status]
+			            )
+			        ),
+			        0
+			    )
+			
+			VAR customDescription =
+			    "Of the " & FORMAT(applications, "#,##0") &
+			    " Family Applications initiated during the selected period: "
+			
+			RETURN
+			    customDescription
+		displayFolder: Approval Activity Measures
+		lineageTag: f5a6f062-16f6-4e4b-9d9d-9e3ee4bc09eb
+
+	measure '# of Family Application Outcomes CP' = ```
+			
+			/*
+			CP = Current Period
+			
+			Counts distinct Family Applications initiated during
+			the selected timeframe, grouped by their Final Status.
+			
+			Each entry into Prospective represents a new Application
+			for the same Family and Role.
+			
+			Applications are identified by:
+			- Family ID
+			- Role UID
+			- Prospective start date
+			
+			Duplicate records across Locations are counted once.
+			
+			The Final Status is determined by the calculated column
+			Family Application Final Status.
+			
+			Applications without a Prospective entry are excluded.
+			
+			Location filtering is applied using USERELATIONSHIP.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			VAR result = 
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Family Role Approval',
+			            'Volunteer Family Role Approval'[family_id],
+			            'Volunteer Family Role Approval'[role_uid],
+			            'Volunteer Family Role Approval'[valid_from]
+			        )
+			    ),
+			
+			    -- Only Application start records
+			    'Volunteer Family Role Approval'[status] = "Prospective",
+			
+			    -- Applications initiated during the selected timeframe
+			    'Volunteer Family Role Approval'[valid_from] >= selectedStartDate,
+			    'Volunteer Family Role Approval'[valid_from] < selectedEndDate + 1,
+			
+			    -- Exclude future Applications
+			    'Volunteer Family Role Approval'[valid_from] < TODAY() + 1,
+			
+			    -- Apply Location filtering
+			    USERELATIONSHIP(
+			        'Volunteer Family Role Approval'[location_id],
+			        Location[location_id]
+			    )
+			)
+			
+			RETURN IF(ISBLANK(result), 0, result)
+			```
+		formatString: 0
+		displayFolder: Approval Activity Measures
+		lineageTag: a288eaaf-25cf-41e2-b28b-c08974b17265
+
+	measure '# of Approved Volunteer Families CP' = ```
+			
+			/*
+			CP = Current Period (As-of-Date Snapshot)
+			
+			Counts the number of unique Volunteer Families
+			with at least one Approved or Onboarded Role
+			on the selected reference date.
+			
+			A Role is considered eligible when:
+			- Its status is Approved or Onboarded.
+			- Its validity period includes the reference date.
+			
+			Open-ended validity dates (e.g., 2999-12-31
+			or 9999-12-31) are handled naturally.
+			
+			Each Family is counted only once, regardless
+			of the number of eligible Roles or Locations.
+			
+			The selected timeframe end is used as the
+			reference date.
+			
+			Location filtering is applied through
+			the inactive relationship.
+			*/
+			
+			VAR referenceDate = [Selected Timeframe End]
+			
+			RETURN 
+			CALCULATE(
+			    DISTINCTCOUNT('Volunteer Family Role Approval'[family_id]),
+			    'Volunteer Family Role Approval'[status] IN {"Approved", "Onboarded"},
+			    'Volunteer Family Role Approval'[valid_from] < referenceDate + 1,
+			    'Volunteer Family Role Approval'[valid_to] >= referenceDate,
+			    USERELATIONSHIP('Volunteer Family Role Approval'[location_id], Location[location_id])
+			)
+			```
+		formatString: 0
+		displayFolder: Volunteers & Engagement Measures
+		lineageTag: 0f6349a7-6361-408e-9492-a85afc9304d3
+
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 654a4b6f-9227-41e8-8812-51c8c4c6ebd3
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f804a52f-d056-4c8d-ae87-4b52511a7b80
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 003e8889-0b77-4f66-87a2-28b65f677315
+		summarizeBy: none
+		sourceColumn: family_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column role_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 72ccd37b-7c50-40b7-b801-016f259ab258
+		summarizeBy: none
+		sourceColumn: role_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_from
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		displayFolder: _columns
+		lineageTag: faa37653-9500-4df6-9f81-9f82ce548e81
+		summarizeBy: none
+		sourceColumn: valid_from
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column valid_to
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		displayFolder: _columns
+		lineageTag: e797d9a9-7fe1-4653-b77d-318da00ee9de
+		summarizeBy: none
+		sourceColumn: valid_to
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column status
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 22ef1fe9-1080-47c2-9d94-5752f529055b
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 6784144a-cb7c-43c2-a409-fbe3e9d6f45f
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 8ac4c7ee-1d41-4410-a949-4c89c240e7b8
+		summarizeBy: none
+		sourceColumn: family_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column role_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 0362fe63-c5cb-4153-a6a0-fd274ab43cd3
+		summarizeBy: none
+		sourceColumn: role_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Application Type' =
+			
+			/*
+			Classifies each Family Application as New or Returning
+			based on the Family and Role combination.
+			
+			Each entry into Prospective represents a new Application,
+			including renewals and reapplications.
+			
+			The first Prospective date for each Family and Role
+			is classified as a New Application.
+			
+			Subsequent Prospective dates for the same Family and Role
+			are classified as Returning Applications.
+			
+			Applications are tracked across Locations using
+			Family ID and Role UID.
+			
+			Only Prospective records receive a classification.
+			*/
+			
+			VAR currentFamily = 'Volunteer Family Role Approval'[family_id]
+			VAR currentRole = 'Volunteer Family Role Approval'[role_uid]
+			VAR currentDate = 'Volunteer Family Role Approval'[valid_from]
+			VAR currentStatus = 'Volunteer Family Role Approval'[status]
+			
+			VAR firstApplicationDate =
+			    CALCULATE(
+			        MIN('Volunteer Family Role Approval'[valid_from]),
+			        FILTER(
+			            ALL('Volunteer Family Role Approval'),
+			            'Volunteer Family Role Approval'[family_id] = currentFamily &&
+			            'Volunteer Family Role Approval'[role_uid] = currentRole &&
+			            'Volunteer Family Role Approval'[status] = "Prospective"
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    currentStatus = "Prospective",
+			    IF(
+			        currentDate = firstApplicationDate,
+			        "New",
+			        "Returning"
+			    ),
+			    BLANK()
+			)
+		displayFolder: _calculated_columns
+		lineageTag: 881367eb-8984-43fc-87ce-954dea66c4c4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Family Application Final Status' =
+			
+			/*
+			Identifies the final observed status of each Family Application.
+			
+			Each entry into Prospective starts a new Application cycle
+			for the same Family and Role.
+			
+			All subsequent status records belong to that Application
+			until the next Prospective entry.
+			
+			The final status is the latest status recorded within
+			the Application cycle, based on valid_from.
+			
+			Application cycles are tracked across Locations using
+			Family ID and Role UID.
+			
+			Future-dated status transitions are excluded.
+			
+			Records without a preceding Prospective entry return BLANK.
+			*/
+			
+			VAR currentFamily = 'Volunteer Family Role Approval'[family_id]
+			VAR currentRole = 'Volunteer Family Role Approval'[role_uid]
+			VAR currentDate = 'Volunteer Family Role Approval'[valid_from]
+			
+			VAR applicationStartDate =
+			    CALCULATE(
+			        MAX('Volunteer Family Role Approval'[valid_from]),
+			        FILTER(
+			            ALL('Volunteer Family Role Approval'),
+			            'Volunteer Family Role Approval'[family_id] = currentFamily &&
+			            'Volunteer Family Role Approval'[role_uid] = currentRole &&
+			            'Volunteer Family Role Approval'[status] = "Prospective" &&
+			            'Volunteer Family Role Approval'[valid_from] <= currentDate
+			        )
+			    )
+			
+			VAR nextApplicationStartDate =
+			    CALCULATE(
+			        MIN('Volunteer Family Role Approval'[valid_from]),
+			        FILTER(
+			            ALL('Volunteer Family Role Approval'),
+			            'Volunteer Family Role Approval'[family_id] = currentFamily &&
+			            'Volunteer Family Role Approval'[role_uid] = currentRole &&
+			            'Volunteer Family Role Approval'[status] = "Prospective" &&
+			            'Volunteer Family Role Approval'[valid_from] > applicationStartDate
+			        )
+			    )
+			
+			VAR lastStatusDate =
+			    CALCULATE(
+			        MAX('Volunteer Family Role Approval'[valid_from]),
+			        FILTER(
+			            ALL('Volunteer Family Role Approval'),
+			            'Volunteer Family Role Approval'[family_id] = currentFamily &&
+			            'Volunteer Family Role Approval'[role_uid] = currentRole &&
+			            'Volunteer Family Role Approval'[valid_from] >= applicationStartDate &&
+			            (
+			                ISBLANK(nextApplicationStartDate) ||
+			                'Volunteer Family Role Approval'[valid_from] < nextApplicationStartDate
+			            ) &&
+			            'Volunteer Family Role Approval'[valid_from] < TODAY() + 1
+			        )
+			    )
+			
+			VAR finalStatus =
+			    CALCULATE(
+			        SELECTEDVALUE('Volunteer Family Role Approval'[status]),
+			        FILTER(
+			            ALL('Volunteer Family Role Approval'),
+			            'Volunteer Family Role Approval'[family_id] = currentFamily &&
+			            'Volunteer Family Role Approval'[role_uid] = currentRole &&
+			            'Volunteer Family Role Approval'[valid_from] = lastStatusDate
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(applicationStartDate) &&
+			    NOT ISBLANK(currentFamily) &&
+			    NOT ISBLANK(currentRole) &&
+			    NOT ISBLANK(lastStatusDate),
+			    finalStatus,
+			    BLANK()
+			)
+		displayFolder: _calculated_columns
+		lineageTag: 852e754e-5c5f-4566-8070-f7e805f47870
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Volunteer Family Role Approval' = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				  Source = #"OData",
+				  VolunteerFamilyRoleApproval = Source{[Name="FamilyRoleApprovals", Signature="table"]}[Data],
+				
+				  selectColumns = Table.SelectColumns(
+				    VolunteerFamilyRoleApproval,
+				    {
+				      "OrganizationId",
+				      "LocationId",
+				      "FamilyId",
+				      "RoleName",
+				      "Start",
+				      "End",
+				      "Status"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"FamilyId", "family_id"},
+				      {"RoleName", "role_name"},
+				      {"Start", "valid_from"},
+				      {"End", "valid_to"},
+				      {"Status", "status"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addFamilyUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "family_uid",
+				      each
+				          if [family_id] <> null then
+				              Text.Combine({[rls_key], "-", [family_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  // Roles are not associated with locations - The UID must be ORG + Role Name
+				  addRoleUniqueKey = Table.AddColumn(
+				      addFamilyUniqueKey,
+				      "role_uid",
+				      each
+				          if [role_name] <> null then
+				              Text.Combine({[organization_id], "-", [role_name]})
+				          else
+				              null,
+				      type text
+				  )
+				
+				in
+				
+				  addRoleUniqueKey
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

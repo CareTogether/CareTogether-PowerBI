@@ -1,155 +1,612 @@
 table Cases
-	lineageTag: 9e3a875e-349f-43da-84eb-8c636fdefbc9
+	lineageTag: 23bf38dd-4523-4833-8aa7-9afd794cc2f9
 
-	measure '# of Cases Opened' =
-			COUNTROWS(
-			    FILTER(
-			        'Cases',
-			        AND(
-			            'Cases'[Opened] >= [Selected Timeframe Start],
-			            'Cases'[Opened] <= [Selected Timeframe End]
-			        )
-			    )
-			)
-		formatString: 0
-		lineageTag: f3c404d6-390c-431b-9b69-8eb6b0e63a25
-
-	measure '# of Families with Cases' =
+	measure '# of Cases Opened CP' =
 			
+			/*
+			CP = Current Period
+			Counts unique Cases opened within the selected timeframe.
+			*/
 			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
 			CALCULATE(
-			    DISTINCTCOUNTNOBLANK('Cases'[Family UID]),
-			    FILTER(
-			        'Cases',
-			        AND(
-			            'Cases'[Opened] >= [Selected Timeframe Start],
-			            'Cases'[Opened] <= [Selected Timeframe End]
-			        )
+			    DISTINCTCOUNT('Cases'[case_id]),
+			    'Cases'[opened] >= selectedStartDate,
+			    'Cases'[opened] < selectedEndDate + 1,
+			    USERELATIONSHIP('Cases'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: 36a58840-a5d2-4a24-a649-142331365cbb
+
+	measure '# of Cases Opened PP' =
+			
+			/*
+			PP = Previous Period
+			Counts the number of Cases opened during the period immediately preceding the selected timeframe.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('Cases'[case_id]),
+			    'Cases'[opened] >= previousStartDate,
+			    'Cases'[opened] < previousEndDate + 1,
+			    USERELATIONSHIP('Cases'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: 9e973988-baba-48cd-9abb-26a064a6b04a
+
+	measure '# of Cases Opened PoP' =
+			
+			VAR currentPeriod = [# of Cases Opened CP]
+			VAR previousPeriod = [# of Cases Opened PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: ba929364-62f4-42bb-86a4-eac154f52bf1
+
+	measure '# of Cases Closed CP' = ```
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of unique Cases closed within the
+			selected timeframe, regardless of when they were opened.
+			
+			The selected timeframe is applied to the Case Closing Date.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('Cases'[case_id]),
+			    'Cases'[closed] >= selectedStartDate,
+			    'Cases'[closed] < selectedEndDate + 1,
+			    NOT ISBLANK('Cases'[closed]),
+			    USERELATIONSHIP(
+			        'Cases'[location_id],
+			        Location[location_id]
 			    )
 			)
+			
+			```
+		formatString: #,0
+		lineageTag: f5fff5c7-b5c5-402c-81f3-9aeab498d5b9
+
+	measure '# of Cases Closed PP' = ```
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of unique Cases closed during the
+			previous equivalent period, regardless of when they
+			were opened.
+			
+			The previous timeframe is applied to the Case Closing Date.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			
+			VAR periodDays =
+			    DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			
+			VAR previousStartDate =
+			    currentStartDate - periodDays
+			
+			VAR previousEndDate =
+			    currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('Cases'[case_id]),
+			    'Cases'[closed] >= previousStartDate,
+			    'Cases'[closed] < previousEndDate + 1,
+			    NOT ISBLANK('Cases'[closed]),
+			    USERELATIONSHIP(
+			        'Cases'[location_id],
+			        Location[location_id]
+			    )
+			)
+			
+			```
+		formatString: #,0
+		lineageTag: 787e05c4-6146-4ffe-8080-a3c20c5766c8
+
+	measure '# of Cases Closed PoP' =
+			
+			VAR currentPeriod = [# of Cases Closed CP]
+			VAR previousPeriod = [# of Cases Closed PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 233edad0-10a1-42fe-b17f-df59e1b197db
+
+	measure '# of Families with Cases CP' =
+			
+			/*
+			CP = Current Period
+			Counts unique Families with at least one Case opened within the selected timeframe.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('Cases'[family_id]),
+			    'Cases'[opened] >= selectedStartDate,
+			    'Cases'[opened] < selectedEndDate + 1,
+			    NOT ISBLANK('Cases'[family_id]),
+			    USERELATIONSHIP('Cases'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: 97af483c-dae0-483c-8e8d-d50b0c09f7bb
+
+	measure '# of Families with Cases PP' =
+			
+			/*
+			PP = Previous Period
+			Counts unique Families with at least one Case opened during the previous equivalent period.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('Cases'[family_id]),
+			    'Cases'[opened] >= previousStartDate,
+			    'Cases'[opened] < previousEndDate + 1,
+			    NOT ISBLANK('Cases'[family_id]),
+			    USERELATIONSHIP('Cases'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: ee9b9e22-fdf7-4b21-9887-4e73208fd300
+
+	measure '# of Families with Cases PoP' =
+			
+			VAR currentPeriod = [# of Families with Cases CP]
+			VAR previousPeriod = [# of Families with Cases PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 53da9d2a-4cc7-4732-a09e-b020c3e359c9
+
+	measure 'Avg. Days Between Cases CP' =
+			
+			/*
+			CP = Current Period
+			Calculates the average number of days between consecutive Cases
+			for Cases opened within the selected timeframe.
+			
+			Only returning Families are included, since the first Case of a Family
+			has no previous Case.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
+			CALCULATE(
+			    AVERAGE('Cases'[days_between_cases]),
+			    'Cases'[opened] >= selectedStartDate,
+			    'Cases'[opened] < selectedEndDate + 1,
+			    NOT ISBLANK('Cases'[days_between_cases]),
+			    USERELATIONSHIP('Cases'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: 3ba2fa12-7752-445b-829b-ad0a2c910cf7
+
+	measure 'Avg. Days Between Cases PP' =
+			
+			/*
+			PP = Previous Period
+			Calculates the average number of days between consecutive Cases
+			for Cases opened during the previous equivalent period.
+			
+			Only returning Families are included, since the first Case of a Family
+			has no previous Case.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    AVERAGE('Cases'[days_between_cases]),
+			    'Cases'[opened] >= previousStartDate,
+			    'Cases'[opened] < previousEndDate + 1,
+			    NOT ISBLANK('Cases'[days_between_cases]),
+			    USERELATIONSHIP('Cases'[location_id], Location[location_id])
+			)
+		lineageTag: ac9f4ed6-1770-44e5-ac15-a99900a5e5ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg. Days Between Cases PoP' =
+			
+			VAR currentPeriod = [Avg. Days Between Cases CP]
+			VAR previousPeriod = [Avg. Days Between Cases PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: f88a2e41-d010-4422-b5ad-a300eb165591
+
+	column case_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 641ed63b-e244-4719-9b31-924c7602652e
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: a5bfd132-fbbd-42b5-be03-03a5e5ed44b3
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: a2093d91-d163-44ca-ad7d-82c04ffac475
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: d7d1cd93-7b0b-4b72-8d61-1ea44ba7ff58
+		summarizeBy: none
+		sourceColumn: family_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column opened
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		displayFolder: _columns
+		lineageTag: a75aae15-4bef-4918-9973-7f99b91c6b31
+		summarizeBy: none
+		sourceColumn: opened
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column closed
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		displayFolder: _columns
+		lineageTag: dbd6a734-5e6f-4fc2-93e1-ad2e805c993f
+		summarizeBy: none
+		sourceColumn: closed
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column referral_source
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 82191c0d-97be-4368-ba37-8101d77b8947
+		summarizeBy: none
+		sourceColumn: referral_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column close_reason
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 0e80939c-f842-4794-a875-63eef265aa20
+		summarizeBy: none
+		sourceColumn: close_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_reason_for_referral
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 107edf2e-d509-40c3-b2a3-2c17da3a036e
+		summarizeBy: none
+		sourceColumn: primary_reason_for_referral
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 10f0d313-20a9-4534-9770-1a54d3dfb002
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column case_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 297c256a-0846-416a-8c41-1ba0fc05d5a0
+		summarizeBy: none
+		sourceColumn: case_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 61739f77-51a7-49b7-b38f-97fdf237062f
+		summarizeBy: none
+		sourceColumn: family_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column close_reason_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 6a02ba24-29ae-4cd8-ba02-ef736e1722fd
+		summarizeBy: none
+		sourceColumn: close_reason_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column case_family_type =
+			
+			
+			/*
+			Classifies the Family for each Case based on its Case history.
+			
+			New Family:
+			The Case is the first Case opened for the Family.
+			
+			Returning Family:
+			The Family had at least one Case opened before the current Case.
+			*/
+			
+			VAR currentFamily = 'Cases'[family_id]
+			VAR currentOpened = 'Cases'[opened]
+			
+			VAR previousCases =
+			    CALCULATE(
+			        DISTINCTCOUNT('Cases'[case_id]),
+			        FILTER(
+			            ALL('Cases'),
+			            'Cases'[family_id] = currentFamily &&
+			            'Cases'[opened] < currentOpened
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    ISBLANK(currentFamily) || ISBLANK(currentOpened),
+			    BLANK(),
+			    IF(previousCases > 0, "Returning Family", "New Family")
+			)
+		displayFolder: _calculated_columns
+		lineageTag: c2b8ab3f-f2df-4538-88c7-3eeb41ff0d48
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column previous_case_opened =
+			
+			/*
+			Returns the opening date of the most recent Case previously opened
+			for the same Family.
+			
+			Returns blank when the current Case is the Family's first Case.
+			*/
+			
+			VAR currentFamily = 'Cases'[family_id]
+			VAR currentOpened = 'Cases'[opened]
+			
+			RETURN
+			IF(
+			    ISBLANK(currentFamily) || ISBLANK(currentOpened),
+			    BLANK(),
+			    MAXX(
+			        FILTER(
+			            ALL('Cases'),
+			            'Cases'[family_id] = currentFamily &&
+			            'Cases'[opened] < currentOpened
+			        ),
+			        'Cases'[opened]
+			    )
+			)
+		formatString: General Date
+		displayFolder: _calculated_columns
+		lineageTag: 793b0e27-606d-44fa-9d77-f6845e30dd81
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_between_cases =
+			
+			/*
+			Calculates the number of days between the opening of the previous Case
+			and the opening of the current Case for the same Family.
+			
+			Returns blank when there is no previous Case.
+			*/
+			
+			VAR previousOpened = 'Cases'[previous_case_opened]
+			
+			RETURN
+			IF(
+			    ISBLANK(previousOpened),
+			    BLANK(),
+			    DATEDIFF(previousOpened, 'Cases'[opened], DAY)
+			)
 		formatString: 0
-		lineageTag: 5b94c2f4-57b2-4650-9059-cc7a51bd4abe
-
-	column 'RLS Key'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: cd5525dd-e937-49df-b204-6c81e4fda7f7
-		summarizeBy: none
-		sourceColumn: RLS Key
+		displayFolder: _calculated_columns
+		lineageTag: 2e397eb9-cc70-4956-83db-85349d5db2b4
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Family UID'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 738b7dad-745e-4b9d-abf1-6e9042b82ab7
+	column 'Volunteers & Roles' =
+			
+			VAR personRoles =
+			    DISTINCT(
+			        SELECTCOLUMNS(
+			            RELATEDTABLE('Volunteer Person Case Role Assignment'),
+			            "Person", 'Volunteer Person Case Role Assignment'[person_name],
+			            "Role", 'Volunteer Person Case Role Assignment'[role]
+			        )
+			    )
+			
+			RETURN
+			CONCATENATEX(
+			    personRoles,
+			    [Person] & " (" & [Role] & ")",
+			    UNICHAR(10),
+			    [Person],
+			    ASC
+			)
+		displayFolder: _calculated_columns
+		lineageTag: 68f8217f-739d-4fe8-8a9d-fa02583b66ae
 		summarizeBy: none
-		sourceColumn: Family UID
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Family ID'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 324a14fb-9785-443c-9b0f-17c8e2cdfd72
-		summarizeBy: none
-		sourceColumn: Family ID
-
-		annotation SummarizationSetBy = Automatic
-
-	column Opened
-		dataType: dateTime
-		formatString: Short Date
-		displayFolder: _Columns
-		lineageTag: 3735aae9-a05e-45e2-b675-64e5b18b46bc
-		summarizeBy: none
-		sourceColumn: Opened
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	column Closed
-		dataType: dateTime
-		formatString: Short Date
-		displayFolder: _Columns
-		lineageTag: 731a711a-6cf1-4553-98be-25be1f1b4b11
-		summarizeBy: none
-		sourceColumn: Closed
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	column 'Referral Source'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 9ec71218-11b8-4ae6-a43b-42a01cbbef9b
-		summarizeBy: none
-		sourceColumn: Referral Source
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Close Reason'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: ac057b4d-f637-493e-ad3e-e4d72feb95da
-		summarizeBy: none
-		sourceColumn: Close Reason
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Primary Reason for Referral'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: ae7e18ff-b6f6-4a22-aa8b-8389894dd252
-		summarizeBy: none
-		sourceColumn: Primary Reason for Referral
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Case UID'
-		dataType: string
-		lineageTag: 2305de83-d39e-4ac5-8ddc-bb33ec91c717
-		summarizeBy: none
-		sourceColumn: Case UID
 
 		annotation SummarizationSetBy = Automatic
 
 	partition Cases = m
 		mode: import
-		queryGroup: Fact
-		source = ```
+		queryGroup: Facts
+		source =
 				let
-				    Source = #"OData Live",
-				    Referral = Source{[Name="Cases", Signature="table"]}[Data],
-				    ReferralTransformed = 
+				  Source = #"OData",
+				  Cases = Source{[Name="Cases", Signature="table"]}[Data],
 				
-				    Table.SelectColumns(
-				        Table.RenameColumns(
-				            Table.AddColumn(
-				                Table.AddColumn(
-				                    Table.AddColumn(
-				                        Referral,
-				                        "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
-				                    ),
-				                    "Family UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
-				                ),
-				                "Case UID", each Text.Combine({[RLS Key], [CaseId]}, "-")
-				            ),
-				            {{"CaseId", "Case ID"}, {"FamilyId", "Family ID"}, {"ReferralSource", "Referral Source"}, {"CloseReason", "Close Reason"}, {"PrimaryReasonForReferral", "Primary Reason for Referral"}}
-				        ),
-				        {"RLS Key", "Case UID", "Family UID", "Family ID", "Opened", "Closed", "Referral Source", "Close Reason", "Primary Reason for Referral"}
-				    )
+				  selectColumns = Table.SelectColumns(
+				    Cases,
+				    {
+				      "CaseId",
+				      "OrganizationId",
+				      "LocationId",
+				      "FamilyId",
+				      "Opened",
+				      "Closed",
+				      "ReferralSource",
+				      "CloseReason",
+				      "PrimaryReasonForReferral"
+				    }
+				  ),
 				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"CaseId", "case_id"},
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"FamilyId", "family_id"},
+				      {"Opened", "opened"},
+				      {"Closed", "closed"},
+				      {"ReferralSource", "referral_source"},
+				      {"CloseReason", "close_reason"},
+				      {"PrimaryReasonForReferral", "primary_reason_for_referral"}
+				    }
+				  ),
 				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
 				
+				  addCaseUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "case_uid",
+				      each
+				          if [case_id] <> null then
+				              Text.Combine({[rls_key], "-", [case_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  addFamilyUniqueKey = Table.AddColumn(
+				      addCaseUniqueKey,
+				      "family_uid",
+				      each
+				          if [family_id] <> null then
+				              Text.Combine({[rls_key], "-", [family_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  properCaseCloseReason = Table.TransformColumns(addFamilyUniqueKey, {{"close_reason", Text.Proper, type text}}),
+				
+				  addCloseReasonUniqueKey = Table.AddColumn(
+				    properCaseCloseReason,
+				    "close_reason_uid",
+				    each
+				      if [close_reason] <> null then
+				        Text.Combine({[rls_key], "-", [close_reason]})
+				      else
+				        null,
+				    type text
+				  )
 				
 				in
-				    ReferralTransformed
-				```
+				  addCloseReasonUniqueKey
 
-	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 

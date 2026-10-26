@@ -1,0 +1,150 @@
+table 'Volunteer Person Role Requirements'
+	lineageTag: f0551b4d-9a24-404b-ad3b-37abeb61fb1b
+
+	measure '# of Individual Requirements Completed' =
+			
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			
+			RETURN CALCULATE(
+			    DISTINCTCOUNT('Volunteer Person Role Requirements'[person_id]),
+			    'Volunteer Person Role Requirements'[date] >= startDate,
+			    'Volunteer Person Role Requirements'[date] < endDate + 1,
+			    USERELATIONSHIP('Volunteer Person Role Requirements'[location_id], Location[location_id])
+			)
+		formatString: 0
+		lineageTag: b832ad13-c07a-4755-88dd-ffd83f7336b6
+
+	column organization_id
+		dataType: string
+		lineageTag: ed927c6a-72a0-4084-9418-5505eefe304f
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		lineageTag: 8ddb6db7-d85e-4cbc-98d1-58d3b5f7165d
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_id
+		dataType: string
+		lineageTag: ab1a6be0-e0df-4148-a62f-f57c2bc26d7c
+		summarizeBy: none
+		sourceColumn: person_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column requirement_name
+		dataType: string
+		lineageTag: 125c5529-dbba-4030-9af9-843a0eba76ff
+		summarizeBy: none
+		sourceColumn: requirement_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 9c7a741d-575e-47f7-b9ad-70eeebc4672f
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9f1d7daf-dacc-4fd4-b00e-28d29393cc0d
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column expire_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6b45a071-fc17-4955-bcee-01e6ba4beaf1
+		summarizeBy: none
+		sourceColumn: expire_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		lineageTag: b2a52d36-fa5a-4776-9b4b-f8a5ada8e8f0
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_uid
+		dataType: string
+		lineageTag: 75233bf4-c129-4bfa-863e-7f561b13bf78
+		summarizeBy: none
+		sourceColumn: person_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Volunteer Person Role Requirements' = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				  Source = #"OData",
+				  IndividualFamilyRequirements = Source{[Name="IndividualRequirementStatuses", Signature="table"]}[Data],
+				
+				  selectColumns = Table.SelectColumns(
+				    IndividualFamilyRequirements,
+				    {
+				      "OrganizationId",
+				      "LocationId",
+				      "PersonId",
+				      "RequirementName",
+				      "Status",
+				      "Date",
+				      "ExpireDate"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"PersonId", "person_id"},
+				      {"RequirementName", "requirement_name"},
+				      {"Status", "status"},
+				      {"Date", "date"},
+				      {"ExpireDate", "expire_date"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addPersonUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "person_uid",
+				      each
+				          if [person_id] <> null then
+				              Text.Combine({[rls_key], "-", [person_id]})
+				          else
+				              null,
+				      type text
+				  )
+				in
+				
+				  addPersonUniqueKey
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

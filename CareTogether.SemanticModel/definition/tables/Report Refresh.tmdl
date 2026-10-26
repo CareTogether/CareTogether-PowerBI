@@ -1,0 +1,533 @@
+table 'Report Refresh'
+	lineageTag: e907b2e5-8c58-4f2c-b7ad-b5d06a44dcf7
+
+	measure 'Refresh Date' =
+			
+			VAR RefreshUTC =
+			    MAX('Report Refresh'[refresh_utc])
+			
+			VAR RefreshET =
+			    MAX('Report Refresh'[refresh_et])
+			
+			VAR RefreshCT =
+			    MAX('Report Refresh'[refresh_ct])
+			
+			VAR RefreshMT =
+			    MAX('Report Refresh'[refresh_mt])
+			
+			VAR RefreshPT =
+			    MAX('Report Refresh'[refresh_pt])
+			
+			VAR RefreshDate =
+			    FORMAT(
+			        RefreshET,
+			        "MMM d, yyyy"
+			    )
+			
+			VAR TimeUTC =
+			    FORMAT(
+			        RefreshUTC,
+			        "h:mm AM/PM"
+			    )
+			
+			VAR TimeET =
+			    FORMAT(
+			        RefreshET,
+			        "h:mm AM/PM"
+			    )
+			
+			VAR TimeCT =
+			    FORMAT(
+			        RefreshCT,
+			        "h:mm AM/PM"
+			    )
+			
+			VAR TimeMT =
+			    FORMAT(
+			        RefreshMT,
+			        "h:mm AM/PM"
+			    )
+			
+			VAR TimePT =
+			    FORMAT(
+			        RefreshPT,
+			        "h:mm AM/PM"
+			    )
+			
+			RETURN
+			
+			"
+			<div style='
+			    width: 100%;
+			    height: 100%;
+			    box-sizing: border-box;
+			    font-family: Arial, sans-serif;
+			    color: #333333;
+			'>
+			
+			    <!-- SECTION TITLE -->
+			    <div style='
+			        font-size: 10px;
+			        font-weight: 700;
+			        text-transform: uppercase;
+			        letter-spacing: 0.7px;
+			        color: #26A3AB;
+			        margin-bottom: 12px;
+			    '>
+			        Report Information
+			    </div>
+			
+			
+			    <!-- REFRESH HEADER -->
+			    <div style='
+			        display: flex;
+			        align-items: center;
+			        gap: 7px;
+			        margin-bottom: 4px;
+			    '>
+			
+			        <div style='
+			            font-size: 11px;
+			            font-weight: 700;
+			            color: #333333;
+			        '>
+			            Data refresh: Daily
+			        </div>
+			
+			    </div>
+			
+			
+			    <!-- DESCRIPTION -->
+			    <div style='
+			        font-size: 10px;
+			        font-weight: 400;
+			        line-height: 1.45;
+			        color: #666666;
+			        margin-bottom: 14px;
+			    '>
+			        Changes made in the app may take until the
+			        following day to appear in this report.
+			    </div>
+			
+			
+			    <!-- DIVIDER -->
+			    <div style='
+			        width: 100%;
+			        height: 1px;
+			        background: #E2E2E2;
+			        margin-bottom: 12px;
+			    '>
+			    </div>
+			
+			
+			    <!-- LAST UPDATED -->
+			    <div style='
+			        font-size: 9px;
+			        font-weight: 700;
+			        text-transform: uppercase;
+			        letter-spacing: 0.7px;
+			        color: #8A8A8A;
+			        margin-bottom: 4px;
+			    '>
+			        Last updated
+			    </div>
+			
+			
+			    <!-- DATE -->
+			    <div style='
+			        font-size: 13px;
+			        font-weight: 700;
+			        color: #26A3AB;
+			        margin-bottom: 9px;
+			    '>
+			        " & RefreshDate & "
+			    </div>
+			
+			
+			    <!-- TIME ZONES -->
+			    <div style='
+			        width: 100%;
+			        font-size: 10px;
+			        line-height: 1.75;
+			    '>
+			
+			
+			        <!-- UTC -->
+			        <div style='
+			            display: flex;
+			            align-items: center;
+			            width: 100%;
+			        '>
+			
+			            <div style='
+			                width: 75px;
+			                color: #777777;
+			            '>
+			                UTC
+			            </div>
+			
+			            <div style='
+			                font-weight: 700;
+			                color: #333333;
+			            '>
+			                " & TimeUTC & "
+			            </div>
+			
+			        </div>
+			
+			
+			        <!-- EASTERN -->
+			        <div style='
+			            display: flex;
+			            align-items: center;
+			            width: 100%;
+			        '>
+			
+			            <div style='
+			                width: 75px;
+			                color: #777777;
+			            '>
+			                Eastern
+			            </div>
+			
+			            <div style='
+			                font-weight: 700;
+			                color: #333333;
+			            '>
+			                " & TimeET & "
+			            </div>
+			
+			        </div>
+			
+			
+			        <!-- CENTRAL -->
+			        <div style='
+			            display: flex;
+			            align-items: center;
+			            width: 100%;
+			        '>
+			
+			            <div style='
+			                width: 75px;
+			                color: #777777;
+			            '>
+			                Central
+			            </div>
+			
+			            <div style='
+			                font-weight: 700;
+			                color: #333333;
+			            '>
+			                " & TimeCT & "
+			            </div>
+			
+			        </div>
+			
+			
+			        <!-- MOUNTAIN -->
+			        <div style='
+			            display: flex;
+			            align-items: center;
+			            width: 100%;
+			        '>
+			
+			            <div style='
+			                width: 75px;
+			                color: #777777;
+			            '>
+			                Mountain
+			            </div>
+			
+			            <div style='
+			                font-weight: 700;
+			                color: #333333;
+			            '>
+			                " & TimeMT & "
+			            </div>
+			
+			        </div>
+			
+			
+			        <!-- PACIFIC -->
+			        <div style='
+			            display: flex;
+			            align-items: center;
+			            width: 100%;
+			        '>
+			
+			            <div style='
+			                width: 75px;
+			                color: #777777;
+			            '>
+			                Pacific
+			            </div>
+			
+			            <div style='
+			                font-weight: 700;
+			                color: #333333;
+			            '>
+			                " & TimePT & "
+			            </div>
+			
+			        </div>
+			
+			    </div>
+			
+			
+			    <!-- FOOTNOTE -->
+			    <div style='
+			        margin-top: 10px;
+			        padding-top: 8px;
+			        border-top: 1px solid #EEEEEE;
+			
+			        font-size: 9px;
+			        font-weight: 400;
+			        line-height: 1.4;
+			        color: #999999;
+			    '>
+			        Times shown reflect the most recent data refresh.
+			    </div>
+			
+			
+			</div>
+			"
+		lineageTag: 61cc6f0c-04f6-474d-9dbc-8d6a0ba62b9a
+
+		changedProperty = IsHidden
+
+	column refresh_utc
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: _columns
+		lineageTag: af65ad54-6d2d-417a-a8e5-fc8572c1edee
+		summarizeBy: none
+		sourceColumn: refresh_utc
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column refresh_et
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: _columns
+		lineageTag: 6361810d-9080-4518-b1bd-2392be36ee19
+		summarizeBy: none
+		sourceColumn: refresh_et
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column refresh_ct
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: _columns
+		lineageTag: 2227e82a-2bda-45c1-9b27-0867902b9268
+		summarizeBy: none
+		sourceColumn: refresh_ct
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column refresh_mt
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: _columns
+		lineageTag: 01992516-a4b7-4684-9a48-4fe614f7ac92
+		summarizeBy: none
+		sourceColumn: refresh_mt
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column refresh_pt
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: _columns
+		lineageTag: ba62262d-7535-4a68-950e-22ed1f7c7791
+		summarizeBy: none
+		sourceColumn: refresh_pt
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_dst
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: _columns
+		lineageTag: 68fe5f83-cd2d-4275-8285-4260b0ae69db
+		summarizeBy: none
+		sourceColumn: is_dst
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Report Refresh' = m
+		mode: import
+		source =
+				let
+				    // Captures the refresh timestamp in UTC.
+				    // FixedUtcNow ensures the same timestamp is used throughout the query.
+				    RefreshUTC = DateTimeZone.FixedUtcNow(),
+				
+				    RefreshDateUTC = Date.From(RefreshUTC),
+				    CurrentYear = Date.Year(RefreshDateUTC),
+				
+				    // ============================================================
+				    // US DAYLIGHT SAVING TIME
+				    //
+				    // DST starts:
+				    // Second Sunday in March at 2:00 AM local time
+				    //
+				    // DST ends:
+				    // First Sunday in November at 2:00 AM local time
+				    // ============================================================
+				
+				    // First day of March
+				    MarchFirst = #date(CurrentYear, 3, 1),
+				
+				    // First Sunday in March
+				    FirstSundayMarch =
+				        Date.AddDays(
+				            MarchFirst,
+				            Number.Mod(
+				                7 - Date.DayOfWeek(MarchFirst, Day.Sunday),
+				                7
+				            )
+				        ),
+				
+				    // Second Sunday in March
+				    SecondSundayMarch =
+				        Date.AddDays(
+				            FirstSundayMarch,
+				            7
+				        ),
+				
+				    // First day of November
+				    NovemberFirst = #date(CurrentYear, 11, 1),
+				
+				    // First Sunday in November
+				    FirstSundayNovember =
+				        Date.AddDays(
+				            NovemberFirst,
+				            Number.Mod(
+				                7 - Date.DayOfWeek(NovemberFirst, Day.Sunday),
+				                7
+				            )
+				        ),
+				
+				    // Approximate UTC boundaries for US DST.
+				    // Using Eastern Time as the reference is sufficient for
+				    // determining the DST season for the continental US display.
+				    DSTStartUTC =
+				        #datetimezone(
+				            CurrentYear,
+				            3,
+				            Date.Day(SecondSundayMarch),
+				            7,
+				            0,
+				            0,
+				            0,
+				            0
+				        ),
+				
+				    DSTEndUTC =
+				        #datetimezone(
+				            CurrentYear,
+				            11,
+				            Date.Day(FirstSundayNovember),
+				            6,
+				            0,
+				            0,
+				            0,
+				            0
+				        ),
+				
+				    IsDST =
+				        RefreshUTC >= DSTStartUTC
+				            and RefreshUTC < DSTEndUTC,
+				
+				    // ============================================================
+				    // TIME ZONE OFFSETS
+				    // ============================================================
+				
+				    EasternOffset =
+				        if IsDST then -4 else -5,
+				
+				    CentralOffset =
+				        if IsDST then -5 else -6,
+				
+				    MountainOffset =
+				        if IsDST then -6 else -7,
+				
+				    PacificOffset =
+				        if IsDST then -7 else -8,
+				
+				    // ============================================================
+				    // LOCAL REFRESH TIMES
+				    // ============================================================
+				
+				    RefreshET =
+				        DateTimeZone.SwitchZone(
+				            RefreshUTC,
+				            EasternOffset
+				        ),
+				
+				    RefreshCT =
+				        DateTimeZone.SwitchZone(
+				            RefreshUTC,
+				            CentralOffset
+				        ),
+				
+				    RefreshMT =
+				        DateTimeZone.SwitchZone(
+				            RefreshUTC,
+				            MountainOffset
+				        ),
+				
+				    RefreshPT =
+				        DateTimeZone.SwitchZone(
+				            RefreshUTC,
+				            PacificOffset
+				        ),
+				
+				    // ============================================================
+				    // OUTPUT TABLE
+				    // ============================================================
+				
+				    Source =
+				        #table(
+				            type table [
+				                refresh_utc = datetimezone,
+				                refresh_et = datetimezone,
+				                refresh_ct = datetimezone,
+				                refresh_mt = datetimezone,
+				                refresh_pt = datetimezone,
+				                is_dst = logical
+				            ],
+				            {
+				                {
+				                    RefreshUTC,
+				                    RefreshET,
+				                    RefreshCT,
+				                    RefreshMT,
+				                    RefreshPT,
+				                    IsDST
+				                }
+				            }
+				        )
+				
+				in
+				    Source
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

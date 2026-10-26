@@ -1,0 +1,132 @@
+table 'Community Member Family'
+	lineageTag: 4eb2269d-3f70-4ba1-8864-6b2211087d38
+
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 30205faa-b789-47f9-80a1-d4e74a225a3d
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: b9add310-e46c-4fc7-8c29-9b4594c7be3e
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column community_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: e0f5c77f-b58c-462a-ac9a-035bf187ca8a
+		summarizeBy: none
+		sourceColumn: community_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: cd13f0e2-fd88-4753-a39c-7bff1107e7af
+		summarizeBy: none
+		sourceColumn: family_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 40a2602a-9309-4460-abb3-3e7bcb3ec0c3
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: d115f703-5d08-46a9-bf89-693f7770b887
+		summarizeBy: none
+		sourceColumn: family_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column community_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 03b8b646-0105-4251-a941-73a9ce0bc67e
+		summarizeBy: none
+		sourceColumn: community_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Community Member Family' = m
+		mode: import
+		queryGroup: Facts
+		source = ```
+				let
+				  Source = #"OData",
+				  communityMemberAssignment = Source{[Name="CommunityMemberFamilies", Signature="table"]}[Data],
+				
+				  selectColumns = Table.SelectColumns(
+				    communityMemberAssignment,
+				    {
+				      "OrganizationId",
+				      "LocationId",
+				      "CommunityId",
+				      "FamilyId"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"CommunityId", "community_id"},
+				      {"FamilyId", "family_id"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  // There are duplicated Family Ids in different orgs/locations:
+				  addFamilyUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "family_uid",
+				      each
+				          if [family_id] <> null then
+				              Text.Combine({[rls_key], "-", [family_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  addCommunityUniqueKey = Table.AddColumn(
+				      addFamilyUniqueKey,
+				      "community_uid",
+				      each
+				          if [community_id] <> null then
+				              Text.Combine({[rls_key], "-", [community_id]})
+				          else
+				              null,
+				      type text
+				  )
+				  
+				in
+				
+				  addCommunityUniqueKey
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

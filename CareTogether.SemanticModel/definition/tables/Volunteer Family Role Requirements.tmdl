@@ -1,0 +1,150 @@
+table 'Volunteer Family Role Requirements'
+	lineageTag: a6a1734d-ead6-40ce-981c-17e7bb75d06f
+
+	measure '# of Requirements Completed' =
+			
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			
+			RETURN CALCULATE(
+			    DISTINCTCOUNT('Volunteer Family Role Requirements'[family_id]),
+			    'Volunteer Family Role Requirements'[date] >= startDate,
+			    'Volunteer Family Role Requirements'[date] < endDate + 1,
+			    USERELATIONSHIP('Volunteer Family Role Requirements'[location_id], Location[location_id])
+			)
+		formatString: 0
+		lineageTag: b8a4aa3d-2a34-4ec1-864a-55a99c7f132a
+
+	column organization_id
+		dataType: string
+		lineageTag: 4c4cf14e-612f-4354-b8c7-55993e624723
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		lineageTag: ac6ae380-0d65-403b-9de4-d299c27bcd8c
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_id
+		dataType: string
+		lineageTag: f22c2857-762f-4def-94b9-e3451284406f
+		summarizeBy: none
+		sourceColumn: family_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column requirement_name
+		dataType: string
+		lineageTag: 684ca34d-0c4b-4e6c-b640-fb4b5c2c0ff7
+		summarizeBy: none
+		sourceColumn: requirement_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 81415fd2-ab27-46c6-a7cb-d570270e535c
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 056d5116-ae45-48c0-817c-8a0105e51d06
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column expire_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 479fdb3c-d759-4eb1-b625-1300bd704983
+		summarizeBy: none
+		sourceColumn: expire_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		lineageTag: 76acc23f-d1c6-452b-a7df-a143be3b3d85
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_uid
+		dataType: string
+		lineageTag: d515fbce-2148-40cd-88b9-d3c7381a6316
+		summarizeBy: none
+		sourceColumn: family_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Volunteer Family Role Requirements' = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				  Source = #"OData",
+				  VolunteerFamilyRequirements = Source{[Name="FamilyRequirementStatuses", Signature="table"]}[Data],
+				
+				  selectColumns = Table.SelectColumns(
+				    VolunteerFamilyRequirements,
+				    {
+				      "OrganizationId",
+				      "LocationId",
+				      "FamilyId",
+				      "RequirementName",
+				      "Status",
+				      "Date",
+				      "ExpireDate"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"FamilyId", "family_id"},
+				      {"RequirementName", "requirement_name"},
+				      {"Status", "status"},
+				      {"Date", "date"},
+				      {"ExpireDate", "expire_date"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addFamilyUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "family_uid",
+				      each
+				          if [family_id] <> null then
+				              Text.Combine({[rls_key], "-", [family_id]})
+				          else
+				              null,
+				      type text
+				  )
+				in
+				
+				  addFamilyUniqueKey
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

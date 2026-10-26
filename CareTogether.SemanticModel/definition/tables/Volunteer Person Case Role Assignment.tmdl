@@ -1,0 +1,176 @@
+table 'Volunteer Person Case Role Assignment'
+	lineageTag: 0f2c6c32-1e6c-4d34-b3cc-8af975b89b1c
+
+	column case_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 07cbd842-2fcf-45ed-83a7-e5d6e7a573e3
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f7700ed3-50b8-44f9-84a1-4d8795739e1b
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 9afb3bed-2f11-400a-8ab2-9dd6938a0795
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 98c172ae-ab73-4e17-9f78-0afc822e1056
+		summarizeBy: none
+		sourceColumn: person_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 969eb0c9-93cb-4a8c-84c8-81bb4adf0ebf
+		summarizeBy: none
+		sourceColumn: person_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column role
+		dataType: string
+		displayFolder: _columns
+		lineageTag: ff9d002e-613a-4993-bcfc-40e75d7c8ad3
+		summarizeBy: none
+		sourceColumn: role
+
+		annotation SummarizationSetBy = Automatic
+
+	column assigned_at_utc
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: _columns
+		lineageTag: d2ce38fa-3c07-46ce-b67b-b6f780baed18
+		summarizeBy: none
+		sourceColumn: assigned_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column assigned_by_user_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 4736920c-16c7-4e6c-b1f6-98424ad180d3
+		summarizeBy: none
+		sourceColumn: assigned_by_user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 4c3cc17c-c546-480e-80aa-cddb517371c6
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column case_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: c9549217-6d67-456c-8404-19c0a67f39f4
+		summarizeBy: none
+		sourceColumn: case_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: fc126784-0bee-420c-9825-22092e3173f1
+		summarizeBy: none
+		sourceColumn: person_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Volunteer Person Case Role Assignment' = m
+		mode: import
+		queryGroup: Facts
+		source = ```
+				let
+				  Source = #"OData",
+				  CasesRoleAssignments = Source{[Name="CasesRoleAssignments", Signature="table"]}[Data],
+				 
+				  selectColumns = Table.SelectColumns(
+				    CasesRoleAssignments,
+				    {
+				      "CaseId",
+				      "OrganizationId",
+				      "LocationId",
+				      "PersonId",
+				      "PersonName",
+				      "AssignmentRole",
+				      "AssignedAtUtc",
+				      "AssignedByUserId"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"CaseId", "case_id"},
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"PersonId", "person_id"},
+				      {"PersonName", "person_name"},
+				      {"AssignmentRole", "role"},
+				      {"AssignedAtUtc", "assigned_at_utc"},
+				      {"AssignedByUserId", "assigned_by_user_id"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addCaseUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "case_uid",
+				      each
+				          if [case_id] <> null then
+				              Text.Combine({[rls_key], "-", [case_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  addPersonUniqueKey = Table.AddColumn(
+				      addCaseUniqueKey,
+				      "person_uid",
+				      each
+				          if [person_id] <> null then
+				              Text.Combine({[rls_key], "-", [person_id]})
+				          else
+				              null,
+				      type text
+				  )
+				
+				in
+				  
+				  addPersonUniqueKey
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

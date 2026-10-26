@@ -1,28 +1,31 @@
 table 'Childcare Plan'
-	lineageTag: 8197a540-9290-4d4f-8a22-c9d6c9ca5256
+	lineageTag: d2774cd6-9c41-472c-ac83-733114ee7e1f
 
-	column ChildLocationPlan
+	column childcare_plan
 		dataType: string
-		lineageTag: 8e7af2a3-2fea-449f-a013-6a71a86e938c
+		displayFolder: _columns
+		lineageTag: a5750b95-f870-4411-aaab-2b9da4029b35
 		summarizeBy: none
-		sourceColumn: ChildLocationPlan
+		sourceColumn: childcare_plan
 
 		annotation SummarizationSetBy = Automatic
 
-	column Order
+	column order
 		dataType: int64
 		formatString: 0
-		lineageTag: c23fbbd6-fa73-4319-9206-d786bc5b1314
+		displayFolder: _columns
+		lineageTag: 8277d38d-44c2-4312-883b-00a7fa1f5ebf
 		summarizeBy: none
-		sourceColumn: Order
+		sourceColumn: order
 
 		annotation SummarizationSetBy = Automatic
 
-	column Plan
+	column plan
 		dataType: string
-		lineageTag: 6fce5db9-ac06-4a3c-8062-b7e67c59e886
+		displayFolder: _columns
+		lineageTag: ad5ec370-1dc5-4d04-97e4-b3c59d03ef39
 		summarizeBy: none
-		sourceColumn: Plan
+		sourceColumn: plan
 
 		annotation SummarizationSetBy = Automatic
 
@@ -31,12 +34,13 @@ table 'Childcare Plan'
 		queryGroup: Dimensions
 		source =
 				let
-				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8i9LLcrLTM8o8cgvLc7MS1fSUTIAYriwAkw8VidaySWxsiQzN9U5IzMnxTmxKBWo0BCIocIKYPFkkDhIcXhmSUYAkJNXAlRiBMQgAQWoSGwsAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ChildLocationPlan = _t, Order = _t, Plan = _t]),
-				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"ChildLocationPlan", type text}, {"Order", Int64.Type}, {"Plan", type text}})
+				  Origem = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8i9LLcrLTM8o8cgvLc7MS1fSUTIAYriwAkw8VidaySWxsiQzN9U5IzMnxTmxKBWo0BCIocIKYPFkkDhIcXhmSUYAkJNXAlRiBMQgAQWoSGwsAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ChildLocationPlan = _t, Order = _t, Plan = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Origem,{{"Order", Int64.Type}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"ChildLocationPlan", "childcare_plan"}, {"Plan", "plan"}, {"Order", "order"}})
 				in
-				    #"Changed Type"
+				    #"Colunas Renomeadas"
 
-	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 

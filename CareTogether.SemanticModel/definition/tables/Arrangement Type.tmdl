@@ -1,37 +1,57 @@
 table 'Arrangement Type'
-	lineageTag: b2303fb3-bd33-4a97-9b0d-831a6ca8cf94
+	lineageTag: 43bfbc71-6a7e-402a-aba9-bdf90b8e2827
 
-	column 'RLS Key'
+	column organization_id
 		dataType: string
-		lineageTag: 4d907de0-fdbb-4b8d-940c-a9176ccd63f7
+		displayFolder: _columns
+		lineageTag: 44f4a56c-1373-4367-9bd5-39ad99cf4011
 		summarizeBy: none
-		sourceColumn: RLS Key
+		sourceColumn: organization_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Arrangement Type'
+	column location_id
 		dataType: string
-		lineageTag: 8bdc2303-5798-400a-9fca-8ce0c988015c
+		displayFolder: _columns
+		lineageTag: 038ec755-4033-449f-8ddf-e5a1674fed92
 		summarizeBy: none
-		sourceColumn: Arrangement Type
+		sourceColumn: location_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Arrangement Type UID'
+	column type
 		dataType: string
-		lineageTag: 277471fe-0821-4d8b-bea7-abc26c33fa1d
+		displayFolder: _columns
+		lineageTag: b312dffb-140d-4189-a8cb-3329d3419f01
 		summarizeBy: none
-		sourceColumn: Arrangement Type UID
-
-		changedProperty = IsHidden
+		sourceColumn: type
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Child Involvement'
+	column child_involvement
 		dataType: string
-		lineageTag: 0ec739bb-7ad6-4b96-b664-224ef7a2ae91
+		displayFolder: _columns
+		lineageTag: 44c9dcb0-a9a4-46d6-a735-e244f7066d92
 		summarizeBy: none
-		sourceColumn: Child Involvement
+		sourceColumn: child_involvement
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 6a0dfdcb-4aaf-468d-8bbe-8fc8a73e7379
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column type_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 927e6fa7-8521-42b6-9c0f-621d23837352
+		summarizeBy: none
+		sourceColumn: type_uid
 
 		annotation SummarizationSetBy = Automatic
 
@@ -40,32 +60,52 @@ table 'Arrangement Type'
 		queryGroup: Dimensions
 		source = ```
 				let
-				    Source = #"OData Live",
-				    ArrangementType = Source{[Name="ArrangementType", Signature="table"]}[Data],
+				  Source = #"OData",
+				  ArrangementType = Source{[Name="ArrangementType", Signature="table"]}[Data],
 				
-				    ArrangementTypeTransformed = 
-				    
-				Table.SelectColumns(
-				    Table.RenameColumns(
-				        Table.AddColumn(
-				            Table.AddColumn(
-				                ArrangementType,
-				                "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
-				            ),
-				            "Arrangement Type UID", each Text.Combine({[RLS Key], [Type]}, "-")
-				        ),
-				        {{"Type", "Arrangement Type"}, {"ChildInvolvement", "Child Involvement"}}
-				    ),
-				    {"RLS Key", "Arrangement Type UID", "Arrangement Type", "Child Involvement"}
+				  selectColumns = Table.SelectColumns(
+				    ArrangementType,
+				    {
+				      "OrganizationId", 
+				      "LocationId", 
+				      "Type",
+				      "ChildInvolvement"      
+				    }
+				  ),
 				
-				)
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"Type", "type"},
+				      {"ChildInvolvement", "child_involvement"}
+				    }
+				  ),
 				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addArrangementTypeUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "type_uid",
+				      each
+				          if [type] <> null then
+				              Text.Combine({[rls_key], "-", [type]})
+				          else
+				              null,
+				      type text
+				  )
 				
 				in
-				    ArrangementTypeTransformed
+				
+				  addArrangementTypeUniqueKey
 				```
 
-	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 

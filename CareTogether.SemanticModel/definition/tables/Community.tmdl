@@ -1,48 +1,78 @@
 table Community
-	lineageTag: e7a84953-27c2-4818-8b9a-4ebdd0ebcb9d
+	lineageTag: ee066e46-1c5f-4cbe-a89f-50dd5ba238ac
 
-	measure 'First Community Membership' =
+	measure '# of Communities' =
 			
-			VAR FirstCommunity = MIN(Community[Community Name])
-			RETURN IF(ISBLANK(FirstCommunity), "", FirstCommunity)
-		lineageTag: b408252d-cb32-499f-8753-1aa99f2c2283
-
-	measure 'ID Count' = DISTINCTCOUNT(Community[Community ID])
+			/*
+			Counts the total number of distinct Communities
+			within the current Organization and Location context.
+			
+			Communities with the same name but different IDs
+			are counted separately.
+			
+			Includes Communities regardless of volunteer
+			membership or service activity.
+			*/
+			
+			CALCULATE(
+			    DISTINCTCOUNT(Community[community_id]),
+			    NOT ISBLANK(Community[community_id]),
+			    USERELATIONSHIP(Community[location_id], Location[location_id])
+			)
 		formatString: 0
-		lineageTag: 5606c5bf-f880-4201-bceb-96505bc09ff6
+		lineageTag: 8674170e-ca73-4bf2-8f63-99428c1e9168
 
-	column 'RLS Key'
+	column community_id
 		dataType: string
-		displayFolder: _Columns
-		lineageTag: 8f3ad27a-2280-44ba-a5e5-bcbd74e914fe
+		displayFolder: _columns
+		lineageTag: 6c1531e1-eb12-4ddd-b49c-36e9450c23a2
 		summarizeBy: none
-		sourceColumn: RLS Key
+		sourceColumn: community_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Community Name'
+	column organization_id
 		dataType: string
-		displayFolder: _Columns
-		lineageTag: 0d2c8dc8-fed8-4620-b022-4017f39e0774
+		displayFolder: _columns
+		lineageTag: aff50da0-eb99-4520-9b1c-1879eda24722
 		summarizeBy: none
-		sourceColumn: Community Name
+		sourceColumn: organization_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Community ID'
+	column location_id
 		dataType: string
-		displayFolder: _Columns
-		lineageTag: 447eff34-66a1-4168-b2db-0e731d6511e3
+		displayFolder: _columns
+		lineageTag: 7099920c-6d8c-44cc-9f75-e5c506670cf0
 		summarizeBy: none
-		sourceColumn: Community ID
+		sourceColumn: location_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Community UID'
+	column community_name
 		dataType: string
-		lineageTag: 126b08b6-00fb-4559-8aad-b0a4527d45a0
+		displayFolder: _columns
+		lineageTag: f8fc5744-4f0b-403b-9678-baafda911e8c
 		summarizeBy: none
-		sourceColumn: Community UID
+		sourceColumn: community_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: b15438db-66dd-47b0-b2b5-85e50208116c
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column community_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 6d10e7cc-9402-467f-8b1f-520a3269351c
+		summarizeBy: none
+		sourceColumn: community_uid
 
 		annotation SummarizationSetBy = Automatic
 
@@ -51,28 +81,52 @@ table Community
 		queryGroup: Dimensions
 		source = ```
 				let
-				    Source = #"OData Live",
-				    Community = Source{[Name="Communities", Signature="table"]}[Data],
-				    CommunityTransformed = 
+				  Source = #"OData",
+				  Communities = Source{[Name="Communities", Signature="table"]}[Data],
 				
-				    Table.SelectColumns(
-				        Table.RenameColumns(
-				            Table.AddColumn(
-				                Table.AddColumn(
-				                    Community,
-				                    "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
-				                ),
-				                "Community UID", each Text.Combine({[RLS Key], [Id], "-"})
-				            ),
-				            {{"Id", "Community ID"}, {"Name", "Community Name"}}
-				        ),
-				        {"RLS Key", "Community UID", "Community ID", "Community Name"}
-				    )
+				  selectColumns = Table.SelectColumns(
+				    Communities,
+				    {
+				      "Id", 
+				      "OrganizationId", 
+				      "LocationId",
+				      "Name"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"Id", "community_id"},
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"Name", "community_name"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addCommunityUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "community_uid",
+				      each
+				          if [community_id] <> null then
+				              Text.Combine({[rls_key], "-", [community_id]})
+				          else
+				              null,
+				      type text
+				  )
+				
 				in
-				    CommunityTransformed
+				
+				  addCommunityUniqueKey
 				```
 
-	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 

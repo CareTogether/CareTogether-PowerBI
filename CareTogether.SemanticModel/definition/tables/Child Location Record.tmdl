@@ -1,415 +1,1071 @@
 table 'Child Location Record'
-	lineageTag: 8fbe750b-9267-4d1b-9df7-3a6f63651067
+	lineageTag: 364c51cc-cbfe-421e-8f4c-0e1d82d15cd5
 
-	measure '# of Days of Care' = ```
+	measure '# of Children Cared For CP' =
 			
+			/*
+			CP = Current Period
 			
-			VAR CurrentDate = TODAY()
-			VAR StartDate = [Selected Timeframe Start]
-			VAR EndDate = [Selected Timeframe End]
-			VAR Result =
+			Counts the number of distinct children who received
+			volunteer childcare during the selected timeframe,
+			regardless of when their care originally started.
+			
+			A child is considered cared for when:
+			- The childcare plan is not WithParent.
+			- The child identifier and start date are populated.
+			- The care period overlaps the selected timeframe.
+			- The care started on or before today.
+			- The care end date is blank (ongoing care) or
+			  falls on or after the selected timeframe start.
+			
+			Each child is counted only once, regardless of the
+			number of childcare records or Arrangements.
+			
+			The selected timeframe is applied to the actual
+			care period, not the Arrangement request date.
+			
+			Location filtering uses the inactive relationship
+			between Child Location Record and Location.
+			*/
+			
+			VAR startDate =
+			    [Selected Timeframe Start]
+			
+			VAR endDate =
+			    [Selected Timeframe End]
+			
+			VAR effectiveEndDate =
+			    MIN(endDate, TODAY())
+			
+			RETURN
+			IF(
+			    ISBLANK(startDate)
+			        || ISBLANK(endDate)
+			        || startDate > effectiveEndDate,
+			    BLANK(),
 			    CALCULATE(
+			        DISTINCTCOUNT('Child Location Record'[child_person_id]),
+			        NOT ISBLANK('Child Location Record'[child_person_id]),
+			        NOT ISBLANK('Child Location Record'[started_at_utc]),
+			        'Child Location Record'[childcare_plan] <> "WithParent",
+			        'Child Location Record'[started_at_utc] < effectiveEndDate + 1,
+			        ISBLANK('Child Location Record'[ended_at_utc]) || 'Child Location Record'[ended_at_utc] >= startDate,
+			        USERELATIONSHIP('Child Location Record'[location_id],Location[location_id])
+			    )
+			)
+		formatString: #,0
+		lineageTag: 94503cc4-8c20-47ab-ba6d-6d66fb7293f2
+
+		changedProperty = IsHidden
+
+	measure '# of Children Cared For PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of distinct children who received
+			volunteer childcare during the previous period,
+			regardless of when their care originally started.
+			
+			A child is considered cared for when:
+			- The childcare plan is not WithParent.
+			- The child identifier and start date are populated.
+			- The care period overlaps the previous period.
+			- The care started on or before today.
+			- The care end date is blank (ongoing care) or
+			  falls on or after the previous period start.
+			
+			Each child is counted only once, regardless of the
+			number of childcare records, Arrangements, or Locations.
+			
+			The previous period has the same number of days
+			as the selected current period.
+			
+			The timeframe is applied to the actual care period,
+			not the Arrangement request date.
+			
+			Location filtering uses the inactive relationship
+			between Child Location Record and Location.
+			*/
+			
+			VAR currentStartDate =
+			    [Selected Timeframe Start]
+			
+			VAR currentEndDate =
+			    [Selected Timeframe End]
+			
+			VAR todayDate =
+			    TODAY()
+			
+			VAR periodDays =
+			    DATEDIFF(
+			        currentStartDate,
+			        currentEndDate,
+			        DAY
+			    ) + 1
+			
+			VAR previousStartDate =
+			    currentStartDate - periodDays
+			
+			VAR previousEndDate =
+			    currentStartDate - 1
+			
+			VAR effectiveEndDate =
+			    MIN(previousEndDate, todayDate)
+			
+			RETURN
+			IF(
+			    ISBLANK(currentStartDate) || ISBLANK(currentEndDate) || previousStartDate > effectiveEndDate,
+			    BLANK(),
+			    CALCULATE(
+			        DISTINCTCOUNT('Child Location Record'[child_person_id]),
+			        NOT ISBLANK('Child Location Record'[child_person_id]),
+			        NOT ISBLANK('Child Location Record'[started_at_utc]),
+			        'Child Location Record'[childcare_plan] <> "WithParent",
+			        'Child Location Record'[started_at_utc] < effectiveEndDate + 1,
+			        ISBLANK('Child Location Record'[ended_at_utc]) || 'Child Location Record'[ended_at_utc] >= previousStartDate,
+			        USERELATIONSHIP('Child Location Record'[location_id],Location[location_id])
+			    )
+			)
+		formatString: #,0
+		lineageTag: 56db856f-34d0-45d4-9f0c-5610c4a2a1cf
+
+		changedProperty = IsHidden
+
+	measure '# of Children Care For PoP' =
+			
+			
+			VAR currentPeriod = [# of Children Cared For CP]
+			VAR previousPeriod = [# of Children Cared For PP]
+			VAR Perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Perc), BLANK(),
+			    Perc >= 0, FORMAT(Perc, "+0%") & "▲",
+			    Perc < 0, FORMAT(Perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: fbe9b2f9-3c04-428a-93f6-97d8c7d47090
+
+		changedProperty = IsHidden
+
+	measure '# of First-Time Children Cared For CP' =
+			
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of distinct children who received
+			volunteer childcare for the first time during the
+			selected timeframe.
+			
+			A child is considered a first-time care recipient when:
+			- The childcare plan is not WithParent.
+			- The child identifier and first care date are populated.
+			- The first valid care date falls within the selected timeframe.
+			- The first valid care date is on or before today.
+			
+			Each child is counted only once, regardless of the
+			number of childcare records, Arrangements, or Locations.
+			
+			The selected timeframe is applied to the child's
+			first valid care date, not the Arrangement request date.
+			
+			The Location filter is applied through the
+			inactive relationship with the Location table.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			VAR effectiveEndDate = MIN(endDate, todayDate)
+			
+			RETURN
+			IF(
+			    startDate > todayDate,
+			    BLANK(),
+			    CALCULATE(
+			        DISTINCTCOUNT('Child Location Record'[child_person_id]),
+			        NOT ISBLANK('Child Location Record'[child_person_id]),
+			        NOT ISBLANK('Child Location Record'[first_care_date]),
+			        'Child Location Record'[childcare_plan] <> "WithParent",
+			        'Child Location Record'[first_care_date] >= startDate,
+			        'Child Location Record'[first_care_date] < effectiveEndDate + 1,
+			        USERELATIONSHIP('Child Location Record'[location_id], Location[location_id])
+			    )
+			)
+		formatString: #,0
+		lineageTag: 2bb0d0bc-cc73-4888-82ba-5022477a362b
+
+		changedProperty = IsHidden
+
+	measure '# of First-Time Children Cared For PP' =
+			
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of distinct children who received
+			volunteer childcare for the first time during the
+			previous period.
+			
+			A child is considered a first-time care recipient when:
+			- The childcare plan is not WithParent.
+			- The child identifier and first care date are populated.
+			- The first valid care date falls within the previous period.
+			- The first valid care date is on or before today.
+			
+			Each child is counted only once, regardless of the
+			number of childcare records, Arrangements, or Locations.
+			
+			The previous period has the same number of days
+			as the currently selected timeframe.
+			
+			The timeframe is applied to the child's first valid
+			care date, not the Arrangement request date.
+			
+			The Location filter is applied through the
+			inactive relationship with the Location table.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
+			VAR effectiveEndDate = MIN(previousEndDate, todayDate)
+			
+			RETURN
+			IF(
+			    previousStartDate > todayDate,
+			    BLANK(),
+			    CALCULATE(
+			        DISTINCTCOUNT('Child Location Record'[child_person_id]),
+			        NOT ISBLANK('Child Location Record'[child_person_id]),
+			        NOT ISBLANK('Child Location Record'[first_care_date]),
+			        'Child Location Record'[childcare_plan] <> "WithParent",
+			        'Child Location Record'[first_care_date] >= previousStartDate,
+			        'Child Location Record'[first_care_date] < effectiveEndDate + 1,
+			        USERELATIONSHIP('Child Location Record'[location_id], Location[location_id])
+			    )
+			)
+		formatString: #,0
+		lineageTag: 381abd53-3f51-47d1-9710-b63f895373ec
+
+		changedProperty = IsHidden
+
+	measure '# of First-Time Children Care For PoP' =
+			
+			
+			VAR currentPeriod = [# of First-Time Children Cared For CP]
+			VAR previousPeriod = [# of First-Time Children Cared For PP]
+			VAR Perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Perc), BLANK(),
+			    Perc >= 0, FORMAT(Perc, "+0%") & "▲",
+			    Perc < 0, FORMAT(Perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 8ec68a66-50f4-4cfd-9bf8-04f4cceedc09
+
+		changedProperty = IsHidden
+
+	measure 'Avg. Care Days per Child CP' =
+			
+			/*
+			CP = Current Period
+			
+			Calculates the average number of care days
+			received per distinct child during the selected
+			timeframe, across all volunteer families.
+			
+			Each child/date combination is counted once,
+			even when multiple care records overlap.
+			
+			Excludes WithParent care and future dates.
+			
+			Child identifiers are retrieved from the
+			related Child Location Record table.
+			
+			Location filtering uses the inactive relationship
+			between Child Location Record and Location.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR effectiveEndDate = MIN(endDate, TODAY())
+			
+			RETURN
+			IF(
+			    startDate > effectiveEndDate,
+			    BLANK(),
+			    VAR careRecords =
+			        CALCULATETABLE(
+			            SELECTCOLUMNS(
+			                'Child Location Record Expanded',
+			                "Child ID",
+			                    RELATED(
+			                        'Child Location Record'[child_person_id]
+			                    ),
+			                "Care Date",
+			                    'Child Location Record Expanded'[date]
+			            ),
+			            'Child Location Record Expanded'[date] >= startDate,
+			            'Child Location Record Expanded'[date] < effectiveEndDate + 1,
+			            'Child Location Record Expanded'[childcare_plan] <> "WithParent",
+			            USERELATIONSHIP(
+			                'Child Location Record'[location_id],
+			                Location[location_id]
+			            )
+			        )
+			
+			    VAR distinctCareDays =
+			        DISTINCT(
+			            FILTER(
+			                careRecords,
+			                NOT ISBLANK([Child ID])
+			            )
+			        )
+			
+			    VAR totalCareDays =
+			        COUNTROWS(distinctCareDays)
+			
+			    VAR totalChildren =
 			        COUNTROWS(
 			            DISTINCT(
 			                SELECTCOLUMNS(
-			                    'ChildLocationExpanded',
-			                    "Key", 
-			                        FORMAT('ChildLocationExpanded'[Date], "yyyy-MM-dd") & "-" & 
-			                        'ChildLocationExpanded'[Index]  // Creating a Unique Key per Date and Child
+			                    distinctCareDays,
+			                    "Child ID", [Child ID]
 			                )
 			            )
-			        ),
-			        'ChildLocationExpanded'[ChildcarePlan] <> "WithParent",
-			        'ChildLocationExpanded'[Date] >= StartDate,
-			        'ChildLocationExpanded'[Date] <= MIN(EndDate, CurrentDate)
-			    )
-			RETURN
-			    IF(
-			        CurrentDate < StartDate,
-			        BLANK(),
-			        IF(
-			            Result = 0,
-			            BLANK(),
-			            Result
 			        )
-			    )
 			
-			```
+			    RETURN
+			        DIVIDE(totalCareDays, totalChildren)
+			)
 		formatString: 0
-		lineageTag: 82cc0cd6-34d8-4768-a484-07c1d264636c
+		lineageTag: 3da8a209-d13f-4072-9655-207a6cffad1f
 
-	measure '# of Nights of Care' = ```
+		changedProperty = IsHidden
+
+	measure 'Avg. Days with Same Family CP' =
 			
+			/*
+			CP = Current Period
 			
-			VAR CurrentDate = TODAY()
-			VAR StartDate = [Selected Timeframe Start]
-			VAR EndDate = [Selected Timeframe End]
-			VAR Result =
-			    CALCULATE(
+			Calculates the average number of care days
+			per child and volunteer family combination
+			during the selected timeframe.
+			
+			Care days are accumulated across Arrangements.
+			
+			Each child/family/date combination is counted
+			only once to prevent duplicate care days.
+			
+			Excludes WithParent care and future dates.
+			
+			Child and volunteer family identifiers are
+			retrieved from Child Location Record.
+			
+			Location filtering uses the inactive relationship
+			between Child Location Record and Location.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR effectiveEndDate = MIN(endDate, TODAY())
+			
+			RETURN
+			IF(
+			    startDate > effectiveEndDate,
+			    BLANK(),
+			    VAR careRecords =
+			        CALCULATETABLE(
+			            SELECTCOLUMNS(
+			                'Child Location Record Expanded',
+			                "Child ID",
+			                    RELATED(
+			                        'Child Location Record'[child_person_id]
+			                    ),
+			                "Volunteer Family ID",
+			                    RELATED(
+			                        'Child Location Record'[family_id]
+			                    ),
+			                "Care Date",
+			                    'Child Location Record Expanded'[date]
+			            ),
+			            'Child Location Record Expanded'[date] >= startDate,
+			            'Child Location Record Expanded'[date] < effectiveEndDate + 1,
+			            'Child Location Record Expanded'[childcare_plan] <> "WithParent",
+			            USERELATIONSHIP(
+			                'Child Location Record'[location_id],
+			                Location[location_id]
+			            )
+			        )
+			
+			    VAR distinctCareDays =
+			        DISTINCT(
+			            FILTER(
+			                careRecords,
+			                NOT ISBLANK([Child ID])
+			                    && NOT ISBLANK([Volunteer Family ID])
+			            )
+			        )
+			
+			    VAR totalCareDays =
+			        COUNTROWS(distinctCareDays)
+			
+			    VAR childFamilyCombinations =
 			        COUNTROWS(
 			            DISTINCT(
 			                SELECTCOLUMNS(
-			                    'ChildLocationExpanded',
-			                    "Key", 
-			                        FORMAT('ChildLocationExpanded'[Date], "yyyy-MM-dd") & "-" & 
-			                        'ChildLocationExpanded'[Index]  // Creating a UNIQUE key per Index and Child
+			                    distinctCareDays,
+			                    "Child ID", [Child ID],
+			                    "Volunteer Family ID", [Volunteer Family ID]
 			                )
 			            )
-			        ),
-			        'ChildLocationExpanded'[ChildcarePlan] <> "WithParent",
-			        'ChildLocationExpanded'[OvernightStay] = TRUE(),
-			        'ChildLocationExpanded'[Date] >= StartDate,
-			        'ChildLocationExpanded'[Date] <= MIN(EndDate, CurrentDate)
-			    )
-			RETURN
-			    IF(
-			        CurrentDate < StartDate,
-			        BLANK(),
-			        IF(
-			            Result = 0,
-			            BLANK(),
-			            Result
 			        )
-			    )
 			
-			```
-		formatString: 0
-		lineageTag: e5752dc3-bdff-4939-8d64-2305d2ad90a9
+			    RETURN
+			        DIVIDE(
+			            totalCareDays,
+			            childFamilyCombinations
+			        )
+			)
+		formatString: #,0
+		lineageTag: 384fa1e0-2347-4151-b4f0-518148d728cc
 
-	column 'RLS Key'
+		changedProperty = IsHidden
+
+	measure 'Avg. Care Days per Child PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Calculates the average number of care days
+			received per distinct child during the previous
+			period, across all volunteer families.
+			
+			The previous period has the same number of
+			calendar days as the selected current period
+			and ends one day before it begins.
+			
+			Each child/date combination is counted once,
+			even when multiple care records overlap.
+			
+			Excludes WithParent care and future dates.
+			
+			Child identifiers are retrieved from the
+			related Child Location Record table.
+			
+			Location filtering uses the inactive relationship
+			between Child Location Record and Location.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			
+			VAR periodDays =
+			    DATEDIFF(startDate, endDate, DAY) + 1
+			
+			VAR previousStartDate =
+			    startDate - periodDays
+			
+			VAR previousEndDate =
+			    startDate - 1
+			
+			VAR effectiveEndDate =
+			    MIN(previousEndDate, TODAY())
+			
+			RETURN
+			IF(
+			    previousStartDate > effectiveEndDate,
+			    BLANK(),
+			    VAR careRecords =
+			        CALCULATETABLE(
+			            SELECTCOLUMNS(
+			                'Child Location Record Expanded',
+			                "Child ID",
+			                    RELATED(
+			                        'Child Location Record'[child_person_id]
+			                    ),
+			                "Care Date",
+			                    'Child Location Record Expanded'[date]
+			            ),
+			            'Child Location Record Expanded'[date] >= previousStartDate,
+			            'Child Location Record Expanded'[date] < effectiveEndDate + 1,
+			            'Child Location Record Expanded'[childcare_plan] <> "WithParent",
+			            USERELATIONSHIP(
+			                'Child Location Record'[location_id],
+			                Location[location_id]
+			            )
+			        )
+			
+			    VAR distinctCareDays =
+			        DISTINCT(
+			            FILTER(
+			                careRecords,
+			                NOT ISBLANK([Child ID])
+			            )
+			        )
+			
+			    VAR totalCareDays =
+			        COUNTROWS(distinctCareDays)
+			
+			    VAR totalChildren =
+			        COUNTROWS(
+			            DISTINCT(
+			                SELECTCOLUMNS(
+			                    distinctCareDays,
+			                    "Child ID", [Child ID]
+			                )
+			            )
+			        )
+			
+			    RETURN
+			        DIVIDE(totalCareDays, totalChildren)
+			)
+		lineageTag: 61ff323b-af31-4b47-82e0-3c1b2e1ee930
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg. Care Days per Child PoP' =
+			
+			
+			VAR currentPeriod = [Avg. Care Days per Child CP]
+			VAR previousPeriod = [Avg. Care Days per Child PP]
+			VAR Perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Perc), BLANK(),
+			    Perc >= 0, FORMAT(Perc, "+0%") & "▲",
+			    Perc < 0, FORMAT(Perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: e4900cdd-7dbc-4fcb-a277-a229e021fe7d
+
+		changedProperty = IsHidden
+
+	measure 'Avg. Days with Same Family PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Calculates the average number of care days
+			per child and volunteer family combination
+			during the previous period.
+			
+			The previous period has the same number of
+			calendar days as the selected current period
+			and ends one day before it begins.
+			
+			Care days are accumulated across Arrangements.
+			
+			Each child/family/date combination is counted
+			only once to prevent duplicate care days.
+			
+			Excludes WithParent care and future dates.
+			
+			Child and volunteer family identifiers are
+			retrieved from Child Location Record.
+			
+			Location filtering uses the inactive relationship
+			between Child Location Record and Location.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			
+			VAR periodDays =
+			    DATEDIFF(startDate, endDate, DAY) + 1
+			
+			VAR previousStartDate =
+			    startDate - periodDays
+			
+			VAR previousEndDate =
+			    startDate - 1
+			
+			VAR effectiveEndDate =
+			    MIN(previousEndDate, TODAY())
+			
+			RETURN
+			IF(
+			    previousStartDate > effectiveEndDate,
+			    BLANK(),
+			    VAR careRecords =
+			        CALCULATETABLE(
+			            SELECTCOLUMNS(
+			                'Child Location Record Expanded',
+			                "Child ID",
+			                    RELATED(
+			                        'Child Location Record'[child_person_id]
+			                    ),
+			                "Volunteer Family ID",
+			                    RELATED(
+			                        'Child Location Record'[family_id]
+			                    ),
+			                "Care Date",
+			                    'Child Location Record Expanded'[date]
+			            ),
+			            'Child Location Record Expanded'[date] >= previousStartDate,
+			            'Child Location Record Expanded'[date] < effectiveEndDate + 1,
+			            'Child Location Record Expanded'[childcare_plan] <> "WithParent",
+			            USERELATIONSHIP(
+			                'Child Location Record'[location_id],
+			                Location[location_id]
+			            )
+			        )
+			
+			    VAR distinctCareDays =
+			        DISTINCT(
+			            FILTER(
+			                careRecords,
+			                NOT ISBLANK([Child ID])
+			                    && NOT ISBLANK([Volunteer Family ID])
+			            )
+			        )
+			
+			    VAR totalCareDays =
+			        COUNTROWS(distinctCareDays)
+			
+			    VAR childFamilyCombinations =
+			        COUNTROWS(
+			            DISTINCT(
+			                SELECTCOLUMNS(
+			                    distinctCareDays,
+			                    "Child ID", [Child ID],
+			                    "Volunteer Family ID", [Volunteer Family ID]
+			                )
+			            )
+			        )
+			
+			    RETURN
+			        DIVIDE(
+			            totalCareDays,
+			            childFamilyCombinations
+			        )
+			)
+		lineageTag: f896017a-76a5-4995-9659-21412dc97aec
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg. Days with Same Family PoP' =
+			
+			
+			VAR currentPeriod = [Avg. Days with Same Family CP]
+			VAR previousPeriod = [Avg. Days with Same Family PP]
+			VAR Perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Perc), BLANK(),
+			    Perc >= 0, FORMAT(Perc, "+0%") & "▲",
+			    Perc < 0, FORMAT(Perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 6b3768d8-5235-4078-a40d-4a6156c9a2f6
+
+		changedProperty = IsHidden
+
+	column organization_id
 		dataType: string
-		displayFolder: _Columns
-		lineageTag: f367d031-337f-4e59-9296-a70b8520a968
+		displayFolder: _columns
+		lineageTag: d6936eb9-b1fb-4bbd-8eea-0429c10f03a3
 		summarizeBy: none
-		sourceColumn: RLS Key
+		sourceColumn: organization_id
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
-	column Started
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: bfc70988-7e27-4cf1-9ceb-72c9c0e1cd79
+		summarizeBy: none
+		sourceColumn: location_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrangement_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 82d9053f-8ff5-46bf-8566-4bd763b2b236
+		summarizeBy: none
+		sourceColumn: arrangement_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column child_person_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 10fcc8f8-29ff-4831-be45-93720ef815b7
+		summarizeBy: none
+		sourceColumn: child_person_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 8b82927d-f12f-49c4-ad5f-e37d82345847
+		summarizeBy: none
+		sourceColumn: family_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column started_at_utc
 		dataType: dateTime
 		formatString: General Date
-		displayFolder: _Columns
-		lineageTag: 31dd7f0c-707d-4ab3-ab1b-037f978babb5
+		displayFolder: _columns
+		lineageTag: 791ce6a0-2ee4-4081-b343-b8fdbca0591e
 		summarizeBy: none
-		sourceColumn: Started
+		sourceColumn: started_at_utc
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
-	column Ended
+	column ended_at_utc
 		dataType: dateTime
 		formatString: General Date
-		displayFolder: _Columns
-		lineageTag: 12635f46-fd7d-4a5b-9ffc-888f920e1c0e
+		displayFolder: _columns
+		lineageTag: 7aef9a5a-f9fa-4e69-b055-2ba9a574521a
 		summarizeBy: none
-		sourceColumn: Ended
+		sourceColumn: ended_at_utc
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
-	column Duration
+	column childcare_plan
+		dataType: string
+		displayFolder: _columns
+		lineageTag: c2dac67a-2305-4702-a7a3-51244f18974a
+		summarizeBy: none
+		sourceColumn: childcare_plan
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration
 		dataType: double
-		displayFolder: _Columns
-		lineageTag: fb71f4e2-f2fa-4231-aeae-2752130df893
+		displayFolder: _columns
+		lineageTag: 8e66829d-3f54-4537-a59c-ab1f366f23ac
 		summarizeBy: sum
-		sourceColumn: Duration
+		sourceColumn: duration
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column Index
-		dataType: int64
-		formatString: 0
-		displayFolder: _Columns
-		lineageTag: 25ac904d-6795-4a4d-a074-deb6622402b5
-		summarizeBy: none
-		sourceColumn: Index
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Childcare Family Name'
+	column rls_key
 		dataType: string
-		displayFolder: _Columns
-		lineageTag: 3fad2f9d-6e37-4643-b1fd-ff8ac1ba5437
+		displayFolder: _columns
+		lineageTag: 530be95a-e736-4a3b-9467-2597cb823dea
 		summarizeBy: none
-		sourceColumn: Childcare Family Name
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Family UID'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 1f93be81-68ed-4f4f-a1a7-91149d97da8a
-		summarizeBy: none
-		sourceColumn: Family UID
+		sourceColumn: rls_key
 
 		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Family ID'
+	column arrangement_uid
 		dataType: string
-		displayFolder: _Columns
-		lineageTag: 858238a3-563f-423f-be2b-d3abbdd90fc5
+		displayFolder: _columns
+		lineageTag: 4f8db1b6-e994-4bbd-b58f-7da0793e38e9
 		summarizeBy: none
-		sourceColumn: Family ID
+		sourceColumn: arrangement_uid
 
 		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Arrangement ID'
+	column child_person_uid
 		dataType: string
-		displayFolder: _Columns
-		lineageTag: 61c3c958-c541-4b36-b11f-3c38d7036b20
+		displayFolder: _columns
+		lineageTag: 919a872e-01d8-43c6-8035-5d5002231320
 		summarizeBy: none
-		sourceColumn: Arrangement ID
+		sourceColumn: child_person_uid
 
 		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Child Person UID'
+	column family_uid
 		dataType: string
-		displayFolder: _Columns
-		lineageTag: e793d16c-75ab-4c0c-99ce-5287002b9ec8
+		displayFolder: _columns
+		lineageTag: d19977e9-e8d3-48f7-a1c2-6a0ed8800271
 		summarizeBy: none
-		sourceColumn: Child Person UID
+		sourceColumn: family_uid
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Child Person ID'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: 871e29b8-874e-400c-8019-97d43af4775a
+	column index
+		dataType: double
+		displayFolder: _columns
+		lineageTag: 9c14381c-e8db-48c7-8acd-615154692dfd
 		summarizeBy: none
-		sourceColumn: Child Person ID
+		sourceColumn: index
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Childcare Plan'
-		dataType: string
-		displayFolder: _Columns
-		lineageTag: f903847d-f8f7-40af-b40b-a9d64ea29867
-		summarizeBy: none
-		sourceColumn: Childcare Plan
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-		annotation SummarizationSetBy = Automatic
-
-	column 'Arrangement UID'
-		dataType: string
-		lineageTag: 1901fc6d-583f-49e2-9f25-d81196e1c34c
-		summarizeBy: none
-		sourceColumn: Arrangement UID
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'First Care Date'
+	column first_care_date
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: 64d0e326-7b94-49f6-9b7d-689f5fe980f4
+		displayFolder: _columns
+		lineageTag: 94556ba6-cf54-4833-a6fa-76a3f7252742
 		summarizeBy: none
-		sourceColumn: First Care Date
+		sourceColumn: first_care_date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_first_care
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: _columns
+		lineageTag: 27b61143-3679-4558-b580-fa047126dd85
+		summarizeBy: none
+		sourceColumn: is_first_care
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column child_person_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 4469d817-a7f1-4e50-8470-061c9da0686b
+		summarizeBy: none
+		sourceColumn: child_person_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column child_family_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 5ae5e46b-9fe4-424b-bce4-b9c0b64e72ed
+		summarizeBy: none
+		sourceColumn: child_family_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrangement_type
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 9d4af6e8-886c-4e16-8ef6-40037c1d9e76
+		summarizeBy: none
+		sourceColumn: arrangement_type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 78cf6ce2-b652-4f0c-88ec-a8a2d4aaa6a7
+		summarizeBy: none
+		sourceColumn: family_name
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	partition 'Child Location Record' = m
 		mode: import
-		queryGroup: Fact
-		source =
+		queryGroup: Facts
+		source = ```
 				let
-				    Source = #"OData Live",
 				
-				    ChildLocationRecord =
-				        Source{[Name="ChildLocationRecords", Signature="table"]}[Data],
+				  Source = #"OData",
+				  childLocationRecord = Source{[Name="ChildLocationRecords", Signature="table"]}[Data],
 				
-				    ChildLocationRecordTransformed =
-				        Table.AddColumn(
-				            Table.AddColumn(
-				                Table.TransformColumns(
-				                    Table.AddIndexColumn(
-				                        Table.AddColumn(
-				                            ChildLocationRecord,
-				                            "RLS Key",
-				                            each Text.Combine(
-				                                {
-				                                    Text.From([OrganizationId]),
-				                                    Text.From([LocationId])
-				                                },
-				                                "-"
-				                            ),
-				                            type text
-				                        ),
-				                        "Index",
-				                        1,
-				                        1,
-				                        Int64.Type
-				                    ),
-				                    {
-				                        {
-				                            "StartedAtUtc",
-				                            DateTimeZone.ToLocal,
-				                            type datetimezone
-				                        },
-				                        {
-				                            "EndedAtUtc",
-				                            DateTimeZone.ToLocal,
-				                            type datetimezone
-				                        }
-				                    }
-				                ),
-				                "Child Person UID",
-				                each Text.Combine(
-				                    {
-				                        [RLS Key],
-				                        Text.From([ChildPersonId])
-				                    },
-				                    "-"
-				                ),
-				                type text
-				            ),
-				            "Family UID",
-				            each Text.Combine(
-				                {
-				                    [RLS Key],
-				                    Text.From([FamilyId])
-				                },
-				                "-"
-				            ),
-				            type text
-				        ),
+				  expandClientChild = Table.ExpandRecordColumn(childLocationRecord, "Child", {"FirstName", "LastName", "Family"}, {"Child.FirstName", "Child.LastName", "Child.Family"}),
+				  expandClientFamily = Table.ExpandRecordColumn(expandClientChild, "Child.Family", {"Name"}, {"Child.Family.Name"}),
+				  expandVolunteerFamily = Table.ExpandRecordColumn(expandClientFamily, "Family", {"Name"}, {"Family.Name"}),
+				  expandArrangementType = Table.ExpandRecordColumn(expandVolunteerFamily, "Arrangement", {"TypeName"}, {"Arrangement.TypeName"}),
 				
-				    // Adding the Family Name
-				    Family =
-				        Table.SelectColumns(
-				            Table.RenameColumns(
-				                Table.AddColumn(
-				                    Table.AddColumn(
-				                        Source{[Name="Family", Signature="table"]}[Data],
-				                        "RLS Key",
-				                        each Text.Combine(
-				                            {
-				                                Text.From([OrganizationId]),
-				                                Text.From([LocationId])
-				                            },
-				                            "-"
-				                        ),
-				                        type text
-				                    ),
-				                    "FamilyUID",
-				                    each Text.Combine(
-				                        {
-				                            [RLS Key],
-				                            Text.From([Id])
-				                        },
-				                        "-"
-				                    ),
-				                    type text
-				                ),
-				                {
-				                    {"Name", "Childcare Family Name"}
-				                }
-				            ),
-				            {
-				                "FamilyUID",
-				                "Childcare Family Name"
-				            }
-				        ),
+				  addChildFullName = Table.AddColumn(
+				    expandArrangementType,
+				    "ChildPersonName",
+				    each Text.Combine({[Child.FirstName], " ", [Child.LastName]})
+				  ),
 				
-				    // Combined Tables
-				    Combined =
-				        Table.SelectColumns(
-				            Table.AddColumn(
-				                Table.RenameColumns(
-				                    Table.Join(
-				                        ChildLocationRecordTransformed,
-				                        "Family UID",
-				                        Family,
-				                        "FamilyUID",
-				                        JoinKind.LeftOuter
-				                    ),
-				                    {
-				                        {"ArrangementId", "Arrangement ID"},
-				                        {"ChildPersonId", "Child Person ID"},
-				                        {"FamilyId", "Family ID"},
-				                        {"StartedAtUtc", "Started"},
-				                        {"EndedAtUtc", "Ended"},
-				                        {"ChildcarePlan", "Childcare Plan"}
-				                    }
-				                ),
-				                "Arrangement UID",
-				                each Text.Combine(
-				                    {
-				                        [RLS Key],
-				                        Text.From([Arrangement ID])
-				                    },
-				                    "-"
-				                ),
-				                type text
-				            ),
-				            {
-				                "RLS Key",
-				                "Family UID",
-				                "Family ID",
-				                "Arrangement UID",
-				                "Arrangement ID",
-				                "Child Person UID",
-				                "Child Person ID",
-				                "Started",
-				                "Ended",
-				                "Duration",
-				                "Index",
-				                "Childcare Family Name",
-				                "Childcare Plan"
-				            }
-				        ),
+				  selectColumns = Table.SelectColumns(
+				    addChildFullName,
+				    {
+				      "OrganizationId",
+				      "LocationId",
+				      "ArrangementId",
+				      "Arrangement.TypeName",
+				      "ChildPersonId",
+				      "ChildPersonName",
+				      "Child.Family.Name",
+				      "FamilyId",
+				      "Family.Name",
+				      "StartedAtUtc",
+				      "EndedAtUtc",
+				      "ChildcarePlan",
+				      "Duration"
+				    }
+				  ),
 				
-				    // Only records that represent actual care
-				    ValidCareRecords =
-				        Table.SelectRows(
-				            Combined,
-				            each
-				                [Started] <> null
-				                and [Childcare Plan] <> null
-				                and [Childcare Plan] <> "WithParent"
-				        ),
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"ArrangementId", "arrangement_id"},
+				      {"Arrangement.TypeName", "arrangement_type"},
+				      {"ChildPersonId", "child_person_id"},
+				      {"ChildPersonName", "child_person_name"},
+				      {"Child.Family.Name", "child_family_name"}, 
+				      {"FamilyId", "family_id"},
+				      {"Family.Name", "family_name"},
+				      {"StartedAtUtc", "started_at_utc"},
+				      {"EndedAtUtc", "ended_at_utc"},
+				      {"ChildcarePlan", "childcare_plan"},
+				      {"Duration", "duration"}
 				
-				    // First care date for each child
-				    FirstCareDates =
-				        Table.Group(
-				            ValidCareRecords,
-				            {"Child Person UID"},
-				            {
-				                {
-				                    "First Care Date",
-				                    each List.Min([Started]),
-				                    type nullable datetimezone
-				                }
-				            }
-				        ),
+				    }
+				  ),
 				
-				    // Add the first care date to every record for the child
-				    CombinedWithFirstCare =
-				        Table.NestedJoin(
-				            Combined,
-				            {"Child Person UID"},
-				            FirstCareDates,
-				            {"Child Person UID"},
-				            "FirstCare",
-				            JoinKind.LeftOuter
-				        ),
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
 				
-				    ExpandedFirstCare =
-				        Table.ExpandTableColumn(
-				            CombinedWithFirstCare,
-				            "FirstCare",
-				            {"First Care Date"},
-				            {"First Care Date"}
-				        )
+				  addArrangementUniqueKey = Table.AddColumn(
+				    addRLSKey,
+				    "arrangement_uid",
+				    each
+				      if [arrangement_id] <> null then
+				        Text.Combine({[rls_key], "-", [arrangement_id]})
+				      else
+				        null,
+				      type text
+				  ),
+				
+				  addChildPersonUniqueKey = Table.AddColumn(
+				    addArrangementUniqueKey,
+				    "child_person_uid",
+				    each
+				      if [child_person_id] <> null then
+				        Text.Combine({[rls_key], "-", [child_person_id]})
+				      else
+				        null,
+				      type text
+				  ),
+				
+				  addVolunteerFamilyUniqueKey = Table.AddColumn(
+				    addChildPersonUniqueKey,
+				    "family_uid",
+				    each
+				      if [family_id] <> null then
+				        Text.Combine({[rls_key], "-", [family_id]})
+				      else
+				        null,
+				      type text
+				  ),
+				
+				  addTableIndex = Table.AddIndexColumn(
+				    addVolunteerFamilyUniqueKey,
+				    "index",
+				    1,
+				    1
+				  ),
+				
+				  // Find the date when each child first received childcare.
+				  getFirstCareDate = Table.SelectRows(
+				    addTableIndex,
+				    each
+				      [started_at_utc] <> null and
+				      [childcare_plan] <> null and
+				      [childcare_plan] <> "WithParent"
+				  ),
+				
+				  groupFirstCareDate = Table.Group(
+				    getFirstCareDate,
+				    {"child_person_uid"},
+				    {
+				      {
+				        "first_care_date",
+				        each List.Min([started_at_utc]),
+				        type nullable datetimezone
+				      }
+				    }
+				  ),
+				
+				  mergeTables = Table.NestedJoin(
+				    addTableIndex,
+				    {"child_person_uid"},
+				    groupFirstCareDate,
+				    {"child_person_uid"},
+				    "first_care",
+				    JoinKind.LeftOuter
+				  ),
+				
+				  expandFirstCareDate = Table.ExpandTableColumn(
+				    mergeTables,
+				    "first_care",
+				    {"first_care_date"},
+				    {"first_care_date"}
+				  ),
+				
+				  addIsFirstCareFlag = Table.AddColumn(
+				    expandFirstCareDate,
+				    "is_first_care",
+				    each
+				      [started_at_utc] = [first_care_date],
+				    type logical
+				  )
 				
 				in
-				    ExpandedFirstCare
+				
+				  addIsFirstCareFlag
+				```
 
-	annotation PBI_NavigationStepName = Navigation
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 

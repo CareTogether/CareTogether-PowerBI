@@ -1,147 +1,195 @@
-relationship 1b2fdd82-5273-6461-550a-5925f0e410d3
+relationship f9c9b5c0-2137-7295-b090-aaca32c3f8ba
+	fromColumn: 'Community Role Assignment'.community_uid
+	toColumn: Community.community_uid
+
+relationship cd93684b-1faa-701a-f28e-d207260da594
+	fromColumn: 'Community Member Family'.community_uid
+	toColumn: Community.community_uid
+
+relationship 40ab796a-c1cc-34f1-6204-c0e74bc657ad
+	fromColumn: 'Community Role Assignment'.person_uid
+	toColumn: 'Volunteer Person'.person_uid
+
+relationship 3d9c1eac-ab88-93f4-4d98-42da75d2f531
+	fromColumn: 'Community Member Family'.family_uid
+	toColumn: 'Volunteer Family'.family_uid
+
+relationship 1dbe3d80-315d-d52b-b192-e9c0c0fd1696
+	fromColumn: 'Volunteer Family Function Assignment'.family_uid
+	toColumn: 'Volunteer Family'.family_uid
+
+relationship f6f72ce3-d632-0366-dc40-d7846323bc40
+	fromColumn: 'Volunteer Person Function Assignment'.person_uid
+	toColumn: 'Volunteer Person'.person_uid
+
+relationship 4aac7d88-36bc-370f-3f52-dac21cdfec23
+	fromColumn: 'Child Location Record'.family_uid
+	toColumn: 'Volunteer Family'.family_uid
+
+relationship 98a66c03-a560-bfd3-287d-06c6b5b6d6ea
+	fromColumn: 'Child Location Record Expanded'.index
+	toColumn: 'Child Location Record'.index
+
+relationship 4969b359-73b6-e7b0-0808-ee89c120ec9b
+	fromColumn: 'Child Location Record Expanded'.childcare_plan
+	toColumn: 'Childcare Plan'.childcare_plan
+
+relationship 0d9cf9f8-34cf-93d2-a3c9-b1c4d765cefe
+	isActive: false
+	fromColumn: Cases.close_reason_uid
+	toColumn: 'Close Reason'.close_reason_uid
+
+relationship 1cfab03f-042b-d3ff-62ec-602725bb4a96
+	fromColumn: 'Arrangement Type'.child_involvement
+	toColumn: Childcare.' child_involvement'
+
+relationship 09f4f034-bacd-74b2-cd57-1b5a021d605d
+	fromColumn: 'Client Person'.family_uid
+	toColumn: 'Client Family'.family_uid
+
+relationship 54d5d7fa-d896-ab28-76b9-6472f4a550fd
+	isActive: false
 	crossFilteringBehavior: bothDirections
-	fromColumn: Person.'Family UID'
-	toColumn: Family.'Family UID'
+	toCardinality: many
+	fromColumn: Location.location_id
+	toColumn: Cases.location_id
 
-relationship 68bd892e-c661-c7b7-5c03-5aefca191f67
-	fromColumn: 'Family Role Approvals'.'Entity UID'
-	toColumn: Family.'Family UID'
+relationship 4a70ed35-ccfb-d45f-3dc3-18bab6df098a
+	fromColumn: Cases.family_uid
+	toColumn: 'Client Family'.family_uid
 
-relationship 2b4882b1-b8b3-858d-c55d-c0f9da73aed8
-	fromColumn: 'Individual Role Approvals'.'Entity UID'
-	toColumn: Person.'Person UID'
+relationship a426f1bc-67c2-2688-7fe5-62712fe8fc44
+	fromColumn: 'Volunteer Person Case Role Assignment'.case_uid
+	toColumn: Cases.case_uid
 
-relationship 9b1c5b38-28ce-e2ea-8a4e-f8c7ff209c6f
-	fromColumn: 'Family Role Approvals'.Status
-	toColumn: 'Approval Status'.Status
-
-relationship 56241e07-7826-df43-4383-bca80bef08d8
-	fromColumn: 'Individual Role Approvals'.Status
-	toColumn: 'Approval Status'.Status
-
-relationship 6ac79b10-a5d7-cbc2-52d4-3f957ad99329
-	fromColumn: 'Child Location Record'.'Childcare Plan'
-	toColumn: 'Childcare Plan'.ChildLocationPlan
-
-relationship 787f10f8-ac9d-0b8d-7fab-a9d48b19ddb6
-	fromColumn: 'Individual Role Approvals'.Date
-	toColumn: Date.Date
-
-relationship 72e40e5e-81bd-60b4-7e34-449fc0bf6053
-	fromColumn: 'Family Role Approvals'.Date
-	toColumn: Date.Date
-
-relationship f3befea4-84d5-33a4-675e-4917ebd13baa
-	fromColumn: Arrangements.'Arrangement Type UID'
-	toColumn: 'Arrangement Type'.'Arrangement Type UID'
-
-relationship 6920aeab-414a-ab33-69c8-ad7429e973bf
-	fromColumn: 'Arrangement Type'.'Child Involvement'
-	toColumn: Childcare.ChildInvolvement
-
-relationship AutoDetected_e5513f7d-50b2-4f9e-ab69-72c9fe80fe2f
-	fromColumn: 'Family Role Approvals'.'Approval Type'
-	toColumn: 'Approval Type'.'Approval Type'
-
-relationship AutoDetected_ff3cd7a8-e7a4-4141-bd30-2716d74353c3
-	fromColumn: 'Individual Role Approvals'.'Approval Type'
-	toColumn: 'Approval Type'.'Approval Type'
-
-relationship 953e0440-8171-d1d2-082f-53b3efdb1192
-	fromColumn: 'Family Function Assignments'.'Entity UID'
-	toColumn: Family.'Family UID'
-
-relationship 50417728-c721-40a8-fe93-d187e5ff3c74
-	fromColumn: 'Individual Function Assignments'.'Entity UID'
-	toColumn: Person.'Person UID'
-
-relationship 6335aac6-3f29-8b81-b9d3-bd9cdf9cd19c
-	crossFilteringBehavior: bothDirections
-	fromColumn: 'Client Person'.'Family UID'
-	toColumn: 'Client Family'.'Family UID'
-
-relationship 2139f5d5-648e-3dab-b179-af506cdef005
-	fromColumn: Arrangements.'Person UID'
-	toColumn: 'Client Person'.'Person UID'
-
-relationship 0f912775-5b1a-2d3e-eaa9-538880e28b36
-	fromColumn: Cases.'Family UID'
-	toColumn: 'Client Family'.'Family UID'
-
-relationship AutoDetected_008616e6-be5a-4013-bc93-13849ae9a89b
-	fromColumn: 'Family Role Approvals'.'Role UID'
-	toColumn: Role.'Role UID'
-
-relationship AutoDetected_d1548180-1366-427c-a2bd-3f44e0e534d0
-	fromColumn: 'Individual Role Approvals'.'Role UID'
-	toColumn: Role.'Role UID'
-
-relationship d21699af-c18a-82ab-1c87-053ee4dac91e
-	crossFilteringBehavior: bothDirections
-	fromColumn: 'Community Member Families'.'Family UID'
-	toColumn: Family.'Family UID'
-
-relationship cc3cc141-4b90-f76f-917a-3cf1e89e5e2c
-	fromColumn: 'Client Family'.'RLS Key'
-	toColumn: 'Location Client'.'RLS Key'
-
-relationship e349dd17-a18d-2497-62cf-d76e3ba8ac2c
-	fromColumn: Family.'RLS Key'
-	toColumn: Location.'RLS Key'
-
-relationship AutoDetected_59e6e179-6344-42a1-944c-b69cf722c579
-	crossFilteringBehavior: bothDirections
-	fromColumn: 'Community Member Families'.'Community UID'
-	toColumn: Community.'Community UID'
-
-relationship AutoDetected_f5d995a0-5351-4a2b-9493-e0cb5a8e576f
-	fromColumn: 'Community Role Assignments'.'Community UID'
-	toColumn: Community.'Community UID'
-
-relationship AutoDetected_621a6882-fac5-4c7f-97f3-c28737a5ad82
-	fromColumn: 'Child Location Record'.'Arrangement UID'
-	toColumn: Arrangements.'Arrangement UID'
-
-relationship AutoDetected_8f7027d1-4ef6-4476-afe7-288e534c8171
-	fromColumn: 'Family Function Assignments'.'Arrangement UID'
-	toColumn: Arrangements.'Arrangement UID'
-
-relationship AutoDetected_3695053e-fd8b-42ee-9a64-15888710f2e0
-	fromColumn: 'Individual Function Assignments'.'Arrangement UID'
-	toColumn: Arrangements.'Arrangement UID'
-
-relationship 2a3e0428-b49a-e786-aebd-1f395ef8b4e8
-	fromColumn: Cases.'Close Reason'
-	toColumn: 'Close Reason'.Reason
-
-relationship 5eb837b4-c43e-0ebd-b5ba-9c53fbfd0828
+relationship AutoDetected_288ea397-c5ef-425b-9ff7-467e08956d6b
 	crossFilteringBehavior: bothDirections
 	fromCardinality: one
-	fromColumn: 'Family Requirements Classification'.'Family UID'
-	toColumn: Family.'Family UID'
+	fromColumn: 'Volunteer Person Referral Role Assignment'.referral_uid
+	toColumn: Referrals.referral_uid
 
-relationship 1c6c6f33-c4ef-5cc3-9674-fb5be9b84963
+relationship e14393be-7a89-c812-2be5-1f807b01a471
+	fromColumn: Arrangement.person_uid
+	toColumn: 'Client Person'.person_uid
+
+relationship 8910f4a3-096c-cbb2-4c9f-4cd04bcfe484
+	fromColumn: Arrangement.type_uid
+	toColumn: 'Arrangement Type'.type_uid
+
+relationship 9518c83f-2bd0-f870-74e3-7333528e7e1d
+	isActive: false
 	crossFilteringBehavior: bothDirections
-	securityFilteringBehavior: bothDirections
-	fromColumn: 'Family Requirement Status'.'Family UID'
-	toColumn: 'Family Requirements Classification'.'Family UID'
+	toCardinality: many
+	fromColumn: Arrangement.location_id
+	toColumn: Location.location_id
 
-relationship 65ed786a-9337-7c7b-fe99-7185dddb6615
+relationship 89a6dfc0-c3bc-e4a2-aac2-00d65f341879
+	fromColumn: 'Volunteer Family Function Assignment'.arrangement_uid
+	toColumn: Arrangement.arrangement_uid
+
+relationship 887bc40b-2347-d051-0c06-5f341364a44d
+	fromColumn: 'Volunteer Person Function Assignment'.arrangement_uid
+	toColumn: Arrangement.arrangement_uid
+
+relationship 67f275b6-3967-919a-0303-bb382ab4b0c5
+	isActive: false
+	fromColumn: Arrangement.case_uid
+	toColumn: Cases.case_uid
+
+relationship f50f6fa9-04b1-836b-9f93-fd926a8e150f
+	isActive: false
 	crossFilteringBehavior: bothDirections
-	fromCardinality: one
-	fromColumn: Person.'Person UID'
-	toColumn: 'Individual Requirements Classification'.'Person UID'
+	toCardinality: many
+	fromColumn: 'Child Location Record'.location_id
+	toColumn: Location.location_id
 
-relationship fc017153-74eb-600f-b706-326e5429b5cc
+relationship a36823cf-21b6-d1e6-3fdd-3d32647f52f4
+	fromColumn: 'Child Location Record'.arrangement_uid
+	toColumn: Arrangement.arrangement_uid
+
+relationship b0a4c5d7-398a-9d43-1c61-1a156b24d64b
+	isActive: false
 	crossFilteringBehavior: bothDirections
-	fromColumn: 'Individual Requirement Status'.'Person UID'
-	toColumn: 'Individual Requirements Classification'.'Person UID'
+	toCardinality: many
+	fromColumn: 'Child Location Record Expanded'.location_id
+	toColumn: Location.location_id
 
-relationship 7defcc5e-23db-5306-923b-a9db0a56cdc6
-	fromColumn: ChildLocationExpanded.Date
-	toColumn: Date.Date
+relationship 731b2826-e08a-9686-b9ed-c657b1f29fb6
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Community.location_id
+	toColumn: Location.location_id
 
-relationship 6258b247-91eb-1566-13a4-193073f6ec52
-	fromColumn: ChildLocationExpanded.Index
-	toColumn: 'Child Location Record'.Index
+relationship 1a8051d1-bcfe-a249-c93f-b4f34592bbba
+	fromColumn: 'Volunteer Family Role Approval'.status
+	toColumn: 'Approval Status'.status
+
+relationship 31e14933-f148-0045-9edf-cbaeca353909
+	fromColumn: 'Volunteer Family Role Approval'.role_uid
+	toColumn: Role.role_uid
+
+relationship 8d158940-5826-5732-aa56-979c776ec27e
+	fromColumn: 'Volunteer Family Role Approval'.family_uid
+	toColumn: 'Volunteer Family'.family_uid
+
+relationship 929a249b-f48a-6647-300c-5dcdacbdf140
+	fromColumn: 'Volunteer Person Role Approval'.role_uid
+	toColumn: Role.role_uid
+
+relationship 2bae5dd6-4815-3d74-1771-52e50f582be7
+	fromColumn: 'Volunteer Person Role Approval'.person_uid
+	toColumn: 'Volunteer Person'.person_uid
+
+relationship 0eb9e3a1-20d9-7f12-b282-9acfca9d8804
+	fromColumn: 'Volunteer Person Role Approval'.status
+	toColumn: 'Approval Status'.status
+
+relationship 04965fb8-43a3-c563-7bf1-28dac0991279
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Volunteer Family Role Approval'.location_id
+	toColumn: Location.location_id
+
+relationship 1cdf0e1f-9cc5-69df-5e69-6b244302197f
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Referrals.location_id
+	toColumn: Location.location_id
+
+relationship adcb32b5-2213-d4a4-36c7-ef461d73d019
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Volunteer Person Role Approval'.location_id
+	toColumn: Location.location_id
+
+relationship AutoDetected_bb45f887-ca5c-4994-aef8-5d37faa10a9b
+	isActive: false
+	fromColumn: 'Child Location Record Expanded'.index
+	toColumn: Arrangement.index
+
+relationship f3e21f9d-bb86-60d2-da8b-427810c4162c
+	fromColumn: 'Volunteer Family Role Requirements'.family_uid
+	toColumn: 'Volunteer Family'.family_uid
+
+relationship 72955e01-8847-4bb5-4332-bbf13e81eb78
+	fromColumn: 'Volunteer Person Role Requirements'.person_uid
+	toColumn: 'Volunteer Person'.person_uid
+
+relationship 2ed47ada-d993-a6ef-c3ec-70fa0e3cc33b
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Volunteer Family Role Requirements'.location_id
+	toColumn: Location.location_id
+
+relationship 3868c7ed-f704-4cf4-dc4b-ccdeeae6f93b
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Volunteer Person Role Requirements'.location_id
+	toColumn: Location.location_id
 

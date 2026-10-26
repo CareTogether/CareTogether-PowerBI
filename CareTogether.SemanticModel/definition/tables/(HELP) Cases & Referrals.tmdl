@@ -1,0 +1,1316 @@
+table '(HELP) Cases & Referrals'
+	lineageTag: 3d7c070f-72c6-48c2-99da-83c91b2143a8
+
+	measure '(HTML) Help - Cases Opened' =
+			
+			"
+			<div style='
+			    width:100%;
+			    box-sizing:border-box;
+			    padding:18px;
+			
+			    font-family:Arial,sans-serif;
+			    color:#333333;
+			    background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='
+			        display:flex;
+			        align-items:center;
+			        gap:8px;
+			        margin-bottom:14px;
+			    '>
+			
+			        <div style='
+			            width:22px;
+			            height:22px;
+			            flex:0 0 22px;
+			
+			            display:flex;
+			            align-items:center;
+			            justify-content:center;
+			
+			            background:#F2F2F2;
+			            border-radius:50%;
+			
+			            font-size:12px;
+			            font-weight:700;
+			            color:#333333;
+			        '>
+			            i
+			        </div>
+			
+			        <div style='
+			            font-size:15px;
+			            font-weight:700;
+			            line-height:1.2;
+			        '>
+			            Cases Opened
+			        </div>
+			
+			    </div>
+			
+			
+			    <!-- DESCRIPTION -->
+			    <div style='
+			        font-size:11px;
+			        font-weight:400;
+			        line-height:1.5;
+			        margin-bottom:16px;
+			    '>
+			        Shows the number of <b>Cases opened during the selected timeframe</b>.
+			    </div>
+			
+			
+			    <!-- COHORT LOGIC -->
+			    <div style='
+			        font-size:10px;
+			        font-weight:700;
+			        text-transform:uppercase;
+			        letter-spacing:0.5px;
+			        color:#666666;
+			        margin-bottom:6px;
+			    '>
+			        How do the Case metrics work?
+			    </div>
+			
+			    <div style='
+			        font-size:11px;
+			        font-weight:400;
+			        line-height:1.5;
+			        margin-bottom:16px;
+			    '>
+			        The selected timeframe first identifies the Cases that were
+			        <b>opened during that period</b>. The other Case metrics then
+			        describe what happened to this same group of Cases.
+			    </div>
+			
+			
+			    <!-- EXAMPLE -->
+			    <div style='
+			        width:100%;
+			        box-sizing:border-box;
+			
+			        background:#F5F5F5;
+			        border-radius:7px;
+			
+			        padding:11px 12px;
+			    '>
+			
+			        <div style='
+			            font-size:10px;
+			            font-weight:700;
+			            color:#333333;
+			            margin-bottom:5px;
+			        '>
+			            Example: January selected
+			        </div>
+			
+			        <div style='
+			            font-size:10px;
+			            font-weight:400;
+			            line-height:1.5;
+			            color:#555555;
+			        '>
+			            We first identify all <b>Cases opened in January</b>.
+			            From that same group, we can then see how many were closed,
+			            how many families had Cases, and other related Case metrics.
+			        </div>
+			
+			    </div>
+			
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;
+			        padding-top:12px;
+			
+			        border-top:1px solid #E5E5E5;
+			
+			        font-size:10px;
+			        line-height:1.45;
+			        color:#666666;
+			    '>
+			        <b>In short:</b> the Case Open Date determines the group
+			        of Cases being analyzed.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: d49c62a7-2f56-4cc3-b3bd-0a3607fa223c
+
+	measure '(HTML) Help - Cases Closed' = ```
+			
+			"
+			<div style='
+			    width:100%;
+			    height:100%;
+			    box-sizing:border-box;
+			    padding:18px;
+			    font-family:Arial,sans-serif;
+			    color:#333333;
+			    background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='
+			        display:flex;
+			        align-items:center;
+			        gap:8px;
+			        margin-bottom:14px;
+			    '>
+			        <div style='
+			            width:22px;
+			            height:22px;
+			            flex:0 0 22px;
+			            display:flex;
+			            align-items:center;
+			            justify-content:center;
+			            background:#F2F2F2;
+			            border-radius:50%;
+			            font-size:12px;
+			            font-weight:700;
+			        '>i</div>
+			
+			        <div style='
+			            font-size:15px;
+			            font-weight:700;
+			            line-height:1.2;
+			        '>
+			            Cases Closed
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='
+			        font-size:11px;
+			        line-height:1.5;
+			        margin-bottom:16px;
+			    '>
+			        Shows how many Cases were <b>closed during the selected
+			        timeframe</b>, regardless of when they were opened.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='
+			        font-size:10px;
+			        font-weight:700;
+			        text-transform:uppercase;
+			        letter-spacing:0.5px;
+			        color:#666666;
+			        margin-bottom:6px;
+			    '>
+			        How is it calculated?
+			    </div>
+			
+			    <div style='
+			        font-size:11px;
+			        line-height:1.5;
+			        margin-bottom:16px;
+			    '>
+			        Cases are counted using their <b>Close Date</b>.
+			        Each Case is counted once if its closing date falls
+			        within the selected timeframe.
+			    </div>
+			
+			    <!-- EXAMPLE -->
+			    <div style='
+			        width:100%;
+			        box-sizing:border-box;
+			        background:#F5F5F5;
+			        border-radius:7px;
+			        padding:11px 12px;
+			    '>
+			        <div style='
+			            font-size:10px;
+			            font-weight:700;
+			            margin-bottom:5px;
+			        '>
+			            Example: January selected
+			        </div>
+			
+			        <div style='
+			            font-size:10px;
+			            line-height:1.5;
+			            color:#555555;
+			        '>
+			            If 80 Cases were closed in January, including Cases
+			            opened in previous months, this metric shows
+			            <b>80</b>.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;
+			        padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;
+			        line-height:1.45;
+			        color:#666666;
+			    '>
+			        <b>Important:</b> Cases closed during the selected timeframe
+			        may have been opened in an earlier period. This metric
+			        measures closures independently of Case openings.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: 36f63626-646f-472b-a220-8cf11d4192b3
+
+	measure '(HTML) Help - Families with Cases' =
+			
+			"
+			<div style='
+			    width:100%;
+			    height:100%;
+			    box-sizing:border-box;
+			    padding:18px;
+			    font-family:Arial,sans-serif;
+			    color:#333333;
+			    background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Families with Cases
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the number of <b>unique Client Families</b> represented
+			        among the Cases opened during the selected timeframe.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is it calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        We first identify the Cases opened during the selected period,
+			        then count the <b>distinct families associated with those Cases</b>.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;
+			        padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Why can this be lower than Cases Opened?
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            A family may have more than one Case over time. The family
+			            is counted only once within the selected group, even when
+			            multiple Cases are associated with it.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Remember:</b> the group is still determined by the
+			        <b>Case Open Date</b>.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 70998de0-6426-4225-aa9d-58ebbe523bda
+
+	measure '(HTML) Help - Referrals Created' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Referrals Created
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the number of <b>Referrals created during the selected
+			        timeframe</b>.
+			    </div>
+			
+			    <!-- LOGIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How do the Referral metrics work?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        The selected timeframe first identifies the Referrals that were
+			        <b>created during that period</b>. Related Referral metrics can
+			        then describe what happened to this same group.
+			    </div>
+			
+			    <!-- EXAMPLE -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Example: January selected
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            We identify the Referrals created in January and can then
+			            follow the outcomes associated with that group.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>In short:</b> Referral Created Date determines the
+			        group of Referrals being analyzed.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: b9d6c33c-efa9-4556-a103-1f74c028190c
+
+	measure '(HTML) Help - Referrals Accepted' = ```
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Referrals Accepted
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows how many Referrals were <b>accepted during the
+			        selected timeframe</b>, regardless of when they were created.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is it calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Referrals are counted using their <b>Accepted Date</b>.
+			        Each Referral is counted once if its acceptance date
+			        falls within the selected timeframe.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            What does Accepted mean?
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            An accepted Referral has progressed through Intake and
+			            was accepted for further service or Case activity.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Important:</b> Referrals accepted during the selected
+			        timeframe may have been created in an earlier period.
+			        Acceptance does not create an additional Referral.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: 801a13bf-47be-496d-8c67-6fb099bd63a7
+
+	measure '(HTML) Help - Families Referred' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Families Referred
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the number of <b>unique Client Families</b> associated
+			        with Referrals created during the selected timeframe.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is it calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        We first identify the Referrals created during the selected
+			        period, then count the <b>distinct families</b> associated
+			        with those Referrals.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Why can this be lower than Referrals Created?
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            The same family can have more than one Referral. Each
+			            family is counted only once within the selected group.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Remember:</b> this is a count of families, not Referrals.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: d0177280-2205-4b5c-a7e9-feafc65e079c
+
+	measure '(HTML) Help - Over Time' = ```
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Cases and Referrals Over Time
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows how the volume of <b>Cases Opened</b> and
+			        <b>Referrals Created</b> has changed over time.
+			    </div>
+			
+			    <!-- CHART -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        What does the chart show?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Cases are grouped according to their <b>Open Date</b>,
+			        while Referrals are grouped according to their
+			        <b>Created Date</b>.
+			    </div>
+			
+			    <!-- NAVIGATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How to explore the timeline
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:14px;'>
+			        Move your mouse over the chart. A toolbar will appear
+			        in the <b>top-right corner</b>, allowing you to navigate
+			        between <b>Year, Month and Day</b> levels.
+			    </div>
+			
+			    <!-- DRILL UP -->
+			    <div style='
+			        display:flex;align-items:center;gap:12px;
+			        margin-bottom:14px;
+			    '>
+			
+			        <div style='
+			            width:36px;height:36px;flex:0 0 36px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F5F5F5;border-radius:5px;
+			        '>
+			            <svg width='24' height='24' viewBox='0 0 24 24'
+			                 fill='none' stroke='#45B9C8'
+			                 stroke-width='1.3'
+			                 stroke-linecap='square'
+			                 stroke-linejoin='miter'>
+			                <path d='M12 21V3 M4 11L12 3L20 11'/>
+			            </svg>
+			        </div>
+			
+			        <div style='font-size:11px;line-height:1.5;'>
+			            <b>Drill Up</b><br/>
+			            Click the upward arrow to move to a higher
+			            level of the hierarchy:
+			            <b>Day → Month → Year</b>.
+			        </div>
+			
+			    </div>
+			
+			    <!-- EXPAND ALL -->
+			    <div style='
+			        display:flex;align-items:center;gap:12px;
+			        margin-bottom:16px;
+			    '>
+			
+			        <div style='
+			            width:36px;height:36px;flex:0 0 36px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F5F5F5;border-radius:5px;
+			        '>
+			            <svg width='24' height='24' viewBox='0 0 24 24'
+			                 fill='none' stroke='#45B9C8'
+			                 stroke-width='1.3'
+			                 stroke-linecap='square'
+			                 stroke-linejoin='miter'>
+			                <path d='M12 3V10
+			                         M5 10H19
+			                         M5 10V20
+			                         M19 10V20
+			                         M1 16L5 20L9 16
+			                         M15 16L19 20L23 16'/>
+			            </svg>
+			        </div>
+			
+			        <div style='font-size:11px;line-height:1.5;'>
+			            <b>Expand All Down One Level</b><br/>
+			            Click the branching downward arrow to expand
+			            the hierarchy:
+			            <b>Year → Month → Day</b>,
+			            keeping previous levels visible.
+			        </div>
+			
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;
+			        padding:11px 12px;
+			    '>
+			
+			        <div style='
+			            font-size:10px;font-weight:700;margin-bottom:5px;
+			        '>
+			            Use this chart to compare activity
+			        </div>
+			
+			        <div style='
+			            font-size:10px;line-height:1.5;color:#555555;
+			        '>
+			            Compare the number of new Cases and Referrals across
+			            different periods to identify changes in service demand
+			            and activity over time.
+			        </div>
+			
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> this chart represents when Cases and Referrals
+			        entered the workflow, not their current status.
+			        Navigating the date hierarchy does not change the
+			        selected report timeframe.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: ce9429b9-2e77-47e3-949d-796af7c7ac7b
+
+	measure '(HTML) Help - Referrals by Status' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Referrals by Status
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the <b>current status distribution</b> of the Referrals
+			        included in the current report context.
+			    </div>
+			
+			    <!-- STATUS -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        What do the statuses represent?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Referrals are grouped by their current workflow status,
+			        such as <b>Closed</b>, <b>Accepted</b>, or <b>Open</b>.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to read this chart
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use the chart to understand how the Referral population
+			            is currently distributed across the different stages
+			            of the workflow.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Tip:</b> percentages show each status as a share of the
+			        Referral population currently displayed.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: a4f3e6d6-1c1d-4646-8959-517bfebdf17c
+
+	measure '(HTML) Help - Cases by Family Type' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Cases by Family Type
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows how Cases are distributed between <b>New Families</b>
+			        and <b>Returning Families</b>.
+			    </div>
+			
+			    <!-- DEFINITION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        What does Family Type mean?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        This classification helps distinguish Cases involving families
+			        entering the Case process for the first time from those involving
+			        families that have previously had a Case.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            New vs. Returning
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            <b>New Family</b> represents the family's first Case.
+			            <br>
+			            <b>Returning Family</b> represents a family with prior
+			            Case history.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> this classification is based on the family's
+			        Case history, not simply on whether the family itself is new
+			        to the system.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 8520e75b-869f-482b-884f-25ce6beaf981
+
+	measure '(HTML) Help - Primary Reason for Referral' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Primary Reason for Referral
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the primary needs or circumstances that led families
+			        to be <b>referred for support</b>.
+			    </div>
+			
+			    <!-- CHART -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        What does the chart show?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each category represents the <b>Primary Reason for Referral</b>
+			        recorded for a Referral. The bars show how frequently each
+			        reason appears in the current report context.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            What can this tell us?
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use this chart to identify the most common needs driving
+			            Referrals and understand the circumstances bringing
+			            families into the service process.
+			        </div>
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: c643899c-ad60-44bc-a05f-1e1afd68c300
+
+	measure '(HTML) Help - Case Close Reason' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Case Close Reason
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the recorded reasons why <b>Cases were closed</b>.
+			    </div>
+			
+			    <!-- CHART -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        What does the table show?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each row represents a Case Close Reason and the number of
+			        Cases associated with that reason.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to use this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use the distribution to understand the most common
+			            outcomes or circumstances associated with Case closure.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> these are reasons recorded at the Case level
+			        and are separate from Referral Close Reasons.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: d31a2718-fc4c-4a1d-bbb8-548f99349a35
+
+	measure '(HTML) Help - Referral Close Reason' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Referral Close Reason
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the recorded reasons why <b>Referrals were closed</b>.
+			    </div>
+			
+			    <!-- TABLE -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        What does the table show?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each row represents a Referral Close Reason and the number
+			        of Referrals associated with that reason.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to use this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use this distribution to understand why Referrals leave
+			            the Referral workflow and which closure reasons occur
+			            most frequently.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Referral Close Reasons describe the Referral
+			        workflow and are separate from Case Close Reasons.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 9f8e0f17-c59b-4d9b-969b-d24743afc87a
+
+	measure '(HTML) Help - Cases Details' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Cases Details
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Provides a detailed view of the <b>Cases included in the
+			        current report context</b>.
+			    </div>
+			
+			    <!-- TABLE -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        What does the table show?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each row represents a Case and provides information such as
+			        the Client Family, Referral Source, Reason for Referral,
+			        Open Date, and Close Date.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Why can a family appear more than once?
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            A Client Family can have multiple Cases over time.
+			            Therefore, the same family may appear in more than one row
+			            when multiple Cases are included in the current selection.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Tip:</b> use this table to inspect the individual records
+			        behind the aggregated Case metrics shown above.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 7cfa8860-7f6e-4d57-aaa1-8b58ce3a74da
+
+	measure '(HTML) Help - Referrals Details' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Referrals Details
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Provides a detailed view of the <b>Referrals included in
+			        the current report context</b>.
+			    </div>
+			
+			    <!-- TABLE -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        What does the table show?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each row represents a Referral and provides information such
+			        as the Client Family, Referral Title, Status, Created Date,
+			        Accepted Date, and Closed Date.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Referrals and Cases are different records
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            A Referral represents the intake or referral process.
+			            It may progress into Case activity, but Referrals and
+			            Cases remain separate records in the system.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Tip:</b> use this table to inspect the individual records
+			        behind the aggregated Referral metrics shown above.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 07dab37b-dc40-415d-a35e-c478aca350d2
+
+	measure 'Info Button' = "ⓘ"
+		displayFolder: Measures
+		lineageTag: 35e9aa72-096d-427b-b3c4-ed0a82e46dc6
+
+	measure '(HTML) Help - Dynamic Pop-up - Cases & Referrals' =
+			
+			VAR HelpID =
+			    SELECTEDVALUE(
+			        '(HELP) Cases & Referrals'[Help ID]
+			    )
+			
+			RETURN
+			    SWITCH(
+			        HelpID,
+			
+			        "CASES_OPENED",
+			            [(HTML) Help - Cases Opened],
+			
+			        "CASES_CLOSED",
+			            [(HTML) Help - Cases Closed],
+			
+			        "FAMILIES_WITH_CASES",
+			            [(HTML) Help - Families with Cases],
+			
+			        "REFERRALS_CREATED",
+			            [(HTML) Help - Referrals Created],
+			
+			        "REFERRALS_ACCEPTED",
+			            [(HTML) Help - Referrals Accepted],
+			
+			        "FAMILIES_REFERRED",
+			            [(HTML) Help - Families Referred],
+			
+			        "OVER_TIME",
+			            [(HTML) Help - Over Time],
+			
+			        "REFERRALS_BY_STATUS",
+			            [(HTML) Help - Referrals by Status],
+			
+			        "CASES_BY_FAMILY_TYPE",
+			            [(HTML) Help - Cases by Family Type],
+			
+			        "PRIMARY_REASON_FOR_REFERRAL",
+			            [(HTML) Help - Primary Reason for Referral],
+			
+			        "CASE_CLOSE_REASON",
+			            [(HTML) Help - Case Close Reason],
+			
+			        "REFERRAL_CLOSE_REASON",
+			            [(HTML) Help - Referral Close Reason],
+			
+			        "CASES_DETAILS",
+			            [(HTML) Help - Cases Details],
+			
+			        "REFERRALS_DETAILS",
+			            [(HTML) Help - Referrals Details],
+			
+			        BLANK()
+			    )
+		displayFolder: Measures
+		lineageTag: bd023146-004d-49f6-8522-5aece1ab932b
+
+	column 'Help ID'
+		lineageTag: db3e1939-f5d6-4102-9e83-e4c9c37d1b1b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Help ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '(HELP) Cases & Referrals' = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Help ID", STRING,
+				    {
+				        {"CASES_OPENED"},
+				        {"CASES_CLOSED"},
+				        {"FAMILIES_WITH_CASES"},
+				        {"REFERRALS_CREATED"},
+				        {"REFERRALS_ACCEPTED"},
+				        {"FAMILIES_REFERRED"},
+				        {"OVER_TIME"},
+				        {"REFERRALS_BY_STATUS"},
+				        {"CASES_BY_FAMILY_TYPE"},
+				        {"PRIMARY_REASON_FOR_REFERRAL"},
+				        {"CASE_CLOSE_REASON"},
+				        {"REFERRAL_CLOSE_REASON"},
+				        {"CASES_DETAILS"},
+				        {"REFERRALS_DETAILS"}
+				    }
+				)
+
+	annotation PBI_Id = 0d58cb598c094b10b0c4039c973252ba
+

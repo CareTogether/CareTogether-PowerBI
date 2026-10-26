@@ -1,166 +1,500 @@
 table Referrals
-	lineageTag: 827d0073-eb4c-48e2-b555-4d0ceee7ce76
+	lineageTag: 19bd5638-a230-4a8a-b0b1-d46d4070d28d
 
-	measure '# of Families Referred' =
+	measure '# of Referrals Created CP' =
 			
+			/*
+			CP = Current Period
+			Counts the number of Referrals created within the selected timeframe.
+			*/
 			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
 			CALCULATE(
-			    DISTINCTCOUNTNOBLANK('Referrals'[Family UID]),
-			    FILTER(
-			        'Referrals',
-			        AND(
-			            'Referrals'[AcceptedAtUtc] >= [Selected Timeframe Start],
-			            'Referrals'[AcceptedAtUtc] <= [Selected Timeframe End]
+			    COUNTROWS('Referrals'),
+			    'Referrals'[created_utc] >= selectedStartDate,
+			    'Referrals'[created_utc] < selectedEndDate + 1,
+			    USERELATIONSHIP('Referrals'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: 73af666a-279e-474b-9e38-c99b68d78c69
+
+	measure '# of Referrals Created PP' =
+			
+			/*
+			PP = Previous Period
+			Counts the number of Referrals created during the period immediately preceding the selected timeframe.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS('Referrals'),
+			    'Referrals'[created_utc] >= previousStartDate,
+			    'Referrals'[created_utc] < previousEndDate + 1,
+			    USERELATIONSHIP('Referrals'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: 8ea54ea0-bbbd-4e70-9b67-941b8f840a0c
+
+	measure '# of Referrals Created PoP' =
+			
+			VAR currentPeriod = [# of Referrals Created CP]
+			VAR previousPeriod = [# of Referrals Created PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 7420d2aa-fd5e-457c-a48a-e5417dda5999
+
+	measure '# of Referrals Accepted CP' = ```
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of Referrals accepted within the selected
+			timeframe, regardless of when they were created.
+			
+			The selected timeframe is applied to the Referral Acceptance Date.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('Referrals'[referral_id]),
+			    'Referrals'[accepted_utc] >= selectedStartDate,
+			    'Referrals'[accepted_utc] < selectedEndDate + 1,
+			    NOT ISBLANK('Referrals'[accepted_utc]),
+			    USERELATIONSHIP('Referrals'[location_id], Location[location_id])
+			)
+			
+			```
+		formatString: #,0
+		lineageTag: 76a067c4-1b13-4a60-b494-110893d7399e
+
+	measure '# of Referrals Accepted PP' = ```
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of Referrals accepted during the previous
+			equivalent period, regardless of when they were created.
+			
+			The previous timeframe is applied to the Referral Acceptance Date.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			
+			VAR periodDays =
+			    DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			
+			VAR previousStartDate =
+			    currentStartDate - periodDays
+			
+			VAR previousEndDate =
+			    currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('Referrals'[referral_id]),
+			    'Referrals'[accepted_utc] >= previousStartDate,
+			    'Referrals'[accepted_utc] < previousEndDate + 1,
+			    NOT ISBLANK('Referrals'[accepted_utc]),
+			    USERELATIONSHIP('Referrals'[location_id], Location[location_id])
+			)
+			
+			```
+		formatString: #,0
+		lineageTag: 5a747f92-0901-4f6e-9c24-3e523565f11e
+
+	measure '# of Referrals Accepted PoP' =
+			
+			VAR currentPeriod = [# of Referrals Accepted CP]
+			VAR previousPeriod = [# of Referrals Accepted PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 1b3cc45f-0ebe-4b78-8942-e14a271f171c
+
+	measure '# of Families Connected CP' =
+			
+			/*
+			CP = Current Period
+			Counts unique Families associated with Referrals created within the selected timeframe.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('Referrals'[family_id]),
+			    'Referrals'[created_utc] >= selectedStartDate,
+			    'Referrals'[created_utc] < selectedEndDate + 1,
+			    NOT ISBLANK('Referrals'[family_id]),
+			    USERELATIONSHIP('Referrals'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: fac84eb8-b35b-4df2-b86d-84729afd9ac1
+
+	measure '# of Families Connected PP' =
+			
+			/*
+			PP = Previous Period
+			Counts unique Families associated with Referrals created during the previous equivalent period.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('Referrals'[family_id]),
+			    'Referrals'[created_utc] >= previousStartDate,
+			    'Referrals'[created_utc] < previousEndDate + 1,
+			    NOT ISBLANK('Referrals'[family_id]),
+			    USERELATIONSHIP('Referrals'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: 901855f2-2a70-46a2-97f6-76f78ab2e1b1
+
+	measure '# of Families Connected PoP' =
+			
+			VAR currentPeriod = [# of Families Connected CP]
+			VAR previousPeriod = [# of Families Connected PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 814fac65-439d-4bac-81e9-eccd405840fe
+
+	column referral_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f1eea612-4a2b-46b3-85a0-c483667af01a
+		summarizeBy: none
+		sourceColumn: referral_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: ecc4faf1-9bd2-40a3-83ee-898a24454e54
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f85650b5-b64d-4dc2-a5fb-2c87be26b091
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 2eadf988-13fe-4fd0-8747-f98f870ad8c3
+		summarizeBy: none
+		sourceColumn: family_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column case_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 4ae0ffc9-7261-418e-b07a-34eee8dda052
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_utc
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		displayFolder: _columns
+		lineageTag: 60e0d86f-ed6d-4ab3-8617-8b6d6e9222e8
+		summarizeBy: none
+		sourceColumn: created_utc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column accepted_utc
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		displayFolder: _columns
+		lineageTag: 6aaaa92c-ba63-44fd-a962-b260a4e44f88
+		summarizeBy: none
+		sourceColumn: accepted_utc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column closed_utc
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		displayFolder: _columns
+		lineageTag: aa0acf7f-8f55-4c47-9660-2d54fb49e876
+		summarizeBy: none
+		sourceColumn: closed_utc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column title
+		dataType: string
+		displayFolder: _columns
+		lineageTag: aaf4cfb3-d1d8-4823-b833-60658072794b
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		displayFolder: _columns
+		lineageTag: ee891f3d-ca95-4382-aa0f-22c4df98c0f9
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column comment
+		dataType: string
+		displayFolder: _columns
+		lineageTag: ac0c053a-ed72-4a68-95d5-e9ba7ac8b4a2
+		summarizeBy: none
+		sourceColumn: comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column close_reason
+		dataType: string
+		displayFolder: _columns
+		lineageTag: a550792e-e446-4db5-a55c-908a8b70b5f0
+		summarizeBy: none
+		sourceColumn: close_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: d39f1774-e3e0-448f-becc-0b3541ef3eb4
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 370ddb29-6d86-489e-8cfa-86fcd7fd2152
+		summarizeBy: none
+		sourceColumn: family_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column case_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: b7ea6d54-7241-45b8-85e9-df6c1e274554
+		summarizeBy: none
+		sourceColumn: case_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column close_reason_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: a65ee8a5-ebc4-4654-9064-15a0156a7ec7
+		summarizeBy: none
+		sourceColumn: close_reason_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column referral_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 9015fcf0-11ad-4ab8-a910-b1208ae92376
+		summarizeBy: none
+		sourceColumn: referral_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Referral Volunteer Role Assignment' =
+			
+			VAR personRoles =
+			    DISTINCT(
+			        SELECTCOLUMNS(
+			            RELATEDTABLE('Volunteer Person Referral Role Assignment'),
+			            "Person", 'Volunteer Person Referral Role Assignment'[person_name],
+			            "Role", 'Volunteer Person Referral Role Assignment'[role]
 			        )
 			    )
+			
+			RETURN
+			CONCATENATEX(
+			    personRoles,
+			    [Person] & " (" & [Role] & ")",
+			    UNICHAR(10),
+			    [Person],
+			    ASC
 			)
-		formatString: 0
-		lineageTag: 8fc9926f-9251-4552-a3e8-cc01d8ea5732
-
-	measure '# of Referrals Opened' =
-			COUNTROWS(
-			    FILTER(
-			        'Referrals',
-			        AND(
-			            'Referrals'[CreatedAtUtc] >= [Selected Timeframe Start],
-			            'Referrals'[CreatedAtUtc] <= [Selected Timeframe End]
-			        )
-			    )
-			)
-		formatString: 0
-		lineageTag: 2acaa842-3752-4068-9908-f0aaea1ca367
-
-	column ReferralId
-		dataType: string
-		displayFolder: _columns
-		lineageTag: c85494b1-4f59-4fdb-8b7e-3872c464fc2e
+		displayFolder: _calculated_columns
+		lineageTag: b3f38aa5-2ea5-42c2-9746-fa146a9263f0
 		summarizeBy: none
-		sourceColumn: ReferralId
 
 		annotation SummarizationSetBy = Automatic
 
-	column CreatedAtUtc
-		dataType: dateTime
-		formatString: General Date
-		displayFolder: _columns
-		lineageTag: 10d8a3f3-fcfa-4d63-8df9-2106733e9b49
+	column 'Client Family Name' = LOOKUPVALUE('Client Family'[family_name], 'Client Family'[family_id], Referrals[family_id])
+		displayFolder: _calculated_columns
+		lineageTag: 03b64610-df29-4d51-b120-97828d05cb9a
 		summarizeBy: none
-		sourceColumn: CreatedAtUtc
-
-		annotation SummarizationSetBy = Automatic
-
-	column Title
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 2aea02b2-ca85-4a23-ae67-348af516819c
-		summarizeBy: none
-		sourceColumn: Title
-
-		annotation SummarizationSetBy = Automatic
-
-	column Status
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 1360bfa6-06fb-49eb-a44f-9c8db0f1b9fb
-		summarizeBy: none
-		sourceColumn: Status
-
-		annotation SummarizationSetBy = Automatic
-
-	column Comment
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 5ba095b0-fa96-4e02-ae6a-aea2142549c3
-		summarizeBy: none
-		sourceColumn: Comment
-
-		annotation SummarizationSetBy = Automatic
-
-	column AcceptedAtUtc
-		dataType: dateTime
-		formatString: General Date
-		displayFolder: _columns
-		lineageTag: d52a4d03-5991-44a1-8ddc-577726467fad
-		summarizeBy: none
-		sourceColumn: AcceptedAtUtc
-
-		annotation SummarizationSetBy = Automatic
-
-	column ClosedAtUtc
-		dataType: dateTime
-		formatString: General Date
-		displayFolder: _columns
-		lineageTag: d48e174b-55cd-4fa7-bcf1-467d89cbccdb
-		summarizeBy: none
-		sourceColumn: ClosedAtUtc
-
-		annotation SummarizationSetBy = Automatic
-
-	column CloseReason
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 2f837136-a8a7-42af-805b-9e6fcf1f86d1
-		summarizeBy: none
-		sourceColumn: CloseReason
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'RLS Key'
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 8100b894-a686-472e-8b13-dbaca1dbcadd
-		summarizeBy: none
-		sourceColumn: RLS Key
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Family UID'
-		dataType: string
-		displayFolder: _columns
-		lineageTag: aa69459a-1de3-4605-98ad-c4ab9bab1407
-		summarizeBy: none
-		sourceColumn: Family UID
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Case UID'
-		dataType: string
-		displayFolder: _columns
-		lineageTag: a22a2e12-0fbd-4d0f-9653-ddf4bbdc3eb8
-		summarizeBy: none
-		sourceColumn: Case UID
 
 		annotation SummarizationSetBy = Automatic
 
 	partition Referrals = m
 		mode: import
-		queryGroup: Fact
-		source = ```
+		queryGroup: Facts
+		source =
 				let
-				    Source = #"OData Live",
-				    Referral = Source{[Name="Referrals", Signature="table"]}[Data],
+				  Source = #"OData",
+				  Referrals = Source{[Name="Referrals", Signature="table"]}[Data],
 				
-				    ReferralFinal = 
-				    Table.SelectColumns(
-				        Table.AddColumn(
-				            Table.AddColumn(
-				                Table.AddColumn(
-				                    Referral,
-				                    "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
-				                ),
-				                "Family UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
-				            ),
-				            "Case UID", each Text.Combine({[RLS Key], [CaseId]}, "-")
-				        ),
-				        {"RLS Key", "Family UID", "ReferralId", "Case UID", "CreatedAtUtc", "AcceptedAtUtc", "ClosedAtUtc", "Title", "Status", "Comment", "CloseReason"}
-				    )
+				  selectColumns = Table.SelectColumns(
+				    Referrals,
+				    {
+				      "ReferralId",
+				      "OrganizationId",
+				      "LocationId",
+				      "FamilyId",
+				      "CaseId",
+				      "CreatedAtUtc",
+				      "AcceptedAtUtc",
+				      "ClosedAtUtc",
+				      "Title",
+				      "Status",
+				      "Comment",
+				      "CloseReason"
+				    }
+				  ),
 				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"ReferralId", "referral_id"},
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"FamilyId", "family_id"},
+				      {"CaseId", "case_id"},
+				      {"CreatedAtUtc", "created_utc"},
+				      {"AcceptedAtUtc", "accepted_utc"},
+				      {"ClosedAtUtc", "closed_utc"},
+				      {"Title", "title"},
+				      {"Status", "status"},
+				      {"Comment", "comment"},
+				      {"CloseReason", "close_reason"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				      renameColumns,
+				      "rls_key",
+				      each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addReferralUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "referral_uid",
+				      each
+				          if [referral_id] <> null then
+				              Text.Combine({[rls_key], "-", [referral_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  addCaseUniqueKey = Table.AddColumn(
+				      addReferralUniqueKey,
+				      "case_uid",
+				      each
+				          if [case_id] <> null then
+				              Text.Combine({[rls_key], "-", [case_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  addFamilyUniqueKey = Table.AddColumn(
+				      addCaseUniqueKey,
+				      "family_uid",
+				      each
+				          if [family_id] <> null then
+				              Text.Combine({[rls_key], "-", [family_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  properCaseCloseReason = Table.TransformColumns(addFamilyUniqueKey, {{"close_reason", Text.Proper, type text}}),
+				
+				  addCloseReasonUniqueKey = Table.AddColumn(
+				    properCaseCloseReason,
+				    "close_reason_uid",
+				    each
+				      if [close_reason] <> null then
+				        Text.Combine({[rls_key], "-", [close_reason]})
+				      else
+				        null,
+				    type text
+				  )
 				
 				in
-				    ReferralFinal
-				```
+				
+				  addCloseReasonUniqueKey
 
-	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 

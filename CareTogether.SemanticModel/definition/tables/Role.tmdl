@@ -1,27 +1,30 @@
 table Role
-	lineageTag: a5a15efd-7639-4e75-a11f-7e21f671acbe
+	lineageTag: 7481ebf2-95e6-4a39-8c24-0d358c8eaef2
 
-	column 'Role Name'
+	column organization_id
 		dataType: string
-		lineageTag: 99f25033-77d2-472e-aa78-36b450f50e70
+		displayFolder: _columns
+		lineageTag: 4ed932e1-95cf-46d7-9928-b77225b656f8
 		summarizeBy: none
-		sourceColumn: Role Name
+		sourceColumn: organization_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Role UID'
+	column role_name
 		dataType: string
-		lineageTag: 9a186480-99e2-4514-8056-9c1194fc149f
+		displayFolder: _columns
+		lineageTag: 3af09c84-9f29-40b6-8bb8-edd1a9441c60
 		summarizeBy: none
-		sourceColumn: Role UID
+		sourceColumn: role_name
 
 		annotation SummarizationSetBy = Automatic
 
-	column OrganizationId
+	column role_uid
 		dataType: string
-		lineageTag: e8c282e0-484a-4b73-98fc-7bb1acf9e7e4
+		displayFolder: _columns
+		lineageTag: 54a46096-7275-4c7d-8398-dcf3b71ac6a4
 		summarizeBy: none
-		sourceColumn: OrganizationId
+		sourceColumn: role_uid
 
 		annotation SummarizationSetBy = Automatic
 
@@ -30,26 +33,40 @@ table Role
 		queryGroup: Dimensions
 		source = ```
 				let
-				    Source = #"OData Live",
-				    SourceTable = Source{[Name="Role", Signature="table"]}[Data],
+				  Source = #"OData",
+				  Role = Source{[Name="Role", Signature="table"]}[Data],
+				  
+				  selectColumns = Table.SelectColumns(
+				    Role,
+				    {
+				      "OrganizationId",
+				      "Name"
+				    }
+				  ),
 				
-				    Role = 
-				    Table.SelectColumns(
-				        Table.AddColumn(
-				            Table.RenameColumns(
-				                SourceTable,
-				                {{"Name", "Role Name"}}
-				            ),
-				            "Role UID", each Text.Combine({[OrganizationId], [Role Name]}, "-")
-				        ),
-				        {"OrganizationId", "Role UID", "Role Name"}
-				    )
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"OrganizationId", "organization_id"},
+				      {"Name", "role_name"}
+				    }
+				  ),
 				
+				  addRoleUniqueKey = Table.AddColumn(
+				      renameColumns,
+				      "role_uid",
+				      each
+				          if [role_name] <> null then
+				              Text.Combine({[organization_id], "-", [role_name]})
+				          else
+				              null,
+				      type text
+				  )
 				in
-				    Role
+				  addRoleUniqueKey
 				```
 
-	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 

@@ -1,47 +1,125 @@
 table Location
-	lineageTag: 8b4ebd77-c4b0-42a5-93d7-a051b5863d3a
+	lineageTag: 303d87a7-2407-40ae-86a6-693c26bd512d
 
-	column 'RLS Key'
+	column location_id
 		dataType: string
-		lineageTag: 518385f7-1022-484f-aa61-3c53f35cd0ac
+		displayFolder: _columns
+		lineageTag: da48d976-1cb3-4b46-8325-b2790e99c10c
 		summarizeBy: none
-		sourceColumn: RLS Key
+		sourceColumn: location_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column Location
+	column organization_id
 		dataType: string
-		lineageTag: 02c86e9f-d4fb-4f28-b194-e03695bb6fca
+		displayFolder: _columns
+		lineageTag: 167d2ccc-db6d-46b3-b4b0-2c69af0ab368
 		summarizeBy: none
-		sourceColumn: Location
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 9a309c53-5e20-4850-adea-cc13b0c1fb12
+		summarizeBy: none
+		sourceColumn: location_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 0669631d-b23a-4deb-a0e4-e2174699dfff
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_color
+		dataType: string
+		displayFolder: _columns
+		lineageTag: d276a842-372d-43ff-8829-fb7ad6c1d789
+		summarizeBy: none
+		sourceColumn: location_color
 
 		annotation SummarizationSetBy = Automatic
 
 	partition Location = m
 		mode: import
 		queryGroup: Dimensions
-		source = ```
+		source =
 				let
-				    Source = #"OData Live",
-				    Location = Source{[Name="Location", Signature="table"]}[Data],
-				    LocationTransformed = 
-				    Table.SelectColumns(
-				        Table.RenameColumns(
-				            Table.AddColumn(
-				                Location,
-				                "RLS Key", each Text.Combine({[OrganizationId], [Id]}, "-")
-				            ),
-				            {{"Name", "Location Name"}}
-				        ),
-				        {"RLS Key", "Location Name"}
-				    ),
-				    #"Renamed Columns" = Table.RenameColumns(LocationTransformed,{{"Location Name", "Location"}})
+				  Source = #"OData",
+				  Locations = Source{[Name="Location", Signature="table"]}[Data],
+				
+				  selectColumns = Table.SelectColumns(
+				      Locations,
+				      {
+				          "Id", "OrganizationId", "Name"
+				      }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				      selectColumns,
+				      {
+				          {"Id", "location_id"},
+				          {"OrganizationId", "organization_id"},
+				          {"Name", "location_name"}
+				      }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				      renameColumns,
+				      "rls_key",
+				      each Text.Combine({[organization_id], "-", [location_id]}),
+				      type text
+				  ),
+				
+				  addLocationColor = Table.AddColumn(
+				      addRLSKey,
+				      "location_color",
+				      each
+				          let
+				              TextValue = Text.Upper(Text.Trim([rls_key])),
+				              Chars = Text.ToList(TextValue),
+				
+				              Hash =
+				                  List.Accumulate(
+				                      Chars,
+				                      0,
+				                      (state, current) =>
+				                          Number.Mod(
+				                              state * 31 + Character.ToNumber(current),
+				                              16777215
+				                          )
+				                  ),
+				
+				              R = 50 + Number.Mod(Hash, 156),
+				              G = 50 + Number.Mod(
+				                  Number.IntegerDivide(Hash, 256),
+				                  156
+				              ),
+				              B = 50 + Number.Mod(
+				                  Number.IntegerDivide(Hash, 65536),
+				                  156
+				              ),
+				
+				              Hex =
+				                  "#" &
+				                  Text.PadStart(Number.ToText(R, "X"), 2, "0") &
+				                  Text.PadStart(Number.ToText(G, "X"), 2, "0") &
+				                  Text.PadStart(Number.ToText(B, "X"), 2, "0")
+				          in
+				              Hex,
+				      type text
+				  )
 				
 				in
-				     #"Renamed Columns"
-				```
+				  addLocationColor
 
-	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 

@@ -1,0 +1,324 @@
+table 'Volunteer Person'
+	lineageTag: b9a2511b-dee4-45d0-b855-767415a6291b
+
+	column person_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 833ac91a-b96f-46b5-a789-9663da02b86d
+		summarizeBy: none
+		sourceColumn: person_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 95e49744-5e7a-4f83-8ec6-508573f5ba4d
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: d983e118-8161-40bf-a870-f469f83db5f2
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 372c6b54-a4e8-4dc7-afe0-61ec50627b63
+		summarizeBy: none
+		sourceColumn: family_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 009f50ff-7697-4d8e-b79d-034d3a9d2028
+		summarizeBy: none
+		sourceColumn: first_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: e08ffa92-16b6-4daf-9b72-5b4cf65f64f0
+		summarizeBy: none
+		sourceColumn: last_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: bdafaa57-f610-4573-8deb-3ce444a681fb
+		summarizeBy: none
+		sourceColumn: full_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_type
+		dataType: string
+		displayFolder: _columns
+		lineageTag: d20cfcb1-3b23-4d9e-ba45-2397a937e3b3
+		summarizeBy: none
+		sourceColumn: person_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ethnicity
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 725b37d4-17e2-4289-92af-f27b901cf7f0
+		summarizeBy: none
+		sourceColumn: ethnicity
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_of_birth
+		dataType: dateTime
+		formatString: Long Date
+		displayFolder: _columns
+		lineageTag: b4985aba-dff2-45d1-9383-8097a301f751
+		summarizeBy: none
+		sourceColumn: date_of_birth
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column gender
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 58f85230-2632-4dd5-a52d-e531b3c12c71
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 2b7d2c99-e284-445f-b21e-5019e342ec64
+		summarizeBy: none
+		sourceColumn: family_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 38f62829-a1ec-481c-ad60-37d3ce1b6c6d
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone_number
+		dataType: string
+		displayFolder: _columns
+		lineageTag: bcfe7a45-defe-4f7a-928b-dc84ad7880fb
+		summarizeBy: none
+		sourceColumn: phone_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column address_line_1
+		dataType: string
+		displayFolder: _columns
+		lineageTag: d6549178-072a-4659-ae79-1543c4d114e8
+		summarizeBy: none
+		sourceColumn: address_line_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column address_line_2
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 355e196c-0bcf-4404-8768-05c9af9c597f
+		summarizeBy: none
+		sourceColumn: address_line_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 81fbe31f-3ceb-4909-8d3a-0d6f0a538191
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column county
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f574cbe6-4f82-4005-8f5c-03ea2662bade
+		summarizeBy: none
+		sourceColumn: county
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 4e38f2d3-7a6a-466e-a9c7-d9e796118eee
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column postal_code
+		dataType: string
+		displayFolder: _columns
+		lineageTag: d1d1cc20-c822-48f0-816b-08178a51a875
+		summarizeBy: none
+		sourceColumn: postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: ab0582f8-2850-4752-b541-b63c0b6a0a8d
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 680c2874-5c51-4172-b213-5164dbae268d
+		summarizeBy: none
+		sourceColumn: person_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: b38025d5-8ea3-4c91-be82-15380f91ba42
+		summarizeBy: none
+		sourceColumn: family_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Volunteer Person' = m
+		mode: import
+		queryGroup: Dimensions
+		source = ```
+				let
+				  Source = #"OData",
+				  Person = Source{[Name="Person", Signature="table"]}[Data],
+				  
+				  removeDuplicatedRecords = Table.Distinct(Person, {"Id", "OrganizationId", "LocationId"}),
+				  addFullName = Table.AddColumn(removeDuplicatedRecords, "full_name", each Text.Combine({[FirstName], " ", [LastName]})),
+				
+				  expandFamily = Table.ExpandRecordColumn(addFullName, "Family", 
+				    {"Name", "PrimaryEmail", "PrimaryPhoneNumber", "PrimaryAddress", "HomeChurch"}, 
+				    {"Family.Name", "Family.PrimaryEmail", "Family.PrimaryPhoneNumber", "Family.PrimaryAddress", "Family.HomeChurch"}
+				  ),
+				  
+				  expandFamilyPrimaryAddress = Table.ExpandRecordColumn(expandFamily, "Family.PrimaryAddress", 
+				    {"Line1", "Line2", "City", "County", "State", "PostalCode"}, 
+				    {"Family.PrimaryAddress.Line1", "Family.PrimaryAddress.Line2", "Family.PrimaryAddress.City", "Family.PrimaryAddress.County", 
+				    "Family.PrimaryAddress.State", "Family.PrimaryAddress.PostalCode"}
+				  ),
+				
+				  selectColumns = Table.SelectColumns(
+				    expandFamilyPrimaryAddress,
+				    {
+				      "Id", 
+				      "OrganizationId", 
+				      "LocationId", 
+				      "FamilyId", 
+				      "FirstName", 
+				      "LastName",
+				      "full_name",
+				      "PersonType", 
+				      "Ethnicity", 
+				      "DateOfBirth", 
+				      "Gender",
+				      "Family.Name", 
+				      "Family.PrimaryEmail", 
+				      "Family.PrimaryPhoneNumber",
+				      "Family.PrimaryAddress.Line1", 
+				      "Family.PrimaryAddress.Line2", 
+				      "Family.PrimaryAddress.City", 
+				      "Family.PrimaryAddress.County", 
+				      "Family.PrimaryAddress.State", 
+				      "Family.PrimaryAddress.PostalCode"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"Id", "person_id"},
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"FamilyId", "family_id"},
+				      {"FirstName", "first_name"},
+				      {"LastName", "last_name"},
+				      {"full_name", "full_name"},
+				      {"PersonType", "person_type"},
+				      {"Ethnicity", "ethnicity"},
+				      {"DateOfBirth", "date_of_birth"},
+				      {"Gender", "gender"},
+				      {"Family.Name", "family_name"},
+				      {"Family.PrimaryEmail", "email"},
+				      {"Family.PrimaryPhoneNumber", "phone_number"},
+				      {"Family.PrimaryAddress.Line1", "address_line_1"},
+				      {"Family.PrimaryAddress.Line2", "address_line_2"},
+				      {"Family.PrimaryAddress.City", "city"}, 
+				      {"Family.PrimaryAddress.County", "county"},
+				      {"Family.PrimaryAddress.State", "state"},
+				      {"Family.PrimaryAddress.PostalCode", "postal_code"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addPersonUniqueKey = Table.AddColumn(
+				    addRLSKey,
+				    "person_uid",
+				    each
+				      if [person_id] <> null then
+				        Text.Combine({[rls_key], "-", [person_id]})
+				      else
+				        null,
+				      type text
+				  ),
+				
+				  addFamilyUniqueKey = Table.AddColumn(
+				      addPersonUniqueKey,
+				      "family_uid",
+				      each
+				          if [family_id] <> null then
+				              Text.Combine({[rls_key], "-", [family_id]})
+				          else
+				              null,
+				      type text
+				  )
+				
+				in
+				
+				  addFamilyUniqueKey
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
