@@ -4,10 +4,10 @@
   "position": {
     "x": 11,
     "y": 251,
-    "z": 11000,
+    "z": 9000,
     "height": 472,
     "width": 468,
-    "tabOrder": 11000
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -621,7 +621,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "60d550e9a7b45d2247b5",
+        "name": "4bef2e06dc55162541aa",
         "field": {
           "Column": {
             "Expression": {
@@ -635,7 +635,7 @@
         "type": "Categorical"
       },
       {
-        "name": "873f6e8ddf88f11b801c",
+        "name": "38c5c2e2d1268be414e5",
         "field": {
           "Measure": {
             "Expression": {
@@ -649,7 +649,7 @@
         "type": "Advanced"
       },
       {
-        "name": "d96d42fb67c596a14e8b",
+        "name": "8cebd89c57545eaa1b90",
         "field": {
           "Measure": {
             "Expression": {

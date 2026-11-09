@@ -4,10 +4,10 @@
   "position": {
     "x": 970,
     "y": 245,
-    "z": 15000,
+    "z": 13000,
     "height": 216,
     "width": 690,
-    "tabOrder": 15000
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -95,6 +95,21 @@
               "queryRef": "Arrangement.# of Arrangements Started CP",
               "nativeQueryRef": "Started",
               "displayName": "Started"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Arrangement"
+                    }
+                  },
+                  "Property": "# of Families Served CP"
+                }
+              },
+              "queryRef": "Arrangement.# of Families Served CP",
+              "nativeQueryRef": "Families Served",
+              "displayName": "Families Served"
             }
           ]
         }
@@ -378,79 +393,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "a579e5fef3703f521b82",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "7ab049274956e09c2c5b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Month Name Short"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "f380462e32879820f2c1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Day of Month Number"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d32bfce86a191a18413b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "# of Arrangements Requested CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "3634cb573e69209901e3",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "# of Arrangements Started CP"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -193,3 +193,17 @@ relationship 3868c7ed-f704-4cf4-dc4b-ccdeeae6f93b
 	fromColumn: 'Volunteer Person Role Requirements'.location_id
 	toColumn: Location.location_id
 
+relationship 966f1599-0fc7-fa15-3c34-d8a65affa7e2
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Volunteer Family Function Assignment'.location_id
+	toColumn: Location.location_id
+
+relationship 466bb1b1-5531-f41e-ff8b-b1b9beac3333
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Volunteer Person Function Assignment'.location_id
+	toColumn: Location.location_id
+

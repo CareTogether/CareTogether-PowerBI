@@ -3,11 +3,11 @@
   "name": "6ff69e8598d34b82a0b1",
   "position": {
     "x": 0,
-    "y": 49.999999999999993,
-    "z": 7000,
-    "height": 148.18181818181816,
-    "width": 1669.9999999999998,
-    "tabOrder": 7000
+    "y": 50,
+    "z": 5000,
+    "height": 148.57142857142858,
+    "width": 1670,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -3548,5 +3548,93 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "face52d66140042a4d21",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "# of Children Cared For CP"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1de286818d29709d2263",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "# of First-Time Children Cared For CP"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f383b87ec46c13d03beb",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record Expanded"
+              }
+            },
+            "Property": "# of Days of Care CP"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a60bb5440e674300e099",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record Expanded"
+              }
+            },
+            "Property": "# of Nights of Care CP"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "42c4605d50b293e19bac",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "Avg. Care Days per Child CP"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "258917a94db0a795a173",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Child Location Record"
+              }
+            },
+            "Property": "Avg. Days with Same Family CP"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

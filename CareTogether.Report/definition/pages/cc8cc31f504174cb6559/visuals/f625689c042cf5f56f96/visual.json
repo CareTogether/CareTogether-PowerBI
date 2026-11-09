@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "f625689c042cf5f56f96",
   "position": {
     "x": 479,
     "y": 198,
-    "z": 12000,
+    "z": 10000,
     "height": 525,
     "width": 479,
-    "tabOrder": 12000
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "shape",
@@ -96,7 +96,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arrangements by Location'"
+                  "Value": "'Arrangements by Client Location'"
                 }
               }
             },

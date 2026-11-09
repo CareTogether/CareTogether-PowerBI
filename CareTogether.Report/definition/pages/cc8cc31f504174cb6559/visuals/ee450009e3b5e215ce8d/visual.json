@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 49.999999999999993,
-    "z": 7000,
+    "z": 5000,
     "height": 148.18181818181816,
     "width": 1669.9999999999998,
-    "tabOrder": 7000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -3397,7 +3397,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "e3be04ea914dc75a365f",
+        "name": "8f319b2a8baac6edabcb",
         "field": {
           "Measure": {
             "Expression": {
@@ -3411,7 +3411,7 @@
         "type": "Advanced"
       },
       {
-        "name": "4ef4419167bc6a31d1c8",
+        "name": "92d48e0021208e421733",
         "field": {
           "Measure": {
             "Expression": {
@@ -3425,7 +3425,7 @@
         "type": "Advanced"
       },
       {
-        "name": "e0a6df81230bcec31147",
+        "name": "6c36b5ff001c014e050d",
         "field": {
           "Measure": {
             "Expression": {
@@ -3439,7 +3439,7 @@
         "type": "Advanced"
       },
       {
-        "name": "e3b86fd33ea96acc3a91",
+        "name": "f5ab1106bd486874a627",
         "field": {
           "Measure": {
             "Expression": {
@@ -3453,7 +3453,7 @@
         "type": "Advanced"
       },
       {
-        "name": "978a62ba9a42cfeb797e",
+        "name": "f5a0b8428d500d1113d3",
         "field": {
           "Measure": {
             "Expression": {
@@ -3467,7 +3467,7 @@
         "type": "Advanced"
       },
       {
-        "name": "70c288f4893758c38e63",
+        "name": "4cf289d4ba3728bc0cc1",
         "field": {
           "Measure": {
             "Expression": {

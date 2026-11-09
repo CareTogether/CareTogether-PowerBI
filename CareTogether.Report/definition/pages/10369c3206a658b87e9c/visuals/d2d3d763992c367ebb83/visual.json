@@ -4,10 +4,10 @@
   "position": {
     "x": 10.833333333333334,
     "y": 495.83333333333337,
-    "z": 28000,
+    "z": 26000,
     "height": 250,
     "width": 505,
-    "tabOrder": 26002
+    "tabOrder": 26000
   },
   "visual": {
     "visualType": "lineClusteredColumnComboChart",
@@ -78,7 +78,38 @@
                 }
               },
               "queryRef": "Volunteer Family Role Approval.# of Family Applications CP",
-              "nativeQueryRef": "# of Family Applications CP"
+              "nativeQueryRef": "Applications",
+              "displayName": "Applications"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Volunteer Family Role Approval"
+                    }
+                  },
+                  "Property": "# of Family Approvals CP"
+                }
+              },
+              "queryRef": "Volunteer Family Role Approval.# of Family Approvals CP",
+              "nativeQueryRef": "Approvals",
+              "displayName": "Approvals"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Volunteer Family Role Approval"
+                    }
+                  },
+                  "Property": "# of Family Onboardings CP"
+                }
+              },
+              "queryRef": "Volunteer Family Role Approval.# of Family Onboardings CP",
+              "nativeQueryRef": "Onboardings",
+              "displayName": "Onboardings"
             }
           ]
         }
@@ -246,6 +277,62 @@
                 }
               }
             }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#016D82'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Volunteer Family Role Approval.# of Family Applications CP"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Volunteer Family Role Approval.# of Family Approvals CP"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Volunteer Family Role Approval.# of Family Onboardings CP"
           }
         }
       ],
@@ -597,65 +684,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "04cbc2eebd9eb539c370",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Family Role Approval"
-              }
-            },
-            "Property": "# of Family Applications CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "8ade519b26d3239d5be7",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b39abbd8d5c6d3bfc37a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Month Name Short"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "131e25fe78d1a14710b2",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Day of Month Number"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

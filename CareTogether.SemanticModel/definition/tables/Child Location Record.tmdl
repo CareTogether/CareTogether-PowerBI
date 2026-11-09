@@ -28,14 +28,11 @@ table 'Child Location Record'
 			between Child Location Record and Location.
 			*/
 			
-			VAR startDate =
-			    [Selected Timeframe Start]
+			VAR startDate = [Selected Timeframe Start]
 			
-			VAR endDate =
-			    [Selected Timeframe End]
+			VAR endDate = [Selected Timeframe End]
 			
-			VAR effectiveEndDate =
-			    MIN(endDate, TODAY())
+			VAR effectiveEndDate = MIN(endDate, TODAY())
 			
 			RETURN
 			IF(

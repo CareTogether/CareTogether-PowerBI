@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "e36134e60f1308e579b5",
   "position": {
     "x": 1114.6153846153845,
@@ -491,5 +491,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a743bcd8c18eeee2e7db",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "case_family_type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f4b01bbe541dc75ed61b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "# of Cases Opened CP"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

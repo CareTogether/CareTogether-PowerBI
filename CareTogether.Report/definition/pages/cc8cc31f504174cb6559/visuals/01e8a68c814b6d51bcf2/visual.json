@@ -4,10 +4,10 @@
   "position": {
     "x": 186,
     "y": 745,
-    "z": 33000,
+    "z": 31000,
     "height": 35,
     "width": 55.831385768596995,
-    "tabOrder": 33000
+    "tabOrder": 31000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -222,20 +222,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "4544e0ed902f5a9f3c21",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "(HELP) Cases & Referrals"
-              }
-            },
-            "Property": "Info Button"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

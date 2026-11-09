@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "0d39ebdcf5d0e8d68546",
   "position": {
-    "x": 1669.9999999999998,
-    "y": 49.999999999999993,
+    "x": 1670,
+    "y": 50,
     "z": 2000,
     "height": 100,
     "width": 250,
@@ -27,9 +27,8 @@
                 }
               },
               "queryRef": "Date.Date",
-              "nativeQueryRef": "Date as of:",
-              "active": true,
-              "displayName": "Date as of:"
+              "nativeQueryRef": "Date",
+              "active": true
             }
           ]
         }
@@ -66,7 +65,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'As of date'"
+                  "Value": "'As of Date'"
                 }
               }
             },
@@ -104,7 +103,7 @@
             "endDate": {
               "expr": {
                 "Literal": {
-                  "Value": "datetime'2026-10-01T00:00:00'"
+                  "Value": "datetime'2026-11-09T00:00:00'"
                 }
               }
             },
@@ -148,7 +147,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "datetime'2026-10-02T00:00:00'"
+                            "Value": "datetime'2026-11-10T00:00:00'"
                           }
                         }
                       }
@@ -233,7 +232,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "86816e5eb6edc6d9b8e9",
+        "name": "d35bcb53b0c51084028d",
         "field": {
           "Column": {
             "Expression": {

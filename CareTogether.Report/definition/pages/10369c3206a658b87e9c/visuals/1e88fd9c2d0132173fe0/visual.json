@@ -4,10 +4,10 @@
   "position": {
     "x": 1362.5,
     "y": 495.83333333333337,
-    "z": 35003,
+    "z": 33000,
     "height": 250,
     "width": 297.5,
-    "tabOrder": 26012
+    "tabOrder": 33000
   },
   "visual": {
     "visualType": "donutChart",
@@ -621,37 +621,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "1edec0c7c187b5f32692",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Person Role Approval"
-              }
-            },
-            "Property": "Individual Application Type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "406cd3f83efe708a0573",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Person Role Approval"
-              }
-            },
-            "Property": "# of Individual Applications CP"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

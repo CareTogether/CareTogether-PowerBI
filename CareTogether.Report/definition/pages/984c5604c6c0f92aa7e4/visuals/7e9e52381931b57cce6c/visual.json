@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 0,
-    "z": 6000,
+    "z": 4000,
     "height": 50,
-    "width": 610,
-    "tabOrder": 6000
+    "width": 835,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "shape",
@@ -53,8 +53,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": 0
+                      "ColorId": 9,
+                      "Percent": 0.2
                     }
                   }
                 }
@@ -96,7 +96,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Volunteer Workforce'"
+                  "Value": "'Volunteer Family Capacity'"
                 }
               }
             },

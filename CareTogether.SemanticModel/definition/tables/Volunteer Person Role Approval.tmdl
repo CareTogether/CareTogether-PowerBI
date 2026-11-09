@@ -437,344 +437,459 @@ table 'Volunteer Person Role Approval'
 		displayFolder: Approval Activity Measures
 		lineageTag: ea083562-eb6a-4bb0-83ef-3b17ce7e9792
 
-	measure '# of Approved Volunteers CP' = ```
+	measure '# of Approved Volunteers (Capacity)' =
 			
 			/*
-			CP = Current Period (As-of-Date Snapshot)
+			Counts distinct individual volunteers with an Approved
+			or Onboarded status valid on the selected EndDate.
 			
-			Counts the number of unique Volunteers
-			with at least one Approved or Onboarded Role
-			on the selected reference date.
-			
-			A Role is considered eligible when:
-			- Its status is Approved or Onboarded.
-			- Its validity period includes the reference date.
-			
-			Open-ended validity dates (e.g., 2999-12-31
-			or 9999-12-31) are handled naturally.
-			
-			Each Volunteer is counted only once, regardless
-			of the number of eligible Roles or Locations.
-			
-			The selected timeframe end is used as the
-			reference date.
-			
-			Location filtering is applied through
-			the inactive relationship.
+			Approval is evaluated independently for each Location.
+			Each person is counted once within the current filter
+			context, regardless of the number of Locations or Roles.
 			*/
 			
-			VAR referenceDate = [Selected Timeframe End]
+			VAR asOfDate = [Selected Timeframe End]
 			
-			RETURN 
-			CALCULATE(
-			    DISTINCTCOUNT('Volunteer Person Role Approval'[person_id]),
-			    'Volunteer Person Role Approval'[status] IN {"Approved", "Onboarded"},
-			    'Volunteer Person Role Approval'[valid_from] < referenceDate + 1,
-			    'Volunteer Person Role Approval'[valid_to] >= referenceDate,
-			    USERELATIONSHIP('Volunteer Person Role Approval'[location_id], Location[location_id])
-			)
-			```
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('Volunteer Person Role Approval'[person_id]),
+			        'Volunteer Person Role Approval'[status] IN {"Approved", "Onboarded"},
+			        'Volunteer Person Role Approval'[valid_from] <= asOfDate,
+			        'Volunteer Person Role Approval'[valid_to] >= asOfDate,
+			        USERELATIONSHIP('Volunteer Person Role Approval'[location_id], Location[location_id])
+			    )
 		formatString: 0
-		displayFolder: Volunteers & Engagement Measures
-		lineageTag: 11644984-e1fc-4c06-aff0-5ef693adef45
+		displayFolder: Volunteer Capacity
+		lineageTag: 6324de1f-0575-4d3f-8ecb-c0afc18c95e3
 
-	measure 'HTML - Volunteer Workforce by Role' = ```
+	measure '# of Assigned Volunteers (Capacity)' =
 			
 			/*
-			Displays Volunteer Families and Individual Volunteers
-			in a single vertical list, grouped by Role.
+			Counts distinct approved/onboarded individual volunteers
+			with at least one active Arrangement on the snapshot date.
 			
-			Families: #BA4EB5
-			Individuals: #00778A
+			Approval and Assignment are evaluated on the same date.
+			Assignment must match the approved Role through function.
 			
-			Each Role is evaluated using its respective existing measure.
-			A Role shared by Families and Individuals appears twice.
-			
-			Rows are sorted by count, descending.
-			
-			Bar widths use rounded integer percentages to avoid
-			decimal separator issues in HTML/CSS.
+			Eligibility is validated by person_uid and role_name.
+			Volunteers are counted distinctly by person_id.
 			*/
 			
-			VAR familyRoles =
-			    SELECTCOLUMNS(
-			        ADDCOLUMNS(
-			            ALLSELECTED(
-			                'Volunteer Family Role Approval'[role_name]
-			            ),
-			            "@Count", [# of Approved Volunteer Families CP]
+			VAR snapshotDate = [Selected Timeframe End]
+			
+			VAR approvedVolunteers =
+			    CALCULATETABLE(
+			        SUMMARIZE(
+			            'Volunteer Person Role Approval',
+			            'Volunteer Person Role Approval'[person_uid],
+			            'Volunteer Person Role Approval'[person_id],
+			            'Volunteer Person Role Approval'[role_name]
 			        ),
-			        "Role", 'Volunteer Family Role Approval'[role_name],
-			        "VolunteerType", "Families",
-			        "VolunteerCount", [@Count],
-			        "Color", "#BA4EB5",
-			        "TrackColor", "#F2E8F2"
+			        'Volunteer Person Role Approval'[status] IN {"Approved", "Onboarded"},
+			        'Volunteer Person Role Approval'[valid_from] <= snapshotDate,
+			        'Volunteer Person Role Approval'[valid_to] >= snapshotDate,
+			        USERELATIONSHIP('Volunteer Person Role Approval'[location_id], Location[location_id])
 			    )
 			
-			VAR individualRoles =
-			    SELECTCOLUMNS(
-			        ADDCOLUMNS(
-			            ALLSELECTED(
-			                'Volunteer Person Role Approval'[role_name]
-			            ),
-			            "@Count", [# of Approved Volunteers CP]
+			VAR activeArrangements =
+			    CALCULATETABLE(
+			        VALUES(Arrangement[arrangement_uid]),
+			        NOT ISBLANK(Arrangement[started_utc]),
+			        Arrangement[started_utc] < snapshotDate + 1,
+			        (
+			            ISBLANK(Arrangement[ended_utc])
+			                || Arrangement[ended_utc] >= snapshotDate
 			        ),
-			        "Role", 'Volunteer Person Role Approval'[role_name],
-			        "VolunteerType", "Individuals",
-			        "VolunteerCount", [@Count],
-			        "Color", "#00778A",
-			        "TrackColor", "#E1F1F3"
+			        USERELATIONSHIP(Arrangement[location_id], Location[location_id])
 			    )
 			
-			VAR combinedRoles =
+			VAR assignedVolunteers =
+			    CALCULATETABLE(
+			        SUMMARIZE(
+			            'Volunteer Person Function Assignment',
+			            'Volunteer Person Function Assignment'[person_uid],
+			            'Volunteer Person Function Assignment'[function]
+			        ),
+			        TREATAS(activeArrangements, 'Volunteer Person Function Assignment'[arrangement_uid]),
+			        USERELATIONSHIP('Volunteer Person Function Assignment'[location_id], Location[location_id])
+			    )
+			
+			VAR eligibleVolunteers =
 			    FILTER(
-			        UNION(
-			            familyRoles,
-			            individualRoles
-			        ),
-			        NOT ISBLANK([VolunteerCount])
-			            && [VolunteerCount] > 0
-			    )
-			
-			VAR maxVolunteers =
-			    MAXX(
-			        combinedRoles,
-			        [VolunteerCount]
-			    )
-			
-			VAR totalRoles =
-			    COUNTROWS(combinedRoles)
-			
-			VAR roleRows =
-			    CONCATENATEX(
-			        combinedRoles,
-			
-			        VAR currentRole = [Role]
-			        VAR currentType = [VolunteerType]
-			        VAR currentCount = [VolunteerCount]
-			        VAR currentColor = [Color]
-			        VAR currentTrack = [TrackColor]
-			
-			        VAR barWidth =
-			            ROUND(
-			                DIVIDE(
-			                    currentCount,
-			                    maxVolunteers,
-			                    0
-			                ) * 100,
-			                0
-			            )
-			
+			        approvedVolunteers,
+			        VAR currentPerson = 'Volunteer Person Role Approval'[person_uid]
+			        VAR currentRole = 'Volunteer Person Role Approval'[role_name]
 			        RETURN
-			            "<div class='role-item'>" &
-			
-			                "<div class='role-header'>" &
-			
-			                    "<div class='role-label'>" &
-			                        "<span class='role-dot' style='background:" &
-			                            currentColor &
-			                        ";'></span>" &
-			
-			                        "<span class='role-name'>" &
-			                            COALESCE(currentRole, "Unknown Role") &
-			                        "</span>" &
-			                    "</div>" &
-			
-			                    "<span class='role-value' style='color:" &
-			                        currentColor &
-			                    ";'>" &
-			                        FORMAT(currentCount, "#,0") &
-			                    "</span>" &
-			
-			                "</div>" &
-			
-			                "<div class='bar-track' style='background:" &
-			                    currentTrack &
-			                ";'>" &
-			
-			                    "<div class='bar-fill' style='background:" &
-			                        currentColor &
-			                        ";width:" &
-			                        FORMAT(barWidth, "0") &
-			                    "%;'></div>" &
-			
-			                "</div>" &
-			
-			            "</div>",
-			
-			        "",
-			        [VolunteerCount],
-			        DESC,
-			        [Role],
-			        ASC
+			            COUNTROWS(
+			                FILTER(
+			                    assignedVolunteers,
+			                    'Volunteer Person Function Assignment'[person_uid] = currentPerson
+			                        && 'Volunteer Person Function Assignment'[function] = currentRole
+			                )
+			            ) > 0
 			    )
 			
 			RETURN
+			    COUNTROWS(
+			        DISTINCT(
+			            SELECTCOLUMNS(
+			                FILTER(
+			                    eligibleVolunteers,
+			                    NOT ISBLANK('Volunteer Person Role Approval'[person_id])
+			                ),
+			                "person_id", 'Volunteer Person Role Approval'[person_id]
+			            )
+			        )
+			    )
+		formatString: 0
+		displayFolder: Volunteer Capacity
+		lineageTag: 352c2fef-242a-4d77-8ce5-1ba4d1e3dc61
+
+	measure '# of Assigned and Caring Volunteers (Capacity)' =
+			
+			/*
+			Individual volunteers are considered Caring whenever
+			they are assigned to an Arrangement.
+			
+			Reuses the Assigned Volunteers measure to maintain
+			consistent eligibility, timeframe and Location rules.
+			*/
+			
+			[# of Assigned Volunteers (Capacity)]
+		formatString: 0
+		displayFolder: Volunteer Capacity
+		lineageTag: 482ef49f-3854-44b2-8444-c608a4e4ef99
+
+	measure 'Volunteer Capacity Utilization - HTML' = ```
+			
+			/*
+			Displays approved individual volunteer capacity with
+			Assigned and Caring participation in a single bar.
+			
+			Approved is evaluated at the selected EndDate.
+			Assigned is evaluated during the selected timeframe.
+			
+			For individual volunteers, Caring equals Assigned.
+			The bar represents Assigned without double-counting.
+			*/
+			
+			VAR approved = COALESCE([# of Approved Volunteers (Capacity)], 0)
+			VAR assigned = COALESCE([# of Assigned Volunteers (Capacity)], 0)
+			VAR caring = COALESCE([# of Assigned and Caring Volunteers (Capacity)], 0)
+			
+			VAR assignmentRate = DIVIDE(assigned, approved, 0)
+			VAR caringRate = DIVIDE(caring, approved, 0)
+			
+			VAR assignedWidth = FORMAT(MIN(1, MAX(0, assignmentRate)) * 100, "0.00", "en-US")
+			
+			VAR approvedLabel = FORMAT(approved, "#,0")
+			VAR assignedLabel = FORMAT(assigned, "#,0")
+			VAR caringLabel = FORMAT(caring, "#,0")
+			VAR assignmentRateLabel = FORMAT(assignmentRate, "0.0%")
+			VAR caringRateLabel = FORMAT(caringRate, "0.0%")
+			
+			VAR capacityDescription =
+			    SWITCH(
+			        TRUE(),
+			        approved = 0,
+			            "No approved volunteers for the selected date.",
+			        assigned = 0,
+			            "None of the <b>" & approvedLabel & "</b> approved volunteers were assigned.",
+			        "<b>" & assignedLabel & "</b> of <b>" & approvedLabel & "</b> approved volunteers were assigned, all of whom provided care."
+			    )
+			
+			VAR htmlContent =
 			"
-			<div class='workforce-container'>
+			<div style='font-family:Arial,sans-serif;width:100%;box-sizing:border-box;background:#FFFFFF;padding:8px 12px;color:#333333;'>
 			
-			    <style>
-			        .workforce-container {
-			            font-family: 'Segoe UI', Arial, sans-serif;
-			            width: 100%;
-			            height: 100%;
-			            box-sizing: border-box;
-			            background: transparent;
-			            color: #252B42;
-			        }
+			    <table style='width:100%;border-collapse:collapse;margin-bottom:10px;'>
+			        <tr>
+			            <td style='font-size:13px;font-weight:700;color:#172033;white-space:nowrap;'>
+			                Capacity Utilization
+			            </td>
 			
-			        .workforce-header {
-			            display: flex;
-			            justify-content: space-between;
-			            align-items: center;
-			            gap: 12px;
-			            margin-bottom: 12px;
-			        }
+			            <td style='text-align:right;font-size:11px;color:#667085;white-space:nowrap;'>
 			
-			        .workforce-title {
-			            font-size: 14px;
-			            font-weight: 600;
-			            color: #252B42;
-			        }
+			                <span style='color:#016D82;'>●</span>
+			                Assigned
+			                <b style='color:#016D82;'>" & assignmentRateLabel & "</b>
 			
-			        .workforce-count {
-			            font-size: 11px;
-			            color: #8A8F9C;
-			            white-space: nowrap;
-			        }
+			                &nbsp;&nbsp;&nbsp;
 			
-			        .workforce-legend {
-			            display: flex;
-			            align-items: center;
-			            gap: 16px;
-			            margin-bottom: 20px;
-			        }
+			                <span style='color:#004754;'>●</span>
+			                Caring
+			                <b style='color:#004754;'>" & caringRateLabel & "</b>
 			
-			        .legend-item {
-			            display: flex;
-			            align-items: center;
-			            gap: 6px;
-			            font-size: 11px;
-			            color: #737987;
-			        }
+			            </td>
+			        </tr>
+			    </table>
 			
-			        .legend-dot {
-			            width: 9px;
-			            height: 9px;
-			            border-radius: 50%;
-			            display: inline-block;
-			            flex-shrink: 0;
-			        }
-			
-			        .workforce-list {
-			            height: 280px;
-			            overflow-y: auto;
-			            padding-right: 10px;
-			            box-sizing: border-box;
-			        }
-			
-			        .role-item {
-			            margin-bottom: 17px;
-			        }
-			
-			        .role-header {
-			            display: flex;
-			            justify-content: space-between;
-			            align-items: center;
-			            gap: 12px;
-			            margin-bottom: 7px;
-			        }
-			
-			        .role-label {
-			            display: flex;
-			            align-items: center;
-			            gap: 8px;
-			            min-width: 0;
-			        }
-			
-			        .role-dot {
-			            width: 7px;
-			            height: 7px;
-			            border-radius: 50%;
-			            flex-shrink: 0;
-			        }
-			
-			        .role-name {
-			            font-size: 12px;
-			            font-weight: 500;
-			            color: #434957;
-			            overflow-wrap: anywhere;
-			        }
-			
-			        .role-value {
-			            font-size: 12px;
-			            font-weight: 600;
-			            white-space: nowrap;
-			        }
-			
-			        .bar-track {
-			            width: 100%;
-			            height: 8px;
-			            border-radius: 10px;
-			            overflow: hidden;
-			        }
-			
-			        .bar-fill {
-			            height: 100%;
-			            border-radius: 10px;
-			        }
-			
-			        .workforce-list::-webkit-scrollbar {
-			            width: 5px;
-			        }
-			
-			        .workforce-list::-webkit-scrollbar-track {
-			            background: transparent;
-			        }
-			
-			        .workforce-list::-webkit-scrollbar-thumb {
-			            background: #D5D8DE;
-			            border-radius: 10px;
-			        }
-			    </style>
-			
-			    <div class='workforce-header'>
-			        <span class='workforce-title'>
-			            Volunteer Workforce by Role
-			        </span>
-			
-			        <span class='workforce-count'>" &
-			            FORMAT(totalRoles, "#,0") &
-			            " Role Entries
-			        </span>
+			    <div style='width:100%;height:12px;background:#DCEFF2;border-radius:10px;overflow:hidden;'>
+			        <div style='width:" & assignedWidth & "%;height:100%;background:#016D82;border-radius:10px;'></div>
 			    </div>
 			
-			    <div class='workforce-legend'>
-			
-			        <div class='legend-item'>
-			            <span class='legend-dot'
-			                  style='background:#BA4EB5;'></span>
-			            Families
-			        </div>
-			
-			        <div class='legend-item'>
-			            <span class='legend-dot'
-			                  style='background:#00778A;'></span>
-			            Individuals
-			        </div>
-			
+			    <div style='font-size:11px;color:#667085;margin-top:8px;line-height:1.5;'>
+			        " & capacityDescription & "
 			    </div>
-			
-			    <div class='workforce-list'>" &
-			        roleRows &
-			    "</div>
 			
 			</div>
 			"
 			
+			RETURN
+			    htmlContent
+			
 			```
-		displayFolder: Volunteers & Engagement Measures
-		lineageTag: 6f451698-c7a1-475d-b988-6839b033a1f4
+		displayFolder: Volunteer Capacity
+		lineageTag: d67e9717-3dcd-4c08-9368-c77b7b5e1161
+
+	measure 'Volunteer Individual Capacity by Role - HTML' =
+			
+			/*
+			Displays individual volunteer capacity by Role.
+			
+			Approved is evaluated at the selected EndDate.
+			Assigned follows the selected timeframe.
+			
+			Bar segments:
+			- Gray: Not Assigned during the selected timeframe
+			- Teal: Assigned
+			
+			For individuals, Caring equals Assigned.
+			The bar represents participation without double-counting.
+			
+			Roles are sorted by Assignment Rate descending,
+			then Approved descending.
+			
+			A volunteer may be counted in multiple Roles.
+			*/
+			
+			VAR mainColor = "#016D82"
+			VAR caringColor = "#004754"
+			VAR backgroundColor = "#E9EDF2"
+			
+			/* Individual metrics by Role */
+			
+			VAR roleMetrics =
+			    SELECTCOLUMNS(
+			        ADDCOLUMNS(
+			            VALUES('Volunteer Person Role Approval'[role_name]),
+			            "@Approved", COALESCE([# of Approved Volunteers (Capacity)], 0),
+			            "@Assigned", COALESCE([# of Assigned Volunteers (Capacity)], 0),
+			            "@Caring", COALESCE([# of Assigned and Caring Volunteers (Capacity)], 0)
+			        ),
+			        "Role", 'Volunteer Person Role Approval'[role_name],
+			        "Approved", [@Approved],
+			        "Assigned", [@Assigned],
+			        "Caring", [@Caring]
+			    )
+			
+			VAR roleData =
+			    ADDCOLUMNS(
+			        FILTER(
+			            roleMetrics,
+			            [Approved] > 0
+			                && NOT ISBLANK([Role])
+			        ),
+			        "@AssignmentRate", DIVIDE([Assigned], [Approved], 0)
+			    )
+			
+			/* Generate HTML rows */
+			
+			VAR roleRows =
+			    CONCATENATEX(
+			        roleData,
+			
+			        VAR roleName = [Role]
+			        VAR approved = [Approved]
+			        VAR assigned = [Assigned]
+			        VAR caring = [Caring]
+			        VAR assignmentRate = [@AssignmentRate]
+			
+			        VAR assignedWidth =
+			            FORMAT(
+			                MIN(1, MAX(0, assignmentRate)) * 100,
+			                "0.00",
+			                "en-US"
+			            )
+			
+			        VAR approvedLabel = FORMAT(approved, "#,0")
+			        VAR assignedLabel = FORMAT(assigned, "#,0")
+			        VAR caringLabel = FORMAT(caring, "#,0")
+			        VAR assignmentRateLabel = FORMAT(assignmentRate, "0.0%")
+			
+			        RETURN
+			            "
+			            <div style='margin-bottom:15px;'>
+			
+			                <table style='width:100%;border-collapse:collapse;margin-bottom:6px;'>
+			                    <tr>
+			                        <td style='font-size:12px;font-weight:600;color:#344054;'>
+			                            <span style='color:" & mainColor & ";font-size:11px;'>●</span>
+			                            &nbsp;" & roleName & "
+			                        </td>
+			
+			                        <td style='text-align:right;font-size:11px;color:#667085;white-space:nowrap;'>
+			                            <b style='color:#344054;'>" & approvedLabel & "</b> approved
+			                            &nbsp;·&nbsp;
+			                            <b style='color:" & mainColor & ";'>" & assignedLabel & "</b> assigned
+			                            &nbsp;·&nbsp;
+			                            <b style='color:" & caringColor & ";'>" & caringLabel & "</b> caring
+			                            &nbsp;·&nbsp;
+			                            <b style='color:" & mainColor & ";'>" & assignmentRateLabel & "</b>
+			                        </td>
+			                    </tr>
+			                </table>
+			
+			                <div style='width:100%;height:10px;background:" & backgroundColor & ";border-radius:10px;overflow:hidden;'>
+			                    <div style='width:" & assignedWidth & "%;height:100%;background:" & mainColor & ";border-radius:10px;'></div>
+			                </div>
+			
+			            </div>
+			            ",
+			        "",
+			        [@AssignmentRate], DESC,
+			        [Approved], DESC,
+			        [Role], ASC
+			    )
+			
+			/* Build HTML */
+			
+			VAR htmlContent =
+			    "
+			    <div style='font-family:Arial,sans-serif;width:100%;box-sizing:border-box;background:#FFFFFF;padding:12px 28px 12px 12px;color:#333333;'>
+			
+			        <div style='margin-bottom:15px;'>
+			            <div style='font-size:16px;font-weight:700;color:#172033;'>
+			                Individual Volunteer Capacity by Role
+			            </div>
+			
+			            <div style='font-size:11px;color:#667085;margin-top:4px;line-height:1.4;'>
+			                A volunteer may be counted in multiple roles;
+			                role totals may exceed unique volunteer counts.
+			            </div>
+			        </div>
+			
+			        " &
+			        IF(
+			            COUNTROWS(roleData) > 0,
+			            roleRows,
+			            "<div style='text-align:center;padding:20px;color:#98A2B3;font-size:12px;'>
+			                No data available for the selected filters.
+			            </div>"
+			        )
+			        & "
+			
+			    </div>
+			    "
+			
+			RETURN
+			    htmlContent
+		displayFolder: Volunteer Capacity
+		lineageTag: 44612e7b-90f0-444b-9d8d-6297ae4df2fb
+
+	measure 'Volunteer Individual Capacity Status' =
+			
+			
+			/*
+			Classifies individual volunteers based on their
+			capacity status on the selected snapshot date.
+			
+			Priority:
+			1. Assigned and Caring
+			2. Assigned
+			3. Approved/Onboarded
+			*/
+			
+			VAR Approved = [# of Approved Volunteers (Capacity)]
+			VAR Assigned = [# of Assigned Volunteers (Capacity)]
+			VAR Caring = [# of Assigned and Caring Volunteers (Capacity)]
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        Caring > 0, "Assigned and Caring",
+			        Assigned > 0, "Assigned",
+			        Approved > 0, "Approved/Onboarded",
+			        BLANK()
+			    )
+		displayFolder: Volunteer Capacity
+		lineageTag: 7710fed6-e459-4d7f-a139-f705a8e1e103
+
+	measure 'Volunteer Individual Roles & Status' =
+			
+			/*
+			Concatenates approved individual volunteer roles and their
+			capacity status on the selected snapshot date.
+			
+			Matches Role Approval[role_name] with
+			Function Assignment[function].
+			
+			Priority:
+			1. Assigned
+			2. Approved/Onboarded
+			*/
+			
+			VAR snapshotDate = [Selected Timeframe End]
+			
+			VAR approvedRoles =
+			    CALCULATETABLE(
+			        SUMMARIZE(
+			            'Volunteer Person Role Approval',
+			            'Volunteer Person Role Approval'[role_name]
+			        ),
+			        'Volunteer Person Role Approval'[status] IN {"Approved", "Onboarded"},
+			        'Volunteer Person Role Approval'[valid_from] < snapshotDate + 1,
+			        (
+			            ISBLANK('Volunteer Person Role Approval'[valid_to])
+			                || 'Volunteer Person Role Approval'[valid_to] >= snapshotDate
+			        ),
+			        USERELATIONSHIP('Volunteer Person Role Approval'[location_id], Location[location_id])
+			    )
+			
+			VAR activeArrangements =
+			    CALCULATETABLE(
+			        VALUES(Arrangement[arrangement_uid]),
+			        NOT ISBLANK(Arrangement[started_utc]),
+			        Arrangement[started_utc] < snapshotDate + 1,
+			        (
+			            ISBLANK(Arrangement[ended_utc])
+			                || Arrangement[ended_utc] >= snapshotDate
+			        ),
+			        USERELATIONSHIP(Arrangement[location_id], Location[location_id])
+			    )
+			
+			VAR rolesWithStatus =
+			    ADDCOLUMNS(
+			        approvedRoles,
+			        "@Status",
+			            VAR currentRole = 'Volunteer Person Role Approval'[role_name]
+			
+			            VAR assigned =
+			                CALCULATE(
+			                    COUNTROWS('Volunteer Person Function Assignment'),
+			                    'Volunteer Person Function Assignment'[function] = currentRole,
+			                    TREATAS(activeArrangements, 'Volunteer Person Function Assignment'[arrangement_uid]),
+			                    USERELATIONSHIP('Volunteer Person Function Assignment'[location_id], Location[location_id])
+			                ) > 0
+			
+			            RETURN
+			                IF(
+			                    assigned,
+			                    "Assigned",
+			                    "Approved/Onboarded"
+			                )
+			    )
+			
+			RETURN
+			    CONCATENATEX(
+			        rolesWithStatus,
+			        'Volunteer Person Role Approval'[role_name] & " - " & [@Status],
+			        UNICHAR(10),
+			        'Volunteer Person Role Approval'[role_name],
+			        ASC
+			    )
+		displayFolder: Volunteer Capacity
+		lineageTag: 46275fa0-d709-406c-867a-e5e2cc5c121b
 
 	column organization_id
 		dataType: string

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "d994565209083ddd083e",
   "position": {
-    "x": 1605.7106547048495,
-    "y": 61.786733583914007,
-    "z": 21000,
-    "height": 35,
-    "width": 55.831385768596995,
-    "tabOrder": 21000
+    "x": 1607.2871185461704,
+    "y": 62.10309013701854,
+    "z": 19000,
+    "height": 34.748157576665136,
+    "width": 53.970542619075637,
+    "tabOrder": 19000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -229,6 +229,20 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "9db3c4ba136056aa0d56",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "(HELP) Cases & Referrals"
+              }
+            },
+            "Property": "Info Button"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

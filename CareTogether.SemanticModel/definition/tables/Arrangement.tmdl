@@ -93,10 +93,7 @@ table Arrangement
 			    Arrangement[phase] <> "Cancelled",
 			    NOT ISBLANK(Arrangement[started_utc]),
 			    Arrangement[started_utc] < todayDate + 1,
-			    USERELATIONSHIP(
-			        Arrangement[location_id],
-			        Location[location_id]
-			    )
+			    USERELATIONSHIP(Arrangement[location_id], Location[location_id])
 			)
 		formatString: #,0
 		lineageTag: 04c89e7b-290b-46ad-a265-f67850f8ab56
@@ -202,10 +199,7 @@ table Arrangement
 			    NOT ISBLANK(Arrangement[started_utc]),
 			    Arrangement[started_utc] < todayDate + 1,
 			    NOT ISBLANK(Arrangement[person_id]),
-			    USERELATIONSHIP(
-			        Arrangement[location_id],
-			        Location[location_id]
-			    )
+			    USERELATIONSHIP(Arrangement[location_id], Location[location_id])
 			)
 		formatString: #,0
 		lineageTag: c6da53c7-7304-4304-b0f4-750e4a5a51db

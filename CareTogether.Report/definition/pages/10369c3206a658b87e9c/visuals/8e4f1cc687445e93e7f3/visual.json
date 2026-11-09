@@ -4,10 +4,10 @@
   "position": {
     "x": 10,
     "y": 278.57142857142861,
-    "z": 13000,
+    "z": 11000,
     "height": 80,
     "width": 275,
-    "tabOrder": 13000
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -436,20 +436,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "7e50c71b904716551df6",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Family Role Approval"
-              }
-            },
-            "Property": "# of Family Application Outcomes CP"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

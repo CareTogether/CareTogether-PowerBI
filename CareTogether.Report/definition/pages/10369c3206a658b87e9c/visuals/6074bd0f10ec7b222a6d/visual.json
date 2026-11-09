@@ -4,10 +4,10 @@
   "position": {
     "x": 845.83333333333337,
     "y": 800,
-    "z": 35006,
+    "z": 36000,
     "height": 270,
     "width": 814.16666666666674,
-    "tabOrder": 26015
+    "tabOrder": 36000
   },
   "visual": {
     "visualType": "tableEx",
@@ -408,62 +408,6 @@
         "howCreated": "User",
         "isHiddenInViewMode": true,
         "isLockedInViewMode": true
-      },
-      {
-        "name": "66107f08de9c5f46473b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Person Role Approval"
-              }
-            },
-            "Property": "role_name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "e757dae85231364804f9",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Person Role Approval"
-              }
-            },
-            "Property": "# of Individual Applications CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "0c3d265f0cd8a83af360",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Person Role Approval"
-              }
-            },
-            "Property": "# of Individual Approvals CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "786ba1fea064aeb3f8e4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Person Role Approval"
-              }
-            },
-            "Property": "# of Individual Onboardings CP"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

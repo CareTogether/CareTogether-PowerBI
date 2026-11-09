@@ -4,10 +4,10 @@
   "position": {
     "x": 9.677440199890146,
     "y": 247.89135281257066,
-    "z": 11000,
+    "z": 9000,
     "height": 169.72741273653486,
     "width": 1650.3757633197272,
-    "tabOrder": 11000
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "lineClusteredColumnComboChart",
@@ -110,6 +110,20 @@
               "queryRef": "Child Location Record.# of Children Cared For CP",
               "nativeQueryRef": "Children Cared For",
               "displayName": "Children Cared For"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Child Location Record"
+                    }
+                  },
+                  "Property": "# of First-Time Children Cared For CP"
+                }
+              },
+              "queryRef": "Child Location Record.# of First-Time Children Cared For CP",
+              "nativeQueryRef": "# of First-Time Children Cared For CP"
             }
           ]
         }
@@ -668,93 +682,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "503a507d6efce8e14856",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ddd4947f307054785690",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Month Name Short"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "05b37d9fdc3dfec8651e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Day of Month Number"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "da61d59a789419c8763c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record Expanded"
-              }
-            },
-            "Property": "# of Days of Care CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "87f51271da23ced1efdd",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record Expanded"
-              }
-            },
-            "Property": "# of Nights of Care CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "cbbec7339fcd458c2092",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record"
-              }
-            },
-            "Property": "# of Children Cared For CP"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

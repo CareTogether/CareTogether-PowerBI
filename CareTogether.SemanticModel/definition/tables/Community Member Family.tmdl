@@ -1,6 +1,10 @@
 table 'Community Member Family'
 	lineageTag: 4eb2269d-3f70-4ba1-8864-6b2211087d38
 
+	measure '# of Family Members' = DISTINCTCOUNT('Community Member Family'[family_id])
+		formatString: 0
+		lineageTag: 5b3bee61-65e0-4f53-8207-e1d30b59d4ef
+
 	column organization_id
 		dataType: string
 		displayFolder: _columns

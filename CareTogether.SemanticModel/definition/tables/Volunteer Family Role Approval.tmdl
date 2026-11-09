@@ -428,46 +428,645 @@ table 'Volunteer Family Role Approval'
 		displayFolder: Approval Activity Measures
 		lineageTag: a288eaaf-25cf-41e2-b28b-c08974b17265
 
-	measure '# of Approved Volunteer Families CP' = ```
+	measure '# of Approved Families (Capacity)' =
 			
 			/*
-			CP = Current Period (As-of-Date Snapshot)
+			Counts unique volunteer families with an Approved
+			or Onboarded status valid on the selected snapshot date.
 			
-			Counts the number of unique Volunteer Families
-			with at least one Approved or Onboarded Role
-			on the selected reference date.
-			
-			A Role is considered eligible when:
-			- Its status is Approved or Onboarded.
-			- Its validity period includes the reference date.
-			
-			Open-ended validity dates (e.g., 2999-12-31
-			or 9999-12-31) are handled naturally.
-			
-			Each Family is counted only once, regardless
-			of the number of eligible Roles or Locations.
-			
-			The selected timeframe end is used as the
-			reference date.
-			
-			Location filtering is applied through
-			the inactive relationship.
+			Each family is counted once within the current filter
+			context, regardless of the number of Locations or Roles.
 			*/
 			
-			VAR referenceDate = [Selected Timeframe End]
+			VAR asOfDate = [Selected Timeframe End]
 			
-			RETURN 
-			CALCULATE(
-			    DISTINCTCOUNT('Volunteer Family Role Approval'[family_id]),
-			    'Volunteer Family Role Approval'[status] IN {"Approved", "Onboarded"},
-			    'Volunteer Family Role Approval'[valid_from] < referenceDate + 1,
-			    'Volunteer Family Role Approval'[valid_to] >= referenceDate,
-			    USERELATIONSHIP('Volunteer Family Role Approval'[location_id], Location[location_id])
-			)
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('Volunteer Family Role Approval'[family_id]),
+			        'Volunteer Family Role Approval'[status] IN {"Approved", "Onboarded"},
+			        'Volunteer Family Role Approval'[valid_from] <= asOfDate,
+			        'Volunteer Family Role Approval'[valid_to] >= asOfDate,
+			        USERELATIONSHIP('Volunteer Family Role Approval'[location_id], Location[location_id])
+			    )
+		formatString: 0
+		displayFolder: Volunteer Capacity
+		lineageTag: 40662ae9-8004-4c30-b8d2-9b253084c1dd
+
+	measure '# of Assigned Families (Capacity)' = ```
+			
+			/*
+			Counts distinct approved volunteer families with
+			at least one Arrangement active on the snapshot date.
+			
+			Approval and Assignment are evaluated on the same date.
+			Eligibility is validated by family_uid and Location.
+			Families are counted distinctly by family_id.
+			*/
+			
+			VAR snapshotDate = [Selected Timeframe End]
+			
+			VAR approvedFamilies =
+			    CALCULATETABLE(
+			        SUMMARIZE(
+			            'Volunteer Family Role Approval',
+			            'Volunteer Family Role Approval'[family_uid],
+			            'Volunteer Family Role Approval'[family_id]
+			        ),
+			        'Volunteer Family Role Approval'[status] IN {"Approved", "Onboarded"},
+			        'Volunteer Family Role Approval'[valid_from] < snapshotDate + 1,
+			        (
+			            ISBLANK('Volunteer Family Role Approval'[valid_to])
+			                || 'Volunteer Family Role Approval'[valid_to] >= snapshotDate
+			        ),
+			        USERELATIONSHIP('Volunteer Family Role Approval'[location_id], Location[location_id])
+			    )
+			
+			VAR activeArrangements =
+			    CALCULATETABLE(
+			        VALUES(Arrangement[arrangement_uid]),
+			        NOT ISBLANK(Arrangement[started_utc]),
+			        Arrangement[started_utc] < snapshotDate + 1,
+			        (
+			            ISBLANK(Arrangement[ended_utc])
+			                || Arrangement[ended_utc] >= snapshotDate
+			        ),
+			        USERELATIONSHIP(Arrangement[location_id], Location[location_id])
+			    )
+			
+			VAR assignedFamilies =
+			    CALCULATETABLE(
+			        VALUES('Volunteer Family Function Assignment'[family_uid]),
+			        TREATAS(
+			            activeArrangements,
+			            'Volunteer Family Function Assignment'[arrangement_uid]
+			        ),
+			        USERELATIONSHIP('Volunteer Family Function Assignment'[location_id], Location[location_id])
+			    )
+			
+			VAR eligibleFamilies =
+			    FILTER(
+			        approvedFamilies,
+			        'Volunteer Family Role Approval'[family_uid] IN assignedFamilies
+			    )
+			
+			RETURN
+			    COUNTROWS(
+			        DISTINCT(
+			            SELECTCOLUMNS(
+			                FILTER(
+			                    eligibleFamilies,
+			                    NOT ISBLANK('Volunteer Family Role Approval'[family_id])
+			                ),
+			                "family_id", 'Volunteer Family Role Approval'[family_id]
+			            )
+			        )
+			    )
+			
 			```
 		formatString: 0
-		displayFolder: Volunteers & Engagement Measures
-		lineageTag: 0f6349a7-6361-408e-9492-a85afc9304d3
+		displayFolder: Volunteer Capacity
+		lineageTag: c4d7ada5-89b8-44c5-a253-cc6aab79240c
+
+	measure '# of Assigned and Caring Families (Capacity)' = ```
+			
+			/*
+			Counts distinct approved/onboarded volunteer families
+			with an active Arrangement and active childcare
+			on the selected snapshot date.
+			
+			Approval, Assignment and Caring are evaluated
+			on the same date.
+			
+			Eligibility is validated by family_uid and Location.
+			Families are counted distinctly by family_id.
+			*/
+			
+			VAR snapshotDate = [Selected Timeframe End]
+			
+			VAR approvedFamilies =
+			    CALCULATETABLE(
+			        SUMMARIZE(
+			            'Volunteer Family Role Approval',
+			            'Volunteer Family Role Approval'[family_uid],
+			            'Volunteer Family Role Approval'[family_id]
+			        ),
+			        'Volunteer Family Role Approval'[status] IN {"Approved", "Onboarded"},
+			        'Volunteer Family Role Approval'[valid_from] < snapshotDate + 1,
+			        (
+			            ISBLANK('Volunteer Family Role Approval'[valid_to])
+			                || 'Volunteer Family Role Approval'[valid_to] >= snapshotDate
+			        ),
+			        USERELATIONSHIP('Volunteer Family Role Approval'[location_id], Location[location_id])
+			    )
+			
+			VAR activeArrangements =
+			    CALCULATETABLE(
+			        VALUES(Arrangement[arrangement_uid]),
+			        NOT ISBLANK(Arrangement[started_utc]),
+			        Arrangement[started_utc] < snapshotDate + 1,
+			        (
+			            ISBLANK(Arrangement[ended_utc])
+			                || Arrangement[ended_utc] >= snapshotDate
+			        ),
+			        USERELATIONSHIP(Arrangement[location_id], Location[location_id])
+			    )
+			
+			VAR assignedFamilies =
+			    CALCULATETABLE(
+			        VALUES('Volunteer Family Function Assignment'[family_uid]),
+			        TREATAS(
+			            activeArrangements,
+			            'Volunteer Family Function Assignment'[arrangement_uid]
+			        ),
+			        USERELATIONSHIP('Volunteer Family Function Assignment'[location_id], Location[location_id])
+			    )
+			
+			VAR caringFamilies =
+			    CALCULATETABLE(
+			        VALUES('Child Location Record'[family_uid]),
+			        'Child Location Record'[childcare_plan] <> "WithParent",
+			        NOT ISBLANK('Child Location Record'[family_id]),
+			        NOT ISBLANK('Child Location Record'[started_at_utc]),
+			        'Child Location Record'[started_at_utc] < snapshotDate + 1,
+			        (
+			            ISBLANK('Child Location Record'[ended_at_utc])
+			                || 'Child Location Record'[ended_at_utc] >= snapshotDate
+			        ),
+			        USERELATIONSHIP('Child Location Record'[location_id], Location[location_id])
+			    )
+			
+			VAR eligibleFamilies =
+			    FILTER(
+			        approvedFamilies,
+			        'Volunteer Family Role Approval'[family_uid] IN assignedFamilies
+			            && 'Volunteer Family Role Approval'[family_uid] IN caringFamilies
+			    )
+			
+			RETURN
+			    COUNTROWS(
+			        DISTINCT(
+			            SELECTCOLUMNS(
+			                FILTER(
+			                    eligibleFamilies,
+			                    NOT ISBLANK('Volunteer Family Role Approval'[family_id])
+			                ),
+			                "family_id", 'Volunteer Family Role Approval'[family_id]
+			            )
+			        )
+			    )
+			
+			```
+		formatString: 0
+		displayFolder: Volunteer Capacity
+		lineageTag: 0eefd82f-b2f5-4808-a8c6-20ad142cafd3
+
+	measure 'Volunteer Family Capacity Utilization - HTML' = ```
+			
+			/*
+			Displays approved volunteer family capacity with
+			Assigned and Caring participation in a single bar.
+			
+			Approved is evaluated at the selected EndDate.
+			Assigned and Caring are evaluated during the
+			selected timeframe.
+			
+			Caring is a subset of Assigned and is not
+			double-counted in the segmented bar.
+			*/
+			
+			VAR approved = COALESCE([# of Approved Families (Capacity)], 0)
+			VAR assigned = COALESCE([# of Assigned Families (Capacity)], 0)
+			VAR caring = COALESCE([# of Assigned and Caring Families (Capacity)], 0)
+			
+			VAR assignmentRate = DIVIDE(assigned, approved, 0)
+			VAR caringRate = DIVIDE(caring, approved, 0)
+			VAR assignedOnly = MAX(0, assigned - caring)
+			
+			VAR caringWidth = FORMAT(MIN(1, MAX(0, caringRate)) * 100, "0.00", "en-US")
+			VAR assignedOnlyWidth = FORMAT(MIN(1, MAX(0, DIVIDE(assignedOnly, approved, 0))) * 100, "0.00", "en-US")
+			
+			VAR approvedLabel = FORMAT(approved, "#,0")
+			VAR assignedLabel = FORMAT(assigned, "#,0")
+			VAR caringLabel = FORMAT(caring, "#,0")
+			VAR assignmentRateLabel = FORMAT(assignmentRate, "0.0%")
+			VAR caringRateLabel = FORMAT(caringRate, "0.0%")
+			
+			VAR capacityDescription =
+			    SWITCH(
+			        TRUE(),
+			        approved = 0,
+			            "No approved volunteer families for the selected date.",
+			        assigned = 0,
+			            "None of the <b>" & approvedLabel & "</b> approved families were assigned.",
+			        caring = 0,
+			            "<b>" & assignedLabel & "</b> of <b>" & approvedLabel & "</b> approved families were assigned, with none providing childcare.",
+			        "<b>" & assignedLabel & "</b> of <b>" & approvedLabel & "</b> approved families were assigned, including <b>" & caringLabel & "</b> that provided childcare."
+			    )
+			
+			VAR htmlContent =
+			"
+			<div style='font-family:Arial,sans-serif;width:100%;box-sizing:border-box;background:#FFFFFF;padding:8px 12px;color:#333333;'>
+			
+			    <table style='width:100%;border-collapse:collapse;margin-bottom:10px;'>
+			        <tr>
+			            <td style='font-size:13px;font-weight:700;color:#172033;white-space:nowrap;'>
+			                Capacity Utilization
+			            </td>
+			
+			            <td style='text-align:right;font-size:11px;color:#667085;white-space:nowrap;'>
+			
+			                <span style='color:#B34DB2;'>●</span>
+			                Assigned
+			                <b style='color:#B34DB2;'>" & assignmentRateLabel & "</b>
+			
+			                &nbsp;&nbsp;&nbsp;
+			
+			                <span style='color:#772C78;'>●</span>
+			                Caring
+			                <b style='color:#772C78;'>" & caringRateLabel & "</b>
+			
+			            </td>
+			        </tr>
+			    </table>
+			
+			    <div style='display:flex;width:100%;height:12px;background:#EAD7E9;border-radius:10px;overflow:hidden;'>
+			        <div style='width:" & caringWidth & "%;height:100%;background:#772C78;'></div>
+			        <div style='width:" & assignedOnlyWidth & "%;height:100%;background:#B34DB2;'></div>
+			    </div>
+			
+			    <div style='font-size:11px;color:#667085;margin-top:8px;line-height:1.5;'>
+			        " & capacityDescription & "
+			    </div>
+			
+			</div>
+			"
+			
+			RETURN
+			    htmlContent
+			
+			```
+		displayFolder: Volunteer Capacity
+		lineageTag: 8b0c206b-3798-405b-ade0-1d6f385b0ac1
+
+	measure 'Volunteer Family Capacity by Role - HTML' =
+			
+			/*
+			Displays volunteer family capacity by Role.
+			
+			Approved is evaluated at the selected EndDate.
+			Assigned and Caring follow the selected timeframe.
+			
+			Bar segments:
+			- Gray: Not Assigned during the selected timeframe
+			- Purple: Assigned Only
+			- Dark Purple: Assigned and Caring
+			
+			Caring is a subset of Assigned.
+			Roles are sorted by Assignment Rate descending,
+			then Approved descending.
+			
+			A family may be counted in multiple Roles.
+			*/
+			
+			VAR mainColor = "#B34DB2"
+			VAR caringColor = "#772C78"
+			VAR backgroundColor = "#E9EDF2"
+			
+			/* Family metrics by Role */
+			
+			VAR roleMetrics =
+			    SELECTCOLUMNS(
+			        ADDCOLUMNS(
+			            VALUES('Volunteer Family Role Approval'[role_name]),
+			            "@Approved", COALESCE([# of Approved Families (Capacity)], 0),
+			            "@Assigned", COALESCE([# of Assigned Families (Capacity)], 0),
+			            "@Caring", COALESCE([# of Assigned and Caring Families (Capacity)], 0)
+			        ),
+			        "Role", 'Volunteer Family Role Approval'[role_name],
+			        "Approved", [@Approved],
+			        "Assigned", [@Assigned],
+			        "Caring", [@Caring]
+			    )
+			
+			VAR roleData =
+			    ADDCOLUMNS(
+			        FILTER(
+			            roleMetrics,
+			            [Approved] > 0
+			                && NOT ISBLANK([Role])
+			        ),
+			        "@AssignmentRate", DIVIDE([Assigned], [Approved], 0)
+			    )
+			
+			/* Generate HTML rows */
+			
+			VAR roleRows =
+			    CONCATENATEX(
+			        roleData,
+			
+			        VAR roleName = [Role]
+			        VAR approved = [Approved]
+			        VAR assigned = [Assigned]
+			        VAR caring = [Caring]
+			        VAR assignmentRate = [@AssignmentRate]
+			
+			        VAR assignedOnly = MAX(0, assigned - caring)
+			
+			        VAR assignedOnlyWidth =
+			            FORMAT(
+			                MIN(1, MAX(0, DIVIDE(assignedOnly, approved, 0))) * 100,
+			                "0.00",
+			                "en-US"
+			            )
+			
+			        VAR caringWidth =
+			            FORMAT(
+			                MIN(1, MAX(0, DIVIDE(caring, approved, 0))) * 100,
+			                "0.00",
+			                "en-US"
+			            )
+			
+			        VAR approvedLabel = FORMAT(approved, "#,0")
+			        VAR assignedLabel = FORMAT(assigned, "#,0")
+			        VAR caringLabel = FORMAT(caring, "#,0")
+			        VAR assignmentRateLabel = FORMAT(assignmentRate, "0.0%")
+			
+			        RETURN
+			            "
+			            <div style='margin-bottom:15px;'>
+			
+			                <table style='width:100%;border-collapse:collapse;margin-bottom:6px;'>
+			                    <tr>
+			                        <td style='font-size:12px;font-weight:600;color:#344054;'>
+			                            <span style='color:" & mainColor & ";font-size:11px;'>●</span>
+			                            &nbsp;" & roleName & "
+			                        </td>
+			
+			                        <td style='text-align:right;font-size:11px;color:#667085;white-space:nowrap;'>
+			                            <b style='color:#344054;'>" & approvedLabel & "</b> approved
+			                            &nbsp;·&nbsp;
+			                            <b style='color:" & mainColor & ";'>" & assignedLabel & "</b> assigned
+			                            &nbsp;·&nbsp;
+			                            <b style='color:" & caringColor & ";'>" & caringLabel & "</b> caring
+			                            &nbsp;·&nbsp;
+			                            <b style='color:" & mainColor & ";'>" & assignmentRateLabel & "</b>
+			                        </td>
+			                    </tr>
+			                </table>
+			
+			                <div style='display:flex;width:100%;height:10px;background:" & backgroundColor & ";border-radius:10px;overflow:hidden;'>
+			                    <div style='width:" & assignedOnlyWidth & "%;height:100%;background:" & mainColor & ";'></div>
+			                    <div style='width:" & caringWidth & "%;height:100%;background:" & caringColor & ";'></div>
+			                </div>
+			
+			            </div>
+			            ",
+			        "",
+			        [@AssignmentRate], DESC,
+			        [Approved], DESC,
+			        [Role], ASC
+			    )
+			
+			/* Build HTML */
+			
+			VAR htmlContent =
+			    "
+			    <div style='font-family:Arial,sans-serif;width:100%;box-sizing:border-box;background:#FFFFFF;padding:12px 28px 12px 12px;color:#333333;'>
+			
+			        <div style='margin-bottom:15px;'>
+			            <div style='font-size:16px;font-weight:700;color:#172033;'>
+			                Volunteer Family Capacity by Role
+			            </div>
+			
+			            <div style='font-size:11px;color:#667085;margin-top:4px;line-height:1.4;'>
+			                A family may be counted in multiple roles;
+			                role totals may exceed unique family counts.
+			            </div>
+			        </div>
+			
+			        " &
+			        IF(
+			            COUNTROWS(roleData) > 0,
+			            roleRows,
+			            "<div style='text-align:center;padding:20px;color:#98A2B3;font-size:12px;'>
+			                No data available for the selected filters.
+			            </div>"
+			        )
+			        & "
+			
+			    </div>
+			    "
+			
+			RETURN
+			    htmlContent
+		displayFolder: Volunteer Capacity
+		lineageTag: f1c885ce-1e8d-4387-b7fa-91bb9dd8a864
+
+	measure 'Volunteer Capacity Notice - HTML' = ```
+			
+			/*
+			Explains snapshot-based capacity metrics and
+			guides users on how to use the date filter.
+			Designed for the right sidebar.
+			*/
+			
+			VAR HTMLContent =
+			    "
+			    <div style='
+			        width:100%;
+			        height:100%;
+			        box-sizing:border-box;
+			        font-family:Arial,sans-serif;
+			        background:#FFF8E8;
+			        border:1px solid #F3D9A4;
+			        border-left:4px solid #D49A35;
+			        border-radius:6px;
+			        padding:14px 12px;
+			        color:#333333;
+			    '>
+			        <div style='
+			            display:flex;
+			            align-items:center;
+			            gap:8px;
+			            margin-bottom:10px;
+			        '>
+			            <span style='
+			                font-size:19px;
+			                color:#B7791F;
+			                line-height:1;
+			            '>&#9888;</span>
+			
+			            <span style='
+			                font-size:12px;
+			                font-weight:700;
+			                color:#925C16;
+			                line-height:1.3;
+			            '>
+			                Understanding These Metrics
+			            </span>
+			        </div>
+			
+			        <div style='
+			            font-size:11px;
+			            line-height:1.6;
+			            color:#6B552D;
+			        '>
+			            This page shows a
+			            <b>snapshot of volunteer capacity</b>,
+			            not cumulative activity over a period.
+			
+			            <div style='
+			                height:1px;
+			                background:#EEDCB8;
+			                margin:10px 0;
+			            '></div>
+			
+			            <b>Approved, Assigned, and Caring</b>
+			            are evaluated on the same reference date.
+			
+			            <div style='margin-top:10px;'>
+			                <b>How to use the date filter:</b>
+			                Select <b>today</b> to view current volunteer
+			                capacity and utilization, or choose a
+			                <b>past date</b> to view a historical snapshot.
+			            </div>
+			
+			            <div style='margin-top:10px;'>
+			                Volunteers without active assignments
+			                are <b>not necessarily available</b>.
+			            </div>
+			        </div>
+			    </div>
+			    "
+			
+			RETURN
+			    HTMLContent
+			
+			```
+		displayFolder: Volunteer Capacity
+		lineageTag: ba24ab6e-3953-4fc4-bef7-0858962877e7
+
+	measure 'Volunteer Family Capacity Status' = ```
+			
+			
+			/*
+			Classifies volunteer families based on their
+			capacity status on the selected snapshot date.
+			
+			Priority:
+			1. Assigned and Caring
+			2. Assigned
+			3. Approved/Onboarded
+			*/
+			
+			VAR Approved = [# of Approved Families (Capacity)]
+			VAR Assigned = [# of Assigned Families (Capacity)]
+			VAR Caring = [# of Assigned and Caring Families (Capacity)]
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        Caring > 0, "Assigned and Caring",
+			        Assigned > 0, "Assigned",
+			        Approved > 0, "Approved/Onboarded",
+			        BLANK()
+			    )
+			
+			```
+		displayFolder: Volunteer Capacity
+		lineageTag: 2b3fdfae-d8c0-44e3-b4fc-c3a95aa855da
+
+	measure 'Volunteer Family Roles & Status' =
+			
+			/*
+			Concatenates approved volunteer family roles and their
+			capacity status on the selected snapshot date.
+			
+			Matches Role Approval[role_name] with
+			Function Assignment[function].
+			
+			Priority:
+			1. Assigned and Caring
+			2. Assigned
+			3. Approved/Onboarded
+			*/
+			
+			VAR snapshotDate = [Selected Timeframe End]
+			
+			VAR approvedRoles =
+			    CALCULATETABLE(
+			        SUMMARIZE(
+			            'Volunteer Family Role Approval',
+			            'Volunteer Family Role Approval'[role_name]
+			        ),
+			        'Volunteer Family Role Approval'[status] IN {"Approved", "Onboarded"},
+			        'Volunteer Family Role Approval'[valid_from] < snapshotDate + 1,
+			        (
+			            ISBLANK('Volunteer Family Role Approval'[valid_to])
+			                || 'Volunteer Family Role Approval'[valid_to] >= snapshotDate
+			        ),
+			        USERELATIONSHIP('Volunteer Family Role Approval'[location_id], Location[location_id])
+			    )
+			
+			VAR rolesWithStatus =
+			    ADDCOLUMNS(
+			        approvedRoles,
+			        "@Status",
+			            VAR currentRole = 'Volunteer Family Role Approval'[role_name]
+			
+			            VAR activeArrangements =
+			                CALCULATETABLE(
+			                    VALUES(Arrangement[arrangement_uid]),
+			                    NOT ISBLANK(Arrangement[started_utc]),
+			                    Arrangement[started_utc] < snapshotDate + 1,
+			                    (
+			                        ISBLANK(Arrangement[ended_utc])
+			                            || Arrangement[ended_utc] >= snapshotDate
+			                    ),
+			                    USERELATIONSHIP(Arrangement[location_id], Location[location_id])
+			                )
+			
+			            VAR assigned =
+			                CALCULATE(
+			                    COUNTROWS('Volunteer Family Function Assignment'),
+			                    'Volunteer Family Function Assignment'[function] = currentRole,
+			                    TREATAS(activeArrangements, 'Volunteer Family Function Assignment'[arrangement_uid]),
+			                    USERELATIONSHIP('Volunteer Family Function Assignment'[location_id], Location[location_id])
+			                ) > 0
+			
+			            VAR caring =
+			                CALCULATE(
+			                    COUNTROWS('Child Location Record'),
+			                    'Child Location Record'[childcare_plan] <> "WithParent",
+			                    NOT ISBLANK('Child Location Record'[family_id]),
+			                    NOT ISBLANK('Child Location Record'[started_at_utc]),
+			                    'Child Location Record'[started_at_utc] < snapshotDate + 1,
+			                    (
+			                        ISBLANK('Child Location Record'[ended_at_utc])
+			                            || 'Child Location Record'[ended_at_utc] >= snapshotDate
+			                    ),
+			                    USERELATIONSHIP('Child Location Record'[location_id], Location[location_id])
+			                ) > 0
+			
+			            RETURN
+			                SWITCH(
+			                    TRUE(),
+			                    assigned && caring, "Assigned and Caring",
+			                    assigned, "Assigned",
+			                    "Approved/Onboarded"
+			                )
+			    )
+			
+			RETURN
+			    CONCATENATEX(
+			        rolesWithStatus,
+			        'Volunteer Family Role Approval'[role_name] & " - " & [@Status],
+			        UNICHAR(10),
+			        'Volunteer Family Role Approval'[role_name],
+			        ASC
+			    )
+		displayFolder: Volunteer Capacity
+		lineageTag: 39a5e507-ece0-4764-8b01-7ffd4181ed7d
 
 	column organization_id
 		dataType: string

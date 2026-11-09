@@ -4,15 +4,16 @@ table Community
 	measure '# of Communities' =
 			
 			/*
-			Counts the total number of distinct Communities
-			within the current Organization and Location context.
+			Counts distinct Communities within the current
+			Organization and Location filter context.
 			
 			Communities with the same name but different IDs
 			are counted separately.
 			
-			Includes Communities regardless of volunteer
-			membership or service activity.
+			Includes all Communities, regardless of volunteer
+			membership, approval status, or Arrangement activity.
 			*/
+			
 			
 			CALCULATE(
 			    DISTINCTCOUNT(Community[community_id]),
@@ -21,6 +22,970 @@ table Community
 			)
 		formatString: 0
 		lineageTag: 8674170e-ca73-4bf2-8f63-99428c1e9168
+
+	measure '# of Communities with Participation CP' =
+			
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			VAR communitiesInScope =
+			    CALCULATETABLE(
+			        FILTER(
+			            VALUES(Community[community_uid]),
+			            NOT ISBLANK(Community[community_uid])
+			        ),
+			        USERELATIONSHIP(
+			            Community[location_id],
+			            Location[location_id]
+			        )
+			    )
+			
+			RETURN
+			    COALESCE(
+			        SUMX(
+			            communitiesInScope,
+			            VAR communityFamilies =
+			                CALCULATETABLE(
+			                    FILTER(
+			                        VALUES('Community Member Family'[family_uid]),
+			                        NOT ISBLANK(
+			                            'Community Member Family'[family_uid]
+			                        )
+			                    )
+			                )
+			            VAR familyArrangements =
+			                CALCULATETABLE(
+			                    VALUES(
+			                        'Volunteer Family Function Assignment'[arrangement_uid]
+			                    ),
+			                    KEEPFILTERS(
+			                        TREATAS(
+			                            communityFamilies,
+			                            'Volunteer Family Function Assignment'[family_uid]
+			                        )
+			                    )
+			                )
+			            VAR communityPeople =
+			                CALCULATETABLE(
+			                    FILTER(
+			                        VALUES('Volunteer Person'[person_uid]),
+			                        NOT ISBLANK(
+			                            'Volunteer Person'[person_uid]
+			                        )
+			                    ),
+			                    KEEPFILTERS(
+			                        TREATAS(
+			                            communityFamilies,
+			                            'Volunteer Person'[family_uid]
+			                        )
+			                    )
+			                )
+			            VAR personArrangements =
+			                CALCULATETABLE(
+			                    VALUES(
+			                        'Volunteer Person Function Assignment'[arrangement_uid]
+			                    ),
+			                    KEEPFILTERS(
+			                        TREATAS(
+			                            communityPeople,
+			                            'Volunteer Person Function Assignment'[person_uid]
+			                        )
+			                    )
+			                )
+			
+			            VAR communityArrangements =
+			                DISTINCT(
+			                    UNION(
+			                        familyArrangements,
+			                        personArrangements
+			                    )
+			                )
+			
+			            VAR startedArrangements =
+			                CALCULATE(
+			                    COUNTROWS(Arrangement),
+			                    KEEPFILTERS(
+			                        TREATAS(
+			                            communityArrangements,
+			                            Arrangement[arrangement_uid]
+			                        )
+			                    ),
+			                    Arrangement[started_utc] >= startDate,
+			                    Arrangement[started_utc] < endDate + 1,
+			                    Arrangement[phase] <> "Cancelled",
+			                    NOT ISBLANK(Arrangement[started_utc]),
+			                    Arrangement[started_utc] < todayDate + 1,
+			                    USERELATIONSHIP(
+			                        Arrangement[location_id],
+			                        Location[location_id]
+			                    )
+			                )
+			
+			            RETURN
+			                IF(startedArrangements > 0, 1, 0)
+			        ),
+			        0
+			    )
+		formatString: 0
+		lineageTag: b893fe26-fa15-49e5-bf2e-6763438c0b2a
+
+	measure '# of Arrangements Supported CP' =
+			
+			
+			/*
+			CP = Current Period
+			
+			Counts unique Arrangements started within the selected timeframe
+			and supported by the communities in the current filter context.
+			
+			Community participation is identified through directly assigned
+			volunteer families or individually assigned volunteers belonging
+			to families associated with those communities.
+			
+			Arrangements found through both participation routes or multiple
+			communities are counted only once.
+			
+			Cancelled Arrangements and blank or future start dates are excluded.
+			Location filtering is applied using USERELATIONSHIP.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			
+			VAR communityFamilies =
+			    CALCULATETABLE(
+			        FILTER(
+			            VALUES('Community Member Family'[family_uid]),
+			            NOT ISBLANK('Community Member Family'[family_uid])
+			        ),
+			        USERELATIONSHIP(
+			            Community[location_id],
+			            Location[location_id]
+			        )
+			    )
+			
+			VAR familyArrangements =
+			    CALCULATETABLE(
+			        VALUES(
+			            'Volunteer Family Function Assignment'[arrangement_uid]
+			        ),
+			        KEEPFILTERS(
+			            TREATAS(
+			                communityFamilies,
+			                'Volunteer Family Function Assignment'[family_uid]
+			            )
+			        )
+			    )
+			
+			VAR communityPeople =
+			    CALCULATETABLE(
+			        FILTER(
+			            VALUES('Volunteer Person'[person_uid]),
+			            NOT ISBLANK('Volunteer Person'[person_uid])
+			        ),
+			        KEEPFILTERS(
+			            TREATAS(
+			                communityFamilies,
+			                'Volunteer Person'[family_uid]
+			            )
+			        )
+			    )
+			
+			VAR personArrangements =
+			    CALCULATETABLE(
+			        VALUES(
+			            'Volunteer Person Function Assignment'[arrangement_uid]
+			        ),
+			        KEEPFILTERS(
+			            TREATAS(
+			                communityPeople,
+			                'Volunteer Person Function Assignment'[person_uid]
+			            )
+			        )
+			    )
+			
+			VAR communityArrangements =
+			    DISTINCT(
+			        UNION(
+			            familyArrangements,
+			            personArrangements
+			        )
+			    )
+			
+			RETURN
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT(Arrangement[arrangement_uid]),
+			        KEEPFILTERS(
+			            TREATAS(
+			                communityArrangements,
+			                Arrangement[arrangement_uid]
+			            )
+			        ),
+			        KEEPFILTERS(
+			            Arrangement[arrangement_uid] <> BLANK()
+			        ),
+			        Arrangement[started_utc] >= startDate,
+			        Arrangement[started_utc] < endDate + 1,
+			        Arrangement[phase] <> "Cancelled",
+			        NOT ISBLANK(Arrangement[started_utc]),
+			        Arrangement[started_utc] < todayDate + 1,
+			        USERELATIONSHIP(
+			            Arrangement[location_id],
+			            Location[location_id]
+			        )
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: 42569131-a505-44be-8031-e90b70c655d8
+
+	measure '# of Days of Care Supported CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts care days delivered within the selected timeframe
+			in Arrangements supported by the selected communities
+			and started within that same timeframe.
+			
+			Reuses the existing Childcare measure, preserving its
+			care-date filters, WithParent exclusion and deduplication rules.
+			
+			Arrangements supported by multiple communities or through
+			both family and individual assignments are counted only once.
+			*/
+			
+			VAR supportedArrangements =
+			    FILTER(
+			        VALUES(Arrangement[arrangement_uid]),
+			        NOT ISBLANK(Arrangement[arrangement_uid])
+			            && CALCULATE(
+			                [# of Arrangements Supported CP]
+			            ) > 0
+			    )
+			
+			RETURN
+			COALESCE(
+			    CALCULATE(
+			        [# of Days of Care CP],
+			        KEEPFILTERS(supportedArrangements)
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: 641e2606-fe9c-4767-aae3-fdedb7a0dd5d
+
+	measure '# of Nights of Care Supported CP' =
+			
+			
+			/*
+			CP = Current Period
+			
+			Counts care nights delivered within the selected timeframe
+			in Arrangements supported by the selected communities
+			and started within that same timeframe.
+			
+			Reuses the existing Childcare measure, preserving its
+			care-date filters, WithParent exclusion, overnight-stay
+			requirement and deduplication rules.
+			
+			Arrangements supported by multiple communities or through
+			both family and individual assignments are counted only once.
+			*/
+			
+			VAR supportedArrangements =
+			    FILTER(
+			        VALUES(Arrangement[arrangement_uid]),
+			        NOT ISBLANK(Arrangement[arrangement_uid])
+			            && CALCULATE(
+			                [# of Arrangements Supported CP]
+			            ) > 0
+			    )
+			
+			RETURN
+			COALESCE(
+			    CALCULATE(
+			        [# of Nights of Care CP],
+			        KEEPFILTERS(supportedArrangements)
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: c746c20b-f76f-4dc6-a15b-66196319a163
+
+	measure 'Avg. Arrangement Duration Supported CP' =
+			
+			/*
+			CP = Current Period
+			
+			Calculates the average duration, in days, of Arrangements
+			supported by the selected communities and started within
+			the selected timeframe.
+			
+			Reuses the existing Arrangement duration measure.
+			
+			Completed Arrangements use their end date.
+			Ongoing Arrangements use today's date.
+			Invalid negative durations are excluded.
+			
+			Each Arrangement contributes once, regardless of how many
+			communities, families or individual volunteers supported it.
+			*/
+			
+			VAR supportedArrangements =
+			    FILTER(
+			        VALUES(Arrangement[arrangement_uid]),
+			        NOT ISBLANK(Arrangement[arrangement_uid])
+			            && CALCULATE(
+			                [# of Arrangements Supported CP]
+			            ) > 0
+			    )
+			
+			RETURN
+			CALCULATE(
+			    [Avg. Duration CP],
+			    KEEPFILTERS(supportedArrangements)
+			)
+		lineageTag: 0a15c3e8-7487-4c94-91f9-e236f99540d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Arrangements Supported Share CP' =
+			
+			
+			/*
+			CP = Current Period
+			
+			Calculates the proportion of all started Arrangements
+			supported by the communities in the current filter context.
+			
+			The denominator removes only Community filters.
+			Location, timeframe and other filters remain unchanged.
+			*/
+			
+			VAR supportedArrangements =
+			    [# of Arrangements Supported CP]
+			
+			VAR allStartedArrangements =
+			    CALCULATE(
+			        [# of Arrangements Started CP],
+			        REMOVEFILTERS(Community)
+			    )
+			
+			RETURN
+			DIVIDE(
+			    supportedArrangements,
+			    allStartedArrangements
+			)
+		lineageTag: 0f163817-a74d-455f-8f17-482be90ac5a0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Community Contribution Table HTML' =
+			
+			/*
+			Displays community contribution using an HTML table.
+			
+			Includes supported Arrangements, assignment roles,
+			share of all started Arrangements, care days,
+			care nights and average duration.
+			
+			Individual roles use #016D82.
+			Family roles use #BC51B5.
+			
+			Role counts represent distinct eligible Arrangements
+			for each assignment function and participation route.
+			One Arrangement may involve multiple roles.
+			Role counts should not be added together.
+			
+			Share removes only Community filters from its denominator.
+			Location, timeframe and other filters remain unchanged.
+			
+			The total row recalculates each measure instead of
+			summing community rows.
+			
+			Uses a transparent background and reserves space
+			on the right for the visual's vertical scrollbar.
+			*/
+			
+			VAR communitiesInScope =
+			    CALCULATETABLE(
+			        FILTER(
+			            VALUES(Community[community_uid]),
+			            NOT ISBLANK(Community[community_uid])
+			        ),
+			        USERELATIONSHIP(
+			            Community[location_id],
+			            Location[location_id]
+			        )
+			    )
+			
+			VAR communityRows =
+			    ADDCOLUMNS(
+			        communitiesInScope,
+			        "@Name",
+			            CALCULATE(
+			                SELECTEDVALUE(Community[community_name])
+			            ),
+			        "@Arrangements",
+			            CALCULATE(
+			                [# of Arrangements Supported CP]
+			            ),
+			        "@Share",
+			            CALCULATE(
+			                [Arrangements Supported Share CP]
+			            ),
+			        "@Days",
+			            CALCULATE(
+			                [# of Days of Care Supported CP]
+			            ),
+			        "@Nights",
+			            CALCULATE(
+			                [# of Nights of Care Supported CP]
+			            ),
+			        "@Duration",
+			            CALCULATE(
+			                [Avg. Arrangement Duration Supported CP]
+			            )
+			    )
+			
+			VAR tableRows =
+			    CONCATENATEX(
+			        communityRows,
+			
+			        VAR currentCommunityUID =
+			            Community[community_uid]
+			
+			        VAR communityName =
+			            SUBSTITUTE(
+			                SUBSTITUTE(
+			                    SUBSTITUTE(
+			                        COALESCE([@Name], "Unnamed community"),
+			                        "&", "&amp;"
+			                    ),
+			                    "<", "&lt;"
+			                ),
+			                ">", "&gt;"
+			            )
+			
+			        VAR communityFamilies =
+			            CALCULATETABLE(
+			                FILTER(
+			                    VALUES('Community Member Family'[family_uid]),
+			                    NOT ISBLANK(
+			                        'Community Member Family'[family_uid]
+			                    )
+			                ),
+			                KEEPFILTERS(
+			                    TREATAS(
+			                        { currentCommunityUID },
+			                        'Community Member Family'[community_uid]
+			                    )
+			                )
+			            )
+			
+			        VAR communityPeople =
+			            CALCULATETABLE(
+			                FILTER(
+			                    VALUES('Volunteer Person'[person_uid]),
+			                    NOT ISBLANK(
+			                        'Volunteer Person'[person_uid]
+			                    )
+			                ),
+			                KEEPFILTERS(
+			                    TREATAS(
+			                        communityFamilies,
+			                        'Volunteer Person'[family_uid]
+			                    )
+			                )
+			            )
+			
+			        VAR eligibleArrangements =
+			            CALCULATETABLE(
+			                FILTER(
+			                    VALUES(Arrangement[arrangement_uid]),
+			                    NOT ISBLANK(Arrangement[arrangement_uid])
+			                        && CALCULATE(
+			                            [# of Arrangements Supported CP]
+			                        ) > 0
+			                ),
+			                KEEPFILTERS(
+			                    TREATAS(
+			                        { currentCommunityUID },
+			                        Community[community_uid]
+			                    )
+			                )
+			            )
+			
+			        VAR familyRoleRows =
+			            CALCULATETABLE(
+			                SUMMARIZE(
+			                    'Volunteer Family Function Assignment',
+			                    'Volunteer Family Function Assignment'[function],
+			                    'Volunteer Family Function Assignment'[arrangement_uid]
+			                ),
+			                KEEPFILTERS(
+			                    TREATAS(
+			                        communityFamilies,
+			                        'Volunteer Family Function Assignment'[family_uid]
+			                    )
+			                ),
+			                KEEPFILTERS(
+			                    TREATAS(
+			                        eligibleArrangements,
+			                        'Volunteer Family Function Assignment'[arrangement_uid]
+			                    )
+			                )
+			            )
+			
+			        VAR individualRoleRows =
+			            CALCULATETABLE(
+			                SUMMARIZE(
+			                    'Volunteer Person Function Assignment',
+			                    'Volunteer Person Function Assignment'[function],
+			                    'Volunteer Person Function Assignment'[arrangement_uid]
+			                ),
+			                KEEPFILTERS(
+			                    TREATAS(
+			                        communityPeople,
+			                        'Volunteer Person Function Assignment'[person_uid]
+			                    )
+			                ),
+			                KEEPFILTERS(
+			                    TREATAS(
+			                        eligibleArrangements,
+			                        'Volunteer Person Function Assignment'[arrangement_uid]
+			                    )
+			                )
+			            )
+			
+			        VAR familyRoleCounts =
+			            GROUPBY(
+			                familyRoleRows,
+			                'Volunteer Family Function Assignment'[function],
+			                "@Count",
+			                    COUNTX(CURRENTGROUP(), 1)
+			            )
+			
+			        VAR individualRoleCounts =
+			            GROUPBY(
+			                individualRoleRows,
+			                'Volunteer Person Function Assignment'[function],
+			                "@Count",
+			                    COUNTX(CURRENTGROUP(), 1)
+			            )
+			
+			        VAR familyRolesHTML =
+			            CONCATENATEX(
+			                familyRoleCounts,
+			
+			                VAR roleName =
+			                    SUBSTITUTE(
+			                        SUBSTITUTE(
+			                            SUBSTITUTE(
+			                                COALESCE(
+			                                    'Volunteer Family Function Assignment'[function],
+			                                    "Not specified"
+			                                ),
+			                                "&", "&amp;"
+			                            ),
+			                            "<", "&lt;"
+			                        ),
+			                        ">", "&gt;"
+			                    )
+			
+			                RETURN
+			                    "<span class='role-tag family-role'>"
+			                        & "<span>" & roleName & "</span>"
+			                        & "<strong>"
+			                        & FORMAT([@Count], "#,0")
+			                        & "</strong>"
+			                        & "</span>",
+			
+			                "",
+			                [@Count], DESC,
+			                'Volunteer Family Function Assignment'[function], ASC
+			            )
+			
+			        VAR individualRolesHTML =
+			            CONCATENATEX(
+			                individualRoleCounts,
+			
+			                VAR roleName =
+			                    SUBSTITUTE(
+			                        SUBSTITUTE(
+			                            SUBSTITUTE(
+			                                COALESCE(
+			                                    'Volunteer Person Function Assignment'[function],
+			                                    "Not specified"
+			                                ),
+			                                "&", "&amp;"
+			                            ),
+			                            "<", "&lt;"
+			                        ),
+			                        ">", "&gt;"
+			                    )
+			
+			                RETURN
+			                    "<span class='role-tag individual-role'>"
+			                        & "<span>" & roleName & "</span>"
+			                        & "<strong>"
+			                        & FORMAT([@Count], "#,0")
+			                        & "</strong>"
+			                        & "</span>",
+			
+			                "",
+			                [@Count], DESC,
+			                'Volunteer Person Function Assignment'[function], ASC
+			            )
+			
+			        VAR rolesHTML =
+			            IF(
+			                COUNTROWS(familyRoleRows)
+			                    + COUNTROWS(individualRoleRows) = 0,
+			                "<span class='no-roles'>—</span>",
+			                "<div class='role-list'>"
+			                    & individualRolesHTML
+			                    & familyRolesHTML
+			                    & "</div>"
+			            )
+			
+			        VAR arrangementsText =
+			            FORMAT(COALESCE([@Arrangements], 0), "#,0")
+			
+			        VAR shareText =
+			            IF(
+			                ISBLANK([@Share]),
+			                "—",
+			                FORMAT([@Share], "0%")
+			            )
+			
+			        VAR daysText =
+			            FORMAT(COALESCE([@Days], 0), "#,0")
+			
+			        VAR nightsText =
+			            FORMAT(COALESCE([@Nights], 0), "#,0")
+			
+			        VAR durationText =
+			            IF(
+			                ISBLANK([@Duration]),
+			                "—",
+			                FORMAT([@Duration], "0.0")
+			            )
+			
+			        RETURN
+			            "<tr>"
+			                & "<td class='community-name'>"
+			                & communityName
+			                & "</td>"
+			                & "<td class='roles-cell'>"
+			                & rolesHTML
+			                & "</td>"
+			                & "<td>" & arrangementsText & "</td>"
+			                & "<td>" & shareText & "</td>"
+			                & "<td>" & daysText & "</td>"
+			                & "<td>" & nightsText & "</td>"
+			                & "<td>" & durationText & "</td>"
+			                & "</tr>",
+			
+			        "",
+			        [@Arrangements], DESC,
+			        [@Name], ASC,
+			        Community[community_uid], ASC
+			    )
+			
+			VAR totalArrangements =
+			    [# of Arrangements Supported CP]
+			
+			VAR totalShare =
+			    [Arrangements Supported Share CP]
+			
+			VAR totalDays =
+			    [# of Days of Care Supported CP]
+			
+			VAR totalNights =
+			    [# of Nights of Care Supported CP]
+			
+			VAR totalDuration =
+			    [Avg. Arrangement Duration Supported CP]
+			
+			VAR totalRow =
+			    "<tr class='total-row'>"
+			        & "<td class='community-name'>Total</td>"
+			        & "<td class='roles-cell'>—</td>"
+			        & "<td>"
+			        & FORMAT(COALESCE(totalArrangements, 0), "#,0")
+			        & "</td>"
+			        & "<td>"
+			        & IF(
+			            ISBLANK(totalShare),
+			            "—",
+			            FORMAT(totalShare, "0%")
+			        )
+			        & "</td>"
+			        & "<td>"
+			        & FORMAT(COALESCE(totalDays, 0), "#,0")
+			        & "</td>"
+			        & "<td>"
+			        & FORMAT(COALESCE(totalNights, 0), "#,0")
+			        & "</td>"
+			        & "<td>"
+			        & IF(
+			            ISBLANK(totalDuration),
+			            "—",
+			            FORMAT(totalDuration, "0.0")
+			        )
+			        & "</td>"
+			        & "</tr>"
+			
+			VAR bodyHTML =
+			    IF(
+			        COUNTROWS(communitiesInScope) = 0,
+			        "<tr><td colspan='7' class='empty-state'>"
+			            & "No communities in the current selection."
+			            & "</td></tr>",
+			        tableRows
+			    )
+			
+			RETURN
+			    "
+			    <div class='ct-contribution'>
+			        <style>
+			            .ct-contribution {
+			                width: 100%;
+			                max-width: 100%;
+			                min-width: 0;
+			                margin: 0;
+			                padding: 0 24px 4px 0;
+			                background: transparent;
+			                color: #181830;
+			                font-family: Segoe UI, Arial, sans-serif;
+			                box-sizing: border-box;
+			            }
+			
+			            .ct-contribution * {
+			                box-sizing: border-box;
+			            }
+			
+			            .ct-contribution .legend {
+			                display: flex;
+			                flex-wrap: wrap;
+			                align-items: center;
+			                gap: 14px;
+			                padding: 0 2px 8px;
+			                font-size: 11px;
+			                line-height: 1.4;
+			            }
+			
+			            .ct-contribution .legend-item {
+			                display: inline-flex;
+			                align-items: center;
+			                gap: 5px;
+			            }
+			
+			            .ct-contribution .legend-dot {
+			                display: inline-block;
+			                width: 8px;
+			                height: 8px;
+			                border-radius: 50%;
+			                flex-shrink: 0;
+			            }
+			
+			            .ct-contribution .individual-legend {
+			                color: #016D82;
+			            }
+			
+			            .ct-contribution .individual-legend .legend-dot {
+			                background: #016D82;
+			            }
+			
+			            .ct-contribution .family-legend {
+			                color: #BC51B5;
+			            }
+			
+			            .ct-contribution .family-legend .legend-dot {
+			                background: #BC51B5;
+			            }
+			
+			            .ct-contribution .table-container {
+			                width: 100%;
+			                max-width: 100%;
+			                min-width: 0;
+			                overflow-x: auto;
+			                background: transparent;
+			            }
+			
+			            .ct-contribution table {
+			                width: 100%;
+			                border-collapse: collapse;
+			                border-spacing: 0;
+			                background: transparent;
+			                font-size: 12px;
+			                line-height: 1.35;
+			            }
+			
+			            .ct-contribution thead th {
+			                padding: 8px 7px;
+			                background: #016D82;
+			                color: #FFFFFF;
+			                font-weight: 600;
+			                text-align: right;
+			                vertical-align: middle;
+			                border: none;
+			                border-right: 1px solid rgba(255,255,255,0.12);
+			            }
+			
+			            .ct-contribution thead th:last-child {
+			                border-right: none;
+			            }
+			
+			            .ct-contribution tbody td {
+			                padding: 7px;
+			                border: none;
+			                color: #181830;
+			                text-align: right;
+			                vertical-align: middle;
+			                font-variant-numeric: tabular-nums;
+			            }
+			
+			            .ct-contribution tbody tr:nth-child(odd) {
+			                background: transparent;
+			            }
+			
+			            .ct-contribution tbody tr:nth-child(even) {
+			                background: rgba(0,0,0,0.03);
+			            }
+			
+			            .ct-contribution tbody tr:hover {
+			                background: rgba(1,109,130,0.07);
+			            }
+			
+			            .ct-contribution th:first-child,
+			            .ct-contribution td.community-name {
+			                min-width: 170px;
+			                text-align: left;
+			            }
+			
+			            .ct-contribution th.roles-heading,
+			            .ct-contribution td.roles-cell {
+			                min-width: 230px;
+			                max-width: 380px;
+			                text-align: left;
+			            }
+			
+			            .ct-contribution .role-list {
+			                display: flex;
+			                flex-wrap: wrap;
+			                align-items: center;
+			                gap: 5px;
+			            }
+			
+			            .ct-contribution .role-tag {
+			                display: inline-flex;
+			                align-items: center;
+			                gap: 6px;
+			                padding: 3px 6px;
+			                border-radius: 3px;
+			                font-size: 11px;
+			                line-height: 1.3;
+			                text-align: left;
+			                overflow-wrap: anywhere;
+			            }
+			
+			            .ct-contribution .individual-role {
+			                color: #016D82;
+			                background: rgba(1,109,130,0.08);
+			            }
+			
+			            .ct-contribution .family-role {
+			                color: #BC51B5;
+			                background: rgba(188,81,181,0.08);
+			            }
+			
+			            .ct-contribution .role-tag strong {
+			                font-weight: 700;
+			                white-space: nowrap;
+			                font-variant-numeric: tabular-nums;
+			            }
+			
+			            .ct-contribution .no-roles {
+			                color: #8A8A8A;
+			            }
+			
+			            .ct-contribution tfoot td {
+			                padding: 7px;
+			                background: transparent;
+			                border: none;
+			                border-top: 2px solid #016D82;
+			                color: #016D82;
+			                font-weight: 600;
+			                text-align: right;
+			                vertical-align: middle;
+			                font-variant-numeric: tabular-nums;
+			            }
+			
+			            .ct-contribution .empty-state {
+			                padding: 20px 7px;
+			                text-align: center;
+			                color: #777777;
+			            }
+			
+			            .ct-contribution .footnote {
+			                margin-top: 8px;
+			                padding: 0 2px;
+			                color: #888888;
+			                font-size: 10px;
+			                line-height: 1.45;
+			            }
+			        </style>
+			
+			        <div class='legend'>
+			            <span class='legend-item individual-legend'>
+			                <span class='legend-dot'></span>
+			                Individual roles
+			            </span>
+			            <span class='legend-item family-legend'>
+			                <span class='legend-dot'></span>
+			                Family roles
+			            </span>
+			        </div>
+			
+			        <div class='table-container'>
+			            <table>
+			                <thead>
+			                    <tr>
+			                        <th>Community</th>
+			                        <th class='roles-heading'>Roles · Arrangements per role</th>
+			                        <th>Arrangements<br>Supported</th>
+			                        <th>Share of All<br>Started Arrangements</th>
+			                        <th>Days<br>of Care</th>
+			                        <th>Nights<br>of Care</th>
+			                        <th>Avg. Duration<br>Days</th>
+			                    </tr>
+			                </thead>
+			                <tbody>"
+			                    & bodyHTML
+			                & "</tbody>
+			                <tfoot>"
+			                    & totalRow
+			                & "</tfoot>
+			            </table>
+			        </div>
+			
+			        <div class='footnote'>
+			            One Arrangement may involve multiple roles.
+			            Role counts should not be added together.
+			            Share ignores only the Community filter.
+			            Shared Arrangements may appear in multiple communities;
+			            totals remove duplicates.
+			        </div>
+			    </div>
+			    "
+		lineageTag: b6e27d7d-8189-4f89-8595-f0b6666e79b5
 
 	column community_id
 		dataType: string

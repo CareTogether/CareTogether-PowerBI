@@ -86,6 +86,21 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
+                      "Entity": "Referrals"
+                    }
+                  },
+                  "Property": "# of Referrals Accepted CP"
+                }
+              },
+              "queryRef": "Referrals.# of Referrals Accepted CP",
+              "nativeQueryRef": "Referrals Accepted",
+              "displayName": "Referrals Accepted"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
                       "Entity": "Cases"
                     }
                   },
@@ -317,6 +332,13 @@
                   "Value": "'Categorical'"
                 }
               }
+            },
+            "maxMarginFactor": {
+              "expr": {
+                "Literal": {
+                  "Value": "50L"
+                }
+              }
             }
           }
         }
@@ -415,7 +437,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "d68d3fd4c36a4eb7c15b",
+        "name": "f1edcd80d740e03e0b52",
         "field": {
           "Column": {
             "Expression": {
@@ -429,7 +451,7 @@
         "type": "Advanced"
       },
       {
-        "name": "573d5e3373a0caaa10a4",
+        "name": "5dbf1003bb7732de3539",
         "field": {
           "Column": {
             "Expression": {
@@ -443,7 +465,7 @@
         "type": "Categorical"
       },
       {
-        "name": "539b4ab35c3cb6517465",
+        "name": "fb47bb12d9297de63640",
         "field": {
           "Column": {
             "Expression": {
@@ -457,7 +479,7 @@
         "type": "Advanced"
       },
       {
-        "name": "3bb2974b5687879a50d6",
+        "name": "afcc160709ab1ce96a33",
         "field": {
           "Measure": {
             "Expression": {
@@ -471,7 +493,21 @@
         "type": "Advanced"
       },
       {
-        "name": "dd7b89c847fa30868efd",
+        "name": "4e026a17307c208bb222",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "# of Referrals Accepted CP"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "72390841546ab7560009",
         "field": {
           "Measure": {
             "Expression": {

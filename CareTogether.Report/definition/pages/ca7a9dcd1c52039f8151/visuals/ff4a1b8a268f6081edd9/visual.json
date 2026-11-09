@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "ff4a1b8a268f6081edd9",
   "position": {
-    "x": 949.13355806614891,
-    "y": 745.90731386845584,
+    "x": 950.76873709768859,
+    "y": 745,
     "z": 44000,
     "height": 35,
     "width": 55.831385768596995,
@@ -231,6 +231,20 @@
             }
           ]
         }
+      },
+      {
+        "name": "a3918193a59809772dee",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "(HELP) Cases & Referrals"
+              }
+            },
+            "Property": "Info Button"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

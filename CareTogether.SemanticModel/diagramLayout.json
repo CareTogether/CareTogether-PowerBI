@@ -5,7 +5,7 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 551.85214713559765
+        "y": 0
       },
       "nodes": [
         {
@@ -44,7 +44,7 @@
           "nodeIndex": "Volunteer Person",
           "nodeLineageTag": "b9a2511b-dee4-45d0-b855-767415a6291b",
           "size": {
-            "height": 128,
+            "height": 104,
             "width": 234
           },
           "zIndex": 23,
@@ -127,7 +127,7 @@
           "nodeIndex": "Volunteer Family Function Assignment",
           "nodeLineageTag": "cc22bdd9-5f24-4950-9282-5fb0a0de45f5",
           "size": {
-            "height": 104,
+            "height": 152,
             "width": 234
           },
           "zIndex": 25,
@@ -135,13 +135,13 @@
         },
         {
           "location": {
-            "x": 1718.8301520683945,
-            "y": 1282.3451221526921
+            "x": 1717.3561879761617,
+            "y": 1289.7149426138562
           },
           "nodeIndex": "Volunteer Person Function Assignment",
           "nodeLineageTag": "395fa77f-a73f-4860-b222-4f996688cd82",
           "size": {
-            "height": 128,
+            "height": 152,
             "width": 234
           },
           "zIndex": 33,
@@ -168,10 +168,11 @@
           "nodeIndex": "Child Location Record",
           "nodeLineageTag": "364c51cc-cbfe-421e-8f4c-0e1d82d15cd5",
           "size": {
-            "height": 300,
+            "height": 176,
             "width": 234
           },
-          "zIndex": 34
+          "zIndex": 34,
+          "expandedHeight": 300
         },
         {
           "location": {
@@ -181,10 +182,11 @@
           "nodeIndex": "Child Location Record Expanded",
           "nodeLineageTag": "3370c7c2-7722-4481-860e-f84e38ff301a",
           "size": {
-            "height": 200,
+            "height": 152,
             "width": 234
           },
-          "zIndex": 27
+          "zIndex": 27,
+          "expandedHeight": 200
         },
         {
           "location": {
@@ -455,7 +457,7 @@
         },
         {
           "location": {
-            "x": 2695.7955821140285,
+            "x": 3720.2006262158247,
             "y": 0
           },
           "nodeIndex": "_aux_arrangement_display_by",
@@ -494,6 +496,20 @@
           },
           "zIndex": 1,
           "expandedHeight": 296
+        },
+        {
+          "location": {
+            "x": 4608.2968903520732,
+            "y": 0
+          },
+          "nodeIndex": "(HELP) Volunteer Capacity",
+          "nodeLineageTag": "9cf38163-9868-47d8-bfdd-53fa7fbf5dbc",
+          "size": {
+            "height": 72,
+            "width": 234
+          },
+          "zIndex": 0,
+          "expandedHeight": 200
         }
       ],
       "name": "All tables",

@@ -211,6 +211,12 @@ table 'Volunteer Person'
 
 		annotation SummarizationSetBy = Automatic
 
+	column azure_geo_location_c = 'Volunteer Person'[address_line_1] & "," & 'Volunteer Person'[address_line_2] & "," & 'Volunteer Person'[city] & "," & 'Volunteer Person'[county] & "," & 'Volunteer Person'[state] & "," & 'Volunteer Person'[postal_code]
+		lineageTag: 06587661-1635-40f2-9e0c-5823c6556c64
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Volunteer Person' = m
 		mode: import
 		queryGroup: Dimensions

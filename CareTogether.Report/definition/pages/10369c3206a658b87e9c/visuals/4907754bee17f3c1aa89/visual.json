@@ -4,10 +4,10 @@
   "position": {
     "x": 10.833333333333334,
     "y": 800,
-    "z": 35005,
+    "z": 35000,
     "height": 270,
     "width": 824.16666666666674,
-    "tabOrder": 26014
+    "tabOrder": 35000
   },
   "visual": {
     "visualType": "tableEx",
@@ -612,65 +612,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "73b1d1087ec984555b71",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Family Role Approval"
-              }
-            },
-            "Property": "# of Family Applications CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ebf1ddd7550ad138bc90",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Family Role Approval"
-              }
-            },
-            "Property": "# of Family Approvals CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "2883419b86770c057a46",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Family Role Approval"
-              }
-            },
-            "Property": "# of Family Onboardings CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "473c02f00a5ff124f3f6",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Family Role Approval"
-              }
-            },
-            "Property": "role_name"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

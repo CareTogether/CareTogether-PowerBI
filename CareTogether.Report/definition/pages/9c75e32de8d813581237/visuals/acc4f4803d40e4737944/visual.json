@@ -97,23 +97,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "d8f76da4b873264f52ab",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "(HELP) Approval Activity"
-              }
-            },
-            "Property": "(HTML) Help - Dynamic Pop-up - Approval Activity"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

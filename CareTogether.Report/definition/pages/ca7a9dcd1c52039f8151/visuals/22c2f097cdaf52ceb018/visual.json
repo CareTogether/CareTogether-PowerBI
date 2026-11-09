@@ -110,7 +110,7 @@
             "endDate": {
               "expr": {
                 "Literal": {
-                  "Value": "datetime'2026-08-31T00:00:00'"
+                  "Value": "datetime'2026-12-31T00:00:00'"
                 }
               }
             }
@@ -169,7 +169,7 @@
                             },
                             "Right": {
                               "Literal": {
-                                "Value": "datetime'2026-09-01T00:00:00'"
+                                "Value": "datetime'2027-01-01T00:00:00'"
                               }
                             }
                           }
@@ -251,12 +251,17 @@
         }
       ]
     },
+    "syncGroup": {
+      "groupName": "Date1",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "3f0995836ed08b9c87cc",
+        "name": "38d57b05993709956cdc",
         "field": {
           "Column": {
             "Expression": {

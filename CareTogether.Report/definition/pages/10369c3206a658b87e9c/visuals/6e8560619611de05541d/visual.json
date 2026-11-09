@@ -4,10 +4,10 @@
   "position": {
     "x": 845.83333333333337,
     "y": 495.83333333333337,
-    "z": 35004,
+    "z": 34000,
     "height": 250,
     "width": 505,
-    "tabOrder": 26013
+    "tabOrder": 34000
   },
   "visual": {
     "visualType": "lineClusteredColumnComboChart",
@@ -78,7 +78,38 @@
                 }
               },
               "queryRef": "Volunteer Person Role Approval.# of Individual Applications CP",
-              "nativeQueryRef": "# of Individual Applications CP"
+              "nativeQueryRef": "Applications",
+              "displayName": "Applications"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Volunteer Person Role Approval"
+                    }
+                  },
+                  "Property": "# of Individual Approvals CP"
+                }
+              },
+              "queryRef": "Volunteer Person Role Approval.# of Individual Approvals CP",
+              "nativeQueryRef": "Approvals",
+              "displayName": "Approvals"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Volunteer Person Role Approval"
+                    }
+                  },
+                  "Property": "# of Individual Onboardings CP"
+                }
+              },
+              "queryRef": "Volunteer Person Role Approval.# of Individual Onboardings CP",
+              "nativeQueryRef": "Onboardings",
+              "displayName": "Onboardings"
             }
           ]
         }
@@ -245,6 +276,62 @@
                 }
               }
             }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#016D82'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Volunteer Person Role Approval.# of Individual Applications CP"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Volunteer Person Role Approval.# of Individual Approvals CP"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Volunteer Person Role Approval.# of Individual Onboardings CP"
           }
         }
       ],
@@ -596,65 +683,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "9695371163f3972a19e0",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "8451bc2a0c8151f8f2bd",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Month Name Short"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "7933206e099543951435",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Day of Month Number"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "cdef4a9cc666003ee743",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Person Role Approval"
-              }
-            },
-            "Property": "# of Individual Applications CP"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

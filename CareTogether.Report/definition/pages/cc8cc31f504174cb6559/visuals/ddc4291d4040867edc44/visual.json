@@ -4,10 +4,10 @@
   "position": {
     "x": 11.166277153719399,
     "y": 780.15056380652868,
-    "z": 9000,
+    "z": 7000,
     "height": 291.067624473619,
     "width": 1648.8869263658978,
-    "tabOrder": 9000
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "tableEx",
@@ -443,6 +443,20 @@
           },
           "selector": {
             "metadata": "Client Person.full_name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "247.3104293511799D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Arrangement.Communities Involved"
           }
         }
       ]
@@ -994,7 +1008,7 @@
         "howCreated": "User"
       },
       {
-        "name": "332304f62ca556ec9470",
+        "name": "1d5db76d0954734eaccc",
         "field": {
           "Column": {
             "Expression": {

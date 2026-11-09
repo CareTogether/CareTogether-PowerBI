@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "12e1a9db64c7f65db004",
   "position": {
-    "x": 487,
+    "x": 489,
     "y": 251,
-    "z": 13000,
+    "z": 11000,
     "height": 472,
-    "width": 471,
-    "tabOrder": 13000
+    "width": 469,
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "azureMap",
@@ -42,21 +42,21 @@
             "zoom": {
               "expr": {
                 "Literal": {
-                  "Value": "6.69D"
+                  "Value": "0.59D"
                 }
               }
             },
             "centerLatitude": {
               "expr": {
                 "Literal": {
-                  "Value": "44.607337577756766D"
+                  "Value": "34.7648566493515D"
                 }
               }
             },
             "centerLongitude": {
               "expr": {
                 "Literal": {
-                  "Value": "-93.2980935144043D"
+                  "Value": "-8.969039707275385D"
                 }
               }
             },
@@ -380,7 +380,7 @@
         "isLockedInViewMode": true
       },
       {
-        "name": "823f6094ff46dc11f7cd",
+        "name": "f26861989b7826b0a0d7",
         "field": {
           "Column": {
             "Expression": {

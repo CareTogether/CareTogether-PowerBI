@@ -4,10 +4,10 @@
   "position": {
     "x": 1121.0526315789475,
     "y": 278.42105263157896,
-    "z": 22000,
+    "z": 20000,
     "height": 80,
     "width": 275,
-    "tabOrder": 22000
+    "tabOrder": 20000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -624,20 +624,6 @@
   },
   "filterConfig": {
     "filters": [
-      {
-        "name": "0599cd8ebda523086314",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Person Role Approval"
-              }
-            },
-            "Property": "# of Individual Application Outcomes CP"
-          }
-        },
-        "type": "Advanced"
-      },
       {
         "name": "48d057b370c079fe1eae",
         "field": {

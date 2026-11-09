@@ -38,10 +38,10 @@
                       "Entity": "Cases"
                     }
                   },
-                  "Property": "# of Cases Opened CP"
+                  "Property": "# of Cases Closed CP"
                 }
               },
-              "queryRef": "Cases.# of Cases Opened CP",
+              "queryRef": "Cases.# of Cases Closed CP",
               "nativeQueryRef": "Count",
               "displayName": "Count"
             }
@@ -58,7 +58,7 @@
                     "Entity": "Cases"
                   }
                 },
-                "Property": "# of Cases Opened CP"
+                "Property": "# of Cases Closed CP"
               }
             },
             "direction": "Descending"
@@ -202,20 +202,6 @@
           "selector": {
             "metadata": "Cases.close_reason"
           }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "80D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Cases.# of Cases Opened CP"
-          }
         }
       ]
     },
@@ -340,7 +326,7 @@
         "isLockedInViewMode": true
       },
       {
-        "name": "f64d175bd0abb9ff4e82",
+        "name": "604166460a08e408376c",
         "field": {
           "Measure": {
             "Expression": {
@@ -348,7 +334,7 @@
                 "Entity": "Cases"
               }
             },
-            "Property": "# of Cases Opened CP"
+            "Property": "# of Cases Closed CP"
           }
         },
         "type": "Advanced"

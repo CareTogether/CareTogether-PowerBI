@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "221ea99aa1f02efd8ba4",
   "position": {
-    "x": 835.23753109821109,
-    "y": 773.450797514297,
+    "x": 835.43442684322565,
+    "y": 775.54930421110055,
     "z": 23000,
-    "height": 297.022972288936,
-    "width": 824.81567242140625,
+    "height": 297.2076456557316,
+    "width": 824.344589318758,
     "tabOrder": 23000
   },
   "visual": {
@@ -102,8 +102,8 @@
                 }
               },
               "queryRef": "Cases.Volunteers & Roles",
-              "nativeQueryRef": "Volunteer(s) Role Assignment",
-              "displayName": "Volunteer(s) Role Assignment"
+              "nativeQueryRef": "Volunteer(s) Role",
+              "displayName": "Volunteer(s) Role"
             }
           ]
         }
@@ -735,6 +735,90 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "2a84f909068857b16008",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Family"
+              }
+            },
+            "Property": "family_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "065c1d62be218a5a3ec2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "referral_source"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3654f61920010b02300c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "primary_reason_for_referral"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a14d0cbf2c42833199dc",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "opened"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b11bc3b369a02089b092",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "closed"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "585a45bf0408b7a4e555",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "Volunteers & Roles"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

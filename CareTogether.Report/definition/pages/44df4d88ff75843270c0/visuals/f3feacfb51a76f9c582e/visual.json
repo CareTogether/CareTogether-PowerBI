@@ -4,10 +4,10 @@
   "position": {
     "x": 11.166277153719399,
     "y": 780.15056380652868,
-    "z": 16000,
+    "z": 14000,
     "height": 291.067624473619,
     "width": 1648.8869263658978,
-    "tabOrder": 16000
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "tableEx",
@@ -837,34 +837,6 @@
           }
         },
         "type": "Categorical"
-      },
-      {
-        "name": "abf8e7121251df0ae898",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record Expanded"
-              }
-            },
-            "Property": "# of Days of Care CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "039f04093f6e91699c72",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record Expanded"
-              }
-            },
-            "Property": "# of Nights of Care CP"
-          }
-        },
-        "type": "Advanced"
       }
     ],
     "filterSortOrder": "Custom"

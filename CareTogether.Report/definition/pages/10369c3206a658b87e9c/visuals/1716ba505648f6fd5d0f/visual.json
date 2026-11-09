@@ -4,10 +4,10 @@
   "position": {
     "x": 845.65938977501582,
     "y": 49.876037953279983,
-    "z": 10000,
+    "z": 8000,
     "height": 148.13927690601071,
     "width": 814.39381374460152,
-    "tabOrder": 10000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -2732,51 +2732,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "1863813f82073fe8da3e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Person Role Approval"
-              }
-            },
-            "Property": "# of Individual Applications CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "75646d34ddb2476b03fa",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Person Role Approval"
-              }
-            },
-            "Property": "# of Individual Approvals CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b1a5e36ae839a7126e5d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Person Role Approval"
-              }
-            },
-            "Property": "# of Individual Onboardings CP"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

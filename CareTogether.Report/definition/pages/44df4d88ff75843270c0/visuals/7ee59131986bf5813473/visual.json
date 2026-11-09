@@ -4,10 +4,10 @@
   "position": {
     "x": 844.5454545454545,
     "y": 466.36363636363632,
-    "z": 15000,
+    "z": 13000,
     "height": 259.09090909090907,
     "width": 816.36363636363626,
-    "tabOrder": 15000
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "tableEx",
@@ -74,6 +74,21 @@
               "queryRef": "Child Location Record.# of Children Cared For CP",
               "nativeQueryRef": "Children Cared For",
               "displayName": "Children Cared For"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Child Location Record"
+                    }
+                  },
+                  "Property": "# of First-Time Children Cared For CP"
+                }
+              },
+              "queryRef": "Child Location Record.# of First-Time Children Cared For CP",
+              "nativeQueryRef": "First-Time Children Cared For",
+              "displayName": "First-Time Children Cared For"
             }
           ]
         }
@@ -121,7 +136,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "6D"
+                  "Value": "5D"
                 }
               }
             },
@@ -485,6 +500,117 @@
             ],
             "metadata": "Child Location Record.# of Children Cared For CP"
           }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Child Location Record"
+                                    }
+                                  },
+                                  "Property": "# of First-Time Children Cared For CP"
+                                }
+                              },
+                              "Right": {
+                                "RangePercent": {
+                                  "Min": {
+                                    "ScopedEval": {
+                                      "Expression": {
+                                        "Aggregation": {
+                                          "Expression": {
+                                            "ScopedEval": {
+                                              "Expression": {
+                                                "Measure": {
+                                                  "Expression": {
+                                                    "SourceRef": {
+                                                      "Entity": "Child Location Record"
+                                                    }
+                                                  },
+                                                  "Property": "# of First-Time Children Cared For CP"
+                                                }
+                                              },
+                                              "Scope": [
+                                                {
+                                                  "AllRolesRef": {}
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "Function": 3
+                                        }
+                                      },
+                                      "Scope": []
+                                    }
+                                  },
+                                  "Max": {
+                                    "ScopedEval": {
+                                      "Expression": {
+                                        "Aggregation": {
+                                          "Expression": {
+                                            "ScopedEval": {
+                                              "Expression": {
+                                                "Measure": {
+                                                  "Expression": {
+                                                    "SourceRef": {
+                                                      "Entity": "Child Location Record"
+                                                    }
+                                                  },
+                                                  "Property": "# of First-Time Children Cared For CP"
+                                                }
+                                              },
+                                              "Scope": [
+                                                {
+                                                  "AllRolesRef": {}
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "Function": 4
+                                        }
+                                      },
+                                      "Scope": []
+                                    }
+                                  },
+                                  "Percent": 1
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#FFFFFF'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Child Location Record.# of First-Time Children Cared For CP"
+          }
         }
       ],
       "total": [
@@ -531,6 +657,20 @@
           },
           "selector": {
             "metadata": "Cases.# of Cases Opened CP"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "192D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Child Location Record.# of Children Cared For CP"
           }
         }
       ],
@@ -747,6 +887,69 @@
           },
           "selector": {
             "metadata": "Child Location Record Expanded.# of Days of Care CP"
+          }
+        },
+        {
+          "properties": {
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#0051FF'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#0051FF'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#0051FF'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Child Location Record.# of First-Time Children Cared For CP"
           }
         }
       ]
@@ -1116,62 +1319,6 @@
         "howCreated": "User",
         "isHiddenInViewMode": true,
         "isLockedInViewMode": true
-      },
-      {
-        "name": "933edfa15449f84583fa",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "3e90ccbf762f38ec8e31",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record Expanded"
-              }
-            },
-            "Property": "# of Days of Care CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c4187ec9e3cf0dfd7393",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record Expanded"
-              }
-            },
-            "Property": "# of Nights of Care CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "65bc1fce6af02609a140",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Child Location Record"
-              }
-            },
-            "Property": "# of Children Cared For CP"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

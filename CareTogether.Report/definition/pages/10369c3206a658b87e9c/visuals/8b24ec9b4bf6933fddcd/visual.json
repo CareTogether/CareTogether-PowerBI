@@ -4,10 +4,10 @@
   "position": {
     "x": 525.83333333333337,
     "y": 495.83333333333337,
-    "z": 35000,
+    "z": 30000,
     "height": 250,
     "width": 309.16666666666669,
-    "tabOrder": 26008
+    "tabOrder": 29000
   },
   "visual": {
     "visualType": "donutChart",
@@ -789,37 +789,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "a16ec1b537afc1ad0393",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Family Role Approval"
-              }
-            },
-            "Property": "# of Family Applications CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "8e12772f3750255e9b4d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Family Role Approval"
-              }
-            },
-            "Property": "Family Application Type"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

@@ -63,6 +63,7 @@ ref table '(HELP) Approval Activity'
 ref table _aux_arrangement_display_by
 ref table 'Volunteer Family Role Requirements'
 ref table 'Volunteer Person Role Requirements'
+ref table '(HELP) Volunteer Capacity'
 
 ref role Dynamic
 

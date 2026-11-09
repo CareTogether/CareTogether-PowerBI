@@ -367,6 +367,20 @@
         },
         "isHiddenInViewMode": true,
         "isLockedInViewMode": true
+      },
+      {
+        "name": "dc2b402a460d0e5aec88",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cases"
+              }
+            },
+            "Property": "# of Cases Opened CP"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

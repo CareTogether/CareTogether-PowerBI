@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 49.876037953279983,
-    "z": 9000,
+    "z": 7000,
     "height": 148.13927690601071,
     "width": 835.23753109821109,
-    "tabOrder": 9000
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -2465,51 +2465,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "6089a51a36a688956032",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Family Role Approval"
-              }
-            },
-            "Property": "# of Family Applications CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "92f1edb8934704493e7e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Family Role Approval"
-              }
-            },
-            "Property": "# of Family Approvals CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ef50b55c509a052b8381",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Volunteer Family Role Approval"
-              }
-            },
-            "Property": "# of Family Onboardings CP"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

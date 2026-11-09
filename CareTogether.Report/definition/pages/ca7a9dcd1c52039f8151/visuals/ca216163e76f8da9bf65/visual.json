@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "ca216163e76f8da9bf65",
   "position": {
-    "x": 11.166277153719399,
-    "y": 773.450797514297,
+    "x": 9.61119252120525,
+    "y": 775.54930421110055,
     "z": 25000,
-    "height": 297.022972288936,
-    "width": 815.13823222151609,
+    "height": 297.2076456557316,
+    "width": 825.08391182038918,
     "tabOrder": 24000
   },
   "visual": {
@@ -117,8 +117,8 @@
                 }
               },
               "queryRef": "Referrals.Referral Volunteer Role Assignment",
-              "nativeQueryRef": "Volunteer(s) Role Assignment",
-              "displayName": "Volunteer(s) Role Assignment"
+              "nativeQueryRef": "Volunteer(s) Role",
+              "displayName": "Volunteer(s) Role"
             }
           ]
         }
@@ -133,10 +133,10 @@
                     "Entity": "Referrals"
                   }
                 },
-                "Property": "created_utc"
+                "Property": "Referral Volunteer Role Assignment"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -180,6 +180,20 @@
                       "Percent": 0.2
                     }
                   }
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "defaultColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
                 }
               }
             }
@@ -294,13 +308,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "180D"
+                  "Value": "143.58413073870764D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Cases.close_reason"
+            "metadata": "Referrals.Client Family Name"
           }
         },
         {
@@ -308,21 +322,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "80D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Cases.# of Cases Opened CP"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "125D"
+                  "Value": "109.85965097195974D"
                 }
               }
             }
@@ -336,21 +336,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "80D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Referrals.accepted_utc"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "70D"
+                  "Value": "76.22701266015396D"
                 }
               }
             }
@@ -364,7 +350,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "80D"
+                  "Value": "85D"
                 }
               }
             }
@@ -378,7 +364,21 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "80D"
+                  "Value": "85D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Referrals.accepted_utc"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "85D"
                 }
               }
             }
@@ -392,17 +392,11 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "140D"
+                  "Value": "189.1600524883184D"
                 }
               }
             }
           },
-          "selector": {
-            "metadata": "Referrals.Client Family Name"
-          }
-        },
-        {
-          "properties": {},
           "selector": {
             "metadata": "Referrals.Referral Volunteer Role Assignment"
           }
@@ -499,14 +493,14 @@
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "20D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "20D"
                 }
               }
             }
@@ -774,6 +768,104 @@
         "howCreated": "User",
         "isHiddenInViewMode": true,
         "isLockedInViewMode": true
+      },
+      {
+        "name": "504dbc743c14b84306ee",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "Client Family Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d508de088d4c80261448",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "title"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "0bd84ccd8244898ec2c9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1601c45acb9d40e800e1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "created_utc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b8afa083064018d30dd3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "accepted_utc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "33e1c1216d383c48d35a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "closed_utc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "cf2011ce4b8d327d9a49",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Referrals"
+              }
+            },
+            "Property": "Referral Volunteer Role Assignment"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

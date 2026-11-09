@@ -4,10 +4,10 @@
   "position": {
     "x": 1670,
     "y": 800,
-    "z": 4000,
+    "z": 3000,
     "height": 280,
     "width": 250,
-    "tabOrder": 4000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "htmlContent443BE3AD55E043BF878BED274D3A6855",
@@ -111,23 +111,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "a0a41035d093a8f31d06",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Report Refresh"
-              }
-            },
-            "Property": "Refresh Date"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
