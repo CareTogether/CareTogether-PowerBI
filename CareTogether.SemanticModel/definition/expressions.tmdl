@@ -1,7 +1,7 @@
-expression Environment = "Production" meta [IsParameterQuery=true, List={"Production", "Development"}, DefaultValue="Production", Type="Text", IsParameterQueryRequired=true]
-	lineageTag: 7d8f14a3-6a06-4b9b-b46e-89dd5cfc9842
+expression Production = true meta [IsParameterQuery=true, Type="Logical", IsParameterQueryRequired=true]
+	lineageTag: e650e6d5-817f-4cd5-852a-009cb4d340d4
 
 	annotation PBI_NavigationStepName = Navegação
 
-	annotation PBI_ResultType = Text
+	annotation PBI_ResultType = Logical
 
