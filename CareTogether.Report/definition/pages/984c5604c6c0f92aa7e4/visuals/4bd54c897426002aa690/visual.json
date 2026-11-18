@@ -32,6 +32,51 @@
             },
             {
               "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Volunteer Person"
+                    }
+                  },
+                  "Property": "address_line_1"
+                }
+              },
+              "queryRef": "Volunteer Person.address_line_1",
+              "nativeQueryRef": "Address",
+              "displayName": "Address"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Volunteer Person"
+                    }
+                  },
+                  "Property": "city"
+                }
+              },
+              "queryRef": "Volunteer Person.city",
+              "nativeQueryRef": "City",
+              "displayName": "City"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Volunteer Person"
+                    }
+                  },
+                  "Property": "county"
+                }
+              },
+              "queryRef": "Volunteer Person.county",
+              "nativeQueryRef": "County",
+              "displayName": "County"
+            },
+            {
+              "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
@@ -84,6 +129,13 @@
                   "Value": "9D"
                 }
               }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
             }
           }
         }
@@ -103,8 +155,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
+                      "ColorId": 1,
+                      "Percent": 0.2
                     }
                   }
                 }
@@ -115,7 +167,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 6,
+                      "ColorId": 0,
                       "Percent": 0
                     }
                   }
@@ -287,7 +339,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "380D"
+                  "Value": "100.53615215178695D"
                 }
               }
             }
@@ -301,7 +353,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "400D"
+                  "Value": "341.66436726391606D"
                 }
               }
             }

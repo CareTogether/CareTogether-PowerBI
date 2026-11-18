@@ -21,45 +21,6 @@ table Referrals
 		formatString: #,0
 		lineageTag: 73af666a-279e-474b-9e38-c99b68d78c69
 
-	measure '# of Referrals Created PP' =
-			
-			/*
-			PP = Previous Period
-			Counts the number of Referrals created during the period immediately preceding the selected timeframe.
-			*/
-			
-			VAR currentStartDate = [Selected Timeframe Start]
-			VAR currentEndDate = [Selected Timeframe End]
-			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
-			VAR previousStartDate = currentStartDate - periodDays
-			VAR previousEndDate = currentStartDate - 1
-			
-			RETURN
-			CALCULATE(
-			    COUNTROWS('Referrals'),
-			    'Referrals'[created_utc] >= previousStartDate,
-			    'Referrals'[created_utc] < previousEndDate + 1,
-			    USERELATIONSHIP('Referrals'[location_id], Location[location_id])
-			)
-		formatString: #,0
-		lineageTag: 8ea54ea0-bbbd-4e70-9b67-941b8f840a0c
-
-	measure '# of Referrals Created PoP' =
-			
-			VAR currentPeriod = [# of Referrals Created CP]
-			VAR previousPeriod = [# of Referrals Created PP]
-			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
-			
-			RETURN
-			SWITCH(
-			    TRUE(),
-			    ISBLANK(perc), BLANK(),
-			    perc >= 0, FORMAT(perc, "+0%") & "▲",
-			    perc < 0, FORMAT(perc, "0%") & "▼",
-			    "0%"
-			)
-		lineageTag: 7420d2aa-fd5e-457c-a48a-e5417dda5999
-
 	measure '# of Referrals Accepted CP' = ```
 			
 			/*
@@ -150,13 +111,19 @@ table Referrals
 			VAR selectedEndDate = [Selected Timeframe End]
 			
 			RETURN
-			CALCULATE(
-			    DISTINCTCOUNT('Referrals'[family_id]),
-			    'Referrals'[created_utc] >= selectedStartDate,
-			    'Referrals'[created_utc] < selectedEndDate + 1,
-			    NOT ISBLANK('Referrals'[family_id]),
-			    USERELATIONSHIP('Referrals'[location_id], Location[location_id])
-			)
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                'Referrals',
+			                'Referrals'[organization_id],
+			                'Referrals'[family_id]
+			            )
+			        ),
+			        'Referrals'[created_utc] >= selectedStartDate,
+			        'Referrals'[created_utc] < selectedEndDate + 1,
+			        NOT ISBLANK('Referrals'[family_id]),
+			        USERELATIONSHIP('Referrals'[location_id], Location[location_id])
+			    )
 		formatString: #,0
 		lineageTag: fac84eb8-b35b-4df2-b86d-84729afd9ac1
 
@@ -174,13 +141,19 @@ table Referrals
 			VAR previousEndDate = currentStartDate - 1
 			
 			RETURN
-			CALCULATE(
-			    DISTINCTCOUNT('Referrals'[family_id]),
-			    'Referrals'[created_utc] >= previousStartDate,
-			    'Referrals'[created_utc] < previousEndDate + 1,
-			    NOT ISBLANK('Referrals'[family_id]),
-			    USERELATIONSHIP('Referrals'[location_id], Location[location_id])
-			)
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                'Referrals',
+			                'Referrals'[organization_id],
+			                'Referrals'[family_id]
+			            )
+			        ),
+			        'Referrals'[created_utc] >= previousStartDate,
+			        'Referrals'[created_utc] < previousEndDate + 1,
+			        NOT ISBLANK('Referrals'[family_id]),
+			        USERELATIONSHIP('Referrals'[location_id], Location[location_id])
+			    )
 		formatString: #,0
 		lineageTag: 901855f2-2a70-46a2-97f6-76f78ab2e1b1
 
@@ -199,6 +172,52 @@ table Referrals
 			    "0%"
 			)
 		lineageTag: 814fac65-439d-4bac-81e9-eccd405840fe
+
+	measure '# of Referrals Created PoP' =
+			
+			
+			VAR currentPeriod = [# of Referrals Created CP]
+			VAR previousPeriod = [# of Referrals Created PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 871570b5-bb15-4207-9aaf-e8c41bb53f42
+
+	measure '# of Referrals Created PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of Referrals accepted within the selected
+			timeframe, regardless of when they were created.
+			
+			The selected timeframe is applied to the Referral Acceptance Date.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN CALCULATE(
+			    DISTINCTCOUNT(Referrals[referral_id]),
+			    Referrals[created_utc] >= previousStartDate,
+			    Referrals[created_utc] < previousEndDate + 1,
+			    NOT ISBLANK(Referrals[accepted_utc]),
+			    USERELATIONSHIP(Referrals[location_id], Location[location_id])
+			)
+		formatString: 0
+		lineageTag: f319a76b-0ddb-4dc8-83c4-ad57b527ce32
 
 	column referral_id
 		dataType: string

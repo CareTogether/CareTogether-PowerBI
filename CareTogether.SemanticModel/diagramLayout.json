@@ -5,7 +5,7 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 0
+        "y": 475.20601433949196
       },
       "nodes": [
         {
@@ -510,6 +510,18 @@
           },
           "zIndex": 0,
           "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 4892.2968903520732,
+            "y": 1417.9400471985725
+          },
+          "nodeIndex": "(HELP) Communities",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

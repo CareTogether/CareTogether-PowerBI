@@ -7,7 +7,7 @@
     "z": 23000,
     "height": 297.2076456557316,
     "width": 824.344589318758,
-    "tabOrder": 23000
+    "tabOrder": 22000
   },
   "visual": {
     "visualType": "tableEx",
@@ -142,8 +142,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
+                      "ColorId": 1,
+                      "Percent": 0.2
                     }
                   }
                 }
@@ -160,8 +160,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#016D82'"
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
                     }
                   }
                 }
@@ -248,6 +249,13 @@
               "expr": {
                 "Literal": {
                   "Value": "9D"
+                }
+              }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
                 }
               }
             }
@@ -737,7 +745,7 @@
         "howCreated": "User"
       },
       {
-        "name": "2a84f909068857b16008",
+        "name": "57418ff7c0ea8c57b80c",
         "field": {
           "Column": {
             "Expression": {
@@ -751,7 +759,7 @@
         "type": "Categorical"
       },
       {
-        "name": "065c1d62be218a5a3ec2",
+        "name": "d41d099c34210be5e632",
         "field": {
           "Column": {
             "Expression": {
@@ -765,7 +773,7 @@
         "type": "Categorical"
       },
       {
-        "name": "3654f61920010b02300c",
+        "name": "df56542fd003404080db",
         "field": {
           "Column": {
             "Expression": {
@@ -779,7 +787,7 @@
         "type": "Categorical"
       },
       {
-        "name": "a14d0cbf2c42833199dc",
+        "name": "28aa5e19b3baa2095146",
         "field": {
           "Column": {
             "Expression": {
@@ -793,7 +801,7 @@
         "type": "Categorical"
       },
       {
-        "name": "b11bc3b369a02089b092",
+        "name": "1ddab98261e02c2c1e29",
         "field": {
           "Column": {
             "Expression": {
@@ -807,7 +815,7 @@
         "type": "Categorical"
       },
       {
-        "name": "585a45bf0408b7a4e555",
+        "name": "a64d3209ab07d23961a7",
         "field": {
           "Column": {
             "Expression": {

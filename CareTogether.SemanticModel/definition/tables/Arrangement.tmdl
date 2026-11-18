@@ -191,16 +191,22 @@ table Arrangement
 			VAR todayDate = TODAY()
 			
 			RETURN
-			CALCULATE(
-			    DISTINCTCOUNT(Arrangement[person_id]),
-			    Arrangement[started_utc] >= startDate,
-			    Arrangement[started_utc] < endDate + 1,
-			    Arrangement[phase] <> "Cancelled",
-			    NOT ISBLANK(Arrangement[started_utc]),
-			    Arrangement[started_utc] < todayDate + 1,
-			    NOT ISBLANK(Arrangement[person_id]),
-			    USERELATIONSHIP(Arrangement[location_id], Location[location_id])
-			)
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                Arrangement,
+			                Arrangement[organization_id],
+			                Arrangement[person_id]
+			            )
+			        ),
+			        Arrangement[started_utc] >= startDate,
+			        Arrangement[started_utc] < endDate + 1,
+			        Arrangement[phase] <> "Cancelled",
+			        NOT ISBLANK(Arrangement[started_utc]),
+			        Arrangement[started_utc] < todayDate + 1,
+			        NOT ISBLANK(Arrangement[person_id]),
+			        USERELATIONSHIP(Arrangement[location_id], Location[location_id])
+			    )
 		formatString: #,0
 		lineageTag: c6da53c7-7304-4304-b0f4-750e4a5a51db
 
@@ -231,34 +237,27 @@ table Arrangement
 			VAR currentStartDate = [Selected Timeframe Start]
 			VAR currentEndDate = [Selected Timeframe End]
 			VAR todayDate = TODAY()
-			
-			VAR periodDays =
-			    DATEDIFF(
-			        currentStartDate,
-			        currentEndDate,
-			        DAY
-			    ) + 1
-			
-			VAR previousStartDate =
-			    currentStartDate - periodDays
-			
-			VAR previousEndDate =
-			    currentStartDate - 1
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
 			
 			RETURN
-			CALCULATE(
-			    DISTINCTCOUNT(Arrangement[person_id]),
-			    Arrangement[started_utc] >= previousStartDate,
-			    Arrangement[started_utc] < previousEndDate + 1,
-			    Arrangement[phase] <> "Cancelled",
-			    NOT ISBLANK(Arrangement[started_utc]),
-			    Arrangement[started_utc] < todayDate + 1,
-			    NOT ISBLANK(Arrangement[person_id]),
-			    USERELATIONSHIP(
-			        Arrangement[location_id],
-			        Location[location_id]
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                Arrangement,
+			                Arrangement[organization_id],
+			                Arrangement[person_id]
+			            )
+			        ),
+			        Arrangement[started_utc] >= previousStartDate,
+			        Arrangement[started_utc] < previousEndDate + 1,
+			        Arrangement[phase] <> "Cancelled",
+			        NOT ISBLANK(Arrangement[started_utc]),
+			        Arrangement[started_utc] < todayDate + 1,
+			        NOT ISBLANK(Arrangement[person_id]),
+			        USERELATIONSHIP(Arrangement[location_id], Location[location_id])
 			    )
-			)
 		formatString: 0
 		lineageTag: d9be206c-83a0-439e-8cc5-061158d8352c
 
@@ -433,19 +432,22 @@ table Arrangement
 			VAR todayDate = TODAY()
 			
 			RETURN
-			CALCULATE(
-			    DISTINCTCOUNT(Arrangement[family_id]),
-			    Arrangement[started_utc] >= startDate,
-			    Arrangement[started_utc] < endDate + 1,
-			    Arrangement[phase] <> "Cancelled",
-			    NOT ISBLANK(Arrangement[started_utc]),
-			    Arrangement[started_utc] < todayDate + 1,
-			    NOT ISBLANK(Arrangement[family_id]),
-			    USERELATIONSHIP(
-			        Arrangement[location_id],
-			        Location[location_id]
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                Arrangement,
+			                Arrangement[organization_id],
+			                Arrangement[family_id]
+			            )
+			        ),
+			        Arrangement[started_utc] >= startDate,
+			        Arrangement[started_utc] < endDate + 1,
+			        Arrangement[phase] <> "Cancelled",
+			        NOT ISBLANK(Arrangement[started_utc]),
+			        Arrangement[started_utc] < todayDate + 1,
+			        NOT ISBLANK(Arrangement[family_id]),
+			        USERELATIONSHIP(Arrangement[location_id], Location[location_id])
 			    )
-			)
 		formatString: #,0
 		lineageTag: be66106a-2ff2-4d0f-9f85-74f77c932213
 
@@ -473,34 +475,27 @@ table Arrangement
 			VAR currentStartDate = [Selected Timeframe Start]
 			VAR currentEndDate = [Selected Timeframe End]
 			VAR todayDate = TODAY()
-			
-			VAR periodDays =
-			    DATEDIFF(
-			        currentStartDate,
-			        currentEndDate,
-			        DAY
-			    ) + 1
-			
-			VAR previousStartDate =
-			    currentStartDate - periodDays
-			
-			VAR previousEndDate =
-			    currentStartDate - 1
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
 			
 			RETURN
-			CALCULATE(
-			    DISTINCTCOUNT(Arrangement[family_id]),
-			    Arrangement[started_utc] >= previousStartDate,
-			    Arrangement[started_utc] < previousEndDate + 1,
-			    Arrangement[phase] <> "Cancelled",
-			    NOT ISBLANK(Arrangement[started_utc]),
-			    Arrangement[started_utc] < todayDate + 1,
-			    NOT ISBLANK(Arrangement[family_id]),
-			    USERELATIONSHIP(
-			        Arrangement[location_id],
-			        Location[location_id]
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                Arrangement,
+			                Arrangement[organization_id],
+			                Arrangement[family_id]
+			            )
+			        ),
+			        Arrangement[started_utc] >= previousStartDate,
+			        Arrangement[started_utc] < previousEndDate + 1,
+			        Arrangement[phase] <> "Cancelled",
+			        NOT ISBLANK(Arrangement[started_utc]),
+			        Arrangement[started_utc] < todayDate + 1,
+			        NOT ISBLANK(Arrangement[family_id]),
+			        USERELATIONSHIP(Arrangement[location_id], Location[location_id])
 			    )
-			)
 		formatString: 0
 		lineageTag: db177557-f96a-412e-bc77-2c04942b49c6
 

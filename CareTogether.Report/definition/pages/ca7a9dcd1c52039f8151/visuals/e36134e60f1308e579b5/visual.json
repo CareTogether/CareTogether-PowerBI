@@ -42,11 +42,11 @@
                       "Entity": "Cases"
                     }
                   },
-                  "Property": "# of Cases Opened CP"
+                  "Property": "# of Families with Cases CP"
                 }
               },
-              "queryRef": "Cases.# of Cases Opened CP",
-              "nativeQueryRef": "# of Cases Opened CP"
+              "queryRef": "Cases.# of Families with Cases CP",
+              "nativeQueryRef": "# of Families with Cases CP"
             }
           ]
         }
@@ -61,7 +61,7 @@
                     "Entity": "Cases"
                   }
                 },
-                "Property": "# of Cases Opened CP"
+                "Property": "# of Families with Cases CP"
               }
             },
             "direction": "Descending"
@@ -491,37 +491,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "a743bcd8c18eeee2e7db",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Cases"
-              }
-            },
-            "Property": "case_family_type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "f4b01bbe541dc75ed61b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Cases"
-              }
-            },
-            "Property": "# of Cases Opened CP"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

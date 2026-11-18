@@ -617,51 +617,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "4bef2e06dc55162541aa",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "38c5c2e2d1268be414e5",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "# of Arrangements Requested CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "8cebd89c57545eaa1b90",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "# of Arrangements Started CP"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

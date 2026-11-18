@@ -1,0 +1,604 @@
+table '(HELP) Communities'
+	lineageTag: 37f25605-53bd-46aa-a0fb-0d509b4e3e7c
+
+	measure '(HTML) Help - Communities' = ```
+			
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;'>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Communities
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows the total number of <b>distinct Communities</b>
+			        registered in the application within the current
+			        Organization and Location context.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;'>
+			        How is it calculated?
+			    </div>
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Each Community is counted once using its unique
+			        Community ID, regardless of how many Volunteer
+			        Families, Individual Volunteers, or Arrangements
+			        are associated with it.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;'>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            How to use this information
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Understand the size of the Community network
+			            registered within the selected Organization
+			            and Location context.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;'>
+			        <b>Important:</b> Communities are counted even when
+			        they have no associated volunteers or service activity.
+			        This is a current registry count, not a historical
+			        count of Communities active during the selected period.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: 7ea5e360-1d6e-4dec-9653-524c6fe65044
+
+	measure '(HTML) Help - Dynamic Pop-up - Communities' = ```
+			
+			VAR HelpID =
+			    SELECTEDVALUE(
+			        '(HELP) Communities'[Help ID]
+			    )
+			
+			RETURN
+			    SWITCH(
+			        HelpID,
+			
+			        "COMMUNITIES",
+			            [(HTML) Help - Communities],
+			
+			        "COMMUNITY_WITH_PARTICIPATION",
+			            [(HTML) Help - Communities with Participation],
+			
+			        "COMMUNITY_ARRANGEMENTS_SUPPORTED",
+			            [(HTML) Help - Arrangements Supported],
+			            
+			        "COMMUNITY_DAYS_OF_CARE",
+			            [(HTML) Help - Community Days of Care],
+			
+			        "COMMUNITY_NIGHTS_OF_CARE",
+			            [(HTML) Help - Community Nights of Care],
+			
+			        "COMMUNITY_AVG_ARRANGEMENT_DURATION",
+			            [(HTML) Help - Community Avg. Arrangement Duration],
+			
+			        "COMMUNITIY_CONTRIBUTION",
+			            [(HTML) Help - Community Contribution],
+			
+			        BLANK()
+			    )
+			```
+		displayFolder: Measures
+		lineageTag: 34620da7-1b9d-4b65-94b3-591149f37343
+
+	measure '(HTML) Help - Communities with Participation' = ```
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;'>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Communities with Participation
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows how many <b>distinct Communities</b>
+			        contributed to at least one Arrangement
+			        started during the selected timeframe.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;'>
+			        How is participation identified?
+			    </div>
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Participation is attributed through Volunteer Families
+			        associated with a Community, including qualifying
+			        Individual Volunteers linked through those families.
+			        <br/><br/>
+			        A Community is counted once when at least one
+			        qualifying Arrangement is associated with it.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;'>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            How to use this information
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Compare this value with the total number of
+			            Communities to understand how broadly the
+			            network participated in supporting Arrangements.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;'>
+			        <b>Important:</b> Participation is attributed using
+			        current Community memberships. Historical changes
+			        in membership are not retained.
+			        A single Arrangement may involve multiple Communities.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: e0e7ce4f-826b-4c8b-a8fb-60d58fc0be31
+
+	measure '(HTML) Help - Arrangements Supported' = ```
+			
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;'>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Arrangements Supported
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows the number of <b>distinct Arrangements Started</b>
+			        during the selected timeframe that received support
+			        from volunteers associated with the Community network.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;'>
+			        How is support attributed?
+			    </div>
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Arrangements are connected to Communities through
+			        participating Volunteer Families and their linked
+			        Individual Volunteers.
+			        <br/><br/>
+			        Each qualifying Arrangement is counted once within
+			        a Community, regardless of how many associated
+			        volunteers participated in it.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;'>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            Example
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            If the same Arrangement is supported by volunteers
+			            associated with <b>Community A</b> and
+			            <b>Community B</b>, it contributes once to each
+			            Community, but only once to the distinct total
+			            across both Communities.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;'>
+			        <b>Important:</b> Community contributions can overlap.
+			        Adding individual Community counts may exceed the
+			        distinct total. Historical attribution uses current
+			        Community memberships.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: 746a2fd3-0c3d-46c5-adeb-a230aba5c5fe
+
+	measure '(HTML) Help - Community Days of Care' = ```
+			
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;'>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Days of Care
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows the number of <b>Days of Care</b> provided
+			        through childcare activities attributed to
+			        participating Communities during the selected timeframe.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;'>
+			        How is it calculated?
+			    </div>
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Qualifying childcare records are identified within
+			        the selected period and associated with Communities
+			        through the volunteers supporting the related
+			        Arrangements.
+			        <br/><br/>
+			        Each eligible care day is counted according to the
+			        childcare activity records. Activities classified
+			        as <b>WithParent</b> are excluded.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;'>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            How to use this information
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Understand the volume of childcare activity
+			            associated with the Community network and
+			            compare the contribution of individual Communities.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;'>
+			        <b>Important:</b> Days of Care are not the same
+			        as Arrangement duration. Community attribution
+			        may overlap when the same activity is associated
+			        with volunteers from multiple Communities.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: 200a82ea-8aed-4c27-9161-72eba1c7470c
+
+	measure '(HTML) Help - Community Nights of Care' = ```
+			
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;'>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Nights of Care
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows the number of <b>Nights of Care</b> provided
+			        through childcare activities attributed to
+			        participating Communities during the selected timeframe.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;'>
+			        How is it calculated?
+			    </div>
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Qualifying childcare records are identified within
+			        the selected period and attributed to Communities
+			        through the volunteers supporting the related
+			        Arrangements.
+			        <br/><br/>
+			        A night is counted when the care period extends
+			        into the following calendar day. Activities
+			        classified as <b>WithParent</b> are excluded.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;'>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            Example
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Care that starts and ends on the same day
+			            may contribute to <b>Days of Care</b>,
+			            but does not contribute to <b>Nights of Care</b>.
+			            <br/><br/>
+			            Care extending into the following day may
+			            contribute to both metrics.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;'>
+			        <b>Important:</b> Nights of Care are a separate
+			        measure of overnight support and should not be
+			        added to Days of Care as independent service days.
+			        Community contributions may overlap.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: f642dc98-1372-452e-9e9c-ecf20d4cce20
+
+	measure '(HTML) Help - Community Avg. Arrangement Duration' = ```
+			
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;'>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Avg. Arrangement Duration (days)
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows the <b>average duration in days</b>
+			        of qualifying Arrangements supported by
+			        the Community network.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;'>
+			        How is it calculated?
+			    </div>
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Duration is measured from the Arrangement's
+			        <b>start date</b> to its <b>end date</b>.
+			        <br/><br/>
+			        For ongoing Arrangements, the current date is
+			        used as the effective end date.
+			        Cancelled Arrangements and invalid date
+			        intervals are excluded.
+			        <br/><br/>
+			        The average is calculated across the qualifying
+			        Arrangements in the current filter context.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;'>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            How to use this information
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Understand how long supported Arrangements
+			            typically last and compare their average
+			            duration across Communities.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;'>
+			        <b>Important:</b> Arrangement duration does not
+			        represent actual childcare days or volunteer
+			        service hours.
+			        <br/>
+			        The overall average is calculated from qualifying
+			        Arrangements, not by averaging Community-level results.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: 0d53ee3d-f011-4ce9-b2bc-e277b2604fe0
+
+	measure '(HTML) Help - Community Contribution' = ```
+			
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;'>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Community Contribution
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows how each Community contributes to
+			        <b>Arrangements and childcare services</b>
+			        during the selected timeframe.
+			        <br/><br/>
+			        Each row represents a Community and summarizes
+			        the activities attributed to its associated volunteers.
+			    </div>
+			
+			    <!-- METRICS -->
+			    <div style='font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;'>
+			        How to read the table
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        <b>Roles - Arrangements per Role:</b>
+			        Shows the volunteer functions associated with
+			        supported Arrangements. Individual Roles are
+			        displayed in teal and Family Roles in magenta.
+			        <br/><br/>
+			        <b>Arrangements Supported:</b>
+			        Distinct Arrangements attributed to the Community.
+			        <br/><br/>
+			        <b>Share of All Started Arrangements:</b>
+			        The Community's attributed Arrangements compared
+			        with the overall distinct Arrangements Started.
+			        <br/><br/>
+			        <b>Days and Nights of Care:</b>
+			        Childcare activity associated with the Community.
+			        <br/><br/>
+			        <b>Avg. Duration Days:</b>
+			        Average duration of qualifying supported Arrangements.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            Understanding overlapping contributions
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            A single Arrangement may involve multiple
+			            volunteer functions and multiple Communities.
+			            <br/><br/>
+			            As a result, Role counts and Community-level
+			            contributions may overlap. They should not
+			            be added together to calculate unique
+			            Arrangements across the organization.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;
+			    '>
+			        <b>Important:</b> Community membership reflects
+			        current associations. Historical changes in
+			        membership are not retained, so past activities
+			        are attributed using current Community relationships.
+			        <br/><br/>
+			        The overall total is evaluated distinctly within
+			        the selected filter context.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: 84137866-1353-4e41-8781-928026bc6646
+
+	column 'Help ID'
+		lineageTag: 573e77a0-0168-413a-b85c-c9e7ce6fa8af
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Help ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '(HELP) Communities' = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Help ID", STRING,
+				    {
+				        {"COMMUNITIES"},
+				        {"COMMUNITY_WITH_PARTICIPATION"},
+				        {"COMMUNITY_ARRANGEMENTS_SUPPORTED"},
+				        {"COMMUNITY_DAYS_OF_CARE"},
+				        {"COMMUNITY_NIGHTS_OF_CARE"},
+				        {"COMMUNITY_AVG_ARRANGEMENT_DURATION"},
+				        {"COMMUNITIY_CONTRIBUTION"}
+				    }
+				)
+
+	annotation PBI_Id = 029085bb2f0a4bf097476212503abb44
+

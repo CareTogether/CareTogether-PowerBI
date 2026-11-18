@@ -7,7 +7,7 @@
     "z": 37000,
     "height": 35,
     "width": 55.831385768596995,
-    "tabOrder": 37000
+    "tabOrder": 36000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -211,7 +211,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'FAMILIES_REFERRED'"
+                          "Value": "'FAMILIES_CONNECTED'"
                         }
                       }
                     ]

@@ -378,20 +378,6 @@
         "howCreated": "User",
         "isHiddenInViewMode": true,
         "isLockedInViewMode": true
-      },
-      {
-        "name": "f26861989b7826b0a0d7",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Client Family"
-              }
-            },
-            "Property": "azure_geo_location"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

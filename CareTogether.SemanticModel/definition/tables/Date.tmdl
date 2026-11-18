@@ -229,6 +229,7 @@ table Date
 	column 'Day of Year Number'
 		dataType: int64
 		formatString: 0
+		displayFolder: _columns
 		lineageTag: 6eda6a0a-0045-45fe-9197-577b1e1bbe35
 		summarizeBy: sum
 		sourceColumn: Day of Year Number
@@ -237,6 +238,7 @@ table Date
 
 	column Yesterday
 		dataType: string
+		displayFolder: _columns
 		lineageTag: 53e6c552-a616-4af4-abac-21a21cec7e68
 		summarizeBy: none
 		sourceColumn: Yesterday

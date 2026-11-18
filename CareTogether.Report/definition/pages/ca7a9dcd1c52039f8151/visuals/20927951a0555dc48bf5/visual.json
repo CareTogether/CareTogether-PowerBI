@@ -46,7 +46,7 @@
                 }
               },
               "queryRef": "Referrals.# of Referrals Created CP",
-              "nativeQueryRef": "# of Referrals Created CP"
+              "nativeQueryRef": "# of Referrals Created CP1"
             }
           ]
         }
@@ -408,37 +408,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "765d47910151d895052a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Referrals"
-              }
-            },
-            "Property": "status"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "f16549a18c99a38d37b3",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Referrals"
-              }
-            },
-            "Property": "# of Referrals Created CP"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

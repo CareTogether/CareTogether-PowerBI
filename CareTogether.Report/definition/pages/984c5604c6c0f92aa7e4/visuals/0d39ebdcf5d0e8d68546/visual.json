@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "0d39ebdcf5d0e8d68546",
   "position": {
-    "x": 1670,
-    "y": 50,
+    "x": 1670.12953118482,
+    "y": 50.273930110919771,
     "z": 2000,
     "height": 100,
     "width": 250,
@@ -103,7 +103,7 @@
             "endDate": {
               "expr": {
                 "Literal": {
-                  "Value": "datetime'2026-11-09T00:00:00'"
+                  "Value": "datetime'2026-11-13T00:00:00'"
                 }
               }
             },
@@ -147,7 +147,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "datetime'2026-11-10T00:00:00'"
+                            "Value": "datetime'2026-11-14T00:00:00'"
                           }
                         }
                       }
@@ -228,23 +228,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "d35bcb53b0c51084028d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Date"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

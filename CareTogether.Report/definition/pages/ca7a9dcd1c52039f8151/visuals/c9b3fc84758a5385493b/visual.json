@@ -7,7 +7,7 @@
     "z": 28000,
     "height": 60,
     "width": 250,
-    "tabOrder": 28000
+    "tabOrder": 27000
   },
   "visual": {
     "visualType": "slicer",
@@ -232,6 +232,11 @@
           }
         }
       ]
+    },
+    "syncGroup": {
+      "groupName": "close_reason",
+      "fieldChanges": true,
+      "filterChanges": true
     },
     "drillFilterOtherVisuals": true
   },

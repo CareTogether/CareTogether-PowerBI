@@ -452,11 +452,20 @@ table 'Volunteer Person Role Approval'
 			
 			RETURN
 			    CALCULATE(
-			        DISTINCTCOUNT('Volunteer Person Role Approval'[person_id]),
-			        'Volunteer Person Role Approval'[status] IN {"Approved", "Onboarded"},
+			        COUNTROWS(
+			            SUMMARIZE(
+			                'Volunteer Person Role Approval',
+			                'Volunteer Person Role Approval'[organization_id],
+			                'Volunteer Person Role Approval'[person_id]
+			            )
+			        ),
+			        'Volunteer Person Role Approval'[status] IN { "Approved", "Onboarded" },
 			        'Volunteer Person Role Approval'[valid_from] <= asOfDate,
 			        'Volunteer Person Role Approval'[valid_to] >= asOfDate,
-			        USERELATIONSHIP('Volunteer Person Role Approval'[location_id], Location[location_id])
+			        USERELATIONSHIP(
+			            'Volunteer Person Role Approval'[location_id],
+			            Location[location_id]
+			        )
 			    )
 		formatString: 0
 		displayFolder: Volunteer Capacity

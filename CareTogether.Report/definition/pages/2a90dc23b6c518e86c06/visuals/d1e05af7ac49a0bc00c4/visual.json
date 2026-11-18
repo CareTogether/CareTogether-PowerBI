@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "(HELP) Volunteer Capacity"
+                      "Entity": "(HELP) Communities"
                     }
                   },
-                  "Property": "(HTML) Help - Dynamic Pop-up - Volunteer Capacity"
+                  "Property": "(HTML) Help - Dynamic Pop-up - Communities"
                 }
               },
-              "queryRef": "(HELP) Volunteer Capacity.(HTML) Help - Dynamic Pop-up - Volunteer Capacity",
-              "nativeQueryRef": "(HTML) Help - Dynamic Pop-up - Volunteer Capacity"
+              "queryRef": "(HELP) Communities.(HTML) Help - Dynamic Pop-up - Communities",
+              "nativeQueryRef": "(HTML) Help - Dynamic Pop-up - Communities"
             }
           ]
         }
@@ -97,5 +97,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "57bcdf0c622805075abd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "(HELP) Communities"
+              }
+            },
+            "Property": "(HTML) Help - Dynamic Pop-up - Communities"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

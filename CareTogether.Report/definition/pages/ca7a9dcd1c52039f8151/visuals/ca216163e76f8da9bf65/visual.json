@@ -6,8 +6,8 @@
     "y": 775.54930421110055,
     "z": 25000,
     "height": 297.2076456557316,
-    "width": 825.08391182038918,
-    "tabOrder": 24000
+    "width": 816.21204180081509,
+    "tabOrder": 23000
   },
   "visual": {
     "visualType": "tableEx",
@@ -157,8 +157,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
+                      "ColorId": 1,
+                      "Percent": 0.2
                     }
                   }
                 }
@@ -176,8 +176,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 9,
-                      "Percent": 0.2
+                      "ColorId": 0,
+                      "Percent": 0
                     }
                   }
                 }
@@ -279,6 +279,13 @@
               "expr": {
                 "Literal": {
                   "Value": "9D"
+                }
+              }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
                 }
               }
             }
@@ -500,7 +507,7 @@
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "10D"
                 }
               }
             }
@@ -768,104 +775,6 @@
         "howCreated": "User",
         "isHiddenInViewMode": true,
         "isLockedInViewMode": true
-      },
-      {
-        "name": "504dbc743c14b84306ee",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Referrals"
-              }
-            },
-            "Property": "Client Family Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d508de088d4c80261448",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Referrals"
-              }
-            },
-            "Property": "title"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "0bd84ccd8244898ec2c9",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Referrals"
-              }
-            },
-            "Property": "status"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "1601c45acb9d40e800e1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Referrals"
-              }
-            },
-            "Property": "created_utc"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "b8afa083064018d30dd3",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Referrals"
-              }
-            },
-            "Property": "accepted_utc"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "33e1c1216d383c48d35a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Referrals"
-              }
-            },
-            "Property": "closed_utc"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "cf2011ce4b8d327d9a49",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Referrals"
-              }
-            },
-            "Property": "Referral Volunteer Role Assignment"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

@@ -146,6 +146,13 @@
                   "Value": "9D"
                 }
               }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
             }
           }
         }
@@ -165,8 +172,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
+                      "ColorId": 1,
+                      "Percent": 0.2
                     }
                   }
                 }
@@ -176,8 +183,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#016D82'"
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
                     }
                   }
                 }
@@ -193,7 +201,7 @@
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'Center'"
+                  "Value": "'Left'"
                 }
               }
             },
@@ -280,105 +288,7 @@
           }
         },
         {
-          "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "Comparison": {
-                              "ComparisonKind": 0,
-                              "Left": {
-                                "Measure": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Entity": "Child Location Record Expanded"
-                                    }
-                                  },
-                                  "Property": "# of Nights of Care CP"
-                                }
-                              },
-                              "Right": {
-                                "RangePercent": {
-                                  "Min": {
-                                    "ScopedEval": {
-                                      "Expression": {
-                                        "Aggregation": {
-                                          "Expression": {
-                                            "ScopedEval": {
-                                              "Expression": {
-                                                "Measure": {
-                                                  "Expression": {
-                                                    "SourceRef": {
-                                                      "Entity": "Child Location Record Expanded"
-                                                    }
-                                                  },
-                                                  "Property": "# of Nights of Care CP"
-                                                }
-                                              },
-                                              "Scope": [
-                                                {
-                                                  "AllRolesRef": {}
-                                                }
-                                              ]
-                                            }
-                                          },
-                                          "Function": 3
-                                        }
-                                      },
-                                      "Scope": []
-                                    }
-                                  },
-                                  "Max": {
-                                    "ScopedEval": {
-                                      "Expression": {
-                                        "Aggregation": {
-                                          "Expression": {
-                                            "ScopedEval": {
-                                              "Expression": {
-                                                "Measure": {
-                                                  "Expression": {
-                                                    "SourceRef": {
-                                                      "Entity": "Child Location Record Expanded"
-                                                    }
-                                                  },
-                                                  "Property": "# of Nights of Care CP"
-                                                }
-                                              },
-                                              "Scope": [
-                                                {
-                                                  "AllRolesRef": {}
-                                                }
-                                              ]
-                                            }
-                                          },
-                                          "Function": 4
-                                        }
-                                      },
-                                      "Scope": []
-                                    }
-                                  },
-                                  "Percent": 1
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#FFFFFF'"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "data": [
               {
@@ -391,105 +301,7 @@
           }
         },
         {
-          "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "Comparison": {
-                              "ComparisonKind": 0,
-                              "Left": {
-                                "Measure": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Entity": "Child Location Record"
-                                    }
-                                  },
-                                  "Property": "# of Children Cared For CP"
-                                }
-                              },
-                              "Right": {
-                                "RangePercent": {
-                                  "Min": {
-                                    "ScopedEval": {
-                                      "Expression": {
-                                        "Aggregation": {
-                                          "Expression": {
-                                            "ScopedEval": {
-                                              "Expression": {
-                                                "Measure": {
-                                                  "Expression": {
-                                                    "SourceRef": {
-                                                      "Entity": "Child Location Record"
-                                                    }
-                                                  },
-                                                  "Property": "# of Children Cared For CP"
-                                                }
-                                              },
-                                              "Scope": [
-                                                {
-                                                  "AllRolesRef": {}
-                                                }
-                                              ]
-                                            }
-                                          },
-                                          "Function": 3
-                                        }
-                                      },
-                                      "Scope": []
-                                    }
-                                  },
-                                  "Max": {
-                                    "ScopedEval": {
-                                      "Expression": {
-                                        "Aggregation": {
-                                          "Expression": {
-                                            "ScopedEval": {
-                                              "Expression": {
-                                                "Measure": {
-                                                  "Expression": {
-                                                    "SourceRef": {
-                                                      "Entity": "Child Location Record"
-                                                    }
-                                                  },
-                                                  "Property": "# of Children Cared For CP"
-                                                }
-                                              },
-                                              "Scope": [
-                                                {
-                                                  "AllRolesRef": {}
-                                                }
-                                              ]
-                                            }
-                                          },
-                                          "Function": 4
-                                        }
-                                      },
-                                      "Scope": []
-                                    }
-                                  },
-                                  "Percent": 1
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#FFFFFF'"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "data": [
               {
@@ -502,105 +314,7 @@
           }
         },
         {
-          "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "Comparison": {
-                              "ComparisonKind": 0,
-                              "Left": {
-                                "Measure": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Entity": "Child Location Record"
-                                    }
-                                  },
-                                  "Property": "# of First-Time Children Cared For CP"
-                                }
-                              },
-                              "Right": {
-                                "RangePercent": {
-                                  "Min": {
-                                    "ScopedEval": {
-                                      "Expression": {
-                                        "Aggregation": {
-                                          "Expression": {
-                                            "ScopedEval": {
-                                              "Expression": {
-                                                "Measure": {
-                                                  "Expression": {
-                                                    "SourceRef": {
-                                                      "Entity": "Child Location Record"
-                                                    }
-                                                  },
-                                                  "Property": "# of First-Time Children Cared For CP"
-                                                }
-                                              },
-                                              "Scope": [
-                                                {
-                                                  "AllRolesRef": {}
-                                                }
-                                              ]
-                                            }
-                                          },
-                                          "Function": 3
-                                        }
-                                      },
-                                      "Scope": []
-                                    }
-                                  },
-                                  "Max": {
-                                    "ScopedEval": {
-                                      "Expression": {
-                                        "Aggregation": {
-                                          "Expression": {
-                                            "ScopedEval": {
-                                              "Expression": {
-                                                "Measure": {
-                                                  "Expression": {
-                                                    "SourceRef": {
-                                                      "Entity": "Child Location Record"
-                                                    }
-                                                  },
-                                                  "Property": "# of First-Time Children Cared For CP"
-                                                }
-                                              },
-                                              "Scope": [
-                                                {
-                                                  "AllRolesRef": {}
-                                                }
-                                              ]
-                                            }
-                                          },
-                                          "Function": 4
-                                        }
-                                      },
-                                      "Scope": []
-                                    }
-                                  },
-                                  "Percent": 1
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#FFFFFF'"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "data": [
               {
@@ -684,13 +398,24 @@
                 }
               }
             },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#050524'"
+                    }
+                  }
+                }
+              }
+            },
             "dataBars": {
               "positiveColor": {
                 "solid": {
                   "color": {
                     "expr": {
                       "Literal": {
-                        "Value": "'#0E4F52'"
+                        "Value": "'#F4FDFF'"
                       }
                     }
                   }
@@ -701,7 +426,7 @@
                   "color": {
                     "expr": {
                       "Literal": {
-                        "Value": "'#0E4F52'"
+                        "Value": "'#F4FDFF'"
                       }
                     }
                   }
@@ -712,7 +437,7 @@
                   "color": {
                     "expr": {
                       "Literal": {
-                        "Value": "'#0E4F52'"
+                        "Value": "'#F4FDFF'"
                       }
                     }
                   }
@@ -739,17 +464,6 @@
                   }
                 }
               }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#050524'"
-                    }
-                  }
-                }
-              }
             }
           },
           "selector": {
@@ -771,7 +485,7 @@
                   "color": {
                     "expr": {
                       "Literal": {
-                        "Value": "'#bc51b5'"
+                        "Value": "'#FFF5FE'"
                       }
                     }
                   }
@@ -782,7 +496,7 @@
                   "color": {
                     "expr": {
                       "Literal": {
-                        "Value": "'#bc51b5'"
+                        "Value": "'#FFF5FE'"
                       }
                     }
                   }
@@ -793,7 +507,7 @@
                   "color": {
                     "expr": {
                       "Literal": {
-                        "Value": "'#bc51b5'"
+                        "Value": "'#FFF5FE'"
                       }
                     }
                   }
@@ -834,7 +548,7 @@
                   "color": {
                     "expr": {
                       "Literal": {
-                        "Value": "'#A7E4E7'"
+                        "Value": "'#F0F2FF'"
                       }
                     }
                   }
@@ -845,7 +559,7 @@
                   "color": {
                     "expr": {
                       "Literal": {
-                        "Value": "'#A7E4E7'"
+                        "Value": "'#F0F2FF'"
                       }
                     }
                   }
@@ -856,7 +570,7 @@
                   "color": {
                     "expr": {
                       "Literal": {
-                        "Value": "'#A7E4E7'"
+                        "Value": "'#F0F2FF'"
                       }
                     }
                   }
@@ -897,7 +611,7 @@
                   "color": {
                     "expr": {
                       "Literal": {
-                        "Value": "'#0051FF'"
+                        "Value": "'#EAF1FF'"
                       }
                     }
                   }
@@ -908,7 +622,7 @@
                   "color": {
                     "expr": {
                       "Literal": {
-                        "Value": "'#0051FF'"
+                        "Value": "'#EAF1FF'"
                       }
                     }
                   }
@@ -919,7 +633,7 @@
                   "color": {
                     "expr": {
                       "Literal": {
-                        "Value": "'#0051FF'"
+                        "Value": "'#EAF1FF'"
                       }
                     }
                   }

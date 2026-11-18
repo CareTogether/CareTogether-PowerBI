@@ -7,7 +7,7 @@
     "z": 44000,
     "height": 35,
     "width": 55.831385768596995,
-    "tabOrder": 44000
+    "tabOrder": 43000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -231,20 +231,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "a3918193a59809772dee",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "(HELP) Cases & Referrals"
-              }
-            },
-            "Property": "Info Button"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

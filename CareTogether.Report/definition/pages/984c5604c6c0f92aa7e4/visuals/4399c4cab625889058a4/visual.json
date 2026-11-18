@@ -27,8 +27,53 @@
                 }
               },
               "queryRef": "Volunteer Family.family_name",
-              "nativeQueryRef": "Volunteer Family",
-              "displayName": "Volunteer Family"
+              "nativeQueryRef": "Family",
+              "displayName": "Family"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Volunteer Family"
+                    }
+                  },
+                  "Property": "primary_address_line_1"
+                }
+              },
+              "queryRef": "Volunteer Family.primary_address_line_1",
+              "nativeQueryRef": "Address",
+              "displayName": "Address"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Volunteer Family"
+                    }
+                  },
+                  "Property": "primary_address_city"
+                }
+              },
+              "queryRef": "Volunteer Family.primary_address_city",
+              "nativeQueryRef": "City",
+              "displayName": "City"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Volunteer Family"
+                    }
+                  },
+                  "Property": "primary_address_county"
+                }
+              },
+              "queryRef": "Volunteer Family.primary_address_county",
+              "nativeQueryRef": "County",
+              "displayName": "County"
             },
             {
               "field": {
@@ -102,6 +147,13 @@
                   "Value": "9D"
                 }
               }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
             }
           }
         }
@@ -121,8 +173,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
+                      "ColorId": 1,
+                      "Percent": 0.2
                     }
                   }
                 }
@@ -133,8 +185,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 9,
-                      "Percent": 0.2
+                      "ColorId": 0,
+                      "Percent": 0
                     }
                   }
                 }
@@ -305,7 +357,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "380D"
+                  "Value": "175.2077093810714D"
                 }
               }
             }
@@ -319,7 +371,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "400D"
+                  "Value": "266.9219669432545D"
                 }
               }
             }

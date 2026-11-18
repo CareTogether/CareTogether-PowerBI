@@ -3,10 +3,10 @@
   "name": "ee450009e3b5e215ce8d",
   "position": {
     "x": 0,
-    "y": 49.999999999999993,
+    "y": 50,
     "z": 5000,
-    "height": 148.18181818181816,
-    "width": 1669.9999999999998,
+    "height": 148.33333333333334,
+    "width": 1670,
     "tabOrder": 5000
   },
   "visual": {
@@ -3393,93 +3393,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "8f319b2a8baac6edabcb",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "# of Arrangements Requested CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "92d48e0021208e421733",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "# of Arrangements Started CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6c36b5ff001c014e050d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "# of Families Served CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f5ab1106bd486874a627",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "# of People Served CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f5a0b8428d500d1113d3",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "Avg. Time to Start CP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "4cf289d4ba3728bc0cc1",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Arrangement"
-              }
-            },
-            "Property": "Avg. Duration CP"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

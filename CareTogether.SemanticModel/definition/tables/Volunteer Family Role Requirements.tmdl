@@ -7,12 +7,22 @@ table 'Volunteer Family Role Requirements'
 			VAR startDate = [Selected Timeframe Start]
 			VAR endDate = [Selected Timeframe End]
 			
-			RETURN CALCULATE(
-			    DISTINCTCOUNT('Volunteer Family Role Requirements'[family_id]),
-			    'Volunteer Family Role Requirements'[date] >= startDate,
-			    'Volunteer Family Role Requirements'[date] < endDate + 1,
-			    USERELATIONSHIP('Volunteer Family Role Requirements'[location_id], Location[location_id])
-			)
+			RETURN
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                'Volunteer Family Role Requirements',
+			                'Volunteer Family Role Requirements'[organization_id],
+			                'Volunteer Family Role Requirements'[family_id]
+			            )
+			        ),
+			        'Volunteer Family Role Requirements'[date] >= startDate,
+			        'Volunteer Family Role Requirements'[date] < endDate + 1,
+			        USERELATIONSHIP(
+			            'Volunteer Family Role Requirements'[location_id],
+			            Location[location_id]
+			        )
+			    )
 		formatString: 0
 		lineageTag: b8a4aa3d-2a34-4ec1-864a-55a99c7f132a
 

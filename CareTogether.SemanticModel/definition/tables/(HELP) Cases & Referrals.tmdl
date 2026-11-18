@@ -488,7 +488,7 @@ table '(HELP) Cases & Referrals'
 		displayFolder: HTML
 		lineageTag: 801a13bf-47be-496d-8c67-6fb099bd63a7
 
-	measure '(HTML) Help - Families Referred' =
+	measure '(HTML) Help - Families Connected' = ```
 			
 			"
 			<div style='
@@ -506,7 +506,7 @@ table '(HELP) Cases & Referrals'
 			        '>i</div>
 			
 			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
-			            Families Referred
+			            Families Connected
 			        </div>
 			    </div>
 			
@@ -526,8 +526,9 @@ table '(HELP) Cases & Referrals'
 			
 			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
 			        We first identify the Referrals created during the selected
-			        period, then count the <b>distinct families</b> associated
-			        with those Referrals.
+			        period, then count the <b>distinct Client Families</b>
+			        associated with those Referrals. Referrals without an
+			        associated Client Family are excluded from this count.
 			    </div>
 			
 			    <!-- INFO BOX -->
@@ -540,8 +541,10 @@ table '(HELP) Cases & Referrals'
 			        </div>
 			
 			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
-			            The same family can have more than one Referral. Each
-			            family is counted only once within the selected group.
+			            Not every Referral has an associated Client Family.
+			            Additionally, the same family may be linked to multiple
+			            Referrals but is counted only once within the selected
+			            group.
 			        </div>
 			    </div>
 			
@@ -551,11 +554,15 @@ table '(HELP) Cases & Referrals'
 			        border-top:1px solid #E5E5E5;
 			        font-size:10px;line-height:1.45;color:#666666;
 			    '>
-			        <b>Remember:</b> this is a count of families, not Referrals.
+			        <b>Remember:</b> this metric counts unique Client Families,
+			        not Referrals. Referrals without an associated family still
+			        contribute to Referrals Created.
 			    </div>
 			
 			</div>
 			"
+			
+			```
 		displayFolder: HTML
 		lineageTag: d0177280-2205-4b5c-a7e9-feafc65e079c
 
@@ -1248,8 +1255,8 @@ table '(HELP) Cases & Referrals'
 			        "REFERRALS_ACCEPTED",
 			            [(HTML) Help - Referrals Accepted],
 			
-			        "FAMILIES_REFERRED",
-			            [(HTML) Help - Families Referred],
+			        "FAMILIES_CONNECTED",
+			            [(HTML) Help - Families Connected],
 			
 			        "OVER_TIME",
 			            [(HTML) Help - Over Time],
@@ -1300,7 +1307,7 @@ table '(HELP) Cases & Referrals'
 				        {"FAMILIES_WITH_CASES"},
 				        {"REFERRALS_CREATED"},
 				        {"REFERRALS_ACCEPTED"},
-				        {"FAMILIES_REFERRED"},
+				        {"FAMILIES_CONNECTED"},
 				        {"OVER_TIME"},
 				        {"REFERRALS_BY_STATUS"},
 				        {"CASES_BY_FAMILY_TYPE"},

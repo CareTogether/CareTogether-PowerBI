@@ -12,12 +12,18 @@ table Cases
 			VAR selectedEndDate = [Selected Timeframe End]
 			
 			RETURN
-			CALCULATE(
-			    DISTINCTCOUNT('Cases'[case_id]),
-			    'Cases'[opened] >= selectedStartDate,
-			    'Cases'[opened] < selectedEndDate + 1,
-			    USERELATIONSHIP('Cases'[location_id], Location[location_id])
-			)
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                'Cases',
+			                'Cases'[organization_id],
+			                'Cases'[case_id]
+			            )
+			        ),
+			        'Cases'[opened] >= selectedStartDate,
+			        'Cases'[opened] < selectedEndDate + 1,
+			        USERELATIONSHIP('Cases'[location_id], Location[location_id])
+			    )
 		formatString: #,0
 		lineageTag: 36a58840-a5d2-4a24-a649-142331365cbb
 
@@ -35,12 +41,18 @@ table Cases
 			VAR previousEndDate = currentStartDate - 1
 			
 			RETURN
-			CALCULATE(
-			    DISTINCTCOUNT('Cases'[case_id]),
-			    'Cases'[opened] >= previousStartDate,
-			    'Cases'[opened] < previousEndDate + 1,
-			    USERELATIONSHIP('Cases'[location_id], Location[location_id])
-			)
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                'Cases',
+			                'Cases'[organization_id],
+			                'Cases'[case_id]
+			            )
+			        ),
+			        'Cases'[opened] >= previousStartDate,
+			        'Cases'[opened] < previousEndDate + 1,
+			        USERELATIONSHIP('Cases'[location_id], Location[location_id])
+			    )
 		formatString: #,0
 		lineageTag: 9e973988-baba-48cd-9abb-26a064a6b04a
 
@@ -75,16 +87,19 @@ table Cases
 			VAR selectedEndDate = [Selected Timeframe End]
 			
 			RETURN
-			CALCULATE(
-			    DISTINCTCOUNT('Cases'[case_id]),
-			    'Cases'[closed] >= selectedStartDate,
-			    'Cases'[closed] < selectedEndDate + 1,
-			    NOT ISBLANK('Cases'[closed]),
-			    USERELATIONSHIP(
-			        'Cases'[location_id],
-			        Location[location_id]
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                'Cases',
+			                'Cases'[organization_id],
+			                'Cases'[case_id]
+			            )
+			        ),
+			        'Cases'[closed] >= selectedStartDate,
+			        'Cases'[closed] < selectedEndDate + 1,
+			        NOT ISBLANK('Cases'[closed]),
+			        USERELATIONSHIP('Cases'[location_id], Location[location_id])
 			    )
-			)
 			
 			```
 		formatString: #,0
@@ -104,27 +119,24 @@ table Cases
 			
 			VAR currentStartDate = [Selected Timeframe Start]
 			VAR currentEndDate = [Selected Timeframe End]
-			
-			VAR periodDays =
-			    DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
-			
-			VAR previousStartDate =
-			    currentStartDate - periodDays
-			
-			VAR previousEndDate =
-			    currentStartDate - 1
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
 			
 			RETURN
-			CALCULATE(
-			    DISTINCTCOUNT('Cases'[case_id]),
-			    'Cases'[closed] >= previousStartDate,
-			    'Cases'[closed] < previousEndDate + 1,
-			    NOT ISBLANK('Cases'[closed]),
-			    USERELATIONSHIP(
-			        'Cases'[location_id],
-			        Location[location_id]
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                'Cases',
+			                'Cases'[organization_id],
+			                'Cases'[case_id]
+			            )
+			        ),
+			        'Cases'[closed] >= previousStartDate,
+			        'Cases'[closed] < previousEndDate + 1,
+			        NOT ISBLANK('Cases'[closed]),
+			        USERELATIONSHIP('Cases'[location_id], Location[location_id])
 			    )
-			)
 			
 			```
 		formatString: #,0
@@ -157,13 +169,19 @@ table Cases
 			VAR selectedEndDate = [Selected Timeframe End]
 			
 			RETURN
-			CALCULATE(
-			    DISTINCTCOUNT('Cases'[family_id]),
-			    'Cases'[opened] >= selectedStartDate,
-			    'Cases'[opened] < selectedEndDate + 1,
-			    NOT ISBLANK('Cases'[family_id]),
-			    USERELATIONSHIP('Cases'[location_id], Location[location_id])
-			)
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                'Cases',
+			                'Cases'[organization_id],
+			                'Cases'[family_id]
+			            )
+			        ),
+			        'Cases'[opened] >= selectedStartDate,
+			        'Cases'[opened] < selectedEndDate + 1,
+			        NOT ISBLANK('Cases'[family_id]),
+			        USERELATIONSHIP('Cases'[location_id], Location[location_id])
+			    )
 		formatString: #,0
 		lineageTag: 97af483c-dae0-483c-8e8d-d50b0c09f7bb
 
@@ -177,18 +195,23 @@ table Cases
 			VAR currentStartDate = [Selected Timeframe Start]
 			VAR currentEndDate = [Selected Timeframe End]
 			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
-			
 			VAR previousStartDate = currentStartDate - periodDays
 			VAR previousEndDate = currentStartDate - 1
 			
 			RETURN
-			CALCULATE(
-			    DISTINCTCOUNT('Cases'[family_id]),
-			    'Cases'[opened] >= previousStartDate,
-			    'Cases'[opened] < previousEndDate + 1,
-			    NOT ISBLANK('Cases'[family_id]),
-			    USERELATIONSHIP('Cases'[location_id], Location[location_id])
-			)
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                'Cases',
+			                'Cases'[organization_id],
+			                'Cases'[family_id]
+			            )
+			        ),
+			        'Cases'[opened] >= previousStartDate,
+			        'Cases'[opened] < previousEndDate + 1,
+			        NOT ISBLANK('Cases'[family_id]),
+			        USERELATIONSHIP('Cases'[location_id], Location[location_id])
+			    )
 		formatString: #,0
 		lineageTag: ee9b9e22-fdf7-4b21-9887-4e73208fd300
 
@@ -418,25 +441,28 @@ table Cases
 			The Family had at least one Case opened before the current Case.
 			*/
 			
+			VAR currentOrganization = 'Cases'[organization_id]
 			VAR currentFamily = 'Cases'[family_id]
 			VAR currentOpened = 'Cases'[opened]
 			
-			VAR previousCases =
-			    CALCULATE(
-			        DISTINCTCOUNT('Cases'[case_id]),
+			VAR hasPreviousCase =
+			    NOT ISEMPTY(
 			        FILTER(
 			            ALL('Cases'),
-			            'Cases'[family_id] = currentFamily &&
-			            'Cases'[opened] < currentOpened
+			            'Cases'[organization_id] = currentOrganization
+			                && 'Cases'[family_id] = currentFamily
+			                && 'Cases'[opened] < currentOpened
 			        )
 			    )
 			
 			RETURN
-			IF(
-			    ISBLANK(currentFamily) || ISBLANK(currentOpened),
-			    BLANK(),
-			    IF(previousCases > 0, "Returning Family", "New Family")
-			)
+			    IF(
+			        ISBLANK(currentOrganization)
+			            || ISBLANK(currentFamily)
+			            || ISBLANK(currentOpened),
+			        BLANK(),
+			        IF(hasPreviousCase, "Returning Family", "New Family")
+			    )
 		displayFolder: _calculated_columns
 		lineageTag: c2b8ab3f-f2df-4538-88c7-3eeb41ff0d48
 		summarizeBy: none
@@ -452,22 +478,26 @@ table Cases
 			Returns blank when the current Case is the Family's first Case.
 			*/
 			
+			VAR currentOrganization = 'Cases'[organization_id]
 			VAR currentFamily = 'Cases'[family_id]
 			VAR currentOpened = 'Cases'[opened]
 			
 			RETURN
-			IF(
-			    ISBLANK(currentFamily) || ISBLANK(currentOpened),
-			    BLANK(),
-			    MAXX(
-			        FILTER(
-			            ALL('Cases'),
-			            'Cases'[family_id] = currentFamily &&
-			            'Cases'[opened] < currentOpened
-			        ),
-			        'Cases'[opened]
+			    IF(
+			        ISBLANK(currentOrganization)
+			            || ISBLANK(currentFamily)
+			            || ISBLANK(currentOpened),
+			        BLANK(),
+			        MAXX(
+			            FILTER(
+			                ALL('Cases'),
+			                'Cases'[organization_id] = currentOrganization
+			                    && 'Cases'[family_id] = currentFamily
+			                    && 'Cases'[opened] < currentOpened
+			            ),
+			            'Cases'[opened]
+			        )
 			    )
-			)
 		formatString: General Date
 		displayFolder: _calculated_columns
 		lineageTag: 793b0e27-606d-44fa-9d77-f6845e30dd81

@@ -29,27 +29,33 @@ table 'Child Location Record'
 			*/
 			
 			VAR startDate = [Selected Timeframe Start]
-			
 			VAR endDate = [Selected Timeframe End]
-			
 			VAR effectiveEndDate = MIN(endDate, TODAY())
 			
 			RETURN
-			IF(
-			    ISBLANK(startDate)
-			        || ISBLANK(endDate)
-			        || startDate > effectiveEndDate,
-			    BLANK(),
-			    CALCULATE(
-			        DISTINCTCOUNT('Child Location Record'[child_person_id]),
-			        NOT ISBLANK('Child Location Record'[child_person_id]),
-			        NOT ISBLANK('Child Location Record'[started_at_utc]),
-			        'Child Location Record'[childcare_plan] <> "WithParent",
-			        'Child Location Record'[started_at_utc] < effectiveEndDate + 1,
-			        ISBLANK('Child Location Record'[ended_at_utc]) || 'Child Location Record'[ended_at_utc] >= startDate,
-			        USERELATIONSHIP('Child Location Record'[location_id],Location[location_id])
+			    IF(
+			        ISBLANK(startDate) || ISBLANK(endDate) || startDate > effectiveEndDate,
+			        BLANK(),
+			        CALCULATE(
+			            COUNTROWS(
+			                SUMMARIZE(
+			                    'Child Location Record',
+			                    'Child Location Record'[organization_id],
+			                    'Child Location Record'[child_person_id]
+			                )
+			            ),
+			            NOT ISBLANK('Child Location Record'[child_person_id]),
+			            NOT ISBLANK('Child Location Record'[started_at_utc]),
+			            'Child Location Record'[childcare_plan] <> "WithParent",
+			            'Child Location Record'[started_at_utc] < effectiveEndDate + 1,
+			            ISBLANK('Child Location Record'[ended_at_utc])
+			                || 'Child Location Record'[ended_at_utc] >= startDate,
+			            USERELATIONSHIP(
+			                'Child Location Record'[location_id],
+			                Location[location_id]
+			            )
+			        )
 			    )
-			)
 		formatString: #,0
 		lineageTag: 94503cc4-8c20-47ab-ba6d-6d66fb7293f2
 
@@ -85,51 +91,45 @@ table 'Child Location Record'
 			between Child Location Record and Location.
 			*/
 			
-			VAR currentStartDate =
-			    [Selected Timeframe Start]
-			
-			VAR currentEndDate =
-			    [Selected Timeframe End]
-			
-			VAR todayDate =
-			    TODAY()
-			
-			VAR periodDays =
-			    DATEDIFF(
-			        currentStartDate,
-			        currentEndDate,
-			        DAY
-			    ) + 1
-			
-			VAR previousStartDate =
-			    currentStartDate - periodDays
-			
-			VAR previousEndDate =
-			    currentStartDate - 1
-			
-			VAR effectiveEndDate =
-			    MIN(previousEndDate, todayDate)
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
+			VAR effectiveEndDate = MIN(previousEndDate, TODAY())
 			
 			RETURN
-			IF(
-			    ISBLANK(currentStartDate) || ISBLANK(currentEndDate) || previousStartDate > effectiveEndDate,
-			    BLANK(),
-			    CALCULATE(
-			        DISTINCTCOUNT('Child Location Record'[child_person_id]),
-			        NOT ISBLANK('Child Location Record'[child_person_id]),
-			        NOT ISBLANK('Child Location Record'[started_at_utc]),
-			        'Child Location Record'[childcare_plan] <> "WithParent",
-			        'Child Location Record'[started_at_utc] < effectiveEndDate + 1,
-			        ISBLANK('Child Location Record'[ended_at_utc]) || 'Child Location Record'[ended_at_utc] >= previousStartDate,
-			        USERELATIONSHIP('Child Location Record'[location_id],Location[location_id])
+			    IF(
+			        ISBLANK(currentStartDate)
+			            || ISBLANK(currentEndDate)
+			            || previousStartDate > effectiveEndDate,
+			        BLANK(),
+			        CALCULATE(
+			            COUNTROWS(
+			                SUMMARIZE(
+			                    'Child Location Record',
+			                    'Child Location Record'[organization_id],
+			                    'Child Location Record'[child_person_id]
+			                )
+			            ),
+			            NOT ISBLANK('Child Location Record'[child_person_id]),
+			            NOT ISBLANK('Child Location Record'[started_at_utc]),
+			            'Child Location Record'[childcare_plan] <> "WithParent",
+			            'Child Location Record'[started_at_utc] < effectiveEndDate + 1,
+			            ISBLANK('Child Location Record'[ended_at_utc])
+			                || 'Child Location Record'[ended_at_utc] >= previousStartDate,
+			            USERELATIONSHIP(
+			                'Child Location Record'[location_id],
+			                Location[location_id]
+			            )
+			        )
 			    )
-			)
 		formatString: #,0
 		lineageTag: 56db856f-34d0-45d4-9f0c-5610c4a2a1cf
 
 		changedProperty = IsHidden
 
-	measure '# of Children Care For PoP' =
+	measure '# of Children Cared For PoP' =
 			
 			
 			VAR currentPeriod = [# of Children Cared For CP]
@@ -180,19 +180,28 @@ table 'Child Location Record'
 			VAR effectiveEndDate = MIN(endDate, todayDate)
 			
 			RETURN
-			IF(
-			    startDate > todayDate,
-			    BLANK(),
-			    CALCULATE(
-			        DISTINCTCOUNT('Child Location Record'[child_person_id]),
-			        NOT ISBLANK('Child Location Record'[child_person_id]),
-			        NOT ISBLANK('Child Location Record'[first_care_date]),
-			        'Child Location Record'[childcare_plan] <> "WithParent",
-			        'Child Location Record'[first_care_date] >= startDate,
-			        'Child Location Record'[first_care_date] < effectiveEndDate + 1,
-			        USERELATIONSHIP('Child Location Record'[location_id], Location[location_id])
+			    IF(
+			        startDate > todayDate,
+			        BLANK(),
+			        CALCULATE(
+			            COUNTROWS(
+			                SUMMARIZE(
+			                    'Child Location Record',
+			                    'Child Location Record'[organization_id],
+			                    'Child Location Record'[child_person_id]
+			                )
+			            ),
+			            NOT ISBLANK('Child Location Record'[child_person_id]),
+			            NOT ISBLANK('Child Location Record'[first_care_date]),
+			            'Child Location Record'[childcare_plan] <> "WithParent",
+			            'Child Location Record'[first_care_date] >= startDate,
+			            'Child Location Record'[first_care_date] < effectiveEndDate + 1,
+			            USERELATIONSHIP(
+			                'Child Location Record'[location_id],
+			                Location[location_id]
+			            )
+			        )
 			    )
-			)
 		formatString: #,0
 		lineageTag: 2bb0d0bc-cc73-4888-82ba-5022477a362b
 
@@ -236,19 +245,28 @@ table 'Child Location Record'
 			VAR effectiveEndDate = MIN(previousEndDate, todayDate)
 			
 			RETURN
-			IF(
-			    previousStartDate > todayDate,
-			    BLANK(),
-			    CALCULATE(
-			        DISTINCTCOUNT('Child Location Record'[child_person_id]),
-			        NOT ISBLANK('Child Location Record'[child_person_id]),
-			        NOT ISBLANK('Child Location Record'[first_care_date]),
-			        'Child Location Record'[childcare_plan] <> "WithParent",
-			        'Child Location Record'[first_care_date] >= previousStartDate,
-			        'Child Location Record'[first_care_date] < effectiveEndDate + 1,
-			        USERELATIONSHIP('Child Location Record'[location_id], Location[location_id])
+			    IF(
+			        previousStartDate > todayDate,
+			        BLANK(),
+			        CALCULATE(
+			            COUNTROWS(
+			                SUMMARIZE(
+			                    'Child Location Record',
+			                    'Child Location Record'[organization_id],
+			                    'Child Location Record'[child_person_id]
+			                )
+			            ),
+			            NOT ISBLANK('Child Location Record'[child_person_id]),
+			            NOT ISBLANK('Child Location Record'[first_care_date]),
+			            'Child Location Record'[childcare_plan] <> "WithParent",
+			            'Child Location Record'[first_care_date] >= previousStartDate,
+			            'Child Location Record'[first_care_date] < effectiveEndDate + 1,
+			            USERELATIONSHIP(
+			                'Child Location Record'[location_id],
+			                Location[location_id]
+			            )
+			        )
 			    )
-			)
 		formatString: #,0
 		lineageTag: 381abd53-3f51-47d1-9710-b63f895373ec
 
@@ -299,53 +317,38 @@ table 'Child Location Record'
 			VAR effectiveEndDate = MIN(endDate, TODAY())
 			
 			RETURN
-			IF(
-			    startDate > effectiveEndDate,
-			    BLANK(),
-			    VAR careRecords =
-			        CALCULATETABLE(
-			            SELECTCOLUMNS(
-			                'Child Location Record Expanded',
-			                "Child ID",
-			                    RELATED(
-			                        'Child Location Record'[child_person_id]
-			                    ),
-			                "Care Date",
-			                    'Child Location Record Expanded'[date]
-			            ),
-			            'Child Location Record Expanded'[date] >= startDate,
-			            'Child Location Record Expanded'[date] < effectiveEndDate + 1,
-			            'Child Location Record Expanded'[childcare_plan] <> "WithParent",
-			            USERELATIONSHIP(
-			                'Child Location Record'[location_id],
-			                Location[location_id]
+			    IF(
+			        startDate > effectiveEndDate,
+			        BLANK(),
+			        VAR careRecords =
+			            CALCULATETABLE(
+			                SELECTCOLUMNS(
+			                    'Child Location Record Expanded',
+			                    "Organization ID", RELATED('Child Location Record'[organization_id]),
+			                    "Child ID", RELATED('Child Location Record'[child_person_id]),
+			                    "Care Date", 'Child Location Record Expanded'[date]
+			                ),
+			                'Child Location Record Expanded'[date] >= startDate,
+			                'Child Location Record Expanded'[date] < effectiveEndDate + 1,
+			                'Child Location Record Expanded'[childcare_plan] <> "WithParent",
+			                USERELATIONSHIP(
+			                    'Child Location Record'[location_id],
+			                    Location[location_id]
+			                )
 			            )
-			        )
-			
-			    VAR distinctCareDays =
-			        DISTINCT(
-			            FILTER(
-			                careRecords,
-			                NOT ISBLANK([Child ID])
-			            )
-			        )
-			
-			    VAR totalCareDays =
-			        COUNTROWS(distinctCareDays)
-			
-			    VAR totalChildren =
-			        COUNTROWS(
+			        VAR distinctCareDays =
+			            DISTINCT(FILTER(careRecords, NOT ISBLANK([Child ID])))
+			        VAR distinctChildren =
 			            DISTINCT(
 			                SELECTCOLUMNS(
 			                    distinctCareDays,
+			                    "Organization ID", [Organization ID],
 			                    "Child ID", [Child ID]
 			                )
 			            )
-			        )
-			
-			    RETURN
-			        DIVIDE(totalCareDays, totalChildren)
-			)
+			        RETURN
+			            DIVIDE(COUNTROWS(distinctCareDays), COUNTROWS(distinctChildren))
+			    )
 		formatString: 0
 		lineageTag: 3da8a209-d13f-4072-9655-207a6cffad1f
 
@@ -379,62 +382,46 @@ table 'Child Location Record'
 			VAR effectiveEndDate = MIN(endDate, TODAY())
 			
 			RETURN
-			IF(
-			    startDate > effectiveEndDate,
-			    BLANK(),
-			    VAR careRecords =
-			        CALCULATETABLE(
-			            SELECTCOLUMNS(
-			                'Child Location Record Expanded',
-			                "Child ID",
-			                    RELATED(
-			                        'Child Location Record'[child_person_id]
-			                    ),
-			                "Volunteer Family ID",
-			                    RELATED(
-			                        'Child Location Record'[family_id]
-			                    ),
-			                "Care Date",
-			                    'Child Location Record Expanded'[date]
-			            ),
-			            'Child Location Record Expanded'[date] >= startDate,
-			            'Child Location Record Expanded'[date] < effectiveEndDate + 1,
-			            'Child Location Record Expanded'[childcare_plan] <> "WithParent",
-			            USERELATIONSHIP(
-			                'Child Location Record'[location_id],
-			                Location[location_id]
+			    IF(
+			        startDate > effectiveEndDate,
+			        BLANK(),
+			        VAR careRecords =
+			            CALCULATETABLE(
+			                SELECTCOLUMNS(
+			                    'Child Location Record Expanded',
+			                    "Organization ID", RELATED('Child Location Record'[organization_id]),
+			                    "Child ID", RELATED('Child Location Record'[child_person_id]),
+			                    "Volunteer Family ID", RELATED('Child Location Record'[family_id]),
+			                    "Care Date", 'Child Location Record Expanded'[date]
+			                ),
+			                'Child Location Record Expanded'[date] >= startDate,
+			                'Child Location Record Expanded'[date] < effectiveEndDate + 1,
+			                'Child Location Record Expanded'[childcare_plan] <> "WithParent",
+			                USERELATIONSHIP(
+			                    'Child Location Record'[location_id],
+			                    Location[location_id]
+			                )
 			            )
-			        )
-			
-			    VAR distinctCareDays =
-			        DISTINCT(
-			            FILTER(
-			                careRecords,
-			                NOT ISBLANK([Child ID])
-			                    && NOT ISBLANK([Volunteer Family ID])
+			        VAR distinctCareDays =
+			            DISTINCT(
+			                FILTER(
+			                    careRecords,
+			                    NOT ISBLANK([Child ID])
+			                        && NOT ISBLANK([Volunteer Family ID])
+			                )
 			            )
-			        )
-			
-			    VAR totalCareDays =
-			        COUNTROWS(distinctCareDays)
-			
-			    VAR childFamilyCombinations =
-			        COUNTROWS(
+			        VAR distinctChildFamilyPairs =
 			            DISTINCT(
 			                SELECTCOLUMNS(
 			                    distinctCareDays,
+			                    "Organization ID", [Organization ID],
 			                    "Child ID", [Child ID],
 			                    "Volunteer Family ID", [Volunteer Family ID]
 			                )
 			            )
-			        )
-			
-			    RETURN
-			        DIVIDE(
-			            totalCareDays,
-			            childFamilyCombinations
-			        )
-			)
+			        RETURN
+			            DIVIDE(COUNTROWS(distinctCareDays), COUNTROWS(distinctChildFamilyPairs))
+			    )
 		formatString: #,0
 		lineageTag: 384fa1e0-2347-4151-b4f0-518148d728cc
 
@@ -467,67 +454,44 @@ table 'Child Location Record'
 			
 			VAR startDate = [Selected Timeframe Start]
 			VAR endDate = [Selected Timeframe End]
-			
-			VAR periodDays =
-			    DATEDIFF(startDate, endDate, DAY) + 1
-			
-			VAR previousStartDate =
-			    startDate - periodDays
-			
-			VAR previousEndDate =
-			    startDate - 1
-			
-			VAR effectiveEndDate =
-			    MIN(previousEndDate, TODAY())
+			VAR periodDays = DATEDIFF(startDate, endDate, DAY) + 1
+			VAR previousStartDate = startDate - periodDays
+			VAR previousEndDate = startDate - 1
+			VAR effectiveEndDate = MIN(previousEndDate, TODAY())
 			
 			RETURN
-			IF(
-			    previousStartDate > effectiveEndDate,
-			    BLANK(),
-			    VAR careRecords =
-			        CALCULATETABLE(
-			            SELECTCOLUMNS(
-			                'Child Location Record Expanded',
-			                "Child ID",
-			                    RELATED(
-			                        'Child Location Record'[child_person_id]
-			                    ),
-			                "Care Date",
-			                    'Child Location Record Expanded'[date]
-			            ),
-			            'Child Location Record Expanded'[date] >= previousStartDate,
-			            'Child Location Record Expanded'[date] < effectiveEndDate + 1,
-			            'Child Location Record Expanded'[childcare_plan] <> "WithParent",
-			            USERELATIONSHIP(
-			                'Child Location Record'[location_id],
-			                Location[location_id]
+			    IF(
+			        previousStartDate > effectiveEndDate,
+			        BLANK(),
+			        VAR careRecords =
+			            CALCULATETABLE(
+			                SELECTCOLUMNS(
+			                    'Child Location Record Expanded',
+			                    "Organization ID", RELATED('Child Location Record'[organization_id]),
+			                    "Child ID", RELATED('Child Location Record'[child_person_id]),
+			                    "Care Date", 'Child Location Record Expanded'[date]
+			                ),
+			                'Child Location Record Expanded'[date] >= previousStartDate,
+			                'Child Location Record Expanded'[date] < effectiveEndDate + 1,
+			                'Child Location Record Expanded'[childcare_plan] <> "WithParent",
+			                USERELATIONSHIP(
+			                    'Child Location Record'[location_id],
+			                    Location[location_id]
+			                )
 			            )
-			        )
-			
-			    VAR distinctCareDays =
-			        DISTINCT(
-			            FILTER(
-			                careRecords,
-			                NOT ISBLANK([Child ID])
-			            )
-			        )
-			
-			    VAR totalCareDays =
-			        COUNTROWS(distinctCareDays)
-			
-			    VAR totalChildren =
-			        COUNTROWS(
+			        VAR distinctCareDays =
+			            DISTINCT(FILTER(careRecords, NOT ISBLANK([Child ID])))
+			        VAR distinctChildren =
 			            DISTINCT(
 			                SELECTCOLUMNS(
 			                    distinctCareDays,
+			                    "Organization ID", [Organization ID],
 			                    "Child ID", [Child ID]
 			                )
 			            )
-			        )
-			
-			    RETURN
-			        DIVIDE(totalCareDays, totalChildren)
-			)
+			        RETURN
+			            DIVIDE(COUNTROWS(distinctCareDays), COUNTROWS(distinctChildren))
+			    )
 		lineageTag: 61ff323b-af31-4b47-82e0-3c1b2e1ee930
 
 		changedProperty = IsHidden
@@ -582,76 +546,52 @@ table 'Child Location Record'
 			
 			VAR startDate = [Selected Timeframe Start]
 			VAR endDate = [Selected Timeframe End]
-			
-			VAR periodDays =
-			    DATEDIFF(startDate, endDate, DAY) + 1
-			
-			VAR previousStartDate =
-			    startDate - periodDays
-			
-			VAR previousEndDate =
-			    startDate - 1
-			
-			VAR effectiveEndDate =
-			    MIN(previousEndDate, TODAY())
+			VAR periodDays = DATEDIFF(startDate, endDate, DAY) + 1
+			VAR previousStartDate = startDate - periodDays
+			VAR previousEndDate = startDate - 1
+			VAR effectiveEndDate = MIN(previousEndDate, TODAY())
 			
 			RETURN
-			IF(
-			    previousStartDate > effectiveEndDate,
-			    BLANK(),
-			    VAR careRecords =
-			        CALCULATETABLE(
-			            SELECTCOLUMNS(
-			                'Child Location Record Expanded',
-			                "Child ID",
-			                    RELATED(
-			                        'Child Location Record'[child_person_id]
-			                    ),
-			                "Volunteer Family ID",
-			                    RELATED(
-			                        'Child Location Record'[family_id]
-			                    ),
-			                "Care Date",
-			                    'Child Location Record Expanded'[date]
-			            ),
-			            'Child Location Record Expanded'[date] >= previousStartDate,
-			            'Child Location Record Expanded'[date] < effectiveEndDate + 1,
-			            'Child Location Record Expanded'[childcare_plan] <> "WithParent",
-			            USERELATIONSHIP(
-			                'Child Location Record'[location_id],
-			                Location[location_id]
+			    IF(
+			        previousStartDate > effectiveEndDate,
+			        BLANK(),
+			        VAR careRecords =
+			            CALCULATETABLE(
+			                SELECTCOLUMNS(
+			                    'Child Location Record Expanded',
+			                    "Organization ID", RELATED('Child Location Record'[organization_id]),
+			                    "Child ID", RELATED('Child Location Record'[child_person_id]),
+			                    "Volunteer Family ID", RELATED('Child Location Record'[family_id]),
+			                    "Care Date", 'Child Location Record Expanded'[date]
+			                ),
+			                'Child Location Record Expanded'[date] >= previousStartDate,
+			                'Child Location Record Expanded'[date] < effectiveEndDate + 1,
+			                'Child Location Record Expanded'[childcare_plan] <> "WithParent",
+			                USERELATIONSHIP(
+			                    'Child Location Record'[location_id],
+			                    Location[location_id]
+			                )
 			            )
-			        )
-			
-			    VAR distinctCareDays =
-			        DISTINCT(
-			            FILTER(
-			                careRecords,
-			                NOT ISBLANK([Child ID])
-			                    && NOT ISBLANK([Volunteer Family ID])
+			        VAR distinctCareDays =
+			            DISTINCT(
+			                FILTER(
+			                    careRecords,
+			                    NOT ISBLANK([Child ID])
+			                        && NOT ISBLANK([Volunteer Family ID])
+			                )
 			            )
-			        )
-			
-			    VAR totalCareDays =
-			        COUNTROWS(distinctCareDays)
-			
-			    VAR childFamilyCombinations =
-			        COUNTROWS(
+			        VAR distinctChildFamilyPairs =
 			            DISTINCT(
 			                SELECTCOLUMNS(
 			                    distinctCareDays,
+			                    "Organization ID", [Organization ID],
 			                    "Child ID", [Child ID],
 			                    "Volunteer Family ID", [Volunteer Family ID]
 			                )
 			            )
-			        )
-			
-			    RETURN
-			        DIVIDE(
-			            totalCareDays,
-			            childFamilyCombinations
-			        )
-			)
+			        RETURN
+			            DIVIDE(COUNTROWS(distinctCareDays), COUNTROWS(distinctChildFamilyPairs))
+			    )
 		lineageTag: f896017a-76a5-4995-9659-21412dc97aec
 
 		changedProperty = IsHidden

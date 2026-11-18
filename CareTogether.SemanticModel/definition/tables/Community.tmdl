@@ -14,9 +14,14 @@ table Community
 			membership, approval status, or Arrangement activity.
 			*/
 			
-			
 			CALCULATE(
-			    DISTINCTCOUNT(Community[community_id]),
+			    COUNTROWS(
+			        SUMMARIZE(
+			            Community,
+			            Community[organization_id],
+			            Community[community_id]
+			        )
+			    ),
 			    NOT ISBLANK(Community[community_id]),
 			    USERELATIONSHIP(Community[location_id], Location[location_id])
 			)
