@@ -40,11 +40,11 @@ table OData
 		queryGroup: 'Source Queries'
 		source =
 				let
-				  api_host = if Environment = "Production" then "https://app.caretogether.io" else "http://localhost:5000",
-				  api_url = api_host&"/api/odata/live",
-				  source = OData.Feed(api_url, null, [Implementation="2.0"])
+				    ApiHost = if Production then "https://app.caretogether.io" else "http://localhost:5000",
+				    ApiUrl = ApiHost&"/api/odata/live",
+				    Source = OData.Feed(ApiUrl, null, [Implementation="2.0"])
 				in
-				  source
+				    Source
 
 	changedProperty = IsHidden
 
