@@ -1,0 +1,903 @@
+table '(HELP) Volunteer Capacity'
+	lineageTag: 9cf38163-9868-47d8-bfdd-53fa7fbf5dbc
+
+	measure '(HTML) Help - Approved Volunteer Families' =
+			
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Approved Volunteer Families
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the number of <b>unique volunteer families</b>
+			        with at least one <b>Approved or Onboarded role</b>
+			        valid on the selected reference date.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is this metric calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each family is counted <b>only once</b>, regardless
+			        of how many approved roles it holds or how many
+			        Locations it is associated with.
+			        Only approvals valid on the selected date are included.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to use this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use this metric to understand the size of your
+			            <b>approved volunteer family network</b>
+			            on a specific date and monitor changes
+			            in approved capacity over time.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Approval does not necessarily mean
+			        a family is currently assigned or available.
+			        A family may hold multiple approved roles,
+			        but is counted only once in this metric.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: ae111104-bf14-4564-bd1d-9ae6c495f6ec
+
+	measure '(HTML) Help - Dynamic Pop-up - Volunteer Capacity' = ```
+			
+			VAR HelpID =
+			    SELECTEDVALUE(
+			        '(HELP) Volunteer Capacity'[Help ID]
+			    )
+			
+			RETURN
+			    SWITCH(
+			        HelpID,
+			
+			        "FAMILIES_APPROVED",
+			            [(HTML) Help - Approved Volunteer Families],
+			
+			        "FAMILIES_ASSIGNED",
+			            [(HTML) Help - Assigned Volunteer Families],
+			
+			        "FAMILIES_ASSIGNED_AND_CARING",
+			            [(HTML) Help - Assigned and Caring Volunteer Families],
+			
+			        "FAMILY_CAPACITY_UTILIZATION",
+			            [(HTML) Help - Volunteer Family Capacity Utilization],
+			
+			        "FAMILY_CAPACITY_BY_ROLE",
+			            [(HTML) Help - Volunteer Family Capacity by Role],
+			
+			        "VOLUNTEERS_APPROVED",
+			            [(HTML) Help - Approved Individual Volunteers],
+			
+			        "VOLUNTEERS_ASSIGNED",
+			            [(HTML) Help - Assigned Individual Volunteers],
+			
+			        "VOLUNTEERS_ASSIGNED_AND_CARING",
+			            [(HTML) Help - Assigned and Caring Individual Volunteers],
+			
+			        "VOLUNTEERS_CAPACITY_UTILIZATION",
+			            [(HTML) Help - Individual Volunteer Capacity Utilization],
+			
+			        "VOLUNTEERS_CAPACITY_BY_ROLE",
+			            [(HTML) Help - Individual Volunteer Capacity by Role],
+			
+			        BLANK()
+			    )
+			
+			```
+		displayFolder: Measures
+		lineageTag: 6bbdaa69-aeea-4fed-bb57-1d36de25de9e
+
+	measure '(HTML) Help - Assigned Volunteer Families' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Assigned Volunteer Families
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the number of <b>unique approved volunteer families</b>
+			        assigned to at least one <b>active Arrangement</b>
+			        on the selected reference date.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is this metric calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        A family must have a valid <b>Approved or Onboarded role</b>
+			        and at least one corresponding active Arrangement assignment
+			        on the selected date.
+			        Each family is counted <b>only once</b>,
+			        regardless of the number of active assignments.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to use this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use this metric to understand how many
+			            <b>approved volunteer families are actively engaged</b>
+			            in Arrangements on the selected date.
+			            Compare it with Approved Families to assess
+			            <b>capacity utilization</b>.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Assigned families are a subset of
+			        Approved Families. An active assignment does not
+			        necessarily mean the family is currently providing
+			        childcare. Families actively caring for children
+			        are identified separately under
+			        <b>Assigned and Caring</b>.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 948a1d7a-6dbf-462d-a050-443969a4d269
+
+	measure '(HTML) Help - Assigned and Caring Volunteer Families' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Assigned and Caring Volunteer Families
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the number of <b>unique approved volunteer families</b>
+			        that are both <b>assigned to an active Arrangement</b>
+			        and <b>providing childcare</b> on the selected reference date.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is this metric calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        A family must have a valid <b>Approved or Onboarded role</b>,
+			        an <b>active Arrangement assignment</b>, and an
+			        <b>active childcare record</b> on the selected date.
+			        Each family is counted <b>only once</b>,
+			        regardless of the number of children or assignments.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to use this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use this metric to understand how many
+			            <b>approved volunteer families are actively providing childcare</b>
+			            on the selected date.
+			            Compare it with Assigned Families to distinguish
+			            families with active assignments from those
+			            currently caring for children.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Caring families are already included
+			        in Assigned Families and should not be added
+			        to that total. Childcare records classified as
+			        <b>WithParent</b> are excluded.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 893827be-bd1a-4fed-8448-972eae0a25b0
+
+	measure '(HTML) Help - Volunteer Family Capacity Utilization' =
+			
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Volunteer Family Capacity Utilization
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the proportion of <b>approved volunteer families</b>
+			        with active Arrangement assignments on the selected
+			        reference date, highlighting those
+			        <b>actively providing childcare</b>.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is utilization calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        <b>Assignment Rate</b> is calculated by dividing
+			        Assigned Families by Approved Families.
+			        <br/>
+			        <b>Caring Rate</b> is calculated by dividing
+			        Assigned and Caring Families by Approved Families.
+			        Both rates use the same reference date.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to read the visualization
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            The bar represents the total approved family capacity.
+			            The <b>assigned portion</b> shows families with active
+			            assignments, while the <b>caring portion</b> highlights
+			            those also providing childcare.
+			            The remaining portion represents approved families
+			            without an active assignment.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Caring families are already included
+			        in Assigned Families and are not counted twice.
+			        Families without active assignments are
+			        <b>not necessarily available</b> for new assignments.
+			        This visualization represents a snapshot,
+			        not cumulative activity over time.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 0a4516b5-4c3b-4999-b9c5-7ce7ed9f0741
+
+	measure '(HTML) Help - Volunteer Family Capacity by Role' =
+			
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Volunteer Family Capacity by Role
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the distribution of <b>approved volunteer families</b>
+			        across different roles, highlighting active assignments
+			        and families providing childcare on the selected
+			        reference date.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How are roles evaluated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        <b>Approved</b> includes families with a valid
+			        Approved or Onboarded status for the role.
+			        <b>Assigned</b> includes approved families with an
+			        active Arrangement assignment matching that role.
+			        <b>Caring</b> identifies assigned families with
+			        an active qualifying childcare record.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to read the visualization
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Each row represents a volunteer family role.
+			            The bar shows the proportion of approved families
+			            with active assignments, distinguishing those
+			            also providing childcare.
+			            Roles are ordered by <b>Assignment Rate</b>
+			            to compare utilization across functions.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> A family may hold multiple approved roles
+			        and appear in more than one row. Role totals may
+			        exceed the overall number of unique families.
+			        Caring families are already included in Assigned
+			        and are not counted twice. Families without active
+			        assignments are not necessarily available.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: b77e1ca3-2da2-43f1-95d4-cad4d00f783c
+
+	measure '(HTML) Help - Approved Individual Volunteers' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Approved Individual Volunteers
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the number of <b>unique individual volunteers</b>
+			        with at least one <b>Approved or Onboarded role</b>
+			        valid on the selected reference date.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is this metric calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each volunteer is counted <b>only once</b>,
+			        regardless of how many approved roles they hold
+			        or how many Locations they are associated with.
+			        Only approvals valid on the selected date are included.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to use this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use this metric to understand the size of your
+			            <b>approved individual volunteer network</b>
+			            on a specific date and monitor changes
+			            in approved capacity over time.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Approval does not necessarily mean
+			        a volunteer is currently assigned or available.
+			        Volunteers with multiple approved roles
+			        are counted only once in this metric.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: dabcd4b1-00a7-4b0c-a969-9d207729a8e4
+
+	measure '(HTML) Help - Assigned Individual Volunteers' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Assigned Individual Volunteers
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the number of <b>unique approved individual volunteers</b>
+			        assigned to at least one <b>active Arrangement</b>
+			        on the selected reference date.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is this metric calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        A volunteer must have a valid
+			        <b>Approved or Onboarded role</b>
+			        and an active Arrangement assignment
+			        matching that role.
+			        Each volunteer is counted <b>only once</b>,
+			        regardless of the number of active assignments.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to use this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use this metric to understand how many
+			            <b>approved individual volunteers are actively engaged</b>
+			            in Arrangements on the selected date.
+			            Compare it with Approved Volunteers to assess
+			            <b>capacity utilization</b>.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Assigned volunteers are a subset of
+			        Approved Volunteers. Assignments are counted only
+			        when their function matches an approved role.
+			        Volunteers without active assignments are
+			        not necessarily available.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: ac2e8958-9f70-4628-8693-d2f30a1a346d
+
+	measure '(HTML) Help - Assigned and Caring Individual Volunteers' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Assigned and Caring Individual Volunteers
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the number of <b>approved individual volunteers</b>
+			        with active Arrangement assignments on the
+			        selected reference date.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is this metric calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        For individual volunteers,
+			        <b>Assigned and Caring is equivalent to Assigned</b>.
+			        Volunteers must have a valid Approved or Onboarded
+			        role and an active Arrangement assignment
+			        matching that role.
+			        Each volunteer is counted only once.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to use this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use this metric to understand the number of
+			            <b>individual volunteers actively participating</b>
+			            in Arrangements on the selected date.
+			            Unlike volunteer families, no separate
+			            childcare record is required.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> This metric has the same value as
+			        Assigned Individual Volunteers.
+			        These are not separate groups and should
+			        not be added together.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 919f06ad-0960-4716-9c7f-2c141c6f3686
+
+	measure '(HTML) Help - Individual Volunteer Capacity Utilization' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Individual Volunteer Capacity Utilization
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the proportion of <b>approved individual volunteers</b>
+			        with active Arrangement assignments on the
+			        selected reference date.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is utilization calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        <b>Assignment Rate</b> is calculated by dividing
+			        Assigned Individual Volunteers by Approved
+			        Individual Volunteers.
+			        For individuals, <b>Caring Rate equals Assignment Rate</b>.
+			        Both rates use the same reference date.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to read the visualization
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            The bar represents the total approved individual
+			            volunteer capacity. The <b>assigned portion</b>
+			            shows volunteers with active assignments.
+			            The remaining portion represents approved
+			            volunteers without an active assignment.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> For individuals, Caring and Assigned
+			        represent the same volunteers and are not added
+			        together. Volunteers without active assignments
+			        are not necessarily available.
+			        This visualization represents a snapshot,
+			        not cumulative activity over time.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: ef1668fd-fad5-484d-aa13-371aa956846e
+
+	measure '(HTML) Help - Individual Volunteer Capacity by Role' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Individual Volunteer Capacity by Role
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the distribution of <b>approved individual volunteers</b>
+			        across different roles and their active assignments
+			        on the selected reference date.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How are roles evaluated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        <b>Approved</b> includes volunteers with a valid
+			        Approved or Onboarded status for the role.
+			        <b>Assigned</b> includes approved volunteers with
+			        an active Arrangement assignment matching
+			        that specific role.
+			        For individuals, <b>Caring equals Assigned</b>.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to read the visualization
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Each row represents an individual volunteer role.
+			            The bar shows the proportion of approved volunteers
+			            with active assignments for that role.
+			            Roles are ordered by <b>Assignment Rate</b>
+			            to compare utilization across functions.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> A volunteer may hold multiple approved
+			        roles and appear in more than one row.
+			        Role totals may exceed the overall number of
+			        unique volunteers. Assignments are counted only
+			        for the corresponding role.
+			        Volunteers without active assignments are
+			        not necessarily available.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 5f2ad07a-b4df-4b85-a23e-871a595ac359
+
+	column 'Help ID'
+		lineageTag: 02be88e2-dfc7-4b1d-85dd-0c59f974ab57
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Help ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '(HELP) Volunteer Capacity' = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Help ID", STRING,
+				    {
+				        {"FAMILIES_APPROVED"},
+				        {"FAMILIES_ASSIGNED"},
+				        {"FAMILIES_ASSIGNED_AND_CARING"},
+				        {"FAMILY_CAPACITY_UTILIZATION"},
+				        {"FAMILY_CAPACITY_BY_ROLE"},
+				
+				        {"VOLUNTEERS_APPROVED"},
+				        {"VOLUNTEERS_ASSIGNED"},
+				        {"VOLUNTEERS_ASSIGNED_AND_CARING"},
+				        {"VOLUNTEERS_CAPACITY_UTILIZATION"},
+				        {"VOLUNTEERS_CAPACITY_BY_ROLE"}
+				    }
+				)
+
+	annotation PBI_Id = 5641ef48c5cb402d898d093a4410ba6e
+

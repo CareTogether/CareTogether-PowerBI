@@ -1,0 +1,142 @@
+table 'Community Role Assignment'
+	lineageTag: c6435b36-c28e-4235-9140-df5f671dd0c0
+
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 3bf88e2d-e955-4355-a0ae-44b18923e89e
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 9d0daaa9-20ef-4ae7-ae6e-f6a59c239178
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column community_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 9b7a6801-112e-4e3f-b716-6d0d8b12514d
+		summarizeBy: none
+		sourceColumn: community_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 0a7d2cb2-1582-4300-a575-9836188ef3ca
+		summarizeBy: none
+		sourceColumn: person_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column role
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 4222f5bd-1d82-4a50-8324-a4595da99217
+		summarizeBy: none
+		sourceColumn: role
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: b43e038b-70d5-4392-840f-76170b47d9b5
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 25d8be8b-92ab-4a49-8791-49084346069f
+		summarizeBy: none
+		sourceColumn: person_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column community_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 64f47572-0b47-4a42-b9dd-159b2e24d8a9
+		summarizeBy: none
+		sourceColumn: community_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Community Role Assignment' = m
+		mode: import
+		queryGroup: Facts
+		source = ```
+				let
+				  Source = #"OData",
+				  communityRoleAssignment = Source{[Name="CommunityRoleAssignments", Signature="table"]}[Data],
+				
+				  selectColumns = Table.SelectColumns(
+				    communityRoleAssignment,
+				    {
+				      "OrganizationId",
+				      "LocationId",
+				      "CommunityId",
+				      "PersonId",
+				      "Role"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"CommunityId", "community_id"},
+				      {"PersonId", "person_id"},
+				      {"Role", "role"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addPersonUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "person_uid",
+				      each
+				          if [person_id] <> null then
+				              Text.Combine({[rls_key], "-", [person_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  addCommunityUniqueKey = Table.AddColumn(
+				      addPersonUniqueKey,
+				      "community_uid",
+				      each
+				          if [community_id] <> null then
+				              Text.Combine({[rls_key], "-", [community_id]})
+				          else
+				              null,
+				      type text
+				  )
+				  
+				in
+				
+				  addCommunityUniqueKey
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

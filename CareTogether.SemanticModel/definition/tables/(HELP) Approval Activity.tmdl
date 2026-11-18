@@ -1,0 +1,1640 @@
+table '(HELP) Approval Activity'
+	lineageTag: ffcb2f3b-c3ad-42ba-9f91-60cb78b2e6d1
+
+	measure '(HTML) Help - Family Applications' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Family Applications
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Counts the number of <b>Family approval processes initiated</b>
+			        during the selected period.
+			        Each Application represents a Family applying for
+			        a specific volunteer Role within a <b>Location</b>.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is this metric calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        An Application starts whenever a Family enters
+			        the <b>Prospective</b> status for a Role.
+			        Each new entry into Prospective represents a new
+			        Application, including renewals and reapplications.
+			        <br/><br/>
+			        Applications are identified by
+			        <b>Family, Role, and Application Start Date</b>.
+			        Each Role is specific to a <b>Location</b>.
+			        Therefore, applying for the same volunteer function
+			        in a different Location is treated as a separate Application.
+			        <br/><br/>
+			        Only Applications initiated within the selected
+			        period are counted.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to interpret this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            A higher value indicates more Family approval
+			            processes were initiated during the selected period.
+			            <br/><br/>
+			            The percentage below the KPI compares this total
+			            with the immediately preceding period of equal
+			            duration. A green increase indicates more Applications,
+			            while a red decrease indicates fewer Applications.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Important:</b> Applications represent
+			        <b>approval processes, not unique Families</b>.
+			        The same Family may apply multiple times, for
+			        different Roles, or in different Locations.
+			        <br/><br/>
+			        Duplicate records representing the
+			        <b>same Application</b> are counted only once.
+			        Future-dated Applications are excluded.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: b6eed7b6-d74c-4d66-9c3d-b0652e929d2a
+
+	measure '(HTML) Help - Family Approvals' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Family Approvals
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Counts the number of <b>Family approval events</b>
+			        recorded during the selected period.
+			        An Approval occurs when a Family reaches
+			        the <b>Approved</b> status for a specific Role.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is this metric calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each recorded transition into
+			        <b>Approved</b> is counted according to its
+			        effective date.
+			        <br/><br/>
+			        The selected period applies to the
+			        <b>Approval Date</b>, not the date when the
+			        Application originally started.
+			        <br/><br/>
+			        Therefore, an Application initiated in an earlier
+			        period may contribute to the Approvals total
+			        in the currently selected period.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to interpret this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use this metric to understand how many Family
+			            approval events occurred during the selected period.
+			            <br/><br/>
+			            The percentage below the KPI compares Approval
+			            activity with the immediately preceding period
+			            of equal duration.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Important:</b> Approvals measure
+			        <b>approval activity, not unique Families</b>
+			        or the number of Applications initiated during
+			        the same period.
+			        <br/><br/>
+			        Approval and Onboarding counts may differ because
+			        not every process has a recorded Approved transition.
+			        Future-dated events are excluded.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: b270c502-0211-4501-92d9-1b10cbcda1a5
+
+	measure '(HTML) Help - Family Onboardings' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Family Onboardings
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Counts the number of <b>Family onboarding events</b>
+			        recorded during the selected period.
+			        An Onboarding occurs when a Family reaches
+			        the <b>Onboarded</b> status for a specific Role.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is this metric calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each recorded transition into
+			        <b>Onboarded</b> is counted according to its
+			        effective date.
+			        <br/><br/>
+			        The selected period applies to the
+			        <b>Onboarding Date</b>, regardless of when
+			        the original Application was initiated.
+			        <br/><br/>
+			        An Onboarding may therefore be counted in a
+			        different reporting period from its Application
+			        or Approval.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to interpret this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use this metric to understand the volume of
+			            Family onboarding activity completed during
+			            the selected period.
+			            <br/><br/>
+			            The percentage below the KPI compares Onboarding
+			            activity with the immediately preceding period
+			            of equal duration.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Important:</b> Onboardings represent
+			        <b>recorded onboarding events, not unique Families</b>
+			        or the number of currently active volunteer Families.
+			        <br/><br/>
+			        Some historical Onboarded records do not have a
+			        preceding Approved event. As a result, Onboardings
+			        may exceed Approvals, even when the full historical
+			        period is selected.
+			        Future-dated events are excluded.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: cf84dc43-b715-4791-9d75-0ad12cf14b8d
+
+	measure '(HTML) Help - Dynamic Pop-up - Approval Activity' = ```
+			
+			/*
+			Dynamically returns the corresponding HTML tooltip
+			based on the selected Help ID from the Arrangements
+			helper table.
+			*/
+			
+			VAR HelpID =
+			    SELECTEDVALUE(
+			        '(HELP) Approval Activity'[Help ID]
+			    )
+			
+			RETURN
+			SWITCH(
+			    HelpID,
+			
+			    "FAMILY_APPLICATIONS",
+			        [(HTML) Help - Family Applications],
+			
+			    "FAMILY_APPROVALS",
+			        [(HTML) Help - Family Approvals],
+			
+			    "FAMILY_ONBOARDINGS",
+			        [(HTML) Help - Family Onboardings],
+			
+			    "INDIVIDUAL_APPLICATIONS",
+			        [(HTML) Help - Individual Applications],
+			    
+			    "INDIVIDUAL_APPROVALS",
+			        [(HTML) Help - Individual Approvals],
+			    
+			    "INDIVIDUAL_ONBOARDINGS",
+			        [(HTML) Help - Individual Onboardings],
+			
+			    "FAMILY_APPLICATION_OUTCOMES",
+			        [(HTML) Help - Family Application Outcomes],
+			
+			    "INDIVIDUAL_APPLICATION_OUTCOMES",
+			        [(HTML) Help - Individual Application Outcomes],
+			
+			    "FAMILY_APPLICATIONS_OVER_TIME",
+			        [(HTML) Help - Family Applications Over Time],
+			
+			    "APPLICATION_BY_FAMILY_TYPE",
+			        [(HTML) Help - Application by Family Type],
+			
+			    "INDIVIDUAL_APPLICATIONS_OVER_TIME",
+			        [(HTML) Help - Individual Applications Over Time],
+			
+			    "APPLICATION_BY_PERSON_TYPE",
+			        [(HTML) Help - Application by Person Type],
+			
+			    "FAMILY_APPLICATIONS_BY_ROLE",
+			        [(HTML) Help - Family Applications by Role],
+			
+			    "INDIVIDUAL_APPLICATIONS_BY_ROLE",
+			        [(HTML) Help - Individual Applications by Role],
+			
+			    BLANK()
+			)
+			```
+		displayFolder: Measures
+		lineageTag: 72fa1854-5ce8-44ec-af58-7584a0b8ca7b
+
+	measure '(HTML) Help - Individual Applications' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Individual Applications
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Counts the number of <b>Individual approval processes initiated</b>
+			        during the selected period.
+			        Each Application represents an Individual applying
+			        for a specific volunteer Role.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is this metric calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        An Application starts whenever an Individual enters
+			        the <b>Prospective</b> status for a Role.
+			        Each new entry into Prospective represents a new
+			        Application, including renewals and reapplications.
+			        <br/><br/>
+			        Applications are identified by
+			        <b>Individual, Role, and Application Start Date</b>.
+			        Only Applications initiated within the selected
+			        period are counted.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to interpret this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            A higher value indicates more Individual approval
+			            processes were initiated during the selected period.
+			            <br/><br/>
+			            The percentage below the KPI compares this total
+			            with the immediately preceding period of equal
+			            duration. A green increase indicates more Applications,
+			            while a red decrease indicates fewer Applications.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Important:</b> Applications represent
+			        <b>approval processes, not unique Individuals</b>.
+			        The same Individual may apply multiple times or for
+			        different Roles. Duplicate Applications across
+			        Locations are counted once.
+			        Future-dated Applications are excluded.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 4aba6666-f73f-4489-9e83-7548a25af148
+
+	measure '(HTML) Help - Individual Approvals' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Individual Approvals
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Counts the number of <b>Individual approval events</b>
+			        recorded during the selected period.
+			        An Approval occurs when an Individual reaches
+			        the <b>Approved</b> status for a specific Role.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is this metric calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each recorded transition into
+			        <b>Approved</b> is counted according to its
+			        effective date.
+			        <br/><br/>
+			        The selected period applies to the
+			        <b>Approval Date</b>, not the date when the
+			        Application originally started.
+			        <br/><br/>
+			        Therefore, an Application initiated in an earlier
+			        period may contribute to the Approvals total
+			        in the currently selected period.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to interpret this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use this metric to understand how many Individual
+			            approval events occurred during the selected period.
+			            <br/><br/>
+			            The percentage below the KPI compares Approval
+			            activity with the immediately preceding period
+			            of equal duration.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Important:</b> Approvals measure
+			        <b>approval activity, not unique Individuals</b>
+			        or the number of Applications initiated during
+			        the same period.
+			        <br/><br/>
+			        Approval and Onboarding counts may differ because
+			        not every process has a recorded Approved transition.
+			        Future-dated events are excluded.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: c7b16f93-d3e7-4237-8352-1d8399408252
+
+	measure '(HTML) Help - Individual Onboardings' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Individual Onboardings
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Counts the number of <b>Individual onboarding events</b>
+			        recorded during the selected period.
+			        An Onboarding occurs when an Individual reaches
+			        the <b>Onboarded</b> status for a specific Role.
+			    </div>
+			
+			    <!-- METRIC -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is this metric calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each recorded transition into
+			        <b>Onboarded</b> is counted according to its
+			        effective date.
+			        <br/><br/>
+			        The selected period applies to the
+			        <b>Onboarding Date</b>, regardless of when
+			        the original Application was initiated.
+			        <br/><br/>
+			        An Onboarding may therefore be counted in a
+			        different reporting period from its Application
+			        or Approval.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            How to interpret this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Use this metric to understand the volume of
+			            Individual onboarding activity completed during
+			            the selected period.
+			            <br/><br/>
+			            The percentage below the KPI compares Onboarding
+			            activity with the immediately preceding period
+			            of equal duration.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Important:</b> Onboardings represent
+			        <b>recorded onboarding events, not unique Individuals</b>
+			        or the number of currently active volunteers.
+			        <br/><br/>
+			        Some historical Onboarded records do not have a
+			        preceding Approved event. As a result, Onboardings
+			        may exceed Approvals, even when the full historical
+			        period is selected.
+			        Future-dated events are excluded.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 975b0c19-3730-4222-92dd-386a1d11cb01
+
+	measure '(HTML) Help - Family Application Outcomes' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:9px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Family Application Outcomes
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.4;margin-bottom:10px;'>
+			        Shows the <b>latest known status of Family Applications</b>
+			        initiated during the selected period, using an
+			        <b>Application Date Cohort</b>. This helps understand
+			        what happened to approval processes started within
+			        a specific timeframe.
+			    </div>
+			
+			    <!-- COHORT -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        How does the Cohort work?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:10px;'>
+			        <b>Step 1:</b> Identify Applications that entered
+			        <b>Prospective</b> during the selected period,
+			        using Family, Role, and Application Start Date.<br/>
+			        <b>Step 2:</b> Follow subsequent status changes,
+			        including those occurring <b>outside the selected period</b>.<br/>
+			        <b>Step 3:</b> Assign each Application to its
+			        <b>latest effective status</b>, counting it in
+			        only one outcome.
+			    </div>
+			
+			    <!-- EXAMPLE -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			        margin-bottom:10px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            Example
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            A Family starts an Application in <b>November 2025</b>
+			            and reaches <b>Onboarded in February 2026</b>.
+			            When selecting 2025, the Application belongs to the
+			            <b>2025 Cohort</b> and is classified as
+			            <b>Onboarded</b>, even though onboarding occurred in 2026.
+			        </div>
+			    </div>
+			
+			    <!-- OUTCOMES -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        What do the outcomes mean?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:10px;'>
+			        <b>Prospective:</b> Still in the initial approval stage.<br/>
+			        <b>Approved:</b> Reached Approved; no subsequent status recorded.<br/>
+			        <b>Onboarded:</b> Reached Onboarded and remains in that status.<br/>
+			        <b>Expired:</b> Approval or eligibility has expired.<br/>
+			        <b>Denied:</b> Application was denied.<br/>
+			        <b>Inactive:</b> Application is currently classified as Inactive.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            How to use this information
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Evaluate how Applications from a selected period have
+			            progressed. Compare Locations and reporting periods
+			            to identify Applications still awaiting approval,
+			            successfully onboarded, or no longer active.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;
+			    '>
+			        <b>Important:</b> The selected period determines
+			        <b>which Applications are included</b>, not when their
+			        status changes must occur. Outcomes reflect the latest
+			        effective status as of today; future-dated changes,
+			        including scheduled <b>Expired</b> records, are ignored
+			        until their effective date.
+			        <br/>
+			        Results represent <b>Applications, not unique Families</b>.
+			        Each Application belongs to one outcome, and the total
+			        should match the Family Applications in the selected Cohort.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 047987ae-a4a6-4d67-9efd-da2f38a3a5f0
+
+	measure '(HTML) Help - Individual Application Outcomes' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:9px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Individual Application Outcomes
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.4;margin-bottom:10px;'>
+			        Shows the <b>latest known status of Individual Applications</b>
+			        initiated during the selected period, using an
+			        <b>Application Date Cohort</b>. This helps understand
+			        how approval processes initiated by Individuals
+			        have progressed over time.
+			    </div>
+			
+			    <!-- COHORT -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        How does the Cohort work?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:10px;'>
+			        <b>Step 1:</b> Identify Applications that entered
+			        <b>Prospective</b> during the selected period,
+			        using Individual, Role, and Application Start Date.<br/>
+			        <b>Step 2:</b> Follow subsequent status changes,
+			        including those occurring <b>outside the selected period</b>.<br/>
+			        <b>Step 3:</b> Assign each Application to its
+			        <b>latest effective status</b>, counting it in
+			        only one outcome.
+			    </div>
+			
+			    <!-- EXAMPLE -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			        margin-bottom:10px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            Example
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            An Individual starts a <b>Family Coach Application
+			            in December 2025</b> and reaches
+			            <b>Onboarded in March 2026</b>.
+			            When selecting 2025, the Application belongs to the
+			            <b>2025 Cohort</b> and is classified as
+			            <b>Onboarded</b>, even though onboarding occurred in 2026.
+			        </div>
+			    </div>
+			
+			    <!-- OUTCOMES -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        What do the outcomes mean?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:10px;'>
+			        <b>Prospective:</b> Still in the initial approval stage.<br/>
+			        <b>Approved:</b> Reached Approved; no subsequent status recorded.<br/>
+			        <b>Onboarded:</b> Reached Onboarded and remains in that status.<br/>
+			        <b>Expired:</b> Approval or eligibility has expired.<br/>
+			        <b>Denied:</b> Application was denied.<br/>
+			        <b>Inactive:</b> Application is currently classified as Inactive.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            How to use this information
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Evaluate how Individual Applications from a selected
+			            period have progressed. Compare Roles, Locations,
+			            and reporting periods to identify pending approvals,
+			            successful onboardings, and Applications that
+			            become inactive.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;
+			    '>
+			        <b>Important:</b> The selected period determines
+			        <b>which Applications are included</b>, not when their
+			        status changes must occur. Outcomes reflect the latest
+			        effective status as of today; future-dated changes,
+			        including scheduled <b>Expired</b> records, are ignored
+			        until their effective date.
+			        <br/>
+			        Results represent <b>Applications, not unique Individuals</b>.
+			        An Individual may apply multiple times or for different Roles.
+			        Each Application belongs to one outcome, and the total
+			        should match the Individual Applications in the selected Cohort.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: e2162854-4116-4004-b642-b13df41015b1
+
+	measure '(HTML) Help - Family Applications Over Time' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Family Applications Over Time
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows how <b>Family Applications change over time</b>,
+			        based on the date each Family enters
+			        <b>Prospective</b> for a specific volunteer Role.
+			        Each bar represents Applications initiated during
+			        the corresponding time interval.
+			    </div>
+			
+			    <!-- CHART -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        How to explore the timeline
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Move your mouse over the chart. A toolbar will appear
+			        in the <b>top-right corner</b>, allowing you to navigate
+			        between <b>Year, Month and Day</b> levels.
+			    </div>
+			
+			    <!-- DRILL UP -->
+			    <div style='
+			        display:flex;align-items:center;gap:12px;
+			        margin-bottom:12px;
+			    '>
+			
+			        <div style='
+			            width:36px;height:36px;flex:0 0 36px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F5F5F5;border-radius:5px;
+			        '>
+			            <svg width='24' height='24' viewBox='0 0 24 24'
+			                 fill='none' stroke='#45B9C8'
+			                 stroke-width='1.3'
+			                 stroke-linecap='square'
+			                 stroke-linejoin='miter'>
+			                <path d='M12 21V3 M4 11L12 3L20 11'/>
+			            </svg>
+			        </div>
+			
+			        <div style='font-size:11px;line-height:1.45;'>
+			            <b>Drill Up</b><br/>
+			            Click the upward arrow to move to a higher
+			            level of the hierarchy:
+			            <b>Day → Month → Year</b>.
+			        </div>
+			
+			    </div>
+			
+			    <!-- EXPAND ALL -->
+			    <div style='
+			        display:flex;align-items:center;gap:12px;
+			        margin-bottom:12px;
+			    '>
+			
+			        <div style='
+			            width:36px;height:36px;flex:0 0 36px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F5F5F5;border-radius:5px;
+			        '>
+			            <svg width='24' height='24' viewBox='0 0 24 24'
+			                 fill='none' stroke='#45B9C8'
+			                 stroke-width='1.3'
+			                 stroke-linecap='square'
+			                 stroke-linejoin='miter'>
+			                <path d='M12 3V10
+			                         M5 10H19
+			                         M5 10V20
+			                         M19 10V20
+			                         M1 16L5 20L9 16
+			                         M15 16L19 20L23 16'/>
+			            </svg>
+			        </div>
+			
+			        <div style='font-size:11px;line-height:1.45;'>
+			            <b>Expand All Down One Level</b><br/>
+			            Click the branching downward arrow to expand
+			            the hierarchy:
+			            <b>Year → Month → Day</b>,
+			            keeping previous levels visible.
+			        </div>
+			
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            How to use this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Start with the yearly overview, expand into months
+			            to identify trends and periods of higher or lower
+			            Family application activity, and continue into days
+			            for a more detailed analysis.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;
+			    '>
+			        <b>Important:</b> Applications represent
+			        <b>approval processes, not unique Families</b>.
+			        Each entry into Prospective starts a new Application,
+			        including reapplications. Duplicate Applications
+			        across Locations are counted once, and future-dated
+			        Applications are excluded.
+			        <br/><br/>
+			        Navigating the date hierarchy changes the level of
+			        detail displayed, <b>not the selected report timeframe</b>.
+			        Applications are always grouped by their start date,
+			        regardless of subsequent status changes.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 90b0f076-828f-4851-94de-87924f9488d4
+
+	measure '(HTML) Help - Application by Family Type' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Application by Family Type
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows the distribution of <b>Family Applications</b>
+			        initiated during the selected period, classified
+			        as <b>New</b> or <b>Returning</b>.
+			    </div>
+			
+			    <!-- CLASSIFICATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        How are Applications classified?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        <b>New:</b> The Family's first recorded Application
+			        for a specific Role.
+			        <br/><br/>
+			        <b>Returning:</b> A subsequent Application initiated
+			        by the same Family for the <b>same Role</b>.
+			        <br/><br/>
+			        Classification considers the <b>full historical
+			        application record</b>, not only Applications
+			        within the selected reporting period.
+			    </div>
+			
+			    <!-- EXAMPLE -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			        margin-bottom:10px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            Example
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            A Family applies for <b>Host Family in 2024</b>:
+			            <b>New</b>.
+			            <br/>
+			            The same Family applies again for
+			            <b>Host Family in 2026</b>: <b>Returning</b>.
+			            <br/>
+			            An Application for a different Role would be
+			            classified as <b>New</b> for that Role.
+			        </div>
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            How to use this information
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Understand how much application activity comes
+			            from first-time applications for a Role versus
+			            Families applying again for the same Role.
+			            This helps identify recurring approval activity.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;
+			    '>
+			        <b>Important:</b> New and Returning describe
+			        <b>Applications, not Families</b>.
+			        Returning does not necessarily mean the Family
+			        was previously Approved or Onboarded.
+			        <br/>
+			        The classification is based on previous entries
+			        into Prospective for the same Family and Role,
+			        regardless of Location.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 32c632da-f3a8-465a-a488-f6d811e55855
+
+	measure '(HTML) Help - Individual Applications Over Time' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Individual Applications Over Time
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows how <b>Individual Applications change over time</b>,
+			        based on the date each Individual enters
+			        <b>Prospective</b> for a specific volunteer Role.
+			        Each bar represents Applications initiated during
+			        the corresponding time interval.
+			    </div>
+			
+			    <!-- CHART -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        How to explore the timeline
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Move your mouse over the chart. A toolbar will appear
+			        in the <b>top-right corner</b>, allowing you to navigate
+			        between <b>Year, Month and Day</b> levels.
+			    </div>
+			
+			    <!-- DRILL UP -->
+			    <div style='
+			        display:flex;align-items:center;gap:12px;
+			        margin-bottom:12px;
+			    '>
+			
+			        <div style='
+			            width:36px;height:36px;flex:0 0 36px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F5F5F5;border-radius:5px;
+			        '>
+			            <svg width='24' height='24' viewBox='0 0 24 24'
+			                 fill='none' stroke='#45B9C8'
+			                 stroke-width='1.3'
+			                 stroke-linecap='square'
+			                 stroke-linejoin='miter'>
+			                <path d='M12 21V3 M4 11L12 3L20 11'/>
+			            </svg>
+			        </div>
+			
+			        <div style='font-size:11px;line-height:1.45;'>
+			            <b>Drill Up</b><br/>
+			            Click the upward arrow to move to a higher
+			            level of the hierarchy:
+			            <b>Day → Month → Year</b>.
+			        </div>
+			
+			    </div>
+			
+			    <!-- EXPAND ALL -->
+			    <div style='
+			        display:flex;align-items:center;gap:12px;
+			        margin-bottom:12px;
+			    '>
+			
+			        <div style='
+			            width:36px;height:36px;flex:0 0 36px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F5F5F5;border-radius:5px;
+			        '>
+			            <svg width='24' height='24' viewBox='0 0 24 24'
+			                 fill='none' stroke='#45B9C8'
+			                 stroke-width='1.3'
+			                 stroke-linecap='square'
+			                 stroke-linejoin='miter'>
+			                <path d='M12 3V10
+			                         M5 10H19
+			                         M5 10V20
+			                         M19 10V20
+			                         M1 16L5 20L9 16
+			                         M15 16L19 20L23 16'/>
+			            </svg>
+			        </div>
+			
+			        <div style='font-size:11px;line-height:1.45;'>
+			            <b>Expand All Down One Level</b><br/>
+			            Click the branching downward arrow to expand
+			            the hierarchy:
+			            <b>Year → Month → Day</b>,
+			            keeping previous levels visible.
+			        </div>
+			
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            How to use this information
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Start with the yearly overview, expand into months
+			            to identify trends and periods of higher or lower
+			            Individual application activity, and continue into
+			            days for a more detailed analysis.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;
+			    '>
+			        <b>Important:</b> Applications represent
+			        <b>approval processes, not unique Individuals</b>.
+			        Each entry into Prospective starts a new Application,
+			        including reapplications. Duplicate Applications
+			        across Locations are counted once, and future-dated
+			        Applications are excluded.
+			        <br/><br/>
+			        Navigating the date hierarchy changes the level of
+			        detail displayed, <b>not the selected report timeframe</b>.
+			        Applications are always grouped by their start date,
+			        regardless of subsequent status changes.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 1de88c1f-5479-4653-a768-c6d29bb14410
+
+	measure '(HTML) Help - Application by Person Type' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Application by Person Type
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows the distribution of <b>Individual Applications</b>
+			        initiated during the selected period, classified
+			        as <b>New</b> or <b>Returning</b>.
+			    </div>
+			
+			    <!-- CLASSIFICATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        How are Applications classified?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        <b>New:</b> The Individual's first recorded
+			        Application for a specific Role.
+			        <br/><br/>
+			        <b>Returning:</b> A subsequent Application initiated
+			        by the same Individual for the <b>same Role</b>.
+			        <br/><br/>
+			        Classification considers the <b>full historical
+			        application record</b>, not only Applications
+			        within the selected reporting period.
+			    </div>
+			
+			    <!-- EXAMPLE -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			        margin-bottom:10px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            Example
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            An Individual applies for <b>Community Friend
+			            in 2024</b>: <b>New</b>.
+			            <br/>
+			            The same Individual applies again for
+			            <b>Community Friend in 2026</b>:
+			            <b>Returning</b>.
+			            <br/>
+			            An Application for <b>Family Coach</b> would
+			            be classified as <b>New</b> for that Role.
+			        </div>
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            How to use this information
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Understand how much Individual application activity
+			            comes from first-time applications for a Role
+			            versus Individuals applying again for the same Role.
+			            This helps identify recurring approval activity.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;
+			    '>
+			        <b>Important:</b> New and Returning describe
+			        <b>Applications, not unique Individuals</b>.
+			        Returning does not necessarily mean the Individual
+			        was previously Approved or Onboarded.
+			        <br/>
+			        The classification is based on previous entries
+			        into Prospective for the same Individual and Role,
+			        regardless of Location.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 15355447-85c1-4839-9ab2-42f336f8d595
+
+	measure '(HTML) Help - Family Applications by Role' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Family Applications by Role
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows the distribution of <b>Family approval activity
+			        by volunteer Role</b>, including Applications,
+			        Approvals, and Onboardings recorded during the
+			        selected period.
+			    </div>
+			
+			    <!-- METRICS -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        What do the columns represent?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:12px;'>
+			        <b>Role:</b> The volunteer Role associated with
+			        the Family approval process.<br/>
+			        <b>Applications:</b> Number of Applications initiated
+			        during the selected period, based on the date
+			        the Family entered <b>Prospective</b>.<br/>
+			        <b>Approvals:</b> Number of <b>Approved</b> events
+			        recorded during the selected period.<br/>
+			        <b>Onboardings:</b> Number of <b>Onboarded</b> events
+			        recorded during the selected period.
+			    </div>
+			
+			    <!-- EXAMPLE -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			        margin-bottom:10px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            Example
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            A Family starts a <b>Host Family</b> Application
+			            in <b>2025</b> and reaches <b>Onboarded in 2026</b>.
+			            <br/>
+			            When selecting 2025, the Application is counted
+			            under <b>Applications</b>.
+			            When selecting 2026, its Onboarding is counted
+			            under <b>Onboardings</b>.
+			        </div>
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            How to use this information
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Compare approval activity across Family Roles
+			            to understand where Applications are being initiated
+			            and where Approvals and Onboardings are occurring.
+			            Identify changes in activity across reporting periods.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;
+			    '>
+			        <b>Important:</b> These columns represent
+			        <b>independent events, not a Cohort or conversion funnel</b>.
+			        Applications use the Prospective date, Approvals use
+			        the Approved date, and Onboardings use the Onboarded date.
+			        <br/>
+			        An Approval or Onboarding may belong to an Application
+			        initiated in an earlier period. Therefore, Onboardings
+			        may exceed Applications or Approvals.
+			        <br/>
+			        Results represent <b>approval activity, not unique Families</b>.
+			        Future-dated events are excluded.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 5333f2ad-d554-4596-91a1-2e923ece42cc
+
+	measure '(HTML) Help - Individual Applications by Role' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Individual Applications by Role
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Shows the distribution of <b>Individual approval activity
+			        by volunteer Role</b>, including Applications,
+			        Approvals, and Onboardings recorded during the
+			        selected period.
+			    </div>
+			
+			    <!-- METRICS -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        What do the columns represent?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:12px;'>
+			        <b>Role:</b> The volunteer Role associated with
+			        the Individual approval process.<br/>
+			        <b>Applications:</b> Number of Applications initiated
+			        during the selected period, based on the date
+			        the Individual entered <b>Prospective</b>.<br/>
+			        <b>Approvals:</b> Number of <b>Approved</b> events
+			        recorded during the selected period.<br/>
+			        <b>Onboardings:</b> Number of <b>Onboarded</b> events
+			        recorded during the selected period.
+			    </div>
+			
+			    <!-- EXAMPLE -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			        margin-bottom:10px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            Example
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            An Individual starts a <b>Community Friend</b>
+			            Application in <b>2025</b> and reaches
+			            <b>Onboarded in 2026</b>.
+			            <br/>
+			            When selecting 2025, the Application is counted
+			            under <b>Applications</b>.
+			            When selecting 2026, its Onboarding is counted
+			            under <b>Onboardings</b>.
+			        </div>
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            How to use this information
+			        </div>
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Compare approval activity across Individual Roles
+			            to identify which Roles receive more Applications
+			            and where Approvals and Onboardings are occurring.
+			            Use this information to understand differences
+			            in activity across Roles and reporting periods.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;
+			    '>
+			        <b>Important:</b> These columns represent
+			        <b>independent events, not a Cohort or conversion funnel</b>.
+			        Applications use the Prospective date, Approvals use
+			        the Approved date, and Onboardings use the Onboarded date.
+			        <br/>
+			        An Approval or Onboarding may belong to an Application
+			        initiated in an earlier period. Therefore, Onboardings
+			        may exceed Applications or Approvals.
+			        <br/>
+			        Results represent <b>approval activity, not unique Individuals</b>.
+			        Future-dated events are excluded.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 4742d73e-803d-4951-bae9-35756a7844d3
+
+	column 'Help ID'
+		lineageTag: 00f87d53-8ad9-4267-8ff4-d319a5c28239
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Help ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '(HELP) Approval Activity' = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Help ID", STRING,
+				    {
+				        {"FAMILY_APPLICATIONS"},
+				        {"FAMILY_APPROVALS"},
+				        {"FAMILY_ONBOARDINGS"},
+				        {"INDIVIDUAL_APPLICATIONS"},
+				        {"INDIVIDUAL_APPROVALS"},
+				        {"INDIVIDUAL_ONBOARDINGS"},
+				        {"FAMILY_APPLICATION_OUTCOMES"},
+				        {"INDIVIDUAL_APPLICATION_OUTCOMES"},
+				        {"FAMILY_APPLICATIONS_OVER_TIME"},
+				        {"APPLICATION_BY_FAMILY_TYPE"},
+				        {"INDIVIDUAL_APPLICATIONS_OVER_TIME"},
+				        {"APPLICATION_BY_PERSON_TYPE"},
+				        {"FAMILY_APPLICATIONS_BY_ROLE"},
+				        {"INDIVIDUAL_APPLICATIONS_BY_ROLE"}
+				    }
+				)
+
+	annotation PBI_Id = d3c50d65f810451ba72b2d63bdd34974
+

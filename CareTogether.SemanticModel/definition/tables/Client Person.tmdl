@@ -1,63 +1,14 @@
 table 'Client Person'
-	lineageTag: d1d492d4-6e16-4bce-b224-c7fb5de3fa7a
+	lineageTag: 11e18395-5d20-4b6b-ae25-440ababb8222
 
-	measure '# of Children Cared For (Client)' =
+	measure '# of Client Families Supported' =
 			
 			
-			VAR CurrentDate = TODAY()
-			VAR StartDate = [Selected Timeframe Start]
-			VAR EndDate = [Selected Timeframe End]
-			VAR EffectiveEndDate = MIN(EndDate, CurrentDate)
-			VAR FirstTimeOnly = SELECTEDVALUE('First-Time Child Care Filter'[Is First-Time Only]) = TRUE()
+			/*
 			
-			VAR TotalChildren =
-			    CALCULATE(
-			        DISTINCTCOUNTNOBLANK('Client Person'[Person UID]),
-			        'Client Person'[Person Type] = "Child",
-			        FILTER(
-			            'Child Location Record',
-			            'Child Location Record'[Childcare Plan] <> "WithParent"
-			                && 'Child Location Record'[Ended] >= StartDate
-			                && 'Child Location Record'[Started] <= EffectiveEndDate
-			        )
-			    )
+			Counts unique families that received support at any point during the selected period. Each family is counted only once, regardless of how many people or Arrangements are associated with that family. A single-day selection shows families supported on that day, while a wider date range includes families supported at any point during that period. Future support is excluded.
 			
-			// Children whose first valid care occurred during the selected timeframe
-			VAR FirstTimeChildren =
-			    CALCULATE(
-			        DISTINCTCOUNTNOBLANK('Client Person'[Person UID]),
-			        'Client Person'[Person Type] = "Child",
-			        FILTER(
-			            'Child Location Record',
-			            'Child Location Record'[Childcare Plan] <> "WithParent"
-			                && NOT ISBLANK('Child Location Record'[First Care Date])
-			                && 'Child Location Record'[First Care Date] >= StartDate
-			                && 'Child Location Record'[First Care Date] <= EffectiveEndDate
-			        )
-			    )
-			
-			VAR Result =
-			    IF(
-			        FirstTimeOnly,
-			        FirstTimeChildren,
-			        TotalChildren
-			    )
-			
-			RETURN
-			    IF(
-			        CurrentDate < StartDate,
-			        BLANK(),
-			        IF(
-			            Result = 0,
-			            BLANK(),
-			            Result
-			        )
-			    )
-		formatString: 0
-		lineageTag: 09c48ad0-f3aa-4588-ab25-39343ed2aa73
-
-	measure '# of Impacted Adults (Client)' = ```
-			
+			*/
 			
 			VAR Today = TODAY()
 			VAR CurrentStartDate = [Selected Timeframe Start]
@@ -65,205 +16,349 @@ table 'Client Person'
 			
 			RETURN
 			IF(
-			    CurrentStartDate > Today, 
+			    CurrentStartDate > Today,
 			    BLANK(),
-			    CALCULATE(
-			        DISTINCTCOUNT('Client Person'[Person UID]),
+			    COUNTROWS(
 			        FILTER(
-			            VALUES('Client Family'[Family UID]),
-			            COUNTROWS(
-			                FILTER(
-			                    RELATEDTABLE('Arrangements'), // Added the related table to ensure that the formula correctly filters the arrangement table.
-			                    NOT(ISBLANK('Arrangements'[Started])) &&
-			                    'Arrangements'[Started] <= CurrentEndDate &&
-			                    (
-			                        ISBLANK('Arrangements'[Ended]) || 
-			                        'Arrangements'[Ended] >= CurrentStartDate
+			            VALUES('Client Person'[family_id]),
+			            CALCULATE(
+			                COUNTROWS(
+			                    FILTER(
+			                        RELATEDTABLE(Arrangement),
+			                        NOT(ISBLANK(Arrangement[started_utc])) &&
+			                        Arrangement[started_utc] <= CurrentEndDate &&
+			                        (
+			                            ISBLANK(Arrangement[ended_utc]) ||
+			                            Arrangement[ended_utc] >= CurrentStartDate
+			                        )
 			                    )
 			                )
 			            ) > 0
-			        ),
-			        'Client Person'[Person Type] = "Adult"
+			        )
 			    )
 			)
-			```
 		formatString: 0
-		lineageTag: 58329397-3055-4fd5-8eca-3330c6e2600b
+		lineageTag: 30c40e40-cc0e-4a41-a456-19db89ef39e3
 
-	measure '# of Impacted Children (Client)' = ```
-			
-			
-			VAR Today = TODAY()
-			VAR CurrentStartDate = [Selected Timeframe Start]
-			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
-			
-			RETURN
-			IF(
-			    CurrentStartDate > Today, 
-			    BLANK(),
-			    CALCULATE(
-			        DISTINCTCOUNT('Client Person'[Person UID]),
-			        FILTER(
-			            VALUES('Client Family'[Family UID]),
-			            COUNTROWS(
-			                FILTER(
-			                    RELATEDTABLE('Arrangements'), // Added the related table to ensure that the formula correctly filters the arrangement table.
-			                    NOT(ISBLANK('Arrangements'[Started])) &&
-			                    'Arrangements'[Started] <= CurrentEndDate &&
-			                    (
-			                        ISBLANK('Arrangements'[Ended]) || 
-			                        'Arrangements'[Ended] >= CurrentStartDate
-			                    )
-			                )
-			            ) > 0
-			        ),
-			        'Client Person'[Person Type] = "Child"
-			    )
-			)
-			```
-		formatString: 0
-		lineageTag: 6baeb182-a386-4c17-8a6b-260e1e3e0556
-
-	column 'RLS Key'
+	column person_id
 		dataType: string
 		displayFolder: _columns
-		lineageTag: f581081c-c04f-4c1c-b35c-10c77bcddbee
+		lineageTag: 686db63f-3e74-44a4-afa4-7fa732465e83
 		summarizeBy: none
-		sourceColumn: RLS Key
+		sourceColumn: person_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Family UID'
+	column organization_id
 		dataType: string
 		displayFolder: _columns
-		lineageTag: 3b57e629-4234-4487-923c-08a3b9181716
+		lineageTag: 4b18fc2e-2a7e-4a07-a893-4b92c6cb948d
 		summarizeBy: none
-		sourceColumn: Family UID
+		sourceColumn: organization_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Person UID'
+	column location_id
 		dataType: string
 		displayFolder: _columns
-		lineageTag: bffdb0c9-1f01-4a85-82c4-f05dcb505ffc
+		lineageTag: cde08330-b753-4543-ad0b-dce3cd5eee98
 		summarizeBy: none
-		sourceColumn: Person UID
+		sourceColumn: location_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Person ID'
+	column family_id
 		dataType: string
 		displayFolder: _columns
-		lineageTag: ecddcfd0-7aec-492d-8332-8b300ff338b3
+		lineageTag: 760bd22e-6d5c-4934-a571-ea474c6a37cb
 		summarizeBy: none
-		sourceColumn: Person ID
+		sourceColumn: family_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'First Name'
+	column first_name
 		dataType: string
 		displayFolder: _columns
-		lineageTag: 068afca4-2275-4eae-addd-978dc8727c60
+		lineageTag: fc0886cf-b0a3-404e-9b5f-b23c0683736e
 		summarizeBy: none
-		sourceColumn: First Name
+		sourceColumn: first_name
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Last Name'
+	column last_name
 		dataType: string
 		displayFolder: _columns
-		lineageTag: 221c0641-6da9-4fb3-a318-daf5fbed85a2
+		lineageTag: 78890bbf-bf94-4128-9546-38600a45c659
 		summarizeBy: none
-		sourceColumn: Last Name
+		sourceColumn: last_name
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Full Name'
+	column full_name
 		dataType: string
 		displayFolder: _columns
-		lineageTag: 86bdb92b-6c6b-4485-bdb9-680b246ab564
+		lineageTag: a601dcaa-5153-4a30-b793-d589c4a0d649
 		summarizeBy: none
-		sourceColumn: Full Name
+		sourceColumn: full_name
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Person Type'
+	column person_type
 		dataType: string
 		displayFolder: _columns
-		lineageTag: 5505c8c4-ca9e-4770-8b24-58918db11882
+		lineageTag: 195d42f1-7349-4537-bc28-eb9eb300c4e5
 		summarizeBy: none
-		sourceColumn: Person Type
+		sourceColumn: person_type
 
 		annotation SummarizationSetBy = Automatic
 
-	column Ethnicity
+	column ethnicity
 		dataType: string
 		displayFolder: _columns
-		lineageTag: 66ea8137-1940-439e-812a-9bf648d23229
+		lineageTag: ab14d4cf-5675-4606-aa59-a42a5f8375b7
 		summarizeBy: none
-		sourceColumn: Ethnicity
+		sourceColumn: ethnicity
 
 		annotation SummarizationSetBy = Automatic
 
-	column Gender
-		dataType: string
-		displayFolder: _columns
-		lineageTag: 8c3597e1-2d47-459e-bfac-85361a7e8f64
-		summarizeBy: none
-		sourceColumn: Gender
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Date of Birth'
+	column date_of_birth
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		displayFolder: _columns
-		lineageTag: 6ad9c7cc-359b-4e88-b169-8ddf6c712849
+		lineageTag: 1b80f555-151b-4ee7-ada6-5e4dbe2f2be4
 		summarizeBy: none
-		sourceColumn: Date of Birth
+		sourceColumn: date_of_birth
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
+
+	column gender
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 1e4d18f3-3f34-4747-9d7f-02c58d8851e9
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 14a5a78e-f60e-4a41-bdb6-8149dbdad6b1
+		summarizeBy: none
+		sourceColumn: family_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 37f9b7ce-acfc-4ab5-b39b-8ac504eb1e75
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone_number
+		dataType: string
+		displayFolder: _columns
+		lineageTag: c639c962-083a-4481-b48c-8a9cfd0e3ba4
+		summarizeBy: none
+		sourceColumn: phone_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column address_line_1
+		dataType: string
+		displayFolder: _columns
+		lineageTag: ad07baa2-7e29-4d40-bc56-de5affa26193
+		summarizeBy: none
+		sourceColumn: address_line_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column address_line_2
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 1dd7f1bd-c7ea-4852-9d29-1884c24ab8a5
+		summarizeBy: none
+		sourceColumn: address_line_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		displayFolder: _columns
+		lineageTag: e0cb63c6-9ea4-4d7d-b5b2-091ab4ad2fcb
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column county
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 33cbcdeb-2150-4706-8a36-533b1fcbdbfa
+		summarizeBy: none
+		sourceColumn: county
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 6281a659-94e3-4813-9d7d-145f68d45774
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column postal_code
+		dataType: string
+		displayFolder: _columns
+		lineageTag: c22b5264-a7c1-45b9-895e-a6dec9bdda53
+		summarizeBy: none
+		sourceColumn: postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 290d9275-11cc-49bb-b93c-d3121250e41c
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: ba5b70d9-716b-4aaf-becc-c89fc49632e5
+		summarizeBy: none
+		sourceColumn: person_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 5541c057-d72b-40c8-b807-dc11f1a37515
+		summarizeBy: none
+		sourceColumn: family_uid
+
+		annotation SummarizationSetBy = Automatic
 
 	partition 'Client Person' = m
 		mode: import
 		queryGroup: Dimensions
 		source = ```
 				let
-				    Source = #"OData Live",
-				    Person = Source{[Name="Person", Signature="table"]}[Data],
-				    PersonTransformed = 
+				  Source = #"OData",
+				  Person = Source{[Name="Person", Signature="table"]}[Data],
+				  
+				  removeDuplicatedRecords = Table.Distinct(Person, {"Id", "OrganizationId", "LocationId"}),
+				  addFullName = Table.AddColumn(removeDuplicatedRecords, "full_name", each Text.Combine({[FirstName], " ", [LastName]})),
 				
-				    Table.Distinct(
-				        Table.SelectColumns(
-				            Table.AddColumn(
-				                Table.RenameColumns(
-				                    Table.AddColumn(
-				                        Table.AddColumn(
-				                            Table.AddColumn(
-				                                Person,
-				                                "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
-				                            ),
-				                            "Person UID", each Text.Combine({[RLS Key], [Id]}, "-")
-				                        ),
-				                        "Family UID", each Text.Combine({[RLS Key], [FamilyId]}, "-")
-				                    ),
-				                    {{"Id", "Person ID"}, {"FamilyId", "Family ID"}, {"FirstName", "First Name"}, {"LastName", "Last Name"}, 
-				                    {"PersonType", "Person Type"}, {"DateOfBirth", "Date of Birth"}}
-				                ),
-				                "Full Name", each Text.Combine({[First Name], [Last Name]}, " ")
-				            ),
-				            {"RLS Key", "Family UID", "Person UID", "Person ID", "First Name", "Last Name", "Full Name", "Person Type", "Ethnicity", "Gender", "Date of Birth"}
-				        ),
-				        "Person UID"
-				    )
+				  expandFamily = Table.ExpandRecordColumn(addFullName, "Family", 
+				    {"Name", "PrimaryEmail", "PrimaryPhoneNumber", "PrimaryAddress", "HomeChurch"}, 
+				    {"Family.Name", "Family.PrimaryEmail", "Family.PrimaryPhoneNumber", "Family.PrimaryAddress", "Family.HomeChurch"}
+				  ),
+				  
+				  expandFamilyPrimaryAddress = Table.ExpandRecordColumn(expandFamily, "Family.PrimaryAddress", 
+				    {"Line1", "Line2", "City", "County", "State", "PostalCode"}, 
+				    {"Family.PrimaryAddress.Line1", "Family.PrimaryAddress.Line2", "Family.PrimaryAddress.City", "Family.PrimaryAddress.County", 
+				    "Family.PrimaryAddress.State", "Family.PrimaryAddress.PostalCode"}
+				  ),
+				
+				  selectColumns = Table.SelectColumns(
+				    expandFamilyPrimaryAddress,
+				    {
+				      "Id", 
+				      "OrganizationId", 
+				      "LocationId", 
+				      "FamilyId", 
+				      "FirstName", 
+				      "LastName",
+				      "full_name",
+				      "PersonType", 
+				      "Ethnicity", 
+				      "DateOfBirth", 
+				      "Gender",
+				      "Family.Name", 
+				      "Family.PrimaryEmail", 
+				      "Family.PrimaryPhoneNumber",
+				      "Family.PrimaryAddress.Line1", 
+				      "Family.PrimaryAddress.Line2", 
+				      "Family.PrimaryAddress.City", 
+				      "Family.PrimaryAddress.County", 
+				      "Family.PrimaryAddress.State", 
+				      "Family.PrimaryAddress.PostalCode"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"Id", "person_id"},
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"FamilyId", "family_id"},
+				      {"FirstName", "first_name"},
+				      {"LastName", "last_name"},
+				      {"full_name", "full_name"},
+				      {"PersonType", "person_type"},
+				      {"Ethnicity", "ethnicity"},
+				      {"DateOfBirth", "date_of_birth"},
+				      {"Gender", "gender"},
+				      {"Family.Name", "family_name"},
+				      {"Family.PrimaryEmail", "email"},
+				      {"Family.PrimaryPhoneNumber", "phone_number"},
+				      {"Family.PrimaryAddress.Line1", "address_line_1"},
+				      {"Family.PrimaryAddress.Line2", "address_line_2"},
+				      {"Family.PrimaryAddress.City", "city"}, 
+				      {"Family.PrimaryAddress.County", "county"},
+				      {"Family.PrimaryAddress.State", "state"},
+				      {"Family.PrimaryAddress.PostalCode", "postal_code"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addPersonUniqueKey = Table.AddColumn(
+				    addRLSKey,
+				    "person_uid",
+				    each
+				      if [person_id] <> null then
+				        Text.Combine({[rls_key], "-", [person_id]})
+				      else
+				        null,
+				      type text
+				  ),
+				
+				
+				  addFamilyUniqueKey = Table.AddColumn(
+				      addPersonUniqueKey,
+				      "family_uid",
+				      each
+				          if [family_id] <> null then
+				              Text.Combine({[rls_key], "-", [family_id]})
+				          else
+				              null,
+				      type text
+				  )
 				
 				in
-				    PersonTransformed
+				
+				  addFamilyUniqueKey
 				```
 
-	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 

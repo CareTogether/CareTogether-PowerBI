@@ -1,0 +1,54 @@
+table OData
+	isHidden
+	lineageTag: 1e99bf41-3507-4253-a59e-39365e1d1901
+
+	column Name
+		dataType: string
+		isHidden
+		lineageTag: e0568bb7-18a2-4176-9858-6cb787f78712
+		summarizeBy: none
+		sourceColumn: Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data
+		dataType: string
+		isHidden
+		lineageTag: 580acc0c-7462-4d0d-aef5-35f77e84437f
+		summarizeBy: none
+		sourceColumn: Data
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Signature
+		dataType: string
+		isHidden
+		lineageTag: e289dcd2-3027-4838-a3a0-e78d8cfbff31
+		summarizeBy: none
+		sourceColumn: Signature
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition OData = m
+		mode: import
+		queryGroup: 'Source Queries'
+		source =
+				let
+				  api_host = if Environment = "Production" then "https://app.caretogether.io" else "http://localhost:5000",
+				  api_url = api_host&"/api/odata/live",
+				  source = OData.Feed(api_url, null, [Implementation="2.0"])
+				in
+				  source
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

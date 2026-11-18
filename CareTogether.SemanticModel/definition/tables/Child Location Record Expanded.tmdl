@@ -1,0 +1,443 @@
+table 'Child Location Record Expanded'
+	lineageTag: 3370c7c2-7722-4481-860e-f84e38ff301a
+
+	measure '# of Days of Care CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts the total number of volunteer childcare days
+			provided during the selected timeframe, regardless
+			of when the care originally started.
+			
+			A care day is considered valid when:
+			- The childcare plan is not WithParent.
+			- The care date falls within the selected timeframe.
+			- The care date is on or before today.
+			
+			Each unique combination of care date and childcare
+			record is counted only once.
+			
+			The selected timeframe is applied to the actual
+			care dates, not the Arrangement request date.
+			
+			The calculation uses the expanded childcare table,
+			which contains one row per care date.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			VAR effectiveEndDate = MIN(endDate, todayDate)
+			
+			RETURN
+			CALCULATE(
+			    IF(
+			        startDate > todayDate,
+			        BLANK(),
+			        CALCULATE(
+			            COUNTROWS(
+			                DISTINCT(
+			                    SELECTCOLUMNS(
+			                        'Child Location Record Expanded',
+			                        "Date", 'Child Location Record Expanded'[date],
+			                        "Index", 'Child Location Record Expanded'[index]
+			                    )
+			                )
+			            ),
+			            'Child Location Record Expanded'[childcare_plan] <> "WithParent",
+			            'Child Location Record Expanded'[date] >= startDate,
+			            'Child Location Record Expanded'[date] < effectiveEndDate + 1
+			        )
+			    ),
+			    USERELATIONSHIP('Child Location Record Expanded'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: 73d59c19-d7af-4c72-8256-e34830727ebf
+
+	measure '# of Days of Care PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Counts the total number of volunteer childcare days
+			provided during the previous period, regardless
+			of when the care originally started.
+			
+			A care day is considered valid when:
+			- The childcare plan is not WithParent.
+			- The care date falls within the previous period.
+			- The care date is on or before today.
+			
+			Each unique combination of care date and childcare
+			record is counted only once.
+			
+			The previous period has the same number of days
+			as the currently selected timeframe.
+			
+			The timeframe is applied to the actual care dates,
+			not the Arrangement request date.
+			
+			The calculation uses the expanded childcare table,
+			which contains one row per care date.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
+			VAR effectiveEndDate = MIN(previousEndDate, todayDate)
+			
+			RETURN
+			CALCULATE(
+			    IF(
+			        previousStartDate > todayDate,
+			        BLANK(),
+			        CALCULATE(
+			            COUNTROWS(
+			                DISTINCT(
+			                    SELECTCOLUMNS(
+			                        'Child Location Record Expanded',
+			                        "Date", 'Child Location Record Expanded'[date],
+			                        "Index", 'Child Location Record Expanded'[index]
+			                    )
+			                )
+			            ),
+			            'Child Location Record Expanded'[childcare_plan] <> "WithParent",
+			            'Child Location Record Expanded'[date] >= previousStartDate,
+			            'Child Location Record Expanded'[date] < effectiveEndDate + 1
+			        )
+			    ),
+			    USERELATIONSHIP('Child Location Record Expanded'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: d5992849-7c57-4617-81ee-6a1833ee88ba
+
+	measure '# of Days of Care PoP' =
+			
+			
+			VAR currentPeriod = [# of Days of Care CP]
+			VAR previousPeriod = [# of Days of Care PP]
+			VAR Perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Perc), BLANK(),
+			    Perc >= 0, FORMAT(Perc, "+0%") & "▲",
+			    Perc < 0, FORMAT(Perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: 1b36d46d-3ce1-489d-b1aa-0fba53a26ab5
+
+	measure '# of Nights of Care CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts the total number of overnight childcare stays
+			provided during the selected timeframe, regardless
+			of when the care originally started.
+			
+			A night of care is considered valid when:
+			- The childcare plan is not WithParent.
+			- The record is marked as an overnight stay.
+			- The care date falls within the selected timeframe.
+			- The care date is on or before today.
+			
+			Each unique combination of care date and childcare
+			record is counted only once.
+			
+			The selected timeframe is applied to the actual
+			care dates, not the Arrangement request date.
+			
+			The calculation uses the expanded childcare table,
+			which contains one row per care date.
+			*/
+			
+			VAR startDate = [Selected Timeframe Start]
+			VAR endDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			VAR effectiveEndDate = MIN(endDate, todayDate)
+			
+			RETURN
+			CALCULATE(
+			    IF(
+			        startDate > todayDate,
+			        BLANK(),
+			        CALCULATE(
+			            COUNTROWS(
+			                DISTINCT(
+			                    SELECTCOLUMNS(
+			                        'Child Location Record Expanded',
+			                        "Date", 'Child Location Record Expanded'[date],
+			                        "Index", 'Child Location Record Expanded'[index]
+			                    )
+			                )
+			            ),
+			            'Child Location Record Expanded'[childcare_plan] <> "WithParent",
+			            'Child Location Record Expanded'[overnight_stay] = TRUE(),
+			            'Child Location Record Expanded'[date] >= startDate,
+			            'Child Location Record Expanded'[date] < effectiveEndDate + 1
+			        )
+			    ),
+			    USERELATIONSHIP('Child Location Record Expanded'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: a8d22db6-b1da-49ca-b71f-5601dfd5f0aa
+
+	measure '# of Nights of Care PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Counts the total number of overnight childcare stays
+			provided during the previous period, regardless
+			of when the care originally started.
+			
+			A night of care is considered valid when:
+			- The childcare plan is not WithParent.
+			- The record is marked as an overnight stay.
+			- The care date falls within the previous period.
+			- The care date is on or before today.
+			
+			Each unique combination of care date and childcare
+			record is counted only once.
+			
+			The previous period has the same number of days
+			as the currently selected timeframe.
+			
+			The timeframe is applied to the actual care dates,
+			not the Arrangement request date.
+			
+			The calculation uses the expanded childcare table,
+			which contains one row per care date.
+			*/
+			
+			VAR currentStartDate = [Selected Timeframe Start]
+			VAR currentEndDate = [Selected Timeframe End]
+			VAR todayDate = TODAY()
+			VAR periodDays = DATEDIFF(currentStartDate, currentEndDate, DAY) + 1
+			VAR previousStartDate = currentStartDate - periodDays
+			VAR previousEndDate = currentStartDate - 1
+			VAR effectiveEndDate = MIN(previousEndDate, todayDate)
+			
+			RETURN
+			CALCULATE(
+			    IF(
+			        previousStartDate > todayDate,
+			        BLANK(),
+			        CALCULATE(
+			            COUNTROWS(
+			                DISTINCT(
+			                    SELECTCOLUMNS(
+			                        'Child Location Record Expanded',
+			                        "Date", 'Child Location Record Expanded'[date],
+			                        "Index", 'Child Location Record Expanded'[index]
+			                    )
+			                )
+			            ),
+			            'Child Location Record Expanded'[childcare_plan] <> "WithParent",
+			            'Child Location Record Expanded'[overnight_stay] = TRUE(),
+			            'Child Location Record Expanded'[date] >= previousStartDate,
+			            'Child Location Record Expanded'[date] < effectiveEndDate + 1
+			        )
+			    ),
+			    USERELATIONSHIP('Child Location Record Expanded'[location_id], Location[location_id])
+			)
+		formatString: #,0
+		lineageTag: 2aeeeb21-ceb6-4a94-af6e-8768cbdc75c1
+
+	measure '# of Nights of Care PoP' =
+			
+			
+			VAR currentPeriod = [# of Nights of Care CP]
+			VAR previousPeriod = [# of Nights of Care PP]
+			VAR Perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Perc), BLANK(),
+			    Perc >= 0, FORMAT(Perc, "+0%") & "▲",
+			    Perc < 0, FORMAT(Perc, "0%") & "▼",
+			    "0%"
+			)
+		lineageTag: cbc6e22b-bcc2-4694-8086-7d401dbfb4ef
+
+	column date
+		dataType: dateTime
+		formatString: Short Date
+		displayFolder: _columns
+		lineageTag: 6e9aa2be-2e80-45c6-92bb-cfef6c957bfe
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column index
+		dataType: double
+		displayFolder: _columns
+		lineageTag: 7aaa0f05-c6ae-4512-aa12-efaacddbed11
+		summarizeBy: none
+		sourceColumn: index
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column childcare_plan
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 55fa8ad2-6774-42be-a047-282c6425c013
+		summarizeBy: none
+		sourceColumn: childcare_plan
+
+		annotation SummarizationSetBy = Automatic
+
+	column overnight_stay
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: _columns
+		lineageTag: d591efd1-dde3-44da-89d0-3296ac77e0f9
+		summarizeBy: none
+		sourceColumn: overnight_stay
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: b0e6dfaf-679e-4f8f-bd44-8ecd3af8a684
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		lineageTag: c4263343-31ab-45ff-82a7-803390cfb218
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Child Location Record Expanded' = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				  Source = #"Child Location Record",
+				
+				  selectColumns = Table.SelectColumns(
+				    Source,
+				    {
+				      "index",
+				      "location_id",
+				      "rls_key",
+				      "childcare_plan",
+				      "started_at_utc",
+				      "ended_at_utc"
+				    }
+				  ),
+				
+				  addStartDate = Table.AddColumn(
+				    selectColumns,
+				    "start_date",
+				    each
+				      if [started_at_utc] <> null then
+				        Date.From([started_at_utc])
+				      else
+				        null,
+				    type date
+				  ),
+				
+				  addEndDate = Table.AddColumn(
+				    addStartDate,
+				    "end_date",
+				    each
+				      if [ended_at_utc] <> null then
+				        Date.From([ended_at_utc])
+				      else
+				        null,
+				    type date
+				  ),
+				
+				  currentUTCDate = Date.From(DateTimeZone.UtcNow()),
+				
+				  filterValidRecords = Table.SelectRows(
+				    addEndDate,
+				    each
+				      [start_date] <> null and
+				      (
+				        [end_date] = null or
+				        [start_date] <= [end_date]
+				      )
+				  ),
+				
+				  addDateList = Table.AddColumn(
+				    filterValidRecords,
+				    "date",
+				    each
+				      let
+				        finalDate =
+				          if [end_date] <> null then
+				            [end_date]
+				          else
+				            currentUTCDate
+				      in
+				        List.Dates(
+				          [start_date],
+				          Duration.Days(finalDate - [start_date]) + 1,
+				          #duration(1, 0, 0, 0)
+				        ),
+				    type list
+				  ),
+				
+				  expandDates = Table.ExpandListColumn(
+				    addDateList,
+				    "date"
+				  ),
+				
+				  changeDateType = Table.TransformColumnTypes(
+				    expandDates,
+				    {
+				      {"date", type date}
+				    }
+				  ),
+				
+				  addOvernightStay = Table.AddColumn(
+				    changeDateType,
+				    "overnight_stay",
+				    each
+				      if [end_date] <> null then
+				        [date] < [end_date]
+				      else
+				        [date] < currentUTCDate,
+				    type logical
+				  ),
+				
+				  selectFinalColumns = Table.SelectColumns(
+				    addOvernightStay,
+				    {
+				      "date",
+				      "index",
+				      "childcare_plan",
+				      "overnight_stay",
+				      "location_id",
+				      "rls_key"
+				    }
+				  )
+				
+				in
+				
+				  selectFinalColumns
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

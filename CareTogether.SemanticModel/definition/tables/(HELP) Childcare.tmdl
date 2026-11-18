@@ -1,0 +1,1100 @@
+table '(HELP) Childcare'
+	lineageTag: 80d14c76-275f-4edb-b1d3-aeb79dcbcaf7
+
+	measure '(HTML) Help - Children Cared For' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Children Cared For
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the number of <b>unique children who received
+			        volunteer childcare</b> during the selected period.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is it calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        A child is counted when their childcare period overlaps
+			        the selected date range, regardless of when their care
+			        originally started.
+			        <br/><br/>
+			        Each child is counted <b>only once</b>, even if they
+			        received care through multiple childcare records
+			        or Arrangements.
+			        <br/><br/>
+			        Care provided under the <b>WithParent</b> plan
+			        is excluded.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Previous period comparison
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            The percentage shows how the number of unique
+			            children cared for changed compared with the
+			            immediately preceding period of the same length.
+			            <br/><br/>
+			            <b>Green ▲</b> indicates an increase, while
+			            <b>red ▼</b> indicates a decrease.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Results respect the selected Date and
+			        Location filters. Ongoing childcare is included
+			        through the current date.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: e14d749f-f436-4c55-9826-31644f890eac
+
+	measure '(HTML) Help - Dynamic Pop-up - Childcare' = ```
+			
+			VAR HelpID =
+			    SELECTEDVALUE(
+			        '(HELP) Childcare'[Help ID]
+			    )
+			
+			RETURN
+			    SWITCH(
+			        HelpID,
+			
+			        "CHILDREN_CARED_FOR",
+			            [(HTML) Help - Children Cared For],
+			
+			        "FIRST_TIME_CHILDREN_CARED_FOR",
+			            [(HTML) Help - First-Time Children Cared For],
+			
+			        "DAYS_OF_CARE",
+			            [(HTML) Help - Days of Care],
+			
+			        "NIGHTS_OF_CARE",
+			            [(HTML) Help - Nights of Care],
+			        
+			        "AVG_CARE_DAYS_PER_CHILD",
+			            [(HTML) Help - Avg. Care Days per Child],
+			
+			        "AVG_DAYS_WITH_SAME_FAMILY",
+			            [(HTML) Help - Avg. Days with Same Family],
+			
+			        "CARE_ACTIVITY_OVER_TIME",
+			            [(HTML) Help - Care Activity Over Time],
+			
+			        "CARE_BY_CHILDCARE_PLAN",
+			            [(HTML) Help - Care by Childcare Plan],
+			
+			        "CARE_BY_ARRANGEMENT_TYPE",
+			            [(HTML) Help - Care by Arrangement Type],
+			
+			        "CHILDCARE_DETAILS",
+			            [(HTML) Help - Childcare Details],
+			
+			        BLANK()
+			    )
+			
+			```
+		displayFolder: Measures
+		lineageTag: 9583714a-2f8d-454c-badb-4bbdf4de7caa
+
+	measure '(HTML) Help - First-Time Children Cared For' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            First-Time Children Cared For
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the number of <b>unique children who received
+			        volunteer childcare for the first time</b> during
+			        the selected period.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is it calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        A child is counted when their <b>first recorded
+			        childcare date</b> falls within the selected
+			        date range.
+			        <br/><br/>
+			        Each child is counted <b>only once</b>,
+			        regardless of how many childcare records
+			        or Arrangements they may have afterward.
+			        <br/><br/>
+			        Care provided under the <b>WithParent</b>
+			        plan is excluded.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Previous period comparison
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            The percentage shows how the number of
+			            first-time children changed compared with
+			            the immediately preceding period of the
+			            same length.
+			            <br/><br/>
+			            <b>Green ▲</b> indicates an increase, while
+			            <b>red ▼</b> indicates a decrease.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Results respect the selected Date and
+			        Location filters. A child who received care
+			        before the selected period is not considered
+			        a first-time child during that period.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: b5f7db1a-70e3-456d-85b8-e8ebb1f3a0ff
+
+	measure '(HTML) Help - Days of Care' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Days of Care
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the <b>total number of calendar days
+			        of volunteer childcare</b> provided during
+			        the selected period.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is it calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each calendar day of care is counted, including
+			        both the <b>start date and end date</b>.
+			        <br/><br/>
+			        Care that started before the selected period
+			        is included only for the days that fall within
+			        the selected date range.
+			        <br/><br/>
+			        Days are counted separately for each childcare
+			        record, so multiple children receiving care
+			        on the same day contribute individually.
+			        Care under the <b>WithParent</b> plan is excluded.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Think of it like a hotel stay
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            If a child arrives on <b>Monday</b> and
+			            leaves on <b>Wednesday</b>:
+			            <br/><br/>
+			            <b>Days of Care:</b> 3 days
+			            (Monday, Tuesday, Wednesday)
+			            <br/>
+			            <b>Nights of Care:</b> 2 nights
+			            (Monday and Tuesday)
+			            <br/><br/>
+			            Both arrival and departure days count
+			            as care days, even though only two
+			            nights were spent in care.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Results respect the selected Date
+			        and Location filters. Ongoing care is counted
+			        through today. The percentage compares total
+			        Days of Care with the immediately preceding
+			        period of the same length.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: fd38ddca-0227-4a00-a49f-8d6beafe9e67
+
+	measure '(HTML) Help - Nights of Care' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Nights of Care
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the <b>total number of overnight childcare
+			        stays</b> provided by volunteers during the
+			        selected period.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is it calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Each date is counted as a night of care when
+			        the recorded childcare period <b>continues
+			        into the following calendar day</b>.
+			        <br/><br/>
+			        The <b>arrival date can count as a night</b>,
+			        but the <b>departure date does not</b>.
+			        <br/><br/>
+			        For ongoing childcare, only completed nights
+			        before the latest data refresh date are counted.
+			        <br/><br/>
+			        Each childcare record contributes separately.
+			        Only nights within the selected date range are
+			        included, and <b>WithParent</b> care is excluded.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Think of it like a hotel stay
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            A child arrives on <b>Monday</b> and
+			            leaves on <b>Thursday</b>.
+			            <br/><br/>
+			            <b>Days of Care:</b> 4 days
+			            (Monday, Tuesday, Wednesday and Thursday).
+			            <br/>
+			            <b>Nights of Care:</b> 3 nights
+			            (Monday, Tuesday and Wednesday).
+			            <br/><br/>
+			            Just like a hotel, the departure day
+			            does not add another night.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Nights are calculated from recorded
+			        childcare dates, not actual hours or individual
+			        overnight confirmations. Results respect the
+			        selected Date and Location filters.
+			        The percentage compares nights of care with
+			        the immediately preceding period of the same length.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 56a8fc2b-8fc0-47fe-a7a6-1b3308c1e428
+
+	measure '(HTML) Help - Avg. Care Days per Child' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Avg. Care Days per Child
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows the <b>average number of calendar days
+			        each child received volunteer childcare</b>
+			        during the selected period.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        How is it calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        We count the number of days each child received
+			        care within the selected date range, including
+			        arrival and departure dates.
+			        <br/><br/>
+			        If a child received care through multiple
+			        Arrangements or volunteer families, their
+			        care days are <b>combined into a single total</b>.
+			        Any overlapping dates are counted only once
+			        for that child.
+			        <br/><br/>
+			        We then divide the total care days across
+			        all children by the <b>number of unique
+			        children cared for</b>.
+			        Care under the <b>WithParent</b> plan is excluded.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Understanding family transitions
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            A child receives care for <b>3 days</b>
+			            with Volunteer Family A, followed by
+			            <b>4 days</b> with Volunteer Family B.
+			            <br/><br/>
+			            The child contributes <b>7 care days</b>
+			            and is counted as <b>one child</b>.
+			            <br/><br/>
+			            Changing volunteer families does not
+			            restart the child's care-day count or
+			            increase the number of children.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Only care days within the selected
+			        Date and Location filters are included.
+			        Ongoing care is counted through the latest
+			        available data. The percentage compares
+			        the average with the immediately preceding
+			        period of the same length.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 1290d01b-31f3-43cc-8493-e75548cfd5e6
+
+	measure '(HTML) Help - Avg. Days with Same Family' =
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:15px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Avg. Days with Same Family
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.4;margin-bottom:11px;'>
+			        Shows the <b>average number of days a child receives
+			        care from the same volunteer family</b> during
+			        the selected period.
+			    </div>
+			
+			    <!-- CALCULATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        How is it calculated?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.4;margin-bottom:11px;'>
+			        Care days are counted separately for each
+			        <b>child and volunteer family</b>.
+			        If a child receives care from multiple families,
+			        each family is considered separately.
+			        <br/><br/>
+			        Returning to the same family adds to the
+			        existing total. Overlapping dates with that
+			        family count only once.
+			        <br/><br/>
+			        Total care days are divided by the number
+			        of unique child-family combinations.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:9px 11px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:4px;'>
+			            Understanding family transitions
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.4;color:#555555;'>
+			            A child spends <b>5 days with Family A</b>,
+			            <b>10 days with Family B</b>, then returns
+			            to Family A for another <b>5 days</b>.
+			            <br/><br/>
+			            <b>Family A:</b> 10 days
+			            <br/>
+			            <b>Family B:</b> 10 days
+			            <br/>
+			            <b>Average:</b> 10 days per child-family combination.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;
+			    '>
+			        <b>Note:</b> Only care within the selected Date
+			        and Location filters is included. WithParent
+			        care is excluded. Ongoing care is counted
+			        through the latest available data.
+			        This measures accumulated days, not individual
+			        stays or family transitions.
+			        The percentage compares the previous period
+			        of the same length.
+			    </div>
+			
+			</div>
+			"
+		displayFolder: HTML
+		lineageTag: 97bf7c6b-9885-425a-96d9-34551867c785
+
+	measure '(HTML) Help - Care Activity Over Time' = ```
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:14px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:10px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Care Activity Over Time
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.4;margin-bottom:11px;'>
+			        Shows how <b>Days of Care</b> and <b>Nights of Care</b>
+			        provided by volunteer families change over time.
+			    </div>
+			
+			    <!-- CHART -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        What does the chart show?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.4;margin-bottom:11px;'>
+			        <b>Days of Care:</b> Calendar days of childcare,
+			        including arrival and departure dates.
+			        <br/>
+			        <b>Nights of Care:</b> Overnight stays,
+			        excluding the departure date.
+			        <br/><br/>
+			        Activity is grouped by <b>actual care dates</b>,
+			        regardless of when childcare originally started.
+			        Each childcare record contributes separately.
+			    </div>
+			
+			    <!-- NAVIGATION -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        How to explore the timeline
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.4;margin-bottom:10px;'>
+			        Hover over the chart to display the toolbar in the
+			        <b>top-right corner</b>. Use it to navigate between
+			        <b>Year, Month and Day</b>.
+			    </div>
+			
+			    <!-- DRILL UP -->
+			    <div style='
+			        display:flex;align-items:center;gap:10px;
+			        margin-bottom:10px;
+			    '>
+			
+			        <div style='
+			            width:32px;height:32px;flex:0 0 32px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F5F5F5;border-radius:5px;
+			        '>
+			            <svg width='22' height='22' viewBox='0 0 24 24'
+			                 fill='none' stroke='#45B9C8'
+			                 stroke-width='1.3'
+			                 stroke-linecap='square'
+			                 stroke-linejoin='miter'>
+			                <path d='M12 21V3 M4 11L12 3L20 11'/>
+			            </svg>
+			        </div>
+			
+			        <div style='font-size:11px;line-height:1.4;'>
+			            <b>Drill Up</b><br/>
+			            Move to a higher level:
+			            <b>Day → Month → Year</b>.
+			        </div>
+			
+			    </div>
+			
+			    <!-- EXPAND ALL -->
+			    <div style='
+			        display:flex;align-items:center;gap:10px;
+			        margin-bottom:11px;
+			    '>
+			
+			        <div style='
+			            width:32px;height:32px;flex:0 0 32px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F5F5F5;border-radius:5px;
+			        '>
+			            <svg width='22' height='22' viewBox='0 0 24 24'
+			                 fill='none' stroke='#45B9C8'
+			                 stroke-width='1.3'
+			                 stroke-linecap='square'
+			                 stroke-linejoin='miter'>
+			                <path d='M12 3V10
+			                         M5 10H19
+			                         M5 10V20
+			                         M19 10V20
+			                         M1 16L5 20L9 16
+			                         M15 16L19 20L23 16'/>
+			            </svg>
+			        </div>
+			
+			        <div style='font-size:11px;line-height:1.4;'>
+			            <b>Expand All Down One Level</b><br/>
+			            Expand the hierarchy:
+			            <b>Year → Month → Day</b>,
+			            keeping previous levels visible.
+			        </div>
+			
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;
+			        padding:9px 11px;
+			    '>
+			
+			        <div style='
+			            font-size:10px;font-weight:700;margin-bottom:4px;
+			        '>
+			            Understanding care activity
+			        </div>
+			
+			        <div style='
+			            font-size:10px;line-height:1.4;color:#555555;
+			        '>
+			            Compare days and nights across periods to
+			            identify changes in childcare activity,
+			            busy periods and patterns of volunteer support.
+			        </div>
+			
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:10px;padding-top:9px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;
+			    '>
+			        <b>Note:</b> WithParent care is excluded.
+			        Ongoing care is included through the latest
+			        available data. Date and Location filters apply.
+			        Navigating the hierarchy does not change
+			        the selected report timeframe.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: e38f56d7-064a-4688-be1c-7820e54d9db9
+
+	measure '(HTML) Help - Care by Childcare Plan' = ```
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:14px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Care by Childcare Plan
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        Shows how <b>Days of Care</b> and <b>Nights of Care</b>
+			        are distributed across different childcare plans.
+			    </div>
+			
+			    <!-- CHART -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:6px;
+			    '>
+			        What does the chart show?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.5;margin-bottom:16px;'>
+			        <b>Overnight Housing:</b> Care recorded under the
+			        Overnight Housing childcare plan.
+			        <br/><br/>
+			        <b>Daytime Childcare:</b> Care recorded under the
+			        Daytime Childcare plan.
+			        <br/><br/>
+			        For each plan, the chart compares total
+			        <b>Days of Care</b>, including arrival and
+			        departure dates, with <b>Nights of Care</b>,
+			        excluding the departure date.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:11px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Understanding the difference
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.5;color:#555555;'>
+			            Nights of Care are calculated from the
+			            recorded childcare dates, regardless of
+			            the childcare plan.
+			            <br/><br/>
+			            As a result, <b>Daytime Childcare may also
+			            show Nights of Care</b> when a recorded care
+			            period extends across multiple calendar days.
+			            This does not necessarily confirm an
+			            overnight stay.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:14px;padding-top:12px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Each childcare record contributes
+			        separately to the totals. WithParent care is
+			        excluded. Only care within the selected Date
+			        and Location filters is included.
+			        Ongoing care is counted through the latest
+			        available data.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: 3a80eca2-3c01-4a88-8acb-b3b123d0eb3b
+
+	measure '(HTML) Help - Care by Arrangement Type' = ```
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:16px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:12px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Care by Arrangement Type
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:13px;'>
+			        Shows how <b>volunteer childcare activity</b> is
+			        distributed across different Arrangement Types.
+			    </div>
+			
+			    <!-- CHART -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        What does the table show?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:13px;'>
+			        <b>Days of Care:</b> Total calendar days of childcare,
+			        including arrival and departure dates.
+			        <br/>
+			        <b>Nights of Care:</b> Overnight stays calculated
+			        from recorded care dates, excluding departure dates.
+			        <br/>
+			        <b>Children Cared For:</b> Number of unique children
+			        who received care under each Arrangement Type.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:10px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Why might the total differ from the sum of the rows?
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            A child may receive care through <b>multiple
+			            Arrangement Types</b> and appear in more than
+			            one category.
+			            <br/><br/>
+			            However, the <b>Children Cared For total</b>
+			            counts each child only once, regardless of
+			            how many Arrangement Types they participated in.
+			            Therefore, the total may be lower than the
+			            sum of the individual categories.
+			        </div>
+			    </div>
+			
+			    <!-- MISSING TYPE -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;
+			        margin-top:13px;margin-bottom:5px;
+			    '>
+			        Why are some Arrangement Types blank?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:12px;'>
+			        Some historical childcare records remain available
+			        even when their associated Arrangement is no longer
+			        present in the system.
+			        <br/><br/>
+			        These records are still included in the totals,
+			        but their Arrangement Type cannot be identified.
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        padding-top:10px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.4;color:#666666;
+			    '>
+			        <b>Note:</b> WithParent care is excluded.
+			        Results respect the selected Date and Location
+			        filters. Ongoing care is included through the
+			        latest available data.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: 9761b76f-aa77-42e5-9cd6-f7b1bb3a77b4
+
+	measure '(HTML) Help - Childcare Details' = ```
+			
+			"
+			<div style='
+			    width:100%;height:100%;box-sizing:border-box;padding:16px 18px;
+			    font-family:Arial,sans-serif;color:#333333;background:#FFFFFF;
+			'>
+			
+			    <!-- HEADER -->
+			    <div style='display:flex;align-items:center;gap:8px;margin-bottom:12px;'>
+			        <div style='
+			            width:22px;height:22px;flex:0 0 22px;
+			            display:flex;align-items:center;justify-content:center;
+			            background:#F2F2F2;border-radius:50%;
+			            font-size:12px;font-weight:700;
+			        '>i</div>
+			
+			        <div style='font-size:15px;font-weight:700;line-height:1.2;'>
+			            Childcare Details
+			        </div>
+			    </div>
+			
+			    <!-- DESCRIPTION -->
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:13px;'>
+			        Provides a <b>detailed view of individual childcare
+			        records</b>, showing which children received care,
+			        the volunteer families involved and the duration
+			        of each care period.
+			    </div>
+			
+			    <!-- TABLE -->
+			    <div style='
+			        font-size:10px;font-weight:700;text-transform:uppercase;
+			        letter-spacing:0.5px;color:#666666;margin-bottom:5px;
+			    '>
+			        What does the table show?
+			    </div>
+			
+			    <div style='font-size:11px;line-height:1.45;margin-bottom:13px;'>
+			        <b>Child:</b> The child who received care.
+			        <br/>
+			        <b>Volunteer Family:</b> The family providing care.
+			        <br/>
+			        <b>Childcare Plan:</b> The recorded type of childcare.
+			        <br/>
+			        <b>Arrangement Type:</b> The associated Arrangement category.
+			        <br/>
+			        <b>Started / Ended:</b> When the care period began and ended.
+			        A blank Ended date indicates no recorded end date.
+			        <br/>
+			        <b>Days of Care:</b> Calendar days of care, including
+			        arrival and departure dates.
+			        <br/>
+			        <b>Nights of Care:</b> Nights between arrival and
+			        departure, excluding the departure date.
+			    </div>
+			
+			    <!-- INFO BOX -->
+			    <div style='
+			        width:100%;box-sizing:border-box;
+			        background:#F5F5F5;border-radius:7px;padding:10px 12px;
+			    '>
+			        <div style='font-size:10px;font-weight:700;margin-bottom:5px;'>
+			            Why might a child appear multiple times?
+			        </div>
+			
+			        <div style='font-size:10px;line-height:1.45;color:#555555;'>
+			            Each row represents a <b>childcare record</b>,
+			            not a unique child.
+			            <br/><br/>
+			            A child may appear multiple times when they
+			            receive care during different periods,
+			            through different Arrangements or from
+			            different volunteer families.
+			            <br/><br/>
+			            This allows you to follow the child's
+			            recorded care history and identify
+			            transitions between volunteer families.
+			        </div>
+			    </div>
+			
+			    <!-- NOTE -->
+			    <div style='
+			        margin-top:12px;padding-top:10px;
+			        border-top:1px solid #E5E5E5;
+			        font-size:10px;line-height:1.45;color:#666666;
+			    '>
+			        <b>Note:</b> Only childcare records overlapping
+			        the selected period are displayed.
+			        Days and Nights of Care reflect activity within
+			        the selected Date and Location filters.
+			        WithParent care is excluded.
+			        Historical records may have missing Arrangement
+			        information.
+			    </div>
+			
+			</div>
+			"
+			
+			```
+		displayFolder: HTML
+		lineageTag: a688260d-db8e-44cb-a857-e865b5f9df5b
+
+	column 'Help ID'
+		lineageTag: 69f81b89-4244-4cf2-9750-4003186284ce
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Help ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '(HELP) Childcare' = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Help ID", STRING,
+				    {
+				        {"CHILDREN_CARED_FOR"},
+				        {"FIRST_TIME_CHILDREN_CARED_FOR"},
+				        {"DAYS_OF_CARE"},
+				        {"NIGHTS_OF_CARE"},
+				        {"AVG_CARE_DAYS_PER_CHILD"},
+				        {"AVG_DAYS_WITH_SAME_FAMILY"},
+				        {"CARE_ACTIVITY_OVER_TIME"},
+				        {"CARE_BY_CHILDCARE_PLAN"},
+				        {"CARE_BY_ARRANGEMENT_TYPE"},
+				        {"CHILDCARE_DETAILS"}
+				    }
+				)
+
+	annotation PBI_Id = 2654502b3d624317b3722b3f0e2a454c
+

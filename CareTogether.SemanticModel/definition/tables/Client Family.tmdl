@@ -1,154 +1,144 @@
 table 'Client Family'
-	lineageTag: b2de50d0-cd3c-4669-8a56-bf50dcc20a91
+	lineageTag: 7f462611-d3fa-419e-9cae-e2de812133f4
 
-	measure '# of Client Families Supported' =
-			
-			VAR Today = TODAY()
-			VAR CurrentStartDate = [Selected Timeframe Start]
-			VAR CurrentEndDate = MIN(Today, [Selected Timeframe End])
-			RETURN
-			IF(
-			    CurrentStartDate > Today,  // Check if the current month's start is beyond today
-			    BLANK(),  // Return blank for future months
-			    COUNTROWS(
-			        FILTER(
-			            'Client Family',
-			            COUNTROWS(
-			                FILTER(
-			                    RELATEDTABLE('Arrangements'),
-			                    NOT(ISBLANK('Arrangements'[Started])) &&
-			                    'Arrangements'[Started] <= CurrentEndDate &&
-			                    (
-			                        ISBLANK('Arrangements'[Ended]) ||
-			                        'Arrangements'[Ended] >= CurrentStartDate
-			                    )
-			                )
-			            ) > 0
-			        )
-			    )
-			)
-		formatString: 0
-		lineageTag: f65a756f-b5e8-403c-bdd4-c5a5a210ef3c
-
-	column 'RLS Key'
+	column family_id
 		dataType: string
 		displayFolder: _columns
-		lineageTag: bf9c0124-c3be-4682-83a0-ee2a447888f9
+		lineageTag: d2a3dc2b-99a0-4d0f-825a-5f4330fa3123
 		summarizeBy: none
-		sourceColumn: RLS Key
+		sourceColumn: family_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Family UID'
+	column organization_id
 		dataType: string
 		displayFolder: _columns
-		lineageTag: a848f350-e424-4153-b58b-46a77202c1a1
+		lineageTag: dd3891f1-0f82-45f8-949a-17a58bc9fcc7
 		summarizeBy: none
-		sourceColumn: Family UID
+		sourceColumn: organization_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Family Id'
+	column location_id
 		dataType: string
 		displayFolder: _columns
-		lineageTag: a2a084dd-d086-4d44-8db6-34ea1346636b
+		lineageTag: c7a50af5-0c51-4db4-bc39-ad7d96eab56f
 		summarizeBy: none
-		sourceColumn: Family Id
+		sourceColumn: location_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Family Name'
+	column family_name
 		dataType: string
 		displayFolder: _columns
-		lineageTag: ca5739d0-cdbf-46fd-9dc1-96b675794188
+		lineageTag: b0361141-ec04-4d43-96a8-205d2d8e5a03
 		summarizeBy: none
-		sourceColumn: Family Name
+		sourceColumn: family_name
 
 		annotation SummarizationSetBy = Automatic
 
-	column Email
+	column primary_email
 		dataType: string
 		displayFolder: _columns
-		lineageTag: a94b8a27-f120-44cb-affd-dac7e9cdd3af
+		lineageTag: b67dc70c-d8ac-4b0c-b76d-2c2371750749
 		summarizeBy: none
-		sourceColumn: Email
+		sourceColumn: primary_email
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Phone Number'
+	column primary_phone_number
 		dataType: string
 		displayFolder: _columns
-		lineageTag: ad8bc09e-c326-4427-a075-eb0e66510fcb
+		lineageTag: fb39cf41-7e99-4c08-83bf-e81650c4ebec
 		summarizeBy: none
-		sourceColumn: Phone Number
+		sourceColumn: primary_phone_number
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Address Line 1'
+	column primary_address_line_1
 		dataType: string
 		displayFolder: _columns
-		lineageTag: f9ea642d-2da3-408c-b578-b7eff4fa95c7
+		lineageTag: 870e8eba-8437-4569-9d2c-ba6cc7f434ba
 		summarizeBy: none
-		sourceColumn: Address Line 1
+		sourceColumn: primary_address_line_1
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Address Line 2'
+	column primary_address_line_2
 		dataType: string
 		displayFolder: _columns
-		lineageTag: f2d9f731-eadf-445c-aa6c-04ee7c4808a8
+		lineageTag: 8de9b271-8f22-4a94-b2ae-9bc87292c5aa
 		summarizeBy: none
-		sourceColumn: Address Line 2
+		sourceColumn: primary_address_line_2
 
 		annotation SummarizationSetBy = Automatic
 
-	column City
+	column primary_address_city
 		dataType: string
 		displayFolder: _columns
-		lineageTag: 19ab5819-ec41-40b3-ab11-fb167049afed
+		lineageTag: e5e8bf90-174c-4a68-b964-6d7810ea51a4
 		summarizeBy: none
-		sourceColumn: City
+		sourceColumn: primary_address_city
 
 		annotation SummarizationSetBy = Automatic
 
-	column County
+	column primary_address_county
 		dataType: string
 		displayFolder: _columns
-		lineageTag: 8a799c7b-5341-45d3-8718-6204ab1179d9
+		lineageTag: a0509e31-ec10-4a5e-bfe6-25a8fefec5a1
 		summarizeBy: none
-		sourceColumn: County
+		sourceColumn: primary_address_county
 
 		annotation SummarizationSetBy = Automatic
 
-	column State
+	column primary_address_state
 		dataType: string
 		displayFolder: _columns
-		lineageTag: 72e583df-5814-4da6-bc8d-5cd97eb3fc97
+		lineageTag: 63268250-bab1-4e89-a19c-b078fabc2e87
 		summarizeBy: none
-		sourceColumn: State
+		sourceColumn: primary_address_state
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Postal Code'
+	column primary_address_postal_code
 		dataType: string
 		displayFolder: _columns
-		lineageTag: acea93d5-0126-42d1-bdf3-5cc7bae27d2c
+		lineageTag: 8089dd55-c8d0-48ed-a466-25e9895fd9e9
 		summarizeBy: none
-		sourceColumn: Postal Code
+		sourceColumn: primary_address_postal_code
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Home Church'
+	column home_church
 		dataType: string
 		displayFolder: _columns
-		lineageTag: 6b349939-b46d-4857-8c91-f774cc5fab74
+		lineageTag: 2ab278df-2d96-4d6b-8e08-a07cb3212bb0
 		summarizeBy: none
-		sourceColumn: Home Church
+		sourceColumn: home_church
 
 		annotation SummarizationSetBy = Automatic
 
-	column GeoLocation = 'Client Family'[Address Line 1] & "," & 'Client Family'[Address Line 2] & "," & 'Client Family'[City] & "," & 'Client Family'[County] & "," & 'Client Family'[State] & "," & 'Client Family'[Postal Code]
-		lineageTag: 4e6052b7-1488-46b4-b47b-9ef22cc54a38
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f8f3f5e2-068e-4be7-8e1c-fbb9b23db064
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 76590e71-b938-4c1e-ba30-93b851b3b881
+		summarizeBy: none
+		sourceColumn: family_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column azure_geo_location = 'Client Family'[primary_address_line_1] & "," & 'Client Family'[primary_address_line_2] & "," & 'Client Family'[primary_address_city] & "," & 'Client Family'[primary_address_county] & "," & 'Client Family'[primary_address_state] & "," & 'Client Family'[primary_address_postal_code]
+		displayFolder: _calculated_columns
+		lineageTag: b26305ab-d065-4bb8-a67f-9b9627e7c750
 		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
@@ -156,37 +146,61 @@ table 'Client Family'
 	partition 'Client Family' = m
 		mode: import
 		queryGroup: Dimensions
-		source = ```
+		source =
 				let
-				    Source = #"OData Live",
-				    Family = Source{[Name="Family", Signature="table"]}[Data],
-				    FamilyTransformed = 
+				  Source = #"OData",
+				  Family = Source{[Name="Family", Signature="table"]}[Data],
 				
-				    Table.Distinct(
-				        Table.SelectColumns(
-				            Table.RenameColumns(
-				                Table.ExpandRecordColumn(
-				                    Table.AddColumn(
-				                        Table.AddColumn(
-				                            Family,
-				                            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
-				                        ),
-				                        "Family UID", each Text.Combine({[RLS Key], [Id]}, "-")
-				                    ),
-				                    "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}
-				                ),
-				                {{"Id", "Family Id"}, {"Name", "Family Name"}, {"PrimaryEmail", "Email"}, {"PrimaryPhoneNumber", "Phone Number"}, {"Line1", "Address Line 1"}, {"Line2", "Address Line 2"}, {"PostalCode", "Postal Code"}, {"HomeChurch", "Home Church"}}
-				            ),
-				            {"RLS Key", "Family UID", "Family Id", "Family Name", "Email", "Phone Number", "Address Line 1", "Address Line 2", "City", "County", "State", "Postal Code", "Home Church"}
-				        ),
-				        {"Family UID"}
-				    )
+				  ExpandAddress = Table.ExpandRecordColumn(Family, "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}, {"PrimaryAddress.Line1", "PrimaryAddress.Line2", "PrimaryAddress.City", "PrimaryAddress.County", "PrimaryAddress.State", "PrimaryAddress.PostalCode"}),
 				
+				  selectColumns = Table.SelectColumns(
+				    ExpandAddress,
+				    {
+				      "Id", "OrganizationId", "LocationId", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "PrimaryAddress.Line1",
+				      "PrimaryAddress.Line2", "PrimaryAddress.City", "PrimaryAddress.County", "PrimaryAddress.State",
+				      "PrimaryAddress.PostalCode", "HomeChurch"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"Id", "family_id"},
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"Name", "family_name"},
+				      {"PrimaryEmail", "primary_email"},
+				      {"PrimaryPhoneNumber", "primary_phone_number"},
+				      {"PrimaryAddress.Line1", "primary_address_line_1"},
+				      {"PrimaryAddress.Line2", "primary_address_line_2"},
+				      {"PrimaryAddress.City", "primary_address_city"},
+				      {"PrimaryAddress.County", "primary_address_county"},
+				      {"PrimaryAddress.State", "primary_address_state"},
+				      {"PrimaryAddress.PostalCode", "primary_address_postal_code"},
+				      {"HomeChurch", "home_church"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addFamilyUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "family_uid",
+				      each
+				          if [family_id] <> null then
+				              Text.Combine({[rls_key], "-", [family_id]})
+				          else
+				              null,
+				      type text
+				  )
 				in
-				    FamilyTransformed
-				```
+				  addFamilyUniqueKey
 
-	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 

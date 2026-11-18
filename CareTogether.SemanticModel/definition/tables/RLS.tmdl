@@ -1,58 +1,75 @@
 table RLS
-	lineageTag: 1e937af2-258c-44d6-ad23-78399a7d9847
+	lineageTag: 7b5c61f0-c5c1-4e54-96b9-3986a3cc7d2c
 
-	column 'RLS Key'
+	column user_id
 		dataType: string
-		lineageTag: 44e4313f-f069-4ab7-9f6d-6eba269abb50
+		displayFolder: _columns
+		lineageTag: c1d00c29-20b5-4d4e-93a4-aa3fe3e72a69
 		summarizeBy: none
-		sourceColumn: RLS Key
+		sourceColumn: user_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column UserId
+	column organization_id
 		dataType: string
-		lineageTag: ede6eafc-16c9-45e6-90e3-6e0f2d903129
+		displayFolder: _columns
+		lineageTag: 4ce961da-bf6a-4b7e-8131-794c5118c24c
 		summarizeBy: none
-		sourceColumn: UserId
+		sourceColumn: organization_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column OrganizationId
+	column location_id
 		dataType: string
-		lineageTag: ce37c732-0cd2-4f6e-ace2-a79efb11331c
+		displayFolder: _columns
+		lineageTag: 3f2bbe48-2ebf-41c2-8744-6a5018c84ccf
 		summarizeBy: none
-		sourceColumn: OrganizationId
+		sourceColumn: location_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column LocationId
+	column rls_key
 		dataType: string
-		lineageTag: 05d2f26a-f10b-4193-a2ff-27616724c840
+		displayFolder: _columns
+		lineageTag: fec85788-d1f5-4241-b850-d3dacb883a45
 		summarizeBy: none
-		sourceColumn: LocationId
+		sourceColumn: rls_key
 
 		annotation SummarizationSetBy = Automatic
 
 	partition RLS = m
 		mode: import
-		queryGroup: RLS
-		source = ```
+		source =
 				let
-				    Source = #"OData Live",
-				    RLS = 
-				    Table.SelectColumns(
-				        Table.AddColumn(
-				            Source{[Name="LocationUserAccess", Signature="table"]}[Data],
-				            "RLS Key", each Text.Combine({[OrganizationId], [LocationId]}, "-")
-				        ),
-				        {"RLS Key", "OrganizationId", "LocationId", "UserId"}
-				    )
+				  Source = #"OData",
+				  RLS = Source{[Name="LocationUserAccess", Signature="table"]}[Data],
+				
+				  selectColumns = Table.SelectColumns(
+				    RLS,
+				    {
+				      "UserId", "OrganizationId", "LocationId"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"UserId", "user_id"},
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  )
 				
 				in
-				    RLS
-				```
+				  addRLSKey
 
-	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 

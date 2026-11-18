@@ -1,0 +1,1215 @@
+table 'Volunteer Person Role Approval'
+	lineageTag: 37f9c72c-441f-466d-bcb6-081e0ead75e0
+
+	measure '# of Individual Applications CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of Individual Applications initiated
+			during the selected timeframe.
+			
+			Each entry into Prospective represents a new Application
+			for a specific Person and Role, including reapplications.
+			
+			Applications are identified by Person ID, Role UID,
+			and Prospective start date.
+			
+			Duplicate records across Locations are counted only once.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Person Role Approval',
+			            'Volunteer Person Role Approval'[person_id],
+			            'Volunteer Person Role Approval'[role_uid],
+			            'Volunteer Person Role Approval'[valid_from]
+			        )
+			    ),
+			    'Volunteer Person Role Approval'[status] = "Prospective",
+			    'Volunteer Person Role Approval'[valid_from] >= selectedStartDate,
+			    'Volunteer Person Role Approval'[valid_from] < selectedEndDate + 1,
+			    USERELATIONSHIP('Volunteer Person Role Approval'[location_id], Location[location_id])
+			)
+		formatString: 0
+		displayFolder: Approval Activity Measures
+		lineageTag: a049791a-6778-41ae-aef5-b270867822be
+
+	measure '# of Individual Applications PP' =
+			
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of Individual Applications initiated
+			during the previous period.
+			
+			The previous period has the same number of calendar days
+			as the currently selected timeframe.
+			
+			Each entry into Prospective represents a new Application
+			for a specific Person and Role, including reapplications.
+			
+			Applications are identified by Person ID, Role UID,
+			and Prospective start date.
+			
+			Duplicate records across Locations are counted only once.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			VAR periodDays = DATEDIFF(selectedStartDate, selectedEndDate, DAY) + 1
+			VAR previousStartDate = selectedStartDate - periodDays
+			VAR previousEndDate = selectedStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Person Role Approval',
+			            'Volunteer Person Role Approval'[person_id],
+			            'Volunteer Person Role Approval'[role_uid],
+			            'Volunteer Person Role Approval'[valid_from]
+			        )
+			    ),
+			    'Volunteer Person Role Approval'[status] = "Prospective",
+			    'Volunteer Person Role Approval'[valid_from] >= previousStartDate,
+			    'Volunteer Person Role Approval'[valid_from] < previousEndDate + 1,
+			    USERELATIONSHIP('Volunteer Person Role Approval'[location_id], Location[location_id])
+			)
+		formatString: 0
+		displayFolder: Approval Activity Measures
+		lineageTag: 0e13c497-2e0a-4668-bbc3-9bd344dbe9ad
+
+	measure '# of Individual Applications PoP' =
+			
+			
+			VAR currentPeriod = [# of Individual Applications CP]
+			VAR previousPeriod = [# of Individual Applications PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		displayFolder: Approval Activity Measures
+		lineageTag: 5127efa4-9d27-4cc1-bc19-e961bc995dce
+
+	measure '# of Individual Approvals CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of Individual Approval events
+			during the selected timeframe.
+			
+			Each entry into Approved represents an Approval
+			event for a specific Person and Role.
+			
+			Approvals are identified by Person ID, Role UID,
+			and Approved start date.
+			
+			Duplicate records across Locations are counted only once.
+			
+			This is an activity-based measure, not a cohort measure.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Person Role Approval',
+			            'Volunteer Person Role Approval'[person_id],
+			            'Volunteer Person Role Approval'[role_uid],
+			            'Volunteer Person Role Approval'[valid_from]
+			        )
+			    ),
+			    'Volunteer Person Role Approval'[status] = "Approved",
+			    'Volunteer Person Role Approval'[valid_from] >= selectedStartDate,
+			    'Volunteer Person Role Approval'[valid_from] < selectedEndDate + 1,
+			    USERELATIONSHIP('Volunteer Person Role Approval'[location_id],Location[location_id])
+			)
+		formatString: 0
+		displayFolder: Approval Activity Measures
+		lineageTag: 54656648-ecd7-4603-a92b-ea59477e3811
+
+	measure '# of Individual Approvals PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of Individual Approval events
+			during the previous period.
+			
+			The previous period has the same number of calendar days
+			as the currently selected timeframe.
+			
+			Each entry into Approved represents an Approval
+			event for a specific Person and Role.
+			
+			Approvals are identified by Person ID, Role UID,
+			and Approved start date.
+			
+			Duplicate records across Locations are counted only once.
+			
+			This is an activity-based measure, not a cohort measure.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			VAR periodDays = DATEDIFF(selectedStartDate, selectedEndDate, DAY) + 1
+			VAR previousStartDate = selectedStartDate - periodDays
+			VAR previousEndDate = selectedStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Person Role Approval',
+			            'Volunteer Person Role Approval'[person_id],
+			            'Volunteer Person Role Approval'[role_uid],
+			            'Volunteer Person Role Approval'[valid_from]
+			        )
+			    ),
+			    'Volunteer Person Role Approval'[status] = "Approved",
+			    'Volunteer Person Role Approval'[valid_from] >= previousStartDate,
+			    'Volunteer Person Role Approval'[valid_from] < previousEndDate + 1,
+			    USERELATIONSHIP('Volunteer Person Role Approval'[location_id],Location[location_id])
+			)
+		formatString: 0
+		displayFolder: Approval Activity Measures
+		lineageTag: 19be616a-f66b-4f25-be89-7f2d59a1de81
+
+	measure '# of Individual Approvals PoP' =
+			
+			/*
+			PoP = Period over Period
+			
+			Calculates the percentage change in Individual Approvals
+			between the current and previous periods.
+			
+			Displays an upward arrow for positive or zero change
+			and a downward arrow for negative change.
+			*/
+			
+			VAR currentPeriod = [# of Individual Approvals CP]
+			VAR previousPeriod = [# of Individual Approvals PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		displayFolder: Approval Activity Measures
+		lineageTag: fcc0cd94-03c9-49b9-8c9d-c83740192df9
+
+	measure '# of Individual Onboardings CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts the number of Individual Onboarding events
+			during the selected timeframe.
+			
+			Each entry into Onboarded represents an Onboarding
+			event for a specific Person and Role.
+			
+			Onboardings are identified by Person ID, Role UID,
+			and Onboarded start date.
+			
+			Duplicate records across Locations are counted only once.
+			
+			This is an activity-based measure, not a cohort measure.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Person Role Approval',
+			            'Volunteer Person Role Approval'[person_id],
+			            'Volunteer Person Role Approval'[role_uid],
+			            'Volunteer Person Role Approval'[valid_from]
+			        )
+			    ),
+			    'Volunteer Person Role Approval'[status] = "Onboarded",
+			    'Volunteer Person Role Approval'[valid_from] >= selectedStartDate,
+			    'Volunteer Person Role Approval'[valid_from] < selectedEndDate + 1,
+			    USERELATIONSHIP('Volunteer Person Role Approval'[location_id], Location[location_id])
+			)
+		formatString: 0
+		displayFolder: Approval Activity Measures
+		lineageTag: 6e37ad91-6f2e-4860-9ae7-88fe671ebdcc
+
+	measure '# of Individual Onboardings PP' =
+			
+			/*
+			PP = Previous Period
+			
+			Counts the number of Individual Onboarding events
+			during the previous period.
+			
+			The previous period has the same number of calendar days
+			as the currently selected timeframe.
+			
+			Each entry into Onboarded represents an Onboarding
+			event for a specific Person and Role.
+			
+			Onboardings are identified by Person ID, Role UID,
+			and Onboarded start date.
+			
+			Duplicate records across Locations are counted only once.
+			
+			This is an activity-based measure, not a cohort measure.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			VAR periodDays = DATEDIFF(selectedStartDate, selectedEndDate, DAY) + 1
+			VAR previousStartDate = selectedStartDate - periodDays
+			VAR previousEndDate = selectedStartDate - 1
+			
+			RETURN
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Person Role Approval',
+			            'Volunteer Person Role Approval'[person_id],
+			            'Volunteer Person Role Approval'[role_uid],
+			            'Volunteer Person Role Approval'[valid_from]
+			        )
+			    ),
+			    'Volunteer Person Role Approval'[status] = "Onboarded",
+			    'Volunteer Person Role Approval'[valid_from] >= previousStartDate,
+			    'Volunteer Person Role Approval'[valid_from] < previousEndDate + 1,
+			    USERELATIONSHIP('Volunteer Person Role Approval'[location_id], Location[location_id])
+			)
+		formatString: 0
+		displayFolder: Approval Activity Measures
+		lineageTag: c837e57a-cade-412f-a781-655bfcad3ef8
+
+	measure '# of Individual Onboardings PoP' =
+			
+			
+			/*
+			PoP = Period over Period
+			
+			Calculates the percentage change in Individual Onboardings
+			between the current and previous periods.
+			
+			Displays an upward arrow for positive or zero change
+			and a downward arrow for negative change.
+			*/
+			
+			VAR currentPeriod = [# of Individual Onboardings CP]
+			VAR previousPeriod = [# of Individual Onboardings PP]
+			VAR perc = DIVIDE(currentPeriod - previousPeriod, previousPeriod)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(perc), BLANK(),
+			    perc >= 0, FORMAT(perc, "+0%") & "▲",
+			    perc < 0, FORMAT(perc, "0%") & "▼",
+			    "0%"
+			)
+		displayFolder: Approval Activity Measures
+		lineageTag: 12ce6955-09db-42e7-ac3d-2f7415806004
+
+	measure 'Individual Application Outcomes Description' =
+			
+			/*
+			Dynamically describes the outcomes of Individual Applications
+			initiated within the selected timeframe.
+			
+			All metrics are based on the Application Start Date Cohort
+			(Prospective).
+			
+			The description reflects the latest observed status of
+			each Application, regardless of when subsequent status
+			transitions occurred.
+			
+			Each Application is counted only once.
+			*/
+			
+			VAR applications =
+			    COALESCE(
+			        CALCULATE(
+			            [# of Individual Applications CP],
+			            REMOVEFILTERS(
+			                'Volunteer Person Role Approval'[Individual Application Final Status]
+			            )
+			        ),
+			        0
+			    )
+			
+			VAR customDescription =
+			    "Of the " & FORMAT(applications, "#,##0") &
+			    " Individual Applications initiated during the selected period: "
+			
+			RETURN
+			    customDescription
+		displayFolder: Approval Activity Measures
+		lineageTag: ea89bf7d-115d-4652-a01b-6741a14e57e1
+
+	measure '# of Individual Application Outcomes CP' =
+			
+			/*
+			CP = Current Period
+			
+			Counts distinct Individual Applications initiated during
+			the selected timeframe, grouped by their Final Status.
+			
+			Each entry into Prospective represents a new Application
+			for the same Person and Role.
+			
+			Applications are identified by:
+			- Person ID
+			- Role UID
+			- Prospective start date
+			
+			Duplicate records across Locations are counted once.
+			
+			The Final Status is determined by the calculated column
+			Individual Application Final Status.
+			
+			Applications without a Prospective entry are excluded.
+			
+			Location filtering is applied using USERELATIONSHIP.
+			*/
+			
+			VAR selectedStartDate = [Selected Timeframe Start]
+			VAR selectedEndDate = [Selected Timeframe End]
+			
+			VAR result =
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            'Volunteer Person Role Approval',
+			            'Volunteer Person Role Approval'[person_id],
+			            'Volunteer Person Role Approval'[role_uid],
+			            'Volunteer Person Role Approval'[valid_from]
+			        )
+			    ),
+			
+			    -- Only Application start records
+			    'Volunteer Person Role Approval'[status] = "Prospective",
+			
+			    -- Applications initiated during the selected timeframe
+			    'Volunteer Person Role Approval'[valid_from] >= selectedStartDate,
+			    'Volunteer Person Role Approval'[valid_from] < selectedEndDate + 1,
+			
+			    -- Exclude future Applications
+			    'Volunteer Person Role Approval'[valid_from] < TODAY() + 1,
+			
+			    -- Apply Location filtering
+			    USERELATIONSHIP(
+			        'Volunteer Person Role Approval'[location_id],
+			        Location[location_id]
+			    )
+			)
+			
+			RETURN
+			    IF(ISBLANK(result), 0, result)
+		formatString: 0
+		displayFolder: Approval Activity Measures
+		lineageTag: ea083562-eb6a-4bb0-83ef-3b17ce7e9792
+
+	measure '# of Approved Volunteers (Capacity)' =
+			
+			/*
+			Counts distinct individual volunteers with an Approved
+			or Onboarded status valid on the selected EndDate.
+			
+			Approval is evaluated independently for each Location.
+			Each person is counted once within the current filter
+			context, regardless of the number of Locations or Roles.
+			*/
+			
+			VAR asOfDate = [Selected Timeframe End]
+			
+			RETURN
+			    CALCULATE(
+			        COUNTROWS(
+			            SUMMARIZE(
+			                'Volunteer Person Role Approval',
+			                'Volunteer Person Role Approval'[organization_id],
+			                'Volunteer Person Role Approval'[person_id]
+			            )
+			        ),
+			        'Volunteer Person Role Approval'[status] IN { "Approved", "Onboarded" },
+			        'Volunteer Person Role Approval'[valid_from] <= asOfDate,
+			        'Volunteer Person Role Approval'[valid_to] >= asOfDate,
+			        USERELATIONSHIP(
+			            'Volunteer Person Role Approval'[location_id],
+			            Location[location_id]
+			        )
+			    )
+		formatString: 0
+		displayFolder: Volunteer Capacity
+		lineageTag: 6324de1f-0575-4d3f-8ecb-c0afc18c95e3
+
+	measure '# of Assigned Volunteers (Capacity)' =
+			
+			/*
+			Counts distinct approved/onboarded individual volunteers
+			with at least one active Arrangement on the snapshot date.
+			
+			Approval and Assignment are evaluated on the same date.
+			Assignment must match the approved Role through function.
+			
+			Eligibility is validated by person_uid and role_name.
+			Volunteers are counted distinctly by person_id.
+			*/
+			
+			VAR snapshotDate = [Selected Timeframe End]
+			
+			VAR approvedVolunteers =
+			    CALCULATETABLE(
+			        SUMMARIZE(
+			            'Volunteer Person Role Approval',
+			            'Volunteer Person Role Approval'[person_uid],
+			            'Volunteer Person Role Approval'[person_id],
+			            'Volunteer Person Role Approval'[role_name]
+			        ),
+			        'Volunteer Person Role Approval'[status] IN {"Approved", "Onboarded"},
+			        'Volunteer Person Role Approval'[valid_from] <= snapshotDate,
+			        'Volunteer Person Role Approval'[valid_to] >= snapshotDate,
+			        USERELATIONSHIP('Volunteer Person Role Approval'[location_id], Location[location_id])
+			    )
+			
+			VAR activeArrangements =
+			    CALCULATETABLE(
+			        VALUES(Arrangement[arrangement_uid]),
+			        NOT ISBLANK(Arrangement[started_utc]),
+			        Arrangement[started_utc] < snapshotDate + 1,
+			        (
+			            ISBLANK(Arrangement[ended_utc])
+			                || Arrangement[ended_utc] >= snapshotDate
+			        ),
+			        USERELATIONSHIP(Arrangement[location_id], Location[location_id])
+			    )
+			
+			VAR assignedVolunteers =
+			    CALCULATETABLE(
+			        SUMMARIZE(
+			            'Volunteer Person Function Assignment',
+			            'Volunteer Person Function Assignment'[person_uid],
+			            'Volunteer Person Function Assignment'[function]
+			        ),
+			        TREATAS(activeArrangements, 'Volunteer Person Function Assignment'[arrangement_uid]),
+			        USERELATIONSHIP('Volunteer Person Function Assignment'[location_id], Location[location_id])
+			    )
+			
+			VAR eligibleVolunteers =
+			    FILTER(
+			        approvedVolunteers,
+			        VAR currentPerson = 'Volunteer Person Role Approval'[person_uid]
+			        VAR currentRole = 'Volunteer Person Role Approval'[role_name]
+			        RETURN
+			            COUNTROWS(
+			                FILTER(
+			                    assignedVolunteers,
+			                    'Volunteer Person Function Assignment'[person_uid] = currentPerson
+			                        && 'Volunteer Person Function Assignment'[function] = currentRole
+			                )
+			            ) > 0
+			    )
+			
+			RETURN
+			    COUNTROWS(
+			        DISTINCT(
+			            SELECTCOLUMNS(
+			                FILTER(
+			                    eligibleVolunteers,
+			                    NOT ISBLANK('Volunteer Person Role Approval'[person_id])
+			                ),
+			                "person_id", 'Volunteer Person Role Approval'[person_id]
+			            )
+			        )
+			    )
+		formatString: 0
+		displayFolder: Volunteer Capacity
+		lineageTag: 352c2fef-242a-4d77-8ce5-1ba4d1e3dc61
+
+	measure '# of Assigned and Caring Volunteers (Capacity)' =
+			
+			/*
+			Individual volunteers are considered Caring whenever
+			they are assigned to an Arrangement.
+			
+			Reuses the Assigned Volunteers measure to maintain
+			consistent eligibility, timeframe and Location rules.
+			*/
+			
+			[# of Assigned Volunteers (Capacity)]
+		formatString: 0
+		displayFolder: Volunteer Capacity
+		lineageTag: 482ef49f-3854-44b2-8444-c608a4e4ef99
+
+	measure 'Volunteer Capacity Utilization - HTML' = ```
+			
+			/*
+			Displays approved individual volunteer capacity with
+			Assigned and Caring participation in a single bar.
+			
+			Approved is evaluated at the selected EndDate.
+			Assigned is evaluated during the selected timeframe.
+			
+			For individual volunteers, Caring equals Assigned.
+			The bar represents Assigned without double-counting.
+			*/
+			
+			VAR approved = COALESCE([# of Approved Volunteers (Capacity)], 0)
+			VAR assigned = COALESCE([# of Assigned Volunteers (Capacity)], 0)
+			VAR caring = COALESCE([# of Assigned and Caring Volunteers (Capacity)], 0)
+			
+			VAR assignmentRate = DIVIDE(assigned, approved, 0)
+			VAR caringRate = DIVIDE(caring, approved, 0)
+			
+			VAR assignedWidth = FORMAT(MIN(1, MAX(0, assignmentRate)) * 100, "0.00", "en-US")
+			
+			VAR approvedLabel = FORMAT(approved, "#,0")
+			VAR assignedLabel = FORMAT(assigned, "#,0")
+			VAR caringLabel = FORMAT(caring, "#,0")
+			VAR assignmentRateLabel = FORMAT(assignmentRate, "0.0%")
+			VAR caringRateLabel = FORMAT(caringRate, "0.0%")
+			
+			VAR capacityDescription =
+			    SWITCH(
+			        TRUE(),
+			        approved = 0,
+			            "No approved volunteers for the selected date.",
+			        assigned = 0,
+			            "None of the <b>" & approvedLabel & "</b> approved volunteers were assigned.",
+			        "<b>" & assignedLabel & "</b> of <b>" & approvedLabel & "</b> approved volunteers were assigned, all of whom provided care."
+			    )
+			
+			VAR htmlContent =
+			"
+			<div style='font-family:Arial,sans-serif;width:100%;box-sizing:border-box;background:#FFFFFF;padding:8px 12px;color:#333333;'>
+			
+			    <table style='width:100%;border-collapse:collapse;margin-bottom:10px;'>
+			        <tr>
+			            <td style='font-size:13px;font-weight:700;color:#172033;white-space:nowrap;'>
+			                Capacity Utilization
+			            </td>
+			
+			            <td style='text-align:right;font-size:11px;color:#667085;white-space:nowrap;'>
+			
+			                <span style='color:#016D82;'>●</span>
+			                Assigned
+			                <b style='color:#016D82;'>" & assignmentRateLabel & "</b>
+			
+			                &nbsp;&nbsp;&nbsp;
+			
+			                <span style='color:#004754;'>●</span>
+			                Caring
+			                <b style='color:#004754;'>" & caringRateLabel & "</b>
+			
+			            </td>
+			        </tr>
+			    </table>
+			
+			    <div style='width:100%;height:12px;background:#DCEFF2;border-radius:10px;overflow:hidden;'>
+			        <div style='width:" & assignedWidth & "%;height:100%;background:#016D82;border-radius:10px;'></div>
+			    </div>
+			
+			    <div style='font-size:11px;color:#667085;margin-top:8px;line-height:1.5;'>
+			        " & capacityDescription & "
+			    </div>
+			
+			</div>
+			"
+			
+			RETURN
+			    htmlContent
+			
+			```
+		displayFolder: Volunteer Capacity
+		lineageTag: d67e9717-3dcd-4c08-9368-c77b7b5e1161
+
+	measure 'Volunteer Individual Capacity by Role - HTML' =
+			
+			/*
+			Displays individual volunteer capacity by Role.
+			
+			Approved is evaluated at the selected EndDate.
+			Assigned follows the selected timeframe.
+			
+			Bar segments:
+			- Gray: Not Assigned during the selected timeframe
+			- Teal: Assigned
+			
+			For individuals, Caring equals Assigned.
+			The bar represents participation without double-counting.
+			
+			Roles are sorted by Assignment Rate descending,
+			then Approved descending.
+			
+			A volunteer may be counted in multiple Roles.
+			*/
+			
+			VAR mainColor = "#016D82"
+			VAR caringColor = "#004754"
+			VAR backgroundColor = "#E9EDF2"
+			
+			/* Individual metrics by Role */
+			
+			VAR roleMetrics =
+			    SELECTCOLUMNS(
+			        ADDCOLUMNS(
+			            VALUES('Volunteer Person Role Approval'[role_name]),
+			            "@Approved", COALESCE([# of Approved Volunteers (Capacity)], 0),
+			            "@Assigned", COALESCE([# of Assigned Volunteers (Capacity)], 0),
+			            "@Caring", COALESCE([# of Assigned and Caring Volunteers (Capacity)], 0)
+			        ),
+			        "Role", 'Volunteer Person Role Approval'[role_name],
+			        "Approved", [@Approved],
+			        "Assigned", [@Assigned],
+			        "Caring", [@Caring]
+			    )
+			
+			VAR roleData =
+			    ADDCOLUMNS(
+			        FILTER(
+			            roleMetrics,
+			            [Approved] > 0
+			                && NOT ISBLANK([Role])
+			        ),
+			        "@AssignmentRate", DIVIDE([Assigned], [Approved], 0)
+			    )
+			
+			/* Generate HTML rows */
+			
+			VAR roleRows =
+			    CONCATENATEX(
+			        roleData,
+			
+			        VAR roleName = [Role]
+			        VAR approved = [Approved]
+			        VAR assigned = [Assigned]
+			        VAR caring = [Caring]
+			        VAR assignmentRate = [@AssignmentRate]
+			
+			        VAR assignedWidth =
+			            FORMAT(
+			                MIN(1, MAX(0, assignmentRate)) * 100,
+			                "0.00",
+			                "en-US"
+			            )
+			
+			        VAR approvedLabel = FORMAT(approved, "#,0")
+			        VAR assignedLabel = FORMAT(assigned, "#,0")
+			        VAR caringLabel = FORMAT(caring, "#,0")
+			        VAR assignmentRateLabel = FORMAT(assignmentRate, "0.0%")
+			
+			        RETURN
+			            "
+			            <div style='margin-bottom:15px;'>
+			
+			                <table style='width:100%;border-collapse:collapse;margin-bottom:6px;'>
+			                    <tr>
+			                        <td style='font-size:12px;font-weight:600;color:#344054;'>
+			                            <span style='color:" & mainColor & ";font-size:11px;'>●</span>
+			                            &nbsp;" & roleName & "
+			                        </td>
+			
+			                        <td style='text-align:right;font-size:11px;color:#667085;white-space:nowrap;'>
+			                            <b style='color:#344054;'>" & approvedLabel & "</b> approved
+			                            &nbsp;·&nbsp;
+			                            <b style='color:" & mainColor & ";'>" & assignedLabel & "</b> assigned
+			                            &nbsp;·&nbsp;
+			                            <b style='color:" & caringColor & ";'>" & caringLabel & "</b> caring
+			                            &nbsp;·&nbsp;
+			                            <b style='color:" & mainColor & ";'>" & assignmentRateLabel & "</b>
+			                        </td>
+			                    </tr>
+			                </table>
+			
+			                <div style='width:100%;height:10px;background:" & backgroundColor & ";border-radius:10px;overflow:hidden;'>
+			                    <div style='width:" & assignedWidth & "%;height:100%;background:" & mainColor & ";border-radius:10px;'></div>
+			                </div>
+			
+			            </div>
+			            ",
+			        "",
+			        [@AssignmentRate], DESC,
+			        [Approved], DESC,
+			        [Role], ASC
+			    )
+			
+			/* Build HTML */
+			
+			VAR htmlContent =
+			    "
+			    <div style='font-family:Arial,sans-serif;width:100%;box-sizing:border-box;background:#FFFFFF;padding:12px 28px 12px 12px;color:#333333;'>
+			
+			        <div style='margin-bottom:15px;'>
+			            <div style='font-size:16px;font-weight:700;color:#172033;'>
+			                Individual Volunteer Capacity by Role
+			            </div>
+			
+			            <div style='font-size:11px;color:#667085;margin-top:4px;line-height:1.4;'>
+			                A volunteer may be counted in multiple roles;
+			                role totals may exceed unique volunteer counts.
+			            </div>
+			        </div>
+			
+			        " &
+			        IF(
+			            COUNTROWS(roleData) > 0,
+			            roleRows,
+			            "<div style='text-align:center;padding:20px;color:#98A2B3;font-size:12px;'>
+			                No data available for the selected filters.
+			            </div>"
+			        )
+			        & "
+			
+			    </div>
+			    "
+			
+			RETURN
+			    htmlContent
+		displayFolder: Volunteer Capacity
+		lineageTag: 44612e7b-90f0-444b-9d8d-6297ae4df2fb
+
+	measure 'Volunteer Individual Capacity Status' =
+			
+			
+			/*
+			Classifies individual volunteers based on their
+			capacity status on the selected snapshot date.
+			
+			Priority:
+			1. Assigned and Caring
+			2. Assigned
+			3. Approved/Onboarded
+			*/
+			
+			VAR Approved = [# of Approved Volunteers (Capacity)]
+			VAR Assigned = [# of Assigned Volunteers (Capacity)]
+			VAR Caring = [# of Assigned and Caring Volunteers (Capacity)]
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        Caring > 0, "Assigned and Caring",
+			        Assigned > 0, "Assigned",
+			        Approved > 0, "Approved/Onboarded",
+			        BLANK()
+			    )
+		displayFolder: Volunteer Capacity
+		lineageTag: 7710fed6-e459-4d7f-a139-f705a8e1e103
+
+	measure 'Volunteer Individual Roles & Status' =
+			
+			/*
+			Concatenates approved individual volunteer roles and their
+			capacity status on the selected snapshot date.
+			
+			Matches Role Approval[role_name] with
+			Function Assignment[function].
+			
+			Priority:
+			1. Assigned
+			2. Approved/Onboarded
+			*/
+			
+			VAR snapshotDate = [Selected Timeframe End]
+			
+			VAR approvedRoles =
+			    CALCULATETABLE(
+			        SUMMARIZE(
+			            'Volunteer Person Role Approval',
+			            'Volunteer Person Role Approval'[role_name]
+			        ),
+			        'Volunteer Person Role Approval'[status] IN {"Approved", "Onboarded"},
+			        'Volunteer Person Role Approval'[valid_from] < snapshotDate + 1,
+			        (
+			            ISBLANK('Volunteer Person Role Approval'[valid_to])
+			                || 'Volunteer Person Role Approval'[valid_to] >= snapshotDate
+			        ),
+			        USERELATIONSHIP('Volunteer Person Role Approval'[location_id], Location[location_id])
+			    )
+			
+			VAR activeArrangements =
+			    CALCULATETABLE(
+			        VALUES(Arrangement[arrangement_uid]),
+			        NOT ISBLANK(Arrangement[started_utc]),
+			        Arrangement[started_utc] < snapshotDate + 1,
+			        (
+			            ISBLANK(Arrangement[ended_utc])
+			                || Arrangement[ended_utc] >= snapshotDate
+			        ),
+			        USERELATIONSHIP(Arrangement[location_id], Location[location_id])
+			    )
+			
+			VAR rolesWithStatus =
+			    ADDCOLUMNS(
+			        approvedRoles,
+			        "@Status",
+			            VAR currentRole = 'Volunteer Person Role Approval'[role_name]
+			
+			            VAR assigned =
+			                CALCULATE(
+			                    COUNTROWS('Volunteer Person Function Assignment'),
+			                    'Volunteer Person Function Assignment'[function] = currentRole,
+			                    TREATAS(activeArrangements, 'Volunteer Person Function Assignment'[arrangement_uid]),
+			                    USERELATIONSHIP('Volunteer Person Function Assignment'[location_id], Location[location_id])
+			                ) > 0
+			
+			            RETURN
+			                IF(
+			                    assigned,
+			                    "Assigned",
+			                    "Approved/Onboarded"
+			                )
+			    )
+			
+			RETURN
+			    CONCATENATEX(
+			        rolesWithStatus,
+			        'Volunteer Person Role Approval'[role_name] & " - " & [@Status],
+			        UNICHAR(10),
+			        'Volunteer Person Role Approval'[role_name],
+			        ASC
+			    )
+		displayFolder: Volunteer Capacity
+		lineageTag: 46275fa0-d709-406c-867a-e5e2cc5c121b
+
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: efb69277-84c8-476b-8cfa-f9bc0abb0fb8
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 2e7f9cfe-c3b5-4cf3-8675-43a572eb6bb8
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 788ab144-6fc2-4d18-a7e5-dbc96dc7218c
+		summarizeBy: none
+		sourceColumn: person_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column role_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 7d6f0934-c4c5-4bcb-84c1-1e267dd7328a
+		summarizeBy: none
+		sourceColumn: role_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_from
+		dataType: dateTime
+		formatString: Short Date
+		displayFolder: _columns
+		lineageTag: 6710dd6a-2d01-483d-9f2d-04c444cf271e
+		summarizeBy: none
+		sourceColumn: valid_from
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column valid_to
+		dataType: dateTime
+		formatString: Short Date
+		displayFolder: _columns
+		lineageTag: 2d5b706b-1c3a-437b-923a-c19f5d95cc1d
+		summarizeBy: none
+		sourceColumn: valid_to
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column status
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 7bd30f06-90a9-4c14-9ac4-f3e5bb53de0b
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: e5f1ee7b-72fa-4678-ac8a-dc1a0b6ba97d
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 99b6021b-4def-4245-a6ad-083507b6e0a5
+		summarizeBy: none
+		sourceColumn: person_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column role_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f1cdee2c-bbf2-409b-804e-7db005dc5597
+		summarizeBy: none
+		sourceColumn: role_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Individual Application Final Status' =
+			
+			/*
+			Identifies the final observed status of each Individual Application.
+			
+			Each entry into Prospective starts a new Application cycle
+			for the same Person and Role.
+			
+			All subsequent status records belong to that Application
+			until the next Prospective entry.
+			
+			The final status is the latest status recorded within
+			the Application cycle, based on valid_from.
+			
+			Application cycles are tracked across Locations using
+			Person ID and Role UID.
+			
+			Future-dated status transitions are excluded.
+			
+			Records without a preceding Prospective entry return BLANK.
+			*/
+			
+			VAR currentPerson = 'Volunteer Person Role Approval'[person_id]
+			VAR currentRole = 'Volunteer Person Role Approval'[role_uid]
+			VAR currentDate = 'Volunteer Person Role Approval'[valid_from]
+			
+			VAR applicationStartDate =
+			    CALCULATE(
+			        MAX('Volunteer Person Role Approval'[valid_from]),
+			        FILTER(
+			            ALL('Volunteer Person Role Approval'),
+			            'Volunteer Person Role Approval'[person_id] = currentPerson &&
+			            'Volunteer Person Role Approval'[role_uid] = currentRole &&
+			            'Volunteer Person Role Approval'[status] = "Prospective" &&
+			            'Volunteer Person Role Approval'[valid_from] <= currentDate
+			        )
+			    )
+			
+			VAR nextApplicationStartDate =
+			    CALCULATE(
+			        MIN('Volunteer Person Role Approval'[valid_from]),
+			        FILTER(
+			            ALL('Volunteer Person Role Approval'),
+			            'Volunteer Person Role Approval'[person_id] = currentPerson &&
+			            'Volunteer Person Role Approval'[role_uid] = currentRole &&
+			            'Volunteer Person Role Approval'[status] = "Prospective" &&
+			            'Volunteer Person Role Approval'[valid_from] > applicationStartDate
+			        )
+			    )
+			
+			VAR lastStatusDate =
+			    CALCULATE(
+			        MAX('Volunteer Person Role Approval'[valid_from]),
+			        FILTER(
+			            ALL('Volunteer Person Role Approval'),
+			            'Volunteer Person Role Approval'[person_id] = currentPerson &&
+			            'Volunteer Person Role Approval'[role_uid] = currentRole &&
+			            'Volunteer Person Role Approval'[valid_from] >= applicationStartDate &&
+			            (
+			                ISBLANK(nextApplicationStartDate) ||
+			                'Volunteer Person Role Approval'[valid_from] < nextApplicationStartDate
+			            ) &&
+			            'Volunteer Person Role Approval'[valid_from] < TODAY() + 1
+			        )
+			    )
+			
+			VAR finalStatus =
+			    CALCULATE(
+			        SELECTEDVALUE('Volunteer Person Role Approval'[status]),
+			        FILTER(
+			            ALL('Volunteer Person Role Approval'),
+			            'Volunteer Person Role Approval'[person_id] = currentPerson &&
+			            'Volunteer Person Role Approval'[role_uid] = currentRole &&
+			            'Volunteer Person Role Approval'[valid_from] = lastStatusDate
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(applicationStartDate) &&
+			    NOT ISBLANK(currentPerson) &&
+			    NOT ISBLANK(currentRole) &&
+			    NOT ISBLANK(lastStatusDate),
+			    finalStatus,
+			    BLANK()
+			)
+		displayFolder: _calculated_columns
+		lineageTag: c9a2b8f0-4d7e-4c9c-a96a-1bb9e519dcba
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Individual Application Type' =
+			
+			
+			/*
+			Classifies each Individual Application as New or Returning
+			based on the Person and Role combination.
+			
+			Each entry into Prospective represents a new Application,
+			including renewals and reapplications.
+			
+			The first Prospective date for each Person and Role
+			is classified as a New Application.
+			
+			Subsequent Prospective dates for the same Person and Role
+			are classified as Returning Applications.
+			
+			Applications are tracked across Locations using
+			Person ID and Role UID.
+			
+			Only Prospective records receive a classification.
+			*/
+			
+			VAR currentPerson = 'Volunteer Person Role Approval'[person_id]
+			VAR currentRole = 'Volunteer Person Role Approval'[role_uid]
+			VAR currentDate = 'Volunteer Person Role Approval'[valid_from]
+			VAR currentStatus = 'Volunteer Person Role Approval'[status]
+			
+			VAR firstApplicationDate =
+			    CALCULATE(
+			        MIN('Volunteer Person Role Approval'[valid_from]),
+			        FILTER(
+			            ALL('Volunteer Person Role Approval'),
+			            'Volunteer Person Role Approval'[person_id] = currentPerson &&
+			            'Volunteer Person Role Approval'[role_uid] = currentRole &&
+			            'Volunteer Person Role Approval'[status] = "Prospective"
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    currentStatus = "Prospective",
+			    IF(
+			        currentDate = firstApplicationDate,
+			        "New",
+			        "Returning"
+			    ),
+			    BLANK()
+			)
+		displayFolder: _calculated_columns
+		lineageTag: 1a44cd6f-f791-4f20-bdb2-44c72bc8e16c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Volunteer Person Role Approval' = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				  Source = #"OData",
+				  IndividualRoleApproval = Source{[Name="IndividualRoleApprovals", Signature="table"]}[Data],
+				
+				  selectColumns = Table.SelectColumns(
+				    IndividualRoleApproval,
+				    {
+				      "OrganizationId",
+				      "LocationId",
+				      "PersonId",
+				      "RoleName",
+				      "Start",
+				      "End",
+				      "Status"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"PersonId", "person_id"},
+				      {"RoleName", "role_name"},
+				      {"Start", "valid_from"},
+				      {"End", "valid_to"},
+				      {"Status", "status"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addPersonUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "person_uid",
+				      each
+				          if [person_id] <> null then
+				              Text.Combine({[rls_key], "-", [person_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  // Roles are not associated with locations - The UID must be ORG + Role Name
+				  addRoleUniqueKey = Table.AddColumn(
+				      addPersonUniqueKey,
+				      "role_uid",
+				      each
+				          if [role_name] <> null then
+				              Text.Combine({[organization_id], "-", [role_name]})
+				          else
+				              null,
+				      type text
+				  )
+				
+				in
+				
+				  addRoleUniqueKey
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,144 @@
+table 'Volunteer Person Function Assignment'
+	lineageTag: 395fa77f-a73f-4860-b222-4f996688cd82
+
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 8d8a8282-80a9-46b8-9bb2-2b1680aeebe1
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 72f80d41-ef52-453d-a4f3-eda80b4aeb2c
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrangement_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: efbe97e6-2c93-4aac-a339-fa5447b7ce62
+		summarizeBy: none
+		sourceColumn: arrangement_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: c4937f2f-972b-4483-a2b6-2c6805ebab1a
+		summarizeBy: none
+		sourceColumn: person_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column function
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 3b792eda-dc4f-402e-863e-ab28b06e6974
+		summarizeBy: none
+		sourceColumn: function
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 269229ee-91d0-4cf1-b38d-70c4fa67ebef
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 1223d14c-fa09-40be-86d3-035d5c7a00d7
+		summarizeBy: none
+		sourceColumn: person_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrangement_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 0f637963-5035-49b0-8481-1eba1b56b255
+		summarizeBy: none
+		sourceColumn: arrangement_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Volunteer Person Function Assignment' = m
+		mode: import
+		queryGroup: Facts
+		source = ```
+				let
+				  Source = #"OData",
+				  PersonFunctionAssignment = Source{[Name="IndividualFunctionAssignments", Signature="table"]}[Data],
+				
+				  selectColumns = Table.SelectColumns(
+				    PersonFunctionAssignment,
+				    {
+				      "OrganizationId",
+				      "LocationId",
+				      "ArrangementId",
+				      "PersonId",
+				      "Function"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"ArrangementId", "arrangement_id"},
+				      {"PersonId", "person_id"},
+				      {"Function", "function"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  // There are duplicated Family Ids in different orgs/locations:
+				  addPersonUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "person_uid",
+				      each
+				          if [person_id] <> null then
+				              Text.Combine({[rls_key], "-", [person_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  // There are duplicated Arrangemets in different orgs/locations:
+				  addArrangementUniqueKey = Table.AddColumn(
+				    addPersonUniqueKey,
+				    "arrangement_uid",
+				    each
+				      if [arrangement_id] <> null then
+				        Text.Combine({[rls_key], "-", [arrangement_id]})
+				      else
+				        null,
+				      type text
+				  )
+				 
+				in
+				
+				  addArrangementUniqueKey
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

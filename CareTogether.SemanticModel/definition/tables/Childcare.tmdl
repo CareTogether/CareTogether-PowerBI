@@ -1,28 +1,31 @@
 table Childcare
-	lineageTag: 0e929471-7d25-410a-953a-359fbad618e6
+	lineageTag: 681d2423-80e5-4d37-8a9e-ea3c0791dcfd
 
-	column ChildInvolvement
+	column ' child_involvement'
 		dataType: string
-		lineageTag: 2e7eee7b-f723-4a38-bf92-87b7accdd83f
+		displayFolder: _columns
+		lineageTag: c6da2e2a-cb02-423e-80d7-b7303e4f8abe
 		summarizeBy: none
-		sourceColumn: ChildInvolvement
+		sourceColumn: " child_involvement"
 
 		annotation SummarizationSetBy = Automatic
 
-	column Order
+	column order
 		dataType: int64
 		formatString: 0
-		lineageTag: 86c56b6e-4c46-4244-98ca-1a62fc061ec1
+		displayFolder: _columns
+		lineageTag: 0ec81be0-22c8-48af-8c6a-f022dec2b744
 		summarizeBy: none
-		sourceColumn: Order
+		sourceColumn: order
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Care Type'
+	column involvement
 		dataType: string
-		lineageTag: c2f8c83b-0e63-4e75-8edc-b90a683a7e39
+		displayFolder: _columns
+		lineageTag: 866d5bff-b2bd-40b3-bd63-12e7a3e02043
 		summarizeBy: none
-		sourceColumn: Care Type
+		sourceColumn: involvement
 
 		annotation SummarizationSetBy = Automatic
 
@@ -31,13 +34,12 @@ table Childcare
 		queryGroup: Dimensions
 		source =
 				let
-				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wcs7IzEnxyC8tzsxLV9JRMgBisJACTCxWJ1rJJbGyJDM3FSzhnFiU6p+XUwlUaAjEUCkFsFwyUE4BLAnS5ZcPFvTMK8vPKUvNTc0rAao3AmK/fIhyBWSp2FgA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ChildInvolvement = _t, Order = _t, Involvement = _t]),
-				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"ChildInvolvement", type text}, {"Order", Int64.Type}, {"Involvement", type text}}),
-				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Involvement", "Care Type"}})
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wcs7IzEnxyC8tzsxLV9JRMgBisJACTCxWJ1rJJbGyJDM3FSzhnFiU6p+XUwlUaAjEUCkFsFwyUE4BLAnS5ZcPFvTMK8vPKUvNTc0rAao3AmK/fIhyBWSp2FgA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#" child_involvement" = _t, order = _t, involvement = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Source,{{"order", Int64.Type}})
 				in
-				    #"Renamed Columns"
+				    #"Tipo Alterado"
 
-	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 

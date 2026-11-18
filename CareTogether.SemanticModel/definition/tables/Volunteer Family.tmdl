@@ -1,0 +1,206 @@
+table 'Volunteer Family'
+	lineageTag: 9df6c383-d32a-4d0c-a547-70a285acfed6
+
+	column family_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 28535398-54fc-42fc-945c-d68ca10c3550
+		summarizeBy: none
+		sourceColumn: family_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 35d614e9-19ca-47a8-ab25-dc65187097b6
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 3ac87cdf-2502-468f-917d-f5717da20b95
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: af2506ed-7785-4ef4-a840-9ce1c8f97e9c
+		summarizeBy: none
+		sourceColumn: family_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_email
+		dataType: string
+		displayFolder: _columns
+		lineageTag: abf1b090-b92e-4e46-8b9c-9a9537d6b9a1
+		summarizeBy: none
+		sourceColumn: primary_email
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_phone_number
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 06c1d3b8-6b81-4e86-afc6-556e73d1f02d
+		summarizeBy: none
+		sourceColumn: primary_phone_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_address_line_1
+		dataType: string
+		displayFolder: _columns
+		lineageTag: a85ca4d2-c1b1-442c-a1b1-d0eeebf8c259
+		summarizeBy: none
+		sourceColumn: primary_address_line_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_address_line_2
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 661a482a-a4ad-4bfb-b3ca-61a224a6b051
+		summarizeBy: none
+		sourceColumn: primary_address_line_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_address_city
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 5446beec-5db1-4e49-a52d-6157845f11ae
+		summarizeBy: none
+		sourceColumn: primary_address_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_address_county
+		dataType: string
+		displayFolder: _columns
+		lineageTag: ae2b021e-d5a7-4564-840c-4c375efd1586
+		summarizeBy: none
+		sourceColumn: primary_address_county
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_address_state
+		dataType: string
+		displayFolder: _columns
+		lineageTag: c577668b-1a47-41c7-896f-ac4d1391d2ec
+		summarizeBy: none
+		sourceColumn: primary_address_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_address_postal_code
+		dataType: string
+		displayFolder: _columns
+		lineageTag: b357bd13-ad3e-43dc-8c10-2c3c7cdd9587
+		summarizeBy: none
+		sourceColumn: primary_address_postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_church
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 484373e7-208a-41fe-b05b-eb9e2faa063c
+		summarizeBy: none
+		sourceColumn: home_church
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 32b5cb76-9f0b-4ae5-9ad6-1a45e35db2b3
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column family_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: a5cf4eb2-f3f7-4d35-b91c-b5a1f66e10e2
+		summarizeBy: none
+		sourceColumn: family_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column azure_geo_location_c = 'Volunteer Family'[primary_address_line_1] & "," & 'Volunteer Family'[primary_address_line_2] & "," & 'Volunteer Family'[primary_address_city] & "," & 'Volunteer Family'[primary_address_county] & "," & 'Volunteer Family'[primary_address_state] & "," & 'Volunteer Family'[primary_address_postal_code]
+		displayFolder: _calculated_columns
+		lineageTag: a9cf1b53-c25b-4c2d-ac68-3ba5269538e2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Volunteer Family' = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				  Source = #"OData",
+				  Family = Source{[Name="Family", Signature="table"]}[Data],
+				
+				  ExpandAddress = Table.ExpandRecordColumn(Family, "PrimaryAddress", {"Line1", "Line2", "City", "County", "State", "PostalCode"}, {"PrimaryAddress.Line1", "PrimaryAddress.Line2", "PrimaryAddress.City", "PrimaryAddress.County", "PrimaryAddress.State", "PrimaryAddress.PostalCode"}),
+				
+				  selectColumns = Table.SelectColumns(
+				    ExpandAddress,
+				    {
+				      "Id", "OrganizationId", "LocationId", "Name", "PrimaryEmail", "PrimaryPhoneNumber", "PrimaryAddress.Line1",
+				      "PrimaryAddress.Line2", "PrimaryAddress.City", "PrimaryAddress.County", "PrimaryAddress.State",
+				      "PrimaryAddress.PostalCode", "HomeChurch"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"Id", "family_id"},
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"Name", "family_name"},
+				      {"PrimaryEmail", "primary_email"},
+				      {"PrimaryPhoneNumber", "primary_phone_number"},
+				      {"PrimaryAddress.Line1", "primary_address_line_1"},
+				      {"PrimaryAddress.Line2", "primary_address_line_2"},
+				      {"PrimaryAddress.City", "primary_address_city"},
+				      {"PrimaryAddress.County", "primary_address_county"},
+				      {"PrimaryAddress.State", "primary_address_state"},
+				      {"PrimaryAddress.PostalCode", "primary_address_postal_code"},
+				      {"HomeChurch", "home_church"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addFamilyUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "family_uid",
+				      each
+				          if [family_id] <> null then
+				              Text.Combine({[rls_key], "-", [family_id]})
+				          else
+				              null,
+				      type text
+				  )
+				in
+				  addFamilyUniqueKey
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

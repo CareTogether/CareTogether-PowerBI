@@ -1,0 +1,176 @@
+table 'Volunteer Person Referral Role Assignment'
+	lineageTag: 9126d8ce-d209-49eb-b28e-9183fcba07a7
+
+	column referral_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 61043d33-a4e7-4a9d-a2a0-3f43c58b7c28
+		summarizeBy: none
+		sourceColumn: referral_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 21ca0df5-4f07-4a22-9980-eb28b3948f6d
+		summarizeBy: none
+		sourceColumn: organization_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 7402e126-c23d-4da0-a760-cb141acec59a
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: f33cf4c3-8fe1-413d-9ea1-9b6fe95b814b
+		summarizeBy: none
+		sourceColumn: person_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_name
+		dataType: string
+		displayFolder: _columns
+		lineageTag: a5b3cb82-2c43-4bee-af8a-e33329194708
+		summarizeBy: none
+		sourceColumn: person_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column role
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 3db78b1e-32dd-41be-ba88-d91e9c0a3ee4
+		summarizeBy: none
+		sourceColumn: role
+
+		annotation SummarizationSetBy = Automatic
+
+	column assigned_at_utc
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: _columns
+		lineageTag: ed4f80d6-147f-45c1-8e1b-e4559a417093
+		summarizeBy: none
+		sourceColumn: assigned_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column assigned_by_user_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 6e78b2c2-8751-4781-a86c-32badfa85225
+		summarizeBy: none
+		sourceColumn: assigned_by_user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 9cecbcb8-53e8-4947-8e4a-40937f4d6ec0
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column referral_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 1839f861-4dd2-4400-9fa2-12ddf1ea51cd
+		summarizeBy: none
+		sourceColumn: referral_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column person_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 68ed2671-965a-4449-b34f-b44aefa5ec49
+		summarizeBy: none
+		sourceColumn: person_uid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Volunteer Person Referral Role Assignment' = m
+		mode: import
+		queryGroup: Facts
+		source = ```
+				let
+				  Source = #"OData",
+				  ReferralsRoleAssignments = Source{[Name="ReferralsRoleAssignments", Signature="table"]}[Data],
+				 
+				  selectColumns = Table.SelectColumns(
+				    ReferralsRoleAssignments,
+				    {
+				      "ReferralId",
+				      "OrganizationId",
+				      "LocationId",
+				      "PersonId",
+				      "PersonName",
+				      "AssignmentRole",
+				      "AssignedAtUtc",
+				      "AssignedByUserId"
+				    }
+				  ),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectColumns,
+				    {
+				      {"ReferralId", "referral_id"},
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"PersonId", "person_id"},
+				      {"PersonName", "person_name"},
+				      {"AssignmentRole", "role"},
+				      {"AssignedAtUtc", "assigned_at_utc"},
+				      {"AssignedByUserId", "assigned_by_user_id"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addReferralUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "referral_uid",
+				      each
+				          if [referral_id] <> null then
+				              Text.Combine({[rls_key], "-", [referral_id]})
+				          else
+				              null,
+				      type text
+				  ),
+				
+				  addPersonUniqueKey = Table.AddColumn(
+				      addReferralUniqueKey,
+				      "person_uid",
+				      each
+				          if [person_id] <> null then
+				              Text.Combine({[rls_key], "-", [person_id]})
+				          else
+				              null,
+				      type text
+				  )
+				
+				in
+				  
+				  addPersonUniqueKey
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

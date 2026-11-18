@@ -1,28 +1,48 @@
 table 'Close Reason'
-	lineageTag: a1d60698-0bd2-4f71-8c12-2867d488fec6
+	lineageTag: 1a514edb-7f2e-4518-9f9c-618b7580d70a
 
-	column ReferralCloseReason
+	column close_reason
 		dataType: string
-		lineageTag: 2f823fb4-8427-475f-941b-b81afdb13f93
+		displayFolder: _columns
+		lineageTag: 3a3afeb9-b787-46fd-9081-c97c0ee11a3a
 		summarizeBy: none
-		sourceColumn: ReferralCloseReason
+		sourceColumn: close_reason
 
 		annotation SummarizationSetBy = Automatic
 
-	column Order
-		dataType: int64
-		formatString: 0
-		lineageTag: 11146fae-f535-4494-9f8f-f904ecd0e2cd
+	column organization_id
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 4a7c6aa6-8d1e-460d-a005-3d97392ab3d7
 		summarizeBy: none
-		sourceColumn: Order
+		sourceColumn: organization_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column Reason
+	column location_id
 		dataType: string
-		lineageTag: 78cc5d34-4bbf-4f5e-bea8-f1afb1ed3113
+		displayFolder: _columns
+		lineageTag: 2986fcc8-57f5-4920-902f-d7f838b81776
 		summarizeBy: none
-		sourceColumn: Reason
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column rls_key
+		dataType: string
+		displayFolder: _columns
+		lineageTag: ff4e6980-5535-4f20-bef6-00aa6618d4db
+		summarizeBy: none
+		sourceColumn: rls_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column close_reason_uid
+		dataType: string
+		displayFolder: _columns
+		lineageTag: 4d545027-84b2-47c0-807a-815dae9532c5
+		summarizeBy: none
+		sourceColumn: close_reason_uid
 
 		annotation SummarizationSetBy = Automatic
 
@@ -31,12 +51,64 @@ table 'Close Reason'
 		queryGroup: Dimensions
 		source =
 				let
-				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Tcw9DoAgDIbhqzTMDP5dwLgqgythINAYFiGIg7e3gFGHDt+bJ5WSCZ/GEKIP0emEjLOGjiL8q+IZTjpo49JFoC0I3lLB7PcNo0C0aAl0FdUKT85yxcOf0RTU0327/CG4YKI+5Ae0IE+lbg==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ReferralCloseReason = _t, Order = _t, Reason = _t]),
-				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"ReferralCloseReason", type text}, {"Order", Int64.Type}, {"Reason", type text}})
+				
+				  Source = #"OData",
+				  Cases = Source{[Name="Cases", Signature="table"]}[Data],
+				
+				  selectColumns = Table.SelectColumns(
+				    Cases,
+				    {
+				      "OrganizationId",
+				      "LocationId",
+				      "CloseReason"
+				    }
+				  ),
+				
+				  selectRows = Table.SelectRows(
+				    selectColumns,
+				    each [CloseReason] <> null
+				  ),
+				
+				  properCaseCloseReason = Table.TransformColumns(
+				    selectRows,
+				    {
+				      {"CloseReason", Text.Proper, type text}
+				    }
+				  ),
+				
+				  selectDistinctRecords = Table.Distinct(properCaseCloseReason),
+				
+				  renameColumns = Table.RenameColumns(
+				    selectDistinctRecords,
+				    {
+				      {"OrganizationId", "organization_id"},
+				      {"LocationId", "location_id"},
+				      {"CloseReason", "close_reason"}
+				    }
+				  ),
+				
+				  addRLSKey = Table.AddColumn(
+				    renameColumns,
+				    "rls_key",
+				    each Text.Combine({[organization_id], "-", [location_id]})
+				  ),
+				
+				  addCloseReasonUniqueKey = Table.AddColumn(
+				      addRLSKey,
+				      "close_reason_uid",
+				      each
+				          if [close_reason] <> null then
+				              Text.Combine({[rls_key], "-", [close_reason]})
+				          else
+				              null,
+				      type text
+				  )
+				
 				in
-				    #"Changed Type"
+				
+				  addCloseReasonUniqueKey
 
-	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
 
